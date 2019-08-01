@@ -1,0 +1,725 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can roundtrip a blockquote 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "A quote.",
+          },
+        ],
+        "object": "block",
+        "type": "block_quote",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip a code block 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "  this is a multiline
+  code
+  block.
+",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "code_block",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip a link 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "data": Object {
+              "href": "http://clause.io",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "a link",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": ".",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip a multiline html block 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is a custom",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [
+                  Object {
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "html",
+                  },
+                ],
+                "object": "text",
+                "text": "  <custom src=\\"property\\">
+  contents
+  </custom>",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "html_block",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "block.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip a single line html block 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is a ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "html",
+              },
+            ],
+            "object": "text",
+            "text": "<custom src=\\"property\\"/>",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "marks": Array [],
+        "object": "text",
+        "text": " property.",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip a thematic break 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "isVoid": true,
+        "object": "block",
+        "type": "horizontal_rule",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "A footer.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip an ordered list 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is an ordered list:",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "one",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "two",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "three",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ol_list",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Done.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip an unordered list 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is an unordered list:",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "one",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "two",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "three",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ul_list",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Done.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip basic text 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is some text.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip bold italic text 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "italic",
+              },
+            ],
+            "object": "text",
+            "text": "some",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " text.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip bold text 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+            ],
+            "object": "text",
+            "text": "some",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " text.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h1 to slate 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading One",
+          },
+        ],
+        "object": "block",
+        "type": "heading_one",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h2 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading Two",
+          },
+        ],
+        "object": "block",
+        "type": "heading_two",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h3 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading Three",
+          },
+        ],
+        "object": "block",
+        "type": "heading_three",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h4 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading Four",
+          },
+        ],
+        "object": "block",
+        "type": "heading_four",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h5 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading Five",
+          },
+        ],
+        "object": "block",
+        "type": "heading_five",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip h6 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Heading Six",
+          },
+        ],
+        "object": "block",
+        "type": "heading_six",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip inline code 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "code",
+              },
+            ],
+            "object": "text",
+            "text": "inline code",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": ".",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip italic text 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "italic",
+              },
+            ],
+            "object": "text",
+            "text": "some",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " text.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
+
+exports[`can roundtrip paragraphs 1`] = `
+Object {
+  "document": Object {
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is first paragraph.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is second paragraph.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+  },
+}
+`;
