@@ -1,15 +1,15 @@
-# Cicero Core
+# Markdown Transform
 
-Core classes to manage the grammar, models and logic of Accord Project legal templates.
+A framework to transform markdown to/from the Slate DOM.
 
 ## Documentation
 
-http://docs.accordproject.org
+TBD.
 
 ## Installation
 
 ```
-npm install @accordproject/cicero-core --save
+npm install @accordproject/markdown-transform --save
 ```
 
 ## License <a name="license"></a>
