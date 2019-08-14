@@ -19,12 +19,6 @@
  * @module markdown-transform
  */
 
-module.exports.FromMarkdown = require('./lib/FromMarkdown');
-module.exports.ToMarkdown = require('./lib/ToMarkdown');
-module.exports.PluginManager = require('./lib/PluginManager');
-module.exports.BasePlugin = require('./lib/plugins/BasePlugin');
-module.exports.ClausePlugin = require('./lib/plugins/ClausePlugin');
-module.exports.VariablePlugin = require('./lib/plugins/VariablePlugin');
-module.exports.ComputedPlugin = require('./lib/plugins/ComputedPlugin');
-module.exports.VideoPlugin = require('./lib/plugins/VideoPlugin');
-module.exports.ListPlugin = require('./lib/plugins/ListPlugin');
+module.exports.CommonMarkParser = require('./lib/CommonMarkParser');
+module.exports.CommonMarkToString = require('./lib/CommonMarkToString');
+module.exports.Stack = require('./lib/Stack');
