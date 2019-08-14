@@ -15,8 +15,8 @@
 // @ts-nocheck
 /* eslint-disable no-undef */
 'use strict';
-
 const CommonmarkParser = require('./CommonmarkParser');
+const commonmarkToString = require('./commonmarkToString');
 let parser = null;
 
 // @ts-ignore
@@ -25,154 +25,184 @@ beforeAll(() => {
 });
 
 const parse = (markdownText) => {
-    const concertoObject = parser.parse(markdownText);
-    return parser.getSerializer().toJSON(concertoObject);
+    return commonmarkToString(parser.parse(markdownText)).trim();
 };
 
 test('can convert basic text', async () => {
     const markdownText = 'This is some text.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert italic text', async () => {
     const markdownText = 'This is *some* text.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert bold text', async () => {
     const markdownText = 'This is **some** text.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert bold italic text', async () => {
     const markdownText = 'This is ***some*** text.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
-test('can convert h1 to slate', async () => {
+test('can convert h1', async () => {
     const markdownText = '# Heading One';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert h2', async () => {
     const markdownText = '## Heading Two';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert h3', async () => {
     const markdownText = '### Heading Three';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert h4', async () => {
     const markdownText = '#### Heading Four';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert h5', async () => {
     const markdownText = '##### Heading Five';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert h6', async () => {
     const markdownText = '###### Heading Six';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert paragraphs', async () => {
     const markdownText = `This is first paragraph.
-  
-  This is second paragraph.`;
+
+This is second paragraph.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert inline code', async () => {
     const markdownText = 'This is `inline code`.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a link', async () => {
     const markdownText = 'This is [a link](http://clause.io).';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a thematic break', async () => {
-    const markdownText = `This is 
-  
-  ---
-  A footer.`;
+    const markdownText = `This is
+
+---
+A footer.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a blockquote', async () => {
     const markdownText = `This is
-  > A quote.`;
+
+> A quote.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a multiline html block', async () => {
     const markdownText = `This is a custom
-  
-  <custom src="property">
-  contents
-  </custom>
 
-  block.`;
+<custom src="property">
+contents
+</custom>
+
+block.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert an ordered list', async () => {
     const markdownText = `This is an ordered list:
+
 1. one
-1. two
-1. three
+
+2. two
+
+3. three
 
 Done.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
+});
+
+test('can convert a tight ordered list', async () => {
+    const markdownText = `This is an ordered list:
+
+1. one
+2. two
+3. three
+
+Done.`;
+    const value = parse(markdownText);
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert an unordered list', async () => {
     const markdownText = `This is an unordered list:
+
+* one
+
+* two
+
+* three
+
+Done.`;
+    const value = parse(markdownText);
+    expect(value).toEqual(markdownText);
+});
+
+test('can convert a tight unordered list', async () => {
+    const markdownText = `This is an unordered list:
+
 * one
 * two
 * three
 
 Done.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a single line html block', async () => {
     const markdownText = 'This is a <custom src="property"/> property.';
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a code block', async () => {
-    const markdownText = `\`\`\`
+    const markdownText = `\`\`\` 
   this is a multiline
   code
   block.
   \`\`\``;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a custom code block', async () => {
@@ -185,15 +215,14 @@ test('can convert a custom code block', async () => {
   which should be handled by the video plugin.
   \`\`\``;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });
 
 test('can convert a video block', async () => {
-    const markdownText = `
-  # Heading One
-  
-  <video src="https://www.youtube.com/embed/dQw4w9WgXcQ"/>
-  `;
+    const markdownText = `# Heading One
+<video src="https://www.youtube.com/embed/dQw4w9WgXcQ"/>
+
+done.`;
     const value = parse(markdownText);
-    expect(value).toMatchSnapshot();
+    expect(value).toEqual(markdownText);
 });

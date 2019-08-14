@@ -30,10 +30,16 @@ class CommonmarkParser {
 
     /**
      * Construct the parser.
-     * @param {*} [options] configuration options
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.trimText] trims all text nodes
+     * @param {boolean} [options.disableValidation] returns unvalidated JSON, rather than a Concerto model
      */
     constructor(options) {
         this.options = options;
+        const modelManager = new ModelManager();
+        modelManager.addModelFile( modelFile, 'commonmark.cto');
+        const factory = new Factory(modelManager);
+        this.serializer = new Serializer(factory, modelManager);
     }
 
     /**
@@ -45,7 +51,7 @@ class CommonmarkParser {
     parse(markdown) {
         let stack = new Stack();
         const that = this;
-        const parser = sax.parser(true);
+        const parser = sax.parser(true, {position: true});
 
         parser.onerror = function (e) {
             throw e;
@@ -63,9 +69,12 @@ class CommonmarkParser {
             }
         };
         parser.onopentag = function (node) {
-            console.log(JSON.stringify(node));
             const newNode = {};
             newNode.$class = CommonmarkParser.toClass(node.name);
+            newNode.line = parser.line;
+            newNode.column = parser.column;
+            newNode.position = parser.position;
+            newNode.startTagPosition = parser.startTagPosition;
 
             // hoist the attributes into the parent object
             Object.keys(node.attributes).forEach(key => {
@@ -95,20 +104,30 @@ class CommonmarkParser {
         const writer = new commonmark.XmlRenderer();
         const parsed = reader.parse(markdown);
         const xml = writer.render(parsed);
-        console.log('====== XML =======');
-        console.log(xml);
+        // console.log('====== XML =======');
+        // console.log(xml);
         parser.write(xml).close();
-        console.log('====== JSON =======');
+        // console.log('====== JSON =======');
         const json = stack.peek();
         console.log(JSON.stringify(json, null, 4));
 
+        if(this.options && this.options.disableValidation) {
+            return json;
+        }
+
         // validate the object using the model
-        const modelManager = new ModelManager();
-        modelManager.addModelFile( modelFile, 'commonmark.cto');
-        const factory = new Factory(modelManager);
-        const serializer = new Serializer(factory, modelManager);
-        const concertoObject = serializer.fromJSON(json);
-        return serializer.toJSON(concertoObject);
+        const concertoObject = this.serializer.fromJSON(json);
+        return concertoObject;
+    }
+
+    /**
+     * Retrieve the serializer used by the parser
+     *
+     * @returns {*} a serializer capable of dealing with the Concerto
+     * object returns by parse
+     */
+    getSerializer() {
+        return this.serializer;
     }
 
     /**
@@ -141,6 +160,10 @@ namespace org.accordproject.commonmark
 abstract concept Node {
     o String text optional
     o Node[] nodes optional
+    o Integer line optional
+    o Integer column optional
+    o Integer position optional
+    o Integer startTagPosition optional
 }
 
 abstract concept Root extends Node {
