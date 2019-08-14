@@ -26,8 +26,8 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'umd'),
-        filename: 'cicero.js',
-        library: 'cicero',
+        filename: 'markdown-transform.js',
+        library: 'markdown-transform',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

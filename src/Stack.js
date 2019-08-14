@@ -34,10 +34,14 @@ class Stack {
     }
 
     /**
-   * Returns the top of the stack
+   * Returns the top of the stack or null if the stack is empty
    * @return {*} the top of the stack
    */
     peek() {
+        if(this.stack.length === 0) {
+            return null;
+        }
+
         return this.stack[this.stack.length - 1];
     }
 

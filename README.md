@@ -1,10 +1,15 @@
 # Markdown Transform
 
-A framework to transform markdown to/from the Slate DOM.
+A framework to transform markdown to/from a CommonMark AST defined using Concerto:
+https://models.accordproject.org/commonmark/markdown.html
 
 ## Documentation
 
-TBD.
+CommonmarkParser converts markdown text to an instance of the CommonMark AST.
+
+CommonmarkToString converts an AST to a markdown string.
+
+See the unit test for example usage.
 
 ## Installation
 
