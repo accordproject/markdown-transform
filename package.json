@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -77,12 +77,12 @@
   "license-check-config": {
     "src": [
       "**/*.js",
-      "!./test/data/**/*",
+      "!./test/**/*",
       "!./coverage/**/*",
       "!./node_modules/**/*",
       "!./out/**/*",
       "!./lib/**/*",
-      "!./umd/cicero.js"
+      "!./umd/**/*"
     ],
     "path": "header.txt",
     "blocking": true,
