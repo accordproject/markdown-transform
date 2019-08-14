@@ -109,7 +109,7 @@ class CommonmarkParser {
         parser.write(xml).close();
         // console.log('====== JSON =======');
         const json = stack.peek();
-        console.log(JSON.stringify(json, null, 4));
+        // console.log(JSON.stringify(json, null, 4));
 
         if(this.options && this.options.disableValidation) {
             return json;
