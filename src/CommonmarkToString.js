@@ -37,7 +37,11 @@ function visitChildren(visitor, thing, parameters) {
 }
 
 /**
- * Converts a commonmark model instance to a markdown string
+ * Converts a commonmark model instance to a markdown string.
+ *
+ * Note that there are several ways of representing the same markdown AST as text,
+ * so this transformation is not guaranteed to equivalent if you roundtrip
+ * markdown content. The resulting AST *should* be equivalent however.
  */
 class ToStringVisitor {
 
@@ -73,8 +77,17 @@ class ToStringVisitor {
         case 'ThematicBreak':
             parameters.result += '---\n';
             break;
+        case 'Linebreak':
+            parameters.result += '\\\n';
+            break;
+        case 'Softbreak':
+            parameters.result += '\n';
+            break;
         case 'Link':
             parameters.result += `[${visitChildren(this, thing)}](${thing.destination})`;
+            break;
+        case 'Image':
+            parameters.result += `![${visitChildren(this, thing)}](${thing.destination})`;
             break;
         case 'Paragraph':
             parameters.result += `${visitChildren(this, thing)}\n\n`;
@@ -132,7 +145,7 @@ function commonmarkToString(concertoObject) {
     parameters.result = '';
     const visitor = new ToStringVisitor();
     concertoObject.accept( visitor, parameters );
-    return parameters.result;
+    return parameters.result.trim();
 }
 
 module.exports = commonmarkToString;

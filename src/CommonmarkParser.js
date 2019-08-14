@@ -205,7 +205,18 @@ concept Heading extends Child {
 concept ThematicBreak extends Child {
 }
 
+concept Softbreak extends Child {
+}
+
+concept Linebreak extends Child {
+}
+
 concept Link extends Child {
+    o String destination
+    o String title
+}
+
+concept Image extends Child {
     o String destination
     o String title
 }
