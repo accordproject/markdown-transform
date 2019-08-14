@@ -5,59 +5,37 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.BlockQuote",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
           "$class": "org.accordproject.commonmark.Paragraph",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
               "text": "A quote.",
             },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-    ",
-            },
           ],
+          "text": "
+    ",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -67,23 +45,15 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "  this is a multiline
+      "text": "  this is a multiline
   code
   block.
 ",
-        },
-      ],
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -93,27 +63,19 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
       "info": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "  this is a multiline
+      "text": "  this is a multiline
   code
 
   containing a newline
 
   which should be handled by the video plugin.
 ",
-        },
-      ],
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -123,26 +85,11 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Link",
@@ -150,24 +97,24 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
               "text": "a link",
             },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-    ",
-            },
           ],
+          "text": "
+    ",
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -177,60 +124,36 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "This is a custom",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "  <custom src=\\"property\\">
+      "text": "  <custom src=\\"property\\">
   contents
   </custom>",
-        },
-      ],
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "block.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -240,39 +163,27 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "This is a ",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "text": "<custom src=\\"property\\"/>",
         },
         Object {
-          "$class": "org.accordproject.commonmark.HtmlInline",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "<custom src=\\"property\\"/>",
-            },
-          ],
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -282,53 +193,33 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "This is",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.ThematicBreak",
-      "nodes": Array [],
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "A footer.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -338,40 +229,24 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "1",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading One",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "  <video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
-        },
-      ],
+      "text": "  <video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -381,35 +256,35 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is an ordered list:",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.List",
       "delimiter": "period",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Text",
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+              "text": "
+      ",
+            },
+          ],
           "text": "
     ",
         },
@@ -417,91 +292,42 @@ Object {
           "$class": "org.accordproject.commonmark.Item",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
               "$class": "org.accordproject.commonmark.Paragraph",
               "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "one",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Item",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Paragraph",
-              "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
                   "text": "two",
                 },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
               ],
+              "text": "
+      ",
             },
           ],
+          "text": "
+    ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Item",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
               "$class": "org.accordproject.commonmark.Paragraph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
                   "text": "three",
                 },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
               ],
+              "text": "
+      ",
             },
           ],
+          "text": "
+    ",
         },
       ],
       "start": "1",
+      "text": "
+  ",
       "tight": "true",
       "type": "ordered",
     },
@@ -510,21 +336,15 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Done.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -534,34 +354,34 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is an unordered list:",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
     Object {
       "$class": "org.accordproject.commonmark.List",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Text",
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+              "text": "
+      ",
+            },
+          ],
           "text": "
     ",
         },
@@ -569,90 +389,41 @@ Object {
           "$class": "org.accordproject.commonmark.Item",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
               "$class": "org.accordproject.commonmark.Paragraph",
               "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "one",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Item",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Paragraph",
-              "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
                   "text": "two",
                 },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
               ],
+              "text": "
+      ",
             },
           ],
+          "text": "
+    ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Item",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
               "$class": "org.accordproject.commonmark.Paragraph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
                   "text": "three",
                 },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
               ],
+              "text": "
+      ",
             },
           ],
+          "text": "
+    ",
         },
       ],
+      "text": "
+  ",
       "tight": "true",
       "type": "bullet",
     },
@@ -661,21 +432,15 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Done.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -685,30 +450,19 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is some text.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -718,59 +472,41 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "This is ",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
           "$class": "org.accordproject.commonmark.Emph",
           "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
             Object {
               "$class": "org.accordproject.commonmark.Strong",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-        ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
                   "text": "some",
                 },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "
-      ",
-                },
               ],
+              "text": "
+      ",
             },
           ],
+          "text": "
+    ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -780,49 +516,34 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
               "text": "some",
             },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-    ",
-            },
           ],
+          "text": "
+    ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -832,31 +553,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "1",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading One",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -866,31 +576,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "2",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading Two",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -900,31 +599,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "3",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading Three",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -934,31 +622,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "4",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading Four",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -968,31 +645,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "5",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading Five",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -1002,31 +668,20 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Heading",
       "level": "6",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "Heading Six",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -1036,39 +691,27 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "This is ",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "inline code",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Code",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "inline code",
-            },
-          ],
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -1078,49 +721,34 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
-      "text": "
-  ",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Emph",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "
-      ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
               "text": "some",
             },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "
-    ",
-            },
           ],
+          "text": "
+    ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
         },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -1130,7 +758,13 @@ Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.commonmark.Text",
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is first paragraph.",
+        },
+      ],
       "text": "
   ",
     },
@@ -1139,40 +773,15 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "This is first paragraph.",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-    ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
           "text": "This is second paragraph.",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
-  ",
-        },
       ],
+      "text": "
+  ",
     },
   ],
+  "text": "
+",
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;

@@ -20,7 +20,7 @@ const NS_PREFIX = 'org.accordproject.commonmark.';
 const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
-
+const Stack = require('./Stack');
 /**
  * Parses markdown using the commonmark parser into the
  * intermediate representation: a JSON object that adheres to
@@ -43,9 +43,7 @@ class CommonmarkParser {
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
     parse(markdown) {
-        let parseResult = '';
-        let inTag = false;
-
+        let stack = new Stack();
         const that = this;
         const parser = sax.parser(true);
 
@@ -59,50 +57,38 @@ class CommonmarkParser {
                 t = t.trim();
             }
 
-            if(t.length > 0) {
-                if(inTag) {
-                    if(parseResult.endsWith('}')) {
-                        parseResult += ',';
-                    }
-
-                    parseResult += `{
-                            "$class" : "${CommonmarkParser.toClass('text')}",
-                            "text" : ${JSON.stringify(t)}
-                        }`;
-                }
+            const head = stack.peek();
+            if(t.length > 0 && head) {
+                stack.peek().text = t;
             }
         };
         parser.onopentag = function (node) {
-            if(node.name !== 'text') {
-                console.log(`onopentag: ${node.name}`);
-                if(parseResult.endsWith('}')) {
-                    parseResult += ',';
+            console.log(JSON.stringify(node));
+            const newNode = {};
+            newNode.$class = CommonmarkParser.toClass(node.name);
+
+            // hoist the attributes into the parent object
+            Object.keys(node.attributes).forEach(key => {
+                newNode[key] = node.attributes[key];
+            });
+            const head = stack.peek();
+
+            if(head) {
+                if(!head.nodes) {
+                    head.nodes = [];
                 }
-
-                // hoist the attributes into the parent object
-                let attributes = ',\n';
-                Object.keys(node.attributes).forEach(key => {
-                    attributes += `"${key}" : ${JSON.stringify(node.attributes[key])},\n`;
-                });
-
-                parseResult += `{
-                    "$class" : "${CommonmarkParser.toClass(node.name)}"
-                    ${attributes}
-                    "nodes" : [\n
-                `;
-                inTag = true;
+                stack.push(newNode);
+            }
+            else {
+                stack.push(newNode, false);
             }
         };
         parser.onclosetag = function (name) {
-            if(name !== 'text') {
-                parseResult += `
-            ]
-            }`;
-                inTag = false;
+            // ensure the document node is left on the stack
+            // so that we can retrieve it as the result
+            if(name !== 'document') {
+                stack.pop();
             }
-        };
-        parser.onend = function () {
-            inTag = false;
         };
 
         const reader = new commonmark.Parser();
@@ -112,10 +98,8 @@ class CommonmarkParser {
         console.log('====== XML =======');
         console.log(xml);
         parser.write(xml).close();
-        // console.log('====== TEXT =======');
-        // console.log(parseResult);
-        const json = JSON.parse(parseResult);
         console.log('====== JSON =======');
+        const json = stack.peek();
         console.log(JSON.stringify(json, null, 4));
 
         // validate the object using the model
@@ -155,64 +139,69 @@ namespace org.accordproject.commonmark
  */
 
 abstract concept Node {
+    o String text optional
     o Node[] nodes optional
 }
 
-concept Text extends Node {
-    o String text
+abstract concept Root extends Node {
 }
 
-concept CodeBlock extends Node {
+abstract concept Child extends Node {
+}
+
+concept Text extends Child {
+}
+
+concept CodeBlock extends Child {
     o String info optional
 }
 
-concept Code extends Node {
+concept Code extends Child {
     o String info optional
 }
 
-concept HtmlInline extends Node {
+concept HtmlInline extends Child {
 }
 
-concept HtmlBlock extends Node {
+concept HtmlBlock extends Child {
 }
 
-concept Emph extends Node {
+concept Emph extends Child {
 }
 
-concept Strong extends Node {
+concept Strong extends Child {
 }
 
-concept BlockQuote extends Node {
+concept BlockQuote extends Child {
 }
 
-concept Heading extends Node {
+concept Heading extends Child {
     o String level
 }
 
-concept ThematicBreak extends Node {
+concept ThematicBreak extends Child {
 }
 
-concept Link extends Node {
+concept Link extends Child {
     o String destination
     o String title
 }
 
-concept Paragraph extends Node {
+concept Paragraph extends Child {
 }
 
-concept List extends Node {
+concept List extends Child {
     o String type
     o String start optional
     o String tight
     o String delimiter optional
 }
 
-concept Item extends Node {
+concept Item extends Child {
 }
 
-concept Document {
+concept Document extends Root {
     o String xmlns
-    o Node[] nodes
 }
 `;
 
