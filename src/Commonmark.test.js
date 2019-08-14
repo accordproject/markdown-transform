@@ -87,7 +87,7 @@ function extractSpecTests(testfile) {
         });
     return examples;
 }
-// const currencyFormatter = input => `£${Number(input).toFixed(2)}`;
+
 describe('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
