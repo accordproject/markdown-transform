@@ -69,7 +69,9 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "commonmark": "^0.29.0"
+    "commonmark": "^0.29.0",
+    "composer-concerto": "^0.71.6",
+    "sax": "^1.2.4"
   },
   "license-check-config": {
     "src": [
