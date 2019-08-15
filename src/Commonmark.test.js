@@ -17,13 +17,13 @@
 'use strict';
 
 const fs = require('fs');
-const CommonmarkParser = require('./CommonmarkParser');
-const commonmarkToString = require('./commonmarkToString');
+const CommonMarkParser = require('./CommonMarkParser');
+const commonMarkToString = require('./commonMarkToString');
 let parser = null;
 
 // @ts-ignore
 beforeAll(() => {
-    parser = new CommonmarkParser();
+    parser = new CommonMarkParser();
 });
 
 /**
@@ -98,7 +98,7 @@ describe('markdown', () => {
 
         it(`roundtrips ${file}`, () => {
             const concertoObject = parser.parse(markdownText);
-            const roundtrip = commonmarkToString(concertoObject);
+            const roundtrip = commonMarkToString(concertoObject);
             expect(roundtrip).toEqual(markdownText);
         });
     });
