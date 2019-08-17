@@ -17,9 +17,43 @@
 'use strict';
 
 const fs = require('fs');
+const diff = require('jest-diff');
 const CommonMarkParser = require('./CommonMarkParser');
 const commonMarkToString = require('./commonMarkToString');
 let parser = null;
+
+expect.extend({
+    toMarkdownRoundtrip(markdownText) {
+        const concertoObject1 = parser.parse(markdownText);
+        const json1 = parser.getSerializer().toJSON(concertoObject1);
+        const newMarkdown = commonMarkToString(concertoObject1);
+        const concertoObject2 = parser.parse(newMarkdown);
+        const json2 = parser.getSerializer().toJSON(concertoObject2);
+        const pass = JSON.stringify(json1) === JSON.stringify(json2);
+
+        const message = pass
+            ? () =>
+                this.utils.matcherHint(`toMarkdownRoundtrip - ${markdownText} -> ${newMarkdown}`, undefined, undefined, undefined) +
+          '\n\n' +
+          `Expected: ${this.utils.printExpected(json1)}\n` +
+          `Received: ${this.utils.printReceived(json2)}`
+            : () => {
+                const diffString = diff(json1, json2, {
+                    expand: true,
+                });
+                return (
+                    this.utils.matcherHint(`toMarkdownRoundtrip - ${markdownText} -> ${newMarkdown}`, undefined, undefined, undefined) +
+            '\n\n' +
+            (diffString && diffString.includes('- Expect')
+                ? `Difference:\n\n${diffString}`
+                : `Expected: ${this.utils.printExpected(json1)}\n` +
+                `Received: ${this.utils.printReceived(json2)}`)
+                );
+            };
+
+        return {actual: markdownText, message, pass};
+    },
+});
 
 // @ts-ignore
 beforeAll(() => {
@@ -97,19 +131,23 @@ describe('markdown', () => {
         });
 
         it(`roundtrips ${file}`, () => {
-            const concertoObject = parser.parse(markdownText);
-            const roundtrip = commonMarkToString(concertoObject);
-            expect(roundtrip).toEqual(markdownText);
+            expect(markdownText).toMarkdownRoundtrip();
         });
     });
 });
 
-describe('commonmark-spec', () => {
+describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
             const concertoObject = parser.parse(markdownText);
             const json = parser.getSerializer().toJSON(concertoObject);
             expect(json).toMatchSnapshot();
+        });
+
+        // currently skipped because not all examples roundtrip
+        // needs more investigation!!
+        it.skip(`roundtrips ${file}`, () => {
+            expect(markdownText).toMarkdownRoundtrip();
         });
     });
 });

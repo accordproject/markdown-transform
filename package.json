@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -60,6 +60,7 @@
     "chai-things": "0.2.0",
     "eslint": "4.19.1",
     "jest": "^24.8.0",
+    "jest-diff": "^24.8.0",
     "jsdoc": "^3.6.3",
     "license-check": "1.1.5",
     "mocha": "6.1.4",

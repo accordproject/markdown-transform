@@ -33,6 +33,7 @@ class CommonmarkParser {
      * @param {object} [options] configuration options
      * @param {boolean} [options.trimText] trims all text nodes
      * @param {boolean} [options.disableValidation] returns unvalidated JSON, rather than a Concerto model
+     * @param {boolean} [options.enableSourceLocation] if true then location information is returned
      */
     constructor(options) {
         this.options = options;
@@ -71,10 +72,12 @@ class CommonmarkParser {
         parser.onopentag = function (node) {
             const newNode = {};
             newNode.$class = CommonmarkParser.toClass(node.name);
-            newNode.line = parser.line;
-            newNode.column = parser.column;
-            newNode.position = parser.position;
-            newNode.startTagPosition = parser.startTagPosition;
+            if(that.options && that.options.enableSourceLocation) {
+                newNode.line = parser.line;
+                newNode.column = parser.column;
+                newNode.position = parser.position;
+                newNode.startTagPosition = parser.startTagPosition;
+            }
 
             // hoist the attributes into the parent object
             Object.keys(node.attributes).forEach(key => {

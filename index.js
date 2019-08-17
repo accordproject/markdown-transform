@@ -20,5 +20,6 @@
  */
 
 module.exports.CommonMarkParser = require('./lib/CommonMarkParser');
-module.exports.CommonMarkToString = require('./lib/CommonMarkToString');
+module.exports.commonMarkToString = require('./lib/commonMarkToString');
+module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
 module.exports.Stack = require('./lib/Stack');
