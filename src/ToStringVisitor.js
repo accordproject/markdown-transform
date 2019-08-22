@@ -99,7 +99,7 @@ class ToStringVisitor {
             parameters.result += thing.text;
             break;
         case 'List': {
-            let index = thing.start ? parseInt(thing.start) : 0;
+            let index = thing.start ? parseInt(thing.start) : 1;
             thing.nodes.forEach(item => {
                 if(thing.type === 'ordered') {
                     parameters.result += `${index++}. ${ToStringVisitor.visitChildren(this, item.nodes[0])}\n`;
