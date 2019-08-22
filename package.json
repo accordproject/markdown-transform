@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
