@@ -44,6 +44,15 @@ class CommonmarkParser {
     }
 
     /**
+     * Converts a JS object for the AST to a concerto object
+     * @param {*} json the JS Object for the AST
+     * @returns {*} the validated concerto object
+     */
+    convertToConcertoObject(json) {
+        return this.serializer.fromJSON(json);
+    }
+
+    /**
      * Parses a markdown string into a Concerto DOM object.
      *
      * @param {string} markdown the string to parse
@@ -119,9 +128,10 @@ class CommonmarkParser {
         }
 
         // validate the object using the model
-        const concertoObject = this.serializer.fromJSON(json);
-        return concertoObject;
+        return this.convertToConcertoObject(json);
     }
+
+
 
     /**
      * Retrieve the serializer used by the parser
