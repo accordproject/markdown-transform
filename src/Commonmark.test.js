@@ -18,15 +18,15 @@
 
 const fs = require('fs');
 const diff = require('jest-diff');
-const CommonMarkParser = require('./CommonMarkParser');
-const commonMarkToString = require('./commonMarkToString');
+const CommonmarkParser = require('./CommonmarkParser');
+const CommonmarkToString = require('./CommonmarkToString');
 let parser = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
         const concertoObject1 = parser.parse(markdownText);
         const json1 = parser.getSerializer().toJSON(concertoObject1);
-        const newMarkdown = commonMarkToString(concertoObject1);
+        const newMarkdown = CommonmarkToString(concertoObject1);
         const concertoObject2 = parser.parse(newMarkdown);
         const json2 = parser.getSerializer().toJSON(concertoObject2);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
@@ -57,7 +57,7 @@ expect.extend({
 
 // @ts-ignore
 beforeAll(() => {
-    parser = new CommonMarkParser();
+    parser = new CommonmarkParser();
 });
 
 /**

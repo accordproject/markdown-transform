@@ -53,6 +53,19 @@ class CommonmarkParser {
     }
 
     /**
+     * Is it a leaf node?
+     * @param {*} json the JS Object for the AST
+     * @return {boolean} whether it's a leaf node
+     */
+    static isLeafNode(json) {
+        return (json.$class === (NS_PREFIX + 'Text') ||
+                json.$class === (NS_PREFIX + 'CodeBlock') ||
+                json.$class === (NS_PREFIX + 'HtmlInline') ||
+                json.$class === (NS_PREFIX + 'HtmlBlock') ||
+                json.$class === (NS_PREFIX + 'Code'));
+    }
+
+    /**
      * Parses a markdown string into a Concerto DOM object.
      *
      * @param {string} markdown the string to parse
@@ -75,7 +88,9 @@ class CommonmarkParser {
 
             const head = stack.peek();
             if(t.length > 0 && head) {
-                stack.peek().text = t;
+                if (CommonmarkParser.isLeafNode(head)) {
+                    head.text = t;
+                }
             }
         };
         parser.onopentag = function (node) {

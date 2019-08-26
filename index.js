@@ -19,7 +19,7 @@
  * @module markdown-transform
  */
 
-module.exports.CommonMarkParser = require('./lib/CommonMarkParser');
-module.exports.commonMarkToString = require('./lib/commonMarkToString');
+module.exports.CommonmarkParser = require('./lib/CommonmarkParser');
+module.exports.CommonmarkToString = require('./lib/CommonmarkToString');
 module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
 module.exports.Stack = require('./lib/Stack');
