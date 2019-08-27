@@ -24,6 +24,8 @@ const ToStringVisitor = require('./ToStringVisitor');
 function commonMarkToString(concertoObject) {
     const parameters = {};
     parameters.result = '';
+    parameters.first = true;
+    parameters.indent = 0;
     const visitor = new ToStringVisitor();
     concertoObject.accept( visitor, parameters );
     return parameters.result.trim();

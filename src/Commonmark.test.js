@@ -42,7 +42,7 @@ expect.extend({
                     expand: true,
                 });
                 return (
-                    this.utils.matcherHint(`toMarkdownRoundtrip - ${markdownText} -> ${newMarkdown}`, undefined, undefined, undefined) +
+                    this.utils.matcherHint(`toMarkdownRoundtrip - ${JSON.stringify(markdownText)} -> ${JSON.stringify(newMarkdown)}`, undefined, undefined, undefined) +
             '\n\n' +
             (diffString && diffString.includes('- Expect')
                 ? `Difference:\n\n${diffString}`
