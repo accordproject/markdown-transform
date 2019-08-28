@@ -83,6 +83,28 @@ class ToStringVisitor {
     }
 
     /**
+     * Create Setext heading
+     * @param {number} level - the heading level
+     * @return {string} the markup for the heading
+     */
+    static mkSetextHeading(level) {
+        if (level === 1) {
+            return '====';
+        } else {
+            return '----';
+        }
+    }
+
+    /**
+     * Create ATX heading
+     * @param {number} level - the heading level
+     * @return {string} the markup for the heading
+     */
+    static mkATXHeading(level) {
+        return Array(level).fill('#').join('');
+    }
+
+    /**
      * Prints a new paragraph if not first
      * @param {*} parameters - the current parameters
      */
@@ -131,8 +153,14 @@ class ToStringVisitor {
             parameters.result += `> ${ToStringVisitor.visitChildren(this, thing, parametersIn)}`;
         }
             break;
-        case 'Heading':
-            parameters.result += `${Array(parseInt(thing.level)).fill('#').join('')} ${ToStringVisitor.visitChildren(this, thing)}\n`;
+        case 'Heading': {
+            const level = parseInt(thing.level);
+            if (level < 3) {
+                parameters.result += `${ToStringVisitor.visitChildren(this, thing)}\n${ToStringVisitor.mkSetextHeading(level)}\n`;
+            } else {
+                parameters.result += `${ToStringVisitor.mkATXHeading(level)} ${ToStringVisitor.visitChildren(this, thing)}\n`;
+            }
+        }
             break;
         case 'ThematicBreak':
             ToStringVisitor.newParagraph(parameters);
