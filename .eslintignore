@@ -5,3 +5,5 @@ umd
 lib
 test/data
 src/grammars
+.travis
+scripts
