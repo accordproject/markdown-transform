@@ -27,7 +27,12 @@
     "test": "jest",
     "test:cov": "nyc npm run test",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
-    "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/"
+    "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
+    "pkgcheck": "node ./scripts/pkgcheck.js",
+    "pkgstamp": "node ./scripts/pkgstamp.js",
+    "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
+    "pkgset": "node ./scripts/pkgset.js",
+    "depcheck": "node ./scripts/depcheck.js"
   },
   "repository": {
     "type": "git",
