@@ -69,7 +69,7 @@ class Commands {
      * @returns {object} a modfied argument object
      */
     static validateParseArgs(argv) {
-        argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.txt', ((argv, argDefaultName) => { return argDefaultName; }));
+        argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
             Logger.info(`parse sample ${argv.sample} using a template ${argv.template}`);
