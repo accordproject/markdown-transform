@@ -156,9 +156,9 @@ class ToStringVisitor {
         case 'Heading': {
             const level = parseInt(thing.level);
             if (level < 3) {
-                parameters.result += `${ToStringVisitor.visitChildren(this, thing)}\n${ToStringVisitor.mkSetextHeading(level)}\n`;
+                parameters.result += `${ToStringVisitor.visitChildren(this, thing)}\n${ToStringVisitor.mkSetextHeading(level)}`;
             } else {
-                parameters.result += `${ToStringVisitor.mkATXHeading(level)} ${ToStringVisitor.visitChildren(this, thing)}\n`;
+                parameters.result += `${ToStringVisitor.mkATXHeading(level)} ${ToStringVisitor.visitChildren(this, thing)}`;
             }
         }
             break;
