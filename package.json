@@ -13,6 +13,7 @@
     "mdtransform": "./bin/index.js"
   },
   "files": [
+    "bin",
     "lib",
     "umd"
   ],
