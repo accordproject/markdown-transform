@@ -115,16 +115,6 @@ class ToStringVisitor {
     }
 
     /**
-     * Prints a new list if not first
-     * @param {*} parameters - the current parameters
-     */
-    static newList(parameters) {
-        if (!parameters.first) {
-            parameters.result += '\n';
-        }
-    }
-
-    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
@@ -190,31 +180,29 @@ class ToStringVisitor {
             parameters.result += thing.text;
             break;
         case 'List': {
-            let index = thing.start ? parseInt(thing.start) : 1;
-            ToStringVisitor.newList(parameters);
+            const first = thing.start ? parseInt(thing.start) : 1;
+            let index = first;
             thing.nodes.forEach(item => {
                 const parametersIn = ToStringVisitor.mkParametersInList(parameters);
-                if(thing.type === 'ordered') {
-                    parameters.result += `${ToStringVisitor.mkIndent(parameters)}${index++}. ${ToStringVisitor.visitChildren(this, item, parametersIn)}\n`;
-                }
-                else {
-                    parameters.result += `${ToStringVisitor.mkIndent(parameters)}- ${ToStringVisitor.visitChildren(this, item, parametersIn)}\n`;
-                }
-                if(thing.tight === 'false') {
+                if(thing.tight === 'false' && index !== first) {
                     parameters.result += '\n';
                 }
+                if(thing.type === 'ordered') {
+                    parameters.result += `\n${ToStringVisitor.mkIndent(parameters)}${index}. ${ToStringVisitor.visitChildren(this, item, parametersIn)}`;
+                }
+                else {
+                    parameters.result += `\n${ToStringVisitor.mkIndent(parameters)}- ${ToStringVisitor.visitChildren(this, item, parametersIn)}`;
+                }
+                index++;
             });
-            if(thing.tight !== 'false') {
-                parameters.result += '\n';
-            }
         }
             break;
         case 'Item':
             if(parameters.type === 'ordered') {
-                parameters.result += '${ToStringVisitor.mkIndent(parameters)}$1. ';
+                parameters.result += '\n${ToStringVisitor.mkIndent(parameters)}$1. ';
             }
             else {
-                parameters.result += '${ToStringVisitor.mkIndent(parameters)}- ';
+                parameters.result += '\n${ToStringVisitor.mkIndent(parameters)}- ';
             }
             parameters.result += ToStringVisitor.visitChildren(this, thing);
             break;
