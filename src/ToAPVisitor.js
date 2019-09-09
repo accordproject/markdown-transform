@@ -49,17 +49,22 @@ class ToAPVisitor {
         case 'CodeBlock':
             if (thing.tag && thing.tag.tagName === 'clause' && thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
+                //console.log('CONTENT! : ' + tag.content);
                 if (tag.attributes[0].name === 'src' &&
                     tag.attributes[1].name === 'clauseid') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
-                    thing.src = tag.attributes[0].name;
-                    thing.clauseid = tag.attributes[1].name;
+                    thing.src = tag.attributes[0].value;
+                    thing.clauseid = tag.attributes[1].value;
+                    thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
+                    thing.text = null; // Remove text
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
-                    thing.clauseid = tag.attributes[0].name;
-                    thing.src = tag.attributes[1].name;
+                    thing.clauseid = tag.attributes[0].value;
+                    thing.src = tag.attributes[1].value;
+                    thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
+                    thing.text = null; // Remove text
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
@@ -72,14 +77,14 @@ class ToAPVisitor {
                 if (tag.attributes[0].name === 'id' &&
                     tag.attributes[1].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Variable');
-                    thing.id = tag.attributes[0].name;
-                    thing.value = tag.attributes[1].name;
+                    thing.id = tag.attributes[0].value;
+                    thing.value = tag.attributes[1].value;
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
-                    thing.value = tag.attributes[0].name;
-                    thing.id  = tag.attributes[1].name;
+                    thing.value = tag.attributes[0].value;
+                    thing.id  = tag.attributes[1].value;
                 } else {
                     //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
@@ -88,7 +93,7 @@ class ToAPVisitor {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'ComputedVariable');
-                    thing.value = tag.attributes[0].name;
+                    thing.value = tag.attributes[0].value;
                 }
                 else {
                     //console.log('Found ComputedVariable but without \'value\' attributes ');

@@ -122,7 +122,7 @@ function extractSpecTests(testfile) {
     return examples;
 }
 
-describe('markdown', () => {
+describe.only('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
             const concertoObject = parser.parse(markdownText);

@@ -20,6 +20,7 @@ const fs = require('fs');
 const diff = require('jest-diff');
 const CommonmarkParser = require('./CommonmarkParser');
 const CommonmarkToAP = require('./CommonmarkToAP');
+const CommonmarkFromAP = require('./CommonmarkFromAP');
 const CommonmarkToString = require('./CommonmarkToString');
 let parser = null;
 
@@ -30,7 +31,7 @@ expect.extend({
         const json1 = parser.getSerializer().toJSON(concertoObject1);
         const newMarkdown = CommonmarkToString(concertoObject1);
         let concertoObject2 = parser.parse(newMarkdown);
-        concertoObject2 = CommonmarkToAP(concertoObject2);
+        concertoObject2 = CommonmarkFromAP(CommonmarkToAP(concertoObject2));
         const json2 = parser.getSerializer().toJSON(concertoObject2);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
