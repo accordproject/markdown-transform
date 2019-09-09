@@ -123,12 +123,16 @@ class ToStringVisitor {
 
         switch(thing.getType()) {
         case 'CodeBlock':
+        case 'Clause':
+            ToStringVisitor.newParagraph(parameters);
             parameters.result += `\`\`\` ${thing.info ? thing.info : ''}\n${thing.text}\`\`\`\n\n`;
             break;
         case 'Code':
             parameters.result += `\`${thing.text}\``;
             break;
         case 'HtmlInline':
+        case 'Variable':
+        case 'ComputedVariable':
             parameters.result += thing.text;
             break;
         case 'Emph':

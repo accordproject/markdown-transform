@@ -18,6 +18,7 @@ const fs = require('fs');
 const Logger = require('./Logger');
 const CommonmarkParser = require('./CommonmarkParser');
 const CommonmarkToString = require('./CommonmarkToString');
+const CommonmarkToAP = require('./CommonmarkToAP');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -89,7 +90,8 @@ class Commands {
     static parse(samplePath, outPath, generateMarkdown) {
         const parser = new CommonmarkParser();
         const markdownText = fs.readFileSync(samplePath, 'utf8');
-        const concertoObject = parser.parse(markdownText);
+        let concertoObject = parser.parse(markdownText);
+        concertoObject = CommonmarkToAP(concertoObject);
         let result;
         if (generateMarkdown) {
             result = CommonmarkToString(concertoObject);
