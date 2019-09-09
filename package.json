@@ -77,13 +77,14 @@
     "raw-loader": "^3.0.0",
     "tsd-jsdoc": "^2.3.0",
     "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.5",
-    "winston": "3.2.1"
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "commonmark": "^0.29.0",
     "composer-concerto": "^0.71.6",
-    "sax": "^1.2.4"
+    "sax": "^1.2.4",
+    "winston": "3.2.1",
+    "xmldom": "^0.1.27"
   },
   "license-check-config": {
     "src": [

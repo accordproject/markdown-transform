@@ -21,6 +21,9 @@ const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 const Stack = require('./Stack');
+const { DOMParser } = require('xmldom');
+const { commonmarkModel } = require('./Models');
+
 /**
  * Parses markdown using the commonmark parser into the
  * intermediate representation: a JSON object that adheres to
@@ -38,7 +41,7 @@ class CommonmarkParser {
     constructor(options) {
         this.options = options;
         const modelManager = new ModelManager();
-        modelManager.addModelFile( modelFile, 'commonmark.cto');
+        modelManager.addModelFile( commonmarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
     }
@@ -66,6 +69,17 @@ class CommonmarkParser {
     }
 
     /**
+     * Is it a HTML-ish node? (html blocks or html inlines but also code blocks)
+     * @param {*} json the JS Object for the AST
+     * @return {boolean} whether it's a leaf node
+     */
+    static isHtmlNode(json) {
+        return (json.$class === (NS_PREFIX + 'CodeBlock') ||
+                json.$class === (NS_PREFIX + 'HtmlInline') ||
+                json.$class === (NS_PREFIX + 'HtmlBlock'));
+    }
+
+    /**
      * Parses a markdown string into a Concerto DOM object.
      *
      * @param {string} markdown the string to parse
@@ -81,7 +95,6 @@ class CommonmarkParser {
         };
 
         parser.ontext = function (t) {
-
             if(that.options && that.options.trimText) {
                 t = t.trim();
             }
@@ -90,6 +103,28 @@ class CommonmarkParser {
             if(t.length > 0 && head) {
                 if (CommonmarkParser.isLeafNode(head)) {
                     head.text = t;
+                }
+                if (CommonmarkParser.isHtmlNode(head)) {
+                    const tagInfo = CommonmarkParser.parseHtmlBlock(head.text);
+                    if (tagInfo) {
+                        head.tag = {};
+                        head.tag.$class = NS_PREFIX + 'TagInfo';
+                        head.tag.tagName = tagInfo.tag;
+                        head.tag.attributeString = tagInfo.attributeString;
+                        head.tag.attributes = [];
+                        for (const attName in tagInfo.attributes) {
+                            if (tagInfo.attributes.hasOwnProperty(attName)) {
+                                const attValue = tagInfo.attributes[attName];
+                                head.tag.attributes.push({
+                                    '$class': NS_PREFIX + 'Attribute',
+                                    'name': attName,
+                                    'value': attValue,
+                                });
+                            }
+                        }
+                        head.tag.content = tagInfo.content;
+                        head.tag.closed = tagInfo.closed;
+                    }
                 }
             }
         };
@@ -176,95 +211,42 @@ class CommonmarkParser {
         const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
         return NS_PREFIX + CommonmarkParser.capitalizeFirstLetter(camelCased);
     }
+
+    /**
+     * Parses an HTML block and extracts the attributes, tag name and tag contents.
+     * Note that this will return null for strings like this: </foo>
+     * @param {string} string - the HTML block to parse
+     * @return {Object} - a tag object that holds the data for the html block
+     */
+    static parseHtmlBlock(string) {
+        try {
+            const doc = (new DOMParser()).parseFromString(string, 'text/html');
+            const item = doc.childNodes[0];
+            const attributes = item.attributes;
+            const attributeObject = {};
+            let attributeString = '';
+
+            for (let i = 0; i < attributes.length; i += 1) {
+                attributeString += `${attributes[i].name} = "${attributes[i].value}" `;
+                attributeObject[attributes[i].name] = attributes[i].value;
+            }
+
+            const tag = {
+                tag: item.tagName.toLowerCase(),
+                attributes: attributeObject,
+                attributeString,
+                content: item.textContent,
+                closed: string.endsWith('/>')
+            };
+
+            return tag;
+        } catch (err) {
+            // no children, so we return null
+            return null;
+        }
+    }
+
 }
 
-const modelFile = `
-namespace org.accordproject.commonmark
-
-/**
- * A model for a commonmark format markdown file
- */
-
-abstract concept Node {
-    o String text optional
-    o Node[] nodes optional
-    o Integer line optional
-    o Integer column optional
-    o Integer position optional
-    o Integer startTagPosition optional
-}
-
-abstract concept Root extends Node {
-}
-
-abstract concept Child extends Node {
-}
-
-concept Text extends Child {
-}
-
-concept CodeBlock extends Child {
-    o String info optional
-}
-
-concept Code extends Child {
-    o String info optional
-}
-
-concept HtmlInline extends Child {
-}
-
-concept HtmlBlock extends Child {
-}
-
-concept Emph extends Child {
-}
-
-concept Strong extends Child {
-}
-
-concept BlockQuote extends Child {
-}
-
-concept Heading extends Child {
-    o String level
-}
-
-concept ThematicBreak extends Child {
-}
-
-concept Softbreak extends Child {
-}
-
-concept Linebreak extends Child {
-}
-
-concept Link extends Child {
-    o String destination
-    o String title
-}
-
-concept Image extends Child {
-    o String destination
-    o String title
-}
-
-concept Paragraph extends Child {
-}
-
-concept List extends Child {
-    o String type
-    o String start optional
-    o String tight
-    o String delimiter optional
-}
-
-concept Item extends Child {
-}
-
-concept Document extends Root {
-    o String xmlns
-}
-`;
 
 module.exports = CommonmarkParser;

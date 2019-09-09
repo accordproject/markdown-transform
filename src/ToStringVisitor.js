@@ -182,6 +182,8 @@ class ToStringVisitor {
         case 'List': {
             const first = thing.start ? parseInt(thing.start) : 1;
             let index = first;
+            // Always start with a new line
+            parameters.result += '\n';
             thing.nodes.forEach(item => {
                 const parametersIn = ToStringVisitor.mkParametersInList(parameters);
                 if(thing.tight === 'false' && index !== first) {
