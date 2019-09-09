@@ -19,6 +19,7 @@ const Logger = require('./Logger');
 const CommonmarkParser = require('./CommonmarkParser');
 const CommonmarkToString = require('./CommonmarkToString');
 const CommonmarkToAP = require('./CommonmarkToAP');
+const CommonmarkFromAP = require('./CommonmarkFromAP');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -85,15 +86,21 @@ class Commands {
      * @param {string} samplePath to the sample file
      * @param {string} outPath to an output file
      * @param {boolean} generateMarkdown whether to transform back to markdown
+     * @param {boolean} withAP whether to further transform for AP
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, generateMarkdown) {
+    static parse(samplePath, outPath, generateMarkdown, withAP) {
         const parser = new CommonmarkParser();
         const markdownText = fs.readFileSync(samplePath, 'utf8');
         let concertoObject = parser.parse(markdownText);
-        concertoObject = CommonmarkToAP(concertoObject);
+        if (withAP) {
+            concertoObject = CommonmarkToAP(concertoObject);
+        }
         let result;
         if (generateMarkdown) {
+            if (withAP) {
+                concertoObject = CommonmarkFromAP(concertoObject);
+            }
             result = CommonmarkToString(concertoObject);
         } else {
             const json = parser.getSerializer().toJSON(concertoObject);

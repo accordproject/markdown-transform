@@ -18,8 +18,8 @@ const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 
-const CommonmarkParser = require('./CommonmarkParser');
-const ToAPVisitor = require('./ToAPVisitor');
+const FromAPVisitor = require('./FromAPVisitor');
+const CommonmarkToString = require('./CommonmarkToString');
 const { commonmarkModel } = require('./Models');
 
 /**
@@ -27,10 +27,7 @@ const { commonmarkModel } = require('./Models');
  * @param {*} concertoObject concerto commonmark object
  * @returns {*} concertoObject concerto commonmark for AP object
  */
-function commonMarkToAP(concertoObject) {
-    // Setup for Nested Parsing
-    const commonmarkParser = new CommonmarkParser();
-
+function commonMarkFromAP(concertoObject) {
     // Setup for validation
     const modelManager = new ModelManager();
     modelManager.addModelFile( commonmarkModel, 'commonmark.cto');
@@ -39,12 +36,12 @@ function commonMarkToAP(concertoObject) {
 
     // Add AP nodes
     const parameters = {
-        parser: commonmarkParser,
+        commonmarkToString: CommonmarkToString,
         modelManager : modelManager ,
         factory : factory,
         serializer : serializer
     };
-    const visitor = new ToAPVisitor();
+    const visitor = new FromAPVisitor();
     concertoObject.accept( visitor, parameters );
 
     // Validate
@@ -52,4 +49,4 @@ function commonMarkToAP(concertoObject) {
     return serializer.fromJSON(json);
 }
 
-module.exports = commonMarkToAP;
+module.exports = commonMarkFromAP;
