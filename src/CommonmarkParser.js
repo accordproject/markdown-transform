@@ -16,13 +16,12 @@
 
 const commonmark = require('commonmark');
 const sax = require('sax');
-const NS_PREFIX = 'org.accordproject.commonmark.';
 const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 const Stack = require('./Stack');
 const { DOMParser } = require('xmldom');
-const { commonmarkModel } = require('./Models');
+const { NS_PREFIX, commonmarkModel } = require('./Models');
 
 /**
  * Parses markdown using the commonmark parser into the

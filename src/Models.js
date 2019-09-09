@@ -14,6 +14,7 @@
 
 'use strict';
 
+const NS_PREFIX = 'org.accordproject.commonmark.';
 
 const commonmarkModel = `
 namespace org.accordproject.commonmark
@@ -57,12 +58,26 @@ concept CodeBlock extends Child {
     o TagInfo tag optional
 }
 
+concept Clause extends CodeBlock {
+    o String clauseid
+    o String src
+}
+
 concept Code extends Child {
     o String info optional
 }
 
 concept HtmlInline extends Child {
     o TagInfo tag optional
+}
+
+concept Variable extends HtmlInline {
+    o String id
+    o String value
+}
+
+concept ComputedVariable extends HtmlInline {
+    o String value
 }
 
 concept HtmlBlock extends Child {
@@ -119,4 +134,4 @@ concept Document extends Root {
 }
 `;
 
-module.exports = { commonmarkModel };
+module.exports = { NS_PREFIX, commonmarkModel };
