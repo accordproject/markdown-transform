@@ -262,6 +262,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"property\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "property",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "custom",
+          },
           "text": "<custom src=\\"property\\"/>",
         },
         Object {
@@ -291,6 +305,20 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+          },
+        ],
+        "closed": true,
+        "content": "",
+        "tagName": "video",
+      },
       "text": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
     },
     Object {
@@ -381,6 +409,22 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"property\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "property",
+          },
+        ],
+        "closed": false,
+        "content": "
+contents
+",
+        "tagName": "custom",
+      },
       "text": "<custom src=\\"property\\">
 contents
 </custom>",
@@ -2289,6 +2333,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "href = \\"/bar\\\\/)\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "href",
+            "value": "/bar\\\\/)",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "a",
+      },
       "text": "<a href=\\"/bar\\\\/)\\">",
     },
   ],
@@ -3543,6 +3601,20 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"\`\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "\`",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"\`\\">",
         },
         Object {
@@ -7513,6 +7585,25 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"foo\\" title = \\"*\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "foo",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "title",
+                "value": "*",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "img",
+          },
           "text": "<img src=\\"foo\\" title=\\"*\\"/>",
         },
       ],
@@ -7535,6 +7626,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"**\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "**",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"**\\">",
         },
       ],
@@ -7557,6 +7662,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"__\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "__",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"__\\">",
         },
       ],
@@ -7983,6 +8102,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "href = \\"&ouml;&ouml;.html\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "href",
+            "value": "&ouml;&ouml;.html",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "a",
+      },
       "text": "<a href=\\"&ouml;&ouml;.html\\">",
     },
   ],
@@ -8778,6 +8911,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "table",
+      },
       "text": "<table><tr><td>
 <pre>
 **Hello**,",
@@ -8822,6 +8963,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+  
+    
+           hi
+    
+  
+",
+        "tagName": "table",
+      },
       "text": "<table>
   <tr>
     <td>
@@ -8879,6 +9034,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "CLASS = \\"foo\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "CLASS",
+            "value": "foo",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<DIV CLASS=\\"foo\\">",
     },
     Object {
@@ -8910,6 +9079,26 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "id = \\"foo\\" class = \\"bar\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "id",
+            "value": "foo",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "class",
+            "value": "bar",
+          },
+        ],
+        "closed": false,
+        "content": "
+",
+        "tagName": "div",
+      },
       "text": "<div id=\\"foo\\"
   class=\\"bar\\">
 </div>",
@@ -8925,6 +9114,28 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "id = \\"foo\\" class = \\"bar
+  baz\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "id",
+            "value": "foo",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "class",
+            "value": "bar
+  baz",
+          },
+        ],
+        "closed": false,
+        "content": "
+",
+        "tagName": "div",
+      },
       "text": "<div id=\\"foo\\" class=\\"bar
   baz\\">
 </div>",
@@ -8940,6 +9151,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div>
 *foo*",
     },
@@ -8968,6 +9187,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "id = \\"foo\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "id",
+            "value": "foo",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div id=\\"foo\\"
 *hi*",
     },
@@ -8982,6 +9215,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "class = \\"class\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "class",
+            "value": "class",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div class
 foo",
     },
@@ -9010,6 +9257,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "*foo*",
+        "tagName": "div",
+      },
       "text": "<div><a href=\\"bar\\">*foo*</a></div>",
     },
   ],
@@ -9023,6 +9278,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+foo
+",
+        "tagName": "table",
+      },
       "text": "<table><tr><td>
 foo
 </td></tr></table>",
@@ -9038,6 +9303,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div></div>
 \`\`\` c
 int x = 33;
@@ -9054,6 +9327,22 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "href = \\"foo\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "href",
+            "value": "foo",
+          },
+        ],
+        "closed": false,
+        "content": "
+*bar*
+",
+        "tagName": "a",
+      },
       "text": "<a href=\\"foo\\">
 *bar*
 </a>",
@@ -9069,6 +9358,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+*bar*
+",
+        "tagName": "warning",
+      },
       "text": "<Warning>
 *bar*
 </Warning>",
@@ -9084,6 +9383,22 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "class = \\"foo\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "class",
+            "value": "foo",
+          },
+        ],
+        "closed": false,
+        "content": "
+*bar*
+",
+        "tagName": "i",
+      },
       "text": "<i class=\\"foo\\">
 *bar*
 </i>",
@@ -9113,6 +9428,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+*foo*
+",
+        "tagName": "del",
+      },
       "text": "<del>
 *foo*
 </del>",
@@ -9128,6 +9453,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "del",
+      },
       "text": "<del>",
     },
     Object {
@@ -9162,6 +9495,14 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "del",
+          },
           "text": "<del>",
         },
         Object {
@@ -9190,6 +9531,25 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "language = \\"haskell\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "language",
+            "value": "haskell",
+          },
+        ],
+        "closed": false,
+        "content": "
+import Text.HTML.TagSoup
+
+main :: IO ()
+main = print $ parseTags tags
+",
+        "tagName": "pre",
+      },
       "text": "<pre language=\\"haskell\\"><code>
 import Text.HTML.TagSoup
 
@@ -9217,6 +9577,24 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "type = \\"text/javascript\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "type",
+            "value": "text/javascript",
+          },
+        ],
+        "closed": false,
+        "content": "
+// JavaScript example
+
+document.getElementById(\\"demo\\").innerHTML = \\"Hello JavaScript!\\";
+",
+        "tagName": "script",
+      },
       "text": "<script type=\\"text/javascript\\">
 // JavaScript example
 
@@ -9243,6 +9621,24 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "type = \\"text/css\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "type",
+            "value": "text/css",
+          },
+        ],
+        "closed": false,
+        "content": "
+h1 {color:red;}
+
+p {color:blue;}
+",
+        "tagName": "style",
+      },
       "text": "<style
   type=\\"text/css\\">
 h1 {color:red;}
@@ -9270,6 +9666,20 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "type = \\"text/css\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "type",
+            "value": "text/css",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "style",
+      },
       "text": "<style
   type=\\"text/css\\">
 
@@ -9289,6 +9699,14 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlBlock",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "div",
+          },
           "text": "<div>
 foo",
         },
@@ -9320,6 +9738,14 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.HtmlBlock",
+              "tag": Object {
+                "$class": "org.accordproject.commonmark.TagInfo",
+                "attributeString": "",
+                "attributes": Array [],
+                "closed": false,
+                "content": "",
+                "tagName": "div",
+              },
               "text": "<div>",
             },
           ],
@@ -9353,6 +9779,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "p{color:red;}",
+        "tagName": "style",
+      },
       "text": "<style>p{color:red;}</style>",
     },
     Object {
@@ -9407,6 +9841,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+foo
+",
+        "tagName": "script",
+      },
       "text": "<script>
 foo
 </script>1. *bar*",
@@ -9541,6 +9985,14 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div>
 ",
     },
@@ -9564,6 +10016,16 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+bar
+",
+        "tagName": "div",
+      },
       "text": "<div>
 bar
 </div>",
@@ -9579,6 +10041,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+bar
+",
+        "tagName": "div",
+      },
       "text": "<div>
 bar
 </div>
@@ -9605,6 +10077,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"bar\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "bar",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"bar\\">",
         },
         Object {
@@ -9627,6 +10113,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "div",
+      },
       "text": "<div>",
     },
     Object {
@@ -9662,6 +10156,16 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+*Emphasized* text.
+",
+        "tagName": "div",
+      },
       "text": "<div>
 *Emphasized* text.
 </div>",
@@ -9677,14 +10181,40 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "table",
+      },
       "text": "<table>",
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "tr",
+      },
       "text": "<tr>",
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+Hi
+",
+        "tagName": "td",
+      },
       "text": "<td>
 Hi
 </td>",
@@ -9708,6 +10238,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "table",
+      },
       "text": "<table>",
     },
     Object {
@@ -9716,6 +10254,16 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "
+  Hi
+",
+        "tagName": "td",
+      },
       "text": "<td>
   Hi
 </td>
@@ -9964,6 +10512,22 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"foo  
+bar\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "foo  
+bar",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"foo  
 bar\\">",
         },
@@ -9983,6 +10547,22 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"foo\\\\
+bar\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "foo\\\\
+bar",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"foo\\\\
 bar\\">",
         },
@@ -10876,6 +11456,14 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": false,
+        "content": "",
+        "tagName": "a",
+      },
       "text": "<a/>
 *hi*
 
@@ -11413,6 +12001,14 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "bar",
+          },
           "text": "<bar>",
         },
         Object {
@@ -12205,6 +12801,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "bar = \\"bar\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "bar",
+                "value": "bar",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "foo",
+          },
           "text": "<foo
 bar>",
         },
@@ -12369,6 +12979,14 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "b",
+          },
           "text": "<b>",
         },
         Object {
@@ -13389,6 +14007,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "attr = \\"](baz)\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "attr",
+                "value": "](baz)",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "bar",
+          },
           "text": "<bar attr=\\"](baz)\\">",
         },
       ],
@@ -13835,6 +14467,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "attr = \\"][ref]\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "attr",
+                "value": "][ref]",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "bar",
+          },
           "text": "<bar attr=\\"][ref]\\">",
         },
       ],
@@ -19049,14 +19695,38 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a>",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "bab",
+          },
           "text": "<bab>",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": false,
+            "content": "",
+            "tagName": "c2c",
+          },
           "text": "<c2c>",
         },
       ],
@@ -19075,10 +19745,26 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": true,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a/>",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": true,
+            "content": "",
+            "tagName": "b2",
+          },
           "text": "<b2/>",
         },
       ],
@@ -19097,10 +19783,32 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": true,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a  />",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "data = \\"foo\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "data",
+                "value": "foo",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "b2",
+          },
           "text": "<b2
 data=\\"foo\\" >",
         },
@@ -19120,6 +19828,14 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "",
+            "attributes": Array [],
+            "closed": true,
+            "content": "\\"",
+            "tagName": "em",
+          },
           "text": "<a foo=\\"bar\\" bam = 'baz <em>\\"</em>'
 _boolean zoop:33=zoop:33 />",
         },
@@ -19143,6 +19859,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"foo.jpg\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "foo.jpg",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "responsive-image",
+          },
           "text": "<responsive-image src=\\"foo.jpg\\" />",
         },
       ],
@@ -19634,6 +20364,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"&ouml;\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "&ouml;",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"&ouml;\\">",
         },
       ],
@@ -19656,6 +20400,20 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "href = \\"\\\\*\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "href",
+                "value": "\\\\*",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "a",
+          },
           "text": "<a href=\\"\\\\*\\">",
         },
       ],
