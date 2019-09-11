@@ -33,10 +33,20 @@ class ToCiceroVisitor {
      */
     static visitChildren(visitor, thing, parameters) {
         if(thing.nodes) {
-            thing.nodes.forEach(node => {
-                node.accept(visitor, parameters);
-            });
+            ToCiceroVisitor.visitNodes(visitor, thing.nodes, parameters);
         }
+    }
+
+    /**
+     * Visits a list of nodes and return the markdown
+     * @param {*} visitor the visitor to use
+     * @param {*} things the list node to visit
+     * @param {*} [parameters] optional parameters
+     */
+    static visitNodes(visitor, things, parameters) {
+        things.forEach(node => {
+            node.accept(visitor, parameters);
+        });
     }
 
     /**
@@ -55,7 +65,9 @@ class ToCiceroVisitor {
                     thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
-                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
+
+                    const parsedNodes = parameters.commonMark.fromString(tag.content).nodes;
+                    thing.nodes = parsedNodes ? ToCiceroVisitor.visitNodes(this, parsedNodes, parameters) : []; // Parse text as markdown (in the nodes for the root)
                     thing.text = null; // Remove text
                     delete thing.tag;
                 }
@@ -64,7 +76,9 @@ class ToCiceroVisitor {
                     thing.$classDeclaration = parameters.commonMark.fromString.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
-                    thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
+
+                    const parsedNodes = parameters.commonMark.fromString(tag.content).nodes;
+                    thing.nodes = parsedNodes ? ToCiceroVisitor.visitNodes(this, parsedNodes, parameters) : []; // Parse text as markdown (in the nodes for the root)
                     thing.text = null; // Remove text
                     delete thing.tag;
                 } else {
