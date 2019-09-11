@@ -50,6 +50,7 @@ class FromCiceroVisitor {
             let jsonSource = {};
             let jsonTarget = {};
 
+            FromCiceroVisitor.visitChildren(this, thing, parameters);
             // Revert to CodeBlock
             jsonTarget.$class = COMMON_NS_PREFIX + 'CodeBlock';
 
@@ -62,7 +63,7 @@ class FromCiceroVisitor {
             const content = parameters.commonMark.toString(parameters.serializer.fromJSON(jsonSource));
             const attributeString = `src="${clauseJson.src}" clauseid="${clauseJson.clauseid}"`;
 
-            jsonTarget.text = `<clause ${attributeString}>\n${content}\n</clause>\n`;
+            jsonTarget.text = content + '\n';
 
             // Create the proper tag
             let tag = {};
@@ -91,11 +92,13 @@ class FromCiceroVisitor {
 
             delete thing.clauseid;
             delete thing.src;
+            delete thing.clauseText;
 
             thing.$classDeclaration = validatedTarget.$classDeclaration;
             thing.tag = validatedTarget.tag;
             thing.nodes = validatedTarget.nodes;
             thing.text = validatedTarget.text;
+            thing.info = `<clause ${attributeString}/>`;
         }
             break;
         case 'Variable': {
