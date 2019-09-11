@@ -18,8 +18,7 @@ const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 
-const CommonmarkParser = require('./CommonmarkParser');
-const CommonmarkToString = require('./CommonmarkToString');
+const CommonMark = require('./CommonMark');
 const ToCiceroVisitor = require('./ToCiceroVisitor');
 const FromCiceroVisitor = require('./FromCiceroVisitor');
 const { commonmarkModel, ciceromarkModel } = require('./Models');
@@ -38,7 +37,7 @@ class CiceroMark {
         this.options = options;
 
         // Setup for Nested Parsing
-        this.commonmarkParser = new CommonmarkParser();
+        this.commonMark = new CommonMark();
 
         // Setup for validation
         this.modelManager = new ModelManager();
@@ -53,10 +52,10 @@ class CiceroMark {
      * @param {*} concertoObject concerto commonmark object
      * @returns {*} concertoObject concerto ciceromark object
      */
-    fromCommonmark(concertoObject) {
+    fromCommonMark(concertoObject) {
         // Add Cicero nodes
         const parameters = {
-            parser: this.commonmarkParser,
+            commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer,
         };
@@ -73,10 +72,10 @@ class CiceroMark {
      * @param {*} concertoObject concerto cicero object
      * @returns {*} concertoObject concerto commonmark
      */
-    toCommonmark(concertoObject) {
+    toCommonMark(concertoObject) {
         // Add Cicero nodes
         const parameters = {
-            commonmarkToString: CommonmarkToString,
+            commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer
         };

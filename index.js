@@ -21,9 +21,9 @@
 
 module.exports.Logger = require('./lib/Logger');
 module.exports.Stack = require('./lib/Stack');
+module.exports.Models = require('./lib/Models');
 
-module.exports.CommonmarkParser = require('./lib/CommonmarkParser');
-module.exports.CommonmarkToString = require('./lib/CommonmarkToString');
+module.exports.CommonMark = require('./lib/CommonMark');
 module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
 
 module.exports.CiceroMark = require('./lib/CiceroMark');
