@@ -23,7 +23,7 @@ const { CICERO_NS_PREFIX } = require('./Models');
  * so this transformation is not guaranteed to equivalent if you roundtrip
  * markdown content. The resulting AST *should* be equivalent however.
  */
-class ToAPVisitor {
+class ToCiceroVisitor {
 
     /**
      * Visits a sub-tree and return the markdown
@@ -106,9 +106,9 @@ class ToAPVisitor {
             }
             break;
         default:
-            ToAPVisitor.visitChildren(this, thing, parameters);
+            ToCiceroVisitor.visitChildren(this, thing, parameters);
         }
     }
 }
 
-module.exports = ToAPVisitor;
+module.exports = ToCiceroVisitor;

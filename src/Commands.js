@@ -17,15 +17,9 @@
 const Fs = require('fs');
 const Logger = require('./Logger');
 
-const ModelManager = require('composer-concerto').ModelManager;
-const Factory = require('composer-concerto').Factory;
-const Serializer = require('composer-concerto').Serializer;
-
 const CommonmarkParser = require('./CommonmarkParser');
 const CommonmarkToString = require('./CommonmarkToString');
-const CommonmarkToAP = require('./CommonmarkToAP');
-const CommonmarkFromAP = require('./CommonmarkFromAP');
-const { commonmarkModel, ciceromarkModel } = require('./Models');
+const CiceroMark = require('./CiceroMark');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -92,30 +86,25 @@ class Commands {
      * @param {string} samplePath to the sample file
      * @param {string} outPath to an output file
      * @param {boolean} generateMarkdown whether to transform back to markdown
-     * @param {boolean} withAP whether to further transform for AP
+     * @param {boolean} withCicero whether to further transform for Cicero
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, generateMarkdown, withAP) {
+    static parse(samplePath, outPath, generateMarkdown, withCicero) {
         const parser = new CommonmarkParser();
+        const ciceroMark = new CiceroMark();
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let concertoObject = parser.parse(markdownText);
-        if (withAP) {
-            concertoObject = CommonmarkToAP(concertoObject);
+        if (withCicero) {
+            concertoObject = ciceroMark.fromCommonmark(concertoObject);
         }
         let result;
         if (generateMarkdown) {
-            if (withAP) {
-                concertoObject = CommonmarkFromAP(concertoObject);
+            if (withCicero) {
+                concertoObject = ciceroMark.toCommonmark(concertoObject);
             }
             result = CommonmarkToString(concertoObject);
         } else {
-            const modelManager = new ModelManager();
-            modelManager.addModelFile(commonmarkModel, 'commonmark.cto');
-            modelManager.addModelFile(ciceromarkModel, 'ciceromark.cto');
-            const factory = new Factory(modelManager);
-            const serializer = new Serializer(factory, modelManager);
-
-            const json = serializer.toJSON(concertoObject);
+            const json = ciceroMark.getSerializer().toJSON(concertoObject);
             result = JSON.stringify(json);
         }
         if (outPath) {
