@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX } = require('./Models');
+const { COMMON_NS_PREFIX } = require('./Models');
 
 /**
  * Converts a commonmark model instance to a markdown string.
@@ -51,11 +51,11 @@ class FromAPVisitor {
             let jsonTarget = {};
 
             // Revert to CodeBlock
-            jsonTarget.$class = NS_PREFIX + 'CodeBlock';
+            jsonTarget.$class = COMMON_NS_PREFIX + 'CodeBlock';
 
             // Get the content
             const clauseJson = parameters.serializer.toJSON(thing);
-            jsonSource.$class = NS_PREFIX + 'Document';
+            jsonSource.$class = COMMON_NS_PREFIX + 'Document';
             jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
             jsonSource.nodes = clauseJson.nodes;
 
@@ -66,7 +66,7 @@ class FromAPVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = NS_PREFIX + 'TagInfo';
+            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
             tag.tagName = 'clause';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -74,13 +74,13 @@ class FromAPVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = NS_PREFIX + 'Attribute';
+            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
             attribute1.name = 'src';
             attribute1.value = clauseJson.src;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
-            attribute2.$class = NS_PREFIX + 'Attribute';
+            attribute2.$class = COMMON_NS_PREFIX + 'Attribute';
             attribute2.name = 'clauseid';
             attribute2.value = clauseJson.clauseid;
             tag.attributes.push(attribute2);
@@ -100,7 +100,7 @@ class FromAPVisitor {
             break;
         case 'Variable': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'HtmlInline');
+            thing.$classDeclaration = parameters.modelManager.getType(COMMON_NS_PREFIX + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
@@ -109,7 +109,7 @@ class FromAPVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = NS_PREFIX + 'TagInfo';
+            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
             tag.tagName = 'variable';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -117,13 +117,13 @@ class FromAPVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = NS_PREFIX + 'Attribute';
+            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
             attribute1.name = 'id';
             attribute1.value = thing.id;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
-            attribute2.$class = NS_PREFIX + 'Attribute';
+            attribute2.$class = COMMON_NS_PREFIX + 'Attribute';
             attribute2.name = 'value';
             attribute2.value = thing.value;
             tag.attributes.push(attribute2);
@@ -136,7 +136,7 @@ class FromAPVisitor {
             break;
         case 'ComputedVariable': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'HtmlInline');
+            thing.$classDeclaration = parameters.modelManager.getType(COMMON_NS_PREFIX + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
@@ -145,7 +145,7 @@ class FromAPVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = NS_PREFIX + 'TagInfo';
+            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
             tag.tagName = 'computed';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -153,7 +153,7 @@ class FromAPVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = NS_PREFIX + 'Attribute';
+            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
             attribute1.name = 'value';
             attribute1.value = thing.value;
             tag.attributes.push(attribute1);

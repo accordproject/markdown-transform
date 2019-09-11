@@ -32,6 +32,174 @@ Object {
 }
 `;
 
+exports[`markdown converts clause.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a fixed interest loan to the amount of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "id = \\"loanAmount\\" value = \\"100000.0\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "id",
+                "value": "loanAmount",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "100000.0",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "variable",
+          },
+          "text": "<variable id=\\"loanAmount\\" value=\\"100000.0\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "at the yearly interest rate of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "id = \\"rate\\" value = \\"2.5\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "id",
+                "value": "rate",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "2.5",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "variable",
+          },
+          "text": "<variable id=\\"rate\\" value=\\"2.5\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "%",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "with a loan term of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "id = \\"loanDuration\\" value = \\"15\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "id",
+                "value": "loanDuration",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "15",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "variable",
+          },
+          "text": "<variable id=\\"loanDuration\\" value=\\"15\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "and monthly payments of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "value = \\"667.0\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "667.0",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "computed",
+          },
+          "text": "<computed value=\\"667.0\\"/>",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"foo\\" clauseid = \\"bar\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "foo",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "clauseid",
+            "value": "bar",
+          },
+        ],
+        "closed": false,
+        "content": "
+this is
+multiline
+
+content
+",
+        "tagName": "clause",
+      },
+      "text": "<clause src=\\"foo\\" clauseid=\\"bar\\">
+this is
+multiline
+
+content
+</clause>
+",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts codeblock.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

@@ -20,7 +20,7 @@ const Serializer = require('composer-concerto').Serializer;
 
 const CommonmarkParser = require('./CommonmarkParser');
 const ToAPVisitor = require('./ToAPVisitor');
-const { commonmarkModel } = require('./Models');
+const { commonmarkModel, ciceromarkModel } = require('./Models');
 
 /**
  * Converts a commonmark document to a markdown string
@@ -33,7 +33,8 @@ function commonMarkToAP(concertoObject) {
 
     // Setup for validation
     const modelManager = new ModelManager();
-    modelManager.addModelFile( commonmarkModel, 'commonmark.cto');
+    modelManager.addModelFile(commonmarkModel, 'commonmark.cto');
+    modelManager.addModelFile(ciceromarkModel, 'ciceromark.cto');
     const factory = new Factory(modelManager);
     const serializer = new Serializer(factory, modelManager);
 

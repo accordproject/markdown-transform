@@ -19,11 +19,14 @@
  * @module markdown-transform
  */
 
+module.exports.Logger = require('./lib/Logger');
+module.exports.Stack = require('./lib/Stack');
+
 module.exports.CommonmarkParser = require('./lib/CommonmarkParser');
 module.exports.CommonmarkToString = require('./lib/CommonmarkToString');
+module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
+
 module.exports.CommonmarkToAP = require('./lib/CommonmarkToAP');
 module.exports.CommonmarkFromAP = require('./lib/CommonmarkFromAP');
-module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
 module.exports.ToAPVisitor = require('./lib/ToAPVisitor');
 module.exports.FromAPVisitor = require('./lib/FromAPVisitor');
-module.exports.Stack = require('./lib/Stack');
