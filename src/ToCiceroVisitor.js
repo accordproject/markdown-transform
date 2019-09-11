@@ -66,10 +66,12 @@ class ToCiceroVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes;
+                    thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
+                    thing.clauseText = thing.text;
                     thing.text = null; // Remove text
                     delete thing.tag;
+                    delete thing.info;
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
@@ -77,10 +79,12 @@ class ToCiceroVisitor {
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes;
+                    thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
+                    thing.clauseText = thing.text;
                     thing.text = null; // Remove text
                     delete thing.tag;
+                    delete thing.info;
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }

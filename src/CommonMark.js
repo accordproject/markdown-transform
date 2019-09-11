@@ -72,14 +72,22 @@ class CommonMark {
     }
 
     /**
-     * Is it a HTML-ish node? (html blocks or html inlines but also code blocks)
+     * Is it a HTML node? (html blocks or html inlines)
      * @param {*} json the JS Object for the AST
      * @return {boolean} whether it's a leaf node
      */
     static isHtmlNode(json) {
-        return (json.$class === (COMMON_NS_PREFIX + 'CodeBlock') ||
-                json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
+        return (json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
                 json.$class === (COMMON_NS_PREFIX + 'HtmlBlock'));
+    }
+
+    /**
+     * Is it a Code Block node?
+     * @param {*} json the JS Object for the AST
+     * @return {boolean} whether it's a leaf node
+     */
+    static isCodeBlockNode(json) {
+        return json.$class === (COMMON_NS_PREFIX + 'CodeBlock');
     }
 
     /**
@@ -107,8 +115,9 @@ class CommonMark {
                 if (CommonMark.isLeafNode(head)) {
                     head.text = t;
                 }
-                if (CommonMark.isHtmlNode(head)) {
-                    const tagInfo = CommonMark.parseHtmlBlock(head.text);
+                if (CommonMark.isHtmlNode(head) || CommonMark.isCodeBlockNode(head)) {
+                    const maybeHtmlText = CommonMark.isHtmlNode(head) ? head.text : head.info;
+                    const tagInfo = CommonMark.parseHtmlBlock(maybeHtmlText);
                     if (tagInfo) {
                         head.tag = {};
                         head.tag.$class = COMMON_NS_PREFIX + 'TagInfo';

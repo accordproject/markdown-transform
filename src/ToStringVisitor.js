@@ -124,7 +124,7 @@ class ToStringVisitor {
         switch(thing.getType()) {
         case 'CodeBlock':
             ToStringVisitor.newParagraph(parameters);
-            parameters.result += `\`\`\`${thing.info ? thing.info : ''}\n${thing.text}\`\`\`\n\n`;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${thing.text}\`\`\`\n\n`;
             break;
         case 'Code':
             parameters.result += `\`${thing.text}\``;

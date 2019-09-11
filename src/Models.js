@@ -133,6 +133,7 @@ import org.accordproject.commonmark.*
 concept Clause extends Child {
     o String clauseid
     o String src
+    o String clauseText
 }
 
 concept Variable extends Child {
