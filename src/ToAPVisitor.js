@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX } = require('./Models');
+const { CICERO_NS_PREFIX } = require('./Models');
 
 /**
  * Converts a commonmark model instance to a markdown string.
@@ -52,19 +52,21 @@ class ToAPVisitor {
                 //console.log('CONTENT! : ' + tag.content);
                 if (tag.attributes[0].name === 'src' &&
                     tag.attributes[1].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
                     thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
                     thing.text = null; // Remove text
+                    delete thing.tag;
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
                     thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
                     thing.text = null; // Remove text
+                    delete thing.tag;
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
@@ -76,15 +78,17 @@ class ToAPVisitor {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'id' &&
                     tag.attributes[1].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Variable');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Variable');
                     thing.id = tag.attributes[0].value;
                     thing.value = tag.attributes[1].value;
+                    delete thing.tag;
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.value = tag.attributes[0].value;
                     thing.id  = tag.attributes[1].value;
+                    delete thing.tag;
                 } else {
                     //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
@@ -92,8 +96,9 @@ class ToAPVisitor {
             if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX + 'ComputedVariable');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'ComputedVariable');
                     thing.value = tag.attributes[0].value;
+                    delete thing.tag;
                 }
                 else {
                     //console.log('Found ComputedVariable but without \'value\' attributes ');

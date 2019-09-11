@@ -21,7 +21,7 @@ const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 const Stack = require('./Stack');
 const { DOMParser } = require('xmldom');
-const { NS_PREFIX, commonmarkModel } = require('./Models');
+const { COMMON_NS_PREFIX, commonmarkModel } = require('./Models');
 
 /**
  * Parses markdown using the commonmark parser into the
@@ -40,7 +40,7 @@ class CommonmarkParser {
     constructor(options) {
         this.options = options;
         const modelManager = new ModelManager();
-        modelManager.addModelFile( commonmarkModel, 'commonmark.cto');
+        modelManager.addModelFile(commonmarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
     }
@@ -60,11 +60,11 @@ class CommonmarkParser {
      * @return {boolean} whether it's a leaf node
      */
     static isLeafNode(json) {
-        return (json.$class === (NS_PREFIX + 'Text') ||
-                json.$class === (NS_PREFIX + 'CodeBlock') ||
-                json.$class === (NS_PREFIX + 'HtmlInline') ||
-                json.$class === (NS_PREFIX + 'HtmlBlock') ||
-                json.$class === (NS_PREFIX + 'Code'));
+        return (json.$class === (COMMON_NS_PREFIX + 'Text') ||
+                json.$class === (COMMON_NS_PREFIX + 'CodeBlock') ||
+                json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
+                json.$class === (COMMON_NS_PREFIX + 'HtmlBlock') ||
+                json.$class === (COMMON_NS_PREFIX + 'Code'));
     }
 
     /**
@@ -73,9 +73,9 @@ class CommonmarkParser {
      * @return {boolean} whether it's a leaf node
      */
     static isHtmlNode(json) {
-        return (json.$class === (NS_PREFIX + 'CodeBlock') ||
-                json.$class === (NS_PREFIX + 'HtmlInline') ||
-                json.$class === (NS_PREFIX + 'HtmlBlock'));
+        return (json.$class === (COMMON_NS_PREFIX + 'CodeBlock') ||
+                json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
+                json.$class === (COMMON_NS_PREFIX + 'HtmlBlock'));
     }
 
     /**
@@ -107,7 +107,7 @@ class CommonmarkParser {
                     const tagInfo = CommonmarkParser.parseHtmlBlock(head.text);
                     if (tagInfo) {
                         head.tag = {};
-                        head.tag.$class = NS_PREFIX + 'TagInfo';
+                        head.tag.$class = COMMON_NS_PREFIX + 'TagInfo';
                         head.tag.tagName = tagInfo.tag;
                         head.tag.attributeString = tagInfo.attributeString;
                         head.tag.attributes = [];
@@ -115,7 +115,7 @@ class CommonmarkParser {
                             if (tagInfo.attributes.hasOwnProperty(attName)) {
                                 const attValue = tagInfo.attributes[attName];
                                 head.tag.attributes.push({
-                                    '$class': NS_PREFIX + 'Attribute',
+                                    '$class': COMMON_NS_PREFIX + 'Attribute',
                                     'name': attName,
                                     'value': attValue,
                                 });
@@ -208,7 +208,7 @@ class CommonmarkParser {
      */
     static toClass(name) {
         const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
-        return NS_PREFIX + CommonmarkParser.capitalizeFirstLetter(camelCased);
+        return COMMON_NS_PREFIX + CommonmarkParser.capitalizeFirstLetter(camelCased);
     }
 
     /**
