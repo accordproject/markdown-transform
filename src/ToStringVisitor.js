@@ -22,7 +22,6 @@
  * markdown content. The resulting AST *should* be equivalent however.
  */
 class ToStringVisitor {
-
     /**
      * Visits a sub-tree and return the markdown
      * @param {*} visitor the visitor to use

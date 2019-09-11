@@ -38,6 +38,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('--noWrap', {
+            describe: 'do not wrap variables',
+            type: 'boolean',
+            default: false
+        });
     }, (argv) => {
         if (argv.verbose) {
             Logger.info(`parse sample ${argv.sample} markdown`);
@@ -45,7 +50,7 @@ require('yargs')
 
         try {
             argv = Commands.validateParseArgs(argv);
-            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero)
+            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero, argv.noWrap)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })

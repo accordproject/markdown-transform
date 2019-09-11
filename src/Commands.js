@@ -86,9 +86,10 @@ class Commands {
      * @param {string} outPath to an output file
      * @param {boolean} generateMarkdown whether to transform back to markdown
      * @param {boolean} withCicero whether to further transform for Cicero
+     * @param {boolean} noWrap whether to avoid wrapping Cicero variables in XML tags
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, generateMarkdown, withCicero) {
+    static parse(samplePath, outPath, generateMarkdown, withCicero, noWrap) {
         const commonMark = new CommonMark();
         const ciceroMark = new CiceroMark();
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
@@ -99,7 +100,8 @@ class Commands {
         let result;
         if (generateMarkdown) {
             if (withCicero) {
-                concertoObject = ciceroMark.toCommonMark(concertoObject);
+                const options = noWrap ? { wrapVariables: false } : null;
+                concertoObject = ciceroMark.toCommonMark(concertoObject, options);
             }
             result = commonMark.toString(concertoObject);
         } else {

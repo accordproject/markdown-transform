@@ -24,6 +24,13 @@ const { COMMON_NS_PREFIX } = require('./Models');
  * markdown content. The resulting AST *should* be equivalent however.
  */
 class FromCiceroVisitor {
+    /**
+     * Construct the visitor
+     * @param {object} [options] configuration options
+     */
+    constructor(options) {
+        this.options = options ? options : { wrapVariables: true };
+    }
 
     /**
      * Visits a sub-tree and return the markdown
@@ -108,7 +115,11 @@ class FromCiceroVisitor {
             // Create the text for that document
             const content = '';
             const attributeString = `id="${thing.id}" value="${thing.value}"`;
-            thing.text = `<variable ${attributeString}/>`;
+            if (this.options && !this.options.wrapVariables) {
+                thing.text = decodeURI(thing.value); // to decode
+            } else {
+                thing.text = `<variable ${attributeString}/>`;
+            }
 
             // Create the proper tag
             let tag = {};
@@ -144,7 +155,11 @@ class FromCiceroVisitor {
             // Create the text for that document
             const content = '';
             const attributeString = `value="${thing.value}"`;
-            thing.text = `<computed ${attributeString}/>`;
+            if (this.options && !this.options.wrapVariables) {
+                thing.text = decodeURI(thing.value); // to decode
+            } else {
+                thing.text = `<computed ${attributeString}/>`;
+            }
 
             // Create the proper tag
             let tag = {};

@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { CICERO_NS_PREFIX } = require('./Models');
+const { COMMON_NS_PREFIX, CICERO_NS_PREFIX } = require('./Models');
 
 /**
  * Converts a commonmark model instance to a markdown string.
@@ -68,10 +68,20 @@ class ToCiceroVisitor {
 
                     thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
-                    thing.clauseText = thing.text;
+
                     thing.text = null; // Remove text
+                    thing.clauseText = '';
                     delete thing.tag;
                     delete thing.info;
+
+                    // Go over the loaded clause to generate the unwrapped text
+                    let clone = parameters.serializer.toJSON(thing);
+                    clone.$class = COMMON_NS_PREFIX + 'Paragraph';
+                    delete clone.clauseid;
+                    delete clone.src;
+                    delete clone.clauseText;
+                    clone = parameters.serializer.fromJSON(clone);
+                    thing.clauseText = parameters.ciceroMark.toString(clone, { wrapVariables: false });
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
@@ -81,10 +91,19 @@ class ToCiceroVisitor {
 
                     thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
-                    thing.clauseText = thing.text;
                     thing.text = null; // Remove text
+                    thing.clauseText = '';
                     delete thing.tag;
                     delete thing.info;
+
+                    // Go over the loaded clause to generate the unwrapped text
+                    let clone = parameters.serializer.toJSON(thing);
+                    clone.$class = COMMON_NS_PREFIX + 'Paragraph';
+                    delete clone.clauseid;
+                    delete clone.src;
+                    delete clone.clauseText;
+                    clone = parameters.serializer.fromJSON(clone);
+                    thing.clauseText = parameters.ciceroMark.toString(clone, { wrapVariables: false });
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
