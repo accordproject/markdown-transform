@@ -17,8 +17,7 @@
 const Fs = require('fs');
 const Logger = require('./Logger');
 
-const CommonmarkParser = require('./CommonmarkParser');
-const CommonmarkToString = require('./CommonmarkToString');
+const CommonMark = require('./CommonMark');
 const CiceroMark = require('./CiceroMark');
 
 /**
@@ -90,19 +89,19 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outPath, generateMarkdown, withCicero) {
-        const parser = new CommonmarkParser();
+        const commonMark = new CommonMark();
         const ciceroMark = new CiceroMark();
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let concertoObject = parser.parse(markdownText);
+        let concertoObject = commonMark.fromString(markdownText);
         if (withCicero) {
-            concertoObject = ciceroMark.fromCommonmark(concertoObject);
+            concertoObject = ciceroMark.fromCommonMark(concertoObject);
         }
         let result;
         if (generateMarkdown) {
             if (withCicero) {
-                concertoObject = ciceroMark.toCommonmark(concertoObject);
+                concertoObject = ciceroMark.toCommonMark(concertoObject);
             }
-            result = CommonmarkToString(concertoObject);
+            result = commonMark.toString(concertoObject);
         } else {
             const json = ciceroMark.getSerializer().toJSON(concertoObject);
             result = JSON.stringify(json);

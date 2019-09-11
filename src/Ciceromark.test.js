@@ -19,22 +19,21 @@
 const fs = require('fs');
 const diff = require('jest-diff');
 
-const CommonmarkParser = require('./CommonmarkParser');
+const CommonMark = require('./CommonMark');
 const CiceroMark = require('./CiceroMark');
-const CommonmarkToString = require('./CommonmarkToString');
 
-let parser = null;
+let commonMark = null;
 let ciceroMark = null;
 let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        let concertoObject1 = parser.parse(markdownText);
-        concertoObject1 = ciceroMark.toCommonmark(ciceroMark.fromCommonmark(concertoObject1));
+        let concertoObject1 = commonMark.fromString(markdownText);
+        concertoObject1 = ciceroMark.toCommonMark(ciceroMark.fromCommonMark(concertoObject1));
         const json1 = serializer.toJSON(concertoObject1);
-        const newMarkdown = CommonmarkToString(concertoObject1);
-        let concertoObject2 = parser.parse(newMarkdown);
-        concertoObject2 = ciceroMark.toCommonmark(ciceroMark.fromCommonmark(concertoObject2));
+        const newMarkdown = commonMark.toString(concertoObject1);
+        let concertoObject2 = commonMark.fromString(newMarkdown);
+        concertoObject2 = ciceroMark.toCommonMark(ciceroMark.fromCommonMark(concertoObject2));
         const json2 = serializer.toJSON(concertoObject2);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
@@ -64,7 +63,7 @@ expect.extend({
 
 // @ts-ignore
 beforeAll(() => {
-    parser = new CommonmarkParser();
+    commonMark = new CommonMark();
     ciceroMark = new CiceroMark();
     serializer = ciceroMark.getSerializer();
 });
@@ -134,7 +133,7 @@ function extractSpecTests(testfile) {
 describe('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = parser.parse(markdownText);
+            const concertoObject = commonMark.fromString(markdownText);
             const json = serializer.toJSON(concertoObject);
             expect(json).toMatchSnapshot();
         });
@@ -148,7 +147,7 @@ describe('markdown', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = parser.parse(markdownText);
+            const concertoObject = commonMark.fromString(markdownText);
             const json = serializer.toJSON(concertoObject);
             expect(json).toMatchSnapshot();
         });

@@ -59,7 +59,7 @@ class FromCiceroVisitor {
             jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
             jsonSource.nodes = clauseJson.nodes;
 
-            const content = parameters.commonmarkToString(parameters.serializer.fromJSON(jsonSource));
+            const content = parameters.commonMark.toString(parameters.serializer.fromJSON(jsonSource));
             const attributeString = `src="${clauseJson.src}" clauseid="${clauseJson.clauseid}"`;
 
             jsonTarget.text = `<clause ${attributeString}>\n${content}\n</clause>\n`;

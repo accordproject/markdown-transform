@@ -55,13 +55,13 @@ class ToCiceroVisitor {
                     thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
-                    thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
+                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes; // Parse text as markdown (in the nodes for the root)
                     thing.text = null; // Remove text
                     delete thing.tag;
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.commonMark.fromString.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
                     thing.nodes = parameters.parser.parse(tag.content).nodes; // Parse text as markdown (in the nodes for the root)

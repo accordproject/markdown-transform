@@ -18,17 +18,18 @@
 
 const fs = require('fs');
 const diff = require('jest-diff');
-const CommonmarkParser = require('./CommonmarkParser');
-const CommonmarkToString = require('./CommonmarkToString');
-let parser = null;
+const CommonMark = require('./CommonMark');
+
+let commonMark = null;
+let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        const concertoObject1 = parser.parse(markdownText);
-        const json1 = parser.getSerializer().toJSON(concertoObject1);
-        const newMarkdown = CommonmarkToString(concertoObject1);
-        const concertoObject2 = parser.parse(newMarkdown);
-        const json2 = parser.getSerializer().toJSON(concertoObject2);
+        const concertoObject1 = commonMark.fromString(markdownText);
+        const json1 = serializer.toJSON(concertoObject1);
+        const newMarkdown = commonMark.toString(concertoObject1);
+        const concertoObject2 = commonMark.fromString(newMarkdown);
+        const json2 = serializer.toJSON(concertoObject2);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -57,7 +58,8 @@ expect.extend({
 
 // @ts-ignore
 beforeAll(() => {
-    parser = new CommonmarkParser();
+    commonMark = new CommonMark();
+    serializer = commonMark.getSerializer();
 });
 
 /**
@@ -125,8 +127,8 @@ function extractSpecTests(testfile) {
 describe.only('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = parser.parse(markdownText);
-            const json = parser.getSerializer().toJSON(concertoObject);
+            const concertoObject = commonMark.fromString(markdownText);
+            const json = serializer.toJSON(concertoObject);
             expect(json).toMatchSnapshot();
         });
 
@@ -139,8 +141,8 @@ describe.only('markdown', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = parser.parse(markdownText);
-            const json = parser.getSerializer().toJSON(concertoObject);
+            const concertoObject = commonMark.fromString(markdownText);
+            const json = serializer.toJSON(concertoObject);
             expect(json).toMatchSnapshot();
         });
 
