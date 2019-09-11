@@ -33,8 +33,8 @@ require('yargs')
             type: 'boolean',
             default: false
         });
-        yargs.option('--withAP', {
-            describe: 'further transform for AP',
+        yargs.option('--withCicero', {
+            describe: 'further transform for Cicero',
             type: 'boolean',
             default: false
         });
@@ -45,7 +45,7 @@ require('yargs')
 
         try {
             argv = Commands.validateParseArgs(argv);
-            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withAP)
+            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })

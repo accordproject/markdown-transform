@@ -66,8 +66,8 @@ class ToCiceroVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    const parsedNodes = parameters.commonMark.fromString(tag.content).nodes;
-                    thing.nodes = parsedNodes ? ToCiceroVisitor.visitNodes(this, parsedNodes, parameters) : []; // Parse text as markdown (in the nodes for the root)
+                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes;
+                    ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     delete thing.tag;
                 }
@@ -77,8 +77,8 @@ class ToCiceroVisitor {
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
-                    const parsedNodes = parameters.commonMark.fromString(tag.content).nodes;
-                    thing.nodes = parsedNodes ? ToCiceroVisitor.visitNodes(this, parsedNodes, parameters) : []; // Parse text as markdown (in the nodes for the root)
+                    thing.nodes = parameters.commonMark.fromString(tag.content).nodes;
+                    ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     delete thing.tag;
                 } else {
