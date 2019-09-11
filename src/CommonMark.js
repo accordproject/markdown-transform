@@ -258,16 +258,17 @@ class CommonMark {
 
     /**
      * Converts a commonmark document to a markdown string
-     * @param {*} concertoObject concerto commonmark object
+     * @param {*} concertoObject - concerto commonmark object
+     * @param {*} options - options (e.g., wrapVariables)
      * @returns {string} the markdown string
      */
-    toString(concertoObject) {
+    toString(concertoObject, options) {
         const parameters = {};
         parameters.result = '';
         parameters.first = true;
         parameters.indent = 0;
-        const visitor = new ToStringVisitor();
-        concertoObject.accept( visitor, parameters );
+        const visitor = new ToStringVisitor(options);
+        concertoObject.accept(visitor, parameters);
         return parameters.result.trim();
     }
 

@@ -55,6 +55,7 @@ class CiceroMark {
     fromCommonMark(concertoObject) {
         // Add Cicero nodes
         const parameters = {
+            ciceroMark: this,
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer,
@@ -70,21 +71,32 @@ class CiceroMark {
     /**
      * Converts a ciceromark document back to a regular commmark document
      * @param {*} concertoObject concerto cicero object
+     * @param {object} [options] configuration options
      * @returns {*} concertoObject concerto commonmark
      */
-    toCommonMark(concertoObject) {
+    toCommonMark(concertoObject, options) {
         // Add Cicero nodes
         const parameters = {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer
         };
-        const visitor = new FromCiceroVisitor();
+        const visitor = new FromCiceroVisitor(options);
         concertoObject.accept( visitor, parameters );
 
         // Validate
         const json = this.serializer.toJSON(concertoObject);
         return this.serializer.fromJSON(json);
+    }
+
+    /**
+     * Converts a ciceromark document back to markdown string
+     * @param {*} concertoObject concerto cicero object
+     * @param {object} [options] configuration options
+     * @returns {*} concertoObject concerto commonmark
+     */
+    toString(concertoObject, options) {
+        return this.commonMark.toString(this.toCommonMark(concertoObject, options));
     }
 
     /**
