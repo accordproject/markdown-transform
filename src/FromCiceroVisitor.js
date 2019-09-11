@@ -23,7 +23,7 @@ const { COMMON_NS_PREFIX } = require('./Models');
  * so this transformation is not guaranteed to equivalent if you roundtrip
  * markdown content. The resulting AST *should* be equivalent however.
  */
-class FromAPVisitor {
+class FromCiceroVisitor {
 
     /**
      * Visits a sub-tree and return the markdown
@@ -164,9 +164,9 @@ class FromAPVisitor {
         }
             break;
         default:
-            FromAPVisitor.visitChildren(this, thing, parameters);
+            FromCiceroVisitor.visitChildren(this, thing, parameters);
         }
     }
 }
 
-module.exports = FromAPVisitor;
+module.exports = FromCiceroVisitor;

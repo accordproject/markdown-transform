@@ -180,8 +180,6 @@ class CommonmarkParser {
         return this.convertToConcertoObject(json);
     }
 
-
-
     /**
      * Retrieve the serializer used by the parser
      *
