@@ -19,6 +19,7 @@ const Logger = require('@accordproject/markdown-common').Logger;
 
 const CommonMark = require('@accordproject/markdown-common').CommonMark;
 const CiceroMark = require('@accordproject/markdown-cicero').CiceroMark;
+const SlateMark = require('@accordproject/markdown-slate').SlateMark;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -86,26 +87,32 @@ class Commands {
      * @param {string} outPath to an output file
      * @param {boolean} generateMarkdown whether to transform back to markdown
      * @param {boolean} withCicero whether to further transform for Cicero
+     * @param {boolean} withSlate whether to further transform for Slate
      * @param {boolean} noWrap whether to avoid wrapping Cicero variables in XML tags
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, generateMarkdown, withCicero, noWrap) {
+    static parse(samplePath, outPath, generateMarkdown, withCicero, withSlate, noWrap) {
         const commonMark = new CommonMark({ tagInfo: true });
         const ciceroMark = new CiceroMark();
+        const slateMark = new SlateMark();
+
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let concertoObject = commonMark.fromString(markdownText);
+        let result = commonMark.fromString(markdownText);
         if (withCicero) {
-            concertoObject = ciceroMark.fromCommonMark(concertoObject);
+            result = ciceroMark.fromCommonMark(result);
+        } else if (withSlate) {
+            result = slateMark.fromCommonMark(result);
         }
-        let result;
         if (generateMarkdown) {
             if (withCicero) {
                 const options = noWrap ? { wrapVariables: false } : null;
-                concertoObject = ciceroMark.toCommonMark(concertoObject, options);
+                result = ciceroMark.toCommonMark(result, options);
+            } else if (withSlate) {
+                result = slateMark.toCommonMark(result);
             }
-            result = commonMark.toString(concertoObject);
+            result = commonMark.toString(result);
         } else {
-            const json = ciceroMark.getSerializer().toJSON(concertoObject);
+            const json = withSlate ? result : ciceroMark.getSerializer().toJSON(result);
             result = JSON.stringify(json);
         }
         if (outPath) {

@@ -34,7 +34,12 @@ require('yargs')
             default: false
         });
         yargs.option('--withCicero', {
-            describe: 'further transform for Cicero',
+            describe: 'further transform to Cicero Markdown',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('--withSlate', {
+            describe: 'further transform to Slate DOM',
             type: 'boolean',
             default: false
         });
@@ -50,7 +55,7 @@ require('yargs')
 
         try {
             argv = Commands.validateParseArgs(argv);
-            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero, argv.noWrap)
+            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero, argv.withSlate, argv.noWrap)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
