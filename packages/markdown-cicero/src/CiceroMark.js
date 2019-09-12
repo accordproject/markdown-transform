@@ -14,9 +14,7 @@
 
 'use strict';
 
-const ModelManager = require('composer-concerto').ModelManager;
-const Factory = require('composer-concerto').Factory;
-const Serializer = require('composer-concerto').Serializer;
+const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-common').ComposerConcerto;
 
 const CommonMark = require('@accordproject/markdown-common').CommonMark;
 const { commonmarkModel } = require('@accordproject/markdown-common').Models;

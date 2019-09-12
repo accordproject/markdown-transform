@@ -16,10 +16,8 @@
 
 const commonmark = require('commonmark');
 const sax = require('sax');
-const ModelManager = require('composer-concerto').ModelManager;
-const Factory = require('composer-concerto').Factory;
 
-const Serializer = require('composer-concerto').Serializer;
+const { ModelManager, Factory, Serializer } = require('composer-concerto');
 
 const Stack = require('./Stack');
 const ToStringVisitor = require('./ToStringVisitor');
