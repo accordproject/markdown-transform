@@ -55,6 +55,7 @@
   "dependencies": {
     "@accordproject/markdown-common": "0.1.15",
     "@accordproject/markdown-cicero": "0.1.15",
+    "@accordproject/markdown-slate": "0.1.15",
     "winston": "3.2.1"
   },
   "license-check-config": {

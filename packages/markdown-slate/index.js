@@ -19,5 +19,4 @@
  * @module markdown-transform
  */
 
-module.exports.commonMarkAstToSlate = require('./lib/commonMarkAstToSlate');
-module.exports.slateToCommonMarkAst = require('./lib/slateToCommonMarkAst');
+module.exports.SlateMark = require('./lib/SlateMark');
