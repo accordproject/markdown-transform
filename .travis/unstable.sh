@@ -22,5 +22,5 @@ echo "NPM_TOKEN " ${NPM_TOKEN}
 npm config set registry https://registry.npmjs.org/
 npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
-npm publish --tag="${NPM_TAG}" 2>&1
-echo "Published to npm."
+lerna publish --yes --canary --conventional-commits -m "chore(release): publish %s"
+echo "Published to npm using lerna."

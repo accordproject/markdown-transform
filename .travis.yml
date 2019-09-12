@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '8'
+  - '8'
 dist: trusty
 before_install: |
   set -e
@@ -10,19 +10,20 @@ before_install: |
 install: |
   set -e
   date
-  npm install
+  npm install -g lerna@^3.15.0
+  lerna bootstrap 2>&1
   date
-script: npm run build && npm run test 2>&1
+script: npm run test 2>&1
 deploy:
-  provider: script
-  script:
-  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./.travis/deploy.sh; fi
-  skip_cleanup: true
-  on:
-    all_branches: true
-    repo: accordproject/markdown-transform
+    provider: script
+    script: 
+      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./.travis/deploy.sh; fi'
+    skip_cleanup: true
+    on:
+      all_branches: true
+      repo: accordproject/markdown-transform
 after_failure: tail -n +1 -- /home/travis/.npm/_logs/*-debug.log
-after_success: 
+after_success:
 cache:
   directories:
   - node_modules
