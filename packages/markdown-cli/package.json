@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cli",
-  "version": "0.1.15",
+  "version": "0.2.0",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -53,9 +53,9 @@
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/markdown-common": "0.1.15",
-    "@accordproject/markdown-cicero": "0.1.15",
-    "@accordproject/markdown-slate": "0.1.15",
+    "@accordproject/markdown-common": "0.2.0",
+    "@accordproject/markdown-cicero": "0.2.0",
+    "@accordproject/markdown-slate": "0.2.0",
     "winston": "3.2.1"
   },
   "license-check-config": {
