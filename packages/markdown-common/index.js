@@ -19,6 +19,8 @@
  * @module markdown-transform
  */
 
+module.exports.ComposerConcerto = require('composer-concerto');
+
 module.exports.Logger = require('./lib/Logger');
 module.exports.Stack = require('./lib/Stack');
 module.exports.Models = require('./lib/Models');
