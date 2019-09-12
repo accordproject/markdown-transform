@@ -18,10 +18,12 @@ const ModelManager = require('composer-concerto').ModelManager;
 const Factory = require('composer-concerto').Factory;
 const Serializer = require('composer-concerto').Serializer;
 
-const CommonMark = require('./CommonMark');
+const CommonMark = require('@accordproject/markdown-common').CommonMark;
+const { commonmarkModel } = require('@accordproject/markdown-common').Models;
+
 const ToCiceroVisitor = require('./ToCiceroVisitor');
 const FromCiceroVisitor = require('./FromCiceroVisitor');
-const { commonmarkModel, ciceromarkModel } = require('./Models');
+const { ciceromarkModel } = require('./Models');
 
 /**
  * Parses markdown using the commonmark parser into the

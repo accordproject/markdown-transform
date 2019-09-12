@@ -1,5 +1,5 @@
 {
-  "name": "@accordproject/markdown-cli",
+  "name": "@accordproject/markdown-cicero",
   "version": "0.1.15",
   "description": "A framework for transforming markdown",
   "engines": {
@@ -9,9 +9,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "mdtransform": "./index.js"
-  },
   "files": [
     "bin",
     "lib",
@@ -19,12 +16,24 @@
   ],
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run lint",
+    "webpack": "webpack --config webpack.config.js --mode production",
+    "build": "babel src -d lib --copy-files",
+    "build:watch": "babel src -d lib --copy-files --watch",
+    "prepublishOnly": "npm run build && npm run webpack",
+    "prepare": "npm run build",
+    "pretest": "npm run lint && npm run build",
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check",
-    "test": "mocha",
-    "test:cov": "nyc npm run test"
+    "test": "jest",
+    "test:cov": "nyc npm run test",
+    "jsdoc": "jsdoc -c jsdoc.json package.json",
+    "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
+    "pkgcheck": "node ./scripts/pkgcheck.js",
+    "pkgstamp": "node ./scripts/pkgstamp.js",
+    "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
+    "pkgset": "node ./scripts/pkgset.js",
+    "depcheck": "node ./scripts/depcheck.js"
   },
   "repository": {
     "type": "git",
@@ -40,22 +49,41 @@
   "bugs": {
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
+  "homepage": "https://github.com/accordproject/markdown-transform#readme",
   "devDependencies": {
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "@babel/register": "7.4.4",
+    "@istanbuljs/nyc-config-babel": "2.1.1",
+    "archiver": "3.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "8.0.6",
+    "babel-plugin-istanbul": "5.1.4",
+    "babel-preset-env": "1.7.0",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
     "eslint": "4.19.1",
+    "jest": "^24.8.0",
+    "jest-diff": "^24.8.0",
     "jsdoc": "^3.6.3",
     "jsome": "2.5.0",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
-    "tsd-jsdoc": "^2.3.0"
+    "raw-loader": "^3.0.0",
+    "tsd-jsdoc": "^2.3.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "@accordproject/markdown-common": "0.1.15",
-    "@accordproject/markdown-cicero": "0.1.15",
-    "winston": "3.2.1"
+    "commonmark": "^0.29.0",
+    "composer-concerto": "^0.71.6",
+    "sax": "^1.2.4",
+    "winston": "3.2.1",
+    "xmldom": "^0.1.27"
   },
   "license-check-config": {
     "src": [
@@ -68,7 +96,7 @@
       "!./out/**/*",
       "!./lib/**/*",
       "!./umd/**/*",
-      "!./index.js"
+      "!./bin/index.js"
     ],
     "path": "header.txt",
     "blocking": true,

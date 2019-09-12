@@ -19,7 +19,7 @@
 const fs = require('fs');
 const diff = require('jest-diff');
 
-const CommonMark = require('./CommonMark');
+const CommonMark = require('@accordproject/markdown-common').CommonMark;
 const CiceroMark = require('./CiceroMark');
 
 let commonMark = null;
