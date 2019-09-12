@@ -20,14 +20,15 @@ const fs = require('fs');
 const path = require('path');
 const Value = require('slate').Value;
 const CommonMark = require('@accordproject/markdown-common').CommonMark;
-const slateToCommonMarkAst = require('./slateToCommonMarkAst');
-const commonMarkAstToSlate = require('./commonMarkAstToSlate');
+const SlateMark = require('./SlateMark');
 
 let commonMark = null;
+let slateMark = null;
 
 // @ts-ignore
 beforeAll(() => {
     commonMark = new CommonMark();
+    slateMark = new SlateMark();
 });
 
 /**
@@ -53,7 +54,7 @@ describe('slate', () => {
         it(`converts ${file} to concerto`, () => {
             const slateDom = JSON.parse(jsonText);
             const value = Value.fromJSON(slateDom);
-            const concertoObject = slateToCommonMarkAst(value.document);
+            const concertoObject = slateMark.toCommonMark(value.document);
             const json = commonMark.getSerializer().toJSON(concertoObject);
             console.log('From slate', JSON.stringify(json, null, 4));
 
@@ -74,7 +75,7 @@ describe('slate', () => {
             expect(json).toEqual(expectedJson);
 
             // now convert the expected ast back to slate and compare
-            const expectedSlate = commonMarkAstToSlate(expectedConcertoObject);
+            const expectedSlate = slateMark.fromCommonMark(expectedConcertoObject);
             console.log('Expected Slate', JSON.stringify(expectedSlate, null, 4));
 
             // check roundtrip
