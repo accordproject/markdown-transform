@@ -74,11 +74,11 @@ beforeAll(() => {
  */
 function getMarkdownFiles() {
     const result = [];
-    const files = fs.readdirSync(__dirname + '/../test/');
+    const files = fs.readdirSync(__dirname + '/../test/data');
 
     files.forEach(function(file) {
         if(file.endsWith('.md')) {
-            let contents = fs.readFileSync(__dirname + '/../test/' + file, 'utf8');
+            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
             result.push([file, contents]);
         }
     });
@@ -93,7 +93,7 @@ function getMarkdownFiles() {
  */
 function getMarkdownSpecFiles() {
     const result = [];
-    const specExamples = extractSpecTests(__dirname + '/../test/spec.txt');
+    const specExamples = extractSpecTests(__dirname + '/../test/data/spec.txt');
     specExamples.forEach(function(example) {
         result.push([`${example.section}-${example.number}`, example.markdown]);
     });

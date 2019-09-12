@@ -37,11 +37,11 @@ beforeAll(() => {
  */
 function getSlateFiles() {
     const result = [];
-    const files = fs.readdirSync(__dirname + '/../test/');
+    const files = fs.readdirSync(__dirname + '/../test/data/');
 
     files.forEach(function(file) {
         if(file.endsWith('.json')) {
-            let contents = fs.readFileSync(__dirname + '/../test/' + file, 'utf8');
+            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
             result.push([file, contents]);
         }
     });
@@ -64,7 +64,7 @@ describe('slate', () => {
             // load expected markdown
             const extension = path.extname(file);
             const mdFile = path.basename(file,extension);
-            const expectedMarkdown = fs.readFileSync(__dirname + '/../test/' + mdFile + '.md', 'utf8');
+            const expectedMarkdown = fs.readFileSync(__dirname + '/../test/data/' + mdFile + '.md', 'utf8');
 
             // convert the expected markdown to concerto and compare
             const expectedConcertoObject = commonMark.fromString(expectedMarkdown);

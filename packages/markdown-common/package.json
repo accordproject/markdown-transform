@@ -25,7 +25,7 @@
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check",
-    "test": "jest",
+    "test": "mocha && jest",
     "test:cov": "nyc npm run test",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
