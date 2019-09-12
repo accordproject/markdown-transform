@@ -1,0 +1,35 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "a ",
+                        "marks": []
+                    },
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "href": "http://clause.io"
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "link",
+                                "marks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

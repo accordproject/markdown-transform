@@ -1,0 +1,40 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "code_block",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "this\nis a\ncode block.\n",
+                                "marks": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "end.",
+                        "marks": []
+                    }
+                ]
+            }
+        ]
+    }
+}

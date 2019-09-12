@@ -1,0 +1,34 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "html_block",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "<foo>\nthis\nis an\nhtml block.\n</foo>\nend.",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "html",
+                                        "data": {}
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

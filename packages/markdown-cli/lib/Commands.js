@@ -90,7 +90,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outPath, generateMarkdown, withCicero, noWrap) {
-        const commonMark = new CommonMark();
+        const commonMark = new CommonMark({ tagInfo: true });
         const ciceroMark = new CiceroMark();
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let concertoObject = commonMark.fromString(markdownText);
