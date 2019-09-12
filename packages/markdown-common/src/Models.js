@@ -15,7 +15,6 @@
 'use strict';
 
 const COMMON_NS_PREFIX = 'org.accordproject.commonmark.';
-const CICERO_NS_PREFIX = 'org.accordproject.ciceromark.';
 
 const commonmarkModel = `
 namespace org.accordproject.commonmark
@@ -121,29 +120,4 @@ concept Document extends Root {
 }
 `;
 
-const ciceromarkModel = `
-namespace org.accordproject.ciceromark
-
-import org.accordproject.commonmark.*
-
-/**
- * A model for Accord Project extensions to commonmark
- */
-
-concept Clause extends Child {
-    o String clauseid
-    o String src
-    o String clauseText
-}
-
-concept Variable extends Child {
-    o String id
-    o String value
-}
-
-concept ComputedVariable extends Child {
-    o String value
-}
-`;
-
-module.exports = { COMMON_NS_PREFIX, CICERO_NS_PREFIX, commonmarkModel, ciceromarkModel };
+module.exports = { COMMON_NS_PREFIX, commonmarkModel };

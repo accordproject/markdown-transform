@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { COMMON_NS_PREFIX } = require('./Models');
+const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
 
 /**
  * Converts a commonmark model instance to a markdown string.

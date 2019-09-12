@@ -11,18 +11,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict';
-
-/**
- * Export the framework and plugins
- * @module markdown-transform
- */
-
-module.exports.Logger = require('./lib/Logger');
-module.exports.Stack = require('./lib/Stack');
-module.exports.Models = require('./lib/Models');
-
-module.exports.CommonMark = require('./lib/CommonMark');
-module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
-

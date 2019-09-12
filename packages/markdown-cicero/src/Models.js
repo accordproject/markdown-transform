@@ -14,15 +14,31 @@
 
 'use strict';
 
+const CICERO_NS_PREFIX = 'org.accordproject.ciceromark.';
+
+const ciceromarkModel = `
+namespace org.accordproject.ciceromark
+
+import org.accordproject.commonmark.*
+
 /**
- * Export the framework and plugins
- * @module markdown-transform
+ * A model for Accord Project extensions to commonmark
  */
 
-module.exports.Logger = require('./lib/Logger');
-module.exports.Stack = require('./lib/Stack');
-module.exports.Models = require('./lib/Models');
+concept Clause extends Child {
+    o String clauseid
+    o String src
+    o String clauseText
+}
 
-module.exports.CommonMark = require('./lib/CommonMark');
-module.exports.ToStringVisitor = require('./lib/ToStringVisitor');
+concept Variable extends Child {
+    o String id
+    o String value
+}
 
+concept ComputedVariable extends Child {
+    o String value
+}
+`;
+
+module.exports = { CICERO_NS_PREFIX, ciceromarkModel };
