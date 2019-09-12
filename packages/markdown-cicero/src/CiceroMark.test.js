@@ -63,7 +63,7 @@ expect.extend({
 
 // @ts-ignore
 beforeAll(() => {
-    commonMark = new CommonMark();
+    commonMark = new CommonMark({ tagInfo: true });
     ciceroMark = new CiceroMark();
     serializer = ciceroMark.getSerializer();
 });

@@ -1,0 +1,56 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "ol_list",
+                "data": {
+                    "tight" : "true",
+                    "delimiter" : "period",
+                    "start" : "1"
+                },
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "one",
+                                "marks": []
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "two",
+                                "marks": []
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "three",
+                                "marks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

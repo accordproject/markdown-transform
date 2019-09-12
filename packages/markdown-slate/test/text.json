@@ -1,0 +1,85 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "plain ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "italic",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "italic",
+                                "data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "object": "text",
+                        "text": " ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "bold",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "bold",
+                                "data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "object": "text",
+                        "text": " ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "bold-italic",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "italic",
+                                "data": {}
+                            },
+                            {
+                                "object": "mark",
+                                "type": "bold",
+                                "data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "object": "text",
+                        "text": " ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "code",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "code",
+                                "data": {}
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -40,6 +40,7 @@ class CommonMark {
      * @param {boolean} [options.trimText] trims all text nodes
      * @param {boolean} [options.disableValidation] returns unvalidated JSON, rather than a Concerto model
      * @param {boolean} [options.enableSourceLocation] if true then location information is returned
+     * @param {boolean} [options.tagInfo] Construct tags for HTML elements
      */
     constructor(options) {
         this.options = options;
@@ -117,7 +118,7 @@ class CommonMark {
                 }
                 if (CommonMark.isHtmlNode(head) || CommonMark.isCodeBlockNode(head)) {
                     const maybeHtmlText = CommonMark.isHtmlNode(head) ? head.text : head.info;
-                    const tagInfo = CommonMark.parseHtmlBlock(maybeHtmlText);
+                    const tagInfo = that.options && that.options.tagInfo ? CommonMark.parseHtmlBlock(maybeHtmlText) : null;
                     if (tagInfo) {
                         head.tag = {};
                         head.tag.$class = COMMON_NS_PREFIX + 'TagInfo';

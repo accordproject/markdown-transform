@@ -39,7 +39,7 @@ class CiceroMark {
         this.options = options;
 
         // Setup for Nested Parsing
-        this.commonMark = new CommonMark();
+        this.commonMark = new CommonMark({ tagInfo: true });
 
         // Setup for validation
         this.modelManager = new ModelManager();

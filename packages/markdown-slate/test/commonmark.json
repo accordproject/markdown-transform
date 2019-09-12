@@ -1,0 +1,87 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "heading_two",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Try CommonMark",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "You can try CommonMark here.  This dingus is powered by",
+                        "marks": []
+                    },
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "href": "https://github.com/jgm/commonmark.js"
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": " commonmark.js",
+                                "marks": []
+                            }
+                        ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ", the JavaScript reference implementation.",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "ol_list",
+                "data": {
+                    "tight" : "true",
+                    "delimiter" : "period",
+                    "start" : "1"
+                },
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "item one",
+                                "marks": []
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "item two",
+                                "marks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
