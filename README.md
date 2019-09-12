@@ -1,20 +1,19 @@
 # Markdown Transform
 
-A framework to transform markdown to/from a CommonMark AST defined using Concerto:
-https://models.accordproject.org/commonmark/markdown.html
+A markdown transformation framework
 
 ## Documentation
 
-CommonmarkParser converts markdown text to an instance of the CommonMark AST.
-
-CommonmarkToString converts an AST to a markdown string.
+CommonMark converts markdown text to/from an instance of the CommonMark AST.
+CiceroMark converts markdown ASTs to/from Cicero-specific Markdown AST.
+SlateMark converts markdown ASTs to Slate DOM.
 
 See the unit test for example usage.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-transform --save
+npm install -g @accordproject/markdown-cli --save
 ```
 
 ## License <a name="license"></a>
