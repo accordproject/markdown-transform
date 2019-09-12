@@ -1,47 +1,34 @@
 {
-  "devDependencies": {
-    "chai": "4.2.0",
-    "chai-as-promised": "7.1.1",
-    "chai-things": "0.2.0",
-    "concurrently": "4.1.1",
-    "coveralls": "3.0.4",
-    "eslint": "4.19.1",
-    "jsdoc": "^3.6.3",
-    "jsdoc-sphinx": "0.0.6",
-    "lerna": "3.15.0",
-    "license-check": "1.1.5",
-    "mocha": "6.1.4",
-    "tsd-jsdoc": "^2.3.0"
-  },
+  "name": "@accordproject/markdown-cli",
+  "version": "0.1.15",
+  "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
     "npm": ">=3"
   },
-  "name": "markdown-transform",
-  "description": "A framework for transforming markdown",
-  "version": "0.1.15",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "mdtransform": "./index.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "umd"
+  ],
+  "main": "index.js",
   "scripts": {
-    "webpack": "webpack --config webpack.config.js --mode production",
-    "build": "babel src -d lib --copy-files",
-    "build:watch": "babel src -d lib --copy-files --watch",
-    "publish": "./scripts/manualrelease.sh",
-    "pretest": "npm run licchk",
-    "test": "lerna run test",
-    "repoclean": "lerna clean",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "postlint": "npm run licchk",
     "licchk": "license-check",
-    "pkgcheck": "node ./scripts/pkgcheck.js",
-    "pkgstamp": "node ./scripts/pkgstamp.js",
-    "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
-    "pkgset": "node ./scripts/pkgset.js",
-    "depcheck": "node ./scripts/depcheck.js"
+    "test": "mocha",
+    "test:cov": "nyc npm run test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/accordproject/markdown-transform.git"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "keywords": [
     "accord",
@@ -52,6 +39,22 @@
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/accordproject/markdown-transform/issues"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
+    "chai-things": "0.2.0",
+    "eslint": "4.19.1",
+    "jsdoc": "^3.6.3",
+    "jsome": "2.5.0",
+    "license-check": "1.1.5",
+    "mocha": "6.1.4",
+    "nyc": "14.1.1",
+    "tsd-jsdoc": "^2.3.0"
+  },
+  "dependencies": {
+    "@accordproject/markdown-common": "0.1.15",
+    "winston": "3.2.1"
   },
   "license-check-config": {
     "src": [
@@ -64,7 +67,7 @@
       "!./out/**/*",
       "!./lib/**/*",
       "!./umd/**/*",
-      "!./bin/index.js"
+      "!./index.js"
     ],
     "path": "header.txt",
     "blocking": true,
@@ -93,6 +96,5 @@
     "branches": 76,
     "functions": 84,
     "lines": 88
-  },
-  "dependencies": {}
+  }
 }

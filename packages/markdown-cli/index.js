@@ -15,8 +15,8 @@
 
 'use strict';
 
-const Logger = require('../lib/Logger');
-const Commands = require('../lib/Commands');
+const Logger = require('@accordproject/markdown-common').Logger;
+const Commands = require('./lib/Commands');
 
 require('yargs')
     .command('parse', 'parse sample markdown to Concerto instance', (yargs) => {
