@@ -14,6 +14,7 @@
 
 'use strict';
 
+const Value = require('slate').Value;
 const ToSlateVisitor = require('./ToSlateVisitor');
 const slateToCommonMarkAst = require('./slateToCommonMarkAst');
 
@@ -77,7 +78,8 @@ class SlateMark {
      * @returns {*} the common mark AST
      */
     toCommonMark(json) {
-        return this.serializer.toJSON(slateToCommonMarkAst(json));
+        const value = Value.fromJSON(json);
+        return this.serializer.toJSON(slateToCommonMarkAst(value.document));
     }
 }
 

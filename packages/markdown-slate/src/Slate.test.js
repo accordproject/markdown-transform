@@ -18,7 +18,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const Value = require('slate').Value;
 const CommonMark = require('@accordproject/markdown-common').CommonMark;
 const SlateMark = require('./SlateMark');
 
@@ -53,9 +52,7 @@ describe('slate', () => {
     getSlateFiles().forEach( ([file, jsonText], index) => {
         it(`converts ${file} to concerto`, () => {
             const slateDom = JSON.parse(jsonText);
-            const value = Value.fromJSON(slateDom);
-            const json = slateMark.toCommonMark(value.document);
-            console.log('From slate', JSON.stringify(json, null, 4));
+            const json = slateMark.toCommonMark(slateDom);
 
             // check no changes to the concerto
             expect(json).toMatchSnapshot();
