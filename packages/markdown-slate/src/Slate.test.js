@@ -54,8 +54,7 @@ describe('slate', () => {
         it(`converts ${file} to concerto`, () => {
             const slateDom = JSON.parse(jsonText);
             const value = Value.fromJSON(slateDom);
-            const concertoObject = slateMark.toCommonMark(value.document);
-            const json = commonMark.getSerializer().toJSON(concertoObject);
+            const json = slateMark.toCommonMark(value.document);
             console.log('From slate', JSON.stringify(json, null, 4));
 
             // check no changes to the concerto
@@ -67,15 +66,14 @@ describe('slate', () => {
             const expectedMarkdown = fs.readFileSync(__dirname + '/../test/data/' + mdFile + '.md', 'utf8');
 
             // convert the expected markdown to concerto and compare
-            const expectedConcertoObject = commonMark.fromString(expectedMarkdown);
-            const expectedJson = commonMark.getSerializer().toJSON(expectedConcertoObject);
+            const expectedJson = commonMark.fromMarkdownString(expectedMarkdown);
             console.log('Expected JSON', JSON.stringify(expectedJson, null, 4));
 
             // check that ast created from slate and from the expected md is the same
             expect(json).toEqual(expectedJson);
 
             // now convert the expected ast back to slate and compare
-            const expectedSlate = slateMark.fromCommonMark(expectedConcertoObject);
+            const expectedSlate = slateMark.fromCommonMark(expectedJson);
             console.log('Expected Slate', JSON.stringify(expectedSlate, null, 4));
 
             // check roundtrip

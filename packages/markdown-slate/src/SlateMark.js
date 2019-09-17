@@ -17,6 +17,9 @@
 const ToSlateVisitor = require('./ToSlateVisitor');
 const slateToCommonMarkAst = require('./slateToCommonMarkAst');
 
+const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-common').ComposerConcerto;
+const { commonmarkModel } = require('@accordproject/markdown-common').Models; // This should be switched to CiceroMark
+
 /**
  * Parses markdown using the commonmark parser into the
  * intermediate representation: a JSON object that adheres to
@@ -24,11 +27,22 @@ const slateToCommonMarkAst = require('./slateToCommonMarkAst');
  */
 class SlateMark {
     /**
+     * Construct the Slate transformer.
+     */
+    constructor() {
+        // Setup for validation
+        this.modelManager = new ModelManager();
+        this.modelManager.addModelFile(commonmarkModel, 'commonmark.cto');
+        const factory = new Factory(this.modelManager);
+        this.serializer = new Serializer(factory, this.modelManager);
+    }
+
+    /**
      * Converts a commonmark ast to a Slate DOM
      * @param {*} concertoObject concerto commonmark object
      * @returns {*} the slate dom
      */
-    fromCommonMark(concertoObject) {
+    fromCommonMarkConcerto(concertoObject) {
         const parameters = {};
         parameters.result = {};
         parameters.marks = [];
@@ -42,8 +56,28 @@ class SlateMark {
      * @param {*} document the Slate document node
      * @returns {*} the common mark AST
      */
-    toCommonMark(document) {
-        return slateToCommonMarkAst(document);
+    toCommonMarkConcerto(document) {
+        const json = this.toCommonMark(document);
+        return this.serializer.fromJSON(json);
+    }
+
+    /**
+     * Converts a commonmark ast to a Slate DOM
+     * @param {*} json commonmark object
+     * @returns {*} the slate dom
+     */
+    fromCommonMark(json) {
+        const concertoObject = this.serializer.fromJSON(json);
+        return this.fromCommonMarkConcerto(concertoObject);
+    }
+
+    /**
+     * Converts a Slate document node to CommonMark AST
+     * @param {*} json - JSON commonmark object
+     * @returns {*} the common mark AST
+     */
+    toCommonMark(json) {
+        return this.serializer.toJSON(slateToCommonMarkAst(json));
     }
 }
 

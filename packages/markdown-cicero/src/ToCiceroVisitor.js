@@ -67,7 +67,7 @@ class ToCiceroVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
@@ -82,7 +82,7 @@ class ToCiceroVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toString(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
@@ -90,7 +90,7 @@ class ToCiceroVisitor {
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromString(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
                     ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     thing.clauseText = '';
@@ -104,7 +104,7 @@ class ToCiceroVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toString(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }

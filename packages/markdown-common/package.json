@@ -78,8 +78,8 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
+    "@accordproject/concerto": "^0.80.0",
     "commonmark": "^0.29.0",
-    "composer-concerto": "^0.71.6",
     "sax": "^1.2.4",
     "winston": "3.2.1",
     "xmldom": "^0.1.27"

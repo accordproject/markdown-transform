@@ -17,10 +17,10 @@
 const commonmark = require('commonmark');
 const sax = require('sax');
 
-const { ModelManager, Factory, Serializer } = require('composer-concerto');
+const { ModelManager, Factory, Serializer } = require('@accordproject/concerto');
 
 const Stack = require('./Stack');
-const ToStringVisitor = require('./ToStringVisitor');
+const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
 
 const { DOMParser } = require('xmldom');
 const { COMMON_NS_PREFIX, commonmarkModel } = require('./Models');
@@ -95,7 +95,7 @@ class CommonMark {
      * @param {string} markdown the string to parse
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
-    fromString(markdown) {
+    fromMarkdownStringConcerto(markdown) {
         let stack = new Stack();
         const that = this;
         const parser = sax.parser(true, {position: true});
@@ -261,14 +261,40 @@ class CommonMark {
      * @param {*} options - options (e.g., wrapVariables)
      * @returns {string} the markdown string
      */
-    toString(concertoObject, options) {
+    toMarkdownStringConcerto(concertoObject, options) {
         const parameters = {};
         parameters.result = '';
         parameters.first = true;
         parameters.indent = 0;
-        const visitor = new ToStringVisitor(options);
+        const visitor = new ToMarkdownStringVisitor(options);
         concertoObject.accept(visitor, parameters);
         return parameters.result.trim();
+    }
+
+    /**
+     * Parses a markdown string into a DOM object in JSON format.
+     *
+     * @param {string} markdown the string to parse
+     * @returns {*} a JSON object (DOM) for the markdown content
+     */
+    fromMarkdownString(markdown) {
+        const options = this.options;
+        if (this.options) {
+            this.options.disableValidation = false;
+        }
+        let concertoObject = this.fromMarkdownStringConcerto(markdown);
+        this.options = options;
+        return this.serializer.toJSON(concertoObject);
+    }
+
+    /**
+     * Converts a commonmark document to a markdown string
+     * @param {*} json - JSON commonmark object
+     * @param {*} options - options (e.g., wrapVariables)
+     * @returns {string} the markdown string
+     */
+    toMarkdownString(json, options) {
+        return this.toMarkdownStringConcerto(this.serializer.fromJSON(json), options);
     }
 
 }

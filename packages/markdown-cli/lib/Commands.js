@@ -85,35 +85,38 @@ class Commands {
      *
      * @param {string} samplePath to the sample file
      * @param {string} outPath to an output file
-     * @param {boolean} generateMarkdown whether to transform back to markdown
-     * @param {boolean} withCicero whether to further transform for Cicero
-     * @param {boolean} withSlate whether to further transform for Slate
-     * @param {boolean} noWrap whether to avoid wrapping Cicero variables in XML tags
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.roundtrip] whether to transform back to markdown
+     * @param {boolean} [options.cicero] whether to further transform for Cicero
+     * @param {boolean} [options.slate] whether to further transform for Slate
+     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, generateMarkdown, withCicero, withSlate, noWrap) {
+    static parse(samplePath, outPath, options) {
+        const { roundtrip, cicero, slate, noWrap } = options;
         const commonMark = new CommonMark({ tagInfo: true });
         const ciceroMark = new CiceroMark();
         const slateMark = new SlateMark();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromString(markdownText);
-        if (withCicero) {
+        let result = commonMark.fromMarkdownString(markdownText);
+        if (cicero) {
             result = ciceroMark.fromCommonMark(result);
-        } else if (withSlate) {
+        } else if (slate) {
             result = slateMark.fromCommonMark(result);
+            //console.log('BEFORE COMMONMARK ' + JSON.stringify(result));
         }
-        if (generateMarkdown) {
-            if (withCicero) {
+        if (roundtrip) {
+            if (cicero) {
                 const options = noWrap ? { wrapVariables: false } : null;
                 result = ciceroMark.toCommonMark(result, options);
-            } else if (withSlate) {
+            } else if (slate) {
                 result = slateMark.toCommonMark(result);
+                //console.log('AFTER COMMONMARK ' + JSON.stringify(result));
             }
-            result = commonMark.toString(result);
+            result = commonMark.toMarkdownString(result);
         } else {
-            const json = withSlate ? result : ciceroMark.getSerializer().toJSON(result);
-            result = JSON.stringify(json);
+            result = JSON.stringify(result);
         }
         if (outPath) {
             Logger.info('Creating file: ' + outPath);

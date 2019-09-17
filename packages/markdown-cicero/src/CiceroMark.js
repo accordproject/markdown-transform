@@ -52,7 +52,7 @@ class CiceroMark {
      * @param {*} concertoObject concerto commonmark object
      * @returns {*} concertoObject concerto ciceromark object
      */
-    fromCommonMark(concertoObject) {
+    fromCommonMarkConcerto(concertoObject) {
         // Add Cicero nodes
         const parameters = {
             ciceroMark: this,
@@ -70,11 +70,11 @@ class CiceroMark {
 
     /**
      * Converts a ciceromark document back to a regular commmark document
-     * @param {*} concertoObject concerto cicero object
+     * @param {*} concertoObject concerto ciceromark object
      * @param {object} [options] configuration options
-     * @returns {*} concertoObject concerto commonmark
+     * @returns {*} concerto commonmark object
      */
-    toCommonMark(concertoObject, options) {
+    toCommonMarkConcerto(concertoObject, options) {
         // Add Cicero nodes
         const parameters = {
             commonMark: this.commonMark,
@@ -95,8 +95,8 @@ class CiceroMark {
      * @param {object} [options] configuration options
      * @returns {*} concertoObject concerto commonmark
      */
-    toString(concertoObject, options) {
-        return this.commonMark.toString(this.toCommonMark(concertoObject, options));
+    toMarkdownStringConcerto(concertoObject, options) {
+        return this.commonMark.toMarkdownStringConcerto(this.toCommonMarkConcerto(concertoObject, options));
     }
 
     /**
@@ -107,6 +107,58 @@ class CiceroMark {
      */
     getSerializer() {
         return this.serializer;
+    }
+
+    /**
+     * Converts a commonmark document to a ciceromark document
+     * @param {*} json commonmark object
+     * @returns {*} json ciceromark object
+     */
+    fromCommonMark(json) {
+        // Add Cicero nodes
+        const parameters = {
+            ciceroMark: this,
+            commonMark: this.commonMark,
+            modelManager : this.modelManager,
+            serializer : this.serializer,
+        };
+        const visitor = new ToCiceroVisitor();
+        const concertoObject = this.serializer.fromJSON(json);
+        concertoObject.accept( visitor, parameters );
+
+        // Validate
+        return this.serializer.toJSON(concertoObject);
+    }
+
+    /**
+     * Converts a ciceromark document back to a regular commmark document
+     * @param {*} json ciceromark object
+     * @param {object} [options] configuration options
+     * @returns {*} json commonmark object
+     */
+    toCommonMark(json, options) {
+        // Add Cicero nodes
+        const parameters = {
+            commonMark: this.commonMark,
+            modelManager : this.modelManager,
+            serializer : this.serializer
+        };
+        const visitor = new FromCiceroVisitor(options);
+        const concertoObject = this.serializer.fromJSON(json);
+        concertoObject.accept( visitor, parameters );
+
+        // Validate
+        return this.serializer.toJSON(concertoObject);
+    }
+
+    /**
+     * Converts a commonmark document to a markdown string
+     * @param {*} json - JSON commonmark object
+     * @param {*} options - options (e.g., wrapVariables)
+     * @returns {string} the markdown string
+     */
+    toMarkdownString(json, options) {
+        return this.toMarkdownStringConcerto(this.serializer.fromJSON(json), options);
     }
 
 }

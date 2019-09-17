@@ -28,23 +28,23 @@ require('yargs')
             describe: 'path to the output file',
             type: 'string'
         });
-        yargs.option('--generateMarkdown', {
-            describe: 'roundtrip back to Markdown',
+        yargs.option('roundtrip', {
+            describe: 'roundtrip',
             type: 'boolean',
             default: false
         });
-        yargs.option('--withCicero', {
-            describe: 'further transform to Cicero Markdown',
+        yargs.option('cicero', {
+            describe: 'further transform to CiceroMark',
             type: 'boolean',
             default: false
         });
-        yargs.option('--withSlate', {
+        yargs.option('slate', {
             describe: 'further transform to Slate DOM',
             type: 'boolean',
             default: false
         });
-        yargs.option('--noWrap', {
-            describe: 'do not wrap variables',
+        yargs.option('noWrap', {
+            describe: 'do not wrap variables as XML tags',
             type: 'boolean',
             default: false
         });
@@ -55,7 +55,12 @@ require('yargs')
 
         try {
             argv = Commands.validateParseArgs(argv);
-            return Commands.parse(argv.sample, argv.out, argv.generateMarkdown, argv.withCicero, argv.withSlate, argv.noWrap)
+            const options = {};
+            options.roundtrip = argv.roundtrip;
+            options.cicero = argv.cicero;
+            options.slate = argv.slate;
+            options.noWrap = argv.noWrap;
+            return Commands.parse(argv.sample, argv.out, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
