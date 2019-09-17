@@ -200,14 +200,7 @@ class ToStringVisitor {
         }
             break;
         case 'Item':
-            if(parameters.type === 'ordered') {
-                parameters.result += '\n${ToStringVisitor.mkIndent(parameters)}$1. ';
-            }
-            else {
-                parameters.result += '\n${ToStringVisitor.mkIndent(parameters)}- ';
-            }
-            parameters.result += ToStringVisitor.visitChildren(this, thing);
-            break;
+            throw new Error('Item node should not occur outside of List nodes');
         case 'Document':
             parameters.result += ToStringVisitor.visitChildren(this, thing);
             break;
