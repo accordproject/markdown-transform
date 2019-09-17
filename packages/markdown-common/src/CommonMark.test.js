@@ -21,15 +21,12 @@ const diff = require('jest-diff');
 const CommonMark = require('./CommonMark');
 
 let commonMark = null;
-let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        const concertoObject1 = commonMark.fromString(markdownText);
-        const json1 = serializer.toJSON(concertoObject1);
-        const newMarkdown = commonMark.toString(concertoObject1);
-        const concertoObject2 = commonMark.fromString(newMarkdown);
-        const json2 = serializer.toJSON(concertoObject2);
+        const json1 = commonMark.fromMarkdownString(markdownText);
+        const newMarkdown = commonMark.toMarkdownString(json1);
+        const json2 = commonMark.fromMarkdownString(newMarkdown);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -59,7 +56,6 @@ expect.extend({
 // @ts-ignore
 beforeAll(() => {
     commonMark = new CommonMark({ tagInfo : true });
-    serializer = commonMark.getSerializer();
 });
 
 /**
@@ -126,9 +122,8 @@ function extractSpecTests(testfile) {
 
 describe.only('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto`, () => {
-            const concertoObject = commonMark.fromString(markdownText);
-            const json = serializer.toJSON(concertoObject);
+        it(`converts ${file} to concerto JSON`, () => {
+            const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });
 
@@ -140,9 +135,8 @@ describe.only('markdown', () => {
 
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto`, () => {
-            const concertoObject = commonMark.fromString(markdownText);
-            const json = serializer.toJSON(concertoObject);
+        it(`converts ${file} to concerto JSON`, () => {
+            const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });
 

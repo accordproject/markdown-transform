@@ -28,12 +28,12 @@ let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        let concertoObject1 = commonMark.fromString(markdownText);
-        concertoObject1 = ciceroMark.toCommonMark(ciceroMark.fromCommonMark(concertoObject1));
+        let concertoObject1 = commonMark.fromMarkdownStringConcerto(markdownText);
+        concertoObject1 = ciceroMark.toCommonMarkConcerto(ciceroMark.fromCommonMarkConcerto(concertoObject1));
         const json1 = serializer.toJSON(concertoObject1);
-        const newMarkdown = commonMark.toString(concertoObject1);
-        let concertoObject2 = commonMark.fromString(newMarkdown);
-        concertoObject2 = ciceroMark.toCommonMark(ciceroMark.fromCommonMark(concertoObject2));
+        const newMarkdown = commonMark.toMarkdownStringConcerto(concertoObject1);
+        let concertoObject2 = commonMark.fromMarkdownStringConcerto(newMarkdown);
+        concertoObject2 = ciceroMark.toCommonMarkConcerto(ciceroMark.fromCommonMarkConcerto(concertoObject2));
         const json2 = serializer.toJSON(concertoObject2);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
@@ -133,8 +133,7 @@ function extractSpecTests(testfile) {
 describe('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = commonMark.fromString(markdownText);
-            const json = serializer.toJSON(concertoObject);
+            const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });
 
@@ -147,8 +146,7 @@ describe('markdown', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const concertoObject = commonMark.fromString(markdownText);
-            const json = serializer.toJSON(concertoObject);
+            const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });
 

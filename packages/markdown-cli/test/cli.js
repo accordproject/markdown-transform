@@ -42,14 +42,24 @@ Acceptance Criteria. The "Acceptance Criteria" are the specifications the <varia
 
     describe('#parse', () => {
         it('should parse a markdown file', async () => {
-            const result = await Commands.parse(sample, null, false, false, false, true);
+            const options = {};
+            options.roundtrip = false;
+            options.cicero = false;
+            options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.parse(sample, null, options);
             result.should.eql(sampleExpectedJson);
         });
     });
 
     describe('#generateMarkdown', () => {
         it('should generate the text for a markdown file', async () => {
-            const result = await Commands.parse(sample, null, true, false, false, true);
+            const options = {};
+            options.roundtrip = true;
+            options.cicero = false;
+            options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.parse(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
     });
