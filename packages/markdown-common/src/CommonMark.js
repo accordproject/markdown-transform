@@ -38,6 +38,7 @@ class CommonMark {
      * @param {boolean} [options.trimText] trims all text nodes
      * @param {boolean} [options.disableValidation] returns unvalidated JSON, rather than a Concerto model
      * @param {boolean} [options.enableSourceLocation] if true then location information is returned
+     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.tagInfo] Construct tags for HTML elements
      */
     constructor(options) {
@@ -258,15 +259,14 @@ class CommonMark {
     /**
      * Converts a commonmark document to a markdown string
      * @param {*} concertoObject - concerto commonmark object
-     * @param {*} options - options (e.g., wrapVariables)
      * @returns {string} the markdown string
      */
-    toMarkdownStringConcerto(concertoObject, options) {
+    toMarkdownStringConcerto(concertoObject) {
         const parameters = {};
         parameters.result = '';
         parameters.first = true;
         parameters.indent = 0;
-        const visitor = new ToMarkdownStringVisitor(options);
+        const visitor = new ToMarkdownStringVisitor(this.options);
         concertoObject.accept(visitor, parameters);
         return parameters.result.trim();
     }

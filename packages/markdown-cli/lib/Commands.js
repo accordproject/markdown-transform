@@ -90,11 +90,16 @@ class Commands {
      * @param {boolean} [options.cicero] whether to further transform for Cicero
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
+     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outPath, options) {
-        const { roundtrip, cicero, slate, noWrap } = options;
-        const commonMark = new CommonMark({ tagInfo: true });
+        const { roundtrip, cicero, slate, noWrap, noIndex } = options;
+        const commonOptions = {};
+        commonOptions.tagInfo = true;
+        commonOptions.noIndex = noIndex ? true : false;
+        
+        const commonMark = new CommonMark(commonOptions);
         const ciceroMark = new CiceroMark();
         const slateMark = new SlateMark();
 
@@ -108,8 +113,9 @@ class Commands {
         }
         if (roundtrip) {
             if (cicero) {
-                const options = noWrap ? { wrapVariables: false } : null;
-                result = ciceroMark.toCommonMark(result, options);
+                const ciceroOptions = {};
+                ciceroOptions.wrapVariables = noWrap ? false : true;
+                result = ciceroMark.toCommonMark(result, ciceroOptions);
             } else if (slate) {
                 result = slateMark.toCommonMark(result);
                 //console.log('AFTER COMMONMARK ' + JSON.stringify(result));
