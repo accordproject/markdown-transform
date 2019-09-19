@@ -21,6 +21,7 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto')
 
 const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
+const ToHtmlStringVisitor = require('./ToHtmlStringVisitor');
 
 const { DOMParser } = require('xmldom');
 const { COMMON_NS_PREFIX, commonmarkModel } = require('./Models');
@@ -272,6 +273,21 @@ class CommonMark {
     }
 
     /**
+     * Converts a commonmark document to an html string
+     * @param {*} concertoObject - concerto commonmark object
+     * @returns {string} the html string
+     */
+    toHtmlStringConcerto(concertoObject) {
+        const parameters = {};
+        parameters.result = '';
+        parameters.first = true;
+        parameters.indent = 0;
+        const visitor = new ToHtmlStringVisitor(this.options);
+        concertoObject.accept(visitor, parameters);
+        return parameters.result.trim();
+    }
+
+    /**
      * Parses a markdown string into a DOM object in JSON format.
      *
      * @param {string} markdown the string to parse
@@ -294,9 +310,18 @@ class CommonMark {
      * @returns {string} the markdown string
      */
     toMarkdownString(json, options) {
-        return this.toMarkdownStringConcerto(this.serializer.fromJSON(json), options);
+        return this.toMarkdownStringConcerto(this.serializer.fromJSON(json));
     }
 
+    /**
+     * Converts a commonmark document to an html string
+     * @param {*} json - JSON commonmark object
+     * @param {*} options - options (e.g., wrapVariables)
+     * @returns {string} the html string
+     */
+    toHtmlString(json, options) {
+        return this.toHtmlStringConcerto(this.serializer.fromJSON(json));
+    }
 }
 
 module.exports = CommonMark;

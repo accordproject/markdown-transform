@@ -1,5 +1,287 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`html converts acceptance.md to html 1`] = `
+"<html>
+<body>
+<h1>HELLO! This is the contract editor.</h1>
+<p>And below is a <strong>clause</strong>.</p>
+<pre><code>
+Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts blockquote.md to html 1`] = `
+"<html>
+<body>
+<p>This is</p>
+<blockquote><p>A quote.</p>
+</blockquote>
+</body>
+</html>"
+`;
+
+exports[`html converts clause.md to html 1`] = `
+"<html>
+<body>
+<p>This is a fixed interest loan to the amount of <variable id=\\"loanAmount\\" value=\\"100000.0\\"/>
+at the yearly interest rate of <variable id=\\"rate\\" value=\\"2.5\\"/>%
+with a loan term of <variable id=\\"loanDuration\\" value=\\"15\\"/>,
+and monthly payments of <computed value=\\"667.0\\"/></p>
+<p>This is a fixed interest loan to the amount of 100000.0
+at the yearly interest rate of 2.5%
+with a loan term of 15,
+and monthly payments of 667.0</p>
+<pre><code>
+this is
+multiline <variable id=\\"rate\\" value=\\"2.5\\"/>
+
+content
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts codeblock.md to html 1`] = `
+"<html>
+<body>
+<pre><code>
+this is a multiline
+code
+block.
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts codeblock-info.md to html 1`] = `
+"<html>
+<body>
+<pre><code>
+  this is a multiline
+  code
+
+  containing a newline
+
+  which should be handled by the video plugin.
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts emph.md to html 1`] = `
+"<html>
+<body>
+<p>This is <emph>some</emph> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts emph-strong.md to html 1`] = `
+"<html>
+<body>
+<p>This is <emph><strong>some</strong></emph> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts h1.md to html 1`] = `
+"<html>
+<body>
+<h1>Heading One</h1>
+</body>
+</html>"
+`;
+
+exports[`html converts h2.md to html 1`] = `
+"<html>
+<body>
+<h2>Heading Two</h2>
+</body>
+</html>"
+`;
+
+exports[`html converts h3.md to html 1`] = `
+"<html>
+<body>
+<h3>Heading Three</h3>
+</body>
+</html>"
+`;
+
+exports[`html converts h4.md to html 1`] = `
+"<html>
+<body>
+<h4>Heading Four</h4>
+</body>
+</html>"
+`;
+
+exports[`html converts h5.md to html 1`] = `
+"<html>
+<body>
+<h5>Heading Five</h5>
+</body>
+</html>"
+`;
+
+exports[`html converts h6.md to html 1`] = `
+"<html>
+<body>
+<h6>Heading Six</h6>
+</body>
+</html>"
+`;
+
+exports[`html converts html-inline.md to html 1`] = `
+"<html>
+<body>
+<p>This is a <custom src=\\"property\\"/> property.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts html-mixed.md to html 1`] = `
+"<html>
+<body>
+<h1>Heading One</h1>
+<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/><p>done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts inline-code.md to html 1`] = `
+"<html>
+<body>
+<p>This is <code>inline code</code>.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts link.md to html 1`] = `
+"<html>
+<body>
+<p>This is <a href=\\"http://clause.io\\">a link/>.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts multiline-html-block.md to html 1`] = `
+"<html>
+<body>
+<p>This is a custom</p>
+<custom src=\\"property\\">
+contents
+</custom><p>block.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ol.md to html 1`] = `
+"<html>
+<body>
+<p>This is an ordered list:</p>
+
+<ol>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ol><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ol-tight.md to html 1`] = `
+"<html>
+<body>
+<p>This is an ordered list:</p>
+
+<ol>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ol><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts paragraphs.md to html 1`] = `
+"<html>
+<body>
+<p>This is first paragraph.</p>
+<p>This is second paragraph.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts strong.md to html 1`] = `
+"<html>
+<body>
+<p>This is <strong>some</strong> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts text.md to html 1`] = `
+"<html>
+<body>
+<p>This is some text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts thematicbreak.md to html 1`] = `
+"<html>
+<body>
+<p>This is</p>
+
+<hr>
+<p>A footer.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ul.md to html 1`] = `
+"<html>
+<body>
+<p>This is an unordered list:</p>
+
+<ul>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ul><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ul-tight.md to html 1`] = `
+"<html>
+<body>
+<p>This is an unordered list:</p>
+
+<ul>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ul><p>Done.</p>
+</body>
+</html>"
+`;
+
 exports[`markdown converts acceptance.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

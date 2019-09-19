@@ -133,6 +133,16 @@ describe.only('markdown', () => {
     });
 });
 
+describe.only('html', () => {
+    getMarkdownFiles().forEach( ([file, markdownText]) => {
+        it(`converts ${file} to html`, () => {
+            const json = commonMark.fromMarkdownString(markdownText);
+            const html = commonMark.toHtmlString(json);
+            expect(html).toMatchSnapshot();
+        });
+    });
+});
+
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
