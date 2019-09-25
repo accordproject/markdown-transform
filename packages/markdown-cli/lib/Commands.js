@@ -17,9 +17,9 @@
 const Fs = require('fs');
 const Logger = require('@accordproject/markdown-common').Logger;
 
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
-const CiceroMark = require('@accordproject/markdown-cicero').CiceroMark;
-const SlateMark = require('@accordproject/markdown-slate').SlateMark;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const CiceroMark = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const SlateMark = require('@accordproject/markdown-slate').SlateTransformer;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -33,7 +33,6 @@ class Commands {
      * @param {string} argName the argument name
      * @param {string} argDefaultName the argument default name
      * @param {Function} argDefaultFun how to compute the argument default
-     * @param {object} argDefaultValue an optional default value if all else fails
      * @returns {object} a modified argument object
      */
     static setDefaultFileArg(argv, argName, argDefaultName, argDefaultFun) {
@@ -98,8 +97,8 @@ class Commands {
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
-        
-        const commonMark = new CommonMark(commonOptions);
+
+        const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMark();
         const slateMark = new SlateMark();
 

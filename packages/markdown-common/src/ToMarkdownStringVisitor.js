@@ -15,11 +15,14 @@
 'use strict';
 
 /**
- * Converts a commonmark model instance to a markdown string.
+ * Converts a CommonMark DOM to a markdown string.
  *
- * Note that there are several ways of representing the same markdown AST as text,
+ * Note that there are multiple ways of representing the same CommonMark DOM as text,
  * so this transformation is not guaranteed to equivalent if you roundtrip
- * markdown content. The resulting AST *should* be equivalent however.
+ * markdown content. For example an H1 can be specified using either '#' or '='
+ * notation.
+ *
+ * The resulting AST *should* be equivalent however.
  */
 class ToMarkdownStringVisitor {
     /**

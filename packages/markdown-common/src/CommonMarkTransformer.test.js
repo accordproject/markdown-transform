@@ -18,23 +18,15 @@
 
 const fs = require('fs');
 const diff = require('jest-diff');
-
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
-const CiceroMark = require('./CiceroMark');
+const CommonMarkTransformer = require('./CommonMarkTransformer');
 
 let commonMark = null;
-let ciceroMark = null;
-let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        let concertoObject1 = commonMark.fromMarkdownStringConcerto(markdownText);
-        concertoObject1 = ciceroMark.toCommonMarkConcerto(ciceroMark.fromCommonMarkConcerto(concertoObject1));
-        const json1 = serializer.toJSON(concertoObject1);
-        const newMarkdown = commonMark.toMarkdownStringConcerto(concertoObject1);
-        let concertoObject2 = commonMark.fromMarkdownStringConcerto(newMarkdown);
-        concertoObject2 = ciceroMark.toCommonMarkConcerto(ciceroMark.fromCommonMarkConcerto(concertoObject2));
-        const json2 = serializer.toJSON(concertoObject2);
+        const json1 = commonMark.fromMarkdownString(markdownText);
+        const newMarkdown = commonMark.toMarkdownString(json1);
+        const json2 = commonMark.fromMarkdownString(newMarkdown);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -63,9 +55,7 @@ expect.extend({
 
 // @ts-ignore
 beforeAll(() => {
-    commonMark = new CommonMark({ tagInfo: true });
-    ciceroMark = new CiceroMark();
-    serializer = ciceroMark.getSerializer();
+    commonMark = new CommonMarkTransformer({ tagInfo : true });
 });
 
 /**
@@ -130,9 +120,9 @@ function extractSpecTests(testfile) {
     return examples;
 }
 
-describe('markdown', () => {
+describe.only('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto`, () => {
+        it(`converts ${file} to concerto JSON`, () => {
             const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });
@@ -143,9 +133,21 @@ describe('markdown', () => {
     });
 });
 
+describe.only('readme', () => {
+    it('converts example1 to html', () => {
+        const json = commonMark.fromMarkdownString('# Heading\n\nThis is some `code`.\n\nFin.');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        json.nodes[0].nodes[0].text = 'My New Heading';
+        const newMarkdown = commonMark.toMarkdownString(json);
+        // console.log(newMarkdown);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+});
+
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto`, () => {
+        it(`converts ${file} to concerto JSON`, () => {
             const json = commonMark.fromMarkdownString(markdownText);
             expect(json).toMatchSnapshot();
         });

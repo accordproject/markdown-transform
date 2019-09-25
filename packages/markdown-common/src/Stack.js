@@ -15,7 +15,7 @@
 'use strict';
 
 /**
- * Manages a stack of Slate.js Nodes
+ * Manages a stack of objects
  */
 class Stack {
 

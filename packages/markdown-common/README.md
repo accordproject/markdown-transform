@@ -1,21 +1,98 @@
-# Markdown Transform
+# CommonMark Transformer
 
-A framework to transform markdown to/from a CommonMark AST defined using Concerto:
-https://models.accordproject.org/commonmark/markdown.html
+Converts markdown text to/from a DOM.
 
-## Documentation
+## Usage
 
-CommonmarkParser converts markdown text to an instance of the CommonMark AST.
-
-CommonmarkToString converts an AST to a markdown string.
-
-See the unit test for example usage.
-
-## Installation
+To transform markdown text, first install the `markdown-common` package:
 
 ```
-npm install @accordproject/markdown-transform --save
+npm install @accordproject/markdown-common --save
 ```
+
+Then in your JavaScript code:
+
+``` javascript
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const transformer = new CommonMarkTransformer({ tagInfo : true });
+const json = transformer.fromMarkdownString('# Heading\n\nThis is some `code`.\n\nFin.');
+console.log(JSON.stringify(json, null, 4));
+```
+
+The output should be:
+
+``` json
+{
+          "$class": "org.accordproject.commonmark.Document",
+          "xmlns": "http://commonmark.org/xml/1.0",
+          "nodes": [
+              {
+                  "$class": "org.accordproject.commonmark.Heading",
+                  "level": "1",
+                  "nodes": [
+                      {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Heading"
+                      }
+                  ]
+              },
+              {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": [
+                      {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "This is some "
+                      },
+                      {
+                          "$class": "org.accordproject.commonmark.Code",
+                          "text": "code"
+                      },
+                      {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "."
+                      }
+                  ]
+              },
+              {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": [
+                      {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Fin."
+                      }
+                  ]
+              }
+          ]
+      }
+```
+
+Please refer to the [schema](https://models.accordproject.org/commonmark/markdown.html) for the details of all the the nodes that you should expect in the DOM.
+
+You can then manipulate the DOM object, making any required changes:
+
+``` javascript
+json.nodes[0].nodes[0].text = 'My New Heading';
+```
+
+Finally converting the DOM back into a markdown string:
+
+``` javascript
+const newMarkdown = commonMark.toMarkdownString(json);
+console.log(newMarkdown);
+```
+
+The new markdown string will be:
+
+``` markdown
+My New Heading
+====
+      
+This is some `code`.
+      
+Fin.
+```
+
+> Note how the original H1 heading has been normalized during conversion from `#` syntax to `====` syntax. In commonmark these are equivalent.
 
 ## License <a name="license"></a>
 Accord Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Accord Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.

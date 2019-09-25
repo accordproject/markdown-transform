@@ -19,4 +19,12 @@
  * @module markdown-transform
  */
 
-module.exports.SlateTransformer = require('./lib/SlateTransformer');
+module.exports.ComposerConcerto = require('@accordproject/concerto');
+
+module.exports.Logger = require('./lib/Logger');
+module.exports.Stack = require('./lib/Stack');
+module.exports.Models = require('./lib/Models');
+
+module.exports.CommonMark = require('./lib/CommonMark');
+module.exports.ToMarkdownStringVisitor = require('./lib/ToMarkdownStringVisitor');
+

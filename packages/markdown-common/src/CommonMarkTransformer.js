@@ -21,7 +21,6 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto')
 
 const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
-const ToHtmlStringVisitor = require('./ToHtmlStringVisitor');
 
 const { DOMParser } = require('xmldom');
 const { COMMON_NS_PREFIX, commonmarkModel } = require('./Models');
@@ -31,7 +30,7 @@ const { COMMON_NS_PREFIX, commonmarkModel } = require('./Models');
  * intermediate representation: a JSON object that adheres to
  * the 'org.accordproject.commonmark' Concerto model.
  */
-class CommonMark {
+class CommonMarkTransformer {
 
     /**
      * Construct the parser.
@@ -113,12 +112,12 @@ class CommonMark {
 
             const head = stack.peek();
             if(t.length > 0 && head) {
-                if (CommonMark.isLeafNode(head)) {
+                if (CommonMarkTransformer.isLeafNode(head)) {
                     head.text = t;
                 }
-                if (CommonMark.isHtmlNode(head) || CommonMark.isCodeBlockNode(head)) {
-                    const maybeHtmlText = CommonMark.isHtmlNode(head) ? head.text : head.info;
-                    const tagInfo = that.options && that.options.tagInfo ? CommonMark.parseHtmlBlock(maybeHtmlText) : null;
+                if (CommonMarkTransformer.isHtmlNode(head) || CommonMarkTransformer.isCodeBlockNode(head)) {
+                    const maybeHtmlText = CommonMarkTransformer.isHtmlNode(head) ? head.text : head.info;
+                    const tagInfo = that.options && that.options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(maybeHtmlText) : null;
                     if (tagInfo) {
                         head.tag = {};
                         head.tag.$class = COMMON_NS_PREFIX + 'TagInfo';
@@ -143,7 +142,7 @@ class CommonMark {
         };
         parser.onopentag = function (node) {
             const newNode = {};
-            newNode.$class = CommonMark.toClass(node.name);
+            newNode.$class = CommonMarkTransformer.toClass(node.name);
             if(that.options && that.options.enableSourceLocation) {
                 newNode.line = parser.line;
                 newNode.column = parser.column;
@@ -220,7 +219,7 @@ class CommonMark {
      */
     static toClass(name) {
         const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
-        return COMMON_NS_PREFIX + CommonMark.capitalizeFirstLetter(camelCased);
+        return COMMON_NS_PREFIX + CommonMarkTransformer.capitalizeFirstLetter(camelCased);
     }
 
     /**
@@ -273,21 +272,6 @@ class CommonMark {
     }
 
     /**
-     * Converts a commonmark document to an html string
-     * @param {*} concertoObject - concerto commonmark object
-     * @returns {string} the html string
-     */
-    toHtmlStringConcerto(concertoObject) {
-        const parameters = {};
-        parameters.result = '';
-        parameters.first = true;
-        parameters.indent = 0;
-        const visitor = new ToHtmlStringVisitor(this.options);
-        concertoObject.accept(visitor, parameters);
-        return parameters.result.trim();
-    }
-
-    /**
      * Parses a markdown string into a DOM object in JSON format.
      *
      * @param {string} markdown the string to parse
@@ -312,16 +296,6 @@ class CommonMark {
     toMarkdownString(json, options) {
         return this.toMarkdownStringConcerto(this.serializer.fromJSON(json));
     }
-
-    /**
-     * Converts a commonmark document to an html string
-     * @param {*} json - JSON commonmark object
-     * @param {*} options - options (e.g., wrapVariables)
-     * @returns {string} the html string
-     */
-    toHtmlString(json, options) {
-        return this.toHtmlStringConcerto(this.serializer.fromJSON(json));
-    }
 }
 
-module.exports = CommonMark;
+module.exports = CommonMarkTransformer;

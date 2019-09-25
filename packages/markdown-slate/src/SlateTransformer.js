@@ -22,11 +22,9 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-c
 const { commonmarkModel } = require('@accordproject/markdown-common').Models; // This should be switched to CiceroMark
 
 /**
- * Parses markdown using the commonmark parser into the
- * intermediate representation: a JSON object that adheres to
- * the 'org.accordproject.commonmark' Concerto model.
+ * Converts a CiceroMark DOM to/from a Slate DOM.
  */
-class SlateMark {
+class SlateTransformer {
     /**
      * Construct the Slate transformer.
      */
@@ -39,7 +37,7 @@ class SlateMark {
     }
 
     /**
-     * Converts a commonmark ast to a Slate DOM
+     * Converts a commonmark DOM to a Slate DOM
      * @param {*} concertoObject concerto commonmark object
      * @returns {*} the slate dom
      */
@@ -53,7 +51,7 @@ class SlateMark {
     }
 
     /**
-     * Converts a Slate document node to CommonMark AST
+     * Converts a Slate document node to CommonMark DOM
      * @param {*} document the Slate document node
      * @returns {*} the common mark AST
      */
@@ -73,7 +71,7 @@ class SlateMark {
     }
 
     /**
-     * Converts a Slate document node to CommonMark AST
+     * Converts a Slate document node to CommonMark DOM
      * @param {*} json - JSON commonmark object
      * @returns {*} the common mark AST
      */
@@ -83,4 +81,4 @@ class SlateMark {
     }
 }
 
-module.exports = SlateMark;
+module.exports = SlateTransformer;
