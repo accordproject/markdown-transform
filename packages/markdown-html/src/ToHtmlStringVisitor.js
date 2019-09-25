@@ -19,6 +19,15 @@
  *
  */
 class ToHtmlStringVisitor {
+
+    /**
+     * Construct the visitor
+     * @param {*} [options] configuration options
+     */
+    constructor(options) {
+        this.options = options;
+    }
+
     /**
      * Visits a sub-tree and return the html
      * @param {*} visitor the visitor to use

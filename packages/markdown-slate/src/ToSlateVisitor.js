@@ -14,10 +14,10 @@
 
 'use strict';
 
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
+// const CommonMark = require('@accordproject/markdown-common').CommonMark;
 
 /**
- * Converts a commonmark AST to a Slate DOM.
+ * Converts a CommonMark DOM to a Slate DOM.
  */
 class ToSlateVisitor {
 
@@ -115,9 +115,9 @@ class ToSlateVisitor {
             throw new Error(`Node ${thing.getType()} doesn't have any children!`);
         }
 
-        const commonMark = new CommonMark();
-        const json = commonMark.getSerializer().toJSON(thing);
-        console.log('Processing', JSON.stringify(json, null, 4));
+        // const commonMark = new CommonMark();
+        // const json = commonMark.getSerializer().toJSON(thing);
+        // console.log('Processing', JSON.stringify(json, null, 4));
 
         thing.nodes.forEach(node => {
             //console.log(`Processing ${thing.getType()} > ${node.getType()}`);

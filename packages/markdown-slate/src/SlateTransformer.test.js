@@ -18,16 +18,16 @@
 
 const fs = require('fs');
 const path = require('path');
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
-const SlateMark = require('./SlateMark');
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const SlateTransformer = require('./SlateTransformer');
 
 let commonMark = null;
 let slateMark = null;
 
 // @ts-ignore
 beforeAll(() => {
-    commonMark = new CommonMark();
-    slateMark = new SlateMark();
+    commonMark = new CommonMarkTransformer();
+    slateMark = new SlateTransformer();
 });
 
 /**

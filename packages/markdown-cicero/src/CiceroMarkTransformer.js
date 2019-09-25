@@ -16,7 +16,7 @@
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-common').ComposerConcerto;
 
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const { commonmarkModel } = require('@accordproject/markdown-common').Models;
 
 const ToCiceroVisitor = require('./ToCiceroVisitor');
@@ -24,11 +24,11 @@ const FromCiceroVisitor = require('./FromCiceroVisitor');
 const { ciceromarkModel } = require('./Models');
 
 /**
- * Parses markdown using the commonmark parser into the
- * intermediate representation: a JSON object that adheres to
- * the 'org.accordproject.commonmark' Concerto model.
+ * Converts a CiceroMark DOM to and from a
+ * CommonMark DOM. Converts a CiceroMark DOM
+ * to a markdown string.
  */
-class CiceroMark {
+class CiceroMarkTransformer {
     /**
      * Construct the parser.
      * @param {object} [options] configuration options
@@ -37,7 +37,7 @@ class CiceroMark {
         this.options = options;
 
         // Setup for Nested Parsing
-        this.commonMark = new CommonMark({ tagInfo: true });
+        this.commonMark = new CommonMarkTransformer({ tagInfo: true });
 
         // Setup for validation
         this.modelManager = new ModelManager();
@@ -110,7 +110,7 @@ class CiceroMark {
     }
 
     /**
-     * Converts a commonmark document to a ciceromark document
+     * Converts a commonmark DOM to a ciceromark DOM
      * @param {*} json commonmark object
      * @returns {*} json ciceromark object
      */
@@ -131,7 +131,7 @@ class CiceroMark {
     }
 
     /**
-     * Converts a ciceromark document back to a regular commmark document
+     * Converts a ciceromark DOM back to a commmark DOM
      * @param {*} json ciceromark object
      * @param {object} [options] configuration options
      * @returns {*} json commonmark object
@@ -152,7 +152,7 @@ class CiceroMark {
     }
 
     /**
-     * Converts a commonmark document to a markdown string
+     * Converts a CiceroMark document to a markdown string
      * @param {*} json - JSON commonmark object
      * @param {*} options - options (e.g., wrapVariables)
      * @returns {string} the markdown string
@@ -163,4 +163,4 @@ class CiceroMark {
 
 }
 
-module.exports = CiceroMark;
+module.exports = CiceroMarkTransformer;

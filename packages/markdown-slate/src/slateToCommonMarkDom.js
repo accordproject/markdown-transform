@@ -16,14 +16,14 @@
 
 const NS = 'org.accordproject.commonmark';
 
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 
 /**
- * Converts a Slate document node to CommonMark AST
+ * Converts a Slate document node to CommonMark DOM
  * @param {*} document the Slate document node
  * @returns {*} the common mark AST
  */
-function slateToCommonMarkAst(document) {
+function slateToCommonMarkDom(document) {
 
     const result = {
         $class : 'org.accordproject.commonmark.Document',
@@ -31,7 +31,7 @@ function slateToCommonMarkAst(document) {
         nodes : []
     };
     _recursive(result, document.nodes);
-    const commonMark = new CommonMark();
+    const commonMark = new CommonMarkTransformer();
     return commonMark.convertToConcertoObject(result);
 }
 
@@ -181,4 +181,4 @@ function handleText(node) {
     return result;
 }
 
-module.exports = slateToCommonMarkAst;
+module.exports = slateToCommonMarkDom;

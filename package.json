@@ -76,7 +76,8 @@
       ".travis",
       "coverage",
       ".gitignore",
-      ".DS_Store"
+      ".DS_Store",
+      "architecture.puml"
     ],
     "file_type_method": "EXCLUDE",
     "file_types": [
