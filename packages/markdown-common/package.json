@@ -78,7 +78,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/concerto": "^0.80.0",
+    "@accordproject/concerto": "^0.80.3",
     "commonmark": "^0.29.0",
     "sax": "^1.2.4",
     "winston": "3.2.1",
