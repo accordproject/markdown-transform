@@ -1,8 +1,8 @@
-# Contributing to Cicero-UI
+# Contributing to Markdown-Transform
 
 > Thanks to the angularJS team for the bulk of this text!
 
-We'd love for you to contribute to our source code and to make Cicero-UI even better than it is today! Here are the guidelines we'd like you to follow:
+We'd love for you to contribute to our source code and to make Markdown-Transform even better than it is today! Here are the guidelines we'd like you to follow:
 
 * [Code of Conduct][contribute.coc]
 * [Questions and Problems][contribute.question]
@@ -15,7 +15,7 @@ We'd love for you to contribute to our source code and to make Cicero-UI even be
 
 ## <a name="coc"></a> Code of Conduct
 
-Help us keep Cicero-UI open and inclusive. Please read and follow our [Code of Conduct][coc].
+Help us keep Markdown-Transform open and inclusive. Please read and follow our [Code of Conduct][coc].
 
 ## <a name="requests"></a> Questions, Bugs, Features
 
@@ -128,7 +128,7 @@ Before you submit your pull request consider the following guidelines:
     git push origin name-issue-tracker-short-description
   ```
 
-* In GitHub, send a pull request to `cicero-ui:master` by following our [pull request conventions][developers.pullrequest]. This will trigger the check of the [Contributor License Agreement][contribute.cla] and the Travis integration.
+* In GitHub, send a pull request to `markdown-transform:master` by following our [pull request conventions][developers.pullrequest]. This will trigger the check of the [Contributor License Agreement][contribute.cla] and the Travis integration.
 * If you find that the Travis integration has failed, look into the logs on Travis to find out if your changes caused test failures, the commit message was malformed etc. If you find that the tests failed or times out for unrelated reasons, you can ping a team member so that the build can be restarted.
 * If we suggest changes, then:
   * Make the required updates.
@@ -206,11 +206,11 @@ Accord Project documentation files are made available under the [Creative Common
 [developers.setup]: DEVELOPERS.md#setup
 [developers.unit-tests]: DEVELOPERS.md#unit-tests
 
-[github-new-issue]: https://github.com/accordproject/cicero-ui/issues/new
-[github-issues]: https://github.com/accordproject/cicero-ui/issues
-[github]: https://github.com/accordproject/cicero-ui
-[pulls]: https://github.com/accordproject/cicero-ui/pulls
+[github-new-issue]: https://github.com/accordproject/markdown-transform/issues/new
+[github-issues]: https://github.com/accordproject/markdown-transform/issues
+[github]: https://github.com/accordproject/markdown-transform
+[pulls]: https://github.com/accordproject/markdown-transform/pulls
 
 [dcohow]: https://github.com/probot/dco#how-it-works
-[apache]: https://github.com/accordproject/cicero-ui/blob/master/LICENSE
+[apache]: https://github.com/accordproject/markdown-transform/blob/master/LICENSE
 [creativecommons]: http://creativecommons.org/licenses/by/4.0/
