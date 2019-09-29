@@ -1,6 +1,6 @@
 # Markdown Transform
 
-[![Build Status](https://travis-ci.org/accordproject/markdown-transform.svg?branch=master)](https://travis-ci.org/accordproject/markdown-transform) [![npm version](https://img.shields.io/npm/v/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli) [![downloads](https://img.shields.io/npm/dm/markdown-transform)](https://www.npmjs.com/package/@accordproject/markdown-cli)
+[![Build Status](https://travis-ci.org/accordproject/markdown-transform.svg?branch=master)](https://travis-ci.org/accordproject/markdown-transform) [![npm version](https://img.shields.io/npm/v/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli) [![downloads](https://img.shields.io/npm/dm/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli)
 
 A markdown transformation framework
 
