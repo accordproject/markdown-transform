@@ -1,6 +1,6 @@
 # Markdown Transform
 
-[![Build Status](https://travis-ci.org/accordproject/markdown-transform.svg?branch=master)](https://travis-ci.org/accordproject/markdown-transform) [![npm version](https://badge.fury.io/js/%40accordproject%2Fmarkdown-transform.svg)](https://badge.fury.io/js/%40accordproject%2Fmarkdown-transform)
+[![Build Status](https://travis-ci.org/accordproject/markdown-transform.svg?branch=master)](https://travis-ci.org/accordproject/markdown-transform) [![npm version](https://img.shields.io/npm/v/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli) <a href="https://www.npmjs.com/package/@accordproject/markdown-cli"><img src="https://img.shields.io/npm/dm/markdown-transform" alt="downloads: unknown/month"></a>
 
 A markdown transformation framework
 
@@ -26,7 +26,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.<br>
 
-Babel will recompile every change as it runs in *watch* mode.
+Babel will recompile every change as it runs in _watch_ mode.
 
 #### `npm run build`
 
@@ -34,13 +34,13 @@ Similar to `build:watch` but it's a one off build.
 
 #### `npm run test`
 
-Invokes *lerna* to run the test suite.
+Invokes _lerna_ to run the test suite.
 
 ---
 
 ## Instructions
-This is a short reference guide, for a more full context, please refer to our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
 
+This is a short reference guide, for a more full context, please refer to our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
 
 ### Development
 
@@ -48,26 +48,26 @@ This is a short reference guide, for a more full context, please refer to our [C
 2. Clone to local machine with `git clone`
 3. `cd` into the directory
 4. Run `npm install`
-6. Build in watch mode `npm run build:watch`
+5. Build in watch mode `npm run build:watch`
 
 ## Learn More About Accord Project
 
 ### Overview
-* [Accord Project][apmain]
-* [Accord Project News][apnews]
-* [Accord Project Blog][apblog]
-* [Accord Project Slack][apslack]
-* [Accord Project Technical Documentation][apdoc]
-* [Accord Project GitHub][apgit]
 
+- [Accord Project][apmain]
+- [Accord Project News][apnews]
+- [Accord Project Blog][apblog]
+- [Accord Project Slack][apslack]
+- [Accord Project Technical Documentation][apdoc]
+- [Accord Project GitHub][apgit]
 
 ### Documentation
-* [Getting Started with Accord Project][docwelcome]
-* [Concepts and High-level Architecture][dochighlevel]
-* [How to use the Cicero Templating System][doccicero]
-* [How to Author Accord Project Templates][docstudio]
-* [Ergo Language Guide][docergo]
 
+- [Getting Started with Accord Project][docwelcome]
+- [Concepts and High-level Architecture][dochighlevel]
+- [How to use the Cicero Templating System][doccicero]
+- [How to Author Accord Project Templates][docstudio]
+- [Ergo Language Guide][docergo]
 
 ## Contributing
 
@@ -88,17 +88,15 @@ Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respec
 
 [cicero]: https://github.com/accordproject/cicero
 [markdown]: https://github.com/accordproject/markdown-editor
-
 [linuxfound]: https://www.linuxfoundation.org
 [charter]: https://github.com/accordproject/markdown-transform/blob/master/CHARTER.md
-[apmain]: https://accordproject.org/ 
+[apmain]: https://accordproject.org/
 [apworkgroup]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjZvYzIzZHVrYnI1aDVzbjZnMHJqYmtwaGlfMjAxNzExMTVUMjEwMDAwWiBkYW5AY2xhdXNlLmlv&tmsrc=dan%40clause.io
 [apblog]: https://medium.com/@accordhq
 [apnews]: https://www.accordproject.org/news/
-[apgit]:  https://github.com/accordproject/
+[apgit]: https://github.com/accordproject/
 [apdoc]: https://docs.accordproject.org/
 [apslack]: https://accord-project-slack-signup.herokuapp.com
-
 [docspec]: https://docs.accordproject.org/docs/spec-overview.html
 [docwelcome]: https://docs.accordproject.org/docs/accordproject.html
 [dochighlevel]: https://docs.accordproject.org/docs/spec-concepts.html
@@ -106,9 +104,7 @@ Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respec
 [docstart]: https://docs.accordproject.org/docs/accordproject.html
 [doccicero]: https://docs.accordproject.org/docs/basic-use.html
 [docstudio]: https://docs.accordproject.org/docs/advanced-latedelivery.html
-
 [contributing]: https://github.com/accordproject/markdown-transform/blob/master/CONTRIBUTING.md
 [developers]: https://github.com/accordproject/markdown-transform/blob/master/DEVELOPERS.md
-
 [apache]: https://github.com/accordproject/markdown-transform/blob/master/LICENSE
 [creativecommons]: http://creativecommons.org/licenses/by/4.0/
