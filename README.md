@@ -4,7 +4,6 @@ A transformation framework for converting markdown content to HTML, Slate (for r
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP0nJyCm48Lt_ugdxabsX50b61Ye6CfMTR3iQ-BMiIFxeXGX_ZkDMvgeBWEROx_Sk-zRHfQ1-zOAqKbra3LXqSfmq7vmXR9cWIy1R3eP8ct5zzsKRrllBi7LvHPh3iRLMpmMVLSyOVESKkCpNjvNQPJpJ0YcRXX-boU0XhcB3rNLUaqsbb8f7tGN_9uKbpxKrRbwtAJwNQTi-0H3JcCSVrEIxoU0wrKVAO8Rma3M5ffsnf4MmDGobYAv291E8tuwbiUfxPuTeoZuP2T3dEIaq1nzy_gnUfj9p3APm2dn7u7fboHmEjugpA6YbKo9wTgQCQt7p5-hpXw1yuU9a0u9EnZL54n71cd3Fin8Xc4eK_i-ZW2pBSNoTEvR-mC0)
 
-
 > Note: you can regenerate this diagram by visiting http://www.plantuml.com/plantuml/uml/ and pasting the contents of `architecture.puml` from this repository.
 
 ## Documentation
