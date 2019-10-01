@@ -1,10 +1,29 @@
-# Markdown Common
+# CiceroMark Transform
 
+This package extends CommonMark to introduce three new DOM nodes:
+1. Clause
+2. Variable
+3. ComputedVariable
+
+These are expressed using markdown code blocks and html inlines to ensure that they are safely persisted within markdown text.
+
+Use `CiceroMarkTransform` to map from the CommonMark DOM nodes to CiceroMark DOM nodes.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-common --save
+npm install @accordproject/markdown-cicero --save
+```
+
+## Usage
+
+``` javascript
+
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+
+const ciceroMarkTransformer = new CiceroMarkTransformer();
+const dom = ciceroMarkTransformer.fromMarkdown( '# Heading One');
+const newMarkdown = ciceroMarkTransformer.toMarkdown(dom);
 ```
 
 ## License <a name="license"></a>

@@ -15,7 +15,7 @@ Then in your JavaScript code:
 ``` javascript
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const transformer = new CommonMarkTransformer({ tagInfo : true });
-const json = transformer.fromMarkdownString('# Heading\n\nThis is some `code`.\n\nFin.');
+const json = transformer.fromMarkdown('# Heading\n\nThis is some `code`.\n\nFin.', 'json');
 console.log(JSON.stringify(json, null, 4));
 ```
 
@@ -77,7 +77,7 @@ json.nodes[0].nodes[0].text = 'My New Heading';
 Finally converting the DOM back into a markdown string:
 
 ``` javascript
-const newMarkdown = commonMark.toMarkdownString(json);
+const newMarkdown = commonMark.toMarkdown(json);
 console.log(newMarkdown);
 ```
 

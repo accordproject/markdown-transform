@@ -1,20 +1,22 @@
-# Markdown Transform
+# HTML Transformer
 
-A framework to transform markdown to/from a CommonMark AST defined using Concerto:
-https://models.accordproject.org/commonmark/markdown.html
-
-## Documentation
-
-CommonmarkParser converts markdown text to an instance of the CommonMark AST.
-
-CommonmarkToString converts an AST to a markdown string.
-
-See the unit test for example usage.
+Use `HtmlTransformer` to transform a CiceroMark DOM into an HTML String.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-transform --save
+npm install @accordproject/markdown-html --save
+```
+
+## Usage
+
+``` javascript
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
+htmlTransformer = new HtmlTransformer();
+ciceroTransformer = new CiceroMarkTransformer();
+const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+const html = htmlTransformer.toHtml(json);
 ```
 
 ## License <a name="license"></a>
