@@ -50,7 +50,7 @@ function getSlateFiles() {
 
 describe('slate', () => {
     getSlateFiles().forEach( ([file, jsonText], index) => {
-        it(`converts ${file} to concerto`, () => {
+        it(`converts ${file} to and from CiceroMark`, () => {
             const slateDom = JSON.parse(jsonText);
             const value = Value.fromJSON(slateDom);
             const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
@@ -67,7 +67,7 @@ describe('slate', () => {
             // convert the expected markdown to cicero mark and compare
             const expectedSlateValue = slateTransformer.fromMarkdown(expectedMarkdown);
             expect(expectedSlateValue.toJSON()).toMatchSnapshot(); // (3)
-            console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
+            // console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
 
             const expectedCiceroMark = slateTransformer.toCiceroMark(expectedSlateValue, 'json');
             expect(expectedCiceroMark).toMatchSnapshot(); // (4)
@@ -78,6 +78,78 @@ describe('slate', () => {
 
             // check roundtrip
             expect(expectedSlateValue.toJSON()).toEqual(value.toJSON());
+        });
+
+        it('converts variable to and from CiceroMark', () => {
+            const slateValue = slateTransformer.fromMarkdown('test <variable id="foo" value="bar"/>');
+            const expectedSlateValue = {
+                'object': 'value',
+                'document': {
+                    'object': 'document',
+                    'data': {},
+                    'nodes': [
+                        {
+                            'object': 'block',
+                            'type': 'paragraph',
+                            'data': {},
+                            'nodes': [
+                                {
+                                    'object': 'text',
+                                    'text': 'test ',
+                                    'marks': []
+                                },
+                                {
+                                    'object': 'block',
+                                    'type': 'variable',
+                                    'data': {
+                                        'id': 'foo',
+                                        'value': 'bar'
+                                    },
+                                    'nodes': []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+
+            expect(slateValue.toJSON()).toEqual(expectedSlateValue);
+        });
+
+        it('converts computed to and from CiceroMark', () => {
+            const slateValue = slateTransformer.fromMarkdown('test <computed value="bar"/>');
+            //console.log(JSON.stringify(slateValue.toJSON(), null, 4));
+            const expectedSlateValue = {
+                'object': 'value',
+                'document': {
+                    'object': 'document',
+                    'data': {},
+                    'nodes': [
+                        {
+                            'object': 'block',
+                            'type': 'paragraph',
+                            'data': {},
+                            'nodes': [
+                                {
+                                    'object': 'text',
+                                    'text': 'test ',
+                                    'marks': []
+                                },
+                                {
+                                    'object': 'block',
+                                    'type': 'computed',
+                                    'data': {
+                                        'value': 'bar'
+                                    },
+                                    'nodes': []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+
+            expect(slateValue.toJSON()).toEqual(expectedSlateValue);
         });
     });
 });

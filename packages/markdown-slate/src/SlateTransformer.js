@@ -91,6 +91,7 @@ class SlateTransformer {
      */
     fromMarkdown(markdown) {
         const ciceroMarkDom = this.ciceroMarkTransformer.fromMarkdown(markdown, 'json');
+        // console.log(JSON.stringify(ciceroMarkDom, null, 4));
         return this.fromCiceroMark(ciceroMarkDom);
     }
 }
