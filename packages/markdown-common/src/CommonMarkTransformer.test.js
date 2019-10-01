@@ -24,9 +24,9 @@ let commonMark = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        const json1 = commonMark.fromMarkdownString(markdownText);
-        const newMarkdown = commonMark.toMarkdownString(json1);
-        const json2 = commonMark.fromMarkdownString(newMarkdown);
+        const json1 = commonMark.fromMarkdown(markdownText, 'json');
+        const newMarkdown = commonMark.toMarkdown(json1);
+        const json2 = commonMark.fromMarkdown(newMarkdown, 'json');
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -123,7 +123,7 @@ function extractSpecTests(testfile) {
 describe.only('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
-            const json = commonMark.fromMarkdownString(markdownText);
+            const json = commonMark.fromMarkdown(markdownText, 'json');
             expect(json).toMatchSnapshot();
         });
 
@@ -135,11 +135,11 @@ describe.only('markdown', () => {
 
 describe.only('readme', () => {
     it('converts example1 to html', () => {
-        const json = commonMark.fromMarkdownString('# Heading\n\nThis is some `code`.\n\nFin.');
+        const json = commonMark.fromMarkdown('# Heading\n\nThis is some `code`.\n\nFin.', 'json');
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         json.nodes[0].nodes[0].text = 'My New Heading';
-        const newMarkdown = commonMark.toMarkdownString(json);
+        const newMarkdown = commonMark.toMarkdown(json);
         // console.log(newMarkdown);
         expect(newMarkdown).toMatchSnapshot();
     });
@@ -148,7 +148,7 @@ describe.only('readme', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
-            const json = commonMark.fromMarkdownString(markdownText);
+            const json = commonMark.fromMarkdown(markdownText, 'json');
             expect(json).toMatchSnapshot();
         });
 

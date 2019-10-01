@@ -15,46 +15,52 @@
 'use strict';
 
 const NS = 'org.accordproject.commonmark';
-
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const NS_CICERO = 'org.accordproject.ciceromark';
 
 /**
- * Converts a Slate document node to CommonMark DOM
+ * Converts a Slate document node to CiceroMark DOM (as JSON)
  * @param {*} document the Slate document node
- * @returns {*} the common mark AST
+ * @returns {*} the CiceroMark DOM as a Concerto object
  */
-function slateToCommonMarkDom(document) {
+function slateToCiceroMarkDom(document) {
 
     const result = {
         $class : 'org.accordproject.commonmark.Document',
         xmlns : 'http://commonmark.org/xml/1.0',
         nodes : []
     };
-    _recursive(result, document.nodes);
-    const commonMark = new CommonMarkTransformer();
-    return commonMark.convertToConcertoObject(result);
+    // convert the value to a plain object
+    const json = JSON.parse(JSON.stringify(document));
+    _recursive(result, json.nodes);
+    return result;
 }
 
 /**
  * Converts an array of Slate nodes, pushing them into the parent
- * @param {*} parent the parent commonmark ast node
+ * @param {*} parent the parent CiceroMark DOM node
  * @param {*} nodes an array of Slate nodes
  */
 function _recursive(parent, nodes) {
 
     nodes.forEach((node, index) => {
-
         let result = null;
 
-        // convert to the slate object to a plain js object
-        const json = JSON.parse(JSON.stringify(node));
-
-        switch (json.object) {
+        switch (node.object) {
         case 'text':
-            result = handleText(json);
+            result = handleText(node);
             break;
         default:
-            switch(json.type) {
+            switch(node.type) {
+            case 'clause':
+                // console.log(JSON.stringify(node, null, 4));
+                result = {$class : `${NS_CICERO}.Clause`, clauseid: node.data.clauseid, src: node.data.src, clauseText: node.data.clauseText, nodes: []};
+                break;
+            case 'variable':
+                result = {$class : `${NS_CICERO}.Variable`, id: node.data.id, value: node.data.value, nodes: []};
+                break;
+            case 'computedvariable':
+                result = {$class : `${NS_CICERO}.ComputedVariable`, value: node.data.value, nodes: []};
+                break;
             case 'paragraph':
                 result = {$class : `${NS}.Paragraph`, nodes: []};
                 break;
@@ -96,26 +102,26 @@ function _recursive(parent, nodes) {
                 break;
             case 'ol_list':
             case 'ul_list':
-                result = {$class : `${NS}.List`, type: json.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: json.data.delimiter, start: json.data.start, tight: json.data.tight, nodes: []};
+                result = {$class : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
                 break;
             case 'list_item':
                 result = {$class : `${NS}.Item`, nodes: []};
                 result.nodes.push({$class : `${NS}.Paragraph`, nodes: []});
                 break;
             case 'link': {
-                result = {$class : `${NS}.Link`, destination: json.data.href, title: '', nodes: []};
+                result = {$class : `${NS}.Link`, destination: node.data.href, title: '', nodes: []};
                 break;
             }
             }
         }
 
         if(!result) {
-            throw Error(`Failed to process node ${JSON.stringify(json)}`);
+            throw Error(`Failed to process node ${JSON.stringify(node)}`);
         }
 
         // process any children, attaching to first child if it exists (for list items)
-        if(json.nodes && result.nodes) {
-            _recursive(result.nodes[0] ? result.nodes[0] : result, json.nodes);
+        if(node.nodes && result.nodes) {
+            _recursive(result.nodes[0] ? result.nodes[0] : result, node.nodes);
         }
 
         if(!parent.nodes) {
@@ -181,4 +187,4 @@ function handleText(node) {
     return result;
 }
 
-module.exports = slateToCommonMarkDom;
+module.exports = slateToCiceroMarkDom;

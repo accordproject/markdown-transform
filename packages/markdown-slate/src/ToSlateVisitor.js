@@ -14,10 +14,10 @@
 
 'use strict';
 
-// const CommonMark = require('@accordproject/markdown-common').CommonMark;
+// const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
- * Converts a CommonMark DOM to a Slate DOM.
+ * Converts a CiceroMark DOM to a Slate DOM.
  */
 class ToSlateVisitor {
 
@@ -115,10 +115,6 @@ class ToSlateVisitor {
             throw new Error(`Node ${thing.getType()} doesn't have any children!`);
         }
 
-        // const commonMark = new CommonMark();
-        // const json = commonMark.getSerializer().toJSON(thing);
-        // console.log('Processing', JSON.stringify(json, null, 4));
-
         thing.nodes.forEach(node => {
             //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const child = {};
@@ -138,8 +134,40 @@ class ToSlateVisitor {
 
         let result = null;
 
-        //console.log('Processing', thing.getType());
         switch(thing.getType()) {
+        case 'Clause':
+            result = {
+                object: 'block',
+                type: 'clause',
+                data: {
+                    clauseid: thing.clauseid,
+                    src: thing.src,
+                    clauseText: thing.clauseText
+                },
+                nodes: this.processChildNodes(thing),
+            };
+            break;
+        case 'Variable':
+            result = {
+                object: 'block',
+                type: 'variable',
+                data: {
+                    id: thing.id,
+                    value: thing.value
+                },
+                nodes: [],
+            };
+            break;
+        case 'ComputedVariable':
+            result = {
+                object: 'block',
+                type: 'computedvariable',
+                data: {
+                    value: thing.value
+                },
+                nodes: [],
+            };
+            break;
         case 'CodeBlock':
             result = {
                 object: 'block',
@@ -159,13 +187,13 @@ class ToSlateVisitor {
             break;
         case 'Code':
             result = {
-                'object': 'text',
-                'text': thing.text,
-                'marks': [
+                object: 'text',
+                text: thing.text,
+                marks: [
                     {
-                        'object': 'mark',
-                        'type': 'code',
-                        'data': {}
+                        object: 'mark',
+                        type: 'code',
+                        data: {}
                     }
                 ]
             };
@@ -177,9 +205,9 @@ class ToSlateVisitor {
             break;
         case 'BlockQuote':
             result = {
-                'object': 'block',
-                'type': 'block_quote',
-                'nodes': this.processChildNodes(thing)
+                object: 'block',
+                type: 'block_quote',
+                nodes: this.processChildNodes(thing)
             };
             break;
         case 'Heading':

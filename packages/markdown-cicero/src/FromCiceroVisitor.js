@@ -17,11 +17,7 @@
 const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
 
 /**
- * Converts a commonmark model instance to a markdown string.
- *
- * Note that there are several ways of representing the same markdown AST as text,
- * so this transformation is not guaranteed to equivalent if you roundtrip
- * markdown content. The resulting AST *should* be equivalent however.
+ * Converts a CiceroMark DOM to a CommonMark DOM
  */
 class FromCiceroVisitor {
     /**
@@ -33,7 +29,7 @@ class FromCiceroVisitor {
     }
 
     /**
-     * Visits a sub-tree and return the markdown
+     * Visits a sub-tree and return the CommonMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
      * @param {*} [parameters] optional parameters
@@ -67,7 +63,7 @@ class FromCiceroVisitor {
             jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
             jsonSource.nodes = clauseJson.nodes;
 
-            const content = parameters.commonMark.toMarkdownString(jsonSource);
+            const content = parameters.commonMark.toMarkdown(jsonSource);
             const attributeString = `src="${clauseJson.src}" clauseid="${clauseJson.clauseid}"`;
 
             jsonTarget.text = content + '\n';

@@ -23,7 +23,7 @@ const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
 class ToCiceroMarkVisitor {
 
     /**
-     * Visits a sub-tree and return the markdown
+     * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
      * @param {*} [parameters] optional parameters
@@ -35,7 +35,7 @@ class ToCiceroMarkVisitor {
     }
 
     /**
-     * Visits a list of nodes and return the markdown
+     * Visits a list of nodes and return the CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} things the list node to visit
      * @param {*} [parameters] optional parameters
@@ -63,7 +63,7 @@ class ToCiceroMarkVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
@@ -78,15 +78,15 @@ class ToCiceroMarkVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.commonMark.fromString.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     thing.clauseText = '';
@@ -100,7 +100,7 @@ class ToCiceroMarkVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }

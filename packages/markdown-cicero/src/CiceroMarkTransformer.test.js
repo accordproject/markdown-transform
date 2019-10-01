@@ -19,25 +19,16 @@
 const fs = require('fs');
 const diff = require('jest-diff');
 
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('./CiceroMarkTransformer');
 
 // eslint-disable-next-line no-unused-vars
-let commonMarkTransformer = null;
-
-// eslint-disable-next-line no-unused-vars
 let ciceroMarkTransformer = null;
-let serializer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        let concertoObject1 = commonMarkTransformer.fromMarkdownStringConcerto(markdownText);
-        concertoObject1 = ciceroMarkTransformer.toCommonMarkConcerto(ciceroMarkTransformer.fromCommonMarkConcerto(concertoObject1));
-        const json1 = serializer.toJSON(concertoObject1);
-        const newMarkdown = commonMarkTransformer.toMarkdownStringConcerto(concertoObject1);
-        let concertoObject2 = commonMarkTransformer.fromMarkdownStringConcerto(newMarkdown);
-        concertoObject2 = ciceroMarkTransformer.toCommonMarkConcerto(ciceroMarkTransformer.fromCommonMarkConcerto(concertoObject2));
-        const json2 = serializer.toJSON(concertoObject2);
+        const json1 = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json1);
+        const json2 = ciceroMarkTransformer.fromMarkdown(newMarkdown, 'json');
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -65,9 +56,7 @@ expect.extend({
 });
 
 beforeAll(() => {
-    commonMarkTransformer = new CommonMarkTransformer({ tagInfo: true });
     ciceroMarkTransformer = new CiceroMarkTransformer();
-    serializer = ciceroMarkTransformer.getSerializer();
 });
 
 /**
@@ -135,7 +124,7 @@ function extractSpecTests(testfile) {
 describe('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const json = commonMarkTransformer.fromMarkdownString(markdownText);
+            const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
             expect(json).toMatchSnapshot();
         });
 
@@ -148,7 +137,7 @@ describe('markdown', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
-            const json = commonMarkTransformer.fromMarkdownString(markdownText);
+            const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
             expect(json).toMatchSnapshot();
         });
 

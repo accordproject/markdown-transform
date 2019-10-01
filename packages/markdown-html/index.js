@@ -15,16 +15,10 @@
 'use strict';
 
 /**
- * Export the framework and plugins
+ * Export HTML transformer
  * @module markdown-transform
  */
 
-module.exports.ComposerConcerto = require('@accordproject/concerto');
-
-module.exports.Logger = require('./lib/Logger');
-module.exports.Stack = require('./lib/Stack');
-module.exports.Models = require('./lib/Models');
-
-module.exports.CommonMark = require('./lib/CommonMark');
-module.exports.ToMarkdownStringVisitor = require('./lib/ToMarkdownStringVisitor');
+module.exports.HtmlTransformer = require('./lib/HtmlTransformer');
+module.exports.ToHtmlStringVisitor = require('./lib/ToHtmlStringVisitor');
 

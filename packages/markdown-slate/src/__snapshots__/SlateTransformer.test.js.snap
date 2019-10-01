@@ -1,0 +1,2593 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slate converts acceptance.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a clause.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseText": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+
+Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "nodes": Array [],
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "nodes": Array [],
+              "value": "%22Attachment%20X%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts acceptance.json to concerto 2`] = `
+"# This is the contract editor. 
+
+And below is a clause.
+
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\">
+Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+\`\`\`"
+`;
+
+exports[`slate converts acceptance.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is the contract editor.",
+          },
+        ],
+        "object": "block",
+        "type": "heading_one",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "And below is a clause.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseText": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+
+Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance of Delivery. ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                  "value": "%22Party%20A%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " will be deemed to have completed its delivery obligations if in ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                  "value": "%22Party%20B%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "'",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "s opinion, the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                  "value": "%22Widgets%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " satisfies the Acceptance Criteria, and ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                  "value": "%22Party%20B%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " notifies ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                  "value": "%22Party%20A%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " in writing that it is accepting the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                  "value": "%22Widgets%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ".",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Inspection and Notice. ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                  "value": "%22Party%20B%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " will have ",
+              },
+              Object {
+                "data": Object {
+                  "id": "businessDays",
+                  "value": "10",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " Business Days",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "'",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " to inspect and evaluate the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                  "value": "%22Widgets%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " on the delivery date before notifying ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                  "value": "%22Party%20A%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " that it is either accepting or rejecting the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                  "value": "%22Widgets%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ".",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance Criteria. The ",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance Criteria",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " are the specifications the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                  "value": "%22Widgets%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " must meet for the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                  "value": "%22Party%20A%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+              },
+              Object {
+                "data": Object {
+                  "id": "attachment",
+                  "value": "%22Attachment%20X%22",
+                },
+                "nodes": Array [],
+                "object": "block",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ", attached to this agreement.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts acceptance.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a clause.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseText": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+
+Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "nodes": Array [],
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "nodes": Array [],
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "nodes": Array [],
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "nodes": Array [],
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "nodes": Array [],
+              "value": "%22Attachment%20X%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts bold.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bold",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts bold.json to concerto 2`] = `"**bold**"`;
+
+exports[`slate converts bold.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+            ],
+            "object": "text",
+            "text": "bold",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts bold.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bold",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts code.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "some code",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts code.json to concerto 2`] = `"\`some code\`"`;
+
+exports[`slate converts code.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "code",
+              },
+            ],
+            "object": "text",
+            "text": "some code",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts code.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "some code",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts codeblock.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": undefined,
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "end.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts codeblock.json to concerto 2`] = `
+"\`\`\` 
+this
+is a
+code block.
+\`\`\`
+
+
+
+end."
+`;
+
+exports[`slate converts codeblock.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "this
+is a
+code block.
+",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "code_block",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "end.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts codeblock.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": undefined,
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "end.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts commonmark.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Try CommonMark",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "You can try CommonMark here.  This dingus is powered by",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://github.com/jgm/commonmark.js",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " commonmark.js",
+            },
+          ],
+          "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", the JavaScript reference implementation.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts commonmark.json to concerto 2`] = `
+"Try CommonMark
+----
+
+You can try CommonMark here.  This dingus is powered by[ commonmark.js](https://github.com/jgm/commonmark.js), the JavaScript reference implementation.
+1. item one
+2. item two"
+`;
+
+exports[`slate converts commonmark.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Try CommonMark",
+          },
+        ],
+        "object": "block",
+        "type": "heading_two",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "You can try CommonMark here.  This dingus is powered by",
+          },
+          Object {
+            "data": Object {
+              "href": "https://github.com/jgm/commonmark.js",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " commonmark.js",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": ", the JavaScript reference implementation.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "item one",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "item two",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ol_list",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts commonmark.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Try CommonMark",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "You can try CommonMark here.  This dingus is powered by",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://github.com/jgm/commonmark.js",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " commonmark.js",
+            },
+          ],
+          "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", the JavaScript reference implementation.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts headings.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H1",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H2",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "3",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H3",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "end.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts headings.json to concerto 2`] = `
+"## H1
+
+
+## H2
+
+
+### H3
+
+
+end."
+`;
+
+exports[`slate converts headings.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H1",
+          },
+        ],
+        "object": "block",
+        "type": "heading_two",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H2",
+          },
+        ],
+        "object": "block",
+        "type": "heading_two",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H3",
+          },
+        ],
+        "object": "block",
+        "type": "heading_three",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "end.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts headings.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H1",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H2",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "3",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H3",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "end.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts html-block.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "text": undefined,
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts html-block.json to concerto 2`] = `
+"<foo>
+this
+is an
+html block.
+</foo>
+end."
+`;
+
+exports[`slate converts html-block.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [
+                  Object {
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "html",
+                  },
+                ],
+                "object": "text",
+                "text": "<foo>
+this
+is an
+html block.
+</foo>
+end.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "html_block",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts html-block.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "text": undefined,
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts italic.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "italic",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts italic.json to concerto 2`] = `"*italic*"`;
+
+exports[`slate converts italic.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "italic",
+              },
+            ],
+            "object": "text",
+            "text": "italic",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts italic.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "italic",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts link.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts link.json to concerto 2`] = `"a [link](http://clause.io)"`;
+
+exports[`slate converts link.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "a ",
+          },
+          Object {
+            "data": Object {
+              "href": "http://clause.io",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "link",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts link.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts ordered.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts ordered.json to concerto 2`] = `
+"1. one
+2. two
+3. three"
+`;
+
+exports[`slate converts ordered.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "one",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "two",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "three",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ol_list",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts ordered.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts paragraphs.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "one",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "two",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "three",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts paragraphs.json to concerto 2`] = `
+"one
+
+two
+
+three"
+`;
+
+exports[`slate converts paragraphs.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "one",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "two",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "three",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts paragraphs.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "one",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "two",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "three",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts plain.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "plain",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts plain.json to concerto 2`] = `"plain"`;
+
+exports[`slate converts plain.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "plain",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts plain.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "plain",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts quote.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is a quote",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts quote.json to concerto 2`] = `"> this is a quote"`;
+
+exports[`slate converts quote.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "this is a quote",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "block_quote",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts quote.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is a quote",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts text.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "plain ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "italic",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bold",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bold-italic",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "code",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts text.json to concerto 2`] = `"plain *italic* **bold** ***bold-italic*** \`code\`"`;
+
+exports[`slate converts text.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "plain ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "italic",
+              },
+            ],
+            "object": "text",
+            "text": "italic",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+            ],
+            "object": "text",
+            "text": "bold",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "italic",
+              },
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+            ],
+            "object": "text",
+            "text": "bold-italic",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "code",
+              },
+            ],
+            "object": "text",
+            "text": "code",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts text.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "plain ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "italic",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bold",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bold-italic",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "code",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts unordered.json to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": undefined,
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": undefined,
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts unordered.json to concerto 2`] = `
+"* one
+* two
+* three"
+`;
+
+exports[`slate converts unordered.json to concerto 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {
+          "delimiter": undefined,
+          "start": undefined,
+          "tight": "true",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "one",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "two",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "three",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ul_list",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts unordered.json to concerto 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": undefined,
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": undefined,
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;

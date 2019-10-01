@@ -16,7 +16,7 @@
 
 const COMMON_NS_PREFIX = 'org.accordproject.commonmark.';
 
-const commonmarkModel = `
+const commonMarkModel = `
 namespace org.accordproject.commonmark
 
 /**
@@ -120,4 +120,4 @@ concept Document extends Root {
 }
 `;
 
-module.exports = { COMMON_NS_PREFIX, commonmarkModel };
+module.exports = { COMMON_NS_PREFIX, commonMarkModel };
