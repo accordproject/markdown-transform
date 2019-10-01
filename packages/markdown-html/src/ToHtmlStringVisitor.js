@@ -14,11 +14,22 @@
 
 'use strict';
 
+// const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+
 /**
  * Converts a commonmark model instance to an html string.
  *
  */
 class ToHtmlStringVisitor {
+
+    /**
+     * Construct the visitor
+     * @param {*} [options] configuration options
+     */
+    constructor(options) {
+        this.options = options;
+    }
+
     /**
      * Visits a sub-tree and return the html
      * @param {*} visitor the visitor to use
@@ -77,6 +88,19 @@ class ToHtmlStringVisitor {
     visit(thing, parameters) {
 
         switch(thing.getType()) {
+        case 'Clause':
+            // {
+            //     const ciceroMarkTransformer = new CiceroMarkTransformer();
+            //     console.log(JSON.stringify(ciceroMarkTransformer.getSerializer().toJSON(thing), null, 4));
+            // }
+            parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n$${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
+            break;
+        case 'Variable':
+            parameters.result += `<div class="variable" id="${thing.id}">\n$${thing.value}</div>\n`;
+            break;
+        case 'ComputedVariable':
+            parameters.result += `<div class="computed>${thing.value}</div>\n`;
+            break;
         case 'CodeBlock':
             parameters.result += `<pre><code>\n${thing.text}</pre></code>\n`;
             break;

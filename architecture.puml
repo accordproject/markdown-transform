@@ -1,0 +1,43 @@
+@startuml
+
+package "markdown-cli" {
+  [parse]
+}
+
+package "markdown-common" {
+  [Markdown String] <-up-> [CommonMark DOM]
+}
+
+note right of [CommonMark DOM]
+  https://models.accordproject.org/commonmark/markdown.html
+end note
+
+note right of [Markdown String]
+  Markdown formatted text uses the 
+  well-defined commonmark.org parser 
+  and syntax
+end note
+
+package "markdown-cicero" {
+  [CommonMark DOM] <-up-> [CiceroMark DOM]
+}
+
+package "markdown-html" {
+  [CiceroMark DOM] -> [HTML String]
+}
+
+note right of [CiceroMark DOM]
+  https://models.accordproject.org/ciceromark/ciceromark.html
+end note
+
+package "markdown-slate" {
+  [CiceroMark DOM] <-up-> [Slate DOM]
+}
+
+note right of [Slate DOM]
+  Slate is an HTML rich-text editor
+  https://www.slatejs.org
+end note
+
+
+@enduml

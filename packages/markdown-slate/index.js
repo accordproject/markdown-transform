@@ -19,4 +19,4 @@
  * @module markdown-transform
  */
 
-module.exports.SlateMark = require('./lib/SlateMark');
+module.exports.SlateTransformer = require('./lib/SlateTransformer');

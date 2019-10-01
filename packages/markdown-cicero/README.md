@@ -1,20 +1,29 @@
-# Markdown Transform
+# CiceroMark Transform
 
-A framework to transform markdown to/from a CommonMark AST defined using Concerto:
-https://models.accordproject.org/commonmark/markdown.html
+This package extends CommonMark to introduce three new DOM nodes:
+1. Clause
+2. Variable
+3. ComputedVariable
 
-## Documentation
+These are expressed using markdown code blocks and html inlines to ensure that they are safely persisted within markdown text.
 
-CommonmarkParser converts markdown text to an instance of the CommonMark AST.
-
-CommonmarkToString converts an AST to a markdown string.
-
-See the unit test for example usage.
+Use `CiceroMarkTransform` to map from the CommonMark DOM nodes to CiceroMark DOM nodes.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-transform --save
+npm install @accordproject/markdown-cicero --save
+```
+
+## Usage
+
+``` javascript
+
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+
+const ciceroMarkTransformer = new CiceroMarkTransformer();
+const dom = ciceroMarkTransformer.fromMarkdown( '# Heading One');
+const newMarkdown = ciceroMarkTransformer.toMarkdown(dom);
 ```
 
 ## License <a name="license"></a>

@@ -1,4 +1,4 @@
-# HELLO! This is the contract editor. 
+# Heading
 
 And below is a **clause**.
 

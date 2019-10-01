@@ -82,4 +82,4 @@ require('yargs')
         alias: 'v',
         default: false
     })
-    .argv;
+    .parse();

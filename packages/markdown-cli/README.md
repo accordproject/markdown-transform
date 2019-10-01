@@ -1,20 +1,31 @@
-# Markdown Transform
+# Markdown Transform CLI
 
-A framework to transform markdown to/from a CommonMark AST defined using Concerto:
-https://models.accordproject.org/commonmark/markdown.html
-
-## Documentation
-
-CommonmarkParser converts markdown text to an instance of the CommonMark AST.
-
-CommonmarkToString converts an AST to a markdown string.
-
-See the unit test for example usage.
+Command line tool to debug and use markdown transformations.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-transform --save
+npm install @accordproject/markdown-cli --save
+```
+
+## Usage
+
+```
+mdtransform parse --help
+
+parse sample markdown to Concerto instance
+
+Options:
+  --help         Show help                                             [boolean]
+  --version      Show version number                                   [boolean]
+  --verbose, -v                                                 [default: false]
+  --sample       path to the clause text                                [string]
+  --out          path to the output file                                [string]
+  --roundtrip    roundtrip                            [boolean] [default: false]
+  --cicero       further transform to CiceroMark      [boolean] [default: false]
+  --slate        further transform to Slate DOM       [boolean] [default: false]
+  --noWrap       do not wrap variables as XML tags    [boolean] [default: false]
+  --noIndex      do not index ordered lists           [boolean] [default: false]
 ```
 
 ## License <a name="license"></a>

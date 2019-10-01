@@ -17,9 +17,9 @@
 const Fs = require('fs');
 const Logger = require('@accordproject/markdown-common').Logger;
 
-const CommonMark = require('@accordproject/markdown-common').CommonMark;
-const CiceroMark = require('@accordproject/markdown-cicero').CiceroMark;
-const SlateMark = require('@accordproject/markdown-slate').SlateMark;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -33,7 +33,6 @@ class Commands {
      * @param {string} argName the argument name
      * @param {string} argDefaultName the argument default name
      * @param {Function} argDefaultFun how to compute the argument default
-     * @param {object} argDefaultValue an optional default value if all else fails
      * @returns {object} a modified argument object
      */
     static setDefaultFileArg(argv, argName, argDefaultName, argDefaultFun) {
@@ -98,29 +97,34 @@ class Commands {
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
-        
-        const commonMark = new CommonMark(commonOptions);
-        const ciceroMark = new CiceroMark();
-        const slateMark = new SlateMark();
+
+        const commonMark = new CommonMarkTransformer(commonOptions);
+        const ciceroMark = new CiceroMarkTransformer();
+        const slateMark = new SlateTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromMarkdownString(markdownText);
+        let result = commonMark.fromMarkdown(markdownText, 'json');
+
         if (cicero) {
-            result = ciceroMark.fromCommonMark(result);
-        } else if (slate) {
-            result = slateMark.fromCommonMark(result);
-            //console.log('BEFORE COMMONMARK ' + JSON.stringify(result));
+            result = ciceroMark.fromCommonMark(result, 'json');
         }
+        else if (slate) {
+            result = ciceroMark.fromCommonMark(result, 'json');
+            result = slateMark.fromCiceroMark(result);
+        }
+
         if (roundtrip) {
             if (cicero) {
                 const ciceroOptions = {};
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
             } else if (slate) {
-                result = slateMark.toCommonMark(result);
-                //console.log('AFTER COMMONMARK ' + JSON.stringify(result));
+                result = slateMark.toCiceroMark(result);
+                const ciceroOptions = {};
+                ciceroOptions.wrapVariables = noWrap ? false : true;
+                result = ciceroMark.toCommonMark(result, ciceroOptions);
             }
-            result = commonMark.toMarkdownString(result);
+            result = commonMark.toMarkdown(result);
         } else {
             result = JSON.stringify(result);
         }

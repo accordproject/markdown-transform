@@ -1,0 +1,1586 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`html converts acceptance.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "!",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseText": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+
+Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
+              "value": "%22Party%20B%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "text": "<variable id=\\"businessDays\\" value=\\"10\\"/>",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
+              "value": "%22Widgets%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
+              "value": "%22Party%20A%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "text": "<variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>",
+              "value": "%22Attachment%20X%22",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts acceptance.md to html 2`] = `
+"<html>
+<body>
+<h1>HELLO! This is the contract editor.</h1>
+<p>And below is a <strong>clause</strong>.</p>
+<div class=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
+$<p>Acceptance of Delivery. <div class=\\"variable\\" id=\\"shipper\\">
+$%22Party%20A%22</div>
+ will be deemed to have completed its delivery obligations if in <div class=\\"variable\\" id=\\"receiver\\">
+$%22Party%20B%22</div>
+'s opinion, the <div class=\\"variable\\" id=\\"deliverable\\">
+$%22Widgets%22</div>
+ satisfies the Acceptance Criteria, and <div class=\\"variable\\" id=\\"receiver\\">
+$%22Party%20B%22</div>
+ notifies <div class=\\"variable\\" id=\\"shipper\\">
+$%22Party%20A%22</div>
+ in writing that it is accepting the <div class=\\"variable\\" id=\\"deliverable\\">
+$%22Widgets%22</div>
+.</p>
+<p>Inspection and Notice. <div class=\\"variable\\" id=\\"receiver\\">
+$%22Party%20B%22</div>
+ will have <div class=\\"variable\\" id=\\"businessDays\\">
+$10</div>
+ Business Days' to inspect and evaluate the <div class=\\"variable\\" id=\\"deliverable\\">
+$%22Widgets%22</div>
+ on the delivery date before notifying <div class=\\"variable\\" id=\\"shipper\\">
+$%22Party%20A%22</div>
+ that it is either accepting or rejecting the <div class=\\"variable\\" id=\\"deliverable\\">
+$%22Widgets%22</div>
+.</p>
+<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <div class=\\"variable\\" id=\\"deliverable\\">
+$%22Widgets%22</div>
+ must meet for the <div class=\\"variable\\" id=\\"shipper\\">
+$%22Party%20A%22</div>
+ to comply with its requirements and obligations under this agreement, detailed in <div class=\\"variable\\" id=\\"attachment\\">
+$%22Attachment%20X%22</div>
+, attached to this agreement.</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`html converts blockquote.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "A quote.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts blockquote.md to html 2`] = `
+"<html>
+<body>
+<p>This is</p>
+<blockquote><p>A quote.</p>
+</blockquote>
+</body>
+</html>"
+`;
+
+exports[`html converts clause.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a fixed interest loan to the amount of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "loanAmount",
+          "text": "<variable id=\\"loanAmount\\" value=\\"100000.0\\"/>",
+          "value": "100000.0",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "at the yearly interest rate of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "rate",
+          "text": "<variable id=\\"rate\\" value=\\"2.5\\"/>",
+          "value": "2.5",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "%",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "with a loan term of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "loanDuration",
+          "text": "<variable id=\\"loanDuration\\" value=\\"15\\"/>",
+          "value": "15",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "and monthly payments of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.ComputedVariable",
+          "text": "<computed value=\\"667.0\\"/>",
+          "value": "667.0",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a fixed interest loan to the amount of 100000.0",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "at the yearly interest rate of 2.5%",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "with a loan term of 15,",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "and monthly payments of 667.0",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseText": "this is
+multiline 2.5
+
+content",
+      "clauseid": "bar",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "multiline ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "rate",
+              "text": "<variable id=\\"rate\\" value=\\"2.5\\"/>",
+              "value": "2.5",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "content",
+            },
+          ],
+        },
+      ],
+      "src": "foo",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts clause.md to html 2`] = `
+"<html>
+<body>
+<p>This is a fixed interest loan to the amount of <div class=\\"variable\\" id=\\"loanAmount\\">
+$100000.0</div>
+
+at the yearly interest rate of <div class=\\"variable\\" id=\\"rate\\">
+$2.5</div>
+%
+with a loan term of <div class=\\"variable\\" id=\\"loanDuration\\">
+$15</div>
+,
+and monthly payments of <div class=\\"computed>667.0</div>
+</p>
+<p>This is a fixed interest loan to the amount of 100000.0
+at the yearly interest rate of 2.5%
+with a loan term of 15,
+and monthly payments of 667.0</p>
+<div class=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
+$<p>this is
+multiline <div class=\\"variable\\" id=\\"rate\\">
+$2.5</div>
+</p>
+<p>content</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`html converts codeblock.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": "this is a multiline
+code
+block.
+",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts codeblock.md to html 2`] = `
+"<html>
+<body>
+<pre><code>
+this is a multiline
+code
+block.
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts codeblock-info.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "info": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+          },
+        ],
+        "closed": true,
+        "content": "",
+        "tagName": "video",
+      },
+      "text": "  this is a multiline
+  code
+
+  containing a newline
+
+  which should be handled by the video plugin.
+",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts codeblock-info.md to html 2`] = `
+"<html>
+<body>
+<pre><code>
+  this is a multiline
+  code
+
+  containing a newline
+
+  which should be handled by the video plugin.
+</pre></code>
+</body>
+</html>"
+`;
+
+exports[`html converts emph.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "some",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts emph.md to html 2`] = `
+"<html>
+<body>
+<p>This is <emph>some</emph> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts emph-strong.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "some",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts emph-strong.md to html 2`] = `
+"<html>
+<body>
+<p>This is <emph><strong>some</strong></emph> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts h1.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading One",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h1.md to html 2`] = `
+"<html>
+<body>
+<h1>Heading One</h1>
+</body>
+</html>"
+`;
+
+exports[`html converts h2.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Two",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h2.md to html 2`] = `
+"<html>
+<body>
+<h2>Heading Two</h2>
+</body>
+</html>"
+`;
+
+exports[`html converts h3.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "3",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Three",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h3.md to html 2`] = `
+"<html>
+<body>
+<h3>Heading Three</h3>
+</body>
+</html>"
+`;
+
+exports[`html converts h4.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "4",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Four",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h4.md to html 2`] = `
+"<html>
+<body>
+<h4>Heading Four</h4>
+</body>
+</html>"
+`;
+
+exports[`html converts h5.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "5",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Five",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h5.md to html 2`] = `
+"<html>
+<body>
+<h5>Heading Five</h5>
+</body>
+</html>"
+`;
+
+exports[`html converts h6.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Six",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts h6.md to html 2`] = `
+"<html>
+<body>
+<h6>Heading Six</h6>
+</body>
+</html>"
+`;
+
+exports[`html converts html-inline.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"property\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "property",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "custom",
+          },
+          "text": "<custom src=\\"property\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts html-inline.md to html 2`] = `
+"<html>
+<body>
+<p>This is a <custom src=\\"property\\"/> property.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts html-mixed.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading One",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+          },
+        ],
+        "closed": true,
+        "content": "",
+        "tagName": "video",
+      },
+      "text": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts html-mixed.md to html 2`] = `
+"<html>
+<body>
+<h1>Heading One</h1>
+<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/><p>done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts inline-code.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "inline code",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts inline-code.md to html 2`] = `
+"<html>
+<body>
+<p>This is <code>inline code</code>.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts link.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "a link",
+            },
+          ],
+          "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts link.md to html 2`] = `
+"<html>
+<body>
+<p>This is <a href=\\"http://clause.io\\">a link/>.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts multiline-html-block.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a custom",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"property\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "property",
+          },
+        ],
+        "closed": false,
+        "content": "
+contents
+",
+        "tagName": "custom",
+      },
+      "text": "<custom src=\\"property\\">
+contents
+</custom>",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "block.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts multiline-html-block.md to html 2`] = `
+"<html>
+<body>
+<p>This is a custom</p>
+<custom src=\\"property\\">
+contents
+</custom><p>block.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ol.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an ordered list:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "false",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts ol.md to html 2`] = `
+"<html>
+<body>
+<p>This is an ordered list:</p>
+
+<ol>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ol><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ol-tight.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an ordered list:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts ol-tight.md to html 2`] = `
+"<html>
+<body>
+<p>This is an ordered list:</p>
+
+<ol>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ol><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts paragraphs.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is first paragraph.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is second paragraph.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts paragraphs.md to html 2`] = `
+"<html>
+<body>
+<p>This is first paragraph.</p>
+<p>This is second paragraph.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts strong.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "some",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " text.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts strong.md to html 2`] = `
+"<html>
+<body>
+<p>This is <strong>some</strong> text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts text.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is some text.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts text.md to html 2`] = `
+"<html>
+<body>
+<p>This is some text.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts thematicbreak.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "A footer.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts thematicbreak.md to html 2`] = `
+"<html>
+<body>
+<p>This is</p>
+
+<hr>
+<p>A footer.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ul.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an unordered list:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "false",
+      "type": "bullet",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts ul.md to html 2`] = `
+"<html>
+<body>
+<p>This is an unordered list:</p>
+
+<ul>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ul><p>Done.</p>
+</body>
+</html>"
+`;
+
+exports[`html converts ul-tight.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an unordered list:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts ul-tight.md to html 2`] = `
+"<html>
+<body>
+<p>This is an unordered list:</p>
+
+<ul>
+<li><p>one</p>
+</li>
+<li><p>two</p>
+</li>
+<li><p>three</p>
+</li></ul><p>Done.</p>
+</body>
+</html>"
+`;

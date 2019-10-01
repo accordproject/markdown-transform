@@ -1,0 +1,423 @@
+{
+   "object":"value",
+   "document":{
+      "object":"document",
+      "data":{
+
+      },
+      "nodes":[
+         {
+            "object":"block",
+            "type":"heading_one",
+            "data":{
+
+            },
+            "nodes":[
+               {
+                  "object":"text",
+                  "text":"Heading",
+                  "marks":[
+
+                  ]
+               }
+            ]
+         },
+         {
+            "object":"block",
+            "type":"paragraph",
+            "data":{
+
+            },
+            "nodes":[
+               {
+                  "object":"text",
+                  "text":"And below is a ",
+                  "marks":[
+
+                  ]
+               },
+               {
+                  "object":"text",
+                  "text":"clause",
+                  "marks":[
+                     {
+                        "object":"mark",
+                        "type":"bold",
+                        "data":{
+
+                        }
+                     }
+                  ]
+               },
+               {
+                  "object":"text",
+                  "text":".",
+                  "marks":[
+
+                  ]
+               }
+            ]
+         },
+         {
+            "object":"block",
+            "type":"clause",
+            "data":{
+               "clauseid":"479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+               "src":"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+               "clauseText":"Acceptance of Delivery. \"Party A\" will be deemed to have completed its delivery obligations if in \"Party B\"'s opinion, the \"Widgets\" satisfies the Acceptance Criteria, and \"Party B\" notifies \"Party A\" in writing that it is accepting the \"Widgets\".\n\nInspection and Notice. \"Party B\" will have 10 Business Days' to inspect and evaluate the \"Widgets\" on the delivery date before notifying \"Party A\" that it is either accepting or rejecting the \"Widgets\".\n\nAcceptance Criteria. The \"Acceptance Criteria\" are the specifications the \"Widgets\" must meet for the \"Party A\" to comply with its requirements and obligations under this agreement, detailed in \"Attachment X\", attached to this agreement."
+            },
+            "nodes":[
+               {
+                  "object":"block",
+                  "type":"paragraph",
+                  "data":{
+
+                  },
+                  "nodes":[
+                     {
+                        "object":"text",
+                        "text":"Acceptance of Delivery. ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"shipper",
+                           "value":"%22Party%20A%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" will be deemed to have completed its delivery obligations if in ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"receiver",
+                           "value":"%22Party%20B%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"'",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"s opinion, the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"deliverable",
+                           "value":"%22Widgets%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" satisfies the Acceptance Criteria, and ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"receiver",
+                           "value":"%22Party%20B%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" notifies ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"shipper",
+                           "value":"%22Party%20A%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" in writing that it is accepting the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"deliverable",
+                           "value":"%22Widgets%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":".",
+                        "marks":[
+
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "object":"block",
+                  "type":"paragraph",
+                  "data":{
+
+                  },
+                  "nodes":[
+                     {
+                        "object":"text",
+                        "text":"Inspection and Notice. ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"receiver",
+                           "value":"%22Party%20B%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" will have ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"businessDays",
+                           "value":"10"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" Business Days",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"'",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" to inspect and evaluate the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"deliverable",
+                           "value":"%22Widgets%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" on the delivery date before notifying ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"shipper",
+                           "value":"%22Party%20A%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" that it is either accepting or rejecting the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"deliverable",
+                           "value":"%22Widgets%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":".",
+                        "marks":[
+
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "object":"block",
+                  "type":"paragraph",
+                  "data":{
+
+                  },
+                  "nodes":[
+                     {
+                        "object":"text",
+                        "text":"Acceptance Criteria. The ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"\"",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"Acceptance Criteria",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":"\"",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" are the specifications the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"deliverable",
+                           "value":"%22Widgets%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" must meet for the ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"shipper",
+                           "value":"%22Party%20A%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":" to comply with its requirements and obligations under this agreement, detailed in ",
+                        "marks":[
+
+                        ]
+                     },
+                     {
+                        "object":"block",
+                        "type":"variable",
+                        "data":{
+                           "id":"attachment",
+                           "value":"%22Attachment%20X%22"
+                        },
+                        "nodes":[
+
+                        ]
+                     },
+                     {
+                        "object":"text",
+                        "text":", attached to this agreement.",
+                        "marks":[
+
+                        ]
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}

@@ -18,28 +18,24 @@ const { CICERO_NS_PREFIX } = require('./Models');
 const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
 
 /**
- * Converts a commonmark model instance to a markdown string.
- *
- * Note that there are several ways of representing the same markdown AST as text,
- * so this transformation is not guaranteed to equivalent if you roundtrip
- * markdown content. The resulting AST *should* be equivalent however.
+ * Converts a CommonMark DOM to a CiceroMark DOM
  */
-class ToCiceroVisitor {
+class ToCiceroMarkVisitor {
 
     /**
-     * Visits a sub-tree and return the markdown
+     * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
      * @param {*} [parameters] optional parameters
      */
     static visitChildren(visitor, thing, parameters) {
         if(thing.nodes) {
-            ToCiceroVisitor.visitNodes(visitor, thing.nodes, parameters);
+            ToCiceroMarkVisitor.visitNodes(visitor, thing.nodes, parameters);
         }
     }
 
     /**
-     * Visits a list of nodes and return the markdown
+     * Visits a list of nodes and return the CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} things the list node to visit
      * @param {*} [parameters] optional parameters
@@ -67,8 +63,8 @@ class ToCiceroVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
-                    ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
+                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
+                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
                     thing.clauseText = '';
@@ -82,16 +78,16 @@ class ToCiceroVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.commonMark.fromString.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdownStringConcerto(thing.text).nodes;
-                    ToCiceroVisitor.visitNodes(this, thing.nodes, parameters);
+                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
+                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     thing.clauseText = '';
                     delete thing.tag;
@@ -104,7 +100,7 @@ class ToCiceroVisitor {
                     delete clone.src;
                     delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdownStringConcerto(clone, { wrapVariables: false });
+                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
@@ -144,9 +140,9 @@ class ToCiceroVisitor {
             }
             break;
         default:
-            ToCiceroVisitor.visitChildren(this, thing, parameters);
+            ToCiceroMarkVisitor.visitChildren(this, thing, parameters);
         }
     }
 }
 
-module.exports = ToCiceroVisitor;
+module.exports = ToCiceroMarkVisitor;

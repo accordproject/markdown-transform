@@ -17,45 +17,16 @@
 'use strict';
 
 const fs = require('fs');
-const diff = require('jest-diff');
-const CommonMark = require('./CommonMark');
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const HtmlTransformer = require('./HtmlTransformer');
 
-let commonMark = null;
-
-expect.extend({
-    toMarkdownRoundtrip(markdownText) {
-        const json1 = commonMark.fromMarkdownString(markdownText);
-        const newMarkdown = commonMark.toMarkdownString(json1);
-        const json2 = commonMark.fromMarkdownString(newMarkdown);
-        const pass = JSON.stringify(json1) === JSON.stringify(json2);
-
-        const message = pass
-            ? () =>
-                this.utils.matcherHint(`toMarkdownRoundtrip - ${markdownText} -> ${newMarkdown}`, undefined, undefined, undefined) +
-          '\n\n' +
-          `Expected: ${this.utils.printExpected(json1)}\n` +
-          `Received: ${this.utils.printReceived(json2)}`
-            : () => {
-                const diffString = diff(json1, json2, {
-                    expand: true,
-                });
-                return (
-                    this.utils.matcherHint(`toMarkdownRoundtrip - ${JSON.stringify(markdownText)} -> ${JSON.stringify(newMarkdown)}`, undefined, undefined, undefined) +
-            '\n\n' +
-            (diffString && diffString.includes('- Expect')
-                ? `Difference:\n\n${diffString}`
-                : `Expected: ${this.utils.printExpected(json1)}\n` +
-                `Received: ${this.utils.printReceived(json2)}`)
-                );
-            };
-
-        return {actual: markdownText, message, pass};
-    },
-});
+let htmlTransformer = null;
+let ciceroTransformer = null;
 
 // @ts-ignore
 beforeAll(() => {
-    commonMark = new CommonMark({ tagInfo : true });
+    htmlTransformer = new HtmlTransformer();
+    ciceroTransformer = new CiceroMarkTransformer();
 });
 
 /**
@@ -120,25 +91,13 @@ function extractSpecTests(testfile) {
     return examples;
 }
 
-describe.only('markdown', () => {
-    getMarkdownFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto JSON`, () => {
-            const json = commonMark.fromMarkdownString(markdownText);
-            expect(json).toMatchSnapshot();
-        });
-
-        it(`roundtrips ${file}`, () => {
-            expect(markdownText).toMarkdownRoundtrip();
-        });
-    });
-});
-
 describe.only('html', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to html`, () => {
-            const json = commonMark.fromMarkdownString(markdownText);
-            const html = commonMark.toHtmlString(json);
-            expect(html).toMatchSnapshot();
+            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+            expect(json).toMatchSnapshot(); // (1)
+            const html = htmlTransformer.toHtml(json);
+            expect(html).toMatchSnapshot(); // (2)
         });
     });
 });
@@ -146,14 +105,10 @@ describe.only('html', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
-            const json = commonMark.fromMarkdownString(markdownText);
-            expect(json).toMatchSnapshot();
-        });
-
-        // currently skipped because not all examples roundtrip
-        // needs more investigation!!
-        it.skip(`roundtrips ${file}`, () => {
-            expect(markdownText).toMarkdownRoundtrip();
+            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+            expect(json).toMatchSnapshot(); // (1)
+            const html = htmlTransformer.toHtml(json);
+            expect(html).toMatchSnapshot(); // (2)
         });
     });
 });
