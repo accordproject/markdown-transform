@@ -18,7 +18,7 @@ const Fs = require('fs');
 const Logger = require('@accordproject/markdown-common').Logger;
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const CiceroMark = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 
 /**
@@ -99,18 +99,20 @@ class Commands {
         commonOptions.noIndex = noIndex ? true : false;
 
         const commonMark = new CommonMarkTransformer(commonOptions);
-        const ciceroMark = new CiceroMark();
+        const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromMarkdown(markdownText);
+        let result = commonMark.fromMarkdown(markdownText, 'json');
+
         if (cicero) {
             result = ciceroMark.fromCommonMark(result, 'json');
-        } else if (slate) {
+        }
+        else if (slate) {
             result = ciceroMark.fromCommonMark(result, 'json');
             result = slateMark.fromCiceroMark(result);
-            //console.log('BEFORE COMMONMARK ' + JSON.stringify(result));
         }
+
         if (roundtrip) {
             if (cicero) {
                 const ciceroOptions = {};
@@ -121,11 +123,10 @@ class Commands {
                 const ciceroOptions = {};
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
-                //console.log('AFTER COMMONMARK ' + JSON.stringify(result));
             }
             result = commonMark.toMarkdown(result);
         } else {
-            result = JSON.stringify(ciceroMark.getSerializer().toJSON(result));
+            result = JSON.stringify(result);
         }
         if (outPath) {
             Logger.info('Creating file: ' + outPath);
