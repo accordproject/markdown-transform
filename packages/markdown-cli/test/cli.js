@@ -64,11 +64,31 @@ describe('markdown-cli', () => {
     });
 
     describe('#generateMarkdown', () => {
-        it('should generate the text for a markdown file', async () => {
+        it('should CommonMark <> Markdown roundtrip', async () => {
             const options = {};
             options.roundtrip = true;
             options.cicero = false;
             options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.parse(sample, null, options);
+            result.should.eql(sampleExpectedText);
+        });
+
+        it('should CiceroMark <> Markdown roundtrip', async () => {
+            const options = {};
+            options.roundtrip = true;
+            options.cicero = true;
+            options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.parse(sample, null, options);
+            result.should.eql(sampleExpectedText);
+        });
+
+        it('should Slate <> Markdown roundtrip', async () => {
+            const options = {};
+            options.roundtrip = true;
+            options.cicero = false;
+            options.slate = true;
             options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
             result.should.eql(sampleExpectedText);
