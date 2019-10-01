@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`slate converts acceptance.json to concerto 1`] = `
+exports[`slate converts acceptance.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -235,7 +235,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
 }
 `;
 
-exports[`slate converts acceptance.json to concerto 2`] = `
+exports[`slate converts acceptance.json to and from CiceroMark 2`] = `
 "# This is the contract editor. 
 
 And below is a clause.
@@ -249,7 +249,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <v
 \`\`\`"
 `;
 
-exports[`slate converts acceptance.json to concerto 3`] = `
+exports[`slate converts acceptance.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -567,7 +567,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
 }
 `;
 
-exports[`slate converts acceptance.json to concerto 4`] = `
+exports[`slate converts acceptance.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -802,7 +802,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
 }
 `;
 
-exports[`slate converts bold.json to concerto 1`] = `
+exports[`slate converts bold.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -825,9 +825,9 @@ Object {
 }
 `;
 
-exports[`slate converts bold.json to concerto 2`] = `"**bold**"`;
+exports[`slate converts bold.json to and from CiceroMark 2`] = `"**bold**"`;
 
-exports[`slate converts bold.json to concerto 3`] = `
+exports[`slate converts bold.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -857,7 +857,7 @@ Object {
 }
 `;
 
-exports[`slate converts bold.json to concerto 4`] = `
+exports[`slate converts bold.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -880,7 +880,7 @@ Object {
 }
 `;
 
-exports[`slate converts code.json to concerto 1`] = `
+exports[`slate converts code.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -898,9 +898,9 @@ Object {
 }
 `;
 
-exports[`slate converts code.json to concerto 2`] = `"\`some code\`"`;
+exports[`slate converts code.json to and from CiceroMark 2`] = `"\`some code\`"`;
 
-exports[`slate converts code.json to concerto 3`] = `
+exports[`slate converts code.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -930,7 +930,7 @@ Object {
 }
 `;
 
-exports[`slate converts code.json to concerto 4`] = `
+exports[`slate converts code.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -948,7 +948,7 @@ Object {
 }
 `;
 
-exports[`slate converts codeblock.json to concerto 1`] = `
+exports[`slate converts codeblock.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -970,7 +970,7 @@ Object {
 }
 `;
 
-exports[`slate converts codeblock.json to concerto 2`] = `
+exports[`slate converts codeblock.json to and from CiceroMark 2`] = `
 "\`\`\` 
 this
 is a
@@ -982,7 +982,7 @@ code block.
 end."
 `;
 
-exports[`slate converts codeblock.json to concerto 3`] = `
+exports[`slate converts codeblock.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1028,7 +1028,7 @@ code block.
 }
 `;
 
-exports[`slate converts codeblock.json to concerto 4`] = `
+exports[`slate converts codeblock.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1050,7 +1050,7 @@ Object {
 }
 `;
 
-exports[`slate converts commonmark.json to concerto 1`] = `
+exports[`slate converts commonmark.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1130,7 +1130,7 @@ Object {
 }
 `;
 
-exports[`slate converts commonmark.json to concerto 2`] = `
+exports[`slate converts commonmark.json to and from CiceroMark 2`] = `
 "Try CommonMark
 ----
 
@@ -1139,7 +1139,7 @@ You can try CommonMark here.  This dingus is powered by[ commonmark.js](https://
 2. item two"
 `;
 
-exports[`slate converts commonmark.json to concerto 3`] = `
+exports[`slate converts commonmark.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1229,7 +1229,7 @@ Object {
 }
 `;
 
-exports[`slate converts commonmark.json to concerto 4`] = `
+exports[`slate converts commonmark.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1309,7 +1309,7 @@ Object {
 }
 `;
 
-exports[`slate converts headings.json to concerto 1`] = `
+exports[`slate converts headings.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1357,7 +1357,7 @@ Object {
 }
 `;
 
-exports[`slate converts headings.json to concerto 2`] = `
+exports[`slate converts headings.json to and from CiceroMark 2`] = `
 "## H1
 
 
@@ -1370,7 +1370,7 @@ exports[`slate converts headings.json to concerto 2`] = `
 end."
 `;
 
-exports[`slate converts headings.json to concerto 3`] = `
+exports[`slate converts headings.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1430,7 +1430,7 @@ Object {
 }
 `;
 
-exports[`slate converts headings.json to concerto 4`] = `
+exports[`slate converts headings.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1478,7 +1478,7 @@ Object {
 }
 `;
 
-exports[`slate converts html-block.json to concerto 1`] = `
+exports[`slate converts html-block.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1491,7 +1491,7 @@ Object {
 }
 `;
 
-exports[`slate converts html-block.json to concerto 2`] = `
+exports[`slate converts html-block.json to and from CiceroMark 2`] = `
 "<foo>
 this
 is an
@@ -1500,7 +1500,7 @@ html block.
 end."
 `;
 
-exports[`slate converts html-block.json to concerto 3`] = `
+exports[`slate converts html-block.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1542,7 +1542,7 @@ end.",
 }
 `;
 
-exports[`slate converts html-block.json to concerto 4`] = `
+exports[`slate converts html-block.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1555,7 +1555,7 @@ Object {
 }
 `;
 
-exports[`slate converts italic.json to concerto 1`] = `
+exports[`slate converts italic.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1578,9 +1578,9 @@ Object {
 }
 `;
 
-exports[`slate converts italic.json to concerto 2`] = `"*italic*"`;
+exports[`slate converts italic.json to and from CiceroMark 2`] = `"*italic*"`;
 
-exports[`slate converts italic.json to concerto 3`] = `
+exports[`slate converts italic.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1610,7 +1610,7 @@ Object {
 }
 `;
 
-exports[`slate converts italic.json to concerto 4`] = `
+exports[`slate converts italic.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1633,7 +1633,7 @@ Object {
 }
 `;
 
-exports[`slate converts link.json to concerto 1`] = `
+exports[`slate converts link.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1662,9 +1662,9 @@ Object {
 }
 `;
 
-exports[`slate converts link.json to concerto 2`] = `"a [link](http://clause.io)"`;
+exports[`slate converts link.json to and from CiceroMark 2`] = `"a [link](http://clause.io)"`;
 
-exports[`slate converts link.json to concerto 3`] = `
+exports[`slate converts link.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1702,7 +1702,7 @@ Object {
 }
 `;
 
-exports[`slate converts link.json to concerto 4`] = `
+exports[`slate converts link.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1731,7 +1731,7 @@ Object {
 }
 `;
 
-exports[`slate converts ordered.json to concerto 1`] = `
+exports[`slate converts ordered.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1791,13 +1791,13 @@ Object {
 }
 `;
 
-exports[`slate converts ordered.json to concerto 2`] = `
+exports[`slate converts ordered.json to and from CiceroMark 2`] = `
 "1. one
 2. two
 3. three"
 `;
 
-exports[`slate converts ordered.json to concerto 3`] = `
+exports[`slate converts ordered.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -1856,7 +1856,7 @@ Object {
 }
 `;
 
-exports[`slate converts ordered.json to concerto 4`] = `
+exports[`slate converts ordered.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1916,7 +1916,7 @@ Object {
 }
 `;
 
-exports[`slate converts paragraphs.json to concerto 1`] = `
+exports[`slate converts paragraphs.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1952,7 +1952,7 @@ Object {
 }
 `;
 
-exports[`slate converts paragraphs.json to concerto 2`] = `
+exports[`slate converts paragraphs.json to and from CiceroMark 2`] = `
 "one
 
 two
@@ -1960,7 +1960,7 @@ two
 three"
 `;
 
-exports[`slate converts paragraphs.json to concerto 3`] = `
+exports[`slate converts paragraphs.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2008,7 +2008,7 @@ Object {
 }
 `;
 
-exports[`slate converts paragraphs.json to concerto 4`] = `
+exports[`slate converts paragraphs.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2044,7 +2044,7 @@ Object {
 }
 `;
 
-exports[`slate converts plain.json to concerto 1`] = `
+exports[`slate converts plain.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2062,9 +2062,9 @@ Object {
 }
 `;
 
-exports[`slate converts plain.json to concerto 2`] = `"plain"`;
+exports[`slate converts plain.json to and from CiceroMark 2`] = `"plain"`;
 
-exports[`slate converts plain.json to concerto 3`] = `
+exports[`slate converts plain.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2088,7 +2088,7 @@ Object {
 }
 `;
 
-exports[`slate converts plain.json to concerto 4`] = `
+exports[`slate converts plain.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2106,7 +2106,7 @@ Object {
 }
 `;
 
-exports[`slate converts quote.json to concerto 1`] = `
+exports[`slate converts quote.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2129,9 +2129,9 @@ Object {
 }
 `;
 
-exports[`slate converts quote.json to concerto 2`] = `"> this is a quote"`;
+exports[`slate converts quote.json to and from CiceroMark 2`] = `"> this is a quote"`;
 
-exports[`slate converts quote.json to concerto 3`] = `
+exports[`slate converts quote.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2162,7 +2162,7 @@ Object {
 }
 `;
 
-exports[`slate converts quote.json to concerto 4`] = `
+exports[`slate converts quote.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2185,7 +2185,7 @@ Object {
 }
 `;
 
-exports[`slate converts text.json to concerto 1`] = `
+exports[`slate converts text.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2251,9 +2251,9 @@ Object {
 }
 `;
 
-exports[`slate converts text.json to concerto 2`] = `"plain *italic* **bold** ***bold-italic*** \`code\`"`;
+exports[`slate converts text.json to and from CiceroMark 2`] = `"plain *italic* **bold** ***bold-italic*** \`code\`"`;
 
-exports[`slate converts text.json to concerto 3`] = `
+exports[`slate converts text.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2341,7 +2341,7 @@ Object {
 }
 `;
 
-exports[`slate converts text.json to concerto 4`] = `
+exports[`slate converts text.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2407,7 +2407,7 @@ Object {
 }
 `;
 
-exports[`slate converts unordered.json to concerto 1`] = `
+exports[`slate converts unordered.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2467,13 +2467,13 @@ Object {
 }
 `;
 
-exports[`slate converts unordered.json to concerto 2`] = `
+exports[`slate converts unordered.json to and from CiceroMark 2`] = `
 "* one
 * two
 * three"
 `;
 
-exports[`slate converts unordered.json to concerto 3`] = `
+exports[`slate converts unordered.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2532,7 +2532,7 @@ Object {
 }
 `;
 
-exports[`slate converts unordered.json to concerto 4`] = `
+exports[`slate converts unordered.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [

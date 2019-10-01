@@ -494,7 +494,7 @@ $2.5</div>
 with a loan term of <div class=\\"variable\\" id=\\"loanDuration\\">
 $15</div>
 ,
-and monthly payments of <div class=\\"computedvariable>667.0</div>
+and monthly payments of <div class=\\"computed>667.0</div>
 </p>
 <p>This is a fixed interest loan to the amount of 100000.0
 at the yearly interest rate of 2.5%

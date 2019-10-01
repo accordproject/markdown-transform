@@ -99,7 +99,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<div class="variable" id="${thing.id}">\n$${thing.value}</div>\n`;
             break;
         case 'ComputedVariable':
-            parameters.result += `<div class="computedvariable>${thing.value}</div>\n`;
+            parameters.result += `<div class="computed>${thing.value}</div>\n`;
             break;
         case 'CodeBlock':
             parameters.result += `<pre><code>\n${thing.text}</pre></code>\n`;

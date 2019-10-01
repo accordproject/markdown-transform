@@ -161,7 +161,7 @@ class ToSlateVisitor {
         case 'ComputedVariable':
             result = {
                 object: 'block',
-                type: 'computedvariable',
+                type: 'computed',
                 data: {
                     value: thing.value
                 },
