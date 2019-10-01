@@ -16,7 +16,7 @@
 
 const CICERO_NS_PREFIX = 'org.accordproject.ciceromark.';
 
-const ciceromarkModel = `
+const ciceroMarkModel = `
 namespace org.accordproject.ciceromark
 
 import org.accordproject.commonmark.*
@@ -41,4 +41,4 @@ concept ComputedVariable extends Child {
 }
 `;
 
-module.exports = { CICERO_NS_PREFIX, ciceromarkModel };
+module.exports = { CICERO_NS_PREFIX, ciceroMarkModel };

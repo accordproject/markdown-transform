@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-/* eslint-disable no-undef */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const SlateTransformer = require('./SlateTransformer');
+const Value = require('slate').Value;
 
-let commonMark = null;
-let slateMark = null;
+let slateTransformer = null;
+
+/* eslint-disable no-undef */
+// @ts-nocheck
 
 // @ts-ignore
+// eslint-disable-next-line no-undef
 beforeAll(() => {
-    commonMark = new CommonMarkTransformer();
-    slateMark = new SlateTransformer();
+    slateTransformer = new SlateTransformer();
 });
 
 /**
@@ -52,29 +52,32 @@ describe('slate', () => {
     getSlateFiles().forEach( ([file, jsonText], index) => {
         it(`converts ${file} to concerto`, () => {
             const slateDom = JSON.parse(jsonText);
-            const json = slateMark.toCommonMark(slateDom);
+            const value = Value.fromJSON(slateDom);
+            const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
 
-            // check no changes to the concerto
-            expect(json).toMatchSnapshot();
+            // check no changes to cicero mark
+            expect(ciceroMark).toMatchSnapshot(); // (1)
 
             // load expected markdown
             const extension = path.extname(file);
             const mdFile = path.basename(file,extension);
             const expectedMarkdown = fs.readFileSync(__dirname + '/../test/data/' + mdFile + '.md', 'utf8');
+            expect(expectedMarkdown).toMatchSnapshot(); // (2)
 
-            // convert the expected markdown to concerto and compare
-            const expectedJson = commonMark.fromMarkdownString(expectedMarkdown);
-            console.log('Expected JSON', JSON.stringify(expectedJson, null, 4));
+            // convert the expected markdown to cicero mark and compare
+            const expectedSlateValue = slateTransformer.fromMarkdown(expectedMarkdown);
+            expect(expectedSlateValue.toJSON()).toMatchSnapshot(); // (3)
+            console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
+
+            const expectedCiceroMark = slateTransformer.toCiceroMark(expectedSlateValue, 'json');
+            expect(expectedCiceroMark).toMatchSnapshot(); // (4)
+            // console.log('Expected expectedCiceroMark', JSON.stringify(expectedCiceroMark, null, 4));
 
             // check that ast created from slate and from the expected md is the same
-            expect(json).toEqual(expectedJson);
-
-            // now convert the expected ast back to slate and compare
-            const expectedSlate = slateMark.fromCommonMark(expectedJson);
-            console.log('Expected Slate', JSON.stringify(expectedSlate, null, 4));
+            expect(ciceroMark).toEqual(expectedCiceroMark);
 
             // check roundtrip
-            expect(expectedSlate).toEqual(slateDom.document);
+            expect(expectedSlateValue.toJSON()).toEqual(value.toJSON());
         });
     });
 });

@@ -94,9 +94,10 @@ function extractSpecTests(testfile) {
 describe.only('html', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to html`, () => {
-            const json = ciceroTransformer.fromMarkdownString(markdownText);
-            const html = htmlTransformer.toHtmlString(json);
-            expect(html).toMatchSnapshot();
+            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+            expect(json).toMatchSnapshot(); // (1)
+            const html = htmlTransformer.toHtml(json);
+            expect(html).toMatchSnapshot(); // (2)
         });
     });
 });
@@ -104,9 +105,10 @@ describe.only('html', () => {
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
-            const json = ciceroTransformer.fromMarkdownString(markdownText);
-            const html = htmlTransformer.toHtmlString(json);
-            expect(html).toMatchSnapshot();
+            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+            expect(json).toMatchSnapshot(); // (1)
+            const html = htmlTransformer.toHtml(json);
+            expect(html).toMatchSnapshot(); // (2)
         });
     });
 });

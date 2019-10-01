@@ -20,7 +20,10 @@ end note
 
 package "markdown-cicero" {
   [CommonMark DOM] <-up-> [CiceroMark DOM]
-  [HTML String] <- [CiceroMark DOM]
+}
+
+package "markdown-html" {
+  [CiceroMark DOM] -> [HTML String]
 }
 
 note right of [CiceroMark DOM]

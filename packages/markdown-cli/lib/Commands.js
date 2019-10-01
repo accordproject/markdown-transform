@@ -19,7 +19,7 @@ const Logger = require('@accordproject/markdown-common').Logger;
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMark = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
-const SlateMark = require('@accordproject/markdown-slate').SlateTransformer;
+const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -100,14 +100,15 @@ class Commands {
 
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMark();
-        const slateMark = new SlateMark();
+        const slateMark = new SlateTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromMarkdownString(markdownText);
+        let result = commonMark.fromMarkdown(markdownText);
         if (cicero) {
-            result = ciceroMark.fromCommonMark(result);
+            result = ciceroMark.fromCommonMark(result, 'json');
         } else if (slate) {
-            result = slateMark.fromCommonMark(result);
+            result = ciceroMark.fromCommonMark(result, 'json');
+            result = slateMark.fromCiceroMark(result);
             //console.log('BEFORE COMMONMARK ' + JSON.stringify(result));
         }
         if (roundtrip) {
@@ -116,12 +117,15 @@ class Commands {
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
             } else if (slate) {
-                result = slateMark.toCommonMark(result);
+                result = slateMark.toCiceroMark(result);
+                const ciceroOptions = {};
+                ciceroOptions.wrapVariables = noWrap ? false : true;
+                result = ciceroMark.toCommonMark(result, ciceroOptions);
                 //console.log('AFTER COMMONMARK ' + JSON.stringify(result));
             }
-            result = commonMark.toMarkdownString(result);
+            result = commonMark.toMarkdown(result);
         } else {
-            result = JSON.stringify(result);
+            result = JSON.stringify(ciceroMark.getSerializer().toJSON(result));
         }
         if (outPath) {
             Logger.info('Creating file: ' + outPath);

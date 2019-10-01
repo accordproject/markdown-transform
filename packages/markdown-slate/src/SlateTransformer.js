@@ -16,10 +16,8 @@
 
 const Value = require('slate').Value;
 const ToSlateVisitor = require('./ToSlateVisitor');
-const slateToCommonMarkAst = require('./slateToCommonMarkAst');
-
-const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-common').ComposerConcerto;
-const { commonmarkModel } = require('@accordproject/markdown-common').Models; // This should be switched to CiceroMark
+const slateToCiceroMarkDom = require('./slateToCiceroMarkDom');
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
  * Converts a CiceroMark DOM to/from a Slate DOM.
@@ -29,55 +27,71 @@ class SlateTransformer {
      * Construct the Slate transformer.
      */
     constructor() {
-        // Setup for validation
-        this.modelManager = new ModelManager();
-        this.modelManager.addModelFile(commonmarkModel, 'commonmark.cto');
-        const factory = new Factory(this.modelManager);
-        this.serializer = new Serializer(factory, this.modelManager);
+        this.ciceroMarkTransformer = new CiceroMarkTransformer();
+        this.serializer = this.ciceroMarkTransformer.getSerializer();
     }
 
     /**
-     * Converts a commonmark DOM to a Slate DOM
-     * @param {*} concertoObject concerto commonmark object
-     * @returns {*} the slate dom
+     * Converts a CiceroMark DOM to a Slate DOM
+     * @param {*} input CiceroMark DOM
+     * @returns {*} Slate DOM
      */
-    fromCommonMarkConcerto(concertoObject) {
+    fromCiceroMark(input) {
+
+        if(!input.getType) {
+            input = this.serializer.fromJSON(input);
+        }
+
         const parameters = {};
         parameters.result = {};
         parameters.marks = [];
         const visitor = new ToSlateVisitor();
-        concertoObject.accept( visitor, parameters );
-        return parameters.result;
+        input.accept( visitor, parameters );
+        const result = {
+            object: 'value',
+            document: parameters.result
+        };
+        return Value.fromJSON(result);
     }
 
     /**
-     * Converts a Slate document node to CommonMark DOM
-     * @param {*} document the Slate document node
-     * @returns {*} the common mark AST
+     * Converts a Slate value document node to CiceroMark DOM
+     * @param {*} value - Slate value
+     * @param {string} [format] result format, defaults to 'concerto'. Pass
+     * 'json' to return the JSON data.
+     * @returns {*} the CiceroMark DOM
      */
-    toCommonMarkConcerto(document) {
-        const json = this.toCommonMark(document);
-        return this.serializer.fromJSON(json);
+    toCiceroMark(value, format='concerto') {
+        const json = slateToCiceroMarkDom(value.document);
+        // console.log(JSON.stringify(json, null, 3));
+
+        if(format === 'concerto') {
+            return this.serializer.fromJSON(json);
+        }
+        else {
+            return json;
+        }
     }
 
     /**
-     * Converts a commonmark ast to a Slate DOM
-     * @param {*} json commonmark object
-     * @returns {*} the slate dom
+     * Converts a Slate DOM to a markdown string
+     * @param {*} value Slate value
+     * @param {object} [options] configuration options
+     * @returns {*} markdown string
      */
-    fromCommonMark(json) {
-        const concertoObject = this.serializer.fromJSON(json);
-        return this.fromCommonMarkConcerto(concertoObject);
+    toMarkdown(value, options) {
+        const ciceroMark = this.toCiceroMark(value, 'json');
+        return this.ciceroMarkTransformer.toMarkdown(ciceroMark, options);
     }
 
     /**
-     * Converts a Slate document node to CommonMark DOM
-     * @param {*} json - JSON commonmark object
-     * @returns {*} the common mark AST
+     * Converts a markdown string to a Slate DOM
+     * @param {string} markdown a markdown string
+     * @returns {*} Slate value
      */
-    toCommonMark(json) {
-        const value = Value.fromJSON(json);
-        return this.serializer.toJSON(slateToCommonMarkAst(value.document));
+    fromMarkdown(markdown) {
+        const ciceroMarkDom = this.ciceroMarkTransformer.fromMarkdown(markdown, 'json');
+        return this.fromCiceroMark(ciceroMarkDom);
     }
 }
 
