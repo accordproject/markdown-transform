@@ -1,4 +1,5 @@
-# Heading
+Heading
+====
 
 And below is a **clause**.
 
