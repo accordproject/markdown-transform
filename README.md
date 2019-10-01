@@ -26,7 +26,7 @@ The schema is defined here: https://models.accordproject.org/commonmark/markdown
 
 The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable` and `ComputedVariable`.
 
-The schema is defined here: https://models.accordproject.org/ciceromark/ciceromark.html
+The schema is defined here: https://models.accordproject.org/cicero/dom.html
 
 ###  Slate DOM
 
