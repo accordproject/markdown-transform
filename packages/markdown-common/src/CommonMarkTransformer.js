@@ -200,7 +200,8 @@ class CommonMarkTransformer {
             return this.serializer.fromJSON(json);
         }
         else {
-            return json;
+            const validJson = this.serializer.fromJSON(json);
+            return this.serializer.toJSON(validJson);
         }
     }
 
