@@ -56,6 +56,7 @@
     "@accordproject/markdown-common": "0.3.2",
     "@accordproject/markdown-cicero": "0.3.2",
     "@accordproject/markdown-slate": "0.3.2",
+    "jsome": "2.5.0",
     "winston": "3.2.1"
   },
   "license-check-config": {
