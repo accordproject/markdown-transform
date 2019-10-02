@@ -10,7 +10,7 @@
     "access": "public"
   },
   "bin": {
-    "mdtransform": "./index.js"
+    "markus": "./index.js"
   },
   "files": [
     "bin",
