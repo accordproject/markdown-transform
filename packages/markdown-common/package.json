@@ -82,7 +82,8 @@
     "commonmark": "^0.29.0",
     "sax": "^1.2.4",
     "winston": "3.2.1",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.1.27",
+    "jsome": "2.5.0"
   },
   "license-check-config": {
     "src": [
