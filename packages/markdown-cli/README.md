@@ -11,7 +11,7 @@ npm install @accordproject/markdown-cli --save
 ## Usage
 
 ```
-mdtransform parse --help
+markus parse --help
 
 parse sample markdown to Concerto instance
 
