@@ -40,15 +40,9 @@ The Slate DOM is defined by the [Slate](https://www.slatejs.org) HTML content-ed
 
 In the project directory, you can run:
 
-#### `npm run build:watch`
-
-Runs the app in the development mode.<br>
-
-Babel will recompile every change as it runs in _watch_ mode.
-
 #### `npm run build`
 
-Similar to `build:watch` but it's a one off build.
+Invokes _lerna_ to build all the `markdown-*` packages.
 
 #### `npm run test`
 

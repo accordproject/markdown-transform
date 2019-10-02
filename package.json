@@ -26,8 +26,7 @@
   "private": true,
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
-    "build": "babel src -d lib --copy-files",
-    "build:watch": "babel src -d lib --copy-files --watch",
+    "build": "lerna run build",
     "publish": "./scripts/manualrelease.sh",
     "pretest": "npm run licchk",
     "test": "lerna run test",
