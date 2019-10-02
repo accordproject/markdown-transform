@@ -65,7 +65,9 @@ This is a short reference guide, for a more full context, please refer to our [C
 ---
 
 <a href="https://www.accordproject.org/">
-  <img src="APLogo.png" alt="Accord Project Logo" width="400" />
+  <p align="center">
+    <img src="APLogo.png" align='middle' alt="Accord Project Logo" width="400" />
+  </p>
 </a>
 
 Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
