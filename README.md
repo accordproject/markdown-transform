@@ -1,8 +1,16 @@
-# Markdown Transform
+<h1 align="center">Markdown Transform</h1>
 
-[![downloads](https://img.shields.io/npm/dm/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli)
-[![npm version](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)
-![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)
+<p align="center">
+   <a href="https://www.npmjs.com/package/@accordproject/markdown-cli">
+      <img src="https://img.shields.io/npm/dm/@accordproject/markdown-cli" alt="downloads" />
+   </a> 
+  <a href="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg">
+      <img src="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg" alt="npm version" />
+   </a> 
+  <a href="">
+      <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna" />
+   </a> 
+</p> 
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
 
