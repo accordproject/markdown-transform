@@ -68,7 +68,6 @@
     "jest": "^24.8.0",
     "jest-diff": "^24.8.0",
     "jsdoc": "^3.6.3",
-    "jsome": "2.5.0",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
@@ -82,7 +81,8 @@
     "commonmark": "^0.29.0",
     "sax": "^1.2.4",
     "winston": "3.2.1",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.1.27",
+    "jsome": "2.5.0"
   },
   "license-check-config": {
     "src": [

@@ -46,7 +46,6 @@
     "chai-things": "0.2.0",
     "eslint": "4.19.1",
     "jsdoc": "^3.6.3",
-    "jsome": "2.5.0",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
@@ -56,6 +55,7 @@
     "@accordproject/markdown-common": "0.3.2",
     "@accordproject/markdown-cicero": "0.3.2",
     "@accordproject/markdown-slate": "0.3.2",
+    "jsome": "2.5.0",
     "winston": "3.2.1"
   },
   "license-check-config": {
