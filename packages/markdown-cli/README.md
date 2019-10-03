@@ -5,25 +5,26 @@ Command line tool to debug and use markdown transformations.
 ## Installation
 
 ```
-npm install @accordproject/markdown-cli --save
+npm install -g @accordproject/markdown-cli
 ```
 
 ## Usage
 
 ```
-markus parse --help
+markus parse
 
-parse sample markdown to Concerto instance
+parse and transform sample markdown
 
 Options:
-  --help         Show help                                             [boolean]
   --version      Show version number                                   [boolean]
   --verbose, -v                                                 [default: false]
+  --help         Show help                                             [boolean]
   --sample       path to the clause text                                [string]
   --out          path to the output file                                [string]
   --roundtrip    roundtrip                            [boolean] [default: false]
   --cicero       further transform to CiceroMark      [boolean] [default: false]
   --slate        further transform to Slate DOM       [boolean] [default: false]
+  --html         further transform to HTML            [boolean] [default: false]
   --noWrap       do not wrap variables as XML tags    [boolean] [default: false]
   --noIndex      do not index ordered lists           [boolean] [default: false]
 ```
