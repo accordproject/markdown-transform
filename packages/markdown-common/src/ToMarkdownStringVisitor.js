@@ -118,11 +118,11 @@ class ToMarkdownStringVisitor {
     /**
      * Prints a new paragraph if not first
      * @param {*} parameters - the current parameters
+     * @param {*} level - number of new lines
      */
-    static newParagraph(parameters) {
-        if (!parameters.first) {
-            parameters.result += '\n\n';
-        }
+    static newBlock(parameters,level) {
+        const newlines = parameters.first ? '' : Array(level).fill('\n').join('');
+        parameters.result += newlines;
     }
 
     /**
@@ -134,7 +134,7 @@ class ToMarkdownStringVisitor {
 
         switch(thing.getType()) {
         case 'CodeBlock':
-            ToMarkdownStringVisitor.newParagraph(parameters);
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${thing.text}\`\`\`\n\n`;
             break;
         case 'Code':
@@ -151,11 +151,12 @@ class ToMarkdownStringVisitor {
             break;
         case 'BlockQuote': {
             const parametersIn = ToMarkdownStringVisitor.mkParametersIn(parameters);
-            ToMarkdownStringVisitor.newParagraph(parameters);
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             parameters.result += `> ${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
         }
             break;
         case 'Heading': {
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             const level = parseInt(thing.level);
             if (level < 3) {
                 parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing)}\n${ToMarkdownStringVisitor.mkSetextHeading(level)}`;
@@ -165,7 +166,7 @@ class ToMarkdownStringVisitor {
         }
             break;
         case 'ThematicBreak':
-            ToMarkdownStringVisitor.newParagraph(parameters);
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             parameters.result += '---\n';
             break;
         case 'Linebreak':
@@ -181,11 +182,11 @@ class ToMarkdownStringVisitor {
             parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination})`;
             break;
         case 'Paragraph':
-            ToMarkdownStringVisitor.newParagraph(parameters);
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing)}`;
             break;
         case 'HtmlBlock':
-            ToMarkdownStringVisitor.newParagraph(parameters);
+            ToMarkdownStringVisitor.newBlock(parameters,2);
             parameters.result += `${thing.text}`;
             break;
         case 'Text':
