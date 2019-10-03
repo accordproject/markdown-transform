@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cicero",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -78,7 +78,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-common": "0.4.2",
+    "@accordproject/markdown-common": "0.4.3",
     "commonmark": "^0.29.0",
     "sax": "^1.2.4",
     "winston": "3.2.1",
