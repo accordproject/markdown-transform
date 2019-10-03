@@ -19,7 +19,9 @@ const Logger = require('@accordproject/markdown-common').Logger;
 const Commands = require('./lib/Commands');
 
 require('yargs')
-    .command('parse', 'parse sample markdown to Concerto instance', (yargs) => {
+    .scriptName('markus')
+    .usage('$0 <cmd> [args]')
+    .command('parse', 'parse and transform sample markdown', (yargs) => {
         yargs.option('sample', {
             describe: 'path to the clause text',
             type: 'string'
@@ -40,6 +42,11 @@ require('yargs')
         });
         yargs.option('slate', {
             describe: 'further transform to Slate DOM',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('html', {
+            describe: 'further transform to HTML',
             type: 'boolean',
             default: false
         });
@@ -64,6 +71,7 @@ require('yargs')
             options.roundtrip = argv.roundtrip;
             options.cicero = argv.cicero;
             options.slate = argv.slate;
+            options.html = argv.html;
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
             return Commands.parse(argv.sample, argv.out, options)
@@ -82,4 +90,5 @@ require('yargs')
         alias: 'v',
         default: false
     })
+    .help()
     .parse();
