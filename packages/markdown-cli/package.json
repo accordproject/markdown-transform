@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cli",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -53,10 +53,10 @@
     "yargs": "13.2.4"
   },
   "dependencies": {
-    "@accordproject/markdown-common": "0.4.0",
-    "@accordproject/markdown-cicero": "0.4.0",
-    "@accordproject/markdown-slate": "0.4.0",
-    "@accordproject/markdown-html": "0.4.0",
+    "@accordproject/markdown-common": "0.4.1",
+    "@accordproject/markdown-cicero": "0.4.1",
+    "@accordproject/markdown-slate": "0.4.1",
+    "@accordproject/markdown-html": "0.4.1",
     "jsome": "2.5.0",
     "winston": "3.2.1"
   },
