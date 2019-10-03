@@ -85,12 +85,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"shipper",
-                           "value":"%22Party%20A%22"
+                           "id":"shipper"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20A%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -103,12 +103,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"receiver",
-                           "value":"%22Party%20B%22"
+                           "id":"receiver"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20B%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -128,12 +128,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"deliverable",
-                           "value":"%22Widgets%22"
+                           "id":"deliverable"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Widgets%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -146,12 +146,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"receiver",
-                           "value":"%22Party%20B%22"
+                           "id":"receiver"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20B%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -164,12 +164,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"shipper",
-                           "value":"%22Party%20A%22"
+                           "id":"shipper"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20A%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -182,12 +182,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"deliverable",
-                           "value":"%22Widgets%22"
+                           "id":"deliverable"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Widgets%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -216,12 +216,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"receiver",
-                           "value":"%22Party%20B%22"
+                           "id":"receiver"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20B%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -234,12 +234,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"businessDays",
-                           "value":"10"
+                           "id":"businessDays"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"10"
+                        }]
                      },
                      {
                         "object":"text",
@@ -266,12 +266,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"deliverable",
-                           "value":"%22Widgets%22"
+                           "id":"deliverable"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Widgets%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -284,12 +284,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"shipper",
-                           "value":"%22Party%20A%22"
+                           "id":"shipper"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20A%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -302,12 +302,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"deliverable",
-                           "value":"%22Widgets%22"
+                           "id":"deliverable"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Widgets%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -364,12 +364,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"deliverable",
-                           "value":"%22Widgets%22"
+                           "id":"deliverable"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Widgets%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -382,12 +382,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"shipper",
-                           "value":"%22Party%20A%22"
+                           "id":"shipper"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Party%20A%22"
+                        }]
                      },
                      {
                         "object":"text",
@@ -400,12 +400,12 @@
                         "object":"inline",
                         "type":"variable",
                         "data":{
-                           "id":"attachment",
-                           "value":"%22Attachment%20X%22"
+                           "id":"attachment"
                         },
-                        "nodes":[
-
-                        ]
+                        "nodes":[{
+                           "object":"text",
+                           "text":"%22Attachment%20X%22"
+                        }]
                      },
                      {
                         "object":"text",
