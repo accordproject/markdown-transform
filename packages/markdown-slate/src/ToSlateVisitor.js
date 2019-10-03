@@ -153,19 +153,22 @@ class ToSlateVisitor {
                 type: 'variable',
                 data: {
                     id: thing.id,
-                    value: thing.value
                 },
-                nodes: [],
+                nodes: [{
+                    object: 'text',
+                    text: thing.value,
+                }],
             };
             break;
         case 'ComputedVariable':
             result = {
                 object: 'inline',
                 type: 'computed',
-                data: {
-                    value: thing.value
-                },
-                nodes: [],
+                data: {},
+                nodes: [{
+                    object: 'text',
+                    text: thing.value,
+                }],
             };
             break;
         case 'CodeBlock':
