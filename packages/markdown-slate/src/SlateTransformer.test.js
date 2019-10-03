@@ -99,7 +99,7 @@ describe('slate', () => {
                                     'marks': []
                                 },
                                 {
-                                    'object': 'block',
+                                    'object': 'inline',
                                     'type': 'variable',
                                     'data': {
                                         'id': 'foo',
@@ -136,7 +136,7 @@ describe('slate', () => {
                                     'marks': []
                                 },
                                 {
-                                    'object': 'block',
+                                    'object': 'inline',
                                     'type': 'computed',
                                     'data': {
                                         'value': 'bar'

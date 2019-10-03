@@ -149,7 +149,7 @@ class ToSlateVisitor {
             break;
         case 'Variable':
             result = {
-                object: 'block',
+                object: 'inline',
                 type: 'variable',
                 data: {
                     id: thing.id,
@@ -160,7 +160,7 @@ class ToSlateVisitor {
             break;
         case 'ComputedVariable':
             result = {
-                object: 'block',
+                object: 'inline',
                 type: 'computed',
                 data: {
                     value: thing.value

@@ -303,7 +303,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20A%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -317,7 +317,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20B%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -336,7 +336,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Widgets%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -350,7 +350,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20B%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -364,7 +364,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20A%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -378,7 +378,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Widgets%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -404,7 +404,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20B%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -418,7 +418,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "10",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -442,7 +442,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Widgets%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -456,7 +456,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20A%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -470,7 +470,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Widgets%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -516,7 +516,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Widgets%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -530,7 +530,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Party%20A%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
@@ -544,7 +544,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   "value": "%22Attachment%20X%22",
                 },
                 "nodes": Array [],
-                "object": "block",
+                "object": "inline",
                 "type": "variable",
               },
               Object {
