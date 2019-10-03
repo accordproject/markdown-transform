@@ -82,7 +82,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"shipper",
@@ -100,7 +100,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"receiver",
@@ -125,7 +125,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"deliverable",
@@ -143,7 +143,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"receiver",
@@ -161,7 +161,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"shipper",
@@ -179,7 +179,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"deliverable",
@@ -213,7 +213,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"receiver",
@@ -231,7 +231,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"businessDays",
@@ -263,7 +263,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"deliverable",
@@ -281,7 +281,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"shipper",
@@ -299,7 +299,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"deliverable",
@@ -361,7 +361,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"deliverable",
@@ -379,7 +379,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"shipper",
@@ -397,7 +397,7 @@
                         ]
                      },
                      {
-                        "object":"block",
+                        "object":"inline",
                         "type":"variable",
                         "data":{
                            "id":"attachment",
