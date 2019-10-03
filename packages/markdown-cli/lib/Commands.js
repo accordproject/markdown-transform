@@ -20,6 +20,7 @@ const Logger = require('@accordproject/markdown-common').Logger;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
+const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -93,7 +94,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outPath, options) {
-        const { roundtrip, cicero, slate, noWrap, noIndex } = options;
+        const { roundtrip, cicero, slate, html, noWrap, noIndex } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -101,6 +102,7 @@ class Commands {
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
+        const htmlMark = new HtmlTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let result = commonMark.fromMarkdown(markdownText, 'json');
@@ -111,6 +113,9 @@ class Commands {
         else if (slate) {
             result = ciceroMark.fromCommonMark(result, 'json');
             result = slateMark.fromCiceroMark(result);
+        } else if (html) {
+            result = ciceroMark.fromCommonMark(result, 'json');
+            result = htmlMark.toHtml(result);
         }
 
         if (roundtrip) {
@@ -123,9 +128,11 @@ class Commands {
                 const ciceroOptions = {};
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
+            } else if (html) {
+                throw new Error('Cannot roundtrip from HTML');
             }
             result = commonMark.toMarkdown(result);
-        } else {
+        } else if (!html) {
             result = JSON.stringify(result);
         }
         if (outPath) {
