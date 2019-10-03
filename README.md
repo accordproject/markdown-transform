@@ -6,7 +6,7 @@
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
 
-![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP0nJyCm48Lt_ugdxabsX50b61Ye6CfMTR3iQ-BMiIFxeXGX_ZkDMvgeBWEROx_Sk-zRHfQ1-zOAqKbra3LXqSfmq7vmXR9cWIy1R3eP8ct5zzsKRrllBi7LvHPh3iRLMpmMVLSyOVESKkCpNjvNQPJpJ0YcRXX-boU0XhcB3rNLUaqsbb8f7tGN_9uKbpxKrRbwtAJwNQTi-0H3JcCSVrEIxoU0wrKVAO8Rma3M5ffsnf4MmDGobYAv291E8tuwbiUfxPuTeoZuP2T3dEIaq1nzy_gnUfj9p3APm2dn7u7fboHmEjugpA6YbKo9wTgQCQt7p5-hpXw1yuU9a0u9EnZL54n71cd3Fin8Xc4eK_i-ZW2pBSNoTEvR-mC0)
+![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP6zJiCm58NtFCLHzoGxGgWI30nK36MhEbZnJUBMFv5zenGXtXtPDQGYfH9ROf_Syzqlwy32ysXqCOZcA3h2oWX_b6woPQFL2Xy5i1k43xGlFejhAMUCipcuoQVOibUss-E-78Vo0Rl7b8hNU7hTf57MCS6hhcUuTfa0UkOXtDMrSP9qg4JJE2y7xmxKSELyLv-h8qdzZLFrR7H1LYAENvJyvYk0dwFMUIEOIOBfn1W31N1FA829j2ubjSgInDmQ8P3S-9WILYAyMnQd6U2QCDMGTqdOOklPLmejVMbgiwuS-8-kz4dIDJzcOJTuWnPC6JUtBd2tCNETzF8EEB-e067n_BPvWLTDNoRX91KxVx78D4rLAZ-4o7yJCcxn1sD6Z6tvjqV8DLav6lq5)
 
 > Note: you can regenerate this diagram by visiting http://www.plantuml.com/plantuml/uml/ and pasting the contents of `architecture.puml` from this repository.
 

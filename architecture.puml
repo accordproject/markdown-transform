@@ -1,5 +1,4 @@
 @startuml
-
 package "markdown-cli" {
   [parse]
 }
@@ -22,11 +21,7 @@ package "markdown-cicero" {
   [CommonMark DOM] <-up-> [CiceroMark DOM]
 }
 
-package "markdown-html" {
-  [CiceroMark DOM] -> [HTML String]
-}
-
-note right of [CiceroMark DOM]
+note left of [CiceroMark DOM]
   https://models.accordproject.org/ciceromark/ciceromark.html
 end note
 
@@ -34,10 +29,12 @@ package "markdown-slate" {
   [CiceroMark DOM] <-up-> [Slate DOM]
 }
 
-note right of [Slate DOM]
+note left of [Slate DOM]
   Slate is an HTML rich-text editor
   https://www.slatejs.org
 end note
 
-
+package "markdown-html" {
+  [CiceroMark DOM] -up-> [HTML String]
+}
 @enduml
