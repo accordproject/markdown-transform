@@ -89,7 +89,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20A%22"
+                           "text":"%22Party%20A%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -107,7 +108,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20B%22"
+                           "text":"%22Party%20B%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -132,7 +134,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Widgets%22"
+                           "text":"%22Widgets%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -150,7 +153,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20B%22"
+                           "text":"%22Party%20B%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -168,7 +172,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20A%22"
+                           "text":"%22Party%20A%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -186,7 +191,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Widgets%22"
+                           "text":"%22Widgets%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -220,7 +226,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20B%22"
+                           "text":"%22Party%20B%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -238,7 +245,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"10"
+                           "text":"10",
+                           "marks" : []
                         }]
                      },
                      {
@@ -270,7 +278,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Widgets%22"
+                           "text":"%22Widgets%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -288,7 +297,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20A%22"
+                           "text":"%22Party%20A%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -306,7 +316,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Widgets%22"
+                           "text":"%22Widgets%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -368,7 +379,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Widgets%22"
+                           "text":"%22Widgets%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -386,7 +398,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Party%20A%22"
+                           "text":"%22Party%20A%22",
+                           "marks" : []
                         }]
                      },
                      {
@@ -404,7 +417,8 @@
                         },
                         "nodes":[{
                            "object":"text",
-                           "text":"%22Attachment%20X%22"
+                           "text":"%22Attachment%20X%22",
+                           "marks" : []
                         }]
                      },
                      {
