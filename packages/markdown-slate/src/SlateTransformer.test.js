@@ -102,10 +102,13 @@ describe('slate', () => {
                                     'object': 'inline',
                                     'type': 'variable',
                                     'data': {
-                                        'id': 'foo',
-                                        'value': 'bar'
+                                        'id': 'foo'
                                     },
-                                    'nodes': []
+                                    'nodes': [{
+                                        'marks': [],
+                                        'object': 'text',
+                                        'text': 'bar'
+                                    }]
                                 }
                             ]
                         }
@@ -138,10 +141,12 @@ describe('slate', () => {
                                 {
                                     'object': 'inline',
                                     'type': 'computed',
-                                    'data': {
-                                        'value': 'bar'
-                                    },
-                                    'nodes': []
+                                    'data': {},
+                                    'nodes': [{
+                                        'marks': [],
+                                        'object': 'text',
+                                        'text': 'bar'
+                                    }]
                                 }
                             ]
                         }
