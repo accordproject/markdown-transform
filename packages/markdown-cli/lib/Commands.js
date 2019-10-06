@@ -15,7 +15,7 @@
 'use strict';
 
 const Fs = require('fs');
-const Logger = require('@accordproject/markdown-common').Logger;
+const Logger = require('@accordproject/concerto-core').Logger;
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;

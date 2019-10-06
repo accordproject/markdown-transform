@@ -25,7 +25,7 @@
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check",
-    "test": "mocha && jest",
+    "test": "jest",
     "test:cov": "nyc npm run test",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
@@ -77,7 +77,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/concerto": "^0.80.3",
+    "@accordproject/concerto-core": "^0.81.0",
     "commonmark": "^0.29.0",
     "sax": "^1.2.4",
     "winston": "3.2.1",

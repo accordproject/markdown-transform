@@ -17,7 +17,7 @@
 const commonmark = require('commonmark');
 const sax = require('sax');
 
-const { ModelManager, Factory, Serializer } = require('@accordproject/concerto');
+const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
 const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');

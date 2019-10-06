@@ -14,8 +14,6 @@
 
 'use strict';
 
-// const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
-
 /**
  * Converts a CiceroMark DOM to a Slate DOM.
  */

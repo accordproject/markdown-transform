@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer } = require('@accordproject/markdown-common').ComposerConcerto;
+const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const { commonMarkModel } = require('@accordproject/markdown-common').Models;
