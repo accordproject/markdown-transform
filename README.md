@@ -3,6 +3,7 @@
 [![downloads](https://img.shields.io/npm/dm/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli)
 [![npm version](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)
 ![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)
+[![GitHub license](https://img.shields.io/github/license/accordproject/markdown-transform)](https://github.com/accordproject/markdown-transform/blob/master/LICENSE)
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
 
