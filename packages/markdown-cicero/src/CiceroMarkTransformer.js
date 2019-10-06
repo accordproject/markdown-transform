@@ -34,8 +34,7 @@ class CiceroMarkTransformer {
      * Construct the parser.
      * @param {object} [options] configuration options
      */
-    constructor(options) {
-        this.options = options;
+    constructor() {
 
         // Setup for Nested Parsing
         this.commonMark = new CommonMarkTransformer({ tagInfo: true });

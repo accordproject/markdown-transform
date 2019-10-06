@@ -42,7 +42,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -51,7 +51,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -64,7 +64,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -73,7 +73,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -82,7 +82,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -91,7 +91,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -109,7 +109,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -135,7 +135,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -144,7 +144,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -153,7 +153,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -187,7 +187,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -196,7 +196,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -205,7 +205,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "attachment",
-              "value": "%22Attachment%20X%22",
+              "value": "\\"Attachment X\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -291,7 +291,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20A%22",
+                    "text": "\\"Party A\\"",
                   },
                 ],
                 "object": "inline",
@@ -310,7 +310,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20B%22",
+                    "text": "\\"Party B\\"",
                   },
                 ],
                 "object": "inline",
@@ -334,7 +334,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Widgets%22",
+                    "text": "\\"Widgets\\"",
                   },
                 ],
                 "object": "inline",
@@ -353,7 +353,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20B%22",
+                    "text": "\\"Party B\\"",
                   },
                 ],
                 "object": "inline",
@@ -372,7 +372,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20A%22",
+                    "text": "\\"Party A\\"",
                   },
                 ],
                 "object": "inline",
@@ -391,7 +391,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Widgets%22",
+                    "text": "\\"Widgets\\"",
                   },
                 ],
                 "object": "inline",
@@ -422,7 +422,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20B%22",
+                    "text": "\\"Party B\\"",
                   },
                 ],
                 "object": "inline",
@@ -470,7 +470,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Widgets%22",
+                    "text": "\\"Widgets\\"",
                   },
                 ],
                 "object": "inline",
@@ -489,7 +489,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20A%22",
+                    "text": "\\"Party A\\"",
                   },
                 ],
                 "object": "inline",
@@ -508,7 +508,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Widgets%22",
+                    "text": "\\"Widgets\\"",
                   },
                 ],
                 "object": "inline",
@@ -559,7 +559,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Widgets%22",
+                    "text": "\\"Widgets\\"",
                   },
                 ],
                 "object": "inline",
@@ -578,7 +578,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Party%20A%22",
+                    "text": "\\"Party A\\"",
                   },
                 ],
                 "object": "inline",
@@ -597,7 +597,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "%22Attachment%20X%22",
+                    "text": "\\"Attachment X\\"",
                   },
                 ],
                 "object": "inline",
@@ -665,7 +665,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -674,7 +674,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -687,7 +687,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -696,7 +696,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -705,7 +705,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -714,7 +714,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -732,7 +732,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -758,7 +758,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -767,7 +767,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -776,7 +776,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -810,7 +810,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -819,7 +819,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -828,7 +828,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "attachment",
-              "value": "%22Attachment%20X%22",
+              "value": "\\"Attachment X\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",

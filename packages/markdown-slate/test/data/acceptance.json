@@ -55,7 +55,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20A%22"
+                                    "text": "\"Party A\""
                                 }]
                             },
                             {
@@ -71,7 +71,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20B%22"
+                                    "text": "\"Party B\""
                                 }]
                             },
                             {
@@ -92,7 +92,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Widgets%22"
+                                    "text": "\"Widgets\""
                                 }]
                             },
                             {
@@ -108,7 +108,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20B%22"
+                                    "text": "\"Party B\""
                                 }]
                             },
                             {
@@ -124,7 +124,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20A%22"
+                                    "text": "\"Party A\""
                                 }]
                             },
                             {
@@ -140,7 +140,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Widgets%22"
+                                    "text": "\"Widgets\""
                                 }]
                             },
                             {
@@ -168,7 +168,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20B%22"
+                                    "text": "\"Party B\""
                                 }]
                             },
                             {
@@ -210,7 +210,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Widgets%22"
+                                    "text": "\"Widgets\""
                                 }]
                             },
                             {
@@ -226,7 +226,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20A%22"
+                                    "text": "\"Party A\""
                                 }]
                             },
                             {
@@ -242,7 +242,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Widgets%22"
+                                    "text": "\"Widgets\""
                                 }]
                             },
                             {
@@ -290,7 +290,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Widgets%22"
+                                    "text": "\"Widgets\""
                                 }]
                             },
                             {
@@ -306,7 +306,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Party%20A%22"
+                                    "text": "\"Party A\""
                                 }]
                             },
                             {
@@ -322,7 +322,7 @@
                                 },
                                 "nodes": [{
                                     "object": "text",
-                                    "text": "%22Attachment%20X%22"
+                                    "text": "\"Attachment X\""
                                 }]
                             },
                             {

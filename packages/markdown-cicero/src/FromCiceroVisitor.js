@@ -48,6 +48,7 @@ class FromCiceroVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
+
         switch(thing.getType()) {
         case 'Clause': {
             let jsonSource = {};
@@ -110,9 +111,9 @@ class FromCiceroVisitor {
 
             // Create the text for that document
             const content = '';
-            const attributeString = `id="${thing.id}" value="${thing.value}"`;
+            const attributeString = `id="${thing.id}" value="${encodeURIComponent(thing.value)}"`;
             if (this.options && !this.options.wrapVariables) {
-                thing.text = decodeURI(thing.value); // to decode
+                thing.text = thing.value;
             } else {
                 thing.text = `<variable ${attributeString}/>`;
             }
@@ -150,9 +151,9 @@ class FromCiceroVisitor {
 
             // Create the text for that document
             const content = '';
-            const attributeString = `value="${thing.value}"`;
+            const attributeString = `value="${encodeURIComponent(thing.value)}"`;
             if (this.options && !this.options.wrapVariables) {
-                thing.text = decodeURI(thing.value); // to decode
+                thing.text = thing.value;
             } else {
                 thing.text = `<computed ${attributeString}/>`;
             }

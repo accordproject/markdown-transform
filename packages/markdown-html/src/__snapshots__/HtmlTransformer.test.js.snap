@@ -63,8 +63,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -73,8 +72,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -87,8 +85,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -97,8 +94,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -107,8 +103,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -117,8 +112,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -136,8 +130,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "receiver",
-              "text": "<variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>",
-              "value": "%22Party%20B%22",
+              "value": "\\"Party B\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -146,7 +139,6 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "businessDays",
-              "text": "<variable id=\\"businessDays\\" value=\\"10\\"/>",
               "value": "10",
             },
             Object {
@@ -164,8 +156,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -174,8 +165,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -184,8 +174,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -219,8 +208,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "deliverable",
-              "text": "<variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>",
-              "value": "%22Widgets%22",
+              "value": "\\"Widgets\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -229,8 +217,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "shipper",
-              "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
-              "value": "%22Party%20A%22",
+              "value": "\\"Party A\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -239,8 +226,7 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "attachment",
-              "text": "<variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>",
-              "value": "%22Attachment%20X%22",
+              "value": "\\"Attachment X\\"",
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -263,35 +249,35 @@ exports[`html converts acceptance.md to html 2`] = `
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
 $<p>Acceptance of Delivery. <div class=\\"variable\\" id=\\"shipper\\">
-$%22Party%20A%22</div>
+$\\"Party A\\"</div>
  will be deemed to have completed its delivery obligations if in <div class=\\"variable\\" id=\\"receiver\\">
-$%22Party%20B%22</div>
+$\\"Party B\\"</div>
 's opinion, the <div class=\\"variable\\" id=\\"deliverable\\">
-$%22Widgets%22</div>
+$\\"Widgets\\"</div>
  satisfies the Acceptance Criteria, and <div class=\\"variable\\" id=\\"receiver\\">
-$%22Party%20B%22</div>
+$\\"Party B\\"</div>
  notifies <div class=\\"variable\\" id=\\"shipper\\">
-$%22Party%20A%22</div>
+$\\"Party A\\"</div>
  in writing that it is accepting the <div class=\\"variable\\" id=\\"deliverable\\">
-$%22Widgets%22</div>
+$\\"Widgets\\"</div>
 .</p>
 <p>Inspection and Notice. <div class=\\"variable\\" id=\\"receiver\\">
-$%22Party%20B%22</div>
+$\\"Party B\\"</div>
  will have <div class=\\"variable\\" id=\\"businessDays\\">
 $10</div>
  Business Days' to inspect and evaluate the <div class=\\"variable\\" id=\\"deliverable\\">
-$%22Widgets%22</div>
+$\\"Widgets\\"</div>
  on the delivery date before notifying <div class=\\"variable\\" id=\\"shipper\\">
-$%22Party%20A%22</div>
+$\\"Party A\\"</div>
  that it is either accepting or rejecting the <div class=\\"variable\\" id=\\"deliverable\\">
-$%22Widgets%22</div>
+$\\"Widgets\\"</div>
 .</p>
 <p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <div class=\\"variable\\" id=\\"deliverable\\">
-$%22Widgets%22</div>
+$\\"Widgets\\"</div>
  must meet for the <div class=\\"variable\\" id=\\"shipper\\">
-$%22Party%20A%22</div>
+$\\"Party A\\"</div>
  to comply with its requirements and obligations under this agreement, detailed in <div class=\\"variable\\" id=\\"attachment\\">
-$%22Attachment%20X%22</div>
+$\\"Attachment X\\"</div>
 , attached to this agreement.</p>
 </div>
 </body>
@@ -354,7 +340,6 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "id": "loanAmount",
-          "text": "<variable id=\\"loanAmount\\" value=\\"100000.0\\"/>",
           "value": "100000.0",
         },
         Object {
@@ -367,7 +352,6 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "id": "rate",
-          "text": "<variable id=\\"rate\\" value=\\"2.5\\"/>",
           "value": "2.5",
         },
         Object {
@@ -384,7 +368,6 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "id": "loanDuration",
-          "text": "<variable id=\\"loanDuration\\" value=\\"15\\"/>",
           "value": "15",
         },
         Object {
@@ -400,7 +383,6 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.ComputedVariable",
-          "text": "<computed value=\\"667.0\\"/>",
           "value": "667.0",
         },
       ],
@@ -460,7 +442,6 @@ content",
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "rate",
-              "text": "<variable id=\\"rate\\" value=\\"2.5\\"/>",
               "value": "2.5",
             },
           ],

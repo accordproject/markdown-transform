@@ -116,6 +116,7 @@ class ToCiceroMarkVisitor {
                     thing.id = tag.attributes[0].value;
                     thing.value = tag.attributes[1].value;
                     delete thing.tag;
+                    delete thing.text;
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
@@ -133,6 +134,7 @@ class ToCiceroMarkVisitor {
                     thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'ComputedVariable');
                     thing.value = tag.attributes[0].value;
                     delete thing.tag;
+                    delete thing.text;
                 }
                 else {
                     //console.log('Found ComputedVariable but without \'value\' attributes ');

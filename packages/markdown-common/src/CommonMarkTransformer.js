@@ -138,9 +138,9 @@ class CommonMarkTransformer {
                             if (tagInfo.attributes.hasOwnProperty(attName)) {
                                 const attValue = tagInfo.attributes[attName];
                                 head.tag.attributes.push({
-                                    '$class': COMMON_NS_PREFIX + 'Attribute',
-                                    'name': attName,
-                                    'value': attValue,
+                                    $class : COMMON_NS_PREFIX + 'Attribute',
+                                    name : attName,
+                                    value : decodeURIComponent(attValue),
                                 });
                             }
                         }

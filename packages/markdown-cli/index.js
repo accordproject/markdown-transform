@@ -60,6 +60,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('verbose', {
+            describe: 'verbose output',
+            type: 'boolean',
+            default: false
+        });
     }, (argv) => {
         if (argv.verbose) {
             Logger.info(`parse sample ${argv.sample} markdown`);
@@ -74,6 +79,7 @@ require('yargs')
             options.html = argv.html;
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
+            options.verbose = argv.verbose;
             return Commands.parse(argv.sample, argv.out, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}

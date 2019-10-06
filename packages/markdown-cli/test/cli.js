@@ -81,6 +81,7 @@ describe('markdown-cli', () => {
             options.slate = false;
             options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
+            console.log(result);
             result.should.eql(sampleExpectedText);
         });
 

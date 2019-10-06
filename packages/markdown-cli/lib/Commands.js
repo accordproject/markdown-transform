@@ -74,7 +74,7 @@ class Commands {
         argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
-            Logger.info(`parse sample ${argv.sample} using a template ${argv.template}`);
+            Logger.info(`parse sample ${argv.sample} printing intermediate transformations.`);
         }
 
         return argv;
@@ -91,10 +91,11 @@ class Commands {
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
      * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
+     * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outPath, options) {
-        const { roundtrip, cicero, slate, html, noWrap, noIndex } = options;
+        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -106,15 +107,35 @@ class Commands {
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let result = commonMark.fromMarkdown(markdownText, 'json');
+        if(verbose) {
+            console.log('=== CommonMark ===');
+            console.log(JSON.stringify(result, null, 4));
+        }
 
         if (cicero) {
             result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
         }
         else if (slate) {
             result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
             result = slateMark.fromCiceroMark(result);
+            if(verbose) {
+                console.log('=== Slate DOM ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
         } else if (html) {
             result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
             result = htmlMark.toHtml(result);
         }
 
@@ -123,17 +144,29 @@ class Commands {
                 const ciceroOptions = {};
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
+                if(verbose) {
+                    console.log('=== CommonMark ===');
+                    console.log(JSON.stringify(result, null, 4));
+                }
             } else if (slate) {
-                result = slateMark.toCiceroMark(result);
+                result = slateMark.toCiceroMark(result, 'json');
+                if(verbose) {
+                    console.log('=== CiceroMark ===');
+                    console.log(JSON.stringify(result, null, 4));
+                }
                 const ciceroOptions = {};
                 ciceroOptions.wrapVariables = noWrap ? false : true;
                 result = ciceroMark.toCommonMark(result, ciceroOptions);
+                if(verbose) {
+                    console.log('=== CommonMark ===');
+                    console.log(JSON.stringify(result, null, 4));
+                }
             } else if (html) {
                 throw new Error('Cannot roundtrip from HTML');
             }
             result = commonMark.toMarkdown(result);
         } else if (!html) {
-            result = JSON.stringify(result);
+            result = JSON.stringify(result, null, 4);
         }
         if (outPath) {
             Logger.info('Creating file: ' + outPath);
