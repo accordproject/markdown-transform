@@ -96,7 +96,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n$${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable':
-            parameters.result += `<div class="variable" id="${thing.id}">\n$${thing.value}</div>\n`;
+            parameters.result += `<div class="variable" id="${thing.id}">${thing.value}</div>\n`;
             break;
         case 'ComputedVariable':
             parameters.result += `<div class="computed>${thing.value}</div>\n`;
