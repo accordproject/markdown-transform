@@ -4,6 +4,7 @@
 [![npm version](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)
 ![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)
 [![GitHub license](https://img.shields.io/github/license/accordproject/markdown-transform)](https://github.com/accordproject/markdown-transform/blob/master/LICENSE)
+[![join slack](https://img.shields.io/badge/Slack-Join%20Slack-blue)](https://accord-project-slack-signup.herokuapp.com/)
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
 
