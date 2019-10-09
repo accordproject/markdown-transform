@@ -110,7 +110,7 @@ Before you submit your pull request consider the following guidelines:
 
   Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
 
-* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-fowarding master:
+* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-forwarding master:
 
   ```text
     git rebase upstream/master
@@ -143,7 +143,7 @@ Before you submit your pull request consider the following guidelines:
     git push origin name-issue-tracker-short-description -f
     ```
 
-    This is generally easier to follow, but seperate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
+    This is generally easier to follow, but separate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
 
 That's it! Thank you for your contribution!
 
