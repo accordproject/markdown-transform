@@ -18,9 +18,7 @@
       <img src="https://img.shields.io/github/license/accordproject/markdown-transform" alt="GitHub license" />
   </a>
   <a href="https://accord-project-slack-signup.herokuapp.com/">
-    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue" alt="Join the Accord Project Slack" />
-  <a href="">
-      <img src="" alt="" />
+      <img src="https://img.shields.io/badge/Slack-Join%20Slack-blue" alt="Join the Accord Project Slack" />
   </a>
 
 </p>
