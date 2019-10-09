@@ -1,11 +1,31 @@
-# Markdown Transform
+<h1 align="center">Markdown Transform</h1>
 
-[![downloads](https://img.shields.io/npm/dm/@accordproject/markdown-cli)](https://www.npmjs.com/package/@accordproject/markdown-cli)
-[![npm version](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)](https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg)
-[![Build Status](https://travis-ci.org/accordproject/markdown-transform.svg?branch=master)](https://travis-ci.org/accordproject/markdown-transform)
-![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)
-[![GitHub license](https://img.shields.io/github/license/accordproject/markdown-transform)](https://github.com/accordproject/markdown-transform/blob/master/LICENSE)
-[![join slack](https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue)](https://accord-project-slack-signup.herokuapp.com/)
+<p align="center">
+   
+  <a href="https://www.npmjs.com/package/@accordproject/markdown-cli">
+      <img src="https://img.shields.io/npm/dm/@accordproject/markdown-cli" alt="downloads" />
+  </a>
+  <a href="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli">
+      <img src="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg" alt="npm version" />
+  </a>
+  <a href="https://travis-ci.org/accordproject/markdown-transform">
+      <img src="https://travis-ci.org/accordproject/markdown-transform.svg" alt="Build Status" />
+  </a>
+  <a href="">
+      <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna" />
+  </a>
+  <a href="https://github.com/accordproject/markdown-transform/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/accordproject/markdown-transform" alt="GitHub license" />
+  </a>
+  <a href="https://accord-project-slack-signup.herokuapp.com/">
+    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue" alt="Join the Accord Project Slack" />
+  <a href="">
+      <img src="" alt="" />
+  </a>
+
+</p>
+
+[![join slack](]()
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
 
