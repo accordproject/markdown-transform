@@ -15,7 +15,7 @@
 
 'use strict';
 
-const Logger = require('@accordproject/markdown-common').Logger;
+const Logger = require('@accordproject/concerto-core').Logger;
 const Commands = require('./lib/Commands');
 
 require('yargs')
