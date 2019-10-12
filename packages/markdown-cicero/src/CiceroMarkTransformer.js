@@ -118,7 +118,7 @@ class CiceroMarkTransformer {
      * @param {object} [options] configuration options
      * @returns {*} json commonmark object
      */
-    toCommonMark(input, format='concerto', options) {
+    toCommonMark(input, format='concerto', options = {}) {
 
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
