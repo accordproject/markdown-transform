@@ -36,7 +36,8 @@
     "pkgstamp": "node ./scripts/pkgstamp.js",
     "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
     "pkgset": "node ./scripts/pkgset.js",
-    "depcheck": "node ./scripts/depcheck.js"
+    "depcheck": "node ./scripts/depcheck.js",
+    "postinstall": "lerna bootstrap --no-ci"
   },
   "repository": {
     "type": "git",
