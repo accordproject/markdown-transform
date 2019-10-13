@@ -33,11 +33,11 @@ A transformation framework for converting markdown content to HTML, Slate (for r
 
 This mono-repo contains the following packages, where each package implements some transformations:
 
-* markdown-common : converts markdown strings to/from the CommonMark DOM
-* markdown-cicero : converts CommonMark DOM to/from the CiceroMark DOM
-* markdown-slate : converts CiceroMark DOM to/from the Slate DOM
+* markdown-common: converts markdown strings to/from the CommonMark DOM
+* markdown-cicero: converts CommonMark DOM to/from the CiceroMark DOM
+* markdown-slate: converts CiceroMark DOM to/from the Slate DOM
 * markdown-html : converts CiceroMark DOM to HTML
-* markdown-cli : command line utilities
+* markdown-cli: command-line utilities
 
 ###  CommonMark DOM
 
@@ -76,10 +76,10 @@ This is a short reference guide, for a more full context, please refer to our [C
 ### Development
 
 1. Fork project to your repository
-2. Clone to local machine with `git clone`
+2. Clone to the local machine with `git clone`
 3. `cd` into the directory
 4. Run `npm install`
-5. Build in watch mode `npm run build:watch`
+5. Build-in watch mode `npm run build:watch`
 
 ---
 
@@ -89,7 +89,7 @@ This is a short reference guide, for a more full context, please refer to our [C
   </p>
 </a>
 
-Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
+Accord Project is an open-source, a non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
 ## Learn More About Accord Project
 
@@ -112,7 +112,7 @@ Accord Project is an open source, non-profit, initiative working to transform co
 
 ## Contributing
 
-The Accord Project technology is being developed as open source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
+The Accord Project technology is being developed as open-source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
 
 Find out what’s coming on our [blog][apblog].
 
