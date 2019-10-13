@@ -18,7 +18,7 @@ machine:
 * [Git][git]: The [Github Guide to Installing Git][git-setup] is a good source of information.
 
 * [Node.js v10.16.0 'Dubnium' (LTS)][node]: We use Node to generate the documentation, run a
-  development web server, run tests, and generate distributable files. Depending on your system,
+  development of web server, run tests and generate distributable files. Depending on your system,
   you can install Node either from source or as a pre-packaged bundle.
 
   We recommend using [nvm][nvm] (or [nvm-windows][nvm-windows])
@@ -35,7 +35,7 @@ Afterwards, go ahead and [fork][github-forking] the
 
 ### Building Markdown-Transform
 
-To build Markdown-Transform, you clone the source code repository and use lerna to build:
+To build Markdown-Transform, you clone the source code repository and use Lerna to build:
 
 ```shell
 # Clone your Github repository:
@@ -53,7 +53,7 @@ npm install
 
 ### Keeping In Sync
 
-It is good practice to always keep your `origin/master` in sync with `upstream/master`. You don’t have to, but it makes your life easier. Do your work in branches of your fork, and periodically sync up your `master` with the `master` of `upstream` as follows. You should definitely do this before creating a pull request.
+It is good practice to always keep your `origin/master` in sync with `upstream/master`. You don’t have to, but it makes your life easier. Do your work in branches of your fork, and periodically sync up your `master` with the `master` of `upstream` as follows. You should do this before creating a pull request.
 
 ```shell
     git fetch --all --prune
@@ -119,12 +119,12 @@ Must be one of the following:
 
 ### Scope
 The scope will be specifying the place of the commit change; the focal point of new code or best 
-description for where changes can be found.
+description of where changes can be found.
 
 You can use `*` when the change affects more than a single scope.
 
 ### Subject
-The subject contains succinct description of the change:
+The subject contains a succinct description of the change:
 
 * use the imperative, present tense: "change" not "changed" nor "changes"
 * don't capitalize first letter
@@ -147,10 +147,10 @@ Formatting for the body is displayed in this example:
 
 ### Changes
 - Change one
-  - Subchange one
-  - Subchange two
+  - Sub change one
+  - Sub change two
 - Change two
-- Theoretically this should be listing all the commit messages included in this PR
+- Theoretically, this should be listing all the commit messages included in this PR
 
 ### Flags
 - Possible issues or holds for reviewers to note
