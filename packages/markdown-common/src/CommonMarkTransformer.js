@@ -135,7 +135,7 @@ class CommonMarkTransformer {
                         head.tag.attributeString = tagInfo.attributeString;
                         head.tag.attributes = [];
                         for (const attName in tagInfo.attributes) {
-                            if (tagInfo.attributes.hasOwnProperty(attName)) {
+                            if (Object.prototype.hasOwnProperty.call(tagInfo.attributes, attName)) {
                                 const attValue = tagInfo.attributes[attName];
                                 head.tag.attributes.push({
                                     $class : COMMON_NS_PREFIX + 'Attribute',
