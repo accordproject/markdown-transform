@@ -24,6 +24,17 @@ chai.use(require('chai-as-promised'));
 
 const Commands = require('../lib/Commands');
 
+/**
+ * Prepare the text for parsing (normalizes new lines, etc)
+ * @param {string} input - the text for the clause
+ * @return {string} - the normalized text for the clause
+ */
+function normalizeNLs(input) {
+    // we replace all \r and \n with \n
+    let text =  input.replace(/\r/gm,'');
+    return text;
+}
+
 describe('markdown-cli', () => {
     const sample = path.resolve(__dirname, 'data', 'acceptance.md');
     const sampleExpected = path.resolve(__dirname, 'data', 'acceptance.json');
@@ -32,7 +43,7 @@ describe('markdown-cli', () => {
     const sampleExpectedCiceroMarkJson = JSON.parse(fs.readFileSync(sampleExpectedCiceroMark, 'utf8'));
     const sampleExpectedSlate = path.resolve(__dirname, 'data', 'acceptance-slate.json');
     const sampleExpectedSlateJson = JSON.parse(fs.readFileSync(sampleExpectedSlate, 'utf8'));
-    const sampleExpectedText = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8');
+    const sampleExpectedText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8'));
 
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
