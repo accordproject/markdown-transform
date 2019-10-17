@@ -21,12 +21,15 @@ const Commands = require('./lib/Commands');
 require('yargs')
     .scriptName('markus')
     .usage('$0 <cmd> [args]')
+    .demandCommand(1, '# Please specify a command')
+    .recommendCommands()
+    .strict()
     .command('parse', 'parse and transform sample markdown', (yargs) => {
         yargs.option('sample', {
-            describe: 'path to the clause text',
+            describe: 'path to the markdown text',
             type: 'string'
         });
-        yargs.option('out', {
+        yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
         });
@@ -80,7 +83,125 @@ require('yargs')
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
-            return Commands.parse(argv.sample, argv.out, options)
+            return Commands.parse(argv.sample, argv.output, options)
+                .then((result) => {
+                    if(result) {Logger.info('\n'+result);}
+                })
+                .catch((err) => {
+                    Logger.error(err.message);
+                });
+        } catch (err){
+            Logger.error(err.message);
+            return;
+        }
+    })
+    .command('draft', 'create markdown text from data', (yargs) => {
+        yargs.option('data', {
+            describe: 'path to the data',
+            type: 'string'
+        });
+        yargs.option('output', {
+            describe: 'path to the output file',
+            type: 'string'
+        });
+        yargs.option('cicero', {
+            describe: 'further transform to CiceroMark',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('slate', {
+            describe: 'further transform to Slate DOM',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('noWrap', {
+            describe: 'do not wrap variables as XML tags',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('noIndex', {
+            describe: 'do not index ordered lists',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('verbose', {
+            describe: 'verbose output',
+            type: 'boolean',
+            default: false
+        });
+    }, (argv) => {
+        if (argv.verbose) {
+            Logger.info(`draft sample markdown from ${argv.data}`);
+        }
+
+        try {
+            argv = Commands.validateDraftArgs(argv);
+            const options = {};
+            options.cicero = argv.cicero;
+            options.slate = argv.slate;
+            options.noWrap = argv.noWrap;
+            options.noIndex = argv.noIndex;
+            options.verbose = argv.verbose;
+            return Commands.draft(argv.data, argv.output, options)
+                .then((result) => {
+                    if(result) {Logger.info('\n'+result);}
+                })
+                .catch((err) => {
+                    Logger.error(err.message);
+                });
+        } catch (err){
+            Logger.error(err.message);
+            return;
+        }
+    })
+    .command('redraft', 'parse a sample markdown and re-create it', (yargs) => {
+        yargs.option('sample', {
+            describe: 'path to the markdown text',
+            type: 'string'
+        });
+        yargs.option('output', {
+            describe: 'path to the output file',
+            type: 'string'
+        });
+        yargs.option('cicero', {
+            describe: 'further transform to CiceroMark',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('slate', {
+            describe: 'further transform to Slate DOM',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('noWrap', {
+            describe: 'do not wrap variables as XML tags',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('noIndex', {
+            describe: 'do not index ordered lists',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('verbose', {
+            describe: 'verbose output',
+            type: 'boolean',
+            default: false
+        });
+    }, (argv) => {
+        if (argv.verbose) {
+            Logger.info(`parse and re-create sample ${argv.sample} markdown`);
+        }
+
+        try {
+            argv = Commands.validateRedraftArgs(argv);
+            const options = {};
+            options.cicero = argv.cicero;
+            options.slate = argv.slate;
+            options.noWrap = argv.noWrap;
+            options.noIndex = argv.noIndex;
+            options.verbose = argv.verbose;
+            return Commands.redraft(argv.sample, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })

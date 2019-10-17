@@ -58,14 +58,14 @@ class Commands {
         }
 
         if (!argExists){
-            throw new Error(`A ${argDefaultName} file is required. Try the --${argName} flag or create a ${argDefaultName} in the root folder of your template.`);
+            throw new Error(`A ${argDefaultName} file is required. Try the --${argName} flag or create a ${argDefaultName}.`);
         } else {
             return argv;
         }
     }
 
     /**
-     * Set default params before we parse a sample text using a template
+     * Set default params before we parse a sample text
      *
      * @param {object} argv the inbound argument values object
      * @returns {object} a modfied argument object
@@ -84,18 +84,18 @@ class Commands {
      * Parse a sample markdown
      *
      * @param {string} samplePath to the sample file
-     * @param {string} outPath to an output file
+     * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
-     * @param {boolean} [options.roundtrip] whether to transform back to markdown
      * @param {boolean} [options.cicero] whether to further transform for Cicero
      * @param {boolean} [options.slate] whether to further transform for Slate
+     * @param {boolean} [options.html] whether to further transform for HTML
      * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
      * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outPath, options) {
-        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
+    static parse(samplePath, outputPath, options) {
+        const { cicero, slate, html, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -138,39 +138,184 @@ class Commands {
             }
             result = htmlMark.toHtml(result);
         }
-
-        if (roundtrip) {
-            if (cicero) {
-                const ciceroOptions = {};
-                ciceroOptions.wrapVariables = noWrap ? false : true;
-                result = ciceroMark.toCommonMark(result, ciceroOptions);
-                if(verbose) {
-                    console.log('=== CommonMark ===');
-                    console.log(JSON.stringify(result, null, 4));
-                }
-            } else if (slate) {
-                result = slateMark.toCiceroMark(result, 'json');
-                if(verbose) {
-                    console.log('=== CiceroMark ===');
-                    console.log(JSON.stringify(result, null, 4));
-                }
-                const ciceroOptions = {};
-                ciceroOptions.wrapVariables = noWrap ? false : true;
-                result = ciceroMark.toCommonMark(result, ciceroOptions);
-                if(verbose) {
-                    console.log('=== CommonMark ===');
-                    console.log(JSON.stringify(result, null, 4));
-                }
-            } else if (html) {
-                throw new Error('Cannot roundtrip from HTML');
-            }
-            result = commonMark.toMarkdown(result);
-        } else if (!html) {
+        if (!html) {
             result = JSON.stringify(result, null, 4);
         }
-        if (outPath) {
-            Logger.info('Creating file: ' + outPath);
-            Fs.writeFileSync(outPath, result);
+        if (outputPath) {
+            Logger.info('Creating file: ' + outputPath);
+            Fs.writeFileSync(outputPath, result);
+        }
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Set default params before we draft a sample text
+     *
+     * @param {object} argv the inbound argument values object
+     * @returns {object} a modfied argument object
+     */
+    static validateDraftArgs(argv) {
+        argv = Commands.setDefaultFileArg(argv, 'data', 'data.json', ((argv, argDefaultName) => { return argDefaultName; }));
+
+        if(argv.verbose) {
+            Logger.info(`draft sample from ${argv.data} printing intermediate transformations.`);
+        }
+
+        return argv;
+    }
+
+    /**
+     * Parse a sample markdown
+     *
+     * @param {string} dataPath to the sample file
+     * @param {string} outputPath to an output file
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.cicero] whether to further transform for Cicero
+     * @param {boolean} [options.slate] whether to further transform for Slate
+     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
+     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} Promise to the result of parsing
+     */
+    static draft(dataPath, outputPath, options) {
+        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
+        const commonOptions = {};
+        commonOptions.tagInfo = true;
+        commonOptions.noIndex = noIndex ? true : false;
+
+        const commonMark = new CommonMarkTransformer(commonOptions);
+        const ciceroMark = new CiceroMarkTransformer();
+        const slateMark = new SlateTransformer();
+        const htmlMark = new HtmlTransformer();
+
+        let result = JSON.parse(Fs.readFileSync(dataPath, 'utf8'));
+        if (cicero) {
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            if(verbose) {
+                console.log('=== CommonMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        } else if (slate) {
+            result = slateMark.toCiceroMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            if(verbose) {
+                console.log('=== CommonMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        } else if (html) {
+            throw new Error('Cannot roundtrip from HTML');
+        }
+        result = commonMark.toMarkdown(result);
+        if (outputPath) {
+            Logger.info('Creating file: ' + outputPath);
+            Fs.writeFileSync(outputPath, result);
+        }
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Set default params before we redraft a sample text
+     *
+     * @param {object} argv the inbound argument values object
+     * @returns {object} a modfied argument object
+     */
+    static validateRedraftArgs(argv) {
+        argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
+
+        if(argv.verbose) {
+            Logger.info(`redraft sample ${argv.sample} printing intermediate transformations.`);
+        }
+
+        return argv;
+    }
+
+    /**
+     * Redraft a sample markdown
+     *
+     * @param {string} samplePath to the sample file
+     * @param {string} outputPath to an output file
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.cicero] whether to further transform for Cicero
+     * @param {boolean} [options.slate] whether to further transform for Slate
+     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
+     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} Promise to the result of parsing
+     */
+    static redraft(samplePath, outputPath, options) {
+        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
+        const commonOptions = {};
+        commonOptions.tagInfo = true;
+        commonOptions.noIndex = noIndex ? true : false;
+
+        const commonMark = new CommonMarkTransformer(commonOptions);
+        const ciceroMark = new CiceroMarkTransformer();
+        const slateMark = new SlateTransformer();
+        const htmlMark = new HtmlTransformer();
+
+        const markdownText = Fs.readFileSync(samplePath, 'utf8');
+        let result = commonMark.fromMarkdown(markdownText, 'json');
+        if(verbose) {
+            console.log('=== CommonMark ===');
+            console.log(JSON.stringify(result, null, 4));
+        }
+
+        if (cicero) {
+            result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        }
+        else if (slate) {
+            result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+            result = slateMark.fromCiceroMark(result);
+            if(verbose) {
+                console.log('=== Slate DOM ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        }
+
+        if (cicero) {
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            if(verbose) {
+                console.log('=== CommonMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        } else if (slate) {
+            result = slateMark.toCiceroMark(result, 'json');
+            if(verbose) {
+                console.log('=== CiceroMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            if(verbose) {
+                console.log('=== CommonMark ===');
+                console.log(JSON.stringify(result, null, 4));
+            }
+        } else if (html) {
+            throw new Error('Cannot roundtrip from HTML');
+        }
+        result = commonMark.toMarkdown(result);
+        if (outputPath) {
+            Logger.info('Creating file: ' + outputPath);
+            Fs.writeFileSync(outputPath, result);
         }
         return Promise.resolve(result);
     }

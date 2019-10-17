@@ -26,71 +26,98 @@ const Commands = require('../lib/Commands');
 
 describe('markdown-cli', () => {
     const sample = path.resolve(__dirname, 'data', 'acceptance.md');
-    const sampleExpectedJson = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance.json'), 'utf8');
-    const sampleExpectedCiceroMark = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-cicero.json'), 'utf8');
-    const sampleExpectedSlate = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-slate.json'), 'utf8');
+    const sampleExpected = path.resolve(__dirname, 'data', 'acceptance.json');
+    const sampleExpectedJson = JSON.parse(fs.readFileSync(sampleExpected, 'utf8'));
+    const sampleExpectedCiceroMark = path.resolve(__dirname, 'data', 'acceptance-cicero.json');
+    const sampleExpectedCiceroMarkJson = JSON.parse(fs.readFileSync(sampleExpectedCiceroMark, 'utf8'));
+    const sampleExpectedSlate = path.resolve(__dirname, 'data', 'acceptance-slate.json');
+    const sampleExpectedSlateJson = JSON.parse(fs.readFileSync(sampleExpectedSlate, 'utf8'));
     const sampleExpectedText = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8');
 
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
             const options = {};
-            options.roundtrip = false;
             options.cicero = false;
             options.slate = false;
             options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(JSON.parse(sampleExpectedJson)));
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
         });
 
         it('should parse a markdown file to CiceroMark', async () => {
             const options = {};
-            options.roundtrip = false;
             options.cicero = true;
             options.slate = false;
             options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(JSON.parse(sampleExpectedCiceroMark)));
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to Slate', async () => {
             const options = {};
-            options.roundtrip = false;
             options.cicero = false;
             options.slate = true;
             options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(JSON.parse(sampleExpectedSlate)));
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
         });
     });
 
-    describe('#generateMarkdown', () => {
-        it('should CommonMark <> Markdown roundtrip', async () => {
+    describe('#draft', () => {
+        it('should generate a markdown file from CommonMark', async () => {
             const options = {};
-            options.roundtrip = true;
             options.cicero = false;
             options.slate = false;
             options.noWrap = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.draft(sampleExpected, null, options);
+            console.log();
+            result.should.eql(sampleExpectedText);
+        });
+
+        it('should generate a markdown file from CiceroMark', async () => {
+            const options = {};
+            options.cicero = true;
+            options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.draft(sampleExpectedCiceroMark, null, options);
+            result.should.eql(sampleExpectedText);
+        });
+
+        it('should generate a markdown file from Slate', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = true;
+            options.noWrap = true;
+            const result = await Commands.draft(sampleExpectedSlate, null, options);
+            result.should.eql(sampleExpectedText);
+        });
+    });
+
+    describe('#redraft', () => {
+        it('should CommonMark <> Markdown roundtrip', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = false;
+            options.noWrap = true;
+            const result = await Commands.redraft(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
 
         it('should CiceroMark <> Markdown roundtrip', async () => {
             const options = {};
-            options.roundtrip = true;
             options.cicero = true;
             options.slate = false;
             options.noWrap = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.redraft(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip', async () => {
             const options = {};
-            options.roundtrip = true;
             options.cicero = false;
             options.slate = true;
             options.noWrap = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.redraft(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
     });
