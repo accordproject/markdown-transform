@@ -71,7 +71,7 @@ Invokes _lerna_ to run the test suite.
 
 ## Instructions
 
-This is a short reference guide, for a more full context, please refer to our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
+This is a short reference guide. For a more full context, please refer to our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
 
 ### Development
 
