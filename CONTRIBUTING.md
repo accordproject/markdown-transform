@@ -1,6 +1,6 @@
 # Contributing to Markdown-Transform
 
-> Thanks to the angularJS team for the bulk of this text!
+> Thanks to the AngularJS team for the bulk of this text!
 
 We'd love for you to contribute to our source code and to make Markdown-Transform even better than it is today! Here are the guidelines we'd like you to follow:
 
@@ -55,7 +55,7 @@ If you would like to implement a new feature then consider what kind of change i
 
   as a Pull Request. See the section about [Pull Request Submission Guidelines][contribute.submitpr], and
 
-  for detailed information the [core development documentation][developers].
+  for detailed information read the [core development documentation][developers].
 
 ### <a name="docs"></a> Want a Doc Fix?
 
