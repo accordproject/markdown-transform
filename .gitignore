@@ -78,3 +78,6 @@ userdata.json
 
 # build output
 umd
+
+# windows junk
+thumbs.db
