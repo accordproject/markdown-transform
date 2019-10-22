@@ -26,7 +26,7 @@
     "postlint": "npm run licchk",
     "licchk": "license-check",
     "test": "jest",
-    "test:cov": "nyc npm run test",
+    "test:cov": "jest --coverage",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
     "pkgcheck": "node ./scripts/pkgcheck.js",
@@ -101,28 +101,5 @@
     "blocking": true,
     "logInfo": false,
     "logError": true
-  },
-  "nyc": {
-    "produce-source-map": "true",
-    "sourceMap": "inline",
-    "reporter": [
-      "lcov",
-      "text",
-      "text-summary",
-      "html",
-      "json"
-    ],
-    "include": [
-      "src/**/*.js"
-    ],
-    "exclude": [
-      "scripts/**/*.js"
-    ],
-    "all": true,
-    "check-coverage": true,
-    "statements": 88,
-    "branches": 76,
-    "functions": 84,
-    "lines": 88
   }
 }

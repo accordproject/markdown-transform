@@ -84,22 +84,21 @@
     "sourceMap": "inline",
     "reporter": [
       "lcov",
-      "text",
       "text-summary",
       "html",
       "json"
     ],
     "include": [
-      "src/**/*.js"
+      "lib/**/*.js"
     ],
     "exclude": [
       "scripts/**/*.js"
     ],
     "all": true,
     "check-coverage": true,
-    "statements": 88,
-    "branches": 76,
-    "functions": 84,
-    "lines": 88
+    "statements": 55,
+    "branches": 40,
+    "functions": 30,
+    "lines": 55
   }
 }
