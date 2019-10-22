@@ -58,11 +58,15 @@ npm install -g @accordproject/concerto-cli
 
 To install for development, in the project directory, you can run:
 
-#### `npm run build`
+```
+npm run build
+```
 
 Invokes _lerna_ to build all the `markdown-*` packages.
 
-#### `npm run test`
+```
+npm run test
+```
 
 Invokes _lerna_ to run the test suite.
 
@@ -95,7 +99,6 @@ Accord Project is an open source, non-profit, initiative working to transform co
 * [Ergo Language Guide][docergo]
 
 ### Ecosystem
-
 
 #### Core libraries:
 <table>
