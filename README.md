@@ -50,13 +50,23 @@ The Slate DOM is defined by the [Slate](https://www.slatejs.org) HTML content-ed
 
 ## Installation
 
+### For users
+
 To install the command-line interface:
 
 ```
 npm install -g @accordproject/concerto-cli
 ```
 
-To install for development, in the project directory, you can run:
+### For developers
+
+To install for development, in the project directory, you will need to first install the Node.js dependencies using [lerna](https://lerna.js.org):
+```
+npm install -g lerna@^3.15.0
+lerna bootstrap
+```
+
+Then run:
 
 ```
 npm run build
