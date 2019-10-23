@@ -35,6 +35,40 @@ function normalizeNLs(input) {
     return text;
 }
 
+describe('#validateParseArgs', () => {
+    it('no args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateParseArgs({
+            _: ['parse'],
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('no args specified (verbose)', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateParseArgs({
+            _: ['parse'],
+            verbose: true
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('all args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateParseArgs({
+            _: ['parse'],
+            template: './',
+            sample: 'sample.md'
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('bad sample.md', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        (() => Commands.validateParseArgs({
+            _: ['parse'],
+            sample: 'sample_en.md'
+        })).should.throw('A sample.md file is required. Try the --sample flag or create a sample.md.');
+    });
+});
+
 describe('markdown-cli', () => {
     const sample = path.resolve(__dirname, 'data', 'acceptance.md');
     const sampleExpected = path.resolve(__dirname, 'data', 'acceptance.json');
@@ -55,6 +89,16 @@ describe('markdown-cli', () => {
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
         });
 
+        it('should parse a markdown file to CommonMark (verbose)', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = false;
+            options.noWrap = true;
+            options.verbose = true;
+            const result = await Commands.parse(sample, null, options);
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
+        });
+
         it('should parse a markdown file to CiceroMark', async () => {
             const options = {};
             options.cicero = true;
@@ -64,11 +108,31 @@ describe('markdown-cli', () => {
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
         });
 
+        it('should parse a markdown file to CiceroMark (verbose)', async () => {
+            const options = {};
+            options.cicero = true;
+            options.slate = false;
+            options.noWrap = true;
+            options.verbose = true;
+            const result = await Commands.parse(sample, null, options);
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
+        });
+
         it('should parse a markdown file to Slate', async () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
             options.noWrap = true;
+            const result = await Commands.parse(sample, null, options);
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
+        });
+
+        it('should parse a markdown file to Slate (verbose)', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = true;
+            options.noWrap = true;
+            options.verbose = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
         });
