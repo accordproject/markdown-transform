@@ -150,8 +150,18 @@ describe('acceptance', () => {
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json.nodes[2]).text;
-        console.log('newmarkdown! ' + newMarkdown);
         expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it.only('converts acceptance clause content to CommonMark string (no wrapVariable)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json.nodes[2], 'json', { wrapVariables: false }).text;
+        expect(newMarkdown).toMatchSnapshot();
+        const clauseText = ciceroMarkTransformer.getClauseText(json.nodes[2], { wrapVariables: false});
+        expect(clauseText).toMatchSnapshot();
     });
 });
 
