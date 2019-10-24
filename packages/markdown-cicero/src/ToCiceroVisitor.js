@@ -81,7 +81,6 @@ class ToCiceroMarkVisitor {
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
-                    thing.clauseText = '';
                     delete thing.tag;
                     delete thing.info;
 
@@ -90,9 +89,7 @@ class ToCiceroMarkVisitor {
                     clone.$class = COMMON_NS_PREFIX + 'Paragraph';
                     delete clone.clauseid;
                     delete clone.src;
-                    delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
@@ -103,7 +100,6 @@ class ToCiceroMarkVisitor {
                     thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
-                    thing.clauseText = '';
                     delete thing.tag;
                     delete thing.info;
 
@@ -112,9 +108,7 @@ class ToCiceroMarkVisitor {
                     clone.$class = COMMON_NS_PREFIX + 'Paragraph';
                     delete clone.clauseid;
                     delete clone.src;
-                    delete clone.clauseText;
                     clone = parameters.serializer.fromJSON(clone);
-                    thing.clauseText = parameters.ciceroMark.toMarkdown(clone, { wrapVariables: false });
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }

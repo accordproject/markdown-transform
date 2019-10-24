@@ -96,7 +96,6 @@ class FromCiceroVisitor {
 
             delete thing.clauseid;
             delete thing.src;
-            delete thing.clauseText;
 
             thing.$classDeclaration = validatedTarget.$classDeclaration;
             thing.tag = validatedTarget.tag;
