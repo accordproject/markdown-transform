@@ -101,6 +101,17 @@ class CiceroMarkTransformer {
     }
 
     /**
+     * Obtain the Clause text for a Clause node
+     * @param {*} input CiceroMark DOM
+     * @param {object} [options] configuration options
+     * @returns {*} markdown string
+     */
+    getClauseText(input, options) {
+        const commonMarkDom = this.toCommonMark(input, 'json', options);
+        return ToCiceroVisitor.codeBlockContent(commonMarkDom.text);
+    }
+
+    /**
      * Retrieve the serializer used by the parser
      *
      * @returns {*} a serializer capable of dealing with the Concerto

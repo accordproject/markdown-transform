@@ -23,6 +23,17 @@ const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
 class ToCiceroMarkVisitor {
 
     /**
+     * Remove newline which is part of the code block markup
+     * @param {string} text - the code block text in the AST
+     * @return {string} the code block text without the new line due to markup
+     */
+    static codeBlockContent(text) {
+        // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
+        const result = text.charAt(text.length - 1) === '\n' ? text.substring(0, text.length - 1) : text;
+        return result;
+    }
+
+    /**
      * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
@@ -56,6 +67,9 @@ class ToCiceroMarkVisitor {
         case 'CodeBlock':
             if (thing.tag && thing.tag.tagName === 'clause' && thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
+                // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
+                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
+
                 //console.log('CONTENT! : ' + tag.content);
                 if (tag.attributes[0].name === 'src' &&
                     tag.attributes[1].name === 'clauseid') {
@@ -63,7 +77,7 @@ class ToCiceroMarkVisitor {
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
