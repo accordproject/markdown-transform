@@ -107,8 +107,18 @@ class CiceroMarkTransformer {
      * @returns {*} markdown string
      */
     getClauseText(input, options) {
-        const commonMarkDom = this.toCommonMark(input, 'json', options);
-        return ToCiceroVisitor.codeBlockContent(commonMarkDom.text);
+        let inputType;
+        if (!input.getType) {
+            inputType = input.$class;
+        } else {
+            inputType = input.getNamespace() + input.getType();
+        }
+        if (inputType === 'org.accordproject.ciceromark.Clause') {
+            const commonMarkDom = this.toCommonMark(input, 'json', options);
+            return ToCiceroVisitor.codeBlockContent(commonMarkDom.text);
+        } else {
+            throw new Error('Cannot apply getClauseText to non-clause node');
+        }
     }
 
     /**
@@ -130,7 +140,6 @@ class CiceroMarkTransformer {
      * @returns {*} json commonmark object
      */
     toCommonMark(input, format='concerto', options) {
-
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
         }

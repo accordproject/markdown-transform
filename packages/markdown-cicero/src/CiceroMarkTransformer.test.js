@@ -162,6 +162,7 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
         const clauseText = ciceroMarkTransformer.getClauseText(json.nodes[2], { wrapVariables: false});
         expect(clauseText).toMatchSnapshot();
+        expect(ciceroMarkTransformer.getClauseText.bind(json.nodes[1], { wrapVariables: false})).toThrow('Cannot apply getClauseText to non-clause node');
     });
 });
 
