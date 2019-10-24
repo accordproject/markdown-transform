@@ -139,8 +139,7 @@ class ToSlateVisitor {
                 type: 'clause',
                 data: {
                     clauseid: thing.clauseid,
-                    src: thing.src,
-                    clauseText: thing.clauseText
+                    src: thing.src
                 },
                 nodes: this.processChildNodes(thing),
             };

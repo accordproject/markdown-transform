@@ -53,7 +53,7 @@ function _recursive(parent, nodes) {
             switch(node.type) {
             case 'clause':
                 // console.log(JSON.stringify(node, null, 4));
-                result = {$class : `${NS_CICERO}.Clause`, clauseid: node.data.clauseid, src: node.data.src, clauseText: node.data.clauseText, nodes: []};
+                result = {$class : `${NS_CICERO}.Clause`, clauseid: node.data.clauseid, src: node.data.src, nodes: []};
                 break;
             case 'variable':
                 result = {$class : `${NS_CICERO}.Variable`, id: node.data.id, value: node.nodes[0].text};
