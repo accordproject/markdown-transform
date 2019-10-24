@@ -134,6 +134,27 @@ describe('markdown', () => {
     });
 });
 
+describe('acceptance', () => {
+    it('converts acceptance to CommonMark DOM', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance clause content to CommonMark string', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json.nodes[2]).text;
+        console.log('newmarkdown! ' + newMarkdown);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+});
+
 describe('markdown-spec', () => {
     getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {

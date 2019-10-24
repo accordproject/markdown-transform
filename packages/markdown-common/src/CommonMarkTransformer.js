@@ -99,6 +99,25 @@ class CommonMarkTransformer {
     }
 
     /**
+     * Converts *the children of the node* to a CommonMark DOM to a markdown string
+     * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
+     * @returns {string} the markdown string
+     */
+    toMarkdownChildren(input) {
+        if(!input.getType) {
+            input = this.serializer.fromJSON(input);
+        }
+        const parameters = {};
+        parameters.result = '';
+        parameters.first = true;
+        parameters.indent = 0;
+        const visitor = new ToMarkdownStringVisitor(this.options);
+        const result = ToMarkdownStringVisitor.visitChildren(visitor,input,parameters);
+        // console.log('RESULT!' + result.trim());
+        return result.trim();
+    }
+
+    /**
      * Converts a markdown string into a Concerto DOM object.
      *
      * @param {string} markdown the string to parse

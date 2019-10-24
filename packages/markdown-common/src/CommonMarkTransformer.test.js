@@ -120,7 +120,7 @@ function extractSpecTests(testfile) {
     return examples;
 }
 
-describe.only('markdown', () => {
+describe('markdown', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
             const json = commonMark.fromMarkdown(markdownText, 'json');
@@ -133,14 +133,34 @@ describe.only('markdown', () => {
     });
 });
 
-describe.only('readme', () => {
-    it('converts example1 to html', () => {
+describe('readme', () => {
+    it('converts example1 to CommonMark DOM', () => {
         const json = commonMark.fromMarkdown('# Heading\n\nThis is some `code`.\n\nFin.', 'json');
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         json.nodes[0].nodes[0].text = 'My New Heading';
         const newMarkdown = commonMark.toMarkdown(json);
         // console.log(newMarkdown);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+});
+
+describe('acceptance', () => {
+    it('converts acceptance to CommonMark DOM', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const json = commonMark.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = commonMark.toMarkdown(json);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts *children* of acceptance to CommonMark DOM', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const json = commonMark.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = commonMark.toMarkdownChildren(json);
         expect(newMarkdown).toMatchSnapshot();
     });
 });
