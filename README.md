@@ -69,12 +69,6 @@ lerna bootstrap
 Then run:
 
 ```
-npm run build
-```
-
-Invokes _lerna_ to build all the `markdown-*` packages.
-
-```
 npm run test
 ```
 
