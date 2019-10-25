@@ -55,7 +55,7 @@ The Slate DOM is defined by the [Slate](https://www.slatejs.org) HTML content-ed
 To install the command-line interface:
 
 ```
-npm install -g @accordproject/concerto-cli
+npm install -g @accordproject/markdown-cli
 ```
 
 ### For developers
