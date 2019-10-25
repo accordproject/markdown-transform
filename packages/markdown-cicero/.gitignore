@@ -66,3 +66,7 @@ typings/
 
 # dynamically created archives
 test/data/archives/
+
+# models preload
+scripts/fetchModels.sh
+scripts/tmp

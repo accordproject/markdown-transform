@@ -23,7 +23,7 @@ const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
 
 const { DOMParser } = require('xmldom');
-const { COMMON_NS_PREFIX, commonMarkModel } = require('./Models');
+const { NS_PREFIX_CommonMarkModel, CommonMarkModel } = require('./externalModels/CommonMarkModel.js');
 
 /**
  * Parses markdown using the commonmark parser into the
@@ -43,7 +43,7 @@ class CommonMarkTransformer {
     constructor(options) {
         this.options = options;
         const modelManager = new ModelManager();
-        modelManager.addModelFile(commonMarkModel, 'commonmark.cto');
+        modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
     }
@@ -54,11 +54,11 @@ class CommonMarkTransformer {
      * @return {boolean} whether it's a leaf node
      */
     static isLeafNode(json) {
-        return (json.$class === (COMMON_NS_PREFIX + 'Text') ||
-                json.$class === (COMMON_NS_PREFIX + 'CodeBlock') ||
-                json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
-                json.$class === (COMMON_NS_PREFIX + 'HtmlBlock') ||
-                json.$class === (COMMON_NS_PREFIX + 'Code'));
+        return (json.$class === (NS_PREFIX_CommonMarkModel + 'Text') ||
+                json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock') ||
+                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
+                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock') ||
+                json.$class === (NS_PREFIX_CommonMarkModel + 'Code'));
     }
 
     /**
@@ -67,8 +67,8 @@ class CommonMarkTransformer {
      * @return {boolean} whether it's a leaf node
      */
     static isHtmlNode(json) {
-        return (json.$class === (COMMON_NS_PREFIX + 'HtmlInline') ||
-                json.$class === (COMMON_NS_PREFIX + 'HtmlBlock'));
+        return (json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
+                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock'));
     }
 
     /**
@@ -77,7 +77,7 @@ class CommonMarkTransformer {
      * @return {boolean} whether it's a leaf node
      */
     static isCodeBlockNode(json) {
-        return json.$class === (COMMON_NS_PREFIX + 'CodeBlock');
+        return json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock');
     }
 
     /**
@@ -149,7 +149,7 @@ class CommonMarkTransformer {
                     const tagInfo = that.options && that.options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(maybeHtmlText) : null;
                     if (tagInfo) {
                         head.tag = {};
-                        head.tag.$class = COMMON_NS_PREFIX + 'TagInfo';
+                        head.tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
                         head.tag.tagName = tagInfo.tag;
                         head.tag.attributeString = tagInfo.attributeString;
                         head.tag.attributes = [];
@@ -157,7 +157,7 @@ class CommonMarkTransformer {
                             if (Object.prototype.hasOwnProperty.call(tagInfo.attributes, attName)) {
                                 const attValue = tagInfo.attributes[attName];
                                 head.tag.attributes.push({
-                                    $class : COMMON_NS_PREFIX + 'Attribute',
+                                    $class : NS_PREFIX_CommonMarkModel + 'Attribute',
                                     name : attName,
                                     value : decodeURIComponent(attValue),
                                 });
@@ -250,7 +250,7 @@ class CommonMarkTransformer {
      */
     static toClass(name) {
         const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
-        return COMMON_NS_PREFIX + CommonMarkTransformer.capitalizeFirstLetter(camelCased);
+        return NS_PREFIX_CommonMarkModel + CommonMarkTransformer.capitalizeFirstLetter(camelCased);
     }
 
     /**

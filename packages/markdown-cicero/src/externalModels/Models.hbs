@@ -14,30 +14,10 @@
 
 'use strict';
 
-const CICERO_NS_PREFIX = 'org.accordproject.ciceromark.';
+const NS_PREFIX_{{ name }} = '{{ namespace }}' + '.';
 
-const ciceroMarkModel = `
-namespace org.accordproject.ciceromark
-
-import org.accordproject.commonmark.*
-
-/**
- * A model for Accord Project extensions to commonmark
- */
-
-concept Clause extends Child {
-    o String clauseid
-    o String src
-}
-
-concept Variable extends Child {
-    o String id
-    o String value
-}
-
-concept ComputedVariable extends Child {
-    o String value
-}
+const {{ name }} = `
+{{ model }}
 `;
 
-module.exports = { CICERO_NS_PREFIX, ciceroMarkModel };
+module.exports = { NS_PREFIX_{{ name }}, {{ name }} };

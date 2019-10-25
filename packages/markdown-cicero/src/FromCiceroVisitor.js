@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
+const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 /**
  * Converts a CiceroMark DOM to a CommonMark DOM
@@ -56,11 +56,11 @@ class FromCiceroVisitor {
 
             FromCiceroVisitor.visitChildren(this, thing, parameters);
             // Revert to CodeBlock
-            jsonTarget.$class = COMMON_NS_PREFIX + 'CodeBlock';
+            jsonTarget.$class = NS_PREFIX_CommonMarkModel + 'CodeBlock';
 
             // Get the content
             const clauseJson = parameters.serializer.toJSON(thing);
-            jsonSource.$class = COMMON_NS_PREFIX + 'Document';
+            jsonSource.$class = NS_PREFIX_CommonMarkModel + 'Document';
             jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
             jsonSource.nodes = clauseJson.nodes;
 
@@ -71,7 +71,7 @@ class FromCiceroVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
             tag.tagName = 'clause';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -79,13 +79,13 @@ class FromCiceroVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute1.name = 'src';
             attribute1.value = clauseJson.src;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
-            attribute2.$class = COMMON_NS_PREFIX + 'Attribute';
+            attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute2.name = 'clauseid';
             attribute2.value = clauseJson.clauseid;
             tag.attributes.push(attribute2);
@@ -106,7 +106,7 @@ class FromCiceroVisitor {
             break;
         case 'Variable': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(COMMON_NS_PREFIX + 'HtmlInline');
+            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
@@ -119,7 +119,7 @@ class FromCiceroVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
             tag.tagName = 'variable';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -127,13 +127,13 @@ class FromCiceroVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute1.name = 'id';
             attribute1.value = thing.id;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
-            attribute2.$class = COMMON_NS_PREFIX + 'Attribute';
+            attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute2.name = 'value';
             attribute2.value = thing.value;
             tag.attributes.push(attribute2);
@@ -146,7 +146,7 @@ class FromCiceroVisitor {
             break;
         case 'ComputedVariable': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(COMMON_NS_PREFIX + 'HtmlInline');
+            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
@@ -159,7 +159,7 @@ class FromCiceroVisitor {
 
             // Create the proper tag
             let tag = {};
-            tag.$class = COMMON_NS_PREFIX + 'TagInfo';
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
             tag.tagName = 'computed';
             tag.attributeString = attributeString;
             tag.content = content;
@@ -167,7 +167,7 @@ class FromCiceroVisitor {
             tag.attributes = [];
 
             let attribute1 = {};
-            attribute1.$class = COMMON_NS_PREFIX + 'Attribute';
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute1.name = 'value';
             attribute1.value = thing.value;
             tag.attributes.push(attribute1);

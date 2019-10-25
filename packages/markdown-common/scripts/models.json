@@ -1,0 +1,3 @@
+[ { "name": "CommonMarkModel",
+    "namespace" : "org.accordproject.commonmark",
+    "from": "https://models.accordproject.org/markdown/commonmark.cto" }]
