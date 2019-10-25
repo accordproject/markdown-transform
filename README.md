@@ -36,13 +36,13 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 
 The CommonMark DOM is a model for the elements of CommonMark, expressed as a [Concerto schema](https://github.com/accordproject/concerto), and serialized as a JSON graph.
 
-The schema is defined here: https://models.accordproject.org/commonmark/markdown.html
+The schema is defined here: https://models.accordproject.org/markdown/commonmark.html
 
 ###  CiceroMark DOM
 
 The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable` and `ComputedVariable`.
 
-The schema is defined here: https://models.accordproject.org/cicero/dom.html
+The schema is defined here: https://models.accordproject.org/markdown/ciceromark.html
 
 ###  Slate DOM
 
