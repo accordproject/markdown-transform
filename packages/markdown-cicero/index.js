@@ -19,7 +19,7 @@
  * @module markdown-transform
  */
 
-module.exports.Models = require('./lib/Models');
+module.exports.CiceroMarkModel = require('./lib/externalModels/CiceroMarkModel');
 
 module.exports.CiceroMarkTransformer = require('./lib/CiceroMarkTransformer');
 module.exports.ToCiceroVisitor = require('./lib/ToCiceroVisitor');

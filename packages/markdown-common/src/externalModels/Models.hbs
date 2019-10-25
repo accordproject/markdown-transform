@@ -14,14 +14,10 @@
 
 'use strict';
 
-/**
- * Export the framework and plugins
- * @module markdown-transform
- */
+const NS_PREFIX_{{ name }} = '{{ namespace }}' + '.';
 
-module.exports.Stack = require('./lib/Stack');
-module.exports.CommonMarkModel = require('./lib/externalModels/CommonMarkModel');
+const {{ name }} = `
+{{ model }}
+`;
 
-module.exports.CommonMarkTransformer = require('./lib/CommonMarkTransformer');
-module.exports.ToMarkdownStringVisitor = require('./lib/ToMarkdownStringVisitor');
-
+module.exports = { NS_PREFIX_{{ name }}, {{ name }} };

@@ -14,8 +14,8 @@
 
 'use strict';
 
-const { CICERO_NS_PREFIX } = require('./Models');
-const { COMMON_NS_PREFIX } = require('@accordproject/markdown-common').Models;
+const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
+const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
@@ -73,7 +73,7 @@ class ToCiceroMarkVisitor {
                 //console.log('CONTENT! : ' + tag.content);
                 if (tag.attributes[0].name === 'src' &&
                     tag.attributes[1].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
@@ -86,14 +86,14 @@ class ToCiceroMarkVisitor {
 
                     // Go over the loaded clause to generate the unwrapped text
                     let clone = parameters.serializer.toJSON(thing);
-                    clone.$class = COMMON_NS_PREFIX + 'Paragraph';
+                    clone.$class = NS_PREFIX_CommonMarkModel + 'Paragraph';
                     delete clone.clauseid;
                     delete clone.src;
                     clone = parameters.serializer.fromJSON(clone);
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
@@ -105,7 +105,7 @@ class ToCiceroMarkVisitor {
 
                     // Go over the loaded clause to generate the unwrapped text
                     let clone = parameters.serializer.toJSON(thing);
-                    clone.$class = COMMON_NS_PREFIX + 'Paragraph';
+                    clone.$class = NS_PREFIX_CommonMarkModel + 'Paragraph';
                     delete clone.clauseid;
                     delete clone.src;
                     clone = parameters.serializer.fromJSON(clone);
@@ -120,7 +120,7 @@ class ToCiceroMarkVisitor {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'id' &&
                     tag.attributes[1].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Variable');
+                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Variable');
                     thing.id = tag.attributes[0].value;
                     thing.value = tag.attributes[1].value;
                     delete thing.tag;
@@ -128,7 +128,7 @@ class ToCiceroMarkVisitor {
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
                     thing.value = tag.attributes[0].value;
                     thing.id  = tag.attributes[1].value;
                     delete thing.tag;
@@ -139,7 +139,7 @@ class ToCiceroMarkVisitor {
             if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(CICERO_NS_PREFIX + 'ComputedVariable');
+                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'ComputedVariable');
                     thing.value = tag.attributes[0].value;
                     delete thing.tag;
                     delete thing.text;

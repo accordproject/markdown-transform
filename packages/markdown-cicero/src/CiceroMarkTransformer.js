@@ -17,11 +17,11 @@
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const { commonMarkModel } = require('@accordproject/markdown-common').Models;
+const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 const ToCiceroVisitor = require('./ToCiceroVisitor');
 const FromCiceroVisitor = require('./FromCiceroVisitor');
-const { ciceroMarkModel } = require('./Models');
+const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 
 /**
  * Converts a CiceroMark DOM to/from a
@@ -41,8 +41,8 @@ class CiceroMarkTransformer {
 
         // Setup for validation
         this.modelManager = new ModelManager();
-        this.modelManager.addModelFile(commonMarkModel, 'commonmark.cto');
-        this.modelManager.addModelFile(ciceroMarkModel, 'ciceromark.cto');
+        this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+        this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
         const factory = new Factory(this.modelManager);
         this.serializer = new Serializer(factory, this.modelManager);
     }
