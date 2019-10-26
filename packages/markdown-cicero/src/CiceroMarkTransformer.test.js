@@ -153,7 +153,7 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
     });
 
-    it.only('converts acceptance clause content to CommonMark string (no wrapVariable)', () => {
+    it('converts acceptance clause content to CommonMark string (no wrapVariable)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         // console.log(JSON.stringify(json, null, 4));

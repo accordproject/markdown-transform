@@ -1425,6 +1425,46 @@ Object {
 }
 `;
 
+exports[`markdown converts html-inline-uri.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"property%20or%20something\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "property%20or%20something",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "custom",
+          },
+          "text": "<custom src=\\"property%20or%20something\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts html-mixed.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -1985,6 +2025,33 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts variable.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "shipper",
+          "value": "\\"Party A\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
         },
       ],
     },

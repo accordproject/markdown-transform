@@ -159,7 +159,7 @@ class CommonMarkTransformer {
                                 head.tag.attributes.push({
                                     $class : NS_PREFIX_CommonMarkModel + 'Attribute',
                                     name : attName,
-                                    value : decodeURIComponent(attValue),
+                                    value : attValue,
                                 });
                             }
                         }
