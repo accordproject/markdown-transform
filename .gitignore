@@ -81,3 +81,7 @@ umd
 
 # windows junk
 thumbs.db
+
+# models preload
+scripts/external/tmp
+

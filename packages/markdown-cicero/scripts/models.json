@@ -1,3 +1,0 @@
-[ { "name": "CiceroMarkModel",
-    "namespace" : "org.accordproject.ciceromark",
-    "from": "https://models.accordproject.org/markdown/ciceromark.cto" }]
