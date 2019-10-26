@@ -21,73 +21,7 @@ const url = require('url');
 const handlebars = require('handlebars');
 const modelsJson = require('./models.json');
 
-const { ModelManager } = require('@accordproject/concerto-core');
-const ModelFile = require('@accordproject/concerto-core').ModelFile;
-const DefaultModelFileLoader = require('@accordproject/concerto-core').DefaultModelFileLoader;
-
-const defaultSystemContent = `namespace org.accordproject.base
-abstract asset Asset {  }
-abstract participant Participant {  }
-abstract transaction Transaction identified by transactionId {
-  o String transactionId
-}
-abstract event Event identified by eventId {
-  o String eventId
-}`;
-const defaultSystemName = '@org.accordproject.base';
-
-/**
- * Add model file
- *
- * @param {object} modelFileLoader - the model loader
- * @param {object} modelManager - the model manager
- * @param {string} ctoFile - the model file
- * @param {boolean} system - whether this is a system model
- * @return {object} the model manager
- */
-async function addModel(modelFileLoader, modelManager, ctoFile, system) {
-    let modelFile = null;
-    if (system && !ctoFile) {
-        modelFile = new ModelFile(modelManager, defaultSystemContent, defaultSystemName, true);
-    } else if(modelFileLoader.accepts(ctoFile)) {
-        modelFile = await modelFileLoader.load(ctoFile);
-    } else {
-        const content = fs.readFileSync(ctoFile, 'utf8');
-        modelFile = new ModelFile(modelManager, content, ctoFile);
-    }
-
-    if (system) {
-        modelManager.addModelFile(modelFile, modelFile.getName(), false, true);
-    } else {
-        modelManager.addModelFile(modelFile, modelFile.getName(), true, false);
-    }
-
-    return modelManager;
-}
-
-/**
- * Load system and models in a new model manager
- *
- * @param {string} ctoSystemFile - the system model file
- * @param {string[]} ctoFiles - the CTO files (can be local file paths or URLs)
- * @return {object} the model manager
- */
-async function loadModelManager(ctoSystemFile, ctoFiles) {
-    let modelManager = new ModelManager();
-    const modelFileLoader = new DefaultModelFileLoader(modelManager);
-
-    // Load system model
-    modelManager = await addModel(modelFileLoader,modelManager,ctoSystemFile,true);
-
-    // Load user models
-    for( let ctoFile of ctoFiles ) {
-        modelManager = await addModel(modelFileLoader,modelManager,ctoFile,false);
-    }
-
-    // Validate update models
-    await modelManager.updateExternalModels();
-    return modelManager;
-}
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
 /**
  * Fetches all external for a set of models dependencies and
@@ -97,7 +31,7 @@ async function loadModelManager(ctoSystemFile, ctoFiles) {
  * @param {string} output the output directory
  */
 async function get(ctoFiles, output) {
-    const modelManager = await loadModelManager(null, ctoFiles);
+    const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
     mkdirp.sync(output);
     modelManager.writeModelsToFileSystem(output);
     return `Loaded external models in '${output}'.`;
