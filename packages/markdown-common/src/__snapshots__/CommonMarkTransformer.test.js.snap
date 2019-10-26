@@ -1156,6 +1156,46 @@ Object {
 }
 `;
 
+exports[`markdown converts html-inline-uri.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"property%20or%20something\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "property%20or%20something",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "custom",
+          },
+          "text": "<custom src=\\"property%20or%20something\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts html-mixed.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -1716,6 +1756,51 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "Done.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts variable.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "id = \\"shipper\\" value = \\"%22Party%20A%22\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "id",
+                "value": "shipper",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "%22Party%20A%22",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "variable",
+          },
+          "text": "<variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
         },
       ],
     },

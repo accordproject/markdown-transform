@@ -122,14 +122,14 @@ class ToCiceroMarkVisitor {
                     tag.attributes[1].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Variable');
                     thing.id = tag.attributes[0].value;
-                    thing.value = tag.attributes[1].value;
+                    thing.value = decodeURIComponent(tag.attributes[1].value);
                     delete thing.tag;
                     delete thing.text;
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
-                    thing.value = tag.attributes[0].value;
+                    thing.value = decodeURIComponent(tag.attributes[0].value);
                     thing.id  = tag.attributes[1].value;
                     delete thing.tag;
                 } else {
@@ -140,7 +140,7 @@ class ToCiceroMarkVisitor {
                 const tag = thing.tag;
                 if (tag.attributes[0].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'ComputedVariable');
-                    thing.value = tag.attributes[0].value;
+                    thing.value = decodeURIComponent(tag.attributes[0].value);
                     delete thing.tag;
                     delete thing.text;
                 }
