@@ -58,6 +58,11 @@ To install the command-line interface:
 npm install -g @accordproject/markdown-cli
 ```
 
+This will install the `markus` command-line for markdown transform. To get command-line help:
+```
+markus --help
+```
+
 ### For developers
 
 To install for development, in the project directory, you will need to first install the Node.js dependencies using [lerna](https://lerna.js.org):
