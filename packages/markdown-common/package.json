@@ -52,7 +52,6 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform",
   "devDependencies": {
-    "@accordproject/concerto-cli": "^0.82.2",
     "@babel/cli": "7.4.4",
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
@@ -81,7 +80,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.2",
+    "@accordproject/concerto-core": "^0.82.3",
     "commonmark": "^0.29.0",
     "jsome": "2.5.0",
     "sax": "^1.2.4",
