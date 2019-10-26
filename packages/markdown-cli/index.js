@@ -154,7 +154,7 @@ require('yargs')
             return;
         }
     })
-    .command('redraft', 'parse a sample markdown and re-create it', (yargs) => {
+    .command('normalize', 'normalize markdown in a sample (parse & draft)', (yargs) => {
         yargs.option('sample', {
             describe: 'path to the markdown text',
             type: 'string'
@@ -194,14 +194,14 @@ require('yargs')
         }
 
         try {
-            argv = Commands.validateRedraftArgs(argv);
+            argv = Commands.validateNormalizeArgs(argv);
             const options = {};
             options.cicero = argv.cicero;
             options.slate = argv.slate;
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
-            return Commands.redraft(argv.sample, argv.output, options)
+            return Commands.normalize(argv.sample, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })

@@ -18,7 +18,7 @@ markus <cmd> [args]
 Commands:
   markus parse    parse and transform sample markdown
   markus draft    create markdown text from data
-  markus redraft  parse a sample markdown and re-create it
+  markus normalize  parse a sample markdown and re-create it
 
 Options:
   --version      Show version number                                   [boolean]
@@ -72,10 +72,10 @@ Options:
 
 ### Re-generate text
 
-The `redraft` command lets you parse markdown and re-generate it after parsing.
+The `normalize` command lets you parse markdown and re-generate it after parsing.
 
 ```
-markus redraft
+markus normalize
 
 parse a sample markdown and re-create it
 

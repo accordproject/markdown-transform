@@ -168,13 +168,13 @@ describe('markdown-cli', () => {
         });
     });
 
-    describe('#redraft', () => {
+    describe('#normalize', () => {
         it('should CommonMark <> Markdown roundtrip', async () => {
             const options = {};
             options.cicero = false;
             options.slate = false;
             options.noWrap = true;
-            const result = await Commands.redraft(sample, null, options);
+            const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
 
@@ -183,7 +183,7 @@ describe('markdown-cli', () => {
             options.cicero = true;
             options.slate = false;
             options.noWrap = true;
-            const result = await Commands.redraft(sample, null, options);
+            const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
 
@@ -192,7 +192,7 @@ describe('markdown-cli', () => {
             options.cicero = false;
             options.slate = true;
             options.noWrap = true;
-            const result = await Commands.redraft(sample, null, options);
+            const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
     });
