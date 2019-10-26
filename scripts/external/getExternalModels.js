@@ -19,7 +19,10 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const url = require('url');
 const handlebars = require('handlebars');
+
+const scriptDir = path.join(__dirname,'..','..');
 const modelsJson = require('./models.json');
+const targetDir = modelsJson.target;
 
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
@@ -52,25 +55,28 @@ function mapName(requestUrl) {
 }
 
 async function fetchExternalModels() {
-    const downloadCtos = modelsJson.map(m => m.from);
-    const result = await get(downloadCtos, 'scripts/tmp');
+    const downloadCtos = modelsJson.models.map(m => m.from);
+    const result = await get(downloadCtos, targetDir);
     console.log(result);
 }
 
 function buildExternalModels() {
-    const buildModelsTemplate = path.join(__dirname,'..','src','externalModels','Models.hbs');
+    const buildModelsTemplate = path.join(__dirname,'Models.hbs');
 
     const source = fs.readFileSync(buildModelsTemplate,'utf8');
     const template = handlebars.compile(source);
 
-    const contextArray = modelsJson.map(m => { return { ...m, model: fs.readFileSync(path.join(__dirname,'tmp', mapName(m.from)), 'utf8') } });
+    const contextArray = modelsJson.models.map(m => { return { ...m, model: fs.readFileSync(path.join(scriptDir,targetDir,mapName(m.from)), 'utf8') } });
     //console.log('contextArray --- ' + JSON.stringify(contextArray));
 
     contextArray.forEach(function(context) {
-        const result = template(context);
-        const buildModelsJs = path.join(__dirname,'..','src','externalModels',context.name + '.js');
-        console.log('Creating: ' + buildModelsJs);
-        fs.writeFileSync(buildModelsJs,result);
+        // Only create a corresponding JS file if the js field exists
+        if (context.js) {
+            const result = template(context);
+            const buildModelsJs = path.join(scriptDir,context.js,context.name + '.js');
+            console.log('Creating: ' + buildModelsJs);
+            fs.writeFileSync(buildModelsJs,result);
+        }
     });
 }
 async function run() {

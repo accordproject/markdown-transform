@@ -1,0 +1,13 @@
+{
+    "target" : "scripts/external/tmp",
+    "models": [
+        { "name": "CommonMarkModel",
+          "namespace" : "org.accordproject.commonmark",
+          "from": "https://models.accordproject.org/markdown/commonmark.cto",
+          "js": "packages/markdown-common/src/externalModels" },
+        { "name": "CiceroMarkModel",
+          "namespace" : "org.accordproject.ciceromark",
+          "from": "https://models.accordproject.org/markdown/ciceromark.cto",
+          "js": "packages/markdown-cicero/src/externalModels" }
+    ]
+}

@@ -21,7 +21,6 @@
     "build:watch": "babel src -d lib --copy-files --watch",
     "prepublishOnly": "npm run build && npm run webpack",
     "prepare": "npm run build",
-    "postinstall": "node ./scripts/getExternalModels.js",
     "pretest": "npm run lint && npm run build",
     "lint": "eslint .",
     "postlint": "npm run licchk",

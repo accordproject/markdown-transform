@@ -65,10 +65,10 @@ markus --help
 
 ### For developers
 
-To install for development, in the project directory, you will need to first install the Node.js dependencies using [lerna](https://lerna.js.org):
+To install for development, in the project directory, you will need to first install [lerna](https://lerna.js.org):
 ```
 npm install -g lerna@^3.15.0
-lerna bootstrap
+npm install
 ```
 
 Then run:
