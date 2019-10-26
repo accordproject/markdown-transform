@@ -17,7 +17,7 @@
 
 ## Introduction
 
-A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
+A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and other DOMs.
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP6zJiCm58NtFCLHzoGxGgWI30nK36MhEbZnJUBMFv5zenGXtXtPDQGYfH9ROf_Syzqlwy32ysXqCOZcA3h2oWX_b6woPQFL2Xy5i1k43xGlFejhAMUCipcuoQVOibUss-E-78Vo0Rl7b8hNU7hTf57MCS6hhcUuTfa0UkOXtDMrSP9qg4JJE2y7xmxKSELyLv-h8qdzZLFrR7H1LYAENvJyvYk0dwFMUIEOIOBfn1W31N1FA829j2ubjSgInDmQ8P3S-9WILYAyMnQd6U2QCDMGTqdOOklPLmejVMbgiwuS-8-kz4dIDJzcOJTuWnPC6JUtBd2tCNETzF8EEB-e067n_BPvWLTDNoRX91KxVx78D4rLAZ-4o7yJCcxn1sD6Z6tvjqV8DLav6lq5)
 
@@ -87,7 +87,7 @@ Invokes _lerna_ to run the test suite.
   </a>
 </p>
 
-Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
+Accord Project is an open-source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
 ## Learn More About Accord Project
 
@@ -324,7 +324,7 @@ Accord Project is an open source, non-profit, initiative working to transform co
 
 ## Contributing
 
-The Accord Project technology is being developed as open source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
+The Accord Project technology is being developed as an open-source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
 
 Find out what’s coming on our [blog][apblog].
 
