@@ -210,23 +210,23 @@ class Commands {
     }
 
     /**
-     * Set default params before we redraft a sample text
+     * Set default params before we normalize a sample text
      *
      * @param {object} argv the inbound argument values object
      * @returns {object} a modfied argument object
      */
-    static validateRedraftArgs(argv) {
+    static validateNormalizeArgs(argv) {
         argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
-            Logger.info(`redraft sample ${argv.sample} printing intermediate transformations.`);
+            Logger.info(`normalize sample ${argv.sample} printing intermediate transformations.`);
         }
 
         return argv;
     }
 
     /**
-     * Redraft a sample markdown
+     * Normalize a sample markdown
      *
      * @param {string} samplePath to the sample file
      * @param {string} outputPath to an output file
@@ -238,7 +238,7 @@ class Commands {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static redraft(samplePath, outputPath, options) {
+    static normalize(samplePath, outputPath, options) {
         const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
