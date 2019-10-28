@@ -221,7 +221,7 @@ class ToSlateVisitor {
         case 'ThematicBreak':
             result = {
                 'object': 'block',
-                'type': 'paragraph',
+                'type': 'horizontal_rule',
                 'nodes': []
             };
             break;
