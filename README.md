@@ -17,7 +17,7 @@
 
 ## Introduction
 
-A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and others DOMs.
+A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and other DOMs.
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP6zJiCm58NtFCLHzoGxGgWI30nK36MhEbZnJUBMFv5zenGXtXtPDQGYfH9ROf_Syzqlwy32ysXqCOZcA3h2oWX_b6woPQFL2Xy5i1k43xGlFejhAMUCipcuoQVOibUss-E-78Vo0Rl7b8hNU7hTf57MCS6hhcUuTfa0UkOXtDMrSP9qg4JJE2y7xmxKSELyLv-h8qdzZLFrR7H1LYAENvJyvYk0dwFMUIEOIOBfn1W31N1FA829j2ubjSgInDmQ8P3S-9WILYAyMnQd6U2QCDMGTqdOOklPLmejVMbgiwuS-8-kz4dIDJzcOJTuWnPC6JUtBd2tCNETzF8EEB-e067n_BPvWLTDNoRX91KxVx78D4rLAZ-4o7yJCcxn1sD6Z6tvjqV8DLav6lq5)
 
