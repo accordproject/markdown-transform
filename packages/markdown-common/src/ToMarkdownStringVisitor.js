@@ -167,7 +167,7 @@ class ToMarkdownStringVisitor {
             break;
         case 'ThematicBreak':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += '---\n';
+            parameters.result += '---';
             break;
         case 'Linebreak':
             parameters.result += '\\\n';
