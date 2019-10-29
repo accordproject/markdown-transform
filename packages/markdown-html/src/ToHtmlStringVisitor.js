@@ -96,10 +96,10 @@ class ToHtmlStringVisitor {
             parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable':
-            parameters.result += `<div class="variable" id="${thing.id}">${thing.value}</div>\n`;
+            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>\n`;
             break;
         case 'ComputedVariable':
-            parameters.result += `<div class="computed>${thing.value}</div>\n`;
+            parameters.result += `<span class="computed">${thing.value}</span>\n`;
             break;
         case 'CodeBlock':
             parameters.result += `<pre><code>\n${thing.text}</pre></code>\n`;
@@ -175,7 +175,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<li>${ToHtmlStringVisitor.visitChildren(this, thing)}</li>\n`;
             break;
         case 'Document':
-            parameters.result += `<html>\n<body>\n${ToHtmlStringVisitor.visitChildren(this, thing)}</body>\n</html>`;
+            parameters.result += `<html>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
