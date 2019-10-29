@@ -24,7 +24,7 @@ require('yargs')
     .demandCommand(1, '# Please specify a command')
     .recommendCommands()
     .strict()
-    .command('parse', 'parse and transform sample markdown', (yargs) => {
+    .command('parse', 'parse and transform a sample markdown', (yargs) => {
         yargs.option('sample', {
             describe: 'path to the markdown text',
             type: 'string'
@@ -32,11 +32,6 @@ require('yargs')
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
-        });
-        yargs.option('roundtrip', {
-            describe: 'roundtrip',
-            type: 'boolean',
-            default: false
         });
         yargs.option('cicero', {
             describe: 'further transform to CiceroMark',
@@ -53,16 +48,6 @@ require('yargs')
             type: 'boolean',
             default: false
         });
-        yargs.option('noWrap', {
-            describe: 'do not wrap variables as XML tags',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noIndex', {
-            describe: 'do not index ordered lists',
-            type: 'boolean',
-            default: false
-        });
         yargs.option('verbose', {
             describe: 'verbose output',
             type: 'boolean',
@@ -76,12 +61,9 @@ require('yargs')
         try {
             argv = Commands.validateParseArgs(argv);
             const options = {};
-            options.roundtrip = argv.roundtrip;
             options.cicero = argv.cicero;
             options.slate = argv.slate;
             options.html = argv.html;
-            options.noWrap = argv.noWrap;
-            options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
             return Commands.parse(argv.sample, argv.output, options)
                 .then((result) => {
@@ -105,17 +87,17 @@ require('yargs')
             type: 'string'
         });
         yargs.option('cicero', {
-            describe: 'further transform to CiceroMark',
+            describe: 'input data is a CiceroMark DOM',
             type: 'boolean',
             default: false
         });
         yargs.option('slate', {
-            describe: 'further transform to Slate DOM',
+            describe: 'input data is a Slate DOM',
             type: 'boolean',
             default: false
         });
         yargs.option('noWrap', {
-            describe: 'do not wrap variables as XML tags',
+            describe: 'do not wrap CiceroMark variables as XML tags',
             type: 'boolean',
             default: false
         });
@@ -154,7 +136,7 @@ require('yargs')
             return;
         }
     })
-    .command('normalize', 'normalize markdown in a sample (parse & draft)', (yargs) => {
+    .command('normalize', 'normalize a sample markdown (parse & redraft)', (yargs) => {
         yargs.option('sample', {
             describe: 'path to the markdown text',
             type: 'string'
@@ -190,7 +172,7 @@ require('yargs')
         });
     }, (argv) => {
         if (argv.verbose) {
-            Logger.info(`parse and re-create sample ${argv.sample} markdown`);
+            Logger.info(`normalize ${argv.sample} markdown`);
         }
 
         try {
