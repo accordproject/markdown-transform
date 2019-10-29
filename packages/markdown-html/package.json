@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-html",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Transform CiceroDOM to HTML",
   "engines": {
     "node": ">=8",
@@ -78,7 +78,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.7.1"
+    "@accordproject/markdown-cicero": "0.7.2"
   },
   "license-check-config": {
     "src": [
