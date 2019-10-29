@@ -77,16 +77,13 @@ class Commands {
      * @param {boolean} [options.cicero] whether to further transform for Cicero
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.html] whether to further transform for HTML
-     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
-     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
     static parse(samplePath, outputPath, options) {
-        const { cicero, slate, html, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, html, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
-        commonOptions.noIndex = noIndex ? true : false;
 
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
@@ -166,7 +163,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static draft(dataPath, outputPath, options) {
-        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -174,7 +171,6 @@ class Commands {
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
-        const htmlMark = new HtmlTransformer();
 
         let result = JSON.parse(Fs.readFileSync(dataPath, 'utf8'));
         if (cicero) {
@@ -198,8 +194,6 @@ class Commands {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
-        } else if (html) {
-            throw new Error('Cannot roundtrip from HTML');
         }
         result = commonMark.toMarkdown(result);
         if (outputPath) {
@@ -239,7 +233,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static normalize(samplePath, outputPath, options) {
-        const { roundtrip, cicero, slate, html, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -247,7 +241,6 @@ class Commands {
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
-        const htmlMark = new HtmlTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let result = commonMark.fromMarkdown(markdownText, 'json');
@@ -297,8 +290,6 @@ class Commands {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
-        } else if (html) {
-            throw new Error('Cannot roundtrip from HTML');
         }
         result = commonMark.toMarkdown(result);
         if (outputPath) {
