@@ -111,7 +111,7 @@ class ToHtmlStringVisitor {
             parameters.result += thing.text;
             break;
         case 'Emph':
-            parameters.result += `<emph>${ToHtmlStringVisitor.visitChildren(this, thing)}</emph>`;
+            parameters.result += `<em>${ToHtmlStringVisitor.visitChildren(this, thing)}</em>`;
             break;
         case 'Strong':
             parameters.result += `<strong>${ToHtmlStringVisitor.visitChildren(this, thing)}</strong>`;

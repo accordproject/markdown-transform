@@ -587,7 +587,7 @@ exports[`html converts emph.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is <emph>some</emph> text.</p>
+<p>This is <em>some</em> text.</p>
 </div>
 </body>
 </html>"
@@ -633,7 +633,7 @@ exports[`html converts emph-strong.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is <emph><strong>some</strong></emph> text.</p>
+<p>This is <em><strong>some</strong></em> text.</p>
 </div>
 </body>
 </html>"
