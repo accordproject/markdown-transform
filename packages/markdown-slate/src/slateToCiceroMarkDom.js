@@ -64,6 +64,12 @@ function _recursive(parent, nodes) {
             case 'paragraph':
                 result = {$class : `${NS}.Paragraph`, nodes: []};
                 break;
+            case 'softbreak':
+                result = {$class : `${NS}.Softbreak`};
+                break;
+            case 'linebreak':
+                result = {$class : `${NS}.Linebreak`};
+                break;
             case 'quote':
                 result = {$class : `${NS}.BlockQuote`};
                 break;

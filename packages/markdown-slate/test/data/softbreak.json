@@ -1,0 +1,44 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "This is a",
+                        "marks": []
+                    },
+                    {
+                        "object": "inline",
+                        "type": "softbreak",
+                        "data": {},
+                        "nodes": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "softbreak in para 1.",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "And this is para 2.",
+                        "marks": []
+                    }
+                ]
+            }
+        ]
+    }
+}

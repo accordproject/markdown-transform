@@ -227,16 +227,14 @@ class ToSlateVisitor {
             break;
         case 'Linebreak':
             result = {
-                'object': 'block',
-                'type': 'paragraph',
-                'nodes': []
+                'object': 'inline',
+                'type': 'linebreak'
             };
             break;
         case 'Softbreak':
             result = {
-                'object': 'block',
-                'type': 'paragraph',
-                'nodes': []
+                'object': 'inline',
+                'type': 'softbreak'
             };
             break;
         case 'Link':
@@ -301,7 +299,8 @@ class ToSlateVisitor {
                     }],
                     data: {}
                 }]
-            };            break;
+            };
+            break;
         case 'List':
             result = {
                 'object': 'block',
