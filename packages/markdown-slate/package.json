@@ -71,14 +71,17 @@
     "mocha": "6.1.4",
     "nyc": "14.1.1",
     "raw-loader": "^3.0.0",
+    "slate": "^0.47.8",
     "tsd-jsdoc": "^2.3.0",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "@accordproject/markdown-cicero": "0.7.4",
-    "immutable": "^4.0.0-rc.12",
-    "slate": "^0.47.7"
+    "immutable": "^4.0.0-rc.12"
+  },
+  "peerDependencies": {
+    "slate": "0.47.x"
   },
   "license-check-config": {
     "src": [
