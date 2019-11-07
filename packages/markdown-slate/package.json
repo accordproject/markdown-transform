@@ -64,6 +64,7 @@
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
     "eslint": "6.0.1",
+    "immutable": "^4.0.0-rc.12",
     "jest": "^24.8.0",
     "jest-diff": "^24.8.0",
     "jsdoc": "3.6.3",
@@ -77,11 +78,11 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.7.4",
-    "immutable": "^4.0.0-rc.12"
+    "@accordproject/markdown-cicero": "0.7.4"
   },
   "peerDependencies": {
-    "slate": "0.47.x"
+    "slate": "0.47.x",
+    "immutable": ">=3.8.1 || >4.0.0-rc"
   },
   "license-check-config": {
     "src": [
