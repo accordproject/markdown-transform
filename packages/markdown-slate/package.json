@@ -76,10 +76,8 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.7.3",
+    "@accordproject/markdown-cicero": "^0.7.3",
     "immutable": "^4.0.0-rc.12",
-    "install": "^0.13.0",
-    "npm": "^6.11.1",
     "slate": "^0.47.7"
   },
   "license-check-config": {
