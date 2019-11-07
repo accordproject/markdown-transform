@@ -8,6 +8,11 @@ Use `SlateTransformer` to transform a CiceroMark DOM to/from a Slate DOM.
 npm install @accordproject/markdown-slate --save
 ```
 
+You'll also need to be sure to install this package's peer dependencies:
+```
+npm install slate immutable
+```
+
 ## Usage
 
 ``` javascript
