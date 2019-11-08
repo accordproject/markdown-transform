@@ -57,7 +57,9 @@
     "@accordproject/markdown-cicero": "0.7.6",
     "@accordproject/markdown-slate": "0.7.6",
     "@accordproject/markdown-html": "0.7.6",
+    "immutable": "^4.0.0-rc.12",
     "jsome": "2.5.0",
+    "slate": "^0.47.8",
     "winston": "3.2.1",
     "yargs": "13.2.4"
   },
