@@ -30,7 +30,8 @@
                         "object": "inline",
                         "type": "link",
                         "data": {
-                            "href": "https://github.com/jgm/commonmark.js"
+                            "href": "https://github.com/jgm/commonmark.js",
+                            "title": ""
                         },
                         "nodes": [
                             {

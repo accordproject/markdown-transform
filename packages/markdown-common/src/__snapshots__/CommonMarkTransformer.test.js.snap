@@ -1242,6 +1242,90 @@ Object {
 }
 `;
 
+exports[`markdown converts image.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an image",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Image",
+          "destination": "https://studio.accordproject.org/static/img/logo.png",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "ap",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "_",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "logo",
+            },
+          ],
+          "title": "title",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts image-no-title.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an image without a title.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Image",
+          "destination": "https://studio.accordproject.org/static/img/logo.png",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "ap",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "_",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "logo",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts inline-code.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

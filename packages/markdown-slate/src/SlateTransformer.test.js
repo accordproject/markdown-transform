@@ -67,11 +67,15 @@ describe('slate', () => {
             // convert the expected markdown to cicero mark and compare
             const expectedSlateValue = slateTransformer.fromMarkdown(expectedMarkdown);
             expect(expectedSlateValue.toJSON()).toMatchSnapshot(); // (3)
-            // console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
+            // if(mdFile === 'image') {
+            //     console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
+            // }
 
             const expectedCiceroMark = slateTransformer.toCiceroMark(expectedSlateValue, 'json');
             expect(expectedCiceroMark).toMatchSnapshot(); // (4)
-            // console.log('Expected expectedCiceroMark', JSON.stringify(expectedCiceroMark, null, 4));
+            // if(mdFile === 'image') {
+            //     console.log('Expected expectedCiceroMark', JSON.stringify(expectedCiceroMark, null, 4));
+            // }
 
             // check that ast created from slate and from the expected md is the same
             expect(ciceroMark).toEqual(expectedCiceroMark);

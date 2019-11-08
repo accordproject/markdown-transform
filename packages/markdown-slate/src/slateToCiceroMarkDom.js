@@ -114,10 +114,12 @@ function _recursive(parent, nodes) {
                 result = {$class : `${NS}.Item`, nodes: []};
                 result.nodes.push({$class : `${NS}.Paragraph`, nodes: []});
                 break;
-            case 'link': {
-                result = {$class : `${NS}.Link`, destination: node.data.href, title: '', nodes: []};
+            case 'link':
+                result = {$class : `${NS}.Link`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
                 break;
-            }
+            case 'image':
+                result = {$class : `${NS}.Image`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
+                break;
             }
         }
 

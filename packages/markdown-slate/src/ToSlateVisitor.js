@@ -242,7 +242,8 @@ class ToSlateVisitor {
                 'object': 'inline',
                 'type': 'link',
                 'data': {
-                    'href': thing.destination
+                    'href': thing.destination,
+                    'title': thing.title ? thing.title : ''
                 },
                 'nodes': [
                     {
@@ -256,9 +257,10 @@ class ToSlateVisitor {
         case 'Image':
             result = {
                 'object': 'inline',
-                'type': 'link',
+                'type': 'image',
                 'data': {
-                    'href': thing.destination
+                    'href': thing.destination,
+                    'title': thing.title ? thing.title : ''
                 },
                 'nodes': [
                     {

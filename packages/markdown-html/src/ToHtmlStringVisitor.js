@@ -138,7 +138,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<a href="${thing.destination}">${ToHtmlStringVisitor.visitChildren(this, thing)}/>`;
             break;
         case 'Image':
-            parameters.result += `<img src="${thing.destination}"/>`;
+            parameters.result += `<img src="${thing.destination}" title="${thing.title}"/>`;
             break;
         case 'Paragraph':
             parameters.result += `<p>${ToHtmlStringVisitor.visitChildren(this, thing)}</p>\n`;

@@ -176,10 +176,10 @@ class ToMarkdownStringVisitor {
             parameters.result += '\n';
             break;
         case 'Link':
-            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination})`;
+            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
             break;
         case 'Image':
-            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination})`;
+            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
             break;
         case 'Paragraph':
             ToMarkdownStringVisitor.newBlock(parameters,2);
