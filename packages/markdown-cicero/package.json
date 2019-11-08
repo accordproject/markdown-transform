@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cicero",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.4",
-    "@accordproject/markdown-common": "0.7.4",
+    "@accordproject/markdown-common": "0.7.5",
     "commonmark": "^0.29.0",
     "jsome": "2.5.0",
     "sax": "^1.2.4",
