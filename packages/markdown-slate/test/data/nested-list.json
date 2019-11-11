@@ -1,0 +1,140 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Prolog",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "ol_list",
+                "data": {
+                    "tight": "true",
+                    "start": "1",
+                    "delimiter": "period"
+                },
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "item one",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "item two",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "ul_list",
+                                "data": {
+                                    "tight": "true"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "block",
+                                        "type": "list_item",
+                                        "data": {},
+                                        "nodes": [
+                                            {
+                                                "object": "block",
+                                                "type": "paragraph",
+                                                "data": {},
+                                                "nodes": [
+                                                    {
+                                                        "object": "text",
+                                                        "text": "sublist",
+                                                        "marks": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "object": "block",
+                                        "type": "list_item",
+                                        "data": {},
+                                        "nodes": [
+                                            {
+                                                "object": "block",
+                                                "type": "paragraph",
+                                                "data": {},
+                                                "nodes": [
+                                                    {
+                                                        "object": "text",
+                                                        "text": "sublist",
+                                                        "marks": []
+                                                    },
+                                                    {
+                                                        "object": "inline",
+                                                        "type": "softbreak",
+                                                        "data": {},
+                                                        "nodes": []
+                                                    },
+                                                    {
+                                                        "object": "text",
+                                                        "text": "with some text in the same paragraph",
+                                                        "marks": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Epilog",
+                        "marks": []
+                    }
+                ]
+            }
+        ]
+    }
+}
