@@ -112,7 +112,6 @@ function _recursive(parent, nodes) {
                 break;
             case 'list_item':
                 result = {$class : `${NS}.Item`, nodes: []};
-                result.nodes.push({$class : `${NS}.Paragraph`, nodes: []});
                 break;
             case 'link':
                 result = {$class : `${NS}.Link`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};

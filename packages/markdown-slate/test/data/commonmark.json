@@ -52,9 +52,9 @@
                 "object": "block",
                 "type": "ol_list",
                 "data": {
-                    "tight" : "true",
-                    "delimiter" : "period",
-                    "start" : "1"
+                    "tight": "true",
+                    "start": "1",
+                    "delimiter": "period"
                 },
                 "nodes": [
                     {
@@ -63,9 +63,16 @@
                         "data": {},
                         "nodes": [
                             {
-                                "object": "text",
-                                "text": "item one",
-                                "marks": []
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "item one",
+                                        "marks": []
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -75,9 +82,16 @@
                         "data": {},
                         "nodes": [
                             {
-                                "object": "text",
-                                "text": "item two",
-                                "marks": []
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "item two",
+                                        "marks": []
+                                    }
+                                ]
                             }
                         ]
                     }

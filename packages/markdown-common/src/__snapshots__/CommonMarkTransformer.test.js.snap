@@ -1504,13 +1504,6 @@ Object {
                           "$class": "org.accordproject.commonmark.Text",
                           "text": "sublist",
                         },
-                        Object {
-                          "$class": "org.accordproject.commonmark.Softbreak",
-                        },
-                        Object {
-                          "$class": "org.accordproject.commonmark.Text",
-                          "text": "Epilog",
-                        },
                       ],
                     },
                   ],
@@ -1525,6 +1518,15 @@ Object {
       "start": "1",
       "tight": "true",
       "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Epilog",
+        },
+      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",

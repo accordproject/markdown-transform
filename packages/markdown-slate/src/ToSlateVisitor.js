@@ -316,7 +316,7 @@ class ToSlateVisitor {
                 'object': 'block',
                 'type': 'list_item',
                 'data': {},
-                'nodes': this.processChildNodes(thing.nodes[0]) // discard the para
+                'nodes': this.processChildNodes(thing)
             };
             break;
         case 'Document':
