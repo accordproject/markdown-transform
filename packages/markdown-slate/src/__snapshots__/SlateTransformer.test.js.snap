@@ -1226,9 +1226,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "item one",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "item one",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -1238,9 +1245,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "item two",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "item two",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2084,9 +2098,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "one",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "one",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2096,9 +2117,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "two",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "two",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2108,9 +2136,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "three",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "three",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2882,9 +2917,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "one",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "one",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2894,9 +2936,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "two",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "two",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",
@@ -2906,9 +2955,16 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "three",
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "three",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
               },
             ],
             "object": "block",

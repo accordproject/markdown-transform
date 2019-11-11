@@ -17,9 +17,17 @@
                         "data": {},
                         "nodes": [
                             {
-                                "object": "text",
-                                "text": "one",
-                                "marks": []
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "one",
+                                        "marks": []
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -29,9 +37,17 @@
                         "data": {},
                         "nodes": [
                             {
-                                "object": "text",
-                                "text": "two",
-                                "marks": []
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "two",
+                                        "marks": []
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -41,9 +57,17 @@
                         "data": {},
                         "nodes": [
                             {
-                                "object": "text",
-                                "text": "three",
-                                "marks": []
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "three",
+                                        "marks": []
+                                    }
+                                ]
                             }
                         ]
                     }
