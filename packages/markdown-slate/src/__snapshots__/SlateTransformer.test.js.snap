@@ -2016,6 +2016,379 @@ Object {
 }
 `;
 
+exports[`slate converts nested-list.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Prolog",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "delimiter": undefined,
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Softbreak",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "with some text in the same paragraph",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "start": undefined,
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Epilog",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts nested-list.json to and from CiceroMark 2`] = `
+"Prolog
+1. item one
+2. item two
+   - sublist
+   - sublist
+with some text in the same paragraph
+
+Epilog
+"
+`;
+
+exports[`slate converts nested-list.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Prolog",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "item one",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "item two",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+              Object {
+                "data": Object {
+                  "delimiter": undefined,
+                  "start": undefined,
+                  "tight": "true",
+                },
+                "nodes": Array [
+                  Object {
+                    "data": Object {},
+                    "nodes": Array [
+                      Object {
+                        "data": Object {},
+                        "nodes": Array [
+                          Object {
+                            "marks": Array [],
+                            "object": "text",
+                            "text": "sublist",
+                          },
+                        ],
+                        "object": "block",
+                        "type": "paragraph",
+                      },
+                    ],
+                    "object": "block",
+                    "type": "list_item",
+                  },
+                  Object {
+                    "data": Object {},
+                    "nodes": Array [
+                      Object {
+                        "data": Object {},
+                        "nodes": Array [
+                          Object {
+                            "marks": Array [],
+                            "object": "text",
+                            "text": "sublist",
+                          },
+                          Object {
+                            "data": Object {},
+                            "nodes": Array [],
+                            "object": "inline",
+                            "type": "softbreak",
+                          },
+                          Object {
+                            "marks": Array [],
+                            "object": "text",
+                            "text": "with some text in the same paragraph",
+                          },
+                        ],
+                        "object": "block",
+                        "type": "paragraph",
+                      },
+                    ],
+                    "object": "block",
+                    "type": "list_item",
+                  },
+                ],
+                "object": "block",
+                "type": "ul_list",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ol_list",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Epilog",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts nested-list.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Prolog",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "delimiter": undefined,
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Softbreak",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "with some text in the same paragraph",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "start": undefined,
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Epilog",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts ordered.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
