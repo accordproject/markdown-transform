@@ -1434,6 +1434,103 @@ contents
 }
 `;
 
+exports[`markdown converts nested-list.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Prolog",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Softbreak",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Epilog",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts ol.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
