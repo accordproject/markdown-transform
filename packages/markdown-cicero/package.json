@@ -79,7 +79,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.5",
+    "@accordproject/concerto-core": "^0.82.6",
     "@accordproject/markdown-common": "0.8.0",
     "commonmark": "^0.29.0",
     "jsome": "2.5.0",
