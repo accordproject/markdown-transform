@@ -2098,6 +2098,10 @@ Object {
                     },
                   ],
                 },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [],
+                },
               ],
               "start": undefined,
               "tight": "true",
@@ -2131,6 +2135,7 @@ exports[`slate converts nested-list.json to and from CiceroMark 2`] = `
    - sublist
    - sublist
 with some text in the same paragraph
+   - 
 
 Epilog
 "
@@ -2250,6 +2255,12 @@ Object {
                     "object": "block",
                     "type": "list_item",
                   },
+                  Object {
+                    "data": Object {},
+                    "nodes": Array [],
+                    "object": "block",
+                    "type": "list_item",
+                  },
                 ],
                 "object": "block",
                 "type": "ul_list",
@@ -2362,6 +2373,10 @@ Object {
                       ],
                     },
                   ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [],
                 },
               ],
               "start": undefined,

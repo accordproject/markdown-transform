@@ -4,5 +4,6 @@ Prolog
    - sublist
    - sublist
 with some text in the same paragraph
+   - 
 
 Epilog

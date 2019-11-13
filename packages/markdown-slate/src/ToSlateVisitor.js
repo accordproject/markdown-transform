@@ -110,7 +110,7 @@ class ToSlateVisitor {
     processChildNodes(thing) {
         const result = [];
         if(!thing.nodes) {
-            throw new Error(`Node ${thing.getType()} doesn't have any children!`);
+            thing.nodes = []; // Treat no nodes as empty array of nods
         }
 
         thing.nodes.forEach(node => {
