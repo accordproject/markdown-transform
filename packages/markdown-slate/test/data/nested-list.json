@@ -116,6 +116,12 @@
                                                 ]
                                             }
                                         ]
+                                    },
+                                    {
+                                        "object": "block",
+                                        "type": "list_item",
+                                        "data": {},
+                                        "nodes": []
                                     }
                                 ]
                             }
