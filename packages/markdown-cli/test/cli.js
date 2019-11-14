@@ -84,7 +84,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
         });
@@ -93,7 +92,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = false;
-            options.noWrap = true;
             options.verbose = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
@@ -103,7 +101,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = true;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
         });
@@ -112,7 +109,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = true;
             options.slate = false;
-            options.noWrap = true;
             options.verbose = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
@@ -122,7 +118,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
-            options.noWrap = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
         });
@@ -131,7 +126,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
-            options.noWrap = true;
             options.verbose = true;
             const result = await Commands.parse(sample, null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
@@ -143,7 +137,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.draft(sampleExpected, null, options);
             console.log();
             result.should.eql(sampleExpectedText);
@@ -153,7 +146,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = true;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.draft(sampleExpectedCiceroMark, null, options);
             result.should.eql(sampleExpectedText);
         });
@@ -162,7 +154,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
-            options.noWrap = true;
             const result = await Commands.draft(sampleExpectedSlate, null, options);
             result.should.eql(sampleExpectedText);
         });
@@ -173,7 +164,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
@@ -182,7 +172,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = true;
             options.slate = false;
-            options.noWrap = true;
             const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
@@ -191,7 +180,6 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
-            options.noWrap = true;
             const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
