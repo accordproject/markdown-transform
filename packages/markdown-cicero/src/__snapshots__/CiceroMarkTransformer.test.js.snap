@@ -989,6 +989,256 @@ Object {
 }
 `;
 
+exports[`markdown converts acceptance-computed.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "!",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "value": "\\"Attachment X\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.ComputedVariable",
+              "value": "\\"Widgets\\"",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts blockquote.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
