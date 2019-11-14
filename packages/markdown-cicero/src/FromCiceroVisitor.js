@@ -152,7 +152,7 @@ class FromCiceroVisitor {
             const content = '';
             const attributeString = `value="${encodeURIComponent(thing.value)}"`;
             if (this.options && !this.options.wrapVariables) {
-                thing.text = thing.value;
+                thing.text = `{{${thing.value}}}`;
             } else {
                 thing.text = `<computed ${attributeString}/>`;
             }
