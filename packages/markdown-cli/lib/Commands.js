@@ -176,7 +176,7 @@ class Commands {
         if (cicero) {
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
-            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
@@ -189,7 +189,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
-            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
@@ -272,7 +272,7 @@ class Commands {
         if (cicero) {
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
-            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
@@ -285,7 +285,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
-            result = ciceroMark.toCommonMark(result, ciceroOptions);
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CommonMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
