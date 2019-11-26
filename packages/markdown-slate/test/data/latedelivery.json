@@ -1,0 +1,315 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "heading_one",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "HELLO",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "!",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": " This is the contract editor.",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "And below is a ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "clause",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "bold",
+                                "data": {}
+                            }
+                        ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ".",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "clause",
+                "data": {
+                    "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+                    "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta"
+                },
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "heading_two",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "Late Delivery and Penalty.",
+                                "marks": []
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "In case of delayed delivery",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "conditional",
+                                "data": {
+                                    "id": "forceMajeure"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": " except for Force Majeure cases,",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "seller"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Dan\"",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " (the Seller) shall pay to ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "buyer"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Steve\"",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " (the Buyer) for every ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "penaltyDuration"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "2 days",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "of delay penalty amounting to ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "penaltyPercentage"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "10.5",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": "% of the total value of the Equipment",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "whose delivery has been delayed. Any fractional part of a ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "fractionalPart"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "days",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " is to be",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "considered a full ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "fractionalPart"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "days",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": ". The total amount of penalty shall not however,",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "exceed ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "capPercentage"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "55.0",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": "% of the total value of the Equipment involved in late delivery.",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "softbreak",
+                                "data": {},
+                                "nodes": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "If the delay is more than ",
+                                "marks": []
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "termination"
+                                },
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "15 days",
+                                        "marks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": ", the Buyer is entitled to terminate this Contract.",
+                                "marks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

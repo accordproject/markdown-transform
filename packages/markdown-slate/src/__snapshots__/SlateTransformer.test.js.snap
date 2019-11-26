@@ -1795,6 +1795,715 @@ Object {
 }
 `;
 
+exports[`slate converts latedelivery.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "!",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Late Delivery and Penalty.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "In case of delayed delivery",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "id": "forceMajeure",
+              "value": " except for Force Majeure cases,",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "seller",
+              "value": "\\"Dan\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " (the Seller) shall pay to ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "buyer",
+              "value": "\\"Steve\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " (the Buyer) for every ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "penaltyDuration",
+              "value": "2 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "of delay penalty amounting to ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "penaltyPercentage",
+              "value": "10.5",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "% of the total value of the Equipment",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "whose delivery has been delayed. Any fractional part of a ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "fractionalPart",
+              "value": "days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " is to be",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "considered a full ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "fractionalPart",
+              "value": "days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ". The total amount of penalty shall not however,",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "exceed ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "capPercentage",
+              "value": "55.0",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "% of the total value of the Equipment involved in late delivery.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "If the delay is more than ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "termination",
+              "value": "15 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", the Buyer is entitled to terminate this Contract.",
+            },
+          ],
+        },
+      ],
+      "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts latedelivery.json to and from CiceroMark 2`] = `
+"# HELLO! This is the contract editor. 
+
+And below is a **clause**.
+
+\`\`\` <clause src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\" clauseid=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\">
+Late Delivery and Penalty.
+----
+
+In case of delayed delivery<if id=\\"forceMajeure\\" value=\\"%20except%20for%20Force%20Majeure%20cases%2C\\"/>
+<variable id=\\"seller\\" value=\\"%22Dan%22\\"/> (the Seller) shall pay to <variable id=\\"buyer\\" value=\\"%22Steve%22\\"/> (the Buyer) for every <variable id=\\"penaltyDuration\\" value=\\"2%20days\\"/>
+of delay penalty amounting to <variable id=\\"penaltyPercentage\\" value=\\"10.5\\"/>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <variable id=\\"fractionalPart\\" value=\\"days\\"/> is to be
+considered a full <variable id=\\"fractionalPart\\" value=\\"days\\"/>. The total amount of penalty shall not however,
+exceed <variable id=\\"capPercentage\\" value=\\"55.0\\"/>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <variable id=\\"termination\\" value=\\"15%20days\\"/>, the Buyer is entitled to terminate this Contract.
+\`\`\`"
+`;
+
+exports[`slate converts latedelivery.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "HELLO",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "!",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " This is the contract editor.",
+          },
+        ],
+        "object": "block",
+        "type": "heading_one",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "And below is a ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "bold",
+              },
+            ],
+            "object": "text",
+            "text": "clause",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": ".",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+          "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Late Delivery and Penalty.",
+              },
+            ],
+            "object": "block",
+            "type": "heading_two",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "In case of delayed delivery",
+              },
+              Object {
+                "data": Object {
+                  "id": "forceMajeure",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " except for Force Majeure cases,",
+                  },
+                ],
+                "object": "inline",
+                "type": "conditional",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "data": Object {
+                  "id": "seller",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Dan\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " (the Seller) shall pay to ",
+              },
+              Object {
+                "data": Object {
+                  "id": "buyer",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Steve\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " (the Buyer) for every ",
+              },
+              Object {
+                "data": Object {
+                  "id": "penaltyDuration",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "2 days",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "of delay penalty amounting to ",
+              },
+              Object {
+                "data": Object {
+                  "id": "penaltyPercentage",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "10.5",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "% of the total value of the Equipment",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "whose delivery has been delayed. Any fractional part of a ",
+              },
+              Object {
+                "data": Object {
+                  "id": "fractionalPart",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "days",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " is to be",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "considered a full ",
+              },
+              Object {
+                "data": Object {
+                  "id": "fractionalPart",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "days",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ". The total amount of penalty shall not however,",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "exceed ",
+              },
+              Object {
+                "data": Object {
+                  "id": "capPercentage",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "55.0",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "% of the total value of the Equipment involved in late delivery.",
+              },
+              Object {
+                "data": Object {},
+                "nodes": Array [],
+                "object": "inline",
+                "type": "softbreak",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "If the delay is more than ",
+              },
+              Object {
+                "data": Object {
+                  "id": "termination",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "15 days",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ", the Buyer is entitled to terminate this Contract.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts latedelivery.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "!",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Late Delivery and Penalty.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "In case of delayed delivery",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "id": "forceMajeure",
+              "value": " except for Force Majeure cases,",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "seller",
+              "value": "\\"Dan\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " (the Seller) shall pay to ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "buyer",
+              "value": "\\"Steve\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " (the Buyer) for every ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "penaltyDuration",
+              "value": "2 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "of delay penalty amounting to ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "penaltyPercentage",
+              "value": "10.5",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "% of the total value of the Equipment",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "whose delivery has been delayed. Any fractional part of a ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "fractionalPart",
+              "value": "days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " is to be",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "considered a full ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "fractionalPart",
+              "value": "days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ". The total amount of penalty shall not however,",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "exceed ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "capPercentage",
+              "value": "55.0",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "% of the total value of the Equipment involved in late delivery.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "If the delay is more than ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "termination",
+              "value": "15 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", the Buyer is entitled to terminate this Contract.",
+            },
+          ],
+        },
+      ],
+      "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts linebreak.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
