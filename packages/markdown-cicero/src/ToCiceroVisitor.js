@@ -122,7 +122,7 @@ class ToCiceroMarkVisitor {
                 thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
                 const ciceroMarkTag = thing.tag.tagName === 'if'
-                    ? NS_PREFIX_CiceroMarkModel + 'IfVariable'
+                    ? NS_PREFIX_CiceroMarkModel + 'ConditionalVariable'
                     : NS_PREFIX_CiceroMarkModel + 'Variable';
                 if (tag.attributes[0].name === 'id' &&
                     tag.attributes[1].name === 'value') {
