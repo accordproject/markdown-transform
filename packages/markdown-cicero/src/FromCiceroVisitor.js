@@ -48,8 +48,8 @@ class FromCiceroVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
-
-        switch(thing.getType()) {
+        const thingType = thing.getType();
+        switch(thingType) {
         case 'Clause': {
             let jsonSource = {};
             let jsonTarget = {};
@@ -104,33 +104,45 @@ class FromCiceroVisitor {
             thing.info = `<clause ${attributeString}/>`;
         }
             break;
-        case 'Variable': {
+        case 'Variable':
+        case 'IfVariable':
+        case 'ComputedVariable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
-            const attributeString = `id="${thing.id}" value="${encodeURIComponent(thing.value)}"`;
+            const attributeString =
+                  thingType === 'ComputedVariable'
+                      ? `value="${encodeURIComponent(thing.value)}"`
+                      : `id="${thing.id}" value="${encodeURIComponent(thing.value)}"`
+            ;
+            const tagName =
+                  thingType === 'ComputedVariable'
+                      ? 'computed'
+                      : thingType === 'IfVariable' ? 'if' : 'variable';
             if (this.options && !this.options.wrapVariables) {
-                thing.text = thing.value;
+                thing.text = thingType === 'ComputedVariable' ? `{{${thing.value}}}` : thing.value;
             } else {
-                thing.text = `<variable ${attributeString}/>`;
+                thing.text = `<${tagName} ${attributeString}/>`;
             }
 
             // Create the proper tag
             let tag = {};
             tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
-            tag.tagName = 'variable';
+            tag.tagName = tagName;
             tag.attributeString = attributeString;
             tag.content = content;
             tag.closed = true;
             tag.attributes = [];
 
-            let attribute1 = {};
-            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'id';
-            attribute1.value = thing.id;
-            tag.attributes.push(attribute1);
+            if (thingType !== 'ComputedVariable') {
+                let attribute1 = {};
+                attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+                attribute1.name = 'id';
+                attribute1.value = thing.id;
+                tag.attributes.push(attribute1);
+            }
 
             let attribute2 = {};
             attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
@@ -141,39 +153,6 @@ class FromCiceroVisitor {
             thing.tag = parameters.serializer.fromJSON(tag);
 
             delete thing.id;
-            delete thing.value;
-        }
-            break;
-        case 'ComputedVariable': {
-            // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
-
-            // Create the text for that document
-            const content = '';
-            const attributeString = `value="${encodeURIComponent(thing.value)}"`;
-            if (this.options && !this.options.wrapVariables) {
-                thing.text = `{{${thing.value}}}`;
-            } else {
-                thing.text = `<computed ${attributeString}/>`;
-            }
-
-            // Create the proper tag
-            let tag = {};
-            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
-            tag.tagName = 'computed';
-            tag.attributeString = attributeString;
-            tag.content = content;
-            tag.closed = true;
-            tag.attributes = [];
-
-            let attribute1 = {};
-            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'value';
-            attribute1.value = thing.value;
-            tag.attributes.push(attribute1);
-
-            thing.tag = parameters.serializer.fromJSON(tag);
-
             delete thing.value;
         }
             break;

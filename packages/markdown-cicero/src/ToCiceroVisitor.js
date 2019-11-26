@@ -67,13 +67,14 @@ class ToCiceroMarkVisitor {
         case 'CodeBlock':
             if (thing.tag && thing.tag.tagName === 'clause' && thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
+                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
 
                 //console.log('CONTENT! : ' + tag.content);
                 if (tag.attributes[0].name === 'src' &&
                     tag.attributes[1].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.src = tag.attributes[0].value;
                     thing.clauseid = tag.attributes[1].value;
 
@@ -93,7 +94,7 @@ class ToCiceroMarkVisitor {
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
 
@@ -114,13 +115,18 @@ class ToCiceroMarkVisitor {
                 }
             }
             break;
-        case 'HtmlInline':
         //case 'HtmlBlock':
-            if (thing.tag && thing.tag.tagName === 'variable' && thing.tag.attributes.length === 2) {
+        case 'HtmlInline': {
+            if (thing.tag &&
+                (thing.tag.tagName === 'variable' || thing.tag.tagName === 'if') &&
+                thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
+                const ciceroMarkTag = thing.tag.tagName === 'if'
+                    ? NS_PREFIX_CiceroMarkModel + 'IfVariable'
+                    : NS_PREFIX_CiceroMarkModel + 'Variable';
                 if (tag.attributes[0].name === 'id' &&
                     tag.attributes[1].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Variable');
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.id = tag.attributes[0].value;
                     thing.value = decodeURIComponent(tag.attributes[1].value);
                     delete thing.tag;
@@ -128,7 +134,7 @@ class ToCiceroMarkVisitor {
                 }
                 else if (tag.attributes[1].name === 'id' &&
                          tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'Clause');
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.value = decodeURIComponent(tag.attributes[0].value);
                     thing.id  = tag.attributes[1].value;
                     delete thing.tag;
@@ -138,8 +144,9 @@ class ToCiceroMarkVisitor {
             }
             if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
                 const tag = thing.tag;
+                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ComputedVariable';
                 if (tag.attributes[0].name === 'value') {
-                    thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CiceroMarkModel + 'ComputedVariable');
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.value = decodeURIComponent(tag.attributes[0].value);
                     delete thing.tag;
                     delete thing.text;
@@ -148,6 +155,7 @@ class ToCiceroMarkVisitor {
                     //console.log('Found ComputedVariable but without \'value\' attributes ');
                 }
             }
+        }
             break;
         default:
             ToCiceroMarkVisitor.visitChildren(this, thing, parameters);
