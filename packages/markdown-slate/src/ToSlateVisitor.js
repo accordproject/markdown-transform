@@ -157,6 +157,19 @@ class ToSlateVisitor {
                 }],
             };
             break;
+        case 'ConditionalVariable':
+            result = {
+                object: 'inline',
+                type: 'conditional',
+                data: {
+                    id: thing.id,
+                },
+                nodes: [{
+                    object: 'text',
+                    text: thing.value,
+                }],
+            };
+            break;
         case 'ComputedVariable':
             result = {
                 object: 'inline',

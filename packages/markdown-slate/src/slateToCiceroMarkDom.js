@@ -58,6 +58,9 @@ function _recursive(parent, nodes) {
             case 'variable':
                 result = {$class : `${NS_CICERO}.Variable`, id: node.data.id, value: node.nodes[0].text};
                 break;
+            case 'conditional':
+                result = {$class : `${NS_CICERO}.ConditionalVariable`, id: node.data.id, value: node.nodes[0].text};
+                break;
             case 'computed':
                 result = {$class : `${NS_CICERO}.ComputedVariable`, value: node.nodes[0].text};
                 break;
