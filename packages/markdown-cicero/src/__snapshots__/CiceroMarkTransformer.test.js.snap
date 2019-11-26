@@ -1853,7 +1853,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.IfVariable",
+              "$class": "org.accordproject.ciceromark.ConditionalVariable",
               "id": "forceMajeure",
               "value": " except for Force Majeure cases,",
             },

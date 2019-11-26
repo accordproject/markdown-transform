@@ -105,7 +105,7 @@ class FromCiceroVisitor {
         }
             break;
         case 'Variable':
-        case 'IfVariable':
+        case 'ConditionalVariable':
         case 'ComputedVariable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
@@ -120,7 +120,7 @@ class FromCiceroVisitor {
             const tagName =
                   thingType === 'ComputedVariable'
                       ? 'computed'
-                      : thingType === 'IfVariable' ? 'if' : 'variable';
+                      : thingType === 'ConditionalVariable' ? 'if' : 'variable';
             if (this.options && !this.options.wrapVariables) {
                 thing.text = thingType === 'ComputedVariable' ? `{{${thing.value}}}` : thing.value;
             } else {
