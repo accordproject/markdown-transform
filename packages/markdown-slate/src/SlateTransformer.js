@@ -51,6 +51,20 @@ class SlateTransformer {
             object: 'value',
             document: parameters.result
         };
+        const paragraphSpaceNodeJSON = {
+            object: 'block',
+            type: 'paragraph',
+            data: {
+            },
+            nodes: [
+                {
+                    object: 'text',
+                    text: '',
+                    marks: []
+                }
+            ]
+        };
+        result.document.nodes.push(paragraphSpaceNodeJSON);
         return Value.fromJSON(result);
     }
 
