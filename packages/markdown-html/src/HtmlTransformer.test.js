@@ -98,6 +98,8 @@ describe.only('html', () => {
             expect(json).toMatchSnapshot(); // (1)
             const html = htmlTransformer.toHtml(json);
             expect(html).toMatchSnapshot(); // (2)
+            const ciceroMarkDom = htmlTransformer.toCiceroMark(html, 'json');
+            expect(ciceroMarkDom).toEqual(json);
         });
     });
 });

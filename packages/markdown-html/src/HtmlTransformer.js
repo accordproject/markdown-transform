@@ -15,6 +15,7 @@
 'use strict';
 
 const ToHtmlStringVisitor = require('./ToHtmlStringVisitor');
+const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
@@ -26,7 +27,7 @@ class HtmlTransformer {
      * Construct the parser.
      * @param {object} [options] configuration options
      */
-    constructor(options) {
+    constructor(options = {}) {
         this.options = options;
         this.ciceroMarkTransformer = new CiceroMarkTransformer();
     }
@@ -49,6 +50,18 @@ class HtmlTransformer {
         const visitor = new ToHtmlStringVisitor(this.options);
         input.accept(visitor, parameters);
         return parameters.result.trim();
+    }
+
+    /**
+     * Converts an html string to a CiceroMark DOM
+     * @param {string} input - html string
+     * @param {string} [format] result format, defaults to 'concerto'. Pass
+     * 'json' to return the JSON data.
+     * @returns {*} CiceroMark DOM
+     */
+    toCiceroMark(input, format = 'concerto') {
+        const visitor = new ToCiceroMarkVisitor(this.options);
+        return visitor.toCiceroMark(input, format);
     }
 }
 
