@@ -13,6 +13,7 @@
  */
 
 'use strict';
+const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const jsdom = require('jsdom');
 const typeOf = require('type-of');
 const defaultRules = require('./rules');
@@ -100,8 +101,8 @@ class ToCiceroMarkVisitor {
                 continue;
             } else if (ret === null) {
                 return null;
-            } else if (ret.object === 'mark') {
-                node = this.deserializeMark(ret);
+            // } else if (ret.object === 'mark') {
+            //     node = this.deserializeMark(ret); // will we need this??
             } else {
                 node = ret;
             }
@@ -163,17 +164,11 @@ class ToCiceroMarkVisitor {
         console.log('children -- ', children);
         const nodes = this.deserializeElements(children);
         console.log('nodes', nodes);
-        return nodes;
-        // console.log('frag ---', Array.from(fragment.childNodes));
-
-        // console.log('dom --- ', dom);
-        // console.log('body', dom.window.document.documentElement);
-
-        // console.log('parsed1 --- ', JSON.stringify(dom.window.document, null, 2));
-
-
-        // console.log('parsed --- ', parsed);
-
+        return {
+            '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
+            nodes,
+            xmlns: 'http://commonmark.org/xml/1.0',
+        };
     }
 }
 
