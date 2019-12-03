@@ -104,6 +104,51 @@ class FromCiceroVisitor {
             thing.info = `<clause ${attributeString}/>`;
         }
             break;
+        case 'ListVariable': {
+            let jsonSource = {};
+            let jsonTarget = {};
+
+            FromCiceroVisitor.visitChildren(this, thing, parameters);
+            // Revert to CodeBlock
+            jsonTarget.$class = NS_PREFIX_CommonMarkModel + 'CodeBlock';
+
+            // Get the content
+            const ciceroMarkTag = NS_PREFIX_CommonMarkModel + 'List';
+            thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
+            const clauseJson = parameters.serializer.toJSON(thing);
+            jsonSource.$class = NS_PREFIX_CommonMarkModel + 'Document';
+            jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
+            jsonSource.nodes = [clauseJson];
+
+            const content = parameters.commonMark.toMarkdown(jsonSource);
+
+            jsonTarget.text = content + '\n';
+
+            // Create the proper tag
+            let tag = {};
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
+            tag.tagName = 'list';
+            tag.attributeString = '';
+            tag.content = content;
+            tag.closed = false;
+            tag.attributes = [];
+
+            jsonTarget.tag = tag;
+
+            let validatedTarget = parameters.serializer.fromJSON(jsonTarget);
+
+            delete thing.type;
+            delete thing.start;
+            delete thing.tight;
+            delete thing.delimiter;
+
+            thing.$classDeclaration = validatedTarget.$classDeclaration;
+            thing.tag = validatedTarget.tag;
+            thing.nodes = validatedTarget.nodes;
+            thing.text = validatedTarget.text;
+            thing.info = '<list/>';
+        }
+            break;
         case 'Variable':
         case 'ConditionalVariable':
         case 'ComputedVariable': {
