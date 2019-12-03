@@ -17,10 +17,11 @@
 const NS = 'org.accordproject.commonmark';
 const NS_CICERO = 'org.accordproject.ciceromark';
 
-const lastNode = (input) => input.nodes[input.nodes.length - 1];
+const lastNode = (input) => input.nodes[input.nodes.length - 1] &&
+    input.nodes[input.nodes.length - 1].$class;
 
-const isSecondLastClause = (input) => input.nodes[input.nodes.length - 2]
-    .$class === 'org.accordproject.commonmark.Clause';
+const isSecondLastClause = (input) => (input.nodes.length > 1) &&
+    input.nodes[input.nodes.length - 2].$class === 'org.accordproject.commonmark.Clause';
 
 const islastNodeParagraph = (input) => lastNode(input)
     .$class === 'org.accordproject.commonmark.Paragraph';
