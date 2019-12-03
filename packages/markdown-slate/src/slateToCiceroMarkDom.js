@@ -17,6 +17,33 @@
 const NS = 'org.accordproject.commonmark';
 const NS_CICERO = 'org.accordproject.ciceromark';
 
+const lastNode = (input) => input.nodes[input.nodes.length - 1];
+
+const isSecondLastClause = (input) => input.nodes[input.nodes.length - 2]
+    .$class === 'org.accordproject.commonmark.Clause';
+
+const islastNodeParagraph = (input) => lastNode(input)
+    .$class === 'org.accordproject.commonmark.Paragraph';
+
+const isParagraphEmpty = (input) => lastNode(input).nodes
+    ? lastNode(input).nodes[0].text === ''
+    : null;
+
+const isEmptyParaAfterClause = (input) => {
+    if (!input.nodes || !input.nodes.length) { return false; }
+
+    if (islastNodeParagraph(input) &&
+        isParagraphEmpty(input) &&
+        isSecondLastClause(input)) {
+        return {
+            $class : 'org.accordproject.commonmark.Document',
+            xmlns : 'http://commonmark.org/xml/1.0',
+            nodes : input.nodes.splice(0, input.nodes.length-1)
+        };
+    }
+    return input;
+};
+
 /**
  * Converts a Slate document node to CiceroMark DOM (as JSON)
  * @param {*} document the Slate document node
@@ -32,20 +59,7 @@ function slateToCiceroMarkDom(document) {
     // convert the value to a plain object
     const json = JSON.parse(JSON.stringify(document));
     _recursive(result, json.nodes);
-    const isLastNodePara = result.nodes[result.nodes.length - 1]
-        .$class === 'org.accordproject.commonmark.Paragraph';
-    const isPragraphEmpty = result.nodes[result.nodes.length - 1].nodes
-        ? result.nodes[result.nodes.length - 1].nodes[0].text === ''
-        : null;
-    if (isLastNodePara && isPragraphEmpty) {
-        const removeByIndex = (array, index) => array.filter((_, i) => i !== index);
-        return {
-            $class : 'org.accordproject.commonmark.Document',
-            xmlns : 'http://commonmark.org/xml/1.0',
-            nodes : removeByIndex(result.nodes, (result.nodes.length - 1))
-        };
-    }
-    return result;
+    return isEmptyParaAfterClause(result);
 }
 
 /**
