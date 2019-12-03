@@ -15,7 +15,6 @@
 'use strict';
 
 const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
@@ -64,9 +63,9 @@ class ToCiceroMarkVisitor {
      */
     visit(thing, parameters) {
         switch(thing.getType()) {
-        case 'CodeBlock':
-            if (thing.tag && thing.tag.tagName === 'clause' && thing.tag.attributes.length === 2) {
-                const tag = thing.tag;
+        case 'CodeBlock': {
+            const tag = thing.tag;
+            if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
@@ -84,13 +83,6 @@ class ToCiceroMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-
-                    // Go over the loaded clause to generate the unwrapped text
-                    let clone = parameters.serializer.toJSON(thing);
-                    clone.$class = NS_PREFIX_CommonMarkModel + 'Paragraph';
-                    delete clone.clauseid;
-                    delete clone.src;
-                    clone = parameters.serializer.fromJSON(clone);
                 }
                 else if (tag.attributes[1].name === 'src' &&
                          tag.attributes[0].name === 'clauseid') {
@@ -103,17 +95,33 @@ class ToCiceroMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-
-                    // Go over the loaded clause to generate the unwrapped text
-                    let clone = parameters.serializer.toJSON(thing);
-                    clone.$class = NS_PREFIX_CommonMarkModel + 'Paragraph';
-                    delete clone.clauseid;
-                    delete clone.src;
-                    clone = parameters.serializer.fromJSON(clone);
                 } else {
                     //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
+            } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
+                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListVariable';
+                // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
+                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
+
+                thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
+
+                const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
+                if (newNodes.length !== 1 || newNodes[0].getType() !== 'List') {
+                    throw new Error('Content of list code block should be a list');
+                }
+
+                thing.type = newNodes[0].type;
+                thing.start = newNodes[0].start;
+                thing.tight = newNodes[0].tight;
+                thing.delimiter = newNodes[0].delimiter;
+                thing.nodes = newNodes[0].nodes;
+                ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
+
+                thing.text = null; // Remove text
+                delete thing.tag;
+                delete thing.info;
             }
+        }
             break;
         //case 'HtmlBlock':
         case 'HtmlInline': {
