@@ -50,7 +50,7 @@ class CommonMarkTransformer {
 
     /**
      * Is it a leaf node?
-     * @param {*} json the JS Object for the AST
+     * @param {*} json - the JS Object for the AST
      * @return {boolean} whether it's a leaf node
      */
     static isLeafNode(json) {
@@ -63,7 +63,7 @@ class CommonMarkTransformer {
 
     /**
      * Is it a HTML node? (html blocks or html inlines)
-     * @param {*} json the JS Object for the AST
+     * @param {*} json - the JS Object for the AST
      * @return {boolean} whether it's a leaf node
      */
     static isHtmlNode(json) {
@@ -78,6 +78,15 @@ class CommonMarkTransformer {
      */
     static isCodeBlockNode(json) {
         return json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock');
+    }
+
+    /**
+     * Removing escapes
+     * @param {string} input - escaped
+     * @return {string} unescaped
+     */
+    static unescapeCodeBlock(input) {
+        return input.replace(/\\`/g, '`');
     }
 
     /**
@@ -142,7 +151,7 @@ class CommonMarkTransformer {
             const head = stack.peek();
             if(t.length > 0 && head) {
                 if (CommonMarkTransformer.isLeafNode(head)) {
-                    head.text = t;
+                    head.text = CommonMarkTransformer.isCodeBlockNode(head) ? CommonMarkTransformer.unescapeCodeBlock(t) : t;
                 }
                 if (CommonMarkTransformer.isHtmlNode(head) || CommonMarkTransformer.isCodeBlockNode(head)) {
                     const maybeHtmlText = CommonMarkTransformer.isHtmlNode(head) ? head.text : head.info;

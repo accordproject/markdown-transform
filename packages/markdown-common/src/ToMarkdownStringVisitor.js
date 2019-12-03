@@ -126,6 +126,15 @@ class ToMarkdownStringVisitor {
     }
 
     /**
+     * Adding escapes
+     * @param {string} input - unescaped
+     * @return {string} escaped
+     */
+    static escapeCodeBlock(input) {
+        return input.replace(/`/g, '\\`');
+    }
+
+    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
@@ -135,7 +144,7 @@ class ToMarkdownStringVisitor {
         switch(thing.getType()) {
         case 'CodeBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${thing.text}\`\`\`\n\n`;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(thing.text)}\`\`\`\n\n`;
             break;
         case 'Code':
             parameters.result += `\`${thing.text}\``;
