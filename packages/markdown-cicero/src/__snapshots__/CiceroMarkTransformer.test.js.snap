@@ -1404,6 +1404,228 @@ Object {
 }
 `;
 
+exports[`markdown converts clauseulist.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "4",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Discount.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "The Discount is determined according to the following table:",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.ListVariable",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "0.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 1.0$ million : 3.1%",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "1.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 10.0$ million : 3.1%",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "10.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 50.0$ million : 2.9%",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "50.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 500.0$ million : 2.5%",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "500.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 1000.0$ million : 1.2%",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "1000.0$ million ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "= Volume ",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "<",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": " 1000000.0$ million : 0.1%",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          "tight": "true",
+          "type": "bullet",
+        },
+      ],
+      "src": "ap://volumediscountulist@0.2.1.cta",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts codeblock.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
