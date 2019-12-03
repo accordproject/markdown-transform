@@ -1385,6 +1385,47 @@ Object {
 }
 `;
 
+exports[`markdown converts listcodeblock.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "b) Discount. The Discount is determined according to the following table:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "info": "<list/>",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "",
+        "attributes": Array [],
+        "closed": true,
+        "content": "",
+        "tagName": "list",
+      },
+      "text": "- <variable id=\\"volumeAbove\\" value=\\"1.0\\"/>$ million <= Volume < <variable id=\\"volumeUpTo\\" value=\\"10.0\\"/>$ million : <variable id=\\"rate\\" value=\\"3.1\\"/>%
+",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is more text",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts multiline-html-block.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
