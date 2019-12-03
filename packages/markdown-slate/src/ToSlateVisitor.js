@@ -324,6 +324,15 @@ class ToSlateVisitor {
                 'nodes': this.processChildNodes(thing)
             };
             break;
+        case 'ListVariable':
+            /* XXX Will have to be changed to support editing of dynamic lists in the UI */
+            result = {
+                'object': 'block',
+                'data': { tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
+                'type': thing.type === 'ordered' ? 'ol_list' : 'ul_list',
+                'nodes': this.processChildNodes(thing)
+            };
+            break;
         case 'Item':
             result = {
                 'object': 'block',
