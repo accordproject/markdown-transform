@@ -211,6 +211,15 @@ Object {
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
+    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -835,6 +844,15 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1988,6 +2006,15 @@ Object {
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
     },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
+    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -2522,6 +2549,15 @@ Object {
         },
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
