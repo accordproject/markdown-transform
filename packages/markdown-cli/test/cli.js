@@ -138,7 +138,6 @@ describe('markdown-cli', () => {
             options.cicero = false;
             options.slate = false;
             const result = await Commands.draft(sampleExpected, null, options);
-            console.log();
             result.should.eql(sampleExpectedText);
         });
 

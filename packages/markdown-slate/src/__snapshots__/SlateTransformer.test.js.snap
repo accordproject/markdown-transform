@@ -606,6 +606,18 @@ Object {
         "object": "block",
         "type": "clause",
       },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
     ],
     "object": "document",
   },
@@ -2310,6 +2322,18 @@ Object {
         ],
         "object": "block",
         "type": "clause",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
       },
     ],
     "object": "document",

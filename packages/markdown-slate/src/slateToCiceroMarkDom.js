@@ -32,6 +32,19 @@ function slateToCiceroMarkDom(document) {
     // convert the value to a plain object
     const json = JSON.parse(JSON.stringify(document));
     _recursive(result, json.nodes);
+    const isLastNodePara = result.nodes[result.nodes.length - 1]
+        .$class === 'org.accordproject.commonmark.Paragraph';
+    const isPragraphEmpty = result.nodes[result.nodes.length - 1].nodes
+        ? result.nodes[result.nodes.length - 1].nodes[0].text === ''
+        : null;
+    if (isLastNodePara && isPragraphEmpty) {
+        const removeByIndex = (array, index) => array.filter((_, i) => i !== index);
+        return {
+            $class : 'org.accordproject.commonmark.Document',
+            xmlns : 'http://commonmark.org/xml/1.0',
+            nodes : removeByIndex(result.nodes, (result.nodes.length - 1))
+        };
+    }
     return result;
 }
 
