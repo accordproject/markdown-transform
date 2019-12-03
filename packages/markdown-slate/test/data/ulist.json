@@ -1,0 +1,277 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "heading_four",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Discount.",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "The Discount is determined according to the following table:",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "ul_list",
+                "data": {
+                    "tight": "true",
+                    "kind": "variable"
+                },
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "0.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 1.0$ million : 3.1%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "1.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 10.0$ million : 3.1%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "10.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 50.0$ million : 2.9%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "50.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 500.0$ million : 2.5%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "500.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 1000.0$ million : 1.2%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "object": "block",
+                        "type": "list_item",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "text": "1000.0$ million ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "= Volume ",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": "<",
+                                        "marks": []
+                                    },
+                                    {
+                                        "object": "text",
+                                        "text": " 1000000.0$ million : 0.1%",
+                                        "marks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

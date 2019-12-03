@@ -110,8 +110,9 @@ function _recursive(parent, nodes) {
                 result = {$class : `${NS}.HtmlInline`};
                 break;
             case 'ol_list':
-            case 'ul_list':
-                result = {$class : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+            case 'ul_list': {
+                result = {$class : node.data.kind === 'variable' ? `${NS_CICERO}.ListVariable` : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+            }
                 break;
             case 'list_item':
                 result = {$class : `${NS}.Item`, nodes: []};
