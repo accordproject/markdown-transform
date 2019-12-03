@@ -38,6 +38,7 @@ const TEXT_RULE = {
     }
 };
 
+// TODO: need to get delimiter, start, and tight properties
 /**
  * A rule to deserialize list nodes.
  * @type {Object}
@@ -83,10 +84,118 @@ const PARAGRAPH_RULE = {
     }
 };
 
+/**
+ * A rule to deserialize strong (bold) nodes.
+ * @type {Object}
+ */
+const STRONG_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'strong') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}${'Strong'}`,
+                nodes: next(el.childNodes)
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize emph (italic) nodes.
+ * @type {Object}
+ */
+const EMPH_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'em') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}${'Emph'}`,
+                nodes: next(el.childNodes)
+            };
+        }
+    }
+};
+
+// TODO: need to get href (destination) and title(?)
+/**
+ * A rule to deserialize link nodes.
+ * @type {Object}
+ */
+const LINK_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'a') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}${'Link'}`,
+                nodes: next(el.childNodes),
+                title: el.nodeValue // TODO: this might not be correct
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize heading nodes (all levels).
+ * @type {Object}
+ */
+const HEADING_RULE = {
+    deserialize(el, next) {
+        if (el.tagName) {
+            let level;
+            switch (el.tagName.toLowerCase()) {
+            case 'h1':
+                level = '1';
+                break;
+            case 'h2':
+                level = '2';
+                break;
+            case 'h3':
+                level = '3';
+                break;
+            case 'h4':
+                level = '4';
+                break;
+            case 'h5':
+                level = '5';
+                break;
+            case 'h6':
+                level = '6';
+                break;
+            default:
+                level = null;
+            }
+            if (level) {
+                return {
+                    '$class': `${NS_PREFIX_CommonMarkModel}${'Heading'}`,
+                    nodes: next(el.childNodes),
+                    level,
+                };
+            }
+        }
+    }
+};
+
+/**
+ * A rule to deserialize thematic break nodes.
+ * @type {Object}
+ */
+const THEMATIC_BREAK_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'hr') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}${'ThematicBreak'}`,
+                nodes: next(el.childNodes),
+            };
+        }
+    }
+};
+
 
 const rules = [
     LIST_RULE,
     PARAGRAPH_RULE,
+    STRONG_RULE,
+    EMPH_RULE,
+    LINK_RULE,
+    HEADING_RULE,
+    THEMATIC_BREAK_RULE,
     TEXT_RULE,
 ];
 

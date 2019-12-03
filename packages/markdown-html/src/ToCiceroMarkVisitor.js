@@ -131,9 +131,9 @@ class ToCiceroMarkVisitor {
         let nodes = [];
 
         elements.filter(this.cruftNewline).forEach(element => {
-            console.log('element -- ', element);
+            // console.log('element -- ', element);
             const node = this.deserializeElement(element);
-            console.log('node -- ', node);
+            // console.log('node -- ', node);
 
             switch (typeOf(node)) {
             case 'array':
@@ -161,9 +161,9 @@ class ToCiceroMarkVisitor {
         // const dom = new JSDOM(input);
         const fragment = JSDOM.fragment(input);
         const children = Array.from(fragment.childNodes);
-        console.log('children -- ', children);
+        // console.log('children -- ', children);
         const nodes = this.deserializeElements(children);
-        console.log('nodes', nodes);
+        // console.log('nodes', nodes);
         return {
             '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             nodes,
