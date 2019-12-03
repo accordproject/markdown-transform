@@ -309,6 +309,16 @@
                         ]
                     }
                 ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [{
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                }]
             }
         ]
     }
