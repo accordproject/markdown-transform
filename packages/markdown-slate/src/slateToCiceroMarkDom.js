@@ -17,30 +17,19 @@
 const NS = 'org.accordproject.commonmark';
 const NS_CICERO = 'org.accordproject.ciceromark';
 
-const lastNode = (input) => input.nodes[input.nodes.length - 1] &&
-    input.nodes[input.nodes.length - 1].$class;
 
-const isSecondLastClause = (input) => (input.nodes.length > 1) &&
-    input.nodes[input.nodes.length - 2].$class === 'org.accordproject.commonmark.Clause';
-
-const islastNodeParagraph = (input) => lastNode(input)
-    .$class === 'org.accordproject.commonmark.Paragraph';
-
-const isParagraphEmpty = (input) => lastNode(input).nodes
-    ? lastNode(input).nodes[0].text === ''
-    : null;
-
-const isEmptyParaAfterClause = (input) => {
-    if (!input.nodes || !input.nodes.length) { return false; }
-
-    if (islastNodeParagraph(input) &&
-        isParagraphEmpty(input) &&
-        isSecondLastClause(input)) {
-        return {
-            $class : 'org.accordproject.commonmark.Document',
-            xmlns : 'http://commonmark.org/xml/1.0',
-            nodes : input.nodes.splice(0, input.nodes.length-1)
-        };
+/**
+ * Removed the final node if it is an empty paragraph following a clause
+ * @param {*} input the current result of slateToCiceroMarkDom
+ * @returns {*} the final result of slateToCiceroMarkDom
+ */
+const fixEmptyParaAfterClause = (input) => {
+    const nodes = input.nodes;
+    if (nodes.length >= 2 &&
+        nodes[nodes.length - 2].$class === 'org.accordproject.commonmark.Clause' &&
+        nodes[nodes.length - 1].$class === 'org.accordproject.commonmark.Paragraph' &&
+        nodes[nodes.length - 1].text === '') {
+        input.nodes = nodes.splice(0, nodes.length-1);
     }
     return input;
 };
@@ -60,7 +49,7 @@ function slateToCiceroMarkDom(document) {
     // convert the value to a plain object
     const json = JSON.parse(JSON.stringify(document));
     _recursive(result, json.nodes);
-    return isEmptyParaAfterClause(result);
+    return fixEmptyParaAfterClause(result);
 }
 
 /**
