@@ -3992,6 +3992,737 @@ Object {
 }
 `;
 
+exports[`slate converts ulist.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "4",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Discount.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The Discount is determined according to the following table:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.ListVariable",
+      "delimiter": undefined,
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "0.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 10.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "10.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 50.0$ million : 2.9%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "50.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 500.0$ million : 2.5%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "500.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1000.0$ million : 1.2%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1000.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1000000.0$ million : 0.1%",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": undefined,
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts ulist.json to and from CiceroMark 2`] = `
+"#### Discount.
+
+The Discount is determined according to the following table:
+\`\`\`<list/>
+- 0.0$ million <= Volume < 1.0$ million : 3.1%
+- 1.0$ million <= Volume < 10.0$ million : 3.1%
+- 10.0$ million <= Volume < 50.0$ million : 2.9%
+- 50.0$ million <= Volume < 500.0$ million : 2.5%
+- 500.0$ million <= Volume < 1000.0$ million : 1.2%
+- 1000.0$ million <= Volume < 1000000.0$ million : 0.1%
+\`\`\`
+"
+`;
+
+exports[`slate converts ulist.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "Discount.",
+          },
+        ],
+        "object": "block",
+        "type": "heading_four",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "The Discount is determined according to the following table:",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "delimiter": undefined,
+          "kind": "variable",
+          "start": undefined,
+          "tight": "true",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "0.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 1.0$ million : 3.1%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "1.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 10.0$ million : 3.1%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "10.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 50.0$ million : 2.9%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "50.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 500.0$ million : 2.5%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "500.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 1000.0$ million : 1.2%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "1000.0$ million ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "= Volume ",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "<",
+                  },
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": " 1000000.0$ million : 0.1%",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "list_item",
+          },
+        ],
+        "object": "block",
+        "type": "ul_list",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts ulist.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "4",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Discount.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The Discount is determined according to the following table:",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.ListVariable",
+      "delimiter": undefined,
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "0.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 10.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "10.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 50.0$ million : 2.9%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "50.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 500.0$ million : 2.5%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "500.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1000.0$ million : 1.2%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1000.0$ million ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "= Volume ",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " 1000000.0$ million : 0.1%",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": undefined,
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts unordered.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
