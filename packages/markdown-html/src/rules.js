@@ -38,7 +38,6 @@ const TEXT_RULE = {
     }
 };
 
-// TODO: need to get delimiter, start, and tight properties
 // make sure these are getting set as attributes when we create the html
 /**
  * A rule to deserialize list nodes.
@@ -50,6 +49,7 @@ const LIST_RULE = {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}List`,
                 type: 'bullet',
+                tight: el.getAttribute('tight'),
                 nodes: next(el.childNodes)
             };
         }
@@ -57,13 +57,16 @@ const LIST_RULE = {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}List`,
                 type: 'ordered',
+                delimiter: el.getAttribute('delimiter'),
+                start: el.getAttribute('start'),
+                tight: el.getAttribute('tight'),
                 nodes: next(el.childNodes)
             };
         }
 
         if (el.tagName && el.tagName.toLowerCase() === 'li') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}List`,
+                '$class': `${NS_PREFIX_CommonMarkModel}Item`,
                 nodes: next(el.childNodes)
             };
         }
@@ -182,11 +185,25 @@ const THEMATIC_BREAK_RULE = {
         if (el.tagName && el.tagName.toLowerCase() === 'hr') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
-                nodes: next(el.childNodes),
             };
         }
     }
 };
+
+/**
+ * A rule to deserialize html block nodes.
+ * @type {Object}
+ */
+// TODO: figure out how to handle custom html blocks (could be anything?)
+// const HTML_BLOCK_RULE = {
+//     deserialize(el, next) {
+//         if (el.tagName ) {
+//             return {
+//                 '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
+//             };
+//         }
+//     }
+// };
 
 
 const rules = [

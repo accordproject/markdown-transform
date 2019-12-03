@@ -143,20 +143,22 @@ class ToHtmlStringVisitor {
         case 'Paragraph':
             parameters.result += `<p>${ToHtmlStringVisitor.visitChildren(this, thing)}</p>\n`;
             break;
-        case 'HtmlBlock':
+        case 'HtmlBlock':{
             parameters.result += `${thing.text}`;
             break;
+        }
         case 'Text':
             parameters.result += thing.text;
             break;
         case 'List': {
             // Always start with a new line
             parameters.result += '\n';
+            const { delimiter, start, tight} = thing;
             if(thing.type === 'ordered') {
-                parameters.result += '<ol>';
+                parameters.result += `<ol delimiter=${delimiter} start=${start} tight=${tight}>`;
             }
             else {
-                parameters.result += '<ul>';
+                parameters.result += `<ul tight=${tight}>`;
             }
 
             thing.nodes.forEach(item => {

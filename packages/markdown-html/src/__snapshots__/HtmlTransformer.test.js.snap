@@ -1145,7 +1145,7 @@ exports[`html converts ol.md to html 2`] = `
 <div class=\\"document\\">
 <p>This is an ordered list:</p>
 
-<ol>
+<ol delimiter=period start=1 tight=false>
 <li><p>one</p>
 </li>
 <li><p>two</p>
@@ -1241,7 +1241,7 @@ exports[`html converts ol-tight.md to html 2`] = `
 <div class=\\"document\\">
 <p>This is an ordered list:</p>
 
-<ol>
+<ol delimiter=period start=1 tight=true>
 <li><p>one</p>
 </li>
 <li><p>two</p>
@@ -1485,7 +1485,7 @@ exports[`html converts ul.md to html 2`] = `
 <div class=\\"document\\">
 <p>This is an unordered list:</p>
 
-<ul>
+<ul tight=false>
 <li><p>one</p>
 </li>
 <li><p>two</p>
@@ -1579,7 +1579,7 @@ exports[`html converts ul-tight.md to html 2`] = `
 <div class=\\"document\\">
 <p>This is an unordered list:</p>
 
-<ul>
+<ul tight=true>
 <li><p>one</p>
 </li>
 <li><p>two</p>
