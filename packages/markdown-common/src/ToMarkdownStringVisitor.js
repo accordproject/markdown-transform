@@ -144,7 +144,7 @@ class ToMarkdownStringVisitor {
         switch(thing.getType()) {
         case 'CodeBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(thing.text)}\`\`\`\n\n`;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(thing.text)}\`\`\``;
             break;
         case 'Code':
             parameters.result += `\`${thing.text}\``;
