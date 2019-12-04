@@ -102,7 +102,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<span class="computed">${thing.value}</span>\n`;
             break;
         case 'CodeBlock':
-            parameters.result += `<pre><code>\n${thing.text}</pre></code>\n`;
+            parameters.result += `<pre><code>${thing.text}</pre></code>\n`;
             break;
         case 'Code':
             parameters.result += `<code>${thing.text}</code>`;
@@ -135,7 +135,7 @@ class ToHtmlStringVisitor {
             parameters.result += '\n';
             break;
         case 'Link':
-            parameters.result += `<a href="${thing.destination}">${ToHtmlStringVisitor.visitChildren(this, thing)}/>`;
+            parameters.result += `<a href="${thing.destination}" title=${thing.title}>${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
             break;
         case 'Image':
             parameters.result += `<img src="${thing.destination}" title="${thing.title}"/>`;

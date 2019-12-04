@@ -491,8 +491,7 @@ exports[`html converts codeblock.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<pre><code>
-this is a multiline
+<pre><code>this is a multiline
 code
 block.
 </pre></code>
@@ -539,8 +538,7 @@ exports[`html converts codeblock-info.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<pre><code>
-  this is a multiline
+<pre><code>  this is a multiline
   code
 
   containing a newline
@@ -993,7 +991,7 @@ exports[`html converts link.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is <a href=\\"http://clause.io\\">a link/>.</p>
+<p>This is <a href=\\"http://clause.io\\" title=>a link</a>.</p>
 </div>
 </body>
 </html>"

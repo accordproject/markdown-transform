@@ -129,7 +129,8 @@ const LINK_RULE = {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Link`,
                 nodes: next(el.childNodes),
-                title: el.nodeValue // TODO: this might not be correct
+                destination: el.getAttribute('href'),
+                title: el.getAttribute('title')
             };
         }
     }
@@ -194,6 +195,7 @@ const THEMATIC_BREAK_RULE = {
  * A rule to deserialize html block nodes.
  * @type {Object}
  */
+// Look at common mark dingus and see how they are mapping html blocks
 // TODO: figure out how to handle custom html blocks (could be anything?)
 // const HTML_BLOCK_RULE = {
 //     deserialize(el, next) {
@@ -205,6 +207,57 @@ const THEMATIC_BREAK_RULE = {
 //     }
 // };
 
+/**
+ * A rule to deserialize code block nodes.
+ * @type {Object}
+ */
+const CODE_BLOCK_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'pre') {
+            const children = el.childNodes;
+            if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
+            {
+                return {
+                    '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
+                    text: children[0].textContent
+                };
+            }
+        }
+    }
+};
+
+/**
+ * A rule to deserialize inline code nodes.
+ * @type {Object}
+ */
+const INLINE_CODE_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'code') {
+            {
+                return {
+                    '$class': `${NS_PREFIX_CommonMarkModel}Code`,
+                    text: el.textContent,
+                };
+            }
+        }
+    }
+};
+
+/**
+ * A rule to deserialize block quote nodes.
+ * @type {Object}
+ */
+const BLOCK_QUOTE_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'blockquote') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}BlockQuote`,
+                nodes: next(el.childNodes)
+            };
+        }
+    }
+};
+
 
 const rules = [
     LIST_RULE,
@@ -214,6 +267,9 @@ const rules = [
     LINK_RULE,
     HEADING_RULE,
     THEMATIC_BREAK_RULE,
+    CODE_BLOCK_RULE,
+    INLINE_CODE_RULE,
+    BLOCK_QUOTE_RULE,
     TEXT_RULE,
 ];
 
