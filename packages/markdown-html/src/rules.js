@@ -14,6 +14,7 @@
 
 'use strict';
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const { isIgnorable } = require('./helpers');
 
 
@@ -258,6 +259,71 @@ const BLOCK_QUOTE_RULE = {
     }
 };
 
+/**
+ * A rule to deserialize clause nodes.
+ * @type {Object}
+ */
+const CLAUSE_RULE = {
+    deserialize(el, next) {
+        const tag = el.tagName;
+        if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
+            return {
+                '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
+                clauseid: el.getAttribute('clauseid'),
+                src: el.getAttribute('src'),
+                nodes: next(el.childNodes)
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize variable nodes.
+ * @type {Object}
+ */
+const VARIABLE_RULE = {
+    deserialize(el, next) {
+        const { tagName } = el;
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
+            return {
+                '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
+                id: el.getAttribute('id'),
+                value: el.textContent,
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize computed variable nodes.
+ * @type {Object}
+ */
+const COMPUTED_VARIABLE_RULE = {
+    deserialize(el, next) {
+        const { tagName } = el;
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'computed') {
+            return {
+                '$class': `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
+                value: el.textContent,
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize softbreak nodes.
+ * @type {Object}
+ */
+const SOFTBREAK_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'wbr') {
+            return {
+                '$class': 'org.accordproject.commonmark.Softbreak',
+            };
+        }
+    }
+};
+
 
 const rules = [
     LIST_RULE,
@@ -270,6 +336,10 @@ const rules = [
     CODE_BLOCK_RULE,
     INLINE_CODE_RULE,
     BLOCK_QUOTE_RULE,
+    CLAUSE_RULE,
+    VARIABLE_RULE,
+    SOFTBREAK_RULE,
+    COMPUTED_VARIABLE_RULE,
     TEXT_RULE,
 ];
 

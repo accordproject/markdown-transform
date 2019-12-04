@@ -96,7 +96,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable':
-            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>\n`;
+            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>`;
             break;
         case 'ComputedVariable':
             parameters.result += `<span class="computed">${thing.value}</span>\n`;
@@ -132,7 +132,7 @@ class ToHtmlStringVisitor {
             parameters.result += '<br>\n';
             break;
         case 'Softbreak':
-            parameters.result += '\n';
+            parameters.result += '<wbr>';
             break;
         case 'Link':
             parameters.result += `<a href="${thing.destination}" title=${thing.title}>${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
@@ -148,7 +148,7 @@ class ToHtmlStringVisitor {
             break;
         }
         case 'Text':
-            parameters.result += thing.text;
+            parameters.result += `${thing.text}`;
             break;
         case 'List': {
             // Always start with a new line

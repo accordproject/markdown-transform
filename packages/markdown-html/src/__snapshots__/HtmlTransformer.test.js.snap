@@ -244,23 +244,9 @@ exports[`html converts acceptance.md to html 2`] = `
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
-<p>Acceptance of Delivery. <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span>
- will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>
-'s opinion, the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>
- satisfies the Acceptance Criteria, and <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>
- notifies <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span>
- in writing that it is accepting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>
-.</p>
-<p>Inspection and Notice. <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>
- will have <span class=\\"variable\\" id=\\"businessDays\\">10</span>
- Business Days' to inspect and evaluate the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>
- on the delivery date before notifying <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span>
- that it is either accepting or rejecting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>
-.</p>
-<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>
- must meet for the <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span>
- to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>
-, attached to this agreement.</p>
+<p>Acceptance of Delivery. <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Inspection and Notice. <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> will have <span class=\\"variable\\" id=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
 </div>
 </div>
 </body>
@@ -448,22 +434,11 @@ exports[`html converts clause.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span>
-
-at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>
-%
-with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>
-,
-and monthly payments of <span class=\\"computed\\">667.0</span>
+<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span><wbr>at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%<wbr>with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,<wbr>and monthly payments of <span class=\\"computed\\">667.0</span>
 </p>
-<p>This is a fixed interest loan to the amount of 100000.0
-at the yearly interest rate of 2.5%
-with a loan term of 15,
-and monthly payments of 667.0</p>
+<p>This is a fixed interest loan to the amount of 100000.0<wbr>at the yearly interest rate of 2.5%<wbr>with a loan term of 15,<wbr>and monthly payments of 667.0</p>
 <div class=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
-<p>this is
-multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span>
-</p>
+<p>this is<wbr>multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span></p>
 <p>content</p>
 </div>
 </div>
