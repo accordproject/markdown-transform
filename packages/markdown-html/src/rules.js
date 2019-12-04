@@ -119,7 +119,6 @@ const EMPH_RULE = {
     }
 };
 
-// TODO: need to get href (destination) and title(?)
 /**
  * A rule to deserialize link nodes.
  * @type {Object}

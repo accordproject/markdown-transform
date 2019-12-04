@@ -99,7 +99,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>`;
             break;
         case 'ComputedVariable':
-            parameters.result += `<span class="computed">${thing.value}</span>\n`;
+            parameters.result += `<span class="computed">${thing.value}</span>`;
             break;
         case 'CodeBlock':
             parameters.result += `<pre><code>${thing.text}</pre></code>\n`;

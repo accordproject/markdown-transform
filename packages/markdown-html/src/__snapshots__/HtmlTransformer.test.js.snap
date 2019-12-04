@@ -434,8 +434,7 @@ exports[`html converts clause.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span><wbr>at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%<wbr>with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,<wbr>and monthly payments of <span class=\\"computed\\">667.0</span>
-</p>
+<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span><wbr>at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%<wbr>with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,<wbr>and monthly payments of <span class=\\"computed\\">667.0</span></p>
 <p>This is a fixed interest loan to the amount of 100000.0<wbr>at the yearly interest rate of 2.5%<wbr>with a loan term of 15,<wbr>and monthly payments of 667.0</p>
 <div class=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
 <p>this is<wbr>multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span></p>
