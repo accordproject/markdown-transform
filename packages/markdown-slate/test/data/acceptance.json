@@ -75,12 +75,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": "'",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": "s opinion, the ",
+                                "text": "'s opinion, the ",
                                 "marks": []
                             },
                             {
@@ -188,17 +183,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " Business Days",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": "'",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": " to inspect and evaluate the ",
+                                "text": " Business Days' to inspect and evaluate the ",
                                 "marks": []
                             },
                             {
@@ -258,27 +243,7 @@
                         "nodes": [
                             {
                                 "object": "text",
-                                "text": "Acceptance Criteria. The ",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": "\"",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": "Acceptance Criteria",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": "\"",
-                                "marks": []
-                            },
-                            {
-                                "object": "text",
-                                "text": " are the specifications the ",
+                                "text": "Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the ",
                                 "marks": []
                             },
                             {

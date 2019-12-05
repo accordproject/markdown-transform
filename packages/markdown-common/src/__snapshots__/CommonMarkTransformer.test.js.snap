@@ -10,11 +10,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -99,11 +95,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -188,11 +180,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -973,11 +961,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "and monthly payments of {{I'",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "m not sure which amount right now}}",
+          "text": "and monthly payments of {{I'm not sure which amount right now}}",
         },
       ],
     },
@@ -1248,11 +1232,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "ap_",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "logo",
+              "text": "ap_logo",
             },
           ],
           "title": "title",
@@ -1286,11 +1266,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "ap_",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "logo",
+              "text": "ap_logo",
             },
           ],
           "title": "",
@@ -2171,11 +2147,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": " *",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "baz*",
+          "text": " *baz*",
         },
       ],
     },
@@ -2406,11 +2378,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo #",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "##",
+          "text": "foo ###",
         },
       ],
     },
@@ -2420,11 +2388,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo ##",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "#",
+          "text": "foo ###",
         },
       ],
     },
@@ -2828,11 +2792,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "+@bar.example.com>",
+          "text": "<foo+@bar.example.com>",
         },
       ],
     },
@@ -2958,67 +2918,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "!\\"",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "#$",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "%&",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'(",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ")*",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "+,",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "-.",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "/:",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ";<",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "=>",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "?@",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "[\\\\",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]^",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_\`",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "{|",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "}~",
+          "text": "!\\"#$%&'()*+,-./:;<=>?@[\\\\]^_\`{|}~",
         },
       ],
     },
@@ -3036,31 +2936,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\→",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\A",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\a",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\3",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\φ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\\\«",
+          "text": "\\\\→\\\\A\\\\a\\\\ \\\\3\\\\φ\\\\«",
         },
       ],
     },
@@ -3078,11 +2954,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "*not emphasized",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*",
+          "text": "*not emphasized*",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -3096,33 +2968,21 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[not a link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](/foo)",
+          "text": "[not a link](/foo)",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\`not code",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\`",
+          "text": "\`not code\`",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "1.",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " not a list",
+          "text": "1. not a list",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -3143,19 +3003,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"not a reference",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"",
+          "text": "[foo]: /url \\"not a reference\\"",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -4530,11 +4378,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\\">",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\`",
+          "text": "\\">\`",
         },
       ],
     },
@@ -4639,11 +4483,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\`\`\`foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\`\`",
+          "text": "\`\`\`foo\`\`",
         },
       ],
     },
@@ -4724,11 +4564,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "a *",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " foo bar*",
+          "text": "a * foo bar*",
         },
       ],
     },
@@ -4746,15 +4582,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "a*",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"*",
+          "text": "a*\\"foo\\"*",
         },
       ],
     },
@@ -4772,11 +4600,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "* a ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*",
+          "text": "* a *",
         },
       ],
     },
@@ -4875,11 +4699,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_ foo bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_",
+          "text": "_ foo bar_",
         },
       ],
     },
@@ -4897,15 +4717,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "a_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"_",
+          "text": "a_\\"foo\\"_",
         },
       ],
     },
@@ -4923,11 +4735,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bar_",
+          "text": "foo_bar_",
         },
       ],
     },
@@ -4945,15 +4753,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "5_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "6_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "78",
+          "text": "5_6_78",
         },
       ],
     },
@@ -4971,11 +4771,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "пристаням_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "стремятся_",
+          "text": "пристаням_стремятся_",
         },
       ],
     },
@@ -4993,19 +4789,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "aa_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"bb",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"_",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "cc",
+          "text": "aa_\\"bb\\"_cc",
         },
       ],
     },
@@ -5050,11 +4834,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*",
+          "text": "_foo*",
         },
       ],
     },
@@ -5072,11 +4852,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "*foo bar ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*",
+          "text": "*foo bar *",
         },
       ],
     },
@@ -5119,11 +4895,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "*(",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*foo)",
+          "text": "*(*foo)",
         },
       ],
     },
@@ -5204,11 +4976,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_foo bar ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_",
+          "text": "_foo bar _",
         },
       ],
     },
@@ -5226,11 +4994,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_(",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_foo)",
+          "text": "_(_foo)",
         },
       ],
     },
@@ -5284,11 +5048,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_bar",
+          "text": "_foo_bar",
         },
       ],
     },
@@ -5306,11 +5066,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_пристаням",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_стремятся",
+          "text": "_пристаням_стремятся",
         },
       ],
     },
@@ -5331,15 +5087,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo_",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar_",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "baz",
+              "text": "foo_bar_baz",
             },
           ],
         },
@@ -5409,11 +5157,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "** foo bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "**",
+          "text": "** foo bar**",
         },
       ],
     },
@@ -5431,15 +5175,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "a**",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"**",
+          "text": "a**\\"foo\\"**",
         },
       ],
     },
@@ -5507,11 +5243,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "__ foo bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "__",
+          "text": "__ foo bar__",
         },
       ],
     },
@@ -5554,15 +5286,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "a__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"__",
+          "text": "a__\\"foo\\"__",
         },
       ],
     },
@@ -5580,11 +5304,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bar__",
+          "text": "foo__bar__",
         },
       ],
     },
@@ -5602,15 +5322,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "5__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "6__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "78",
+          "text": "5__6__78",
         },
       ],
     },
@@ -5628,11 +5340,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "пристаням__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "стремятся__",
+          "text": "пристаням__стремятся__",
         },
       ],
     },
@@ -5713,11 +5421,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "**foo bar ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "**",
+          "text": "**foo bar **",
         },
       ],
     },
@@ -5735,11 +5439,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "**(",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "**foo)",
+          "text": "**(**foo)",
         },
       ],
     },
@@ -5908,11 +5608,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "__foo bar ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "__",
+          "text": "__foo bar __",
         },
       ],
     },
@@ -5930,11 +5626,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "__(",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "__foo)",
+          "text": "__(__foo)",
         },
       ],
     },
@@ -5988,11 +5680,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "__foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "__bar",
+          "text": "__foo__bar",
         },
       ],
     },
@@ -6010,11 +5698,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "__пристаням",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "__стремятся",
+          "text": "__пристаням__стремятся",
         },
       ],
     },
@@ -6035,15 +5719,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo__",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar__",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "baz",
+              "text": "foo__bar__baz",
             },
           ],
         },
@@ -6365,11 +6041,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo**",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "foo**bar",
             },
           ],
         },
@@ -8016,11 +7688,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo _",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "foo _bar",
             },
           ],
         },
@@ -8054,11 +7722,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "bar *",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "baz bim",
+                  "text": "bar *baz bim",
                 },
               ],
             },
@@ -8421,49 +8085,21 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "  ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "& ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "© ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "Æ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "Ď",
+          "text": "  & © Æ Ď",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "¾ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ℋ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ⅆ",
+          "text": "¾ ℋ ⅆ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "∲ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "≧̸",
+          "text": "∲ ≧̸",
         },
       ],
     },
@@ -8481,19 +8117,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "# ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "Ӓ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "Ϡ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "�",
+          "text": "# Ӓ Ϡ �",
         },
       ],
     },
@@ -8511,15 +8135,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\\" ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ആ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ಫ",
+          "text": "\\" ആ ಫ",
         },
       ],
     },
@@ -8537,19 +8153,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "&nbsp ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "&x; ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "&#; ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "&#x;",
+          "text": "&nbsp &x; &#; &#x;",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -8570,11 +8174,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "&ThisIsNotDefined; ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "&hi?;",
+          "text": "&ThisIsNotDefined; &hi?;",
         },
       ],
     },
@@ -8752,11 +8352,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "*foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*",
+          "text": "*foo*",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -8826,11 +8422,7 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "foo
-",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "
+
 bar",
         },
       ],
@@ -8867,19 +8459,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[a",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"tit",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\")",
+          "text": "[a](url \\"tit\\")",
         },
       ],
     },
@@ -11650,15 +11230,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "![[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "foo]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "![[foo]]",
         },
       ],
     },
@@ -11667,23 +11239,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "foo]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"",
+          "text": "[[foo]]: /url \\"title\\"",
         },
       ],
     },
@@ -11726,11 +11282,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "![",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "foo]",
+          "text": "![foo]",
         },
       ],
     },
@@ -12146,11 +11698,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Foo*",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar]",
+              "text": "Foo*bar]",
             },
           ],
           "title": "title (with parens)",
@@ -12225,15 +11773,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'title",
+          "text": "[foo]: /url 'title",
         },
       ],
     },
@@ -12251,11 +11791,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -12298,11 +11834,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]:",
+          "text": "[foo]:",
         },
       ],
     },
@@ -12311,11 +11843,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -12358,11 +11886,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: ",
+          "text": "[foo]: ",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
@@ -12387,11 +11911,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -12559,19 +12079,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\" ok",
+          "text": "[foo]: /url \\"title\\" ok",
         },
       ],
     },
@@ -12589,11 +12097,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\" ok",
+          "text": "\\"title\\" ok",
         },
       ],
     },
@@ -12616,11 +12120,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -12643,11 +12143,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -12672,11 +12168,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /baz",
+          "text": "[bar]: /baz",
         },
       ],
     },
@@ -12685,11 +12177,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[bar]",
         },
       ],
     },
@@ -13010,11 +12498,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](/my uri)",
+          "text": "[link](/my uri)",
         },
       ],
     },
@@ -13057,11 +12541,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](foo",
+          "text": "[link](foo",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -13086,11 +12566,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](",
+          "text": "[link](",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
@@ -13156,19 +12632,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ">)",
+          "text": "[link](<foo>)",
         },
       ],
     },
@@ -13186,41 +12650,21 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[a",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<b)c",
+          "text": "[a](<b)c",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[a",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<b)c>",
+          "text": "[a](<b)c>",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[a",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](",
+          "text": "[a](",
         },
         Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
@@ -13614,27 +13058,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](/url ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"title ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"and",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\" title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\")",
+          "text": "[link](/url \\"title \\"and\\" title\\")",
         },
       ],
     },
@@ -13702,11 +13126,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "] (/uri)",
+          "text": "[link] (/uri)",
         },
       ],
     },
@@ -13728,19 +13148,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "link [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "foo [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar]",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "]",
+              "text": "link [foo [bar]]",
             },
           ],
           "title": "",
@@ -13761,15 +13169,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[link",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "] bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "](/uri)",
+          "text": "[link] bar](/uri)",
         },
       ],
     },
@@ -13820,11 +13220,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "link [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "link [bar",
             },
           ],
           "title": "",
@@ -14080,11 +13476,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo *",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "foo *bar",
             },
           ],
           "title": "",
@@ -14108,11 +13500,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "foo [bar",
             },
           ],
         },
@@ -14252,19 +13640,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "link [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "foo [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar]",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "]",
+              "text": "link [foo [bar]]",
             },
           ],
           "title": "",
@@ -14289,11 +13665,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "link [",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "link [bar",
             },
           ],
           "title": "",
@@ -14527,11 +13899,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "foo *",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "bar",
+              "text": "foo *bar",
             },
           ],
           "title": "",
@@ -14718,11 +14086,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "] ",
+          "text": "[foo] ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Link",
@@ -14751,11 +14115,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -14812,19 +14172,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "][",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "foo!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[bar][foo!]",
         },
       ],
     },
@@ -14842,19 +14190,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "][",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ref[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo][ref[]",
         },
       ],
     },
@@ -14863,15 +14199,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[ref",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "[]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ": /uri",
+          "text": "[ref[]: /uri",
         },
       ],
     },
@@ -14889,23 +14217,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "][",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "ref[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bar]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo][ref[bar]]",
         },
       ],
     },
@@ -14914,19 +14226,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[ref",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "[bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ": /uri",
+          "text": "[ref[bar]]: /uri",
         },
       ],
     },
@@ -14944,19 +14244,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[[[foo]]]",
         },
       ],
     },
@@ -14965,19 +14253,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]: /url",
+          "text": "[[[foo]]]: /url",
         },
       ],
     },
@@ -15054,11 +14330,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[]",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ": /uri",
+          "text": "[]: /uri",
         },
       ],
     },
@@ -15337,11 +14609,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[[",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bar ",
+          "text": "[[bar ",
         },
         Object {
           "$class": "org.accordproject.commonmark.Link",
@@ -15424,11 +14692,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
       ],
     },
@@ -15579,11 +14843,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
         Object {
           "$class": "org.accordproject.commonmark.Link",
@@ -15648,11 +14908,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "[foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "]",
+          "text": "[foo]",
         },
         Object {
           "$class": "org.accordproject.commonmark.Link",
@@ -19824,15 +19080,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<33> ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<__",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ">",
+          "text": "<33> <__>",
         },
       ],
     },
@@ -19850,19 +19098,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<a h",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "*#ref=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"hi",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\">",
+          "text": "<a h*#ref=\\"hi\\">",
         },
       ],
     },
@@ -19880,23 +19116,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<a href=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"hi",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'> ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<a href=hi",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'>",
+          "text": "<a href=\\"hi'> <a href=hi'>",
         },
       ],
     },
@@ -19914,22 +19134,14 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "< a>",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "<",
+          "text": "< a><",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo><",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bar/ >",
+          "text": "foo><bar/ >",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -19943,11 +19155,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "bim!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "bop />",
+          "text": "bim!bop />",
         },
       ],
     },
@@ -19965,15 +19173,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<a href=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'bar",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "'title=title>",
+          "text": "<a href='bar'title=title>",
         },
       ],
     },
@@ -20013,15 +19213,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "</a href=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"foo",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\">",
+          "text": "</a href=\\"foo\\">",
         },
       ],
     },
@@ -20062,11 +19254,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo <",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!-- not a comment -- two hyphens -->",
+          "text": "foo <!-- not a comment -- two hyphens -->",
         },
       ],
     },
@@ -20084,11 +19272,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo <",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!--> foo -->",
+          "text": "foo <!--> foo -->",
         },
       ],
     },
@@ -20097,11 +19281,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "foo <",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!-- foo--->",
+          "text": "foo <!-- foo--->",
         },
       ],
     },
@@ -20257,15 +19437,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<a href=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"\\"",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\">",
+          "text": "<a href=\\"\\"\\">",
         },
       ],
     },
@@ -20631,11 +19803,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "<a title=",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "\\"a lot",
+          "text": "<a title=\\"a lot",
         },
       ],
     },
@@ -20644,11 +19812,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "of dashes\\"",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "/>",
+          "text": "of dashes\\"/>",
         },
       ],
     },
@@ -21435,11 +20599,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "→*",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "→",
+          "text": "→*→",
         },
       ],
     },
@@ -21457,11 +20617,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "hello $.;'",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "there",
+          "text": "hello $.;'there",
         },
       ],
     },
@@ -21718,19 +20874,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "_ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_ ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "_ a",
+          "text": "_ _ _ _ a",
         },
       ],
     },

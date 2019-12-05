@@ -246,15 +246,12 @@ class CommonMarkTransformer {
             const result = [];
             for(let n=0; n < nodes.length; n++) {
                 const cur = nodes[n];
-                const next = n < nodes.length-1 ? nodes[n+1] : null;
+                const next = n+1 < nodes.length ? nodes[n+1] : null;
 
-                if(next && cur.$class === 'org.accordproject.commonmark.Text' &&
-                    next.$class === 'org.accordproject.commonmark.Text') {
-                    result.push({
-                        $class : 'org.accordproject.commonmark.Text',
-                        text: cur.text + next.text
-                    });
-                    n=n+1; // skip to next
+                if(next &&
+                   cur.$class === (NS_PREFIX_CommonMarkModel + 'Text') &&
+                   next.$class === (NS_PREFIX_CommonMarkModel + 'Text')) {
+                    next.text = cur.text + next.text;  // Fold text in next node, skip current node
                 }
                 else {
                     result.push(cur);
