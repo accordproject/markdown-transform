@@ -208,6 +208,9 @@ class CommonMarkTransformer {
             // ensure the document node is left on the stack
             // so that we can retrieve it as the result
             if(name !== 'document') {
+                const json = stack.peek();
+                // console.log(JSON.stringify(json, null, 4));
+                json.nodes = CommonMarkTransformer.mergeAdjacentTextNodes(json.nodes);
                 stack.pop();
             }
         };
@@ -230,6 +233,37 @@ class CommonMarkTransformer {
         else {
             const validJson = this.serializer.fromJSON(json);
             return this.serializer.toJSON(validJson);
+        }
+    }
+
+    /**
+     * Merge adjacent text nodes in a list of nodes
+     * @param {[*]} nodes a list of nodes
+     * @returns {*} a new list of nodes with redundant text nodes removed
+     */
+    static mergeAdjacentTextNodes(nodes) {
+        if(nodes) {
+            const result = [];
+            for(let n=0; n < nodes.length; n++) {
+                const cur = nodes[n];
+                const next = n < nodes.length-1 ? nodes[n+1] : null;
+
+                if(next && cur.$class === 'org.accordproject.commonmark.Text' &&
+                    next.$class === 'org.accordproject.commonmark.Text') {
+                    result.push({
+                        $class : 'org.accordproject.commonmark.Text',
+                        text: cur.text + next.text
+                    });
+                    n=n+1; // skip to next
+                }
+                else {
+                    result.push(cur);
+                }
+            }
+            return result;
+        }
+        else {
+            return nodes;
         }
     }
 

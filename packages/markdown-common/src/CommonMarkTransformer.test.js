@@ -145,6 +145,81 @@ describe('readme', () => {
     });
 });
 
+describe('merge adjacent text nodes', () => {
+    it('merges text nodes', () => {
+        const input = {
+            $class : 'org.accordproject.commonmark.Paragraph',
+            nodes : [
+                {
+                    $class: 'org.accordproject.commonmark.Text',
+                    text: 'one '
+                },
+                {
+                    $class : 'org.accordproject.commonmark.Text',
+                    text : 'two'
+                },
+            ]
+        };
+
+        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        expect(nodes).toHaveLength(1);
+    });
+
+    it('handles empty paragraphs', () => {
+        const input = {
+            $class : 'org.accordproject.commonmark.Paragraph',
+            nodes : [
+            ]
+        };
+
+        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        expect(nodes).toHaveLength(0);
+    });
+
+    it('handles single text nodes', () => {
+        const input = {
+            $class : 'org.accordproject.commonmark.Paragraph',
+            nodes : [
+                {
+                    $class: 'org.accordproject.commonmark.Text',
+                    text: 'one '
+                }
+            ]
+        };
+
+        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        expect(nodes).toHaveLength(1);
+    });
+
+    it('respects formatting', () => {
+        const input = {
+            $class : 'org.accordproject.commonmark.Paragraph',
+            nodes : [
+                {
+                    $class: 'org.accordproject.commonmark.Text',
+                    text: 'one '
+                },
+                {
+                    $class : 'org.accordproject.commonmark.Emph',
+                    nodes : [
+                        {
+                            $class : 'org.accordproject.commonmark.Text',
+                            text : 'emph'
+                        },
+                    ]
+                },
+                {
+                    $class: 'org.accordproject.commonmark.Text',
+                    text: 'two '
+                },
+            ]
+        };
+
+        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        expect(nodes).toHaveLength(3);
+    });
+});
+
 describe('acceptance', () => {
     it('converts acceptance to CommonMark DOM', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
