@@ -96,13 +96,13 @@ class ToHtmlStringVisitor {
             parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable':
-            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>\n`;
+            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>`;
             break;
         case 'ComputedVariable':
-            parameters.result += `<span class="computed">${thing.value}</span>\n`;
+            parameters.result += `<span class="computed">${thing.value}</span>`;
             break;
         case 'CodeBlock':
-            parameters.result += `<pre><code>\n${thing.text}</pre></code>\n`;
+            parameters.result += `<pre><code>${thing.text}</pre></code>\n`;
             break;
         case 'Code':
             parameters.result += `<code>${thing.text}</code>`;
@@ -132,10 +132,10 @@ class ToHtmlStringVisitor {
             parameters.result += '<br>\n';
             break;
         case 'Softbreak':
-            parameters.result += '\n';
+            parameters.result += '<wbr>';
             break;
         case 'Link':
-            parameters.result += `<a href="${thing.destination}">${ToHtmlStringVisitor.visitChildren(this, thing)}/>`;
+            parameters.result += `<a href="${thing.destination}" title=${thing.title}>${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
             break;
         case 'Image':
             parameters.result += `<img src="${thing.destination}" title="${thing.title}"/>`;
@@ -143,20 +143,22 @@ class ToHtmlStringVisitor {
         case 'Paragraph':
             parameters.result += `<p>${ToHtmlStringVisitor.visitChildren(this, thing)}</p>\n`;
             break;
-        case 'HtmlBlock':
+        case 'HtmlBlock':{
             parameters.result += `${thing.text}`;
             break;
+        }
         case 'Text':
-            parameters.result += thing.text;
+            parameters.result += `${thing.text}`;
             break;
         case 'List': {
             // Always start with a new line
             parameters.result += '\n';
+            const { delimiter, start, tight} = thing;
             if(thing.type === 'ordered') {
-                parameters.result += '<ol>';
+                parameters.result += `<ol delimiter=${delimiter} start=${start} tight=${tight}>`;
             }
             else {
-                parameters.result += '<ul>';
+                parameters.result += `<ul tight=${tight}>`;
             }
 
             thing.nodes.forEach(item => {

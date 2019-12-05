@@ -60,7 +60,7 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a CiceroMark DOM
-     * @param {*} input - CiceroMark DOM (in JSON or as a Concerto object)
+     * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
      * @param {string} [format] result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
      * @returns {*} CiceroMark DOM
