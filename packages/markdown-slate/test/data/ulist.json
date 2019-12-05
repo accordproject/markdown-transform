@@ -48,27 +48,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "0.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 1.0$ million : 3.1%",
+                                        "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                                         "marks": []
                                     }
                                 ]
@@ -87,27 +67,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "1.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 10.0$ million : 3.1%",
+                                        "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                                         "marks": []
                                     }
                                 ]
@@ -126,27 +86,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "10.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 50.0$ million : 2.9%",
+                                        "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                                         "marks": []
                                     }
                                 ]
@@ -165,27 +105,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "50.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 500.0$ million : 2.5%",
+                                        "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                                         "marks": []
                                     }
                                 ]
@@ -204,27 +124,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "500.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 1000.0$ million : 1.2%",
+                                        "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                                         "marks": []
                                     }
                                 ]
@@ -243,27 +143,7 @@
                                 "nodes": [
                                     {
                                         "object": "text",
-                                        "text": "1000.0$ million ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "= Volume ",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": "<",
-                                        "marks": []
-                                    },
-                                    {
-                                        "object": "text",
-                                        "text": " 1000000.0$ million : 0.1%",
+                                        "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                                         "marks": []
                                     }
                                 ]

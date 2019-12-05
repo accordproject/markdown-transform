@@ -11,17 +11,7 @@
                 "nodes": [
                     {
                         "object": "text",
-                        "text": "HELLO",
-                        "marks": []
-                    },
-                    {
-                        "object": "text",
-                        "text": "!",
-                        "marks": []
-                    },
-                    {
-                        "object": "text",
-                        "text": " This is the contract editor.",
+                        "text": "HELLO! This is the contract editor.",
                         "marks": []
                     }
                 ]

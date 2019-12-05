@@ -50,11 +50,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "s opinion, the ",
+              "text": "'s opinion, the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -117,15 +113,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to inspect and evaluate the ",
+              "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -161,23 +149,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " are the specifications the ",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -309,12 +281,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": "'",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "s opinion, the ",
+                "text": "'s opinion, the ",
               },
               Object {
                 "data": Object {
@@ -440,17 +407,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": " Business Days",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "'",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": " to inspect and evaluate the ",
+                "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
                 "data": Object {
@@ -519,27 +476,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": "Acceptance Criteria. The ",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "\\"",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "Acceptance Criteria",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "\\"",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": " are the specifications the ",
+                "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
                 "data": Object {
@@ -675,11 +612,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "s opinion, the ",
+              "text": "'s opinion, the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -742,15 +675,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to inspect and evaluate the ",
+              "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -786,23 +711,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " are the specifications the ",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -1817,15 +1726,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -2023,17 +1924,7 @@ Object {
           Object {
             "marks": Array [],
             "object": "text",
-            "text": "HELLO",
-          },
-          Object {
-            "marks": Array [],
-            "object": "text",
-            "text": "!",
-          },
-          Object {
-            "marks": Array [],
-            "object": "text",
-            "text": " This is the contract editor.",
+            "text": "HELLO! This is the contract editor.",
           },
         ],
         "object": "block",
@@ -2352,15 +2243,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -5060,23 +4943,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "0.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1.0$ million : 3.1%",
+                  "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                 },
               ],
             },
@@ -5090,23 +4957,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "1.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 10.0$ million : 3.1%",
+                  "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                 },
               ],
             },
@@ -5120,23 +4971,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "10.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 50.0$ million : 2.9%",
+                  "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                 },
               ],
             },
@@ -5150,23 +4985,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "50.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 500.0$ million : 2.5%",
+                  "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                 },
               ],
             },
@@ -5180,23 +4999,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "500.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1000.0$ million : 1.2%",
+                  "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                 },
               ],
             },
@@ -5210,23 +5013,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "1000.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1000000.0$ million : 0.1%",
+                  "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                 },
               ],
             },
@@ -5303,27 +5090,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "0.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 1.0$ million : 3.1%",
+                    "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                   },
                 ],
                 "object": "block",
@@ -5342,27 +5109,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "1.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 10.0$ million : 3.1%",
+                    "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                   },
                 ],
                 "object": "block",
@@ -5381,27 +5128,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "10.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 50.0$ million : 2.9%",
+                    "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                   },
                 ],
                 "object": "block",
@@ -5420,27 +5147,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "50.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 500.0$ million : 2.5%",
+                    "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                   },
                 ],
                 "object": "block",
@@ -5459,27 +5166,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "500.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 1000.0$ million : 1.2%",
+                    "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                   },
                 ],
                 "object": "block",
@@ -5498,27 +5185,7 @@ Object {
                   Object {
                     "marks": Array [],
                     "object": "text",
-                    "text": "1000.0$ million ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "= Volume ",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": "<",
-                  },
-                  Object {
-                    "marks": Array [],
-                    "object": "text",
-                    "text": " 1000000.0$ million : 0.1%",
+                    "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                   },
                 ],
                 "object": "block",
@@ -5574,23 +5241,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "0.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1.0$ million : 3.1%",
+                  "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                 },
               ],
             },
@@ -5604,23 +5255,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "1.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 10.0$ million : 3.1%",
+                  "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                 },
               ],
             },
@@ -5634,23 +5269,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "10.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 50.0$ million : 2.9%",
+                  "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                 },
               ],
             },
@@ -5664,23 +5283,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "50.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 500.0$ million : 2.5%",
+                  "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                 },
               ],
             },
@@ -5694,23 +5297,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "500.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1000.0$ million : 1.2%",
+                  "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                 },
               ],
             },
@@ -5724,23 +5311,7 @@ Object {
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "1000.0$ million ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "= Volume ",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "<",
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": " 1000000.0$ million : 0.1%",
+                  "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                 },
               ],
             },
