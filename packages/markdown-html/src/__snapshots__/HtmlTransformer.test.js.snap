@@ -10,15 +10,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "!",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": " This is the contract editor.",
+          "text": "HELLO! This is the contract editor.",
         },
       ],
     },
@@ -71,11 +63,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "s opinion, the ",
+              "text": "'s opinion, the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -138,15 +126,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to inspect and evaluate the ",
+              "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -182,23 +162,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " are the specifications the ",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
