@@ -71,7 +71,6 @@ limitations under the License.`),
     node: {
         fs: 'empty',
         net: 'empty',
-        tls: 'empty',
-        xmlhttprequest: 'empty'
+        tls: 'empty'
     }
 };
