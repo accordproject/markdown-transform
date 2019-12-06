@@ -24,18 +24,16 @@ const NS_CICERO = 'org.accordproject.ciceromark';
  * @returns {*} the final result of slateToCiceroMarkDom
  */
 const removeEmptyParagraphs = (input) => {
-    const emptyParagraph = {
-        '$class': 'org.accordproject.commonmark.Paragraph',
-        nodes: [
-            {
-                '$class': 'org.accordproject.commonmark.Text',
-                text: ''
-            }
-        ]
-    };
-
-    input.nodes = input.nodes.filter(node => node !== emptyParagraph);
-
+    let nodesWithoutBlankParagraphs = [];
+    input.nodes.forEach(node => {
+        if (node.$class === 'org.accordproject.commonmark.Paragraph' &&
+            node.nodes[0].$class === 'org.accordproject.commonmark.Text' &&
+            node.nodes[0].text === '') {
+            return;
+        }
+        nodesWithoutBlankParagraphs.push(node);
+    });
+    input.nodes = nodesWithoutBlankParagraphs;
     return input;
 };
 
