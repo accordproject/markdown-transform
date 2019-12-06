@@ -68,7 +68,7 @@
     "jest": "^24.8.0",
     "jest-diff": "^24.8.0",
     "jsdoc": "3.6.3",
-    "jsdom": "^15.2.1",
+    "jsome": "2.5.0",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
@@ -80,7 +80,7 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.9.1",
     "@accordproject/markdown-common": "0.9.1",
-    "jsome": "2.5.0",
+    "jsdom": "^15.2.1",
     "type-of": "^2.0.1"
   },
   "license-check-config": {
