@@ -67,17 +67,18 @@ class SlateTransformer {
         };
 
         // Find any clauses next to each other, force in a paragraph between
-        const newArray = [];
-        result.document.nodes.forEach((node, i) => {
-            newArray.push(node);
-            if (node.type === CLAUSE || result.document.nodes[i + 1] === CLAUSE) {
-
-                newArray.push(paragraphSpaceNodeJSON);
-                return;
+        if (result.document.nodes.length > 1) {
+            let newArray = [];
+            for (let i = 0; i <= result.document.nodes.length-1; i++) {
+                newArray.push(result.document.nodes[i]);
+                if (result.document.nodes[i].type === CLAUSE &&
+                    result.document.nodes[i + 1] &&
+                    result.document.nodes[i + 1].type === CLAUSE) {
+                    newArray.push(paragraphSpaceNodeJSON);
+                }
             }
-            return;
-        });
-        result.document.nodes = newArray;
+            result.document.nodes = newArray;
+        }
 
         // If the final node is a clause, force in a paragraph after
         const lastNodeType = result.document.nodes[result.document.nodes.length - 1]
