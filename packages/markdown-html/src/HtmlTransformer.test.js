@@ -93,17 +93,15 @@ function extractSpecTests(testfile) {
 
 describe.only('html', () => {
     getMarkdownFiles().forEach(([file, markdownText], i) => {
-        if(file === 'acceptance.md') {
-            it(`converts ${file} to html`, () => {
-                const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
-                expect(json).toMatchSnapshot(); // (1)
-                console.log('json', json);
-                const html = htmlTransformer.toHtml(json);
-                expect(html).toMatchSnapshot(); // (2)
-                const ciceroMarkDom = htmlTransformer.toCiceroMark(html, 'json');
-                expect(ciceroMarkDom).toEqual(json);
-            });
-        }
+        it(`converts ${file} to html`, () => {
+            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
+            expect(json).toMatchSnapshot(); // (1)
+            console.log('json', json);
+            const html = htmlTransformer.toHtml(json);
+            expect(html).toMatchSnapshot(); // (2)
+            const ciceroMarkDom = htmlTransformer.toCiceroMark(html, 'json');
+            expect(ciceroMarkDom).toEqual(json);
+        });
     });
 });
 
