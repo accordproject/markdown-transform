@@ -19,18 +19,23 @@ const NS_CICERO = 'org.accordproject.ciceromark';
 
 
 /**
- * Removed the final node if it is an empty paragraph following a clause
+ * Removes nodes if they are an empty paragraph
  * @param {*} input the current result of slateToCiceroMarkDom
  * @returns {*} the final result of slateToCiceroMarkDom
  */
-const fixEmptyParaAfterClause = (input) => {
-    const nodes = input.nodes;
-    if (nodes.length >= 2 &&
-        nodes[nodes.length - 2].$class === 'org.accordproject.commonmark.Clause' &&
-        nodes[nodes.length - 1].$class === 'org.accordproject.commonmark.Paragraph' &&
-        nodes[nodes.length - 1].text === '') {
-        input.nodes = nodes.splice(0, nodes.length-1);
-    }
+const removeEmptyParagraphs = (input) => {
+    const emptyParagraph = {
+        '$class': 'org.accordproject.commonmark.Paragraph',
+        nodes: [
+            {
+                '$class': 'org.accordproject.commonmark.Text',
+                text: ''
+            }
+        ]
+    };
+
+    input.nodes = input.nodes.filter(node => node !== emptyParagraph);
+
     return input;
 };
 
@@ -49,7 +54,7 @@ function slateToCiceroMarkDom(document) {
     // convert the value to a plain object
     const json = JSON.parse(JSON.stringify(document));
     _recursive(result, json.nodes);
-    return fixEmptyParaAfterClause(result);
+    return removeEmptyParagraphs(result);
 }
 
 /**
