@@ -163,7 +163,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static draft(dataPath, outputPath, options) {
-        const { cicero, slate, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, html, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -171,9 +171,11 @@ class Commands {
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
+        const htmlMark = new HtmlTransformer();
 
-        let result = JSON.parse(Fs.readFileSync(dataPath, 'utf8'));
+        let result = Fs.readFileSync(dataPath, 'utf8');
         if (cicero) {
+            result = JSON.parse(result)
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
@@ -182,7 +184,21 @@ class Commands {
                 Logger.info(JSON.stringify(result, null, 4));
             }
         } else if (slate) {
+            result = JSON.parse(result)
             result = slateMark.toCiceroMark(result, 'json');
+            if(verbose) {
+                Logger.info('=== CiceroMark ===');
+                Logger.info(JSON.stringify(result, null, 4));
+            }
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
+            if(verbose) {
+                Logger.info('=== CommonMark ===');
+                Logger.info(JSON.stringify(result, null, 4));
+            }
+        } else if (html) {
+            result = htmlMark.toCiceroMark(result, 'json');
             if(verbose) {
                 Logger.info('=== CiceroMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
@@ -233,7 +249,7 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static normalize(samplePath, outputPath, options) {
-        const { cicero, slate, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, html, noWrap, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -241,6 +257,7 @@ class Commands {
         const commonMark = new CommonMarkTransformer(commonOptions);
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
+        const htmlMark = new HtmlTransformer();
 
         const markdownText = Fs.readFileSync(samplePath, 'utf8');
         let result = commonMark.fromMarkdown(markdownText, 'json');
@@ -268,7 +285,18 @@ class Commands {
                 Logger.info(JSON.stringify(result, null, 4));
             }
         }
-
+        else if (html) {
+            result = ciceroMark.fromCommonMark(result, 'json');
+            if(verbose) {
+                Logger.info('=== CiceroMark ===');
+                Logger.info(JSON.stringify(result, null, 4));
+            }
+            result = htmlMark.toHtml(result);
+            if(verbose) {
+                Logger.info('=== HTML ===');
+                Logger.info(result);
+            }
+        }
         if (cicero) {
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
@@ -279,6 +307,19 @@ class Commands {
             }
         } else if (slate) {
             result = slateMark.toCiceroMark(result, 'json');
+            if(verbose) {
+                Logger.info('=== CiceroMark ===');
+                Logger.info(JSON.stringify(result, null, 4));
+            }
+            const ciceroOptions = {};
+            ciceroOptions.wrapVariables = noWrap ? false : true;
+            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
+            if(verbose) {
+                Logger.info('=== CommonMark ===');
+                Logger.info(JSON.stringify(result, null, 4));
+            }
+        } else if (html) {
+            result = htmlMark.toCiceroMark(result, 'json');
             if(verbose) {
                 Logger.info('=== CiceroMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
