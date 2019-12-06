@@ -96,6 +96,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('html', {
+            describe: 'further transform to HTML',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('noWrap', {
             describe: 'do not wrap CiceroMark variables as XML tags',
             type: 'boolean',
@@ -121,6 +126,7 @@ require('yargs')
             const options = {};
             options.cicero = argv.cicero;
             options.slate = argv.slate;
+            options.html = argv.html;
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
@@ -155,6 +161,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('html', {
+            describe: 'further transform to HTML',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('noWrap', {
             describe: 'do not wrap variables as XML tags',
             type: 'boolean',
@@ -180,6 +191,7 @@ require('yargs')
             const options = {};
             options.cicero = argv.cicero;
             options.slate = argv.slate;
+            options.html = argv.html;
             options.noWrap = argv.noWrap;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;

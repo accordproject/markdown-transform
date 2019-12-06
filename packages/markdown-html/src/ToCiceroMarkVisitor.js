@@ -56,7 +56,7 @@ class ToCiceroMarkVisitor {
     deserializeElement(element) {
         let node;
 
-        console.log('tagName', element.tagName);
+        //console.log('tagName', element.tagName);
         if (!element.tagName) {
             element.tagName = '';
         }
@@ -156,7 +156,7 @@ class ToCiceroMarkVisitor {
      * @returns {*} CiceroMark DOM
      */
     toCiceroMark(input, format='concerto') {
-        console.log('INPUT --- ', input);
+        //console.log('INPUT --- ', input);
         // use DOMParser if we have it
         // const parsed = new DOMParser().parseFromString(input, 'text/html');
         const fragment = JSDOM.fragment(input);
