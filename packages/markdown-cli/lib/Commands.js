@@ -174,8 +174,10 @@ class Commands {
         const htmlMark = new HtmlTransformer();
 
         let result = Fs.readFileSync(dataPath, 'utf8');
+        if (!html) {
+            result = JSON.parse(result);
+        }
         if (cicero) {
-            result = JSON.parse(result)
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
@@ -184,7 +186,6 @@ class Commands {
                 Logger.info(JSON.stringify(result, null, 4));
             }
         } else if (slate) {
-            result = JSON.parse(result)
             result = slateMark.toCiceroMark(result, 'json');
             if(verbose) {
                 Logger.info('=== CiceroMark ===');
