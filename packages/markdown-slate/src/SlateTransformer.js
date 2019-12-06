@@ -42,6 +42,7 @@ class SlateTransformer {
             input = this.serializer.fromJSON(input);
         }
 
+        const CLAUSE = 'clause';
         const parameters = {};
         parameters.result = {};
         parameters.marks = [];
@@ -51,24 +52,39 @@ class SlateTransformer {
             object: 'value',
             document: parameters.result
         };
+        const paragraphSpaceNodeJSON = {
+            object: 'block',
+            type: 'paragraph',
+            data: {
+            },
+            nodes: [
+                {
+                    object: 'text',
+                    text: '',
+                    marks: []
+                }
+            ]
+        };
+
+        // Find any clauses next to each other, force in a paragraph between
+        const newArray = [];
+        result.document.nodes.forEach((node, i) => {
+            newArray.push(node);
+            if (node.type === CLAUSE || result.document.nodes[i + 1] === CLAUSE) {
+
+                newArray.push(paragraphSpaceNodeJSON);
+                return;
+            }
+            return;
+        });
+        result.document.nodes = newArray;
+
+        // If the final node is a clause, force in a paragraph after
         const lastNodeType = result.document.nodes[result.document.nodes.length - 1]
             ? result.document.nodes[result.document.nodes.length - 1].type
             : null;
 
-        if (lastNodeType === 'clause') {
-            const paragraphSpaceNodeJSON = {
-                object: 'block',
-                type: 'paragraph',
-                data: {
-                },
-                nodes: [
-                    {
-                        object: 'text',
-                        text: '',
-                        marks: []
-                    }
-                ]
-            };
+        if (lastNodeType === CLAUSE) {
             result.document.nodes.push(paragraphSpaceNodeJSON);
         }
         return Value.fromJSON(result);
