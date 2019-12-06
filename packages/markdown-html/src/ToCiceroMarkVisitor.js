@@ -156,10 +156,14 @@ class ToCiceroMarkVisitor {
      * @returns {*} CiceroMark DOM
      */
     toCiceroMark(input, format='concerto') {
-        //console.log('INPUT --- ', input);
-        // use DOMParser if we have it
-        // const parsed = new DOMParser().parseFromString(input, 'text/html');
-        const fragment = JSDOM.fragment(input);
+        let fragment;
+        // eslint-disable-next-line no-undef
+        if (typeof DOMParser === 'undefined') {
+            fragment = JSDOM.fragment(input);
+        } else {
+            // eslint-disable-next-line no-undef
+            fragment = new DOMParser().parseFromString(input, 'text/html');
+        }
         const children = Array.from(fragment.childNodes);
         // console.log('children -- ', children);
         const nodes = this.deserializeElements(children);
