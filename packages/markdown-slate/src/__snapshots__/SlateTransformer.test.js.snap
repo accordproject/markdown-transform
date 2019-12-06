@@ -211,15 +211,6 @@ Object {
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
-        },
-      ],
-    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -844,15 +835,6 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
-        },
-      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2006,15 +1988,6 @@ Object {
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
     },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
-        },
-      ],
-    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -2550,15 +2523,6 @@ Object {
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
     },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
-        },
-      ],
-    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -2779,6 +2743,1075 @@ Object {
           "title": "",
         },
       ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts multiple-clauses.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a clause with a clause immediately after.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "value": "\\"Attachment X\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Nothing.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And now there is an empty paragraph before and after two clauses.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. Something something something.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "You wont believe this clause.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts multiple-clauses.json to and from CiceroMark 2`] = `
+"# This is the contract editor. 
+
+And below is a clause with a clause immediately after.
+
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\">
+Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+\`\`\`
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-z6c5e16900c0\\">
+Acceptance of Nothing.
+\`\`\`
+And now there is an empty paragraph before and after two clauses.
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-f6c5e16900c0\\">
+Acceptance of Delivery. Something something something.
+\`\`\`
+
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-c6c5e16900c0\\">
+You wont believe this clause.
+\`\`\`
+"
+`;
+
+exports[`slate converts multiple-clauses.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is the contract editor.",
+          },
+        ],
+        "object": "block",
+        "type": "heading_one",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "And below is a clause with a clause immediately after.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance of Delivery. ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party A\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " will be deemed to have completed its delivery obligations if in ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party B\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "'",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "s opinion, the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Widgets\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " satisfies the Acceptance Criteria, and ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party B\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " notifies ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party A\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " in writing that it is accepting the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Widgets\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ".",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Inspection and Notice. ",
+              },
+              Object {
+                "data": Object {
+                  "id": "receiver",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party B\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " will have ",
+              },
+              Object {
+                "data": Object {
+                  "id": "businessDays",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "10",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " Business Days",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "'",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " to inspect and evaluate the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Widgets\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " on the delivery date before notifying ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party A\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " that it is either accepting or rejecting the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Widgets\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ".",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance Criteria. The ",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance Criteria",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " are the specifications the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "deliverable",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Widgets\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " must meet for the ",
+              },
+              Object {
+                "data": Object {
+                  "id": "shipper",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Party A\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+              },
+              Object {
+                "data": Object {
+                  "id": "attachment",
+                },
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "\\"Attachment X\\"",
+                  },
+                ],
+                "object": "inline",
+                "type": "variable",
+              },
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": ", attached to this agreement.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance of Nothing.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "And now there is an empty paragraph before and after two clauses.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "Acceptance of Delivery. Something something something.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "You wont believe this clause.",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "clause",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts multiple-clauses.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a clause with a clause immediately after.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "value": "\\"Attachment X\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Nothing.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And now there is an empty paragraph before and after two clauses.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. Something something something.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "You wont believe this clause.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
