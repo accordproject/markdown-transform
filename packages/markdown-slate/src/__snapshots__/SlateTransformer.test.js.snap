@@ -2682,11 +2682,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "s opinion, the ",
+              "text": "'s opinion, the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -2749,15 +2745,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to inspect and evaluate the ",
+              "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -2793,23 +2781,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " are the specifications the ",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -3010,12 +2982,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": "'",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "s opinion, the ",
+                "text": "'s opinion, the ",
               },
               Object {
                 "data": Object {
@@ -3141,17 +3108,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": " Business Days",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "'",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": " to inspect and evaluate the ",
+                "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
                 "data": Object {
@@ -3220,27 +3177,7 @@ Object {
               Object {
                 "marks": Array [],
                 "object": "text",
-                "text": "Acceptance Criteria. The ",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "\\"",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "Acceptance Criteria",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": "\\"",
-              },
-              Object {
-                "marks": Array [],
-                "object": "text",
-                "text": " are the specifications the ",
+                "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
                 "data": Object {
@@ -3478,11 +3415,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "s opinion, the ",
+              "text": "'s opinion, the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -3545,15 +3478,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to inspect and evaluate the ",
+              "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -3589,23 +3514,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The ",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " are the specifications the ",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
