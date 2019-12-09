@@ -204,13 +204,13 @@ Object {
 exports[`html converts acceptance.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
-<p>Acceptance of Delivery. <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
-<p>Inspection and Notice. <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> will have <span class=\\"variable\\" id=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
-<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
+<div className=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
+<p>Acceptance of Delivery. <span className=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span className=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span className=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span className=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> notifies <span className=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span className=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Inspection and Notice. <span className=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> will have <span className=\\"variable\\" id=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span className=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span className=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span className=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span className=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span className=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span className=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
 </div>
 </div>
 </body>
@@ -252,7 +252,7 @@ Object {
 exports[`html converts blockquote.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is</p>
 <blockquote><p>A quote.</p>
 </blockquote>
@@ -397,11 +397,11 @@ Object {
 exports[`html converts clause.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
-<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span><wbr>at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%<wbr>with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,<wbr>and monthly payments of <span class=\\"computed\\">667.0</span></p>
+<div className=\\"document\\">
+<p>This is a fixed interest loan to the amount of <span className=\\"variable\\" id=\\"loanAmount\\">100000.0</span><wbr>at the yearly interest rate of <span className=\\"variable\\" id=\\"rate\\">2.5</span>%<wbr>with a loan term of <span className=\\"variable\\" id=\\"loanDuration\\">15</span>,<wbr>and monthly payments of <span className=\\"computed\\">667.0</span></p>
 <p>This is a fixed interest loan to the amount of 100000.0<wbr>at the yearly interest rate of 2.5%<wbr>with a loan term of 15,<wbr>and monthly payments of 667.0</p>
-<div class=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
-<p>this is<wbr>multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span></p>
+<div className=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
+<p>this is<wbr>multiline <span className=\\"variable\\" id=\\"rate\\">2.5</span></p>
 <p>content</p>
 </div>
 </div>
@@ -428,8 +428,8 @@ block.
 exports[`html converts codeblock.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
-<pre><code>this is a multiline
+<div className=\\"document\\">
+<pre className=\\"code_block\\"><code>this is a multiline
 code
 block.
 </pre></code>
@@ -475,8 +475,8 @@ Object {
 exports[`html converts codeblock-info.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
-<pre><code>  this is a multiline
+<div className=\\"document\\">
+<pre className=\\"code_block\\"><code data-ciceromark=\\"%3Cvideo%20src%3D%22https%3A%2F%2Fwww.youtube.com%2Fembed%2FdQw4w9WgXcQ%22%2F%3E\\">  this is a multiline
   code
 
   containing a newline
@@ -522,7 +522,7 @@ Object {
 exports[`html converts emph.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is <em>some</em> text.</p>
 </div>
 </body>
@@ -568,7 +568,7 @@ Object {
 exports[`html converts emph-strong.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is <em><strong>some</strong></em> text.</p>
 </div>
 </body>
@@ -597,7 +597,7 @@ Object {
 exports[`html converts h1.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h1>Heading One</h1>
 </div>
 </body>
@@ -626,7 +626,7 @@ Object {
 exports[`html converts h2.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h2>Heading Two</h2>
 </div>
 </body>
@@ -655,7 +655,7 @@ Object {
 exports[`html converts h3.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h3>Heading Three</h3>
 </div>
 </body>
@@ -684,7 +684,7 @@ Object {
 exports[`html converts h4.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h4>Heading Four</h4>
 </div>
 </body>
@@ -713,7 +713,7 @@ Object {
 exports[`html converts h5.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h5>Heading Five</h5>
 </div>
 </body>
@@ -742,7 +742,7 @@ Object {
 exports[`html converts h6.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h6>Heading Six</h6>
 </div>
 </body>
@@ -772,11 +772,11 @@ Object {
                 "value": "property",
               },
             ],
-            "closed": true,
+            "closed": false,
             "content": "",
             "tagName": "custom",
           },
-          "text": "<custom src=\\"property\\"/>",
+          "text": "<custom src=\\"property\\"></custom>",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",
@@ -792,8 +792,8 @@ Object {
 exports[`html converts html-inline.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
-<p>This is a <custom src=\\"property\\"/> property.</p>
+<div className=\\"document\\">
+<p>This is a <span className=\\"html_inline\\"><custom src=\\"property\\"></custom></span> property.</p>
 </div>
 </body>
 </html>"
@@ -814,22 +814,27 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.HtmlBlock",
-      "tag": Object {
-        "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
-        "attributes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.Attribute",
-            "name": "src",
-            "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "video",
           },
-        ],
-        "closed": true,
-        "content": "",
-        "tagName": "video",
-      },
-      "text": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
+          "text": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"></video>",
+        },
+      ],
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -848,9 +853,10 @@ Object {
 exports[`html converts html-mixed.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <h1>Heading One</h1>
-<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/><p>done.</p>
+<p><span className=\\"html_inline\\"><video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"></video></span></p>
+<p>done.</p>
 </div>
 </body>
 </html>"
@@ -885,7 +891,7 @@ Object {
 exports[`html converts inline-code.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is <code>inline code</code>.</p>
 </div>
 </body>
@@ -928,7 +934,7 @@ Object {
 exports[`html converts link.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is <a href=\\"http://clause.io\\" title=>a link</a>.</p>
 </div>
 </body>
@@ -987,11 +993,12 @@ contents
 exports[`html converts multiline-html-block.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is a custom</p>
-<custom src=\\"property\\">
+<pre className=\\"html_block\\"><code><custom src=\\"property\\">
 contents
-</custom><p>block.</p>
+</custom></pre></code>
+<p>block.</p>
 </div>
 </body>
 </html>"
@@ -1078,7 +1085,7 @@ Object {
 exports[`html converts ol.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is an ordered list:</p>
 
 <ol delimiter=period start=1 tight=false>
@@ -1174,7 +1181,7 @@ Object {
 exports[`html converts ol-tight.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is an ordered list:</p>
 
 <ol delimiter=period start=1 tight=true>
@@ -1219,7 +1226,7 @@ Object {
 exports[`html converts paragraphs.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is first paragraph.</p>
 <p>This is second paragraph.</p>
 </div>
@@ -1261,7 +1268,7 @@ Object {
 exports[`html converts strong.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is <strong>some</strong> text.</p>
 </div>
 </body>
@@ -1289,7 +1296,7 @@ Object {
 exports[`html converts text.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is some text.</p>
 </div>
 </body>
@@ -1329,7 +1336,7 @@ Object {
 exports[`html converts thematicbreak.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is</p>
 
 <hr>
@@ -1418,7 +1425,7 @@ Object {
 exports[`html converts ul.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is an unordered list:</p>
 
 <ul tight=false>
@@ -1512,7 +1519,7 @@ Object {
 exports[`html converts ul-tight.md to html 2`] = `
 "<html>
 <body>
-<div class=\\"document\\">
+<div className=\\"document\\">
 <p>This is an unordered list:</p>
 
 <ul tight=true>
