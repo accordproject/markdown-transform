@@ -93,20 +93,20 @@ class ToHtmlStringVisitor {
             //     const ciceroMarkTransformer = new CiceroMarkTransformer();
             //     console.log(JSON.stringify(ciceroMarkTransformer.getSerializer().toJSON(thing), null, 4));
             // }
-            parameters.result += `<div className="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
+            parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable':
-            parameters.result += `<span className="variable" id="${thing.id}">${thing.value}</span>`;
+            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>`;
             break;
         case 'ComputedVariable':
-            parameters.result += `<span className="computed">${thing.value}</span>`;
+            parameters.result += `<span class="computed">${thing.value}</span>`;
             break;
         case 'CodeBlock': {
             const info = thing.info;
             if (info) {
-                parameters.result += `<pre className="code_block"><code data-ciceromark="${encodeURIComponent(thing.info)}">${thing.text}</pre></code>\n`;
+                parameters.result += `<pre class="code_block"><code data-ciceromark="${encodeURIComponent(thing.info)}">${thing.text}</pre></code>\n`;
             } else {
-                parameters.result += `<pre className="code_block"><code>${thing.text}</pre></code>\n`;
+                parameters.result += `<pre class="code_block"><code>${thing.text}</pre></code>\n`;
             }
         }
             break;
@@ -114,7 +114,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<code>${thing.text}</code>`;
             break;
         case 'HtmlInline':
-            parameters.result += `<span className="html_inline">${thing.text}</span>`;
+            parameters.result += `<span class="html_inline">${thing.text}</span>`;
             break;
         case 'Emph':
             parameters.result += `<em>${ToHtmlStringVisitor.visitChildren(this, thing)}</em>`;
@@ -150,7 +150,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<p>${ToHtmlStringVisitor.visitChildren(this, thing)}</p>\n`;
             break;
         case 'HtmlBlock':{
-            parameters.result += `<pre className="html_block"><code>${thing.text}</pre></code>\n`;
+            parameters.result += `<pre class="html_block"><code>${thing.text}</pre></code>\n`;
             break;
         }
         case 'Text':
@@ -183,7 +183,7 @@ class ToHtmlStringVisitor {
             parameters.result += `<li>${ToHtmlStringVisitor.visitChildren(this, thing)}</li>\n`;
             break;
         case 'Document':
-            parameters.result += `<html>\n<body>\n<div className="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
+            parameters.result += `<html>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);

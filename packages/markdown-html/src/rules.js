@@ -214,7 +214,7 @@ const THEMATIC_BREAK_RULE = {
  */
 const CODE_BLOCK_RULE = {
     deserialize(el, next) {
-        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('className') === 'code_block') {
+        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('class') === 'code_block') {
             const children = el.childNodes;
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
             {
@@ -278,7 +278,7 @@ const BLOCK_QUOTE_RULE = {
 const CLAUSE_RULE = {
     deserialize(el, next) {
         const tag = el.tagName;
-        if (tag && tag.toLowerCase() === 'div' && el.getAttribute('className') === 'clause') {
+        if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
                 clauseid: el.getAttribute('clauseid'),
@@ -296,7 +296,7 @@ const CLAUSE_RULE = {
 const VARIABLE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'variable') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
                 id: el.getAttribute('id'),
@@ -313,7 +313,7 @@ const VARIABLE_RULE = {
 const COMPUTED_VARIABLE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'computed') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'computed') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
                 value: el.textContent,
@@ -343,12 +343,10 @@ const SOFTBREAK_RULE = {
 const HTML_INLINE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'html_inline') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'html_inline') {
             {
                 const text = el.innerHTML;
-                console.log('INLINE WITH TEXT :' + el.innerHTML);
                 const tag = CommonMarkTransformer.parseHtmlBlock(text);
-                console.log('       AND TAG   :' + JSON.stringify(tag));
                 return {
                     '$class': `${NS_PREFIX_CommonMarkModel}HtmlInline`,
                     text: text,
@@ -365,7 +363,7 @@ const HTML_INLINE_RULE = {
  */
 const HTML_BLOCK_RULE = {
     deserialize(el, next) {
-        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('className') === 'html_block') {
+        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('class') === 'html_block') {
             const children = el.childNodes;
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
             {
