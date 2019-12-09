@@ -14,10 +14,10 @@
 
 'use strict';
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const jsdom = require('jsdom');
+const jsdom = typeof DOMParser === 'undefined' ? require('jsdom') : null;
 const typeOf = require('type-of');
 const defaultRules = require('./rules');
-const { JSDOM } = jsdom;
+const JSDOM = jsdom ? jsdom.JSDOM : null;
 
 /**
  * Converts an html string to a CiceroMark DOM
