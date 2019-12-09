@@ -14,6 +14,7 @@
 
 'use strict';
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const { isIgnorable } = require('./helpers');
 
@@ -213,14 +214,26 @@ const THEMATIC_BREAK_RULE = {
  */
 const CODE_BLOCK_RULE = {
     deserialize(el, next) {
-        if (el.tagName && el.tagName.toLowerCase() === 'pre') {
+        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('className') === 'code_block') {
             const children = el.childNodes;
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
             {
-                return {
-                    '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
-                    text: children[0].textContent
-                };
+                const info = children[0].getAttribute('data-ciceromark');
+                if (info) {
+                    const decodedInfo = decodeURIComponent(info);
+                    const tag = CommonMarkTransformer.parseHtmlBlock(decodedInfo);
+                    return {
+                        '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
+                        text: children[0].textContent,
+                        info: decodedInfo,
+                        tag,
+                    };
+                } else  {
+                    return {
+                        '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
+                        text: children[0].textContent,
+                    };
+                }
             }
         }
     }
@@ -265,7 +278,7 @@ const BLOCK_QUOTE_RULE = {
 const CLAUSE_RULE = {
     deserialize(el, next) {
         const tag = el.tagName;
-        if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
+        if (tag && tag.toLowerCase() === 'div' && el.getAttribute('className') === 'clause') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
                 clauseid: el.getAttribute('clauseid'),
@@ -283,7 +296,7 @@ const CLAUSE_RULE = {
 const VARIABLE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'variable') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
                 id: el.getAttribute('id'),
@@ -300,7 +313,7 @@ const VARIABLE_RULE = {
 const COMPUTED_VARIABLE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'computed') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'computed') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
                 value: el.textContent,
@@ -317,12 +330,56 @@ const SOFTBREAK_RULE = {
     deserialize(el, next) {
         if (el.tagName && el.tagName.toLowerCase() === 'wbr') {
             return {
-                '$class': 'org.accordproject.commonmark.Softbreak',
+                '$class': `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         }
     }
 };
 
+/**
+ * A rule to deserialize html inline nodes.
+ * @type {Object}
+ */
+const HTML_INLINE_RULE = {
+    deserialize(el, next) {
+        const { tagName } = el;
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('className') === 'html_inline') {
+            {
+                const text = el.innerHTML;
+                console.log('INLINE WITH TEXT :' + el.innerHTML);
+                const tag = CommonMarkTransformer.parseHtmlBlock(text);
+                console.log('       AND TAG   :' + JSON.stringify(tag));
+                return {
+                    '$class': `${NS_PREFIX_CommonMarkModel}HtmlInline`,
+                    text: text,
+                    tag,
+                };
+            }
+        }
+    }
+};
+
+/**
+ * A rule to deserialize html block nodes.
+ * @type {Object}
+ */
+const HTML_BLOCK_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('className') === 'html_block') {
+            const children = el.childNodes;
+            if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
+            {
+                const text = children[0].innerHTML;
+                const tag = CommonMarkTransformer.parseHtmlBlock(text);
+                return {
+                    '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
+                    text: text,
+                    tag,
+                };
+            }
+        }
+    }
+};
 
 const rules = [
     LIST_RULE,
@@ -340,6 +397,8 @@ const rules = [
     SOFTBREAK_RULE,
     COMPUTED_VARIABLE_RULE,
     TEXT_RULE,
+    HTML_INLINE_RULE,
+    HTML_BLOCK_RULE,
 ];
 
 

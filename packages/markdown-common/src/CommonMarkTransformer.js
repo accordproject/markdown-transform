@@ -157,23 +157,7 @@ class CommonMarkTransformer {
                     const maybeHtmlText = CommonMarkTransformer.isHtmlNode(head) ? head.text : head.info;
                     const tagInfo = that.options && that.options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(maybeHtmlText) : null;
                     if (tagInfo) {
-                        head.tag = {};
-                        head.tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
-                        head.tag.tagName = tagInfo.tag;
-                        head.tag.attributeString = tagInfo.attributeString;
-                        head.tag.attributes = [];
-                        for (const attName in tagInfo.attributes) {
-                            if (Object.prototype.hasOwnProperty.call(tagInfo.attributes, attName)) {
-                                const attValue = tagInfo.attributes[attName];
-                                head.tag.attributes.push({
-                                    $class : NS_PREFIX_CommonMarkModel + 'Attribute',
-                                    name : attName,
-                                    value : attValue,
-                                });
-                            }
-                        }
-                        head.tag.content = tagInfo.content;
-                        head.tag.closed = tagInfo.closed;
+                        head.tag = tagInfo;
                     }
                 }
             }
@@ -211,6 +195,7 @@ class CommonMarkTransformer {
                 const json = stack.peek();
                 // console.log(JSON.stringify(json, null, 4));
                 json.nodes = CommonMarkTransformer.mergeAdjacentTextNodes(json.nodes);
+                json.nodes = CommonMarkTransformer.mergeAdjacentHtmlNodes(json.nodes, that.options);
                 stack.pop();
             }
         };
@@ -252,6 +237,38 @@ class CommonMarkTransformer {
                    cur.$class === (NS_PREFIX_CommonMarkModel + 'Text') &&
                    next.$class === (NS_PREFIX_CommonMarkModel + 'Text')) {
                     next.text = cur.text + next.text;  // Fold text in next node, skip current node
+                }
+                else {
+                    result.push(cur);
+                }
+            }
+            return result;
+        }
+        else {
+            return nodes;
+        }
+    }
+
+    /**
+     * Merge adjacent Html nodes in a list of nodes
+     * @param {[*]} nodes - a list of nodes
+     * @param {*} options - options
+     * @returns {*} a new list of nodes with open/closed Html nodes merged
+     */
+    static mergeAdjacentHtmlNodes(nodes, options) {
+        if(nodes) {
+            const result = [];
+            for(let n=0; n < nodes.length; n++) {
+                const cur = nodes[n];
+                const next = n+1 < nodes.length ? nodes[n+1] : null;
+
+                if(next &&
+                   cur.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
+                   next.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
+                   cur.tag &&
+                   next.text === `</${cur.tag.tagName}>`) {
+                    next.text = cur.text + next.text;  // Fold text in next node, skip current node
+                    next.tag = options && options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(next.text) : null;
                 }
                 else {
                     result.push(cur);
@@ -312,13 +329,23 @@ class CommonMarkTransformer {
                 attributeObject[attributes[i].name] = attributes[i].value;
             }
 
-            const tag = {
-                tag: item.tagName.toLowerCase(),
-                attributes: attributeObject,
-                attributeString,
-                content: item.textContent,
-                closed: string.endsWith('/>')
-            };
+            const tag = {};
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
+            tag.tagName = item.tagName.toLowerCase();
+            tag.attributeString = attributeString;
+            tag.attributes = [];
+            for (const attName in attributeObject) {
+                if (Object.prototype.hasOwnProperty.call(attributeObject, attName)) {
+                    const attValue = attributeObject[attName];
+                    tag.attributes.push({
+                        $class : NS_PREFIX_CommonMarkModel + 'Attribute',
+                        name : attName,
+                        value : attValue,
+                    });
+                }
+            }
+            tag.content = item.textContent;
+            tag.closed = string.endsWith('/>');
 
             return tag;
         } catch (err) {

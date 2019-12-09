@@ -1124,6 +1124,46 @@ Object {
 }
 `;
 
+exports[`markdown converts html-inline-closing.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "src = \\"property\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "src",
+                "value": "property",
+              },
+            ],
+            "closed": false,
+            "content": "",
+            "tagName": "custom",
+          },
+          "text": "<custom src=\\"property\\"></custom>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts html-inline-uri.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
