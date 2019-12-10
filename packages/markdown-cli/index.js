@@ -97,7 +97,7 @@ require('yargs')
             default: false
         });
         yargs.option('html', {
-            describe: 'further transform to HTML',
+            describe: 'input data is HTML',
             type: 'boolean',
             default: false
         });

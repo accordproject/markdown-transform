@@ -35,6 +35,6 @@ note left of [Slate DOM]
 end note
 
 package "markdown-html" {
-  [CiceroMark DOM] -up-> [HTML String]
+  [CiceroMark DOM] <-up-> [HTML String]
 }
 @enduml
