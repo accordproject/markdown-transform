@@ -1,6 +1,6 @@
 # HTML Transformer
 
-Use `HtmlTransformer` to transform a CiceroMark DOM into an HTML String.
+Use `HtmlTransformer` to transform a CiceroMark DOM to/from an HTML String.
 
 ## Installation
 

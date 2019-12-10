@@ -19,7 +19,7 @@
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and other DOMs.
 
-![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP6zJiCm58NtFCLHzoGxGgWI30nK36MhEbZnJUBMFv5zenGXtXtPDQGYfH9ROf_Syzqlwy32ysXqCOZcA3h2oWX_b6woPQFL2Xy5i1k43xGlFejhAMUCipcuoQVOibUss-E-78Vo0Rl7b8hNU7hTf57MCS6hhcUuTfa0UkOXtDMrSP9qg4JJE2y7xmxKSELyLv-h8qdzZLFrR7H1LYAENvJyvYk0dwFMUIEOIOBfn1W31N1FA829j2ubjSgInDmQ8P3S-9WILYAyMnQd6U2QCDMGTqdOOklPLmejVMbgiwuS-8-kz4dIDJzcOJTuWnPC6JUtBd2tCNETzF8EEB-e067n_BPvWLTDNoRX91KxVx78D4rLAZ-4o7yJCcxn1sD6Z6tvjqV8DLav6lq5)
+![Architecture Diagram](http://www.plantuml.com/plantuml/png/bP6zJiCm58NtFCLHzoGxGgWI30nK36MhEbZsJUBMFv5zenGXtXtPBQHg8X1ROf_SyzqlwyWYy61DqGjv52rXPKKuAZ-wKXgzmaS1x7eH8ksBps8fvQtrxXBSN4wnvQ1TkyTzEVJb0tQFEPMkyVIwoQESPqBGRSVmpJm1TCnzlAjhwnMPM0afVL1zy0UINFdGrkVgH59_urGTMrEGKqZZRqfcVAdbvwZnmGfcKc0wCOP84TmH2c0aOqf5ZNQaCBKc26Gt8QM4KuZlZiLf0bWIfYK5duNDjfvyvT3Sbw4cRJ85_gChVv9rJO-tmkQyqGYcZ7lREk5kKsQPzFeEEB_e2E7m_BPvGT2oAxDmKffzk5fa7CSgbnzYulyLCctn1sEgk_ptHBacfmPhlW00)
 
 > Note: you can regenerate this diagram by visiting http://www.plantuml.com/plantuml/uml/ and pasting the contents of `architecture.puml` from this repository.
 
@@ -29,7 +29,7 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-common) : converts markdown strings to/from the CommonMark DOM
 * [markdown-cicero](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cicero) : converts CommonMark DOM to/from the CiceroMark DOM
 * [markdown-slate](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-slate) : converts CiceroMark DOM to/from the Slate DOM
-* [markdown-html](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-html) : converts CiceroMark DOM to HTML
+* [markdown-html](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-html) : converts CiceroMark DOM to/from HTML
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cli) : command line utilities
 
 ###  CommonMark DOM

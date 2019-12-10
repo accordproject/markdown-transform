@@ -63,6 +63,7 @@ Options:
   --output       path to the output file                                [string]
   --cicero       input data is a CiceroMark DOM       [boolean] [default: false]
   --slate        input data is a Slate DOM            [boolean] [default: false]
+  --html         input data is HTML                   [boolean] [default: false]
   --noWrap       do not wrap CiceroMark variables as XML tags
                                                       [boolean] [default: false]
   --noIndex      do not index ordered lists           [boolean] [default: false]
@@ -85,6 +86,7 @@ Options:
   --output       path to the output file                                [string]
   --cicero       further transform to CiceroMark      [boolean] [default: false]
   --slate        further transform to Slate DOM       [boolean] [default: false]
+  --html         further transform to HTML            [boolean] [default: false]
   --noWrap       do not wrap variables as XML tags    [boolean] [default: false]
   --noIndex      do not index ordered lists           [boolean] [default: false]
 ```
