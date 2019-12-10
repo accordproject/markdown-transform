@@ -131,7 +131,7 @@ const LINK_RULE = {
                 '$class': `${NS_PREFIX_CommonMarkModel}Link`,
                 nodes: next(el.childNodes),
                 destination: el.getAttribute('href'),
-                title: el.getAttribute('title')
+                title: el.getAttribute('title') ? el.getAttribute('title') : '',
             };
         }
     }
