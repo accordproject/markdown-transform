@@ -27,6 +27,7 @@ const removeEmptyParagraphs = (input) => {
     let nodesWithoutBlankParagraphs = [];
     input.nodes.forEach(node => {
         if (node.$class === 'org.accordproject.commonmark.Paragraph' &&
+            node.nodes.length === 1 &&
             node.nodes[0].$class === 'org.accordproject.commonmark.Text' &&
             node.nodes[0].text === '') {
             return;
