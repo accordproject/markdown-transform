@@ -21,33 +21,25 @@ class ToSlateVisitor {
 
     /**
      * Converts a sub-tree of formatting nodes to an array of marks
-     * @param {*} thing a concerto Strong, Emph or Text node
-     * @param {*} marks an initial set of marks
+     * @param {*} parameters the parameters
      * @returns {*} the array of slate marks to use
      */
-    static getMarks(thing, marks) {
-        let result = Array.from(marks);
+    static getMarks(parameters) {
+        let result = [];
 
-        switch(thing.getType()) {
-        case 'Strong':
-            result.push({
-                object: 'mark',
-                type: 'bold',
-                data: {}
-            });
-            break;
-        case 'Emph':
+        if (parameters.emph) {
             result.push({
                 object: 'mark',
                 type: 'italic',
                 data: {}
             });
-            break;
         }
-
-        // recurse on child nodes
-        if(thing.nodes && thing.nodes.length > 0) {
-            result = ToSlateVisitor.getMarks(thing.nodes[0], result);
+        if (parameters.strong) {
+            result.push({
+                object: 'mark',
+                type: 'bold',
+                data: {}
+            });
         }
 
         return result;
@@ -67,7 +59,7 @@ class ToSlateVisitor {
                 return ToSlateVisitor.getText(thing.nodes[0]);
             }
             else {
-                return null;
+                return '';
             }
         }
     }
@@ -92,22 +84,45 @@ class ToSlateVisitor {
     /**
      * Converts a formatted text node to a slate text node with marks
      * @param {*} thing a concerto Strong, Emph or Text node
+     * @param {*} parameters the parameters
      * @returns {*} the slate text node with marks
      */
-    static handleFormattedText(thing) {
+    static handleFormattedText(thing, parameters) {
         return {
             object: 'text',
             text: ToSlateVisitor.getText(thing),
-            marks: ToSlateVisitor.getMarks(thing, []),
+            marks: ToSlateVisitor.getMarks(parameters),
+        };
+    }
+
+    /**
+     * Converts a formatted inline node to a slate text node with marks
+     * @param {*} type - the type of inline
+     * @param {*} data - the data for the inline
+     * @param {*} text - the text for the inline
+     * @param {*} parameters the parameters
+     * @returns {*} the slate text node with marks
+     */
+    static handleInline(type, data, text, parameters) {
+        return {
+            object: 'inline',
+            type: type,
+            data: data,
+            nodes: [{
+                object: 'text',
+                text: text,
+                marks: ToSlateVisitor.getMarks(parameters),
+            }],
         };
     }
 
     /**
      * Returns the processed child nodes
      * @param {*} thing a concerto ast nodes
+     * @param {*} parameters the parameters
      * @returns {*} an array of slate nodes
      */
-    processChildNodes(thing) {
+    processChildNodes(thing,parameters) {
         const result = [];
         if(!thing.nodes) {
             thing.nodes = []; // Treat no nodes as empty array of nods
@@ -115,9 +130,16 @@ class ToSlateVisitor {
 
         thing.nodes.forEach(node => {
             //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
-            const child = {};
-            node.accept(this, child);
-            result.push(child.result);
+            const newParameters = {
+                strong: parameters.strong,
+                emph: parameters.emph,
+            };
+            node.accept(this, newParameters);
+            if (Array.isArray(newParameters.result)) {
+                Array.prototype.push.apply(result,newParameters.result);
+            } else {
+                result.push(newParameters.result);
+            }
         });
 
         return result;
@@ -141,45 +163,17 @@ class ToSlateVisitor {
                     clauseid: thing.clauseid,
                     src: thing.src
                 },
-                nodes: this.processChildNodes(thing),
+                nodes: this.processChildNodes(thing,parameters),
             };
             break;
         case 'Variable':
-            result = {
-                object: 'inline',
-                type: 'variable',
-                data: {
-                    id: thing.id,
-                },
-                nodes: [{
-                    object: 'text',
-                    text: thing.value,
-                }],
-            };
+            result = ToSlateVisitor.handleInline('variable', { id: thing.id }, thing.value, parameters);
             break;
         case 'ConditionalVariable':
-            result = {
-                object: 'inline',
-                type: 'conditional',
-                data: {
-                    id: thing.id,
-                },
-                nodes: [{
-                    object: 'text',
-                    text: thing.value,
-                }],
-            };
+            result = ToSlateVisitor.handleInline('conditional', { id: thing.id }, thing.value, parameters);
             break;
         case 'ComputedVariable':
-            result = {
-                object: 'inline',
-                type: 'computed',
-                data: {},
-                nodes: [{
-                    object: 'text',
-                    text: thing.value,
-                }],
-            };
+            result = ToSlateVisitor.handleInline('computed', {}, thing.value, parameters);
             break;
         case 'CodeBlock':
             result = {
@@ -212,15 +206,21 @@ class ToSlateVisitor {
             };
             break;
         case 'Emph':
+            parameters.emph = true;
+            result = this.processChildNodes(thing,parameters);
+            break;
         case 'Strong':
+            parameters.strong = true;
+            result = this.processChildNodes(thing,parameters);
+            break;
         case 'Text':
-            result = ToSlateVisitor.handleFormattedText(thing);
+            result = ToSlateVisitor.handleFormattedText(thing, parameters);
             break;
         case 'BlockQuote':
             result = {
                 object: 'block',
                 type: 'block_quote',
-                nodes: this.processChildNodes(thing)
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Heading':
@@ -228,7 +228,7 @@ class ToSlateVisitor {
                 'object': 'block',
                 'data': {},
                 'type': ToSlateVisitor.getHeadingType(thing),
-                'nodes': this.processChildNodes(thing)
+                'nodes': this.processChildNodes(thing,parameters)
             };
             break;
         case 'ThematicBreak':
@@ -288,7 +288,7 @@ class ToSlateVisitor {
             result = {
                 'object': 'block',
                 'type': 'paragraph',
-                'nodes': this.processChildNodes(thing),
+                'nodes': this.processChildNodes(thing,parameters),
                 'data': {}
             };
             break;
@@ -321,7 +321,7 @@ class ToSlateVisitor {
                 'object': 'block',
                 'data': { tight: thing.tight, start: thing.start, delimiter: thing.delimiter},
                 'type': thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                'nodes': this.processChildNodes(thing)
+                'nodes': this.processChildNodes(thing,parameters)
             };
             break;
         case 'ListVariable':
@@ -330,7 +330,7 @@ class ToSlateVisitor {
                 'object': 'block',
                 'data': { tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
                 'type': thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                'nodes': this.processChildNodes(thing)
+                'nodes': this.processChildNodes(thing,parameters)
             };
             break;
         case 'Item':
@@ -338,13 +338,13 @@ class ToSlateVisitor {
                 'object': 'block',
                 'type': 'list_item',
                 'data': {},
-                'nodes': this.processChildNodes(thing)
+                'nodes': this.processChildNodes(thing,parameters)
             };
             break;
         case 'Document':
             result = {
                 'object': 'document',
-                'nodes': this.processChildNodes(thing),
+                'nodes': this.processChildNodes(thing,parameters),
                 'data' : {}
             };
             break;

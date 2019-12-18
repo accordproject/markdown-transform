@@ -77,13 +77,9 @@ function _recursive(parent, nodes) {
                 result = {$class : `${NS_CICERO}.Clause`, clauseid: node.data.clauseid, src: node.data.src, nodes: []};
                 break;
             case 'variable':
-                result = {$class : `${NS_CICERO}.Variable`, id: node.data.id, value: node.nodes[0].text};
-                break;
             case 'conditional':
-                result = {$class : `${NS_CICERO}.ConditionalVariable`, id: node.data.id, value: node.nodes[0].text};
-                break;
             case 'computed':
-                result = {$class : `${NS_CICERO}.ComputedVariable`, value: node.nodes[0].text};
+                result = handleInline(node);
                 break;
             case 'paragraph':
                 result = {$class : `${NS}.Paragraph`, nodes: []};
@@ -214,6 +210,69 @@ function handleText(node) {
 
     if(!result) {
         result = text;
+    }
+
+    return result;
+}
+
+/**
+ * Handles an inline node
+ * @param {*} node the slate inline node
+ * @returns {*} the ast node
+ */
+function handleInline(node) {
+
+    let strong = null;
+    let emph = null;
+    let result = null;
+
+    const textNode = node.nodes[0]; // inlines always contain a single text node
+    node.nodes = []; // Reset the children for the inline to avoid recursion
+
+    const isBold = textNode.marks.some(mark => mark.type === 'bold');
+    const isItalic = textNode.marks.some(mark => mark.type === 'italic');
+
+    const type = node.type;
+    const baseName = type === 'variable' ? 'Variable' : type === 'conditional' ? 'ConditionalVariable' : 'ComputedVariable';
+    const className = `${NS_CICERO}.${baseName}`;
+
+    const inline = {
+        $class : className,
+        value : textNode.text
+    };
+
+    const data = node.data;
+    if (data.id) {
+        inline.id = data.id;
+    }
+
+    if (isBold) {
+        strong = {$class : `${NS}.Strong`, nodes: []};
+    }
+
+    if (isItalic) {
+        emph  = {$class : `${NS}.Emph`, nodes: []};
+    }
+
+    if(strong && emph) {
+        result = emph;
+        emph.nodes.push(strong);
+        strong.nodes.push(inline);
+    }
+    else {
+        if(strong) {
+            result = strong;
+            strong.nodes.push(inline);
+        }
+
+        if(emph) {
+            result = emph;
+            emph.nodes.push(inline);
+        }
+    }
+
+    if(!result) {
+        result = inline;
     }
 
     return result;
