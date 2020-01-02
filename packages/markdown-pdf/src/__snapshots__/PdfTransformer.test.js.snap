@@ -1,0 +1,477 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pdf import converts Land_Sale_Contract.pdf to cicero mark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "----- page 1 -----",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Page __ of __",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "LAND SALE  CONTRACT",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The  first party (henceforth known as “Buyer”) agrees to purchase from the",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "second party (henceforth known as “Seller”) the  land (henceforth known as",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "“Land”)  lo cated at the following address:  {address} , in the city of  {city} , county of",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "{ county} ,  and State of {state} . Further legal description of the  Land is as follows:",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "{details of the Land, perhaps using the description listed in public record}",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This  Contract is executed on  {date} ,  {year} .",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The following term s and conditions apply to t his Contract :",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Price : Buyer agrees to purchase the  Land described above, paying a total",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "purchase price of  {amount in dollars} . Buyer will pay  {amount in",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "dollars} for a down payment, and thereafter payments will be made",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "monthly.  Monthly installments will be in the amount of  {amount in",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "dollars} , including a  {number} % interest rate, to be determined by",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "{description of how interest rate will be computed} . Said payments will",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "start on the  {date} of  {month} ,  {year} , and  be  due on the  {date} of every",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "month until su ch time as the entire payment amount has been satisfied .",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Late fees : Buyer agrees to pay the monthly installment on the due date,",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "with the understanding that a  {amount in dollars} late fee  will be added",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "to the monthly payment if said payment is more than  {number} days late.",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "End of contract : The entire balance must be paid by the  {date} of",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "{month} ,  {year} . If there is a remaining balance on this date, the interest",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "on said balance shall be  {number} %, wit h a  {amount in dollars} late fee",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "applied every  day  month until the balance is paid in full.",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Default : If Buyer does not pay  {number} payments on time, Seller has",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "the right to declar e Buyer in default of this Contract .",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Title : Upon final payment, when entire purchase price has been paid in",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "full, Buyer agrees to provide Seller with the title(s) and/or deed(s) to the",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Land . Seller further agrees to relinquish any and all claims to the  Land .",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Buyer agrees to remove Seller from any liability with regard to issues that",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "arise  after the date of the title  transfer. Buyer agrees to take complete",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "responsibility, financial and otherwise, for the  Land upon title transfer.",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Insurance : Seller agrees to maint ain a hazard insurance policy on the",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Land of no less than  {amount in dollars] until the completion of the",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "www.PrintableContracts.com",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "----- page 2 -----",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Page __ of __",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "p ayment plan, at which point any insurance becomes the responsibility of",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Buyer.",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "7. Taxes : All taxes on the  Land shall be the responsibility of Buyer as of the",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "date of this  Contract .",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "8. ADDITIONAL TERMS :",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "{insert description of any other terms agreed upon by bot h Buyer",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "and Seller; must be inserted prior to the signing of the document}",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This Contract is executed on the  {date} of  {month} ,  {year} .",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "We, the undersigned, agree to this Contract and all its terms.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Seller (Print Name) Date",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Seller Signature Date",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Buyer (Print Name) Date",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Buyer Signature Date",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Witness (Print Name) Date",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Witness (Signature) Date",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "www.PrintableContracts.com",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
