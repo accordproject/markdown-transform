@@ -30,6 +30,8 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 * [markdown-cicero](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cicero) : converts CommonMark DOM to/from the CiceroMark DOM
 * [markdown-slate](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-slate) : converts CiceroMark DOM to/from the Slate DOM
 * [markdown-html](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-html) : converts CiceroMark DOM to/from HTML
+* [markdown-pdf](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-pdf) : converts a PDF file to a CiceroMark DOM
+* [markdown-docx](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-docx) : converts a DOCX file to a CiceroMark DOM
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cli) : command line utilities
 
 ###  CommonMark DOM
