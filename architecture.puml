@@ -7,7 +7,7 @@ package "markdown-common" {
   [Markdown String] <-up-> [CommonMark DOM]
 }
 
-note right of [CommonMark DOM]
+note left of [CommonMark DOM]
   https://models.accordproject.org/commonmark/markdown.html
 end note
 
@@ -36,5 +36,13 @@ end note
 
 package "markdown-html" {
   [CiceroMark DOM] <-up-> [HTML String]
+}
+
+package "markdown-docx" {
+  [CiceroMark DOM] <-- [DOCX File]
+}
+
+package "markdown-pdf" {
+  [CiceroMark DOM] <-- [PDF File]
 }
 @enduml
