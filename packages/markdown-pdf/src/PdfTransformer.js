@@ -34,7 +34,7 @@ class PdfTransformer {
 
     /**
      * Converts an pdf buffer to a CiceroMark DOM
-     * @param {string} input - html string
+     * @param {Buffer} input - pdf buffer
      * @param {string} [format] result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
      * @returns {promise} a Promise to the CiceroMark DOM

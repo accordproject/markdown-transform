@@ -21,6 +21,8 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
+const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
+const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -62,7 +64,7 @@ class Commands {
         argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
-            Logger.info(`parse sample ${argv.sample} printing intermediate transformations.`);
+            Logger.info(`parse sample ${argv.sample} (or docx, pdf) printing intermediate transformations.`);
         }
 
         return argv;
@@ -80,7 +82,7 @@ class Commands {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static parse(samplePath, outputPath, options) {
+    static async parse(samplePath, outputPath, options) {
         const { cicero, slate, html, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
@@ -89,9 +91,24 @@ class Commands {
         const ciceroMark = new CiceroMarkTransformer();
         const slateMark = new SlateTransformer();
         const htmlMark = new HtmlTransformer();
+        const docx = new DocxTransformer();
+        const pdf = new PdfTransformer();
 
-        const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromMarkdown(markdownText, 'json');
+        let result = null;
+
+        if(samplePath.endsWith('.pdf')) {
+            const pdfBuffer = Fs.readFileSync(samplePath);
+            result = await pdf.toCiceroMark(pdfBuffer, 'json');
+        }
+        else if(samplePath.endsWith('.docx')) {
+            const docxBuffer = Fs.readFileSync(samplePath);
+            result = await docx.toCiceroMark(docxBuffer, 'json');
+        }
+        else {
+            const markdownText = Fs.readFileSync(samplePath, 'utf8');
+            result = commonMark.fromMarkdown(markdownText, 'json');
+        }
+
         if(verbose) {
             Logger.info('=== CommonMark ===');
             Logger.info(JSON.stringify(result, null, 4));
@@ -150,7 +167,7 @@ class Commands {
     }
 
     /**
-     * Parse a sample markdown
+     * Parse a sample markdown/pdf/docx
      *
      * @param {string} dataPath to the sample file
      * @param {string} outputPath to an output file

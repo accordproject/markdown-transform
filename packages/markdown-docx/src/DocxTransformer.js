@@ -34,7 +34,7 @@ class DocxTransformer {
 
     /**
      * Converts an html string to a CiceroMark DOM
-     * @param {string} input - html string
+     * @param {Buffer} input - docx buffer
      * @param {string} [format] result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
      * @returns {promise} promise to the CiceroMark DOM

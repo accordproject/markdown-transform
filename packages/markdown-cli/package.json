@@ -57,6 +57,8 @@
     "@accordproject/markdown-cicero": "0.9.4",
     "@accordproject/markdown-slate": "0.9.4",
     "@accordproject/markdown-html": "0.9.4",
+    "@accordproject/markdown-pdf": "0.9.4",
+    "@accordproject/markdown-docx": "0.9.4",
     "immutable": "^4.0.0-rc.12",
     "jsome": "2.5.0",
     "slate": "^0.47.8",
