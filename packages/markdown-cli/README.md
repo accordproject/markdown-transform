@@ -16,7 +16,7 @@ The command-line is called `markus` and offers the following commands:
 markus <cmd> [args]
 
 Commands:
-  markus parse      parse and transform a sample markdown
+  markus parse      parse and transform a sample markdown, pdf or docx file
   markus draft      create markdown text from data
   markus normalize  normalize a sample markdown (parse & redraft)
 
@@ -39,7 +39,7 @@ Options:
   --version      Show version number                                   [boolean]
   --verbose, -v  verbose output                       [boolean] [default: false]
   --help         Show help                                             [boolean]
-  --sample       path to the markdown text                              [string]
+  --sample       path to the markdown text, pdf, docx                   [string]
   --output       path to the output file                                [string]
   --cicero       further transform to CiceroMark      [boolean] [default: false]
   --slate        further transform to Slate DOM       [boolean] [default: false]
