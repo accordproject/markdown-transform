@@ -138,7 +138,7 @@ class ToHtmlStringVisitor {
             parameters.result += '<br>\n';
             break;
         case 'Softbreak':
-            parameters.result += '<wbr>';
+            parameters.result += '\n';
             break;
         case 'Link':
             parameters.result += `<a href="${thing.destination}" title=${thing.title}>${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
