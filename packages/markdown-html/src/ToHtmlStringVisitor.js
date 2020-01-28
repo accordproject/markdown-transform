@@ -135,7 +135,7 @@ class ToHtmlStringVisitor {
             parameters.result += '\n<hr>\n';
             break;
         case 'Linebreak':
-            parameters.result += '<br>\n';
+            parameters.result += '<br>';
             break;
         case 'Softbreak':
             parameters.result += '\n';
