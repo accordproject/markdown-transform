@@ -32,10 +32,18 @@ const TEXT_RULE = {
 
         // text nodes will be of type 3
         if (el.nodeType === 3 && !isIgnorable(el)) {
-            return {
-                '$class': `${NS_PREFIX_CommonMarkModel}${'Text'}`,
-                text: el.nodeValue,
-            };
+            const textArray = el.nodeValue.split('\n');
+            const textNodes =  textArray.map(text => {
+                if (text) {
+                    return {
+                        '$class': `${NS_PREFIX_CommonMarkModel}${'Text'}`,
+                        text,
+                    };
+                }
+            });
+
+            const result = [...textNodes].map((node, i) => i < textNodes.length - 1 ? [node, { '$class': `${NS_PREFIX_CommonMarkModel}${'Softbreak'}` }] : [node]).reduce((a, b) => a.concat(b)).filter(n => !!n);
+            return result;
         }
     }
 };
