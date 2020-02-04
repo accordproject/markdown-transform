@@ -20,7 +20,7 @@ const NS_CICERO = 'org.accordproject.ciceromark';
 
 /**
  * Removes nodes if they are an empty paragraph
- * @param {*} input the current result of slateToCiceroMarkDom
+ * @param {*} input - the current result of slateToCiceroMarkDom
  * @returns {*} the final result of slateToCiceroMarkDom
  */
 const removeEmptyParagraphs = (input) => {
@@ -36,6 +36,24 @@ const removeEmptyParagraphs = (input) => {
     });
     input.nodes = nodesWithoutBlankParagraphs;
     return input;
+};
+
+/**
+ * Gather the text for the node
+ * @param {*} input - the current slate node
+ * @returns {string} the text contained in the slate node
+ */
+const getText = (input) => {
+    let result = '';
+    if (input.text) {
+        result += input.text;
+    }
+    if (input.nodes) {
+        input.nodes.forEach(node => {
+            result += getText(node);
+        });
+    }
+    return result;
 };
 
 /**
@@ -118,7 +136,7 @@ function _recursive(parent, nodes) {
                 result = {$class : `${NS}.BlockQuote`, nodes: []};
                 break;
             case 'code_block':
-                result = {$class : `${NS}.CodeBlock`, text: node.text};
+                result = {$class : `${NS}.CodeBlock`, text: getText(node)};
                 break;
             case 'html_block':
                 result = {$class : `${NS}.HtmlBlock`, text: node.text};

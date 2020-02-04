@@ -902,7 +902,10 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": undefined,
+      "text": "this
+is a
+code block.
+",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -982,7 +985,10 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": undefined,
+      "text": "this
+is a
+code block.
+",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",

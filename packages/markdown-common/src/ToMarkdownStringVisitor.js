@@ -140,17 +140,17 @@ class ToMarkdownStringVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
-
+        const nodeText = thing.text ? thing.text : '';
         switch(thing.getType()) {
         case 'CodeBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(thing.text)}\`\`\``;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(nodeText)}\`\`\``;
             break;
         case 'Code':
-            parameters.result += `\`${thing.text}\``;
+            parameters.result += `\`${nodeText}\``;
             break;
         case 'HtmlInline':
-            parameters.result += thing.text;
+            parameters.result += nodeText;
             break;
         case 'Emph':
             parameters.result += `*${ToMarkdownStringVisitor.visitChildren(this, thing)}*`;
@@ -196,10 +196,10 @@ class ToMarkdownStringVisitor {
             break;
         case 'HtmlBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `${thing.text}`;
+            parameters.result += nodeText;
             break;
         case 'Text':
-            parameters.result += thing.text;
+            parameters.result += nodeText;
             break;
         case 'List': {
             const first = thing.start ? parseInt(thing.start) : 1;
