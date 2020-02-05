@@ -44,10 +44,11 @@ class ToMarkdownStringVisitor {
     static visitChildren(visitor, thing, parameters) {
         if(!parameters) {
             parameters = {};
-            parameters.result = '';
-            parameters.first = false;
             parameters.indent = 0;
+            parameters.first = false;
+            parameters.blockIndent = 0;
         }
+        parameters.result = '';
 
         if(thing.nodes) {
             thing.nodes.forEach(node => {
@@ -63,11 +64,12 @@ class ToMarkdownStringVisitor {
      * @param {*} parametersOut - the current parameters
      * @return {*} the new parameters with first set to true
      */
-    static mkParametersIn(parametersOut) {
+    static mkParametersInBlock(parametersOut) {
         let parameters = {};
         parameters.result = '';
-        parameters.first = true;
+        parameters.first = false;
         parameters.indent = parametersOut.indent; // Same indentation
+        parameters.blockIndent = parametersOut.blockIndent+1;
         return parameters;
     }
 
@@ -81,6 +83,7 @@ class ToMarkdownStringVisitor {
         parameters.result = '';
         parameters.first = true;
         parameters.indent = parametersOut.indent+1; // Increases indentation
+        parameters.blockIndent = parametersOut.blockIndent;
         return parameters;
     }
 
@@ -91,6 +94,15 @@ class ToMarkdownStringVisitor {
      */
     static mkIndent(parameters) {
         return new Array(parameters.indent*3+1).join(' ');
+    }
+
+    /**
+     * Create blockQuote indendation
+     * @param {*} parameters - the current parameters
+     * @return {string} prefix for blockquote indentation
+     */
+    static mkIndentBlock(parameters) {
+        return '> '.repeat(parameters.blockIndent);
     }
 
     /**
@@ -121,8 +133,10 @@ class ToMarkdownStringVisitor {
      * @param {*} level - number of new lines
      */
     static newBlock(parameters,level) {
-        const newlines = parameters.first ? '' : Array(level).fill('\n').join('');
+        const fixLevel = parameters.blockIndent === 0 ? level : 1;
+        const newlines = parameters.first ? '' : Array(fixLevel).fill('\n').join('');
         parameters.result += newlines;
+        parameters.result += ToMarkdownStringVisitor.mkIndentBlock(parameters);
     }
 
     /**
@@ -159,9 +173,8 @@ class ToMarkdownStringVisitor {
             parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing)}**`;
             break;
         case 'BlockQuote': {
-            const parametersIn = ToMarkdownStringVisitor.mkParametersIn(parameters);
-            ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `> ${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
+            const parametersIn = ToMarkdownStringVisitor.mkParametersInBlock(parameters);
+            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
         }
             break;
         case 'Heading': {
@@ -182,7 +195,7 @@ class ToMarkdownStringVisitor {
             parameters.result += '\\\n';
             break;
         case 'Softbreak':
-            parameters.result += '\n';
+            parameters.result += '\n' + ToMarkdownStringVisitor.mkIndentBlock(parameters);
             break;
         case 'Link':
             parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
@@ -192,7 +205,7 @@ class ToMarkdownStringVisitor {
             break;
         case 'Paragraph':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing)}`;
+            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
             break;
         case 'HtmlBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);

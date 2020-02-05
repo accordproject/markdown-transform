@@ -48,7 +48,7 @@ describe.only('pdf import', () => {
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
             const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
-            console.log(JSON.stringify(ciceroMarkDom, null, 4));
+            //console.log(JSON.stringify(ciceroMarkDom, null, 4));
             expect(ciceroMarkDom).toMatchSnapshot(); // (1)
         });
     });
