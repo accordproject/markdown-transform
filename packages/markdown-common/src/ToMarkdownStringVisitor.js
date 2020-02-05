@@ -60,11 +60,11 @@ class ToMarkdownStringVisitor {
     }
 
     /**
-     * Set parameters for inner node
+     * Set parameters for block quote
      * @param {*} parametersOut - the current parameters
-     * @return {*} the new parameters with first set to true
+     * @return {*} the new parameters with block quote level incremented
      */
-    static mkParametersInBlock(parametersOut) {
+    static mkParametersInBlockQuote(parametersOut) {
         let parameters = {};
         parameters.result = '';
         parameters.first = false;
@@ -173,7 +173,7 @@ class ToMarkdownStringVisitor {
             parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing)}**`;
             break;
         case 'BlockQuote': {
-            const parametersIn = ToMarkdownStringVisitor.mkParametersInBlock(parameters);
+            const parametersIn = ToMarkdownStringVisitor.mkParametersInBlockQuote(parameters);
             parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
         }
             break;
