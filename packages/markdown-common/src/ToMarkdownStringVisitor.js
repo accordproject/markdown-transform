@@ -205,7 +205,8 @@ class ToMarkdownStringVisitor {
             break;
         case 'Paragraph':
             ToMarkdownStringVisitor.newBlock(parameters,2);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+            const parametersIn = Object.assign(parameters);
+            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
             break;
         case 'HtmlBlock':
             ToMarkdownStringVisitor.newBlock(parameters,2);
