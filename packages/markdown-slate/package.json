@@ -17,8 +17,9 @@
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
+    "build:dist": "NODE_ENV=production babel src -d lib --copy-files",
     "build:watch": "babel src -d lib --copy-files --watch",
-    "prepublishOnly": "npm run build && npm run webpack",
+    "prepublishOnly": "npm run build:dist && npm run webpack",
     "prepare": "npm run build",
     "pretest": "npm run lint && npm run build",
     "lint": "eslint .",
