@@ -137,12 +137,23 @@ class ToMarkdownStringVisitor {
     }
 
     /**
-     * Adding escapes
+     * Adding escapes for code blocks
      * @param {string} input - unescaped
      * @return {string} escaped
      */
     static escapeCodeBlock(input) {
         return input.replace(/`/g, '\\`');
+    }
+
+    /**
+     * Adding escapes for text nodes
+     * @param {string} input - unescaped
+     * @return {string} escaped
+     */
+    static escapeText(input) {
+        return input.replace(/[*`#&]/g, '\\$&') // Replaces special characters
+            .replace(/^(\d+)\./g, '$1\\.') // Replaces ordered lists
+            .replace(/^-/g, '\\-'); // Replaces unordered lists
     }
 
     /**
@@ -155,7 +166,7 @@ class ToMarkdownStringVisitor {
         switch(thing.getType()) {
         case 'CodeBlock':
             parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(nodeText)}\`\`\``;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(thing.text)}\`\`\``;
             break;
         case 'Code':
             parameters.result += `\`${nodeText}\``;
@@ -213,7 +224,7 @@ class ToMarkdownStringVisitor {
             parameters.result += nodeText;
             break;
         case 'Text':
-            parameters.result += nodeText;
+            parameters.result += ToMarkdownStringVisitor.escapeText(nodeText);
             break;
         case 'List': {
             const first = thing.start ? parseInt(thing.start) : 1;
