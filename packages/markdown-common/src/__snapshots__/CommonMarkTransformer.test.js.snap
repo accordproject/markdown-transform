@@ -1576,7 +1576,7 @@ contents
 }
 `;
 
-exports[`markdown converts neestedblockquote.md to concerto JSON 1`] = `
+exports[`markdown converts nestedblockquote.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
