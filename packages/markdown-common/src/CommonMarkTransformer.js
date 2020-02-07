@@ -101,8 +101,7 @@ class CommonMarkTransformer {
         const parameters = {};
         parameters.result = '';
         parameters.first = true;
-        parameters.indent = 0;
-        parameters.blockIndent = 0;
+        parameters.stack = [];
         const visitor = new ToMarkdownStringVisitor(this.options);
         input.accept(visitor, parameters);
         return parameters.result.trim();
@@ -120,8 +119,7 @@ class CommonMarkTransformer {
         const parameters = {};
         parameters.result = '';
         parameters.first = true;
-        parameters.indent = 0;
-        parameters.blockIndent = 0;
+        parameters.stack = [];
         const visitor = new ToMarkdownStringVisitor(this.options);
         const result = ToMarkdownStringVisitor.visitChildren(visitor,input,parameters);
         // console.log('RESULT!' + result.trim());
