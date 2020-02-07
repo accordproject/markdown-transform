@@ -36,27 +36,34 @@ class ToMarkdownStringVisitor {
 
     /**
      * Visits a sub-tree and return the markdown
-     * @param {*} visitor the visitor to use
-     * @param {*} thing the node to visit
-     * @param {*} [parameters] optional parameters
+     * @param {*} visitor - the visitor to use
+     * @param {*} thing - the node to visit
+     * @param {*} parameters - the current parameters
+     * @param {*} paramsFun - function to construct the parameters for children
      * @returns {string} the markdown for the sub tree
      */
-    static visitChildren(visitor, thing, parameters) {
-        if(!parameters) {
-            parameters = {};
-            parameters.indent = 0;
-            parameters.first = false;
-            parameters.blockIndent = 0;
-        }
-        parameters.result = '';
-
+    static visitChildren(visitor, thing, parameters, paramsFun) {
+        const paramsFunActual = paramsFun ? paramsFun : ToMarkdownStringVisitor.mkParameters;
+        const parametersIn = paramsFunActual(parameters);
         if(thing.nodes) {
             thing.nodes.forEach(node => {
-                node.accept(visitor, parameters);
+                node.accept(visitor, parametersIn);
             });
         }
+        return parametersIn.result;
+    }
 
-        return parameters.result;
+    /**
+     * Set parameters for general blocks
+     * @param {*} parametersOut - the current parameters
+     * @return {*} the new parameters with block quote level incremented
+     */
+    static mkParameters(parametersOut) {
+        let parameters = {};
+        parameters.result = '';
+        parameters.first = false;
+        parameters.stack = parametersOut.stack.slice();
+        return parameters;
     }
 
     /**
@@ -68,8 +75,8 @@ class ToMarkdownStringVisitor {
         let parameters = {};
         parameters.result = '';
         parameters.first = false;
-        parameters.indent = parametersOut.indent; // Same indentation
-        parameters.blockIndent = parametersOut.blockIndent+1;
+        parameters.stack = parametersOut.stack.slice();
+        parameters.stack.push('block');
         return parameters;
     }
 
@@ -82,27 +89,29 @@ class ToMarkdownStringVisitor {
         let parameters = {};
         parameters.result = '';
         parameters.first = true;
-        parameters.indent = parametersOut.indent+1; // Increases indentation
-        parameters.blockIndent = parametersOut.blockIndent;
+        parameters.stack = parametersOut.stack.slice();
+        parameters.stack.push('list');
         return parameters;
     }
 
     /**
-     * Create indendation
-     * @param {*} parameters - the current parameters
-     * @return {string} whitespace for indentation
+     * Create prefix
+     * @param {*} parameters - the parameters
+     * @param {*} newlines - number of newlines
+     * @return {string} the prefix
      */
-    static mkIndent(parameters) {
-        return new Array(parameters.indent*3+1).join(' ');
-    }
-
-    /**
-     * Create blockQuote indendation
-     * @param {*} parameters - the current parameters
-     * @return {string} prefix for blockquote indentation
-     */
-    static mkIndentBlock(parameters) {
-        return '> '.repeat(parameters.blockIndent);
+    static mkPrefix(parameters, newlines) {
+        const stack = parameters.stack;
+        const newlinesFix = parameters.first ? 0 : newlines;
+        let prefix = '';
+        for (let i = 0; i < stack.length; i++) {
+            if (stack[i] === 'list') {
+                prefix += '   ';
+            } else if (stack[i] === 'block') {
+                prefix += '> ';
+            }
+        }
+        return ('\n' + prefix).repeat(newlinesFix);
     }
 
     /**
@@ -128,18 +137,6 @@ class ToMarkdownStringVisitor {
     }
 
     /**
-     * Prints a new paragraph if not first
-     * @param {*} parameters - the current parameters
-     * @param {*} level - number of new lines
-     */
-    static newBlock(parameters,level) {
-        const fixLevel = parameters.blockIndent === 0 ? level : 1;
-        const newlines = parameters.first ? '' : Array(fixLevel).fill('\n').join('');
-        parameters.result += newlines;
-        parameters.result += ToMarkdownStringVisitor.mkIndentBlock(parameters);
-    }
-
-    /**
      * Adding escapes
      * @param {string} input - unescaped
      * @return {string} escaped
@@ -157,7 +154,7 @@ class ToMarkdownStringVisitor {
         const nodeText = thing.text ? thing.text : '';
         switch(thing.getType()) {
         case 'CodeBlock':
-            ToMarkdownStringVisitor.newBlock(parameters,2);
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
             parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${ToMarkdownStringVisitor.escapeCodeBlock(nodeText)}\`\`\``;
             break;
         case 'Code':
@@ -167,49 +164,52 @@ class ToMarkdownStringVisitor {
             parameters.result += nodeText;
             break;
         case 'Emph':
-            parameters.result += `*${ToMarkdownStringVisitor.visitChildren(this, thing)}*`;
+            parameters.result += `*${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}*`;
             break;
         case 'Strong':
-            parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing)}**`;
+            parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}**`;
             break;
-        case 'BlockQuote': {
-            const parametersIn = ToMarkdownStringVisitor.mkParametersInBlockQuote(parameters);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
-        }
+        case 'BlockQuote':
+            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters, ToMarkdownStringVisitor.mkParametersInBlockQuote);
             break;
         case 'Heading': {
-            ToMarkdownStringVisitor.newBlock(parameters,2);
             const level = parseInt(thing.level);
             if (level < 3) {
-                parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing)}\n${ToMarkdownStringVisitor.mkSetextHeading(level)}`;
+                parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
+                parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+                parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,1);
+                parameters.result += ToMarkdownStringVisitor.mkSetextHeading(level);
             } else {
-                parameters.result += `${ToMarkdownStringVisitor.mkATXHeading(level)} ${ToMarkdownStringVisitor.visitChildren(this, thing)}`;
+                parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
+                parameters.result += ToMarkdownStringVisitor.mkATXHeading(level);
+                parameters.result += ' ';
+                parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             }
         }
             break;
         case 'ThematicBreak':
-            ToMarkdownStringVisitor.newBlock(parameters,2);
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
             parameters.result += '---';
             break;
         case 'Linebreak':
-            parameters.result += '\\\n';
+            parameters.result += '\\';
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,1);
             break;
         case 'Softbreak':
-            parameters.result += '\n' + ToMarkdownStringVisitor.mkIndentBlock(parameters);
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,1);
             break;
         case 'Link':
-            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
             break;
         case 'Image':
-            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
             break;
         case 'Paragraph':
-            ToMarkdownStringVisitor.newBlock(parameters,2);
-            const parametersIn = Object.assign(parameters);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parametersIn)}`;
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
+            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
             break;
         case 'HtmlBlock':
-            ToMarkdownStringVisitor.newBlock(parameters,2);
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
             parameters.result += nodeText;
             break;
         case 'Text':
@@ -219,15 +219,14 @@ class ToMarkdownStringVisitor {
             const first = thing.start ? parseInt(thing.start) : 1;
             let index = first;
             thing.nodes.forEach(item => {
-                const parametersIn = ToMarkdownStringVisitor.mkParametersInList(parameters);
                 if(thing.tight === 'false' && index !== first) {
                     parameters.result += '\n';
                 }
                 if(thing.type === 'ordered') {
-                    parameters.result += `\n${ToMarkdownStringVisitor.mkIndent(parameters)}${ this.options.noIndex ? 1 : index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parametersIn)}`;
+                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,1)}${ this.options.noIndex ? 1 : index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
                 }
                 else {
-                    parameters.result += `\n${ToMarkdownStringVisitor.mkIndent(parameters)}- ${ToMarkdownStringVisitor.visitChildren(this, item, parametersIn)}`;
+                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,1)}- ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
                 }
                 index++;
             });
@@ -236,7 +235,7 @@ class ToMarkdownStringVisitor {
         case 'Item':
             throw new Error('Item node should not occur outside of List nodes');
         case 'Document':
-            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing);
+            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
