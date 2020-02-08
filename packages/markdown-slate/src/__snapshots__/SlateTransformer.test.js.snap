@@ -1278,6 +1278,48 @@ Object {
 }
 `;
 
+exports[`slate converts empty.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts empty.json to and from CiceroMark 2`] = `""`;
+
+exports[`slate converts empty.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts empty.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts headings.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
