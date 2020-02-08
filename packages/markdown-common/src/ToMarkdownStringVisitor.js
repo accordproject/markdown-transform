@@ -162,9 +162,10 @@ class ToMarkdownStringVisitor {
      * @return {string} escaped
      */
     static escapeText(input) {
-        return input.replace(/[*`#&]/g, '\\$&') // Replaces special characters
-            .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered lists
-            .replace(/^- /g, '\\- '); // Replaces unordered lists
+        return input.replace(/[*`&]/g, '\\$&') // Replaces special characters
+            .replace(/^(#+) /g, '\\$1 ') // Replaces heading markers
+            .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered lists markers
+            .replace(/^- /g, '\\- '); // Replaces unordered lists markers
     }
 
     /**
