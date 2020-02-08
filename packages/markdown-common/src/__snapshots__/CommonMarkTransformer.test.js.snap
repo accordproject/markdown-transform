@@ -1527,6 +1527,97 @@ Object {
 }
 `;
 
+exports[`markdown converts miniblockquote.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Linebreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "linebreak.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a quote.",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.BlockQuote",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "one",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.BlockQuote",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "two",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The end",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts multiline-html-block.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -1568,6 +1659,112 @@ contents
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "block.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts nested-list.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Prolog",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "item two",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Paragraph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "sublist",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Softbreak",
+                        },
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "with some text in the same paragraph",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Epilog",
         },
       ],
     },
@@ -1810,7 +2007,7 @@ Object {
 }
 `;
 
-exports[`markdown converts nested-list.md to concerto JSON 1`] = `
+exports[`markdown converts nestedblockquote2.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1819,95 +2016,233 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "Prolog",
+          "text": "Once upon a time",
         },
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.List",
-      "delimiter": "period",
+      "$class": "org.accordproject.commonmark.BlockQuote",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Item",
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Linebreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "linebreak.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a quote.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Heading Two",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is more text.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Ordered lists:",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.List",
+          "delimiter": "period",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "one",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Softbreak",
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "this has more in it",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.List",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Item",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.BlockQuote",
+                          "nodes": Array [
+                            Object {
+                              "$class": "org.accordproject.commonmark.Paragraph",
+                              "nodes": Array [
+                                Object {
+                                  "$class": "org.accordproject.commonmark.Text",
+                                  "text": "nested list",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.Item",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.BlockQuote",
+                          "nodes": Array [
+                            Object {
+                              "$class": "org.accordproject.commonmark.Paragraph",
+                              "nodes": Array [
+                                Object {
+                                  "$class": "org.accordproject.commonmark.Text",
+                                  "text": "etc.",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                  "tight": "true",
+                  "type": "bullet",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "two",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Item",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "three",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          "start": "1",
+          "tight": "true",
+          "type": "ordered",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This should be a line",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.ThematicBreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This should be more text",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.BlockQuote",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Paragraph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
-                  "text": "item one",
+                  "text": "This should be a nested blockquote",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Softbreak",
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "with more things in it",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "And a second paragraph in the nested blockquote",
                 },
               ],
             },
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark.Item",
+          "$class": "org.accordproject.commonmark.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Paragraph",
-              "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Text",
-                  "text": "item two",
-                },
-              ],
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.List",
-              "nodes": Array [
-                Object {
-                  "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [
-                    Object {
-                      "$class": "org.accordproject.commonmark.Paragraph",
-                      "nodes": Array [
-                        Object {
-                          "$class": "org.accordproject.commonmark.Text",
-                          "text": "sublist",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [
-                    Object {
-                      "$class": "org.accordproject.commonmark.Paragraph",
-                      "nodes": Array [
-                        Object {
-                          "$class": "org.accordproject.commonmark.Text",
-                          "text": "sublist",
-                        },
-                        Object {
-                          "$class": "org.accordproject.commonmark.Softbreak",
-                        },
-                        Object {
-                          "$class": "org.accordproject.commonmark.Text",
-                          "text": "with some text in the same paragraph",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-              "tight": "true",
-              "type": "bullet",
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "The end of the blockquote",
             },
           ],
         },
       ],
-      "start": "1",
-      "tight": "true",
-      "type": "ordered",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Text",
-          "text": "Epilog",
+          "text": "The end",
         },
       ],
     },
@@ -2324,6 +2659,106 @@ Object {
           "text": "Done.",
         },
       ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts ulist3.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
