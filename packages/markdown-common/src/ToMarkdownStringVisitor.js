@@ -48,6 +48,7 @@ class ToMarkdownStringVisitor {
         if(thing.nodes) {
             thing.nodes.forEach(node => {
                 node.accept(visitor, parametersIn);
+                parametersIn.first = false;
             });
         }
         return parametersIn.result;
@@ -61,7 +62,7 @@ class ToMarkdownStringVisitor {
     static mkParameters(parametersOut) {
         let parameters = {};
         parameters.result = '';
-        parameters.first = false;
+        parameters.first = parametersOut.first;
         parameters.stack = parametersOut.stack.slice();
         return parameters;
     }
@@ -74,7 +75,7 @@ class ToMarkdownStringVisitor {
     static mkParametersInBlockQuote(parametersOut) {
         let parameters = {};
         parameters.result = '';
-        parameters.first = false;
+        parameters.first = parametersOut.first;
         parameters.stack = parametersOut.stack.slice();
         parameters.stack.push('block');
         return parameters;
@@ -101,17 +102,27 @@ class ToMarkdownStringVisitor {
      * @return {string} the prefix
      */
     static mkPrefix(parameters, newlines) {
+        if (newlines === 0) {
+            return '';
+        }
         const stack = parameters.stack;
-        const newlinesFix = parameters.first ? 0 : newlines;
         let prefix = '';
-        for (let i = 0; i < stack.length; i++) {
+        for (let i = stack.length-1; i >= 0; i--) {
             if (stack[i] === 'list') {
-                prefix += '   ';
+                if (parameters.first) {
+                    break;
+                } else {
+                    prefix = '   ' + prefix;
+                }
             } else if (stack[i] === 'block') {
-                prefix += '> ';
+                prefix = '> ' + prefix;
             }
         }
-        return ('\n' + prefix).repeat(newlinesFix);
+        if (parameters.first) {
+            return prefix;
+        } else {
+            return ('\n' + prefix).repeat(newlines);
+        }
     }
 
     /**
@@ -152,8 +163,8 @@ class ToMarkdownStringVisitor {
      */
     static escapeText(input) {
         return input.replace(/[*`#&]/g, '\\$&') // Replaces special characters
-            .replace(/^(\d+)\./g, '$1\\.') // Replaces ordered lists
-            .replace(/^-/g, '\\-'); // Replaces unordered lists
+            .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered lists
+            .replace(/^- /g, '\\- '); // Replaces unordered lists
     }
 
     /**
@@ -188,6 +199,7 @@ class ToMarkdownStringVisitor {
             if (level < 3) {
                 parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
                 parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+                parameters.first = false;
                 parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,1);
                 parameters.result += ToMarkdownStringVisitor.mkSetextHeading(level);
             } else {
@@ -216,7 +228,7 @@ class ToMarkdownStringVisitor {
             parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
             break;
         case 'Paragraph':
-            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
+            parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,parameters.first ? 1 : 2);
             parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
             break;
         case 'HtmlBlock':
@@ -230,16 +242,15 @@ class ToMarkdownStringVisitor {
             const first = thing.start ? parseInt(thing.start) : 1;
             let index = first;
             thing.nodes.forEach(item => {
-                if(thing.tight === 'false' && index !== first) {
-                    parameters.result += '\n';
-                }
+                const level = thing.tight && thing.tight === 'false' ? 2 : 1;
                 if(thing.type === 'ordered') {
-                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,1)}${ this.options.noIndex ? 1 : index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
+                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,level)}${ this.options.noIndex ? 1 : index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
                 }
                 else {
-                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,1)}- ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
+                    parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,level)}-  ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
                 }
                 index++;
+                parameters.first = false;
             });
         }
             break;
