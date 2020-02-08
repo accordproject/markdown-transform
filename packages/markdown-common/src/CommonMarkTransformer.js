@@ -208,7 +208,13 @@ class CommonMarkTransformer {
         // console.log(xml);
         parser.write(xml).close();
         // console.log('====== JSON =======');
-        const json = stack.peek();
+        let json = stack.peek();
+        if (!json.nodes || json.nodes.length === 0) {
+            json.nodes = [{
+                '$class': 'org.accordproject.commonmark.Paragraph',
+                'nodes': [ { '$class': 'org.accordproject.commonmark.Text', 'text': '' } ]
+            }];
+        }
         // console.log(JSON.stringify(json, null, 4));
 
         // validate the object using the model

@@ -1047,6 +1047,24 @@ Object {
 }
 `;
 
+exports[`markdown converts empty.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts fixed.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -13046,6 +13064,17 @@ Object {
 exports[`markdown-spec converts Link reference definitions-176 to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
+    },
+  ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -13383,6 +13412,17 @@ Object {
 exports[`markdown-spec converts Link reference definitions-188 to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+      ],
+    },
+  ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
