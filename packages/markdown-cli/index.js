@@ -16,7 +16,7 @@
 'use strict';
 
 const Logger = require('@accordproject/concerto-core').Logger;
-const Commands = require('./lib/Commands');
+const Commands = require('./lib/commands');
 
 require('yargs')
     .scriptName('markus')
