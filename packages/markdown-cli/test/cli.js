@@ -22,7 +22,7 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
-const Commands = require('../lib/Commands');
+const Commands = require('../lib/commands');
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
