@@ -1,0 +1,39 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "This is a",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "horizontal_rule",
+                "data": {},
+                "nodes": []
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "thematic break",
+                        "marks": []
+                    }
+                ]
+            }
+        ]
+    }
+}
