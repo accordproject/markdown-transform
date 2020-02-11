@@ -108,9 +108,6 @@ function _recursive(parent, nodes) {
             case 'linebreak':
                 result = {$class : `${NS}.Linebreak`};
                 break;
-            case 'quote':
-                result = {$class : `${NS}.BlockQuote`};
-                break;
             case 'horizontal_rule':
                 result = {$class : `${NS}.ThematicBreak`};
                 break;
