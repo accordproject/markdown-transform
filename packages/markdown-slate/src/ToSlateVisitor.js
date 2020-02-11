@@ -258,13 +258,7 @@ class ToSlateVisitor {
                     'href': thing.destination,
                     'title': thing.title ? thing.title : ''
                 },
-                'nodes': [
-                    {
-                        'object': 'text',
-                        'text': thing.nodes[0].text,
-                        'marks': []
-                    }
-                ]
+                'nodes': this.processChildNodes(thing,parameters)
             };
             break;
         case 'Image':
