@@ -2680,6 +2680,266 @@ Object {
 }
 `;
 
+exports[`slate converts linkcode.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://google.com",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Code",
+              "text": "code link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "code snippet",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts linkcode.json to and from CiceroMark 2`] = `
+"this is a [\`code link\`](https://google.com)
+
+this is a \`code snippet\`"
+`;
+
+exports[`slate converts linkcode.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "this is a ",
+          },
+          Object {
+            "data": Object {
+              "href": "https://google.com",
+              "title": "",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [
+                  Object {
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "code",
+                  },
+                ],
+                "object": "text",
+                "text": "code link",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "this is a ",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "code",
+              },
+            ],
+            "object": "text",
+            "text": "code snippet",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts linkcode.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://google.com",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Code",
+              "text": "code link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "code snippet",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts linktext.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://google.com",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "code link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts linktext.json to and from CiceroMark 2`] = `
+"this is a [code link](https://google.com)
+"
+`;
+
+exports[`slate converts linktext.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "this is a ",
+          },
+          Object {
+            "data": Object {
+              "href": "https://google.com",
+              "title": "",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "code link",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts linktext.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "this is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "https://google.com",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "code link",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts multiple-clauses.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

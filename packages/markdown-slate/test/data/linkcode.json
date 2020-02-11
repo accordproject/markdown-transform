@@ -1,0 +1,65 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "this is a ",
+                        "marks": []
+                    },
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "href": "https://google.com",
+                            "title": ""
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "code link",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "code",
+                                        "data": {}
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "this is a ",
+                        "marks": []
+                    },
+                    {
+                        "object": "text",
+                        "text": "code snippet",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "code",
+                                "data": {}
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

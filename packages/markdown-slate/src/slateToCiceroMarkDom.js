@@ -183,7 +183,6 @@ function _recursive(parent, nodes) {
  * @returns {*} the ast node
  */
 function handleText(node) {
-
     let strong = null;
     let emph = null;
     let result = null;
@@ -193,7 +192,7 @@ function handleText(node) {
     const isCode = node.marks.some(mark => mark.type === 'code');
 
     if (isCode) {
-        return {$class : `${NS}.Code`, text: node.text};
+        result = {$class : `${NS}.Code`, text: node.text};
     }
 
     const text = {
