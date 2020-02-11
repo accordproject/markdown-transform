@@ -1,0 +1,1 @@
+This is a <variable id="shipper" FOO="%22Party%20A%22"/> property.

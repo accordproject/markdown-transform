@@ -83,14 +83,13 @@ class ToCiceroMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-                }
-                else if (tag.attributes[1].name === 'src' &&
-                         tag.attributes[0].name === 'clauseid') {
+                } else if (tag.attributes[1].name === 'src' &&
+                           tag.attributes[0].name === 'clauseid') {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.clauseid = tag.attributes[0].value;
                     thing.src = tag.attributes[1].value;
+                    thing.clauseid = tag.attributes[0].value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdown(thing.text).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     delete thing.tag;
@@ -103,23 +102,22 @@ class ToCiceroMarkVisitor {
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
 
-                thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-
                 const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
-                if (newNodes.length !== 1 || newNodes[0].getType() !== 'List') {
-                    throw new Error('Content of list code block should be a list');
+                if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
+                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
+                    thing.type = newNodes[0].type;
+                    thing.start = newNodes[0].start;
+                    thing.tight = newNodes[0].tight;
+                    thing.delimiter = newNodes[0].delimiter;
+                    thing.nodes = newNodes[0].nodes;
+                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
+
+                    thing.text = null; // Remove text
+                    delete thing.tag;
+                    delete thing.info;
+                } else {
+                    //console.log('List block does not contain a list');
                 }
-
-                thing.type = newNodes[0].type;
-                thing.start = newNodes[0].start;
-                thing.tight = newNodes[0].tight;
-                thing.delimiter = newNodes[0].delimiter;
-                thing.nodes = newNodes[0].nodes;
-                ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
-
-                thing.text = null; // Remove text
-                delete thing.tag;
-                delete thing.info;
             }
         }
             break;
@@ -139,13 +137,13 @@ class ToCiceroMarkVisitor {
                     thing.value = decodeURIComponent(tag.attributes[1].value);
                     delete thing.tag;
                     delete thing.text;
-                }
-                else if (tag.attributes[1].name === 'id' &&
-                         tag.attributes[0].name === 'value') {
+                } else if (tag.attributes[1].name === 'id' &&
+                           tag.attributes[0].name === 'value') {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
+                    thing.id = tag.attributes[1].value;
                     thing.value = decodeURIComponent(tag.attributes[0].value);
-                    thing.id  = tag.attributes[1].value;
                     delete thing.tag;
+                    delete thing.text;
                 } else {
                     //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
