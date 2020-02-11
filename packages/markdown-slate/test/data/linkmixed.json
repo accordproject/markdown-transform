@@ -1,0 +1,74 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "href": "http://google.com",
+                            "title": ""
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "This is a ",
+                                "marks": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "link",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "italic",
+                                        "data": {}
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " with ",
+                                "marks": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "code",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "code",
+                                        "data": {}
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " and ",
+                                "marks": []
+                            },
+                            {
+                                "object": "text",
+                                "text": "bold",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "bold",
+                                        "data": {}
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
