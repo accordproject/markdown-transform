@@ -42,6 +42,54 @@
             },
             {
                 "object": "block",
+                "type": "heading_four",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "H4",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "heading_five",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "H5",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "heading_six",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "H6",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "####### Text!!",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
                 "type": "paragraph",
                 "data": {},
                 "nodes": [

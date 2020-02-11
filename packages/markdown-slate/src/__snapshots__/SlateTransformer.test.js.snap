@@ -1355,6 +1355,45 @@ Object {
       ],
     },
     Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "4",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H4",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "5",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H5",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H6",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "####### Text!!",
+        },
+      ],
+    },
+    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -1378,7 +1417,20 @@ exports[`slate converts headings.json to and from CiceroMark 2`] = `
 ### H3
 
 
-end."
+#### H4
+
+
+##### H5
+
+
+###### H6
+
+
+\\\\####### Text!!
+
+
+end.
+"
 `;
 
 exports[`slate converts headings.json to and from CiceroMark 3`] = `
@@ -1421,6 +1473,54 @@ Object {
         ],
         "object": "block",
         "type": "heading_three",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H4",
+          },
+        ],
+        "object": "block",
+        "type": "heading_four",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H5",
+          },
+        ],
+        "object": "block",
+        "type": "heading_five",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "H6",
+          },
+        ],
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "####### Text!!",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
       },
       Object {
         "data": Object {},
@@ -1472,6 +1572,45 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "H3",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "4",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H4",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "5",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H5",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "H6",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "####### Text!!",
         },
       ],
     },
@@ -5424,6 +5563,116 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Code",
           "text": "code",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts thematicbreak.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "thematic break",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts thematicbreak.json to and from CiceroMark 2`] = `
+"This is a
+
+----
+
+thematic break"
+`;
+
+exports[`slate converts thematicbreak.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is a",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [],
+        "object": "block",
+        "type": "horizontal_rule",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "thematic break",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts thematicbreak.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.ThematicBreak",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "thematic break",
         },
       ],
     },
