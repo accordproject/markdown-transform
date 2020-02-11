@@ -14,7 +14,7 @@ before_install: |
 install: |
   set -e
   date
-  npm install -g lerna@^3.15.0
+  npm install -g lerna@^3.20.2
   npm install 2>&1
   date
 script: npm run test 2>&1
