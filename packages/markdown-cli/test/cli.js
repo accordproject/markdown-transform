@@ -55,7 +55,6 @@ describe('#validateParseArgs', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
         const args  = Commands.validateParseArgs({
             _: ['parse'],
-            template: './',
             sample: 'sample.md'
         });
         args.sample.should.match(/sample.md$/);
@@ -64,6 +63,72 @@ describe('#validateParseArgs', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
         (() => Commands.validateParseArgs({
             _: ['parse'],
+            sample: 'sample_en.md'
+        })).should.throw('A sample.md file is required. Try the --sample flag or create a sample.md.');
+    });
+});
+
+describe('#validateDraftArgs', () => {
+    it('no args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateDraftArgs({
+            _: ['draft'],
+        });
+        args.data.should.match(/data.json$/);
+    });
+    it('no args specified (verbose)', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateDraftArgs({
+            _: ['draft'],
+            verbose: true
+        });
+        args.data.should.match(/data.json$/);
+    });
+    it('all args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateDraftArgs({
+            _: ['draft'],
+            data: 'data.json'
+        });
+        args.data.should.match(/data.json$/);
+    });
+    it('bad data.json', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        (() => Commands.validateDraftArgs({
+            _: ['draft'],
+            data: 'data_en.md'
+        })).should.throw('A data.json file is required. Try the --data flag or create a data.json.');
+    });
+});
+
+describe('#validateNormalizeArgs', () => {
+    it('no args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateNormalizeArgs({
+            _: ['normalize'],
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('no args specified (verbose)', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateNormalizeArgs({
+            _: ['normalize'],
+            verbose: true
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('all args specified', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        const args  = Commands.validateNormalizeArgs({
+            _: ['normalize'],
+            sample: 'sample.md'
+        });
+        args.sample.should.match(/sample.md$/);
+    });
+    it('bad sample.md', () => {
+        process.chdir(path.resolve(__dirname, 'data/'));
+        (() => Commands.validateNormalizeArgs({
+            _: ['normalize'],
             sample: 'sample_en.md'
         })).should.throw('A sample.md file is required. Try the --sample flag or create a sample.md.');
     });
@@ -156,6 +221,15 @@ describe('markdown-cli', () => {
             const result = await Commands.draft(sampleExpectedSlate, null, options);
             result.should.eql(sampleExpectedText);
         });
+
+        it('should generate a markdown file from Slate (verbose)', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = true;
+            options.verbose = true;
+            const result = await Commands.draft(sampleExpectedSlate, null, options);
+            result.should.eql(sampleExpectedText);
+        });
     });
 
     describe('#normalize', () => {
@@ -179,6 +253,15 @@ describe('markdown-cli', () => {
             const options = {};
             options.cicero = false;
             options.slate = true;
+            const result = await Commands.normalize(sample, null, options);
+            result.should.eql(sampleExpectedText);
+        });
+
+        it('should Slate <> Markdown roundtrip (verbose)', async () => {
+            const options = {};
+            options.cicero = false;
+            options.slate = true;
+            options.verbose = true;
             const result = await Commands.normalize(sample, null, options);
             result.should.eql(sampleExpectedText);
         });
