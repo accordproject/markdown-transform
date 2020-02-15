@@ -1,0 +1,71 @@
+{
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "This is text with ",
+                        "marks": []
+                    },
+                    {
+                        "object": "inline",
+                        "type": "html_inline",
+                        "data": {
+                            "content": "<foo/>"
+                        },
+                        "nodes": []
+                    },
+                    {
+                        "object": "text",
+                        "text": " inside it",
+                        "marks": []
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "html_block",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "<foo/>",
+                                "marks": [
+                                    {
+                                        "object": "mark",
+                                        "type": "html",
+                                        "data": {}
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "This is more text",
+                        "marks": []
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -96,14 +96,14 @@ class ToSlateVisitor {
     }
 
     /**
-     * Converts a formatted inline node to a slate text node with marks
-     * @param {*} type - the type of inline
-     * @param {*} data - the data for the inline
-     * @param {*} text - the text for the inline
+     * Converts a variable node to a slate text node with marks
+     * @param {*} type - the type of variable
+     * @param {*} data - the data for the variable
+     * @param {*} text - the text for the variable
      * @param {*} parameters the parameters
      * @returns {*} the slate text node with marks
      */
-    static handleInline(type, data, text, parameters) {
+    static handleVariable(type, data, text, parameters) {
         return {
             object: 'inline',
             type: type,
@@ -167,13 +167,13 @@ class ToSlateVisitor {
             };
             break;
         case 'Variable':
-            result = ToSlateVisitor.handleInline('variable', { id: thing.id }, thing.value, parameters);
+            result = ToSlateVisitor.handleVariable('variable', { id: thing.id }, thing.value, parameters);
             break;
         case 'ConditionalVariable':
-            result = ToSlateVisitor.handleInline('conditional', { id: thing.id }, thing.value, parameters);
+            result = ToSlateVisitor.handleVariable('conditional', { id: thing.id }, thing.value, parameters);
             break;
         case 'ComputedVariable':
-            result = ToSlateVisitor.handleInline('computed', {}, thing.value, parameters);
+            result = ToSlateVisitor.handleVariable('computed', {}, thing.value, parameters);
             break;
         case 'CodeBlock':
             result = {
