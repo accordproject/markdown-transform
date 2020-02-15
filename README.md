@@ -69,7 +69,7 @@ markus --help
 
 To install for development, in the project directory, you will need to first install [lerna](https://lerna.js.org):
 ```
-npm install -g lerna@^3.15.0
+npm install -g lerna@^3.20.2
 npm install
 ```
 
