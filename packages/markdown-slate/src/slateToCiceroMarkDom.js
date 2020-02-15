@@ -136,10 +136,10 @@ function _recursive(parent, nodes) {
                 result = {$class : `${NS}.CodeBlock`, text: getText(node)};
                 break;
             case 'html_block':
-                result = {$class : `${NS}.HtmlBlock`, text: node.text};
+                result = {$class : `${NS}.HtmlBlock`, text: getText(node)};
                 break;
             case 'html_inline':
-                result = {$class : `${NS}.HtmlInline`};
+                result = {$class : `${NS}.HtmlInline`, text: node.data.content};
                 break;
             case 'ol_list':
             case 'ul_list': {
