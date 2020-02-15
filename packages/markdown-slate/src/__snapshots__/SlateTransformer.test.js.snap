@@ -1634,7 +1634,12 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": undefined,
+      "text": "<foo>
+this
+is an
+html block.
+</foo>
+end.",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1698,7 +1703,12 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": undefined,
+      "text": "<foo>
+this
+is an
+html block.
+</foo>
+end.",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",

@@ -287,7 +287,6 @@ class ToSlateVisitor {
             };
             break;
         case 'HtmlBlock':
-        case 'HtmlInline':
             result = {
                 object: 'block',
                 type: 'html_block',
@@ -308,6 +307,16 @@ class ToSlateVisitor {
                     }],
                     data: {}
                 }]
+            };
+            break;
+        case 'HtmlInline':
+            result = {
+                object: 'inline',
+                type: 'html_inline',
+                data: {
+                    content: thing.text,
+                },
+                nodes: [] // XXX
             };
             break;
         case 'List':
