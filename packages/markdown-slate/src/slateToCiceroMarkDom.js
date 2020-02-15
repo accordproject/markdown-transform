@@ -97,7 +97,7 @@ function _recursive(parent, nodes) {
             case 'variable':
             case 'conditional':
             case 'computed':
-                result = handleInline(node);
+                result = handleVariable(node);
                 break;
             case 'paragraph':
                 result = {$class : `${NS}.Paragraph`, nodes: []};
@@ -230,63 +230,29 @@ function handleText(node) {
 }
 
 /**
- * Handles an inline node
- * @param {*} node the slate inline node
+ * Handles a variable node
+ * @param {*} node the slate variable node
  * @returns {*} the ast node
  */
-function handleInline(node) {
+function handleVariable(node) {
 
-    let strong = null;
-    let emph = null;
     let result = null;
 
     const textNode = node.nodes[0]; // inlines always contain a single text node
     node.nodes = []; // Reset the children for the inline to avoid recursion
 
-    const isBold = textNode.marks.some(mark => mark.type === 'bold');
-    const isItalic = textNode.marks.some(mark => mark.type === 'italic');
-
     const type = node.type;
     const baseName = type === 'variable' ? 'Variable' : type === 'conditional' ? 'ConditionalVariable' : 'ComputedVariable';
     const className = `${NS_CICERO}.${baseName}`;
 
-    const inline = {
+    result = {
         $class : className,
         value : textNode.text
     };
 
     const data = node.data;
     if (data.id) {
-        inline.id = data.id;
-    }
-
-    if (isBold) {
-        strong = {$class : `${NS}.Strong`, nodes: []};
-    }
-
-    if (isItalic) {
-        emph  = {$class : `${NS}.Emph`, nodes: []};
-    }
-
-    if(strong && emph) {
-        result = emph;
-        emph.nodes.push(strong);
-        strong.nodes.push(inline);
-    }
-    else {
-        if(strong) {
-            result = strong;
-            strong.nodes.push(inline);
-        }
-
-        if(emph) {
-            result = emph;
-            emph.nodes.push(inline);
-        }
-    }
-
-    if(!result) {
-        result = inline;
+        result.id = data.id;
     }
 
     return result;

@@ -1628,6 +1628,167 @@ Object {
 }
 `;
 
+exports[`slate converts html.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is text with ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "text": "<foo/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " inside it",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "text": "<foo/>",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is more text",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts html.json to and from CiceroMark 2`] = `
+"This is text with <foo/> inside it
+
+<foo/>
+
+This is more text
+"
+`;
+
+exports[`slate converts html.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is text with ",
+          },
+          Object {
+            "data": Object {
+              "content": "<foo/>",
+            },
+            "nodes": Array [],
+            "object": "inline",
+            "type": "html_inline",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " inside it",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "marks": Array [
+                  Object {
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "html",
+                  },
+                ],
+                "object": "text",
+                "text": "<foo/>",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "html_block",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is more text",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts html.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is text with ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "text": "<foo/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " inside it",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.HtmlBlock",
+      "text": "<foo/>",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is more text",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts html-block.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -1827,6 +1988,126 @@ Object {
             },
           ],
           "title": "title",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts image-notitle.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an image",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Image",
+          "destination": "https://studio.accordproject.org/static/img/logo.png",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
+          "title": "",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts image-notitle.json to and from CiceroMark 2`] = `
+"This is an image
+
+![ap_logo](https://studio.accordproject.org/static/img/logo.png)"
+`;
+
+exports[`slate converts image-notitle.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "This is an image",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {
+              "href": "https://studio.accordproject.org/static/img/logo.png",
+              "title": "",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "",
+              },
+            ],
+            "object": "inline",
+            "type": "image",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts image-notitle.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an image",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Image",
+          "destination": "https://studio.accordproject.org/static/img/logo.png",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
+          "title": "",
         },
       ],
     },
@@ -2750,6 +3031,105 @@ Object {
               "text": "link",
             },
           ],
+          "title": "title",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts link.json to and from CiceroMark 2`] = `"a [link](http://clause.io \\"title\\")"`;
+
+exports[`slate converts link.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "a ",
+          },
+          Object {
+            "data": Object {
+              "href": "http://clause.io",
+              "title": "title",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "link",
+              },
+            ],
+            "object": "inline",
+            "type": "link",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts link.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "link",
+            },
+          ],
+          "title": "title",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts link-notitle.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "link",
+            },
+          ],
           "title": "",
         },
       ],
@@ -2759,9 +3139,9 @@ Object {
 }
 `;
 
-exports[`slate converts link.json to and from CiceroMark 2`] = `"a [link](http://clause.io)"`;
+exports[`slate converts link-notitle.json to and from CiceroMark 2`] = `"a [link](http://clause.io)"`;
 
-exports[`slate converts link.json to and from CiceroMark 3`] = `
+exports[`slate converts link-notitle.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
     "data": Object {},
@@ -2800,7 +3180,7 @@ Object {
 }
 `;
 
-exports[`slate converts link.json to and from CiceroMark 4`] = `
+exports[`slate converts link-notitle.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [

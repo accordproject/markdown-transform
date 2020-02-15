@@ -11,20 +11,27 @@
                 "nodes": [
                     {
                         "object": "text",
-                        "text": "a ",
+                        "text": "This is an image",
                         "marks": []
-                    },
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
                     {
                         "object": "inline",
-                        "type": "link",
+                        "type": "image",
                         "data": {
-                            "href": "http://clause.io",
-                            "title": "title"
+                            "href": "https://studio.accordproject.org/static/img/logo.png",
+                            "title": ""
                         },
                         "nodes": [
                             {
                                 "object": "text",
-                                "text": "link",
+                                "text": "",
                                 "marks": []
                             }
                         ]
