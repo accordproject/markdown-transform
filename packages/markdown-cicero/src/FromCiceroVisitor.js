@@ -150,7 +150,6 @@ class FromCiceroVisitor {
         }
             break;
         case 'Variable':
-        case 'ConditionalVariable':
         case 'ComputedVariable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
@@ -164,8 +163,7 @@ class FromCiceroVisitor {
             ;
             const tagName =
                   thingType === 'ComputedVariable'
-                      ? 'computed'
-                      : thingType === 'ConditionalVariable' ? 'if' : 'variable';
+                      ? 'computed' : 'variable';
             if (this.options && !this.options.wrapVariables) {
                 thing.text = thingType === 'ComputedVariable' ? `{{${thing.value}}}` : thing.value;
             } else {
@@ -199,6 +197,63 @@ class FromCiceroVisitor {
 
             delete thing.id;
             delete thing.value;
+        }
+            break;
+        case 'ConditionalVariable': {
+            // Revert to HtmlInline
+            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
+
+            // Create the text for that document
+            const content = '';
+            const attributeString =
+                  `id="${thing.id}" value="${encodeURIComponent(thing.value)}" whenTrue="${encodeURIComponent(thing.whenTrue)}" whenFalse="${encodeURIComponent(thing.whenFalse)}"`
+            ;
+            const tagName = 'if';
+            if (this.options && !this.options.wrapVariables) {
+                thing.text = thing.value;
+            } else {
+                thing.text = `<${tagName} ${attributeString}/>`;
+            }
+
+            // Create the proper tag
+            let tag = {};
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
+            tag.tagName = tagName;
+            tag.attributeString = attributeString;
+            tag.content = content;
+            tag.closed = true;
+            tag.attributes = [];
+
+            let attribute1 = {};
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute1.name = 'id';
+            attribute1.value = thing.id;
+            tag.attributes.push(attribute1);
+
+            let attribute2 = {};
+            attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute2.name = 'value';
+            attribute2.value = thing.value;
+            tag.attributes.push(attribute2);
+
+            let attribute3 = {};
+            attribute3.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute3.name = 'whenTrue';
+            attribute3.value = thing.whenTrue;
+            tag.attributes.push(attribute3);
+
+            let attribute4 = {};
+            attribute4.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute4.name = 'whenFalse';
+            attribute4.value = thing.whenFalse;
+            tag.attributes.push(attribute4);
+
+            thing.tag = parameters.serializer.fromJSON(tag);
+
+            delete thing.id;
+            delete thing.value;
+            delete thing.whenTrue;
+            delete thing.whenFalse;
         }
             break;
         default:

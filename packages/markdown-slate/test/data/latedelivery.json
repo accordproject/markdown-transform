@@ -78,7 +78,9 @@
                                 "object": "inline",
                                 "type": "conditional",
                                 "data": {
-                                    "id": "forceMajeure"
+                                    "id": "forceMajeure",
+                                    "whenTrue": " except for Force Majeure cases,",
+                                    "whenFalse": ""
                                 },
                                 "nodes": [
                                     {

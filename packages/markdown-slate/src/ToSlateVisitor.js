@@ -170,7 +170,7 @@ class ToSlateVisitor {
             result = ToSlateVisitor.handleVariable('variable', { id: thing.id }, thing.value, parameters);
             break;
         case 'ConditionalVariable':
-            result = ToSlateVisitor.handleVariable('conditional', { id: thing.id }, thing.value, parameters);
+            result = ToSlateVisitor.handleVariable('conditional', { id: thing.id, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
             break;
         case 'ComputedVariable':
             result = ToSlateVisitor.handleVariable('computed', {}, thing.value, parameters);

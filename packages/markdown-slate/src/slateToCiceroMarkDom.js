@@ -251,8 +251,14 @@ function handleVariable(node) {
     };
 
     const data = node.data;
-    if (data.id) {
+    if (Object.prototype.hasOwnProperty.call(data,'id')) {
         result.id = data.id;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'whenTrue')) {
+        result.whenTrue = data.whenTrue;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'whenFalse')) {
+        result.whenFalse = data.whenFalse;
     }
 
     return result;
