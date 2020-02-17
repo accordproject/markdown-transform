@@ -7,7 +7,7 @@
           "js": "packages/markdown-common/src/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
-          "from": "https://models.accordproject.org/markdown/ciceromark.cto",
+          "from": "https://models.accordproject.org/markdown/ciceromark@0.2.0.cto",
           "js": "packages/markdown-cicero/src/externalModels" }
     ]
 }

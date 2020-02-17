@@ -71,26 +71,15 @@ class ToCiceroMarkVisitor {
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
 
                 //console.log('CONTENT! : ' + tag.content);
-                if (tag.attributes[0].name === 'src' &&
-                    tag.attributes[1].name === 'clauseid') {
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.src = tag.attributes[0].value;
-                    thing.clauseid = tag.attributes[1].value;
+                    thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
+                    thing.clauseid = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid').value;
 
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
-                    thing.text = null; // Remove text
-                    delete thing.tag;
-                    delete thing.info;
-                } else if (tag.attributes[1].name === 'src' &&
-                           tag.attributes[0].name === 'clauseid') {
-                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.src = tag.attributes[1].value;
-                    thing.clauseid = tag.attributes[0].value;
-
-                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
-                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
@@ -104,12 +93,13 @@ class ToCiceroMarkVisitor {
 
                 const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                 if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
+                    const listNode = newNodes[0];
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.type = newNodes[0].type;
-                    thing.start = newNodes[0].start;
-                    thing.tight = newNodes[0].tight;
-                    thing.delimiter = newNodes[0].delimiter;
-                    thing.nodes = newNodes[0].nodes;
+                    thing.type = listNode.type;
+                    thing.start = listNode.start;
+                    thing.tight = listNode.tight;
+                    thing.delimiter = listNode.delimiter;
+                    thing.nodes = listNode.nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
@@ -124,24 +114,35 @@ class ToCiceroMarkVisitor {
         //case 'HtmlBlock':
         case 'HtmlInline': {
             if (thing.tag &&
-                (thing.tag.tagName === 'variable' || thing.tag.tagName === 'if') &&
+                thing.tag.tagName === 'variable' &&
                 thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
-                const ciceroMarkTag = thing.tag.tagName === 'if'
-                    ? NS_PREFIX_CiceroMarkModel + 'ConditionalVariable'
-                    : NS_PREFIX_CiceroMarkModel + 'Variable';
-                if (tag.attributes[0].name === 'id' &&
-                    tag.attributes[1].name === 'value') {
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
+                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.id = tag.attributes[0].value;
-                    thing.value = decodeURIComponent(tag.attributes[1].value);
+                    thing.id = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id').value;
+                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     delete thing.tag;
                     delete thing.text;
-                } else if (tag.attributes[1].name === 'id' &&
-                           tag.attributes[0].name === 'value') {
+                } else {
+                    //console.log('Found Variable but without \'id\' and \'value\' attributes ');
+                }
+            }
+            if (thing.tag &&
+                thing.tag.tagName === 'if' &&
+                thing.tag.attributes.length === 4) {
+                const tag = thing.tag;
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
+                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ConditionalVariable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.id = tag.attributes[1].value;
-                    thing.value = decodeURIComponent(tag.attributes[0].value);
+                    thing.id = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id').value;
+                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
+                    thing.whenTrue = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
+                    thing.whenFalse = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
                     delete thing.tag;
                     delete thing.text;
                 } else {
@@ -151,9 +152,9 @@ class ToCiceroMarkVisitor {
             if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
                 const tag = thing.tag;
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ComputedVariable';
-                if (tag.attributes[0].name === 'value') {
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.value = decodeURIComponent(tag.attributes[0].value);
+                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     delete thing.tag;
                     delete thing.text;
                 }
@@ -167,6 +168,17 @@ class ToCiceroMarkVisitor {
             ToCiceroMarkVisitor.visitChildren(this, thing, parameters);
         }
     }
+
+    /**
+     * Find an attribute from its name
+     * @param {*} attributes - the array of attributes
+     * @param {string} name - the name of the attributes
+     * @return {*} the attribute or undefined
+     */
+    static getAttribute(attributes, name) {
+        return attributes.filter(x => x.name === name)[0];
+    }
+
 }
 
 module.exports = ToCiceroMarkVisitor;
