@@ -79,10 +79,6 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.9.10"
   },
-  "peerDependencies": {
-    "slate": "0.47.x",
-    "immutable": ">=3.8.1 || >4.0.0-rc"
-  },
   "license-check-config": {
     "src": [
       "**/*.js",
