@@ -1,16 +1,11 @@
 # Slate Transformer
 
-Use `SlateTransformer` to transform a CiceroMark DOM to/from a Slate DOM.
+Use `SlateTransformer` to transform a CiceroMark DOM to/from a JSON representation for the Slate DOM (version 0.4x.x).
 
 ## Installation
 
 ```
 npm install @accordproject/markdown-slate --save
-```
-
-You'll also need to be sure to install this package's peer dependencies:
-```
-npm install slate immutable
 ```
 
 ## Usage

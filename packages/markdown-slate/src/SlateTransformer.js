@@ -32,8 +32,8 @@ class SlateTransformer {
 
     /**
      * Converts a CiceroMark DOM to a Slate DOM
-     * @param {*} input CiceroMark DOM
-     * @returns {*} Slate DOM
+     * @param {*} input - CiceroMark DOM
+     * @returns {*} Slate JSON
      */
     fromCiceroMark(input) {
 
@@ -91,9 +91,9 @@ class SlateTransformer {
     }
 
     /**
-     * Converts a Slate value document node to CiceroMark DOM
-     * @param {*} value - Slate value
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
+     * Converts a Slate JSON to CiceroMark DOM
+     * @param {*} value - Slate json
+     * @param {string} [format] - result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
      * @returns {*} the CiceroMark DOM
      */
@@ -110,9 +110,9 @@ class SlateTransformer {
     }
 
     /**
-     * Converts a Slate DOM to a markdown string
-     * @param {*} value Slate value
-     * @param {object} [options] configuration options
+     * Converts a Slate JSON to a markdown string
+     * @param {*} value - Slate json
+     * @param {object} [options] - configuration options
      * @returns {*} markdown string
      */
     toMarkdown(value, options) {
@@ -121,9 +121,9 @@ class SlateTransformer {
     }
 
     /**
-     * Converts a markdown string to a Slate DOM
-     * @param {string} markdown a markdown string
-     * @returns {*} Slate value
+     * Converts a markdown string to a Slate JSON
+     * @param {string} markdown - a markdown string
+     * @returns {*} Slate json
      */
     fromMarkdown(markdown) {
         const ciceroMarkDom = this.ciceroMarkTransformer.fromMarkdown(markdown, 'json');

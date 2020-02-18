@@ -226,51 +226,51 @@ class ToSlateVisitor {
             break;
         case 'Heading':
             result = {
-                'object': 'block',
-                'data': {},
-                'type': ToSlateVisitor.getHeadingType(thing),
-                'nodes': this.processChildNodes(thing,parameters)
+                object: 'block',
+                data: {},
+                type: ToSlateVisitor.getHeadingType(thing),
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'ThematicBreak':
             result = {
-                'object': 'block',
-                'type': 'horizontal_rule',
-                'nodes': []
+                object: 'block',
+                type: 'horizontal_rule',
+                nodes: []
             };
             break;
         case 'Linebreak':
             result = {
-                'object': 'inline',
-                'type': 'linebreak'
+                object: 'inline',
+                type: 'linebreak'
             };
             break;
         case 'Softbreak':
             result = {
-                'object': 'inline',
-                'type': 'softbreak'
+                object: 'inline',
+                type: 'softbreak'
             };
             break;
         case 'Link':
             result = {
-                'object': 'inline',
-                'type': 'link',
-                'data': {
-                    'href': thing.destination,
-                    'title': thing.title ? thing.title : ''
+                object: 'inline',
+                type: 'link',
+                data: {
+                    href: thing.destination,
+                    title: thing.title ? thing.title : ''
                 },
-                'nodes': this.processChildNodes(thing,parameters)
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Image':
             result = {
-                'object': 'inline',
-                'type': 'image',
-                'data': {
+                object: 'inline',
+                type: 'image',
+                data: {
                     'href': thing.destination,
                     'title': thing.title ? thing.title : ''
                 },
-                'nodes': [
+                nodes: [
                     {
                         'object': 'text',
                         'text': thing.text ? thing.text : '',
@@ -281,10 +281,10 @@ class ToSlateVisitor {
             break;
         case 'Paragraph':
             result = {
-                'object': 'block',
-                'type': 'paragraph',
-                'nodes': this.processChildNodes(thing,parameters),
-                'data': {}
+                object: 'block',
+                type: 'paragraph',
+                nodes: this.processChildNodes(thing,parameters),
+                data: {}
             };
             break;
         case 'HtmlBlock':
@@ -322,34 +322,34 @@ class ToSlateVisitor {
             break;
         case 'List':
             result = {
-                'object': 'block',
-                'data': { tight: thing.tight, start: thing.start, delimiter: thing.delimiter},
-                'type': thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                'nodes': this.processChildNodes(thing,parameters)
+                object: 'block',
+                data: { tight: thing.tight, start: thing.start, delimiter: thing.delimiter},
+                type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'ListVariable':
             /* XXX Will have to be changed to support editing of dynamic lists in the UI */
             result = {
-                'object': 'block',
-                'data': { tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
-                'type': thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                'nodes': this.processChildNodes(thing,parameters)
+                object: 'block',
+                data: { tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
+                type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Item':
             result = {
-                'object': 'block',
-                'type': 'list_item',
-                'data': {},
-                'nodes': this.processChildNodes(thing,parameters)
+                object: 'block',
+                type: 'list_item',
+                data: {},
+                nodes: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Document':
             result = {
-                'object': 'document',
-                'nodes': this.processChildNodes(thing,parameters),
-                'data' : {}
+                object: 'document',
+                nodes: this.processChildNodes(thing,parameters),
+                data : {}
             };
             break;
         default:
