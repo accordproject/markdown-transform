@@ -14,7 +14,6 @@
 
 'use strict';
 
-const Value = require('slate').Value;
 const ToSlateVisitor = require('./ToSlateVisitor');
 const slateToCiceroMarkDom = require('./slateToCiceroMarkDom');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
@@ -88,7 +87,7 @@ class SlateTransformer {
         if (lastNodeType === CLAUSE) {
             result.document.nodes.push(paragraphSpaceNodeJSON);
         }
-        return Value.fromJSON(result);
+        return result;
     }
 
     /**
