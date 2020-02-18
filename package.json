@@ -22,7 +22,7 @@
   },
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.9.10",
+  "version": "0.10.0",
   "private": true,
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
