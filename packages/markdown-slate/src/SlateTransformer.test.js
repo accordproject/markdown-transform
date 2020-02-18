@@ -17,7 +17,6 @@
 const fs = require('fs');
 const path = require('path');
 const SlateTransformer = require('./SlateTransformer');
-const Value = require('slate').Value;
 
 let slateTransformer = null;
 
@@ -51,8 +50,7 @@ function getSlateFiles() {
 describe('slate', () => {
     getSlateFiles().forEach( ([file, jsonText], index) => {
         it(`converts ${file} to and from CiceroMark`, () => {
-            const slateDom = JSON.parse(jsonText);
-            const value = Value.fromJSON(slateDom);
+            const value = JSON.parse(jsonText);
             const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
 
             // check no changes to cicero mark
@@ -66,9 +64,9 @@ describe('slate', () => {
 
             // convert the expected markdown to cicero mark and compare
             const expectedSlateValue = slateTransformer.fromMarkdown(expectedMarkdown);
-            expect(expectedSlateValue.toJSON()).toMatchSnapshot(); // (3)
+            expect(expectedSlateValue).toMatchSnapshot(); // (3)
             // if(mdFile === 'image') {
-            //     console.log(JSON.stringify(expectedSlateValue.toJSON(), null, 4));
+            //     console.log(JSON.stringify(expectedSlateValue, null, 4));
             // }
 
             const expectedCiceroMark = slateTransformer.toCiceroMark(expectedSlateValue, 'json');
@@ -81,7 +79,7 @@ describe('slate', () => {
             expect(ciceroMark).toEqual(expectedCiceroMark);
 
             // check roundtrip
-            expect(expectedSlateValue.toJSON()).toEqual(value.toJSON());
+            expect(expectedSlateValue).toEqual(value);
         });
 
         it('converts variable to and from CiceroMark', () => {
@@ -120,12 +118,12 @@ describe('slate', () => {
                 }
             };
 
-            expect(slateValue.toJSON()).toEqual(expectedSlateValue);
+            expect(slateValue).toEqual(expectedSlateValue);
         });
 
         it('converts computed to and from CiceroMark', () => {
             const slateValue = slateTransformer.fromMarkdown('test <computed value="bar"/>');
-            //console.log(JSON.stringify(slateValue.toJSON(), null, 4));
+            //console.log(JSON.stringify(slateValue, null, 4));
             const expectedSlateValue = {
                 'object': 'value',
                 'document': {
@@ -158,7 +156,7 @@ describe('slate', () => {
                 }
             };
 
-            expect(slateValue.toJSON()).toEqual(expectedSlateValue);
+            expect(slateValue).toEqual(expectedSlateValue);
         });
     });
 });

@@ -6,6 +6,7 @@
         "nodes": [
             {
                 "object": "block",
+                "data": {},
                 "type": "block_quote",
                 "nodes": [
                     {

@@ -15,7 +15,7 @@
 'use strict';
 
 /**
- * Converts a CiceroMark DOM to a Slate DOM.
+ * Converts a CiceroMark DOM to a Slate JSON.
  */
 class ToSlateVisitor {
 
@@ -220,7 +220,8 @@ class ToSlateVisitor {
             result = {
                 object: 'block',
                 type: 'block_quote',
-                nodes: this.processChildNodes(thing,parameters)
+                nodes: this.processChildNodes(thing,parameters),
+                data: {}
             };
             break;
         case 'Heading':
@@ -272,7 +273,7 @@ class ToSlateVisitor {
                 'nodes': [
                     {
                         'object': 'text',
-                        'text': thing.text,
+                        'text': thing.text ? thing.text : '',
                         'marks': []
                     }
                 ]
@@ -353,6 +354,16 @@ class ToSlateVisitor {
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
+        }
+
+        // Cleanup block node for Slate
+        if (result.object === 'block' || result.object === 'inline') {
+            if (!result.data) {
+                result.data = {};
+            }
+            if (!result.nodes) {
+                result.nodes = [];
+            }
         }
 
         parameters.result = result;

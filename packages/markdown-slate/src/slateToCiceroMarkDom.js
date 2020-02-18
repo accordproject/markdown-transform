@@ -69,7 +69,7 @@ function slateToCiceroMarkDom(document) {
         nodes : []
     };
     // convert the value to a plain object
-    const json = JSON.parse(JSON.stringify(document));
+    const json = document;
     _recursive(result, json.nodes);
     return removeEmptyParagraphs(result);
 }

@@ -59,9 +59,7 @@
     "@accordproject/markdown-html": "0.9.10",
     "@accordproject/markdown-pdf": "0.9.10",
     "@accordproject/markdown-docx": "0.9.10",
-    "immutable": "^4.0.0-rc.12",
     "jsome": "2.5.0",
-    "slate": "^0.47.8",
     "winston": "3.2.1",
     "yargs": "13.2.4"
   },
