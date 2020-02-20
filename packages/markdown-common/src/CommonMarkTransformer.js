@@ -21,6 +21,7 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-c
 
 const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
+const ToStringVisitor = require('./ToStringVisitor');
 
 const { DOMParser } = require('xmldom');
 const { NS_PREFIX_CommonMarkModel, CommonMarkModel } = require('./externalModels/CommonMarkModel.js');
@@ -103,6 +104,24 @@ class CommonMarkTransformer {
         parameters.first = true;
         parameters.stack = [];
         const visitor = new ToMarkdownStringVisitor(this.options);
+        input.accept(visitor, parameters);
+        return parameters.result.trim();
+    }
+
+    /**
+     * Converts a CommonMark DOM to a plain text string
+     * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
+     * @returns {string} the plain text string
+     */
+    toPlainText(input) {
+        if(!input.getType) {
+            input = this.serializer.fromJSON(input);
+        }
+        const parameters = {};
+        parameters.result = '';
+        parameters.first = true;
+        parameters.stack = [];
+        const visitor = new ToStringVisitor(this.options);
         input.accept(visitor, parameters);
         return parameters.result.trim();
     }

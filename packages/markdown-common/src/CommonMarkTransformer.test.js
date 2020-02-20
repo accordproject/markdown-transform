@@ -133,6 +133,17 @@ describe('markdown', () => {
     });
 });
 
+describe('plain text', () => {
+    getMarkdownFiles().forEach( ([file, markdownText]) => {
+        it(`converts ${file} to plain text`, () => {
+            const json = commonMark.fromMarkdown(markdownText, 'json');
+            const text = commonMark.toPlainText(json);
+            console.log(text);
+            expect(text).toMatchSnapshot();
+        });
+    });
+});
+
 describe('readme', () => {
     it('converts example1 to CommonMark DOM', () => {
         const json = commonMark.fromMarkdown('# Heading\n\nThis is some `code`.\n\nFin.', 'json');
