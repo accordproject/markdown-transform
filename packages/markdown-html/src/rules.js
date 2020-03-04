@@ -315,6 +315,25 @@ const VARIABLE_RULE = {
 };
 
 /**
+ * A rule to deserialize conditional variable nodes.
+ * @type {Object}
+ */
+const CONDITIONAL_VARIABLE_RULE = {
+    deserialize(el, next) {
+        const { tagName } = el;
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'conditional') {
+            return {
+                '$class': `${NS_PREFIX_CiceroMarkModel}ConditionalVariable`,
+                id: el.getAttribute('id'),
+                whenTrue: el.getAttribute('whenTrue'),
+                whenFalse: el.getAttribute('whenFalse'),
+                value: el.textContent,
+            };
+        }
+    }
+};
+
+/**
  * A rule to deserialize computed variable nodes.
  * @type {Object}
  */
@@ -400,6 +419,7 @@ const rules = [
     BLOCK_QUOTE_RULE,
     CLAUSE_RULE,
     VARIABLE_RULE,
+    CONDITIONAL_VARIABLE_RULE,
     SOFTBREAK_RULE,
     COMPUTED_VARIABLE_RULE,
     TEXT_RULE,
