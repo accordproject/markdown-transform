@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-docx",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Transform DOXC to CiceroMark DOM",
   "engines": {
     "node": ">=8",
@@ -79,8 +79,8 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.10.0",
-    "@accordproject/markdown-common": "0.10.0",
+    "@accordproject/markdown-cicero": "0.10.1",
+    "@accordproject/markdown-common": "0.10.1",
     "mammoth": "^1.4.9"
   },
   "license-check-config": {
