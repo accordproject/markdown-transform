@@ -3,7 +3,7 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "ol_list",
@@ -12,17 +12,17 @@
                     "start": "1",
                     "delimiter": "period"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "one",
@@ -36,12 +36,12 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "two",
@@ -55,12 +55,12 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "three",

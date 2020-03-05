@@ -69,8 +69,7 @@ function slateToCiceroMarkDom(document) {
         nodes : []
     };
     // convert the value to a plain object
-    const json = document;
-    _recursive(result, json.nodes);
+    _recursive(result, document.children);
     return removeEmptyParagraphs(result);
 }
 
@@ -163,8 +162,8 @@ function _recursive(parent, nodes) {
         }
 
         // process any children, attaching to first child if it exists (for list items)
-        if(node.nodes && result.nodes) {
-            _recursive(result.nodes[0] ? result.nodes[0] : result, node.nodes);
+        if(node.children && result.nodes) {
+            _recursive(result.nodes[0] ? result.nodes[0] : result, node.children);
         }
 
         if(!parent.nodes) {
@@ -238,8 +237,8 @@ function handleVariable(node) {
 
     let result = null;
 
-    const textNode = node.nodes[0]; // inlines always contain a single text node
-    node.nodes = []; // Reset the children for the inline to avoid recursion
+    const textNode = node.children[0]; // inlines always contain a single text node
+    node.children = []; // Reset the children for the inline to avoid recursion
 
     const type = node.type;
     const baseName = type === 'variable' ? 'Variable' : type === 'conditional' ? 'ConditionalVariable' : 'ComputedVariable';

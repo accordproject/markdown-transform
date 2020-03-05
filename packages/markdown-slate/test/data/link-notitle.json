@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "a ",
@@ -21,7 +21,7 @@
                             "href": "http://clause.io",
                             "title": ""
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "link",

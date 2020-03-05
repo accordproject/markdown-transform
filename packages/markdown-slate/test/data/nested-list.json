@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "Prolog",
@@ -24,17 +24,17 @@
                     "start": "1",
                     "delimiter": "period"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "item one",
@@ -48,12 +48,12 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "item two",
@@ -67,17 +67,17 @@
                                 "data": {
                                     "tight": "true"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "block",
                                         "type": "list_item",
                                         "data": {},
-                                        "nodes": [
+                                        "children": [
                                             {
                                                 "object": "block",
                                                 "type": "paragraph",
                                                 "data": {},
-                                                "nodes": [
+                                                "children": [
                                                     {
                                                         "object": "text",
                                                         "text": "sublist",
@@ -91,12 +91,12 @@
                                         "object": "block",
                                         "type": "list_item",
                                         "data": {},
-                                        "nodes": [
+                                        "children": [
                                             {
                                                 "object": "block",
                                                 "type": "paragraph",
                                                 "data": {},
-                                                "nodes": [
+                                                "children": [
                                                     {
                                                         "object": "text",
                                                         "text": "sublist",
@@ -106,7 +106,7 @@
                                                         "object": "inline",
                                                         "type": "softbreak",
                                                         "data": {},
-                                                        "nodes": []
+                                                        "children": []
                                                     },
                                                     {
                                                         "object": "text",
@@ -121,7 +121,7 @@
                                         "object": "block",
                                         "type": "list_item",
                                         "data": {},
-                                        "nodes": []
+                                        "children": []
                                     }
                                 ]
                             }
@@ -133,7 +133,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "Epilog",
