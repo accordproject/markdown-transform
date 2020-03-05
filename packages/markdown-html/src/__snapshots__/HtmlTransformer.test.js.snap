@@ -970,9 +970,6 @@ Object {
               "whenTrue": " except for Force Majeure cases,",
             },
             Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "seller",
               "value": "\\"Dan\\"",
@@ -1093,8 +1090,7 @@ exports[`html converts latedelivery.md to html 2`] = `
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" clauseid=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span>
-<span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
+<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
 of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
 whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" id=\\"fractionalPart\\">days</span> is to be
 considered a full <span class=\\"variable\\" id=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
@@ -1169,9 +1165,6 @@ Object {
               "value": "",
               "whenFalse": "",
               "whenTrue": " except for Force Majeure cases,",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -1294,8 +1287,7 @@ exports[`html converts latedelivery-noforce.md to html 2`] = `
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" clauseid=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"></span>
-<span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
+<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"></span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
 of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
 whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" id=\\"fractionalPart\\">days</span> is to be
 considered a full <span class=\\"variable\\" id=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
