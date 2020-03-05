@@ -3,17 +3,17 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "data": {},
                 "type": "block_quote",
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "this is a quote",

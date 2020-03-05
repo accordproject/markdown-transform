@@ -3,17 +3,17 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "html_block",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "<foo>\nthis\nis an\nhtml block.\n</foo>\nend.",

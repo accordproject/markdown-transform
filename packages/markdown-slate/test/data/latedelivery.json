@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "heading_one",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "HELLO! This is the contract editor.",
@@ -20,7 +20,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "And below is a ",
@@ -51,12 +51,12 @@
                     "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
                     "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "heading_two",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Late Delivery and Penalty.",
@@ -68,7 +68,7 @@
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "In case of delayed delivery",
@@ -82,7 +82,7 @@
                                     "whenTrue": " except for Force Majeure cases,",
                                     "whenFalse": ""
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": " except for Force Majeure cases,",
@@ -94,7 +94,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "inline",
@@ -102,7 +102,7 @@
                                 "data": {
                                     "id": "seller"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "\"Dan\"",
@@ -121,7 +121,7 @@
                                 "data": {
                                     "id": "buyer"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "\"Steve\"",
@@ -140,7 +140,7 @@
                                 "data": {
                                     "id": "penaltyDuration"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "2 days",
@@ -152,7 +152,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "text",
@@ -165,7 +165,7 @@
                                 "data": {
                                     "id": "penaltyPercentage"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "10.5",
@@ -182,7 +182,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "text",
@@ -195,7 +195,7 @@
                                 "data": {
                                     "id": "fractionalPart"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "days",
@@ -212,7 +212,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "text",
@@ -225,7 +225,7 @@
                                 "data": {
                                     "id": "fractionalPart"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "days",
@@ -242,7 +242,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "text",
@@ -255,7 +255,7 @@
                                 "data": {
                                     "id": "capPercentage"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "55.0",
@@ -272,7 +272,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "nodes": []
+                                "children": []
                             },
                             {
                                 "object": "text",
@@ -285,7 +285,7 @@
                                 "data": {
                                     "id": "termination"
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "15 days",
@@ -306,7 +306,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [{
+                "children": [{
                     "object": "text",
                     "text": "",
                     "marks": []

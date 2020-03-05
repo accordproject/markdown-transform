@@ -108,7 +108,7 @@ class ToSlateVisitor {
             object: 'inline',
             type: type,
             data: data,
-            nodes: [{
+            children: [{
                 object: 'text',
                 text: text,
                 marks: ToSlateVisitor.getMarks(parameters),
@@ -163,7 +163,7 @@ class ToSlateVisitor {
                     clauseid: thing.clauseid,
                     src: thing.src
                 },
-                nodes: this.processChildNodes(thing,parameters),
+                children: this.processChildNodes(thing,parameters),
             };
             break;
         case 'Variable': {
@@ -182,10 +182,10 @@ class ToSlateVisitor {
                 object: 'block',
                 type: 'code_block',
                 data: {},
-                nodes: [{
+                children: [{
                     object: 'block',
                     type: 'paragraph',
-                    nodes: [{
+                    children: [{
                         object: 'text',
                         text: thing.text,
                         marks: []
@@ -222,7 +222,7 @@ class ToSlateVisitor {
             result = {
                 object: 'block',
                 type: 'block_quote',
-                nodes: this.processChildNodes(thing,parameters),
+                children: this.processChildNodes(thing,parameters),
                 data: {}
             };
             break;
@@ -231,14 +231,14 @@ class ToSlateVisitor {
                 object: 'block',
                 data: {},
                 type: ToSlateVisitor.getHeadingType(thing),
-                nodes: this.processChildNodes(thing,parameters)
+                children: this.processChildNodes(thing,parameters)
             };
             break;
         case 'ThematicBreak':
             result = {
                 object: 'block',
                 type: 'horizontal_rule',
-                nodes: []
+                children: []
             };
             break;
         case 'Linebreak':
@@ -261,7 +261,7 @@ class ToSlateVisitor {
                     href: thing.destination,
                     title: thing.title ? thing.title : ''
                 },
-                nodes: this.processChildNodes(thing,parameters)
+                children: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Image':
@@ -272,7 +272,7 @@ class ToSlateVisitor {
                     'href': thing.destination,
                     'title': thing.title ? thing.title : ''
                 },
-                nodes: [
+                children: [
                     {
                         'object': 'text',
                         'text': thing.text ? thing.text : '',
@@ -285,7 +285,7 @@ class ToSlateVisitor {
             result = {
                 object: 'block',
                 type: 'paragraph',
-                nodes: this.processChildNodes(thing,parameters),
+                children: this.processChildNodes(thing,parameters),
                 data: {}
             };
             break;
@@ -294,10 +294,10 @@ class ToSlateVisitor {
                 object: 'block',
                 type: 'html_block',
                 data: {},
-                nodes: [{
+                children: [{
                     object: 'block',
                     type: 'paragraph',
-                    nodes: [{
+                    children: [{
                         object: 'text',
                         text: thing.text,
                         marks: [
@@ -319,7 +319,7 @@ class ToSlateVisitor {
                 data: {
                     content: thing.text,
                 },
-                nodes: [] // XXX
+                children: [] // XXX
             };
             break;
         case 'List':
@@ -327,7 +327,7 @@ class ToSlateVisitor {
                 object: 'block',
                 data: { tight: thing.tight, start: thing.start, delimiter: thing.delimiter},
                 type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                nodes: this.processChildNodes(thing,parameters)
+                children: this.processChildNodes(thing,parameters)
             };
             break;
         case 'ListVariable':
@@ -336,7 +336,7 @@ class ToSlateVisitor {
                 object: 'block',
                 data: { tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
                 type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                nodes: this.processChildNodes(thing,parameters)
+                children: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Item':
@@ -344,13 +344,13 @@ class ToSlateVisitor {
                 object: 'block',
                 type: 'list_item',
                 data: {},
-                nodes: this.processChildNodes(thing,parameters)
+                children: this.processChildNodes(thing,parameters)
             };
             break;
         case 'Document':
             result = {
                 object: 'document',
-                nodes: this.processChildNodes(thing,parameters),
+                children: this.processChildNodes(thing,parameters),
                 data : {}
             };
             break;
@@ -363,8 +363,8 @@ class ToSlateVisitor {
             if (!result.data) {
                 result.data = {};
             }
-            if (!result.nodes) {
-                result.nodes = [];
+            if (!result.children) {
+                result.children = [];
             }
         }
 

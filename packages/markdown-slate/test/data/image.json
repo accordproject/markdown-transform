@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "This is an image",
@@ -20,7 +20,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "inline",
                         "type": "image",
@@ -28,7 +28,7 @@
                             "href": "https://studio.accordproject.org/static/img/logo.png",
                             "title": "title"
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "",

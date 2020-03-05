@@ -205,57 +205,51 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <v
 exports[`slate converts acceptance.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is the contract editor.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_one",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "And below is a clause.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -265,16 +259,16 @@ Object {
                 "text": " will be deemed to have completed its delivery obligations if in ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -284,16 +278,16 @@ Object {
                 "text": "'s opinion, the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -303,16 +297,16 @@ Object {
                 "text": " satisfies the Acceptance Criteria, and ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -322,16 +316,16 @@ Object {
                 "text": " notifies ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -341,16 +335,16 @@ Object {
                 "text": " in writing that it is accepting the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -360,28 +354,28 @@ Object {
                 "text": ".",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Inspection and Notice. ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -391,16 +385,16 @@ Object {
                 "text": " will have ",
               },
               Object {
-                "data": Object {
-                  "id": "businessDays",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "10",
                   },
                 ],
+                "data": Object {
+                  "id": "businessDays",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -410,16 +404,16 @@ Object {
                 "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -429,16 +423,16 @@ Object {
                 "text": " on the delivery date before notifying ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -448,16 +442,16 @@ Object {
                 "text": " that it is either accepting or rejecting the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -467,28 +461,28 @@ Object {
                 "text": ".",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -498,16 +492,16 @@ Object {
                 "text": " must meet for the ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -517,16 +511,16 @@ Object {
                 "text": " to comply with its requirements and obligations under this agreement, detailed in ",
               },
               Object {
-                "data": Object {
-                  "id": "attachment",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Attachment X\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "attachment",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -536,26 +530,32 @@ Object {
                 "text": ", attached to this agreement.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -778,11 +778,9 @@ exports[`slate converts bold.json to and from CiceroMark 2`] = `"**bold**"`;
 exports[`slate converts bold.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [
               Object {
@@ -795,10 +793,12 @@ Object {
             "text": "bold",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -851,11 +851,9 @@ exports[`slate converts code.json to and from CiceroMark 2`] = `"\`some code\`"`
 exports[`slate converts code.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [
               Object {
@@ -868,10 +866,12 @@ Object {
             "text": "some code",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -902,10 +902,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": "this
-is a
-code block.
-",
+      "text": "",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -936,14 +933,11 @@ end."
 exports[`slate converts codeblock.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
@@ -953,26 +947,29 @@ code block.
 ",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "code_block",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "end.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -985,10 +982,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": "this
-is a
-code block.
-",
+      "text": "",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -1096,40 +1090,38 @@ You can try CommonMark here.  This dingus is powered by[ commonmark.js](https://
 exports[`slate converts commonmark.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "Try CommonMark",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_two",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "You can try CommonMark here.  This dingus is powered by",
           },
           Object {
-            "data": Object {
-              "href": "https://github.com/jgm/commonmark.js",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": " commonmark.js",
               },
             ],
+            "data": Object {
+              "href": "https://github.com/jgm/commonmark.js",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
@@ -1139,59 +1131,61 @@ Object {
             "text": ", the JavaScript reference implementation.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "delimiter": "period",
-          "start": "1",
-          "tight": "true",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "item one",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "item two",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
         ],
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
         "object": "block",
         "type": "ol_list",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -1504,21 +1498,21 @@ exports[`slate converts empty.json to and from CiceroMark 2`] = `""`;
 exports[`slate converts empty.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -1649,105 +1643,105 @@ end.
 exports[`slate converts headings.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H1",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_two",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H2",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_two",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H3",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_three",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H4",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_four",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H5",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_five",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "H6",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_six",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "####### Text!!",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "end.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -1864,7 +1858,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "<foo/>",
+      "text": "",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -1892,21 +1886,19 @@ This is more text
 exports[`slate converts html.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is text with ",
           },
           Object {
+            "children": Array [],
             "data": Object {
               "content": "<foo/>",
             },
-            "nodes": Array [],
             "object": "inline",
             "type": "html_inline",
           },
@@ -1916,15 +1908,14 @@ Object {
             "text": " inside it",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [
                   Object {
@@ -1937,26 +1928,29 @@ Object {
                 "text": "<foo/>",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "html_block",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is more text",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -1986,7 +1980,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "<foo/>",
+      "text": "",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -2008,12 +2002,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "<foo>
-this
-is an
-html block.
-</foo>
-end.",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2032,14 +2021,11 @@ end."
 exports[`slate converts html-block.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [
                   Object {
@@ -2057,14 +2043,17 @@ html block.
 end.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "html_block",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -2077,12 +2066,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "<foo>
-this
-is an
-html block.
-</foo>
-end.",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2132,43 +2116,43 @@ exports[`slate converts image.json to and from CiceroMark 2`] = `
 exports[`slate converts image.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is an image",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {
-              "href": "https://studio.accordproject.org/static/img/logo.png",
-              "title": "title",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "",
               },
             ],
+            "data": Object {
+              "href": "https://studio.accordproject.org/static/img/logo.png",
+              "title": "title",
+            },
             "object": "inline",
             "type": "image",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -2252,43 +2236,43 @@ exports[`slate converts image-notitle.json to and from CiceroMark 2`] = `
 exports[`slate converts image-notitle.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is an image",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {
-              "href": "https://studio.accordproject.org/static/img/logo.png",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "",
               },
             ],
+            "data": Object {
+              "href": "https://studio.accordproject.org/static/img/logo.png",
+              "title": "",
+            },
             "object": "inline",
             "type": "image",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -2357,11 +2341,9 @@ exports[`slate converts italic.json to and from CiceroMark 2`] = `"*italic*"`;
 exports[`slate converts italic.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [
               Object {
@@ -2374,10 +2356,12 @@ Object {
             "text": "italic",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -2609,23 +2593,21 @@ If the delay is more than <variable id=\\"termination\\" value=\\"15%20days\\"/>
 exports[`slate converts latedelivery.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "HELLO! This is the contract editor.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_one",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
@@ -2648,68 +2630,64 @@ Object {
             "text": ".",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-          "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Late Delivery and Penalty.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "heading_two",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "In case of delayed delivery",
               },
               Object {
-                "data": Object {
-                  "id": "forceMajeure",
-                  "whenFalse": "",
-                  "whenTrue": " except for Force Majeure cases,",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": " except for Force Majeure cases,",
                   },
                 ],
+                "data": Object {
+                  "id": "forceMajeure",
+                  "whenFalse": "",
+                  "whenTrue": " except for Force Majeure cases,",
+                },
                 "object": "inline",
                 "type": "conditional",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "data": Object {
-                  "id": "seller",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Dan\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "seller",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2719,16 +2697,16 @@ Object {
                 "text": " (the Seller) shall pay to ",
               },
               Object {
-                "data": Object {
-                  "id": "buyer",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Steve\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "buyer",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2738,22 +2716,22 @@ Object {
                 "text": " (the Buyer) for every ",
               },
               Object {
-                "data": Object {
-                  "id": "penaltyDuration",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "2 days",
                   },
                 ],
+                "data": Object {
+                  "id": "penaltyDuration",
+                },
                 "object": "inline",
                 "type": "variable",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
@@ -2763,16 +2741,16 @@ Object {
                 "text": "of delay penalty amounting to ",
               },
               Object {
-                "data": Object {
-                  "id": "penaltyPercentage",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "10.5",
                   },
                 ],
+                "data": Object {
+                  "id": "penaltyPercentage",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2782,8 +2760,8 @@ Object {
                 "text": "% of the total value of the Equipment",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
@@ -2793,16 +2771,16 @@ Object {
                 "text": "whose delivery has been delayed. Any fractional part of a ",
               },
               Object {
-                "data": Object {
-                  "id": "fractionalPart",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "days",
                   },
                 ],
+                "data": Object {
+                  "id": "fractionalPart",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2812,8 +2790,8 @@ Object {
                 "text": " is to be",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
@@ -2823,16 +2801,16 @@ Object {
                 "text": "considered a full ",
               },
               Object {
-                "data": Object {
-                  "id": "fractionalPart",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "days",
                   },
                 ],
+                "data": Object {
+                  "id": "fractionalPart",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2842,8 +2820,8 @@ Object {
                 "text": ". The total amount of penalty shall not however,",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
@@ -2853,16 +2831,16 @@ Object {
                 "text": "exceed ",
               },
               Object {
-                "data": Object {
-                  "id": "capPercentage",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "55.0",
                   },
                 ],
+                "data": Object {
+                  "id": "capPercentage",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2872,8 +2850,8 @@ Object {
                 "text": "% of the total value of the Equipment involved in late delivery.",
               },
               Object {
+                "children": Array [],
                 "data": Object {},
-                "nodes": Array [],
                 "object": "inline",
                 "type": "softbreak",
               },
@@ -2883,16 +2861,16 @@ Object {
                 "text": "If the delay is more than ",
               },
               Object {
-                "data": Object {
-                  "id": "termination",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "15 days",
                   },
                 ],
+                "data": Object {
+                  "id": "termination",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -2902,26 +2880,32 @@ Object {
                 "text": ", the Buyer is entitled to terminate this Contract.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+          "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3152,19 +3136,17 @@ And this is para 2."
 exports[`slate converts linebreak.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
           Object {
+            "children": Array [],
             "data": Object {},
-            "nodes": Array [],
             "object": "inline",
             "type": "linebreak",
           },
@@ -3174,22 +3156,24 @@ Object {
             "text": "linebreak in para 1.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "And this is para 2.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3264,36 +3248,36 @@ exports[`slate converts link.json to and from CiceroMark 2`] = `"a [link](http:/
 exports[`slate converts link.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "a ",
           },
           Object {
-            "data": Object {
-              "href": "http://clause.io",
-              "title": "title",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "link",
               },
             ],
+            "data": Object {
+              "href": "http://clause.io",
+              "title": "title",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3363,36 +3347,36 @@ exports[`slate converts link-notitle.json to and from CiceroMark 2`] = `"a [link
 exports[`slate converts link-notitle.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "a ",
           },
           Object {
-            "data": Object {
-              "href": "http://clause.io",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "link",
               },
             ],
+            "data": Object {
+              "href": "http://clause.io",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3479,22 +3463,16 @@ this is a \`code snippet\`"
 exports[`slate converts linkcode.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
-            "data": Object {
-              "href": "https://google.com",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [
                   Object {
@@ -3507,16 +3485,20 @@ Object {
                 "text": "code link",
               },
             ],
+            "data": Object {
+              "href": "https://google.com",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
@@ -3534,10 +3516,12 @@ Object {
             "text": "code snippet",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3628,22 +3612,16 @@ exports[`slate converts linkem.json to and from CiceroMark 2`] = `
 exports[`slate converts linkem.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
-            "data": Object {
-              "href": "https://google.com",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [
                   Object {
@@ -3656,14 +3634,20 @@ Object {
                 "text": "code link",
               },
             ],
+            "data": Object {
+              "href": "https://google.com",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3764,17 +3748,11 @@ exports[`slate converts linkmixed.json to and from CiceroMark 2`] = `"[This is a
 exports[`slate converts linkmixed.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {
-              "href": "http://google.com",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
@@ -3824,14 +3802,20 @@ Object {
                 "text": "bold",
               },
             ],
+            "data": Object {
+              "href": "http://google.com",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -3930,36 +3914,36 @@ exports[`slate converts linktext.json to and from CiceroMark 2`] = `
 exports[`slate converts linktext.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
-            "data": Object {
-              "href": "https://google.com",
-              "title": "",
-            },
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "code link",
               },
             ],
+            "data": Object {
+              "href": "https://google.com",
+              "title": "",
+            },
             "object": "inline",
             "type": "link",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -4269,57 +4253,51 @@ You wont believe this clause.
 exports[`slate converts multiple-clauses.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is the contract editor.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_one",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "And below is a clause with a clause immediately after.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4329,16 +4307,16 @@ Object {
                 "text": " will be deemed to have completed its delivery obligations if in ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4348,16 +4326,16 @@ Object {
                 "text": "'s opinion, the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4367,16 +4345,16 @@ Object {
                 "text": " satisfies the Acceptance Criteria, and ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4386,16 +4364,16 @@ Object {
                 "text": " notifies ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4405,16 +4383,16 @@ Object {
                 "text": " in writing that it is accepting the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4424,28 +4402,28 @@ Object {
                 "text": ".",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Inspection and Notice. ",
               },
               Object {
-                "data": Object {
-                  "id": "receiver",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "receiver",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4455,16 +4433,16 @@ Object {
                 "text": " will have ",
               },
               Object {
-                "data": Object {
-                  "id": "businessDays",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "10",
                   },
                 ],
+                "data": Object {
+                  "id": "businessDays",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4474,16 +4452,16 @@ Object {
                 "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4493,16 +4471,16 @@ Object {
                 "text": " on the delivery date before notifying ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4512,16 +4490,16 @@ Object {
                 "text": " that it is either accepting or rejecting the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4531,28 +4509,28 @@ Object {
                 "text": ".",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
-                "data": Object {
-                  "id": "deliverable",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "deliverable",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4562,16 +4540,16 @@ Object {
                 "text": " must meet for the ",
               },
               Object {
-                "data": Object {
-                  "id": "shipper",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "shipper",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4581,16 +4559,16 @@ Object {
                 "text": " to comply with its requirements and obligations under this agreement, detailed in ",
               },
               Object {
-                "data": Object {
-                  "id": "attachment",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "\\"Attachment X\\"",
                   },
                 ],
+                "data": Object {
+                  "id": "attachment",
+                },
                 "object": "inline",
                 "type": "variable",
               },
@@ -4600,128 +4578,134 @@ Object {
                 "text": ", attached to this agreement.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
-          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Nothing.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "And now there is an empty paragraph before and after two clauses.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
-          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. Something something something.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
-          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "You wont believe this clause.",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {
+          "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
+          "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
+        },
         "object": "block",
         "type": "clause",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5101,101 +5085,87 @@ Epilog
 exports[`slate converts nested-list.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "Prolog",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "delimiter": "period",
-          "start": "1",
-          "tight": "true",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "item one",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "item two",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
               Object {
-                "data": Object {
-                  "delimiter": undefined,
-                  "start": undefined,
-                  "tight": "true",
-                },
-                "nodes": Array [
+                "children": Array [
                   Object {
-                    "data": Object {},
-                    "nodes": Array [
+                    "children": Array [
                       Object {
-                        "data": Object {},
-                        "nodes": Array [
+                        "children": Array [
                           Object {
                             "marks": Array [],
                             "object": "text",
                             "text": "sublist",
                           },
                         ],
+                        "data": Object {},
                         "object": "block",
                         "type": "paragraph",
                       },
                     ],
+                    "data": Object {},
                     "object": "block",
                     "type": "list_item",
                   },
                   Object {
-                    "data": Object {},
-                    "nodes": Array [
+                    "children": Array [
                       Object {
-                        "data": Object {},
-                        "nodes": Array [
+                        "children": Array [
                           Object {
                             "marks": Array [],
                             "object": "text",
                             "text": "sublist",
                           },
                           Object {
+                            "children": Array [],
                             "data": Object {},
-                            "nodes": Array [],
                             "object": "inline",
                             "type": "softbreak",
                           },
@@ -5205,44 +5175,58 @@ Object {
                             "text": "with some text in the same paragraph",
                           },
                         ],
+                        "data": Object {},
                         "object": "block",
                         "type": "paragraph",
                       },
                     ],
+                    "data": Object {},
                     "object": "block",
                     "type": "list_item",
                   },
                   Object {
+                    "children": Array [],
                     "data": Object {},
-                    "nodes": Array [],
                     "object": "block",
                     "type": "list_item",
                   },
                 ],
+                "data": Object {
+                  "delimiter": undefined,
+                  "start": undefined,
+                  "tight": "true",
+                },
                 "object": "block",
                 "type": "ul_list",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
         ],
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
         "object": "block",
         "type": "ol_list",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "Epilog",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5430,77 +5414,77 @@ exports[`slate converts ordered.json to and from CiceroMark 2`] = `
 exports[`slate converts ordered.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {
-          "delimiter": "period",
-          "start": "1",
-          "tight": "true",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "one",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "two",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "three",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
         ],
+        "data": Object {
+          "delimiter": "period",
+          "start": "1",
+          "tight": "true",
+        },
         "object": "block",
         "type": "ol_list",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5614,45 +5598,45 @@ three"
 exports[`slate converts paragraphs.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "one",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "two",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "three",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5718,21 +5702,21 @@ exports[`slate converts plain.json to and from CiceroMark 2`] = `"plain"`;
 exports[`slate converts plain.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "plain",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5785,28 +5769,28 @@ exports[`slate converts quote.json to and from CiceroMark 2`] = `"> this is a qu
 exports[`slate converts quote.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
                 "marks": Array [],
                 "object": "text",
                 "text": "this is a quote",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "paragraph",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "block_quote",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -5880,19 +5864,17 @@ And this is para 2."
 exports[`slate converts softbreak.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
           Object {
+            "children": Array [],
             "data": Object {},
-            "nodes": Array [],
             "object": "inline",
             "type": "softbreak",
           },
@@ -5902,22 +5884,24 @@ Object {
             "text": "softbreak in para 1.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "And this is para 2.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -6029,11 +6013,9 @@ exports[`slate converts text.json to and from CiceroMark 2`] = `"plain *italic* 
 exports[`slate converts text.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
@@ -6104,10 +6086,12 @@ Object {
             "text": "code",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -6221,39 +6205,39 @@ thematic break"
 exports[`slate converts thematicbreak.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
+        "children": Array [],
         "data": Object {},
-        "nodes": Array [],
         "object": "block",
         "type": "horizontal_rule",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "thematic break",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -6429,159 +6413,159 @@ The Discount is determined according to the following table:
 exports[`slate converts ulist.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "Discount.",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "heading_four",
       },
       Object {
-        "data": Object {},
-        "nodes": Array [
+        "children": Array [
           Object {
             "marks": Array [],
             "object": "text",
             "text": "The Discount is determined according to the following table:",
           },
         ],
+        "data": Object {},
         "object": "block",
         "type": "paragraph",
       },
       Object {
-        "data": Object {
-          "delimiter": undefined,
-          "kind": "variable",
-          "start": undefined,
-          "tight": "true",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
         ],
+        "data": Object {
+          "delimiter": undefined,
+          "kind": "variable",
+          "start": undefined,
+          "tight": "true",
+        },
         "object": "block",
         "type": "ul_list",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",
@@ -6778,77 +6762,77 @@ exports[`slate converts unordered.json to and from CiceroMark 2`] = `
 exports[`slate converts unordered.json to and from CiceroMark 3`] = `
 Object {
   "document": Object {
-    "data": Object {},
-    "nodes": Array [
+    "children": Array [
       Object {
-        "data": Object {
-          "delimiter": undefined,
-          "start": undefined,
-          "tight": "true",
-        },
-        "nodes": Array [
+        "children": Array [
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "one",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "two",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
           Object {
-            "data": Object {},
-            "nodes": Array [
+            "children": Array [
               Object {
-                "data": Object {},
-                "nodes": Array [
+                "children": Array [
                   Object {
                     "marks": Array [],
                     "object": "text",
                     "text": "three",
                   },
                 ],
+                "data": Object {},
                 "object": "block",
                 "type": "paragraph",
               },
             ],
+            "data": Object {},
             "object": "block",
             "type": "list_item",
           },
         ],
+        "data": Object {
+          "delimiter": undefined,
+          "start": undefined,
+          "tight": "true",
+        },
         "object": "block",
         "type": "ul_list",
       },
     ],
+    "data": Object {},
     "object": "document",
   },
   "object": "value",

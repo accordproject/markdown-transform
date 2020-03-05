@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "heading_two",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "Try CommonMark",
@@ -20,7 +20,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "You can try CommonMark here.  This dingus is powered by",
@@ -33,7 +33,7 @@
                             "href": "https://github.com/jgm/commonmark.js",
                             "title": ""
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": " commonmark.js",
@@ -56,17 +56,17 @@
                     "start": "1",
                     "delimiter": "period"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "item one",
@@ -80,12 +80,12 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {},
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "item two",

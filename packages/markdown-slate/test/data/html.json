@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "This is text with ",
@@ -20,7 +20,7 @@
                         "data": {
                             "content": "<foo/>"
                         },
-                        "nodes": []
+                        "children": []
                     },
                     {
                         "object": "text",
@@ -33,12 +33,12 @@
                 "object": "block",
                 "type": "html_block",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "<foo/>",
@@ -58,7 +58,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "This is more text",

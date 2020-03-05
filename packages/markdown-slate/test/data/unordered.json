@@ -3,25 +3,25 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "ul_list",
                 "data": {
                     "tight" : "true"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "one",
@@ -35,13 +35,13 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "two",
@@ -55,13 +55,13 @@
                         "object": "block",
                         "type": "list_item",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "block",
                                 "type": "paragraph",
                                 "data": {
                                 },
-                                "nodes": [
+                                "children": [
                                     {
                                         "object": "text",
                                         "text": "three",

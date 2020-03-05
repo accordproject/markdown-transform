@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "heading_one",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "This is the contract editor.",
@@ -20,7 +20,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "And below is a clause with a clause immediately after.",
@@ -35,12 +35,12 @@
                     "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
                     "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Acceptance of Delivery. ",
@@ -52,7 +52,7 @@
                                 "data": {
                                     "id": "shipper"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party A\""
                                 }]
@@ -68,7 +68,7 @@
                                 "data": {
                                     "id": "receiver"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party B\""
                                 }]
@@ -84,7 +84,7 @@
                                 "data": {
                                     "id": "deliverable"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Widgets\""
                                 }]
@@ -100,7 +100,7 @@
                                 "data": {
                                     "id": "receiver"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party B\""
                                 }]
@@ -116,7 +116,7 @@
                                 "data": {
                                     "id": "shipper"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party A\""
                                 }]
@@ -132,7 +132,7 @@
                                 "data": {
                                     "id": "deliverable"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Widgets\""
                                 }]
@@ -148,7 +148,7 @@
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Inspection and Notice. ",
@@ -160,7 +160,7 @@
                                 "data": {
                                     "id": "receiver"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party B\""
                                 }]
@@ -176,7 +176,7 @@
                                 "data": {
                                     "id": "businessDays"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "10"
                                 }]
@@ -192,7 +192,7 @@
                                 "data": {
                                     "id": "deliverable"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Widgets\""
                                 }]
@@ -208,7 +208,7 @@
                                 "data": {
                                     "id": "shipper"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party A\""
                                 }]
@@ -224,7 +224,7 @@
                                 "data": {
                                     "id": "deliverable"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Widgets\""
                                 }]
@@ -240,7 +240,7 @@
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the ",
@@ -252,7 +252,7 @@
                                 "data": {
                                     "id": "deliverable"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Widgets\""
                                 }]
@@ -268,7 +268,7 @@
                                 "data": {
                                     "id": "shipper"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Party A\""
                                 }]
@@ -284,7 +284,7 @@
                                 "data": {
                                     "id": "attachment"
                                 },
-                                "nodes": [{
+                                "children": [{
                                     "object": "text",
                                     "text": "\"Attachment X\""
                                 }]
@@ -302,7 +302,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [{
+                "children": [{
                     "object": "text",
                     "text": "",
                     "marks": []
@@ -315,12 +315,12 @@
                     "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
                     "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Acceptance of Nothing.",
@@ -334,7 +334,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "And now there is an empty paragraph before and after two clauses.",
@@ -349,12 +349,12 @@
                     "clauseid": "479adbb4-dc55-4d1a-ab12-f6c5e16900c0",
                     "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "Acceptance of Delivery. Something something something.",
@@ -368,7 +368,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [{
+                "children": [{
                     "object": "text",
                     "text": "",
                     "marks": []
@@ -381,12 +381,12 @@
                     "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
                     "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c"
                 },
-                "nodes": [
+                "children": [
                     {
                         "object": "block",
                         "type": "paragraph",
                         "data": {},
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
                                 "text": "You wont believe this clause.",
@@ -400,7 +400,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [{
+                "children": [{
                     "object": "text",
                     "text": "",
                     "marks": []

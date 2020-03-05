@@ -3,12 +3,12 @@
     "document": {
         "object": "document",
         "data": {},
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "heading_two",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H1",
@@ -20,7 +20,7 @@
                 "object": "block",
                 "type": "heading_two",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H2",
@@ -32,7 +32,7 @@
                 "object": "block",
                 "type": "heading_three",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H3",
@@ -44,7 +44,7 @@
                 "object": "block",
                 "type": "heading_four",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H4",
@@ -56,7 +56,7 @@
                 "object": "block",
                 "type": "heading_five",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H5",
@@ -68,7 +68,7 @@
                 "object": "block",
                 "type": "heading_six",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "H6",
@@ -80,7 +80,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "####### Text!!",
@@ -92,7 +92,7 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
                         "text": "end.",

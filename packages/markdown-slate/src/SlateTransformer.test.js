@@ -89,12 +89,12 @@ describe('slate', () => {
                 'document': {
                     'object': 'document',
                     'data': {},
-                    'nodes': [
+                    'children': [
                         {
                             'object': 'block',
                             'type': 'paragraph',
                             'data': {},
-                            'nodes': [
+                            'children': [
                                 {
                                     'object': 'text',
                                     'text': 'test ',
@@ -106,7 +106,7 @@ describe('slate', () => {
                                     'data': {
                                         'id': 'foo'
                                     },
-                                    'nodes': [{
+                                    'children': [{
                                         'marks': [],
                                         'object': 'text',
                                         'text': 'bar'
@@ -129,12 +129,12 @@ describe('slate', () => {
                 'document': {
                     'object': 'document',
                     'data': {},
-                    'nodes': [
+                    'children': [
                         {
                             'object': 'block',
                             'type': 'paragraph',
                             'data': {},
-                            'nodes': [
+                            'children': [
                                 {
                                     'object': 'text',
                                     'text': 'test ',
@@ -144,7 +144,7 @@ describe('slate', () => {
                                     'object': 'inline',
                                     'type': 'computed',
                                     'data': {},
-                                    'nodes': [{
+                                    'children': [{
                                         'marks': [],
                                         'object': 'text',
                                         'text': 'bar'
