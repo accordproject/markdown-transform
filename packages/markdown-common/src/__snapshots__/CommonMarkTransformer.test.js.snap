@@ -22540,9 +22540,15 @@ A quote."
 `;
 
 exports[`to plain text clause.md 1`] = `
-"This is a fixed interest loan to the amount of <variable id=\\"loanAmount\\" value=\\"100000.0\\"/>at the yearly interest rate of <variable id=\\"rate\\" value=\\"2.5\\"/>%with a loan term of <variable id=\\"loanDuration\\" value=\\"15\\"/>,and monthly payments of <computed value=\\"667.0\\"/>
+"This is a fixed interest loan to the amount of <variable id=\\"loanAmount\\" value=\\"100000.0\\"/>
+at the yearly interest rate of <variable id=\\"rate\\" value=\\"2.5\\"/>%
+with a loan term of <variable id=\\"loanDuration\\" value=\\"15\\"/>,
+and monthly payments of <computed value=\\"667.0\\"/>
 
-This is a fixed interest loan to the amount of 100000.0at the yearly interest rate of 2.5%with a loan term of 15,and monthly payments of 667.0
+This is a fixed interest loan to the amount of 100000.0
+at the yearly interest rate of 2.5%
+with a loan term of 15,
+and monthly payments of 667.0
 
 this is
 multiline <variable id=\\"rate\\" value=\\"2.5\\"/>
@@ -22644,9 +22650,14 @@ exports[`to plain text emph-strong.md 1`] = `"This is some text."`;
 exports[`to plain text empty.md 1`] = `""`;
 
 exports[`to plain text fixed.md 1`] = `
-"Fixedrateloan
+"Fixed
+rate
+loan
 
-This is a fixed interest loan to the amount of 100000at the yearly interest rate of 2.5%with a loan term of 15,and monthly payments of {{I'm not sure which amount right now}}"
+This is a fixed interest loan to the amount of 100000
+at the yearly interest rate of 2.5%
+with a loan term of 15,
+and monthly payments of {{I'm not sure which amount right now}}"
 `;
 
 exports[`to plain text h1.md 1`] = `"Heading One"`;
@@ -22664,7 +22675,9 @@ exports[`to plain text h6.md 1`] = `"Heading Six"`;
 exports[`to plain text headingdigit.md 1`] = `
 "1\\\\. This is a heading with a digit
 
-This is another1.heading"
+This is another
+1.
+heading"
 `;
 
 exports[`to plain text headingdigit2.md 1`] = `
@@ -22723,7 +22736,9 @@ This is more text"
 `;
 
 exports[`to plain text miniblockquote.md 1`] = `
-"This is alinebreak.This is a quote.
+"This is a
+linebreak.
+This is a quote.
 -  > one
 -  > two
 
@@ -22799,11 +22814,14 @@ Epilog"
 exports[`to plain text nestedblockquote.md 1`] = `
 "Once upon a time
 
-This is alinebreak.This is a quote.
+This is a
+linebreak.
+This is a quote.
 
 Heading Two
 
-This is more text.Ordered lists:
+This is more text.
+Ordered lists:
 1. one
    this has more in it
    -  nested list
@@ -22813,9 +22831,12 @@ This is more text.Ordered lists:
 
 This should be a line
 
+---
+
 This should be more text
 
-This should be a nested blockquotewith more things in it
+This should be a nested blockquote
+with more things in it
 
 And a second paragraph in the nested blockquote
 
@@ -22827,11 +22848,14 @@ The end"
 exports[`to plain text nestedblockquote2.md 1`] = `
 "Once upon a time
 
-This is alinebreak.This is a quote.
+This is a
+linebreak.
+This is a quote.
 
 Heading Two
 
-This is more text.Ordered lists:
+This is more text.
+Ordered lists:
 1. one
    this has more in it
    -  > nested list
@@ -22841,9 +22865,12 @@ This is more text.Ordered lists:
 
 This should be a line
 
+---
+
 This should be more text
 
-This should be a nested blockquotewith more things in it
+This should be a nested blockquote
+with more things in it
 
 And a second paragraph in the nested blockquote
 
@@ -22885,6 +22912,8 @@ exports[`to plain text text.md 1`] = `"This is some text."`;
 
 exports[`to plain text thematicbreak.md 1`] = `
 "This is
+
+---
 
 A footer."
 `;
