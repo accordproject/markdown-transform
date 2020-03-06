@@ -133,13 +133,13 @@ describe('markdown', () => {
     });
 });
 
-describe('plain text', () => {
+describe('to plain text', () => {
     getMarkdownFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to plain text`, () => {
+        it(file, () => {
             const json = commonMark.fromMarkdown(markdownText, 'json');
-            const text = commonMark.toPlainText(json);
-            console.log(text);
-            expect(text).toMatchSnapshot();
+            const unformat = commonMark.removeFormatting(json);
+            const md = commonMark.toMarkdown(unformat);
+            expect(md).toMatchSnapshot();
         });
     });
 });

@@ -21,7 +21,7 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-c
 
 const Stack = require('./Stack');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
-const ToStringVisitor = require('./ToStringVisitor');
+const removeFormatting = require('./removeFormatting');
 
 const { DOMParser } = require('xmldom');
 const { NS_PREFIX_CommonMarkModel, CommonMarkModel } = require('./externalModels/CommonMarkModel.js');
@@ -109,21 +109,12 @@ class CommonMarkTransformer {
     }
 
     /**
-     * Converts a CommonMark DOM to a plain text string
+     * Converts a CommonMark DOM to a CommonMark DOM with formatting removed
      * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
-     * @returns {string} the plain text string
+     * @returns {string} the CommonMark DOM with formatting nodes removed
      */
-    toPlainText(input) {
-        if(!input.getType) {
-            input = this.serializer.fromJSON(input);
-        }
-        const parameters = {};
-        parameters.result = '';
-        parameters.first = true;
-        parameters.stack = [];
-        const visitor = new ToStringVisitor(this.options);
-        input.accept(visitor, parameters);
-        return parameters.result.trim();
+    removeFormatting(input) {
+        return removeFormatting(input);
     }
 
     /**
