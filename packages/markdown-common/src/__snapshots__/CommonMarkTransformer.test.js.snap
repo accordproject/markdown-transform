@@ -1843,6 +1843,54 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Linebreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "a hardbreak.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is another",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Linebreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "hardbreak.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "softbreak.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
           "$class": "org.accordproject.commonmark.Emph",
           "nodes": Array [
             Object {
@@ -22749,6 +22797,15 @@ exports[`to plain text mixed.md 1`] = `
 "Heading One
 
 This is plain text.
+
+This is
+a hardbreak.
+
+This is another
+hardbreak.
+
+This is a
+softbreak.
 
 This is emph text.
 
