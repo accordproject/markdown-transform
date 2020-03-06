@@ -1816,6 +1816,307 @@ Object {
 }
 `;
 
+exports[`markdown converts mixed.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading One",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is plain text.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is emph text",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Two",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is strong text",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading Three",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "This is strong emph text",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is a quote",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Code",
+          "text": "some inline code",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": "This is multiline
+code.
+",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Below is a clause",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\">",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src = \\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "clauseid",
+            "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+        ],
+        "closed": false,
+        "content": "",
+        "tagName": "clause",
+      },
+      "text": "Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ul",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "apples",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "oranges",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "pears",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is an ol",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "delimiter": "period",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "one",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "two",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "three",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "start": "1",
+      "tight": "true",
+      "type": "ordered",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is plain text.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts multiline-html-block.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -22219,3 +22520,403 @@ This is some \`code\`.
 
 Fin."
 `;
+
+exports[`to plain text acceptance.md 1`] = `
+"HELLO! This is the contract editor.
+
+And below is a clause.
+
+Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement."
+`;
+
+exports[`to plain text blockquote.md 1`] = `
+"This is
+
+A quote."
+`;
+
+exports[`to plain text clause.md 1`] = `
+"This is a fixed interest loan to the amount of <variable id=\\"loanAmount\\" value=\\"100000.0\\"/>at the yearly interest rate of <variable id=\\"rate\\" value=\\"2.5\\"/>%with a loan term of <variable id=\\"loanDuration\\" value=\\"15\\"/>,and monthly payments of <computed value=\\"667.0\\"/>
+
+This is a fixed interest loan to the amount of 100000.0at the yearly interest rate of 2.5%with a loan term of 15,and monthly payments of 667.0
+
+this is
+multiline <variable id=\\"rate\\" value=\\"2.5\\"/>
+
+content"
+`;
+
+exports[`to plain text codeblock.md 1`] = `
+"this is a multiline
+code
+block."
+`;
+
+exports[`to plain text codeblock-info.md 1`] = `
+"this is a multiline
+  code
+
+  containing a newline
+
+  which should be handled by the video plugin."
+`;
+
+exports[`to plain text codeblocknoescape.md 1`] = `
+"test
+more
+
+   xxx
+test"
+`;
+
+exports[`to plain text copyright.tem.md 1`] = `
+"Copyright License Agreement
+
+This COPYRIGHT LICENSE AGREEMENT (the \\"Agreement\\"), dated as of {{effectiveDate}} (the \\"Effective Date\\"), is made by and between {{licensee}} (\\"Licensee\\"), a {{licenseeState}} {{licenseeEntityType}} with offices located at {{licenseeAddress}}, and {{licensor}} (\\"Licensor\\"), a {{licensorState}} {{licensorEntityType}} with offices located at {{licensorAddress}}.
+
+WHEREAS, Licensor solely and exclusively owns or controls the Work (as defined below) and wishes to grant to Licensee a license to the Work, and Licensee wishes to obtain a license to the Work for the uses and purposes described herein, each subject to the terms and conditions set forth herein.
+
+NOW, THEREFORE, in consideration of the mutual covenants, terms, and conditions set forth herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
+
+License.
+
+Grant of Rights. Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee and its affiliates during the Term (as defined below) an exclusive, transferable right and license in the {{territory}} (the \\"Territory\\"), to reproduce, publicly perform, display, transmit, and distribute the Work, including translate, alter, modify, and create derivative works of the Work, through all media now known or hereinafter developed for purposes of {{purposeDescription}}. The \\"Work\\" is defined as {{workDescription}}.
+
+Permissions. Licensor has obtained from all persons and entities who are, or whose trademark or other property is, identified, depicted, or otherwise referred to in the Work, such written and signed licenses, permissions, waivers, and consents (collectively, \\"Permissions\\" and each, individually, a \\"Permission\\"), including those relating to publicity, privacy, and any intellectual property rights, as are or reasonably may be expected to be necessary for Licensee to exercise its rights in the Work as permitted under this Agreement, without incurring any payment or other obligation to, or otherwise violating any right of, any such person or entity.
+
+Copyright Notices. Licensee shall ensure that its use of the Work is marked with the appropriate copyright notices specified by Licensor in a reasonably prominent position in the order and manner provided by Licensor. Licensee shall abide by the copyright laws and what are considered to be sound practices for copyright notice provisions in the Territory. Licensee shall not use any copyright notices that conflict with, confuse, or negate the notices Licensor provides and requires hereunder.
+
+{{#clause paymentClause}}Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of {{amountText}} ({{amount}}) upon execution of this Agreement, payable as follows: {{paymentProcedure}}.{{/clause}}
+
+General.
+
+Interpretation. For purposes of this Agreement, (a) the words \\"include,\\" \\"includes,\\" and \\"including\\" are deemed to be followed by the words \\"without limitation\\"; (b) the word \\"or\\" is not exclusive; and (c) the words \\"herein,\\" \\"hereof,\\" \\"hereby,\\" \\"hereto,\\" and \\"hereunder\\" refer to this Agreement as a whole. This Agreement is intended to be construed without regard to any presumption or rule requiring construction or interpretation against the party drafting an instrument or causing any instrument to be drafted.
+
+Entire Agreement. This Agreement, including and together with any related attachments, constitutes the sole and entire agreement of the parties with respect to the subject matter contained herein, and supersedes all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, with respect to such subject matter.
+
+Severability. If any term or provision of this Agreement is invalid, illegal, or unenforceable in any jurisdiction, such invalidity, illegality, or unenforceability will not affect the enforceability of any other term or provision of this Agreement, or invalidate or render unenforceable such term or provision in any other jurisdiction. [Upon a determination that any term or provision is invalid, illegal, or unenforceable, [the parties shall negotiate in good faith to/the court may] modify this Agreement to effect the original intent of the parties as closely as possible in order that the transactions contemplated hereby be consummated as originally contemplated to the greatest extent possible.]
+
+Assignment. Licensee may freely assign or otherwise transfer all or any of its rights, or delegate or otherwise transfer all or any of its obligations or performance, under this Agreement without Licensor's consent. This Agreement is binding upon and inures to the benefit of the parties hereto and their respective permitted successors and assigns."
+`;
+
+exports[`to plain text editor.md 1`] = `
+"Heading One
+
+This is text. This is italic text. This is bold text. This is a https://clause.io. This is inline code.
+
+This is bold and italic text
+
+This is a quote.
+
+Heading Two
+
+This is more text.
+
+Ordered lists:
+1. one
+2. two
+3. three
+
+Or:
+-  apples
+-  pears
+-  peaches
+
+Sub heading
+
+Video:
+
+<video/>
+
+Another video:
+
+<video src=\\"https://www.youtube.com/embed/cmmq-JBMbbQ\\"/>"
+`;
+
+exports[`to plain text emph.md 1`] = `"This is some text."`;
+
+exports[`to plain text emph-strong.md 1`] = `"This is some text."`;
+
+exports[`to plain text empty.md 1`] = `""`;
+
+exports[`to plain text fixed.md 1`] = `
+"Fixedrateloan
+
+This is a fixed interest loan to the amount of 100000at the yearly interest rate of 2.5%with a loan term of 15,and monthly payments of {{I'm not sure which amount right now}}"
+`;
+
+exports[`to plain text h1.md 1`] = `"Heading One"`;
+
+exports[`to plain text h2.md 1`] = `"Heading Two"`;
+
+exports[`to plain text h3.md 1`] = `"Heading Three"`;
+
+exports[`to plain text h4.md 1`] = `"Heading Four"`;
+
+exports[`to plain text h5.md 1`] = `"Heading Five"`;
+
+exports[`to plain text h6.md 1`] = `"Heading Six"`;
+
+exports[`to plain text headingdigit.md 1`] = `
+"1\\\\. This is a heading with a digit
+
+This is another1.heading"
+`;
+
+exports[`to plain text headingdigit2.md 1`] = `
+"Regular text
+
+1\\\\. Heading two
+
+2\\\\. Heading two again
+
+3\\\\. Heading two third"
+`;
+
+exports[`to plain text headingdigit3.md 1`] = `
+"Regular text
+
+\\\\## 1. Heading two
+
+\\\\## 2. Heading two again
+
+\\\\## 3. Heading two third"
+`;
+
+exports[`to plain text html-inline.md 1`] = `"This is a <custom src=\\"property\\"/> property."`;
+
+exports[`to plain text html-inline-closing.md 1`] = `"This is a <custom src=\\"property\\"></custom> property."`;
+
+exports[`to plain text html-inline-uri.md 1`] = `"This is a <custom src=\\"property%20or%20something\\"/> property."`;
+
+exports[`to plain text html-mixed.md 1`] = `
+"Heading One
+
+<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>
+
+done."
+`;
+
+exports[`to plain text image.md 1`] = `
+"This is an image
+
+title"
+`;
+
+exports[`to plain text image-no-title.md 1`] = `"This is an image without a title."`;
+
+exports[`to plain text inline-code.md 1`] = `"This is inline code."`;
+
+exports[`to plain text link.md 1`] = `"This is http://clause.io."`;
+
+exports[`to plain text listcodeblock.md 1`] = `
+"b) Discount. The Discount is determined according to the following table:
+
+\\\\- <variable id=\\"volumeAbove\\" value=\\"1.0\\"/>$ million <= Volume < <variable id=\\"volumeUpTo\\" value=\\"10.0\\"/>$ million : <variable id=\\"rate\\" value=\\"3.1\\"/>%
+
+
+This is more text"
+`;
+
+exports[`to plain text miniblockquote.md 1`] = `
+"This is alinebreak.This is a quote.
+-  > one
+-  > two
+
+The end"
+`;
+
+exports[`to plain text mixed.md 1`] = `
+"Heading One
+
+This is plain text.
+
+This is emph text.
+
+Heading Two
+
+This is strong text
+
+Heading Three
+
+This is strong emph text
+
+this is a quote
+
+This is some inline code.
+
+This is multiline
+code.
+
+
+Below is a clause
+
+Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+
+
+This is a ul
+-  apples
+-  oranges
+-  pears
+
+This is an ol
+1. one
+2. two
+3. three
+
+This is plain text."
+`;
+
+exports[`to plain text multiline-html-block.md 1`] = `
+"This is a custom
+
+<custom src=\\"property\\">
+contents
+</custom>
+
+block."
+`;
+
+exports[`to plain text nested-list.md 1`] = `
+"Prolog
+1. item one
+2. item two
+   -  sublist
+   -  sublist
+      with some text in the same paragraph
+
+Epilog"
+`;
+
+exports[`to plain text nestedblockquote.md 1`] = `
+"Once upon a time
+
+This is alinebreak.This is a quote.
+
+Heading Two
+
+This is more text.Ordered lists:
+1. one
+   this has more in it
+   -  nested list
+   -  etc.
+2. two
+3. three
+
+This should be a line
+
+This should be more text
+
+This should be a nested blockquotewith more things in it
+
+And a second paragraph in the nested blockquote
+
+The end of the blockquote
+
+The end"
+`;
+
+exports[`to plain text nestedblockquote2.md 1`] = `
+"Once upon a time
+
+This is alinebreak.This is a quote.
+
+Heading Two
+
+This is more text.Ordered lists:
+1. one
+   this has more in it
+   -  > nested list
+   -  > etc.
+2. two
+3. three
+
+This should be a line
+
+This should be more text
+
+This should be a nested blockquotewith more things in it
+
+And a second paragraph in the nested blockquote
+
+The end of the blockquote
+
+The end"
+`;
+
+exports[`to plain text ol.md 1`] = `
+"This is an ordered list:
+
+1. one
+
+2. two
+
+3. three
+
+Done."
+`;
+
+exports[`to plain text ol-tight.md 1`] = `
+"This is an ordered list:
+1. one
+2. two
+3. three
+
+Done."
+`;
+
+exports[`to plain text paragraphs.md 1`] = `
+"This is first paragraph.
+
+This is second paragraph."
+`;
+
+exports[`to plain text strong.md 1`] = `"This is some text."`;
+
+exports[`to plain text text.md 1`] = `"This is some text."`;
+
+exports[`to plain text thematicbreak.md 1`] = `
+"This is
+
+A footer."
+`;
+
+exports[`to plain text ul.md 1`] = `
+"This is an unordered list:
+
+-  one
+
+-  two
+
+-  three
+
+Done."
+`;
+
+exports[`to plain text ul-tight.md 1`] = `
+"This is an unordered list:
+-  one
+-  two
+-  three
+
+Done."
+`;
+
+exports[`to plain text ulist3.md 1`] = `
+"-  0.0$ million <= Volume < 1.0$ million : 3.1%
+-  1.0$ million <= Volume < 10.0$ million : 3.1%
+-  10.0$ million <= Volume < 50.0$ million : 2.9%
+-  50.0$ million <= Volume < 500.0$ million : 2.5%
+-  500.0$ million <= Volume < 1000.0$ million : 1.2%
+-  1000.0$ million <= Volume < 1000000.0$ million : 0.1%"
+`;
+
+exports[`to plain text variable.md 1`] = `"This is a <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> property."`;
