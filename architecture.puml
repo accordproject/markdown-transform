@@ -5,6 +5,7 @@ package "markdown-cli" {
 
 package "markdown-common" {
   [Markdown String] <-up-> [CommonMark DOM]
+  [CommonMark DOM] -right-> [Plain Text String] 
 }
 
 note left of [CommonMark DOM]
