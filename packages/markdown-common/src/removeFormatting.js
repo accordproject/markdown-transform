@@ -79,10 +79,15 @@ function mapObject(obj, stack) {
             text: obj.title
         });
         break;
+    // do not insert a \ for linebreaks
+    case 'org.accordproject.commonmark.Linebreak':
+        stack.append( {
+            $class: 'org.accordproject.commonmark.Text',
+            text: '\n'
+        });
+        break;
     // copy
-    case 'org.accordproject.commonmark.List':
-    case 'org.accordproject.commonmark.Item':
-    case 'org.accordproject.commonmark.Text':
+    default:
         stack.append(obj);
         break;
     }
