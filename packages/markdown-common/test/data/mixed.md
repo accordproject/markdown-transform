@@ -2,6 +2,15 @@
 
 This is plain text.
 
+This is\
+a hardbreak.
+
+This is another  
+hardbreak.
+
+This is a
+softbreak.
+
 *This is emph text*.
 
 ## Heading Two
