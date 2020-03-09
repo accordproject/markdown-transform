@@ -83,11 +83,10 @@ function _recursive(parent, nodes) {
     nodes.forEach((node, index) => {
         let result = null;
 
-        switch (node.object) {
-        case 'text':
+        if('text' in node && !node.type) {
             result = handleText(node);
-            break;
-        default:
+        }
+        else {
             switch(node.type) {
             case 'clause':
                 // console.log(JSON.stringify(node, null, 4));
@@ -183,9 +182,11 @@ function handleText(node) {
     let emph = null;
     let result = null;
 
-    const isBold = node.marks.some(mark => mark.type === 'bold');
-    const isItalic = node.marks.some(mark => mark.type === 'italic');
-    const isCode = node.marks.some(mark => mark.type === 'code');
+    console.log(node);
+
+    const isBold = node.bold;
+    const isItalic = node.italic;
+    const isCode = node.code;
 
     if (isCode) {
         result = {$class : `${NS}.Code`, text: node.text};
