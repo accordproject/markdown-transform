@@ -137,14 +137,41 @@ class CiceroMarkTransformer {
      * @param {string} [format] result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
      * @param {object} [options] configuration options
+     * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, format='concerto', options) {
+
+        // remove formatting
+        if(options && options.removeFormatting) {
+            // convert to JSON
+            if(input.getType) {
+                input = this.serializer.toJSON(input);
+            }
+
+            const cmt = new CommonMarkTransformer(options);
+            input = cmt.removeFormatting(input);
+
+            // now we need to also remove the formatting for clause nodes
+            const clauses = input.nodes.filter(element => element.$class === 'org.accordproject.ciceromark.Clause');
+            clauses.forEach(clause => {
+                const clauseContent = {
+                    $class : input.$class,
+                    xmlns : input.xmlns,
+                    nodes : clause.nodes
+                };
+
+                const unformatted = cmt.removeFormatting(clauseContent);
+                clause.nodes = unformatted.nodes;
+            });
+        }
+
+        // convert to concerto
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
         }
 
-        // Add Cicero nodes
+        // convert to common mark
         const parameters = {
             commonMark: this.commonMark,
             modelManager : this.modelManager,

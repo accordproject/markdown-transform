@@ -110,7 +110,7 @@ class CommonMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a CommonMark DOM with formatting removed
-     * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
+     * @param {*} input - CommonMark DOM (in JSON)
      * @returns {string} the CommonMark DOM with formatting nodes removed
      */
     removeFormatting(input) {

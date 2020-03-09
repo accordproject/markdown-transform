@@ -164,6 +164,16 @@ describe('acceptance', () => {
         expect(clauseText).toMatchSnapshot();
         expect(ciceroMarkTransformer.getClauseText.bind(json.nodes[1], { wrapVariables: false})).toThrow('Cannot apply getClauseText to non-clause node');
     });
+
+
+    it('converts acceptance clause content to CommonMark string (removeFormatting)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formatted.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true });
+        expect(newMarkdown).toMatchSnapshot();
+    });
 });
 
 describe('markdown-spec', () => {
