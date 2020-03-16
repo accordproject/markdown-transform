@@ -44,11 +44,9 @@ class SlateTransformer {
         const CLAUSE = 'clause';
         const parameters = {};
         parameters.result = {};
-        parameters.marks = [];
         const visitor = new ToSlateVisitor();
         input.accept( visitor, parameters );
         const result = {
-            object: 'value',
             document: parameters.result
         };
         const paragraphSpaceNodeJSON = {
@@ -59,8 +57,7 @@ class SlateTransformer {
             children: [
                 {
                     object: 'text',
-                    text: '',
-                    marks: []
+                    text: ''
                 }
             ]
         };
@@ -98,7 +95,7 @@ class SlateTransformer {
      * @returns {*} the CiceroMark DOM
      */
     toCiceroMark(value, format='concerto') {
-        const json = slateToCiceroMarkDom(value.document);
+        const json = slateToCiceroMarkDom(value);
         // console.log(JSON.stringify(json, null, 3));
 
         if(format === 'concerto') {

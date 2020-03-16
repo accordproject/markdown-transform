@@ -20,29 +20,18 @@
 class ToSlateVisitor {
 
     /**
-     * Converts a sub-tree of formatting nodes to an array of marks
+     * Apply marks to a text node
+     * @param {*} textNode the textNode
      * @param {*} parameters the parameters
-     * @returns {*} the array of slate marks to use
      */
-    static getMarks(parameters) {
-        let result = [];
+    static applyMarks(textNode, parameters) {
 
         if (parameters.emph) {
-            result.push({
-                object: 'mark',
-                type: 'italic',
-                data: {}
-            });
+            textNode.italic = true;
         }
         if (parameters.strong) {
-            result.push({
-                object: 'mark',
-                type: 'bold',
-                data: {}
-            });
+            textNode.bold = true;
         }
-
-        return result;
     }
 
     /**
@@ -88,11 +77,12 @@ class ToSlateVisitor {
      * @returns {*} the slate text node with marks
      */
     static handleFormattedText(thing, parameters) {
-        return {
+        const textNode = {
             object: 'text',
-            text: ToSlateVisitor.getText(thing),
-            marks: ToSlateVisitor.getMarks(parameters),
-        };
+            text: ToSlateVisitor.getText(thing)};
+
+        this.applyMarks(textNode, parameters);
+        return textNode;
     }
 
     /**
@@ -104,15 +94,19 @@ class ToSlateVisitor {
      * @returns {*} the slate text node with marks
      */
     static handleVariable(type, data, text, parameters) {
+
+        const textNode = {
+            object: 'text',
+            text: text
+        };
+
+        this.applyMarks(textNode,parameters);
+
         return {
             object: 'inline',
             type: type,
             data: data,
-            children: [{
-                object: 'text',
-                text: text,
-                marks: ToSlateVisitor.getMarks(parameters),
-            }],
+            children: [textNode]
         };
     }
 
@@ -187,8 +181,7 @@ class ToSlateVisitor {
                     type: 'paragraph',
                     children: [{
                         object: 'text',
-                        text: thing.text,
-                        marks: []
+                        text: thing.text
                     }],
                     data: {}
                 }]
@@ -198,13 +191,7 @@ class ToSlateVisitor {
             result = {
                 object: 'text',
                 text: thing.text,
-                marks: [
-                    {
-                        object: 'mark',
-                        type: 'code',
-                        data: {}
-                    }
-                ]
+                code: true
             };
             break;
         case 'Emph':
@@ -275,8 +262,7 @@ class ToSlateVisitor {
                 children: [
                     {
                         'object': 'text',
-                        'text': thing.text ? thing.text : '',
-                        'marks': []
+                        'text': thing.text ? thing.text : ''
                     }
                 ]
             };
@@ -300,13 +286,7 @@ class ToSlateVisitor {
                     children: [{
                         object: 'text',
                         text: thing.text,
-                        marks: [
-                            {
-                                'object': 'mark',
-                                'type': 'html',
-                                'data': {}
-                            }
-                        ]
+                        html: true
                     }],
                     data: {}
                 }]

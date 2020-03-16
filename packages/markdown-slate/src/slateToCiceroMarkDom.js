@@ -57,11 +57,11 @@ const getText = (input) => {
 };
 
 /**
- * Converts a Slate document node to CiceroMark DOM (as JSON)
- * @param {*} document the Slate document node
+ * Converts a set of Slate child node to CiceroMark DOM (as JSON)
+ * @param {*} value the Slate value
  * @returns {*} the CiceroMark DOM as a Concerto object
  */
-function slateToCiceroMarkDom(document) {
+function slateToCiceroMarkDom(value) {
 
     const result = {
         $class : 'org.accordproject.commonmark.Document',
@@ -69,7 +69,7 @@ function slateToCiceroMarkDom(document) {
         nodes : []
     };
     // convert the value to a plain object
-    _recursive(result, document.children);
+    _recursive(result, value.document.children);
     return removeEmptyParagraphs(result);
 }
 
@@ -181,8 +181,6 @@ function handleText(node) {
     let strong = null;
     let emph = null;
     let result = null;
-
-    console.log(node);
 
     const isBold = node.bold;
     const isItalic = node.italic;
