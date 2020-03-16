@@ -45,6 +45,11 @@ const removeEmptyParagraphs = (input) => {
  */
 const getText = (input) => {
     let result = '';
+
+    if (input.type === 'paragraph') {
+        result += '\n';
+    }
+
     if (input.text) {
         result += input.text;
     }
