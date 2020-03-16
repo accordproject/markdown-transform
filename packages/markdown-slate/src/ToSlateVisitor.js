@@ -209,6 +209,7 @@ class ToSlateVisitor {
             result = {
                 object: 'block',
                 type: 'block_quote',
+                block_quote: true,
                 children: this.processChildNodes(thing,parameters),
                 data: {}
             };
@@ -225,6 +226,7 @@ class ToSlateVisitor {
             result = {
                 object: 'block',
                 type: 'horizontal_rule',
+                hr: true,
                 children: []
             };
             break;
@@ -343,8 +345,8 @@ class ToSlateVisitor {
             if (!result.data) {
                 result.data = {};
             }
-            if (!result.children) {
-                result.children = [];
+            if (!result.children || result.children.length === 0) {
+                result.children = [ {text: ''}];
             }
         }
 
