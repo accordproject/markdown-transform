@@ -48,8 +48,8 @@ const getText = (input) => {
     if (input.text) {
         result += input.text;
     }
-    if (input.nodes) {
-        input.nodes.forEach(node => {
+    if (input.children) {
+        input.children.forEach(node => {
             result += getText(node);
         });
     }
