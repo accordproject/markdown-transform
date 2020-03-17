@@ -83,6 +83,7 @@
     "@accordproject/markdown-common": "0.10.3",
     "easy-pdf-parser": "0.0.4",
     "jsdom": "^15.2.1",
+    "markdown-pdf": "^10.0.0",
     "type-of": "^2.0.1"
   },
   "license-check-config": {

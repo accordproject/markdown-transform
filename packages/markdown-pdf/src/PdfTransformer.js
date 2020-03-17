@@ -17,6 +17,8 @@
 const parsePdf = require('easy-pdf-parser').parsePdf;
 const extractPlainText = require('easy-pdf-parser').extractPlainText;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const markdownpdf = require('markdown-pdf');
+const path = require('path');
 
 /**
  * Converts a PDF to CiceroMark DOM
@@ -44,6 +46,28 @@ class PdfTransformer {
         return this.ciceroMarkTransformer.fromMarkdown(plainText, format);
 
     }
+
+    /**
+    * Convert a CiceroMark DOM to a pdf
+    * @param {*} input CiceroMark DOM
+    * @param {object} [options] Configuration options
+    * @param {string} [options.fileName] Name Of File
+    * @param {string} [options.path] path for output pdf
+    * @param {object} [options.config] markdown pdf Configuration
+    */
+
+    toPdf(input, options) {
+        options = options || {}
+        options.fileName = options.fileName ? '/' + options.fileName : '/accord.pdf'
+        options.path = options.path ? path.join(path.resolve(options.path), options.fileName) : path.join(process.cwd(), options.fileName)
+        options.config = options.config ? options.config : {}
+        //const ciceroMarkTransformer = new CiceroMarkTransformer();
+        const markdown = this.ciceroMarkTransformer.toMarkdown(input)
+        markdownpdf(options.config).from.string(markdown).to(options.path, function() {
+            console.log("Successfully Created Pdf File In ", options.path)
+        })
+    }
+
 }
 
 module.exports = PdfTransformer;
