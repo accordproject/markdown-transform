@@ -102,6 +102,13 @@ describe.only('html', () => {
             expect(ciceroMarkDom).toEqual(json);
         });
     });
+
+    it('converts unwrapped <li> to html', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark('<p>Hello</p><li>list item</li><p>World.</p>', 'json');
+        expect(ciceroMarkDom).toMatchSnapshot(); // (1)
+        const md = ciceroTransformer.toMarkdown(ciceroMarkDom);
+        expect(md).toMatchSnapshot(); // (2)
+    });
 });
 
 describe('markdown-spec', () => {
