@@ -138,7 +138,24 @@ const LINK_RULE = {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Link`,
                 nodes: next(el.childNodes),
-                destination: el.getAttribute('href'),
+                destination: el.getAttribute('href') ? el.getAttribute('href') : 'none',
+                title: el.getAttribute('title') ? el.getAttribute('title') : '',
+            };
+        }
+    }
+};
+
+/**
+ * A rule to deserialize link nodes.
+ * @type {Object}
+ */
+const IMAGE_RULE = {
+    deserialize(el, next) {
+        if (el.tagName && el.tagName.toLowerCase() === 'img') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}Image`,
+                nodes: next(el.childNodes),
+                destination: el.getAttribute('src') ? el.getAttribute('src') : 'none',
                 title: el.getAttribute('title') ? el.getAttribute('title') : '',
             };
         }
@@ -434,6 +451,7 @@ const rules = [
     TEXT_RULE,
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,
+    IMAGE_RULE
 ];
 
 
