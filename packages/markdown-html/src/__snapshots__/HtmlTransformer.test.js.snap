@@ -1999,3 +1999,46 @@ exports[`html converts ul-tight.md to html 2`] = `
 </body>
 </html>"
 `;
+
+exports[`html converts unwrapped <li> to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Hello",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Item",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "list item",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "World.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`html converts unwrapped <li> to html 2`] = `
+"Hello
+-  list item
+
+World."
+`;

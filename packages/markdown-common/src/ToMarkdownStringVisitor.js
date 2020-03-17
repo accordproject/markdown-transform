@@ -256,7 +256,11 @@ class ToMarkdownStringVisitor {
         }
             break;
         case 'Item':
-            throw new Error('Item node should not occur outside of List nodes');
+            // we can hit this case with malformed html
+            {
+                parameters.result += `${ToMarkdownStringVisitor.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters, ToMarkdownStringVisitor.mkParametersInList)}`;
+            }
+            break;
         case 'Document':
             parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             break;
