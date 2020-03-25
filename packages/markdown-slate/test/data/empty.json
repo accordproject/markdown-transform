@@ -1,5 +1,4 @@
 {
-  "object": "value",
   "document": {
     "object": "document",
     "data": {
@@ -13,8 +12,7 @@
         "children": [
           {
             "object": "text",
-            "text": "",
-            "marks": []
+            "text": ""
           }
         ]
       }

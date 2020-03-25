@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,19 +10,17 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "This is a",
-                        "marks": []
+                        "text": "This is a"
                     },
                     {
                         "object": "inline",
                         "type": "softbreak",
                         "data": {},
-                        "children": []
+                        "children": [{"text":""}]
                     },
                     {
                         "object": "text",
-                        "text": "softbreak in para 1.",
-                        "marks": []
+                        "text": "softbreak in para 1."
                     }
                 ]
             },
@@ -34,8 +31,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "And this is para 2.",
-                        "marks": []
+                        "text": "And this is para 2."
                     }
                 ]
             }

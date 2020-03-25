@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,72 +10,40 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "plain ",
-                        "marks": []
+                        "text": "plain "
                     },
                     {
                         "object": "text",
                         "text": "italic",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "italic",
-                                "data": {}
-                            }
-                        ]
+                        "italic": true
                     },
                     {
                         "object": "text",
-                        "text": " ",
-                        "marks": []
+                        "text": " "
                     },
                     {
                         "object": "text",
                         "text": "bold",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "bold",
-                                "data": {}
-                            }
-                        ]
+                        "bold": true
                     },
                     {
                         "object": "text",
-                        "text": " ",
-                        "marks": []
+                        "text": " "
                     },
                     {
                         "object": "text",
                         "text": "bold-italic",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "italic",
-                                "data": {}
-                            },
-                            {
-                                "object": "mark",
-                                "type": "bold",
-                                "data": {}
-                            }
-                        ]
+                        "italic": true,
+                        "bold": true
                     },
                     {
                         "object": "text",
-                        "text": " ",
-                        "marks": []
+                        "text": " "
                     },
                     {
                         "object": "text",
                         "text": "code",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "code",
-                                "data": {}
-                            }
-                        ]
+                        "code": true
                     }
                 ]
             }

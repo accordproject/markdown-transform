@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -19,51 +18,30 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "This is a ",
-                                "marks": []
+                                "text": "This is a "
                             },
                             {
                                 "object": "text",
                                 "text": "link",
-                                "marks": [
-                                    {
-                                        "object": "mark",
-                                        "type": "italic",
-                                        "data": {}
-                                    }
-                                ]
+                                "italic": true
                             },
                             {
                                 "object": "text",
-                                "text": " with ",
-                                "marks": []
+                                "text": " with "
                             },
                             {
                                 "object": "text",
                                 "text": "code",
-                                "marks": [
-                                    {
-                                        "object": "mark",
-                                        "type": "code",
-                                        "data": {}
-                                    }
-                                ]
+                                "code": true
                             },
                             {
                                 "object": "text",
-                                "text": " and ",
-                                "marks": []
+                                "text": " and "
                             },
                             {
                                 "object": "text",
                                 "text": "bold",
-                                "marks": [
-                                    {
-                                        "object": "mark",
-                                        "type": "bold",
-                                        "data": {}
-                                    }
-                                ]
+                                "bold": true
                             }
                         ]
                     }

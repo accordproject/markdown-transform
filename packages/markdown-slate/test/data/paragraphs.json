@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "one",
-                        "marks": []
+                        "text": "one"
                     }
                 ]
             },
@@ -23,8 +21,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "two",
-                        "marks": []
+                        "text": "two"
                     }
                 ]
             },
@@ -35,8 +32,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "three",
-                        "marks": []
+                        "text": "three"
                     }
                 ]
             }

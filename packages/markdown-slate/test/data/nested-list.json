@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "Prolog",
-                        "marks": []
+                        "text": "Prolog"
                     }
                 ]
             },
@@ -37,8 +35,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "item one",
-                                        "marks": []
+                                        "text": "item one"
                                     }
                                 ]
                             }
@@ -56,8 +53,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "item two",
-                                        "marks": []
+                                        "text": "item two"
                                     }
                                 ]
                             },
@@ -80,8 +76,7 @@
                                                 "children": [
                                                     {
                                                         "object": "text",
-                                                        "text": "sublist",
-                                                        "marks": []
+                                                        "text": "sublist"
                                                     }
                                                 ]
                                             }
@@ -99,19 +94,17 @@
                                                 "children": [
                                                     {
                                                         "object": "text",
-                                                        "text": "sublist",
-                                                        "marks": []
+                                                        "text": "sublist"
                                                     },
                                                     {
                                                         "object": "inline",
                                                         "type": "softbreak",
                                                         "data": {},
-                                                        "children": []
+                                                        "children": [{"text":""}]
                                                     },
                                                     {
                                                         "object": "text",
-                                                        "text": "with some text in the same paragraph",
-                                                        "marks": []
+                                                        "text": "with some text in the same paragraph"
                                                     }
                                                 ]
                                             }
@@ -121,7 +114,7 @@
                                         "object": "block",
                                         "type": "list_item",
                                         "data": {},
-                                        "children": []
+                                        "children": [{"text":""}]
                                     }
                                 ]
                             }
@@ -136,8 +129,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "Epilog",
-                        "marks": []
+                        "text": "Epilog"
                     }
                 ]
             }

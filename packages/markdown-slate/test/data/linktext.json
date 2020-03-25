@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "this is a ",
-                        "marks": []
+                        "text": "this is a "
                     },
                     {
                         "object": "inline",
@@ -24,8 +22,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "code link",
-                                "marks": []
+                                "text": "code link"
                             }
                         ]
                     }

@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "This is a",
-                        "marks": []
+                        "text": "This is a"
                     }
                 ]
             },
@@ -20,7 +18,8 @@
                 "object": "block",
                 "type": "horizontal_rule",
                 "data": {},
-                "children": []
+                "children": [{"text":""}],
+                "hr": true
             },
             {
                 "object": "block",
@@ -29,8 +28,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "thematic break",
-                        "marks": []
+                        "text": "thematic break"
                     }
                 ]
             }

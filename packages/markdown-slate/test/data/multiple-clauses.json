@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "This is the contract editor.",
-                        "marks": []
+                        "text": "This is the contract editor."
                     }
                 ]
             },
@@ -23,8 +21,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "And below is a clause with a clause immediately after.",
-                        "marks": []
+                        "text": "And below is a clause with a clause immediately after."
                     }
                 ]
             },
@@ -43,8 +40,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Acceptance of Delivery. ",
-                                "marks": []
+                                "text": "Acceptance of Delivery. "
                             },
                             {
                                 "object": "inline",
@@ -59,8 +55,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " will be deemed to have completed its delivery obligations if in ",
-                                "marks": []
+                                "text": " will be deemed to have completed its delivery obligations if in "
                             },
                             {
                                 "object": "inline",
@@ -75,8 +70,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": "'s opinion, the ",
-                                "marks": []
+                                "text": "'s opinion, the "
                             },
                             {
                                 "object": "inline",
@@ -91,8 +85,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " satisfies the Acceptance Criteria, and ",
-                                "marks": []
+                                "text": " satisfies the Acceptance Criteria, and "
                             },
                             {
                                 "object": "inline",
@@ -107,8 +100,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " notifies ",
-                                "marks": []
+                                "text": " notifies "
                             },
                             {
                                 "object": "inline",
@@ -123,8 +115,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " in writing that it is accepting the ",
-                                "marks": []
+                                "text": " in writing that it is accepting the "
                             },
                             {
                                 "object": "inline",
@@ -139,8 +130,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": ".",
-                                "marks": []
+                                "text": "."
                             }
                         ]
                     },
@@ -151,8 +141,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Inspection and Notice. ",
-                                "marks": []
+                                "text": "Inspection and Notice. "
                             },
                             {
                                 "object": "inline",
@@ -167,8 +156,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " will have ",
-                                "marks": []
+                                "text": " will have "
                             },
                             {
                                 "object": "inline",
@@ -183,8 +171,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " Business Days' to inspect and evaluate the ",
-                                "marks": []
+                                "text": " Business Days' to inspect and evaluate the "
                             },
                             {
                                 "object": "inline",
@@ -199,8 +186,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " on the delivery date before notifying ",
-                                "marks": []
+                                "text": " on the delivery date before notifying "
                             },
                             {
                                 "object": "inline",
@@ -215,8 +201,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " that it is either accepting or rejecting the ",
-                                "marks": []
+                                "text": " that it is either accepting or rejecting the "
                             },
                             {
                                 "object": "inline",
@@ -231,8 +216,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": ".",
-                                "marks": []
+                                "text": "."
                             }
                         ]
                     },
@@ -243,8 +227,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the ",
-                                "marks": []
+                                "text": "Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the "
                             },
                             {
                                 "object": "inline",
@@ -259,8 +242,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " must meet for the ",
-                                "marks": []
+                                "text": " must meet for the "
                             },
                             {
                                 "object": "inline",
@@ -275,8 +257,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": " to comply with its requirements and obligations under this agreement, detailed in ",
-                                "marks": []
+                                "text": " to comply with its requirements and obligations under this agreement, detailed in "
                             },
                             {
                                 "object": "inline",
@@ -291,8 +272,7 @@
                             },
                             {
                                 "object": "text",
-                                "text": ", attached to this agreement.",
-                                "marks": []
+                                "text": ", attached to this agreement."
                             }
                         ]
                     }
@@ -304,8 +284,7 @@
                 "data": {},
                 "children": [{
                     "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": ""
                 }]
             },
             {
@@ -323,8 +302,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Acceptance of Nothing.",
-                                "marks": []
+                                "text": "Acceptance of Nothing."
                             }
                         ]
                     }
@@ -337,8 +315,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "And now there is an empty paragraph before and after two clauses.",
-                        "marks": []
+                        "text": "And now there is an empty paragraph before and after two clauses."
                     }
                 ]
             },
@@ -357,8 +334,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Acceptance of Delivery. Something something something.",
-                                "marks": []
+                                "text": "Acceptance of Delivery. Something something something."
                             }
                         ]
                     }
@@ -370,8 +346,7 @@
                 "data": {},
                 "children": [{
                     "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": ""
                 }]
             },
             {
@@ -389,8 +364,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "You wont believe this clause.",
-                                "marks": []
+                                "text": "You wont believe this clause."
                             }
                         ]
                     }
@@ -402,8 +376,7 @@
                 "data": {},
                 "children": [{
                     "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": ""
                 }]
             }
         ]

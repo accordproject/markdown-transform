@@ -209,7 +209,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is the contract editor.",
           },
@@ -221,7 +220,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And below is a clause.",
           },
@@ -235,14 +233,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -254,14 +250,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " will be deemed to have completed its delivery obligations if in ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -273,14 +267,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "'s opinion, the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -292,14 +284,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " satisfies the Acceptance Criteria, and ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -311,14 +301,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " notifies ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -330,14 +318,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " in writing that it is accepting the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -349,7 +335,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ".",
               },
@@ -361,14 +346,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Inspection and Notice. ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -380,14 +363,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " will have ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "10",
                   },
@@ -399,14 +380,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -418,14 +397,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " on the delivery date before notifying ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -437,14 +414,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " that it is either accepting or rejecting the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -456,7 +431,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ".",
               },
@@ -468,14 +442,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -487,14 +459,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " must meet for the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -506,14 +476,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " to comply with its requirements and obligations under this agreement, detailed in ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Attachment X\\"",
                   },
@@ -525,7 +493,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ", attached to this agreement.",
               },
@@ -545,7 +512,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -558,7 +524,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -782,13 +747,7 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "bold",
-              },
-            ],
+            "bold": true,
             "object": "text",
             "text": "bold",
           },
@@ -801,7 +760,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -855,13 +813,7 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "code",
-              },
-            ],
+            "code": true,
             "object": "text",
             "text": "some code",
           },
@@ -874,7 +826,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -902,7 +853,11 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": "",
+      "text": "
+this
+is a
+code block.
+",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -939,7 +894,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "this
 is a
@@ -959,7 +913,6 @@ code block.
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "end.",
           },
@@ -972,7 +925,6 @@ code block.
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -982,7 +934,11 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "text": "",
+      "text": "
+this
+is a
+code block.
+",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -1094,7 +1050,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "Try CommonMark",
           },
@@ -1106,14 +1061,12 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "You can try CommonMark here.  This dingus is powered by",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " commonmark.js",
               },
@@ -1126,7 +1079,6 @@ Object {
             "type": "link",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": ", the JavaScript reference implementation.",
           },
@@ -1142,7 +1094,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "item one",
                   },
@@ -1161,7 +1112,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "item two",
                   },
@@ -1188,7 +1138,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -1502,7 +1451,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -1515,7 +1463,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -1647,7 +1594,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H1",
           },
@@ -1659,7 +1605,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H2",
           },
@@ -1671,7 +1616,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H3",
           },
@@ -1683,7 +1627,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H4",
           },
@@ -1695,7 +1638,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H5",
           },
@@ -1707,7 +1649,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "H6",
           },
@@ -1719,7 +1660,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "####### Text!!",
           },
@@ -1731,7 +1671,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "end.",
           },
@@ -1744,7 +1683,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -1858,7 +1796,8 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "",
+      "text": "
+<foo/>",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -1890,12 +1829,15 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is text with ",
           },
           Object {
-            "children": Array [],
+            "children": Array [
+              Object {
+                "text": "",
+              },
+            ],
             "data": Object {
               "content": "<foo/>",
             },
@@ -1903,7 +1845,6 @@ Object {
             "type": "html_inline",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": " inside it",
           },
@@ -1917,13 +1858,7 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "html",
-                  },
-                ],
+                "html": true,
                 "object": "text",
                 "text": "<foo/>",
               },
@@ -1940,7 +1875,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is more text",
           },
@@ -1953,7 +1887,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -1980,7 +1913,8 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "",
+      "text": "
+<foo/>",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -2002,7 +1936,13 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "",
+      "text": "
+<foo>
+this
+is an
+html block.
+</foo>
+end.",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2027,13 +1967,7 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "html",
-                  },
-                ],
+                "html": true,
                 "object": "text",
                 "text": "<foo>
 this
@@ -2056,7 +1990,6 @@ end.",
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -2066,7 +1999,13 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
-      "text": "",
+      "text": "
+<foo>
+this
+is an
+html block.
+</foo>
+end.",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2120,7 +2059,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is an image",
           },
@@ -2134,7 +2072,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "",
               },
@@ -2155,7 +2092,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -2240,7 +2176,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is an image",
           },
@@ -2254,7 +2189,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "",
               },
@@ -2275,7 +2209,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -2345,13 +2278,7 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "italic",
-              },
-            ],
+            "italic": true,
             "object": "text",
             "text": "italic",
           },
@@ -2364,7 +2291,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -2597,7 +2523,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "HELLO! This is the contract editor.",
           },
@@ -2609,23 +2534,15 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And below is a ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "bold",
-              },
-            ],
+            "bold": true,
             "object": "text",
             "text": "clause",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": ".",
           },
@@ -2639,7 +2556,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Late Delivery and Penalty.",
               },
@@ -2651,14 +2567,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "In case of delayed delivery",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": " except for Force Majeure cases,",
                   },
@@ -2672,7 +2586,11 @@ Object {
                 "type": "conditional",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
@@ -2680,7 +2598,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Dan\\"",
                   },
@@ -2692,14 +2609,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " (the Seller) shall pay to ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Steve\\"",
                   },
@@ -2711,14 +2626,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " (the Buyer) for every ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "2 days",
                   },
@@ -2730,20 +2643,22 @@ Object {
                 "type": "variable",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "of delay penalty amounting to ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "10.5",
                   },
@@ -2755,25 +2670,26 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "% of the total value of the Equipment",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "whose delivery has been delayed. Any fractional part of a ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "days",
                   },
@@ -2785,25 +2701,26 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " is to be",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "considered a full ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "days",
                   },
@@ -2815,25 +2732,26 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ". The total amount of penalty shall not however,",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "exceed ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "55.0",
                   },
@@ -2845,25 +2763,26 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "% of the total value of the Equipment involved in late delivery.",
               },
               Object {
-                "children": Array [],
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "If the delay is more than ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "15 days",
                   },
@@ -2875,7 +2794,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ", the Buyer is entitled to terminate this Contract.",
               },
@@ -2895,7 +2813,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -2908,7 +2825,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3140,18 +3056,20 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
           Object {
-            "children": Array [],
+            "children": Array [
+              Object {
+                "text": "",
+              },
+            ],
             "data": Object {},
             "object": "inline",
             "type": "linebreak",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "linebreak in para 1.",
           },
@@ -3163,7 +3081,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And this is para 2.",
           },
@@ -3176,7 +3093,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3252,14 +3168,12 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "a ",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "link",
               },
@@ -3280,7 +3194,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3351,14 +3264,12 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "a ",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "link",
               },
@@ -3379,7 +3290,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3467,20 +3377,13 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "code",
-                  },
-                ],
+                "code": true,
                 "object": "text",
                 "text": "code link",
               },
@@ -3500,18 +3403,11 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "code",
-              },
-            ],
+            "code": true,
             "object": "text",
             "text": "code snippet",
           },
@@ -3524,7 +3420,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3616,20 +3511,13 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "italic",
-                  },
-                ],
+                "italic": true,
                 "object": "text",
                 "text": "code link",
               },
@@ -3650,7 +3538,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3754,50 +3641,29 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "This is a ",
               },
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "italic",
-                  },
-                ],
+                "italic": true,
                 "object": "text",
                 "text": "link",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " with ",
               },
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "code",
-                  },
-                ],
+                "code": true,
                 "object": "text",
                 "text": "code",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " and ",
               },
               Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "bold",
-                  },
-                ],
+                "bold": true,
                 "object": "text",
                 "text": "bold",
               },
@@ -3818,7 +3684,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -3918,14 +3783,12 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "this is a ",
           },
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "code link",
               },
@@ -3946,7 +3809,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -4257,7 +4119,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is the contract editor.",
           },
@@ -4269,7 +4130,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And below is a clause with a clause immediately after.",
           },
@@ -4283,14 +4143,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -4302,14 +4160,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " will be deemed to have completed its delivery obligations if in ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -4321,14 +4177,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "'s opinion, the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -4340,14 +4194,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " satisfies the Acceptance Criteria, and ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -4359,14 +4211,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " notifies ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -4378,14 +4228,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " in writing that it is accepting the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -4397,7 +4245,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ".",
               },
@@ -4409,14 +4256,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Inspection and Notice. ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party B\\"",
                   },
@@ -4428,14 +4273,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " will have ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "10",
                   },
@@ -4447,14 +4290,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " Business Days' to inspect and evaluate the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -4466,14 +4307,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " on the delivery date before notifying ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -4485,14 +4324,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " that it is either accepting or rejecting the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -4504,7 +4341,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ".",
               },
@@ -4516,14 +4352,12 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Widgets\\"",
                   },
@@ -4535,14 +4369,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " must meet for the ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Party A\\"",
                   },
@@ -4554,14 +4386,12 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": " to comply with its requirements and obligations under this agreement, detailed in ",
               },
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "\\"Attachment X\\"",
                   },
@@ -4573,7 +4403,6 @@ Object {
                 "type": "variable",
               },
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": ", attached to this agreement.",
               },
@@ -4593,7 +4422,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -4607,7 +4435,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Nothing.",
               },
@@ -4627,7 +4454,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And now there is an empty paragraph before and after two clauses.",
           },
@@ -4641,7 +4467,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "Acceptance of Delivery. Something something something.",
               },
@@ -4661,7 +4486,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -4675,7 +4499,6 @@ Object {
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "You wont believe this clause.",
               },
@@ -4695,7 +4518,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "",
           },
@@ -4708,7 +4530,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5041,7 +4862,12 @@ Object {
                 },
                 Object {
                   "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [],
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "",
+                    },
+                  ],
                 },
               ],
               "start": undefined,
@@ -5089,7 +4915,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "Prolog",
           },
@@ -5105,7 +4930,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "item one",
                   },
@@ -5124,7 +4948,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "item two",
                   },
@@ -5140,7 +4963,6 @@ Object {
                       Object {
                         "children": Array [
                           Object {
-                            "marks": Array [],
                             "object": "text",
                             "text": "sublist",
                           },
@@ -5159,18 +4981,20 @@ Object {
                       Object {
                         "children": Array [
                           Object {
-                            "marks": Array [],
                             "object": "text",
                             "text": "sublist",
                           },
                           Object {
-                            "children": Array [],
+                            "children": Array [
+                              Object {
+                                "text": "",
+                              },
+                            ],
                             "data": Object {},
                             "object": "inline",
                             "type": "softbreak",
                           },
                           Object {
-                            "marks": Array [],
                             "object": "text",
                             "text": "with some text in the same paragraph",
                           },
@@ -5185,7 +5009,11 @@ Object {
                     "type": "list_item",
                   },
                   Object {
-                    "children": Array [],
+                    "children": Array [
+                      Object {
+                        "text": "",
+                      },
+                    ],
                     "data": Object {},
                     "object": "block",
                     "type": "list_item",
@@ -5216,7 +5044,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "Epilog",
           },
@@ -5229,7 +5056,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5317,7 +5143,12 @@ Object {
                 },
                 Object {
                   "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [],
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "",
+                    },
+                  ],
                 },
               ],
               "start": undefined,
@@ -5422,7 +5253,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "one",
                   },
@@ -5441,7 +5271,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "two",
                   },
@@ -5460,7 +5289,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "three",
                   },
@@ -5487,7 +5315,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5602,7 +5429,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "one",
           },
@@ -5614,7 +5440,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "two",
           },
@@ -5626,7 +5451,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "three",
           },
@@ -5639,7 +5463,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5706,7 +5529,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "plain",
           },
@@ -5719,7 +5541,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5771,11 +5592,11 @@ Object {
   "document": Object {
     "children": Array [
       Object {
+        "block_quote": true,
         "children": Array [
           Object {
             "children": Array [
               Object {
-                "marks": Array [],
                 "object": "text",
                 "text": "this is a quote",
               },
@@ -5793,7 +5614,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -5868,18 +5688,20 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
           Object {
-            "children": Array [],
+            "children": Array [
+              Object {
+                "text": "",
+              },
+            ],
             "data": Object {},
             "object": "inline",
             "type": "softbreak",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "softbreak in para 1.",
           },
@@ -5891,7 +5713,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "And this is para 2.",
           },
@@ -5904,7 +5725,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -6017,71 +5837,39 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "plain ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "italic",
-              },
-            ],
+            "italic": true,
             "object": "text",
             "text": "italic",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": " ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "bold",
-              },
-            ],
+            "bold": true,
             "object": "text",
             "text": "bold",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": " ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "italic",
-              },
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "bold",
-              },
-            ],
+            "bold": true,
+            "italic": true,
             "object": "text",
             "text": "bold-italic",
           },
           Object {
-            "marks": Array [],
             "object": "text",
             "text": " ",
           },
           Object {
-            "marks": Array [
-              Object {
-                "data": Object {},
-                "object": "mark",
-                "type": "code",
-              },
-            ],
+            "code": true,
             "object": "text",
             "text": "code",
           },
@@ -6094,7 +5882,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -6209,7 +5996,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "This is a",
           },
@@ -6219,15 +6005,19 @@ Object {
         "type": "paragraph",
       },
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "text": "",
+          },
+        ],
         "data": Object {},
+        "hr": true,
         "object": "block",
         "type": "horizontal_rule",
       },
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "thematic break",
           },
@@ -6240,7 +6030,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -6417,7 +6206,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "Discount.",
           },
@@ -6429,7 +6217,6 @@ Object {
       Object {
         "children": Array [
           Object {
-            "marks": Array [],
             "object": "text",
             "text": "The Discount is determined according to the following table:",
           },
@@ -6445,7 +6232,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                   },
@@ -6464,7 +6250,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                   },
@@ -6483,7 +6268,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                   },
@@ -6502,7 +6286,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                   },
@@ -6521,7 +6304,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                   },
@@ -6540,7 +6322,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                   },
@@ -6568,7 +6349,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 
@@ -6770,7 +6550,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "one",
                   },
@@ -6789,7 +6568,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "two",
                   },
@@ -6808,7 +6586,6 @@ Object {
               Object {
                 "children": Array [
                   Object {
-                    "marks": Array [],
                     "object": "text",
                     "text": "three",
                   },
@@ -6835,7 +6612,6 @@ Object {
     "data": Object {},
     "object": "document",
   },
-  "object": "value",
 }
 `;
 

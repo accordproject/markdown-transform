@@ -1,10 +1,10 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
         "children": [
             {
+                "block_quote": true,
                 "object": "block",
                 "data": {},
                 "type": "block_quote",
@@ -16,8 +16,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "this is a quote",
-                                "marks": []
+                                "text": "this is a quote"
                             }
                         ]
                     }
