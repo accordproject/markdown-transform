@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -17,13 +16,7 @@
                             {
                                 "object": "text",
                                 "text": "<foo>\nthis\nis an\nhtml block.\n</foo>\nend.",
-                                "marks": [
-                                    {
-                                        "object": "mark",
-                                        "type": "html",
-                                        "data": {}
-                                    }
-                                ]
+                                "html": true
                             }
                         ]
                     }

@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -12,13 +11,7 @@
                     {
                         "object": "text",
                         "text": "some code",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "code",
-                                "data": {}
-                            }
-                        ]
+                        "code": true
                     }
                 ]
             }

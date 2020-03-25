@@ -85,7 +85,6 @@ describe('slate', () => {
         it('converts variable to and from CiceroMark', () => {
             const slateValue = slateTransformer.fromMarkdown('test <variable id="foo" value="bar"/>');
             const expectedSlateValue = {
-                'object': 'value',
                 'document': {
                     'object': 'document',
                     'data': {},
@@ -97,8 +96,7 @@ describe('slate', () => {
                             'children': [
                                 {
                                     'object': 'text',
-                                    'text': 'test ',
-                                    'marks': []
+                                    'text': 'test '
                                 },
                                 {
                                     'object': 'inline',
@@ -107,7 +105,6 @@ describe('slate', () => {
                                         'id': 'foo'
                                     },
                                     'children': [{
-                                        'marks': [],
                                         'object': 'text',
                                         'text': 'bar'
                                     }]
@@ -125,7 +122,6 @@ describe('slate', () => {
             const slateValue = slateTransformer.fromMarkdown('test <computed value="bar"/>');
             //console.log(JSON.stringify(slateValue, null, 4));
             const expectedSlateValue = {
-                'object': 'value',
                 'document': {
                     'object': 'document',
                     'data': {},
@@ -137,15 +133,13 @@ describe('slate', () => {
                             'children': [
                                 {
                                     'object': 'text',
-                                    'text': 'test ',
-                                    'marks': []
+                                    'text': 'test '
                                 },
                                 {
                                     'object': 'inline',
                                     'type': 'computed',
                                     'data': {},
                                     'children': [{
-                                        'marks': [],
                                         'object': 'text',
                                         'text': 'bar'
                                     }]

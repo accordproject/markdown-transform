@@ -1,453 +1,331 @@
 {
-   "object":"value",
-   "document":{
-      "object":"document",
-      "children":[
-         {
-            "object":"block",
-            "data":{
-
+    "document": {
+        "object": "document",
+        "children": [
+            {
+                "object": "block",
+                "data": {},
+                "type": "heading_one",
+                "children": [
+                    {
+                        "object": "text",
+                        "text": "Heading"
+                    }
+                ]
             },
-            "type":"heading_one",
-            "children":[
-               {
-                  "object":"text",
-                  "text":"Heading",
-                  "marks":[
-
-                  ]
-               }
-            ]
-         },
-         {
-            "object":"block",
-            "type":"paragraph",
-            "children":[
-               {
-                  "object":"text",
-                  "text":"And below is a ",
-                  "marks":[
-
-                  ]
-               },
-               {
-                  "object":"text",
-                  "text":"clause",
-                  "marks":[
-                     {
-                        "object":"mark",
-                        "type":"bold",
-                        "data":{
-
-                        }
-                     }
-                  ]
-               },
-               {
-                  "object":"text",
-                  "text":".",
-                  "marks":[
-
-                  ]
-               }
-            ],
-            "data":{
-
+            {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                    {
+                        "object": "text",
+                        "text": "And below is a "
+                    },
+                    {
+                        "object": "text",
+                        "text": "clause",
+                        "bold": true
+                    },
+                    {
+                        "object": "text",
+                        "text": "."
+                    }
+                ],
+                "data": {}
+            },
+            {
+                "object": "block",
+                "type": "clause",
+                "data": {
+                    "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+                    "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"
+                },
+                "children": [
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "object": "text",
+                                "text": "Acceptance of Delivery. "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "shipper"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party A\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " will be deemed to have completed its delivery obligations if in "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "receiver"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party B\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": "'s opinion, the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "deliverable"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Widgets\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " satisfies the Acceptance Criteria, and "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "receiver"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party B\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " notifies "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "shipper"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party A\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " in writing that it is accepting the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "deliverable"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Widgets\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": "."
+                            }
+                        ],
+                        "data": {}
+                    },
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "object": "text",
+                                "text": "Inspection and Notice. "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "receiver"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party B\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " will have "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "businessDays"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "10"
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " Business Days' to inspect and evaluate the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "deliverable"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Widgets\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " on the delivery date before notifying "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "shipper"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party A\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " that it is either accepting or rejecting the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "deliverable"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Widgets\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": "."
+                            }
+                        ],
+                        "data": {}
+                    },
+                    {
+                        "object": "block",
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "object": "text",
+                                "text": "Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "deliverable"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Widgets\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " must meet for the "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "shipper"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Party A\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": " to comply with its requirements and obligations under this agreement, detailed in "
+                            },
+                            {
+                                "object": "inline",
+                                "type": "variable",
+                                "data": {
+                                    "id": "attachment"
+                                },
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": "\"Attachment X\""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": ", attached to this agreement."
+                            }
+                        ],
+                        "data": {}
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "children": [
+                    {
+                        "object": "text",
+                        "text": ""
+                    }
+                ]
             }
-         },
-         {
-            "object":"block",
-            "type":"clause",
-            "data":{
-               "clauseid":"479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-               "src":"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"
-            },
-            "children":[
-               {
-                  "object":"block",
-                  "type":"paragraph",
-                  "children":[
-                     {
-                        "object":"text",
-                        "text":"Acceptance of Delivery. ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"shipper"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party A\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" will be deemed to have completed its delivery obligations if in ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"receiver"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party B\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":"'s opinion, the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"deliverable"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Widgets\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" satisfies the Acceptance Criteria, and ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"receiver"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party B\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" notifies ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"shipper"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party A\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" in writing that it is accepting the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"deliverable"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Widgets\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":".",
-                        "marks":[
-
-                        ]
-                     }
-                  ],
-                  "data":{
-
-                  }
-               },
-               {
-                  "object":"block",
-                  "type":"paragraph",
-                  "children":[
-                     {
-                        "object":"text",
-                        "text":"Inspection and Notice. ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"receiver"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party B\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" will have ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"businessDays"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"10",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" Business Days' to inspect and evaluate the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"deliverable"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Widgets\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" on the delivery date before notifying ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"shipper"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party A\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" that it is either accepting or rejecting the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"deliverable"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Widgets\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":".",
-                        "marks":[
-
-                        ]
-                     }
-                  ],
-                  "data":{
-
-                  }
-               },
-               {
-                  "object":"block",
-                  "type":"paragraph",
-                  "children":[
-                     {
-                        "object":"text",
-                        "text":"Acceptance Criteria. The \"Acceptance Criteria\" are the specifications the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"deliverable"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Widgets\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" must meet for the ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"shipper"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Party A\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":" to comply with its requirements and obligations under this agreement, detailed in ",
-                        "marks":[
-
-                        ]
-                     },
-                     {
-                        "object":"inline",
-                        "type":"variable",
-                        "data":{
-                           "id":"attachment"
-                        },
-                        "children":[
-                           {
-                              "object":"text",
-                              "text":"\"Attachment X\"",
-                              "marks":[
-
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "object":"text",
-                        "text":", attached to this agreement.",
-                        "marks":[
-
-                        ]
-                     }
-                  ],
-                  "data":{
-
-                  }
-               }
-            ]
-         },
-         {
-             "object": "block",
-             "type": "paragraph",
-             "data": {},
-             "children": [{
-                 "object": "text",
-                 "text": "",
-                 "marks": []
-             }]
-         }
-      ],
-      "data":{
-
-      }
-   }
+        ],
+        "data": {}
+    }
 }

@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "Discount.",
-                        "marks": []
+                        "text": "Discount."
                     }
                 ]
             },
@@ -23,8 +21,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "The Discount is determined according to the following table:",
-                        "marks": []
+                        "text": "The Discount is determined according to the following table:"
                     }
                 ]
             },
@@ -48,8 +45,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
-                                        "marks": []
+                                        "text": "0.0$ million <= Volume < 1.0$ million : 3.1%"
                                     }
                                 ]
                             }
@@ -67,8 +63,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
-                                        "marks": []
+                                        "text": "1.0$ million <= Volume < 10.0$ million : 3.1%"
                                     }
                                 ]
                             }
@@ -86,8 +81,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
-                                        "marks": []
+                                        "text": "10.0$ million <= Volume < 50.0$ million : 2.9%"
                                     }
                                 ]
                             }
@@ -105,8 +99,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
-                                        "marks": []
+                                        "text": "50.0$ million <= Volume < 500.0$ million : 2.5%"
                                     }
                                 ]
                             }
@@ -124,8 +117,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
-                                        "marks": []
+                                        "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%"
                                     }
                                 ]
                             }
@@ -143,8 +135,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
-                                        "marks": []
+                                        "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%"
                                     }
                                 ]
                             }

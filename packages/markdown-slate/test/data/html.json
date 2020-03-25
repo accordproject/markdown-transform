@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "This is text with ",
-                        "marks": []
+                        "text": "This is text with "
                     },
                     {
                         "object": "inline",
@@ -20,12 +18,11 @@
                         "data": {
                             "content": "<foo/>"
                         },
-                        "children": []
+                        "children": [{"text":""}]
                     },
                     {
                         "object": "text",
-                        "text": " inside it",
-                        "marks": []
+                        "text": " inside it"
                     }
                 ]
             },
@@ -42,13 +39,7 @@
                             {
                                 "object": "text",
                                 "text": "<foo/>",
-                                "marks": [
-                                    {
-                                        "object": "mark",
-                                        "type": "html",
-                                        "data": {}
-                                    }
-                                ]
+                                "html": true
                             }
                         ]
                     }
@@ -61,8 +52,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "This is more text",
-                        "marks": []
+                        "text": "This is more text"
                     }
                 ]
             }

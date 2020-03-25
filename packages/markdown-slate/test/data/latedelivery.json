@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "HELLO! This is the contract editor.",
-                        "marks": []
+                        "text": "HELLO! This is the contract editor."
                     }
                 ]
             },
@@ -23,24 +21,16 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "And below is a ",
-                        "marks": []
+                        "text": "And below is a "
                     },
                     {
                         "object": "text",
                         "text": "clause",
-                        "marks": [
-                            {
-                                "object": "mark",
-                                "type": "bold",
-                                "data": {}
-                            }
-                        ]
+                        "bold": true
                     },
                     {
                         "object": "text",
-                        "text": ".",
-                        "marks": []
+                        "text": "."
                     }
                 ]
             },
@@ -59,8 +49,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "Late Delivery and Penalty.",
-                                "marks": []
+                                "text": "Late Delivery and Penalty."
                             }
                         ]
                     },
@@ -71,8 +60,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "In case of delayed delivery",
-                                "marks": []
+                                "text": "In case of delayed delivery"
                             },
                             {
                                 "object": "inline",
@@ -85,8 +73,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": " except for Force Majeure cases,",
-                                        "marks": []
+                                        "text": " except for Force Majeure cases,"
                                     }
                                 ]
                             },
@@ -94,7 +81,7 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "inline",
@@ -105,15 +92,13 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "\"Dan\"",
-                                        "marks": []
+                                        "text": "\"Dan\""
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": " (the Seller) shall pay to ",
-                                "marks": []
+                                "text": " (the Seller) shall pay to "
                             },
                             {
                                 "object": "inline",
@@ -124,15 +109,13 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "\"Steve\"",
-                                        "marks": []
+                                        "text": "\"Steve\""
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": " (the Buyer) for every ",
-                                "marks": []
+                                "text": " (the Buyer) for every "
                             },
                             {
                                 "object": "inline",
@@ -143,8 +126,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "2 days",
-                                        "marks": []
+                                        "text": "2 days"
                                     }
                                 ]
                             },
@@ -152,12 +134,11 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "text",
-                                "text": "of delay penalty amounting to ",
-                                "marks": []
+                                "text": "of delay penalty amounting to "
                             },
                             {
                                 "object": "inline",
@@ -168,26 +149,23 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "10.5",
-                                        "marks": []
+                                        "text": "10.5"
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": "% of the total value of the Equipment",
-                                "marks": []
+                                "text": "% of the total value of the Equipment"
                             },
                             {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "text",
-                                "text": "whose delivery has been delayed. Any fractional part of a ",
-                                "marks": []
+                                "text": "whose delivery has been delayed. Any fractional part of a "
                             },
                             {
                                 "object": "inline",
@@ -198,26 +176,23 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "days",
-                                        "marks": []
+                                        "text": "days"
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": " is to be",
-                                "marks": []
+                                "text": " is to be"
                             },
                             {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "text",
-                                "text": "considered a full ",
-                                "marks": []
+                                "text": "considered a full "
                             },
                             {
                                 "object": "inline",
@@ -228,26 +203,23 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "days",
-                                        "marks": []
+                                        "text": "days"
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": ". The total amount of penalty shall not however,",
-                                "marks": []
+                                "text": ". The total amount of penalty shall not however,"
                             },
                             {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "text",
-                                "text": "exceed ",
-                                "marks": []
+                                "text": "exceed "
                             },
                             {
                                 "object": "inline",
@@ -258,26 +230,23 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "55.0",
-                                        "marks": []
+                                        "text": "55.0"
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": "% of the total value of the Equipment involved in late delivery.",
-                                "marks": []
+                                "text": "% of the total value of the Equipment involved in late delivery."
                             },
                             {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": []
+                                "children": [{"text":""}]
                             },
                             {
                                 "object": "text",
-                                "text": "If the delay is more than ",
-                                "marks": []
+                                "text": "If the delay is more than "
                             },
                             {
                                 "object": "inline",
@@ -288,15 +257,13 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "15 days",
-                                        "marks": []
+                                        "text": "15 days"
                                     }
                                 ]
                             },
                             {
                                 "object": "text",
-                                "text": ", the Buyer is entitled to terminate this Contract.",
-                                "marks": []
+                                "text": ", the Buyer is entitled to terminate this Contract."
                             }
                         ]
                     }
@@ -308,8 +275,7 @@
                 "data": {},
                 "children": [{
                     "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": ""
                 }]
             }
         ]

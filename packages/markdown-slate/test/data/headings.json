@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H1",
-                        "marks": []
+                        "text": "H1"
                     }
                 ]
             },
@@ -23,8 +21,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H2",
-                        "marks": []
+                        "text": "H2"
                     }
                 ]
             },
@@ -35,8 +32,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H3",
-                        "marks": []
+                        "text": "H3"
                     }
                 ]
             },
@@ -47,8 +43,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H4",
-                        "marks": []
+                        "text": "H4"
                     }
                 ]
             },
@@ -59,8 +54,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H5",
-                        "marks": []
+                        "text": "H5"
                     }
                 ]
             },
@@ -71,8 +65,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "H6",
-                        "marks": []
+                        "text": "H6"
                     }
                 ]
             },
@@ -83,8 +76,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "####### Text!!",
-                        "marks": []
+                        "text": "####### Text!!"
                     }
                 ]
             },
@@ -95,8 +87,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "end.",
-                        "marks": []
+                        "text": "end."
                     }
                 ]
             }

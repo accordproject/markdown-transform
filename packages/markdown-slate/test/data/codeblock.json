@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -16,8 +15,7 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": "this\nis a\ncode block.\n",
-                                "marks": []
+                                "text": "this\nis a\ncode block.\n"
                             }
                         ]
                     }
@@ -30,8 +28,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "end.",
-                        "marks": []
+                        "text": "end."
                     }
                 ]
             }

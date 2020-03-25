@@ -1,5 +1,4 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
         "data": {},
@@ -11,8 +10,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "Try CommonMark",
-                        "marks": []
+                        "text": "Try CommonMark"
                     }
                 ]
             },
@@ -23,8 +21,7 @@
                 "children": [
                     {
                         "object": "text",
-                        "text": "You can try CommonMark here.  This dingus is powered by",
-                        "marks": []
+                        "text": "You can try CommonMark here.  This dingus is powered by"
                     },
                     {
                         "object": "inline",
@@ -36,15 +33,13 @@
                         "children": [
                             {
                                 "object": "text",
-                                "text": " commonmark.js",
-                                "marks": []
+                                "text": " commonmark.js"
                             }
                         ]
                     },
                     {
                         "object": "text",
-                        "text": ", the JavaScript reference implementation.",
-                        "marks": []
+                        "text": ", the JavaScript reference implementation."
                     }
                 ]
             },
@@ -69,8 +64,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "item one",
-                                        "marks": []
+                                        "text": "item one"
                                     }
                                 ]
                             }
@@ -88,8 +82,7 @@
                                 "children": [
                                     {
                                         "object": "text",
-                                        "text": "item two",
-                                        "marks": []
+                                        "text": "item two"
                                     }
                                 ]
                             }
