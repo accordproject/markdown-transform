@@ -169,9 +169,25 @@ describe('acceptance', () => {
     it('converts acceptance clause content to CommonMark string (removeFormatting)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formatted.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
-        // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true });
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance clause content to CommonMark string (unescapeExpressions)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { unescapeExpressions: true });
+        expect(newMarkdown).toMatchSnapshot();
+
+    });
+
+    it('converts acceptance clause content to CommonMark string (removeFormatting & unescapeExpressions)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, unescapeExpressions: true });
         expect(newMarkdown).toMatchSnapshot();
     });
 });

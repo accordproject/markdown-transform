@@ -22,6 +22,7 @@ const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMark
 const ToCiceroVisitor = require('./ToCiceroVisitor');
 const FromCiceroVisitor = require('./FromCiceroVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
+const unescapeExpressions = require('./unescapeExpressions');
 
 /**
  * Converts a CiceroMark DOM to/from a
@@ -138,54 +139,48 @@ class CiceroMarkTransformer {
      * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
+     * @param {boolean} [options.unescapeExpressions] if true expression nodes are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, format='concerto', options) {
+        let json = Object.assign({}, input);
+
+        // remove expressions, e.g. {{ parameter }}, {{% computed expression %}}
+        if(options && options.unescapeExpressions) {
+            json = unescapeExpressions(input.getType ? this.serializer.toJSON(input): input);
+        }
 
         // remove formatting
         if(options && options.removeFormatting) {
-            // convert to JSON
-            if(input.getType) {
-                input = this.serializer.toJSON(input);
-            }
-
             const cmt = new CommonMarkTransformer(options);
-            input = cmt.removeFormatting(input);
+            json = cmt.removeFormatting(input.getType ? this.serializer.toJSON(input): input);
 
             // now we need to also remove the formatting for clause nodes
-            const clauses = input.nodes.filter(element => element.$class === 'org.accordproject.ciceromark.Clause');
-            clauses.forEach(clause => {
-                const clauseContent = {
-                    $class : input.$class,
-                    xmlns : input.xmlns,
-                    nodes : clause.nodes
-                };
-
-                const unformatted = cmt.removeFormatting(clauseContent);
-                clause.nodes = unformatted.nodes;
-            });
+            json.nodes
+                .filter(element => element.$class === 'org.accordproject.ciceromark.Clause')
+                .forEach(clause => {
+                    const unformatted = cmt.removeFormatting(Object.assign({}, json, { nodes: clause.nodes }));
+                    clause.nodes = unformatted.nodes;
+                });
         }
 
         // convert to concerto
-        if(!input.getType) {
-            input = this.serializer.fromJSON(input);
+        if(!json.getType) {
+            json = this.serializer.fromJSON(json);
         }
 
         // convert to common mark
-        const parameters = {
+        const visitor = new FromCiceroVisitor(options);
+        json.accept( visitor, {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer
-        };
-        const visitor = new FromCiceroVisitor(options);
-        input.accept( visitor, parameters );
+        } );
 
         if(format === 'concerto') {
-            return input;
+            return json;
         }
-        else {
-            return this.serializer.toJSON(input);
-        }
+        return this.serializer.toJSON(json);
     }
 }
 
