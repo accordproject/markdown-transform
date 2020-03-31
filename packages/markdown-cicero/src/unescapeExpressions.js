@@ -42,7 +42,9 @@ function mapObject(obj, stack) {
     // otherwise visit all nodes
     default:
         if(obj.nodes){
-            stack.push(Object.assign(obj, { nodes: [] }));
+            let resObj = Object.assign({}, obj);
+            resObj.nodes = [];
+            stack.push(resObj);
             obj.nodes.forEach(element => {
                 mapObject(element, stack);
             });
