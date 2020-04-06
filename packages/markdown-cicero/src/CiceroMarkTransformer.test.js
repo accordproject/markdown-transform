@@ -165,7 +165,6 @@ describe('acceptance', () => {
         expect(ciceroMarkTransformer.getClauseText.bind(json.nodes[1], { wrapVariables: false})).toThrow('Cannot apply getClauseText to non-clause node');
     });
 
-
     it('converts acceptance clause content to CommonMark string (removeFormatting)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formatted.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
@@ -174,20 +173,29 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
     });
 
-    it('converts acceptance clause content to CommonMark string (unquoteVariables)', () => {
+    it('converts acceptance clause content to CommonMark string (no quoteVariables)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { unquoteVariables: true });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { quoteVariables: false });
         expect(newMarkdown).toMatchSnapshot();
 
     });
 
-    it('converts acceptance clause content to CommonMark string (removeFormatting & unquoteVariables)', () => {
+    it('converts acceptance clause content to CommonMark string (no quoteVariables 2)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, unquoteVariables: true });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { quoteVariables: false });
+        expect(newMarkdown).toMatchSnapshot();
+
+    });
+
+    it('converts acceptance clause content to CommonMark string (removeFormatting & no quoteVariables)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, quoteVariables: false });
         expect(newMarkdown).toMatchSnapshot();
     });
 });
