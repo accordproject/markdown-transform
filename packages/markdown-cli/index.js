@@ -48,6 +48,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('noQuote', {
+            describe: 'do use quotes for CiceroMark variables',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('verbose', {
             describe: 'verbose output',
             type: 'boolean',
@@ -64,6 +69,7 @@ require('yargs')
             options.cicero = argv.cicero;
             options.slate = argv.slate;
             options.html = argv.html;
+            options.noQuote = argv.noQuote;
             options.verbose = argv.verbose;
             return Commands.parse(argv.sample, argv.output, options)
                 .then((result) => {
@@ -111,6 +117,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('noQuote', {
+            describe: 'do use quotes for CiceroMark variables',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('noIndex', {
             describe: 'do not index ordered lists',
             type: 'boolean',
@@ -134,6 +145,7 @@ require('yargs')
             options.html = argv.html;
             options.plainText = argv.plainText;
             options.noWrap = argv.noWrap;
+            options.noQuote = argv.noQuote;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
             return Commands.draft(argv.data, argv.output, options)
@@ -182,6 +194,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('noQuote', {
+            describe: 'do use quotes for CiceroMark variables',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('noIndex', {
             describe: 'do not index ordered lists',
             type: 'boolean',
@@ -205,6 +222,7 @@ require('yargs')
             options.html = argv.html;
             options.plainText = argv.plainText;
             options.noWrap = argv.noWrap;
+            options.noQuote = argv.noQuote;
             options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
             return Commands.normalize(argv.sample, argv.output, options)

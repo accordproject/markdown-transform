@@ -79,11 +79,13 @@ class Commands {
      * @param {boolean} [options.cicero] whether to further transform for Cicero
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.html] whether to further transform for HTML
+     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
     static async parse(samplePath, outputPath, options) {
-        const { cicero, slate, html, verbose } = options;
+        const { cicero, slate, html, noQuote, verbose } = options;
+        console.log('OPTIONS ' + JSON.stringify(options));
         const commonOptions = {};
         commonOptions.tagInfo = true;
 
@@ -114,30 +116,22 @@ class Commands {
             Logger.info(JSON.stringify(result, null, 4));
         }
 
-        if (cicero) {
-            result = ciceroMark.fromCommonMark(result, 'json');
+        if (cicero || slate || html) {
+            const ciceroOptions = {};
+            ciceroOptions.quoteVariables = noQuote ? false : true;
+            result = ciceroMark.fromCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CiceroMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
         }
-        else if (slate) {
-            result = ciceroMark.fromCommonMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
+        if (slate) {
             result = slateMark.fromCiceroMark(result);
             if(verbose) {
                 Logger.info('=== Slate DOM ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
         } else if (html) {
-            result = ciceroMark.fromCommonMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
             result = htmlMark.toHtml(result);
         }
         if (!html) {
@@ -176,12 +170,13 @@ class Commands {
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.plainText] whether to remove rich text formatting
      * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
+     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
      * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
     static draft(dataPath, outputPath, options) {
-        const { cicero, slate, html, plainText, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, html, plainText, noWrap, noQuote, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -198,6 +193,7 @@ class Commands {
         if (cicero) {
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {
@@ -212,6 +208,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {
@@ -226,6 +223,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {
@@ -267,12 +265,13 @@ class Commands {
      * @param {boolean} [options.slate] whether to further transform for Slate
      * @param {boolean} [options.plainText] whether to remove rich text formatting
      * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
+     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
      * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
     static normalize(samplePath, outputPath, options) {
-        const { cicero, slate, html, plainText, noWrap, noIndex, verbose } = options;
+        const { cicero, slate, html, plainText, noWrap, noQuote, noIndex, verbose } = options;
         const commonOptions = {};
         commonOptions.tagInfo = true;
         commonOptions.noIndex = noIndex ? true : false;
@@ -290,31 +289,22 @@ class Commands {
             Logger.info(JSON.stringify(result, null, 4));
         }
 
-        if (cicero) {
-            result = ciceroMark.fromCommonMark(result, 'json');
+        if (cicero || slate || html) {
+            const ciceroOptions = {};
+            ciceroOptions.quoteVariables = noQuote ? false : true;
+            result = ciceroMark.fromCommonMark(result, 'json', ciceroOptions);
             if(verbose) {
                 Logger.info('=== CiceroMark ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
         }
-        else if (slate) {
-            result = ciceroMark.fromCommonMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
+        if (slate) {
             result = slateMark.fromCiceroMark(result);
             if(verbose) {
                 Logger.info('=== Slate DOM ===');
                 Logger.info(JSON.stringify(result, null, 4));
             }
-        }
-        else if (html) {
-            result = ciceroMark.fromCommonMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
+        } else if (html) {
             result = htmlMark.toHtml(result);
             if(verbose) {
                 Logger.info('=== HTML ===');
@@ -324,6 +314,7 @@ class Commands {
         if (cicero) {
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {
@@ -338,6 +329,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {
@@ -352,6 +344,7 @@ class Commands {
             }
             const ciceroOptions = {};
             ciceroOptions.wrapVariables = noWrap ? false : true;
+            ciceroOptions.quoteVariables = noQuote ? false : true;
             result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
             result = plainText ? commonMark.removeFormatting(result) : result;
             if(verbose) {

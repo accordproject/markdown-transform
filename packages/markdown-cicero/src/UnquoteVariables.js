@@ -57,12 +57,12 @@ function mapObject(obj, stack) {
 }
 
 /**
-* Replaces Variable and Computed expressions with text nodes
+* Replaces variable and computed variables with text nodes
 * @param {*} input input object
 * @param {*} options options object
 * @returns {*} the modified object
 */
-function unescapeExpressions(input) {
+function unquoteVariables(input) {
     const root = {
         $class : 'org.accordproject.commonmark.Document',
         xmlns : input.xmlns,
@@ -74,4 +74,4 @@ function unescapeExpressions(input) {
     return root;
 }
 
-module.exports = unescapeExpressions;
+module.exports = unquoteVariables;
