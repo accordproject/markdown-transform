@@ -174,20 +174,20 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
     });
 
-    it('converts acceptance clause content to CommonMark string (unescapeExpressions)', () => {
+    it('converts acceptance clause content to CommonMark string (unquoteVariables)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { unescapeExpressions: true });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { unquoteVariables: true });
         expect(newMarkdown).toMatchSnapshot();
 
     });
 
-    it('converts acceptance clause content to CommonMark string (removeFormatting & unescapeExpressions)', () => {
+    it('converts acceptance clause content to CommonMark string (removeFormatting & unquoteVariables)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-computed.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, unescapeExpressions: true });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, unquoteVariables: true });
         expect(newMarkdown).toMatchSnapshot();
     });
 });

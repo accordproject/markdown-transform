@@ -22,7 +22,7 @@ const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMark
 const ToCiceroVisitor = require('./ToCiceroVisitor');
 const FromCiceroVisitor = require('./FromCiceroVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
-const unescapeExpressions = require('./unescapeExpressions');
+const unquoteVariables = require('./UnquoteVariables');
 
 /**
  * Converts a CiceroMark DOM to/from a
@@ -51,12 +51,13 @@ class CiceroMarkTransformer {
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
      * @param {string} [format] result format, defaults to 'concerto'. Pass
+     * @param {object} [options] configuration options
      * 'json' to return the JSON data.
      * @returns {*} concertoObject concerto ciceromark object
      */
-    fromMarkdown(markdown, format='concerto') {
+    fromMarkdown(markdown, format='concerto', options) {
         const commonMarkDom = this.commonMark.fromMarkdown(markdown, 'json');
-        return this.fromCommonMark(commonMarkDom, format);
+        return this.fromCommonMark(commonMarkDom, format, options);
     }
 
     /**
@@ -64,10 +65,10 @@ class CiceroMarkTransformer {
      * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
      * @param {string} [format] result format, defaults to 'concerto'. Pass
      * 'json' to return the JSON data.
+     * @param {object} [options] configuration options
      * @returns {*} CiceroMark DOM
      */
-    fromCommonMark(input, format='concerto') {
-
+    fromCommonMark(input, format='concerto', options) {
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
         }
@@ -82,11 +83,20 @@ class CiceroMarkTransformer {
         const visitor = new ToCiceroVisitor();
         input.accept( visitor, parameters );
 
-        if(format === 'concerto') {
-            return input;
+        let json = Object.assign({}, this.serializer.toJSON(input));
+        let result;
+
+        // remove variables, e.g. {{ variable }}, {{% computed variable %}}
+        if(options && options.quoteVariables && !options.quoteVariables) {
+            result = unquoteVariables(json);
+        } else {
+            result = json;
         }
-        else {
-            return this.serializer.toJSON(input);
+
+        if(format === 'concerto') {
+            return this.serializer.fromJSON(result);
+        } else {
+            return result;
         }
     }
 
@@ -139,21 +149,27 @@ class CiceroMarkTransformer {
      * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
-     * @param {boolean} [options.unescapeExpressions] if true expression nodes are removed
+     * @param {boolean} [options.unquoteVariables] if true variable nodes are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, format='concerto', options) {
-        let json = Object.assign({}, input);
+        // convert from concerto
+        let json;
+        if(input.getType) {
+            json = Object.assign({}, this.serializer.toJSON(input));
+        } else {
+            json = Object.assign({}, input);
+        }
 
-        // remove expressions, e.g. {{ parameter }}, {{% computed expression %}}
-        if(options && options.unescapeExpressions) {
-            json = unescapeExpressions(input.getType ? this.serializer.toJSON(input): input);
+        // remove variables, e.g. {{ variable }}, {{% computed variable %}}
+        if(options && options.quoteVariables && !options.quoteVariables) {
+            json = unquoteVariables(json);
         }
 
         // remove formatting
         if(options && options.removeFormatting) {
             const cmt = new CommonMarkTransformer(options);
-            json = cmt.removeFormatting(input.getType ? this.serializer.toJSON(input): input);
+            json = cmt.removeFormatting(json);
 
             // now we need to also remove the formatting for clause nodes
             json.nodes
@@ -164,23 +180,20 @@ class CiceroMarkTransformer {
                 });
         }
 
-        // convert to concerto
-        if(!json.getType) {
-            json = this.serializer.fromJSON(json);
-        }
+        const concertoDom = this.serializer.fromJSON(json);
 
         // convert to common mark
         const visitor = new FromCiceroVisitor(options);
-        json.accept( visitor, {
+        concertoDom.accept( visitor, {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer
         } );
 
         if(format === 'concerto') {
-            return json;
+            return concertoDom;
         }
-        return this.serializer.toJSON(json);
+        return this.serializer.toJSON(concertoDom);
     }
 }
 
