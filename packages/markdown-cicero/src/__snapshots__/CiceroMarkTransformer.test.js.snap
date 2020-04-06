@@ -1,5 +1,575 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`acceptance converts acceptance clause content to CommonMark string (no quoteVariables 2) 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO! This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party A",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party B",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party B",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party A",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party B",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days' to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party A",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Party A",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Attachment X",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Widgets",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`acceptance converts acceptance clause content to CommonMark string (no quoteVariables 2) 2`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO! This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "clauseid",
+            "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+        ],
+        "closed": false,
+        "content": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
+
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
+
+This is Widgets",
+        "tagName": "clause",
+      },
+      "text": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
+
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
+
+This is Widgets
+",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`acceptance converts acceptance clause content to CommonMark string (no quoteVariables) 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO! This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice. ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "businessDays",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days' to inspect and evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "attachment",
+              "value": "\\"Attachment X\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached to this agreement.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.ComputedVariable",
+              "value": "\\"Widgets\\"",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`acceptance converts acceptance clause content to CommonMark string (no quoteVariables) 2`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO! This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.CodeBlock",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "tag": Object {
+        "$class": "org.accordproject.commonmark.TagInfo",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "clauseid",
+            "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+        ],
+        "closed": false,
+        "content": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
+
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
+
+This is Widgets",
+        "tagName": "clause",
+      },
+      "text": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
+
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
+
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
+
+This is Widgets
+",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`acceptance converts acceptance clause content to CommonMark string (no wrapVariable) 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -218,7 +788,7 @@ Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and 
 Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement."
 `;
 
-exports[`acceptance converts acceptance clause content to CommonMark string (removeFormatting & unquoteVariables) 1`] = `
+exports[`acceptance converts acceptance clause content to CommonMark string (removeFormatting & no quoteVariables) 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -432,7 +1002,7 @@ Object {
 }
 `;
 
-exports[`acceptance converts acceptance clause content to CommonMark string (removeFormatting & unquoteVariables) 2`] = `
+exports[`acceptance converts acceptance clause content to CommonMark string (removeFormatting & no quoteVariables) 2`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -481,22 +1051,22 @@ Object {
           },
         ],
         "closed": false,
-        "content": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+        "content": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
 
-This is {{\\"Widgets\\"}}",
+This is Widgets",
         "tagName": "clause",
       },
-      "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+      "text": "Acceptance of Delivery. Party A will be deemed to have completed its delivery obligations if in Party B's opinion, the Widgets satisfies the Acceptance Criteria, and Party B notifies Party A in writing that it is accepting the Widgets.
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. Party B will have 10 Business Days' to inspect and evaluate the Widgets on the delivery date before notifying Party A that it is either accepting or rejecting the Widgets.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the Widgets must meet for the Party A to comply with its requirements and obligations under this agreement, detailed in Attachment X, attached to this agreement.
 
-This is {{\\"Widgets\\"}}
+This is Widgets
 ",
     },
   ],
@@ -763,298 +1333,6 @@ The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\"
 must meet for the \\"Party A\\" to comply with its requirements and
 obligations under this agreement, detailed in \\"Attachment X\\", attached
 to this agreement.
-",
-    },
-  ],
-  "xmlns": "http://commonmark.org/xml/1.0",
-}
-`;
-
-exports[`acceptance converts acceptance clause content to CommonMark string (unquoteVariables) 1`] = `
-Object {
-  "$class": "org.accordproject.commonmark.Document",
-  "nodes": Array [
-    Object {
-      "$class": "org.accordproject.commonmark.Heading",
-      "level": "1",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO! This is the contract editor.",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "And below is a ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Strong",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "clause",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ".",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance of Delivery. ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
-              "value": "\\"Party A\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " will be deemed to have completed its delivery obligations if in ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
-              "value": "\\"Party B\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "'s opinion, the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
-              "value": "\\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " satisfies the Acceptance Criteria, and ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
-              "value": "\\"Party B\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " notifies ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
-              "value": "\\"Party A\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " in writing that it is accepting the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
-              "value": "\\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": ".",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Inspection and Notice. ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
-              "value": "\\"Party B\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " will have ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
-              "value": "10",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " Business Days' to inspect and evaluate the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
-              "value": "\\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " on the delivery date before notifying ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
-              "value": "\\"Party A\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " that it is either accepting or rejecting the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
-              "value": "\\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": ".",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
-              "value": "\\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " must meet for the ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
-              "value": "\\"Party A\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": " to comply with its requirements and obligations under this agreement, detailed in ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
-              "value": "\\"Attachment X\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": ", attached to this agreement.",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "This is ",
-            },
-            Object {
-              "$class": "org.accordproject.ciceromark.ComputedVariable",
-              "value": "\\"Widgets\\"",
-            },
-          ],
-        },
-      ],
-      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-    },
-  ],
-  "xmlns": "http://commonmark.org/xml/1.0",
-}
-`;
-
-exports[`acceptance converts acceptance clause content to CommonMark string (unquoteVariables) 2`] = `
-Object {
-  "$class": "org.accordproject.commonmark.Document",
-  "nodes": Array [
-    Object {
-      "$class": "org.accordproject.commonmark.Heading",
-      "level": "1",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO! This is the contract editor.",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "And below is a ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Strong",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "clause",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ".",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
-      "tag": Object {
-        "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
-        "attributes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.Attribute",
-            "name": "src",
-            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
-            "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-          },
-        ],
-        "closed": false,
-        "content": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
-
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
-
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.
-
-This is {{\\"Widgets\\"}}",
-        "tagName": "clause",
-      },
-      "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
-
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
-
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.
-
-This is {{\\"Widgets\\"}}
 ",
     },
   ],

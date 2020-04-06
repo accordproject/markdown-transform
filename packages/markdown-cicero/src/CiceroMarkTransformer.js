@@ -51,8 +51,8 @@ class CiceroMarkTransformer {
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
      * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * @param {object} [options] configuration options
      * 'json' to return the JSON data.
+     * @param {object} [options] configuration options
      * @returns {*} concertoObject concerto ciceromark object
      */
     fromMarkdown(markdown, format='concerto', options) {
@@ -87,7 +87,7 @@ class CiceroMarkTransformer {
         let result;
 
         // remove variables, e.g. {{ variable }}, {{% computed variable %}}
-        if(options && options.quoteVariables && !options.quoteVariables) {
+        if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
             result = unquoteVariables(json);
         } else {
             result = json;
@@ -149,7 +149,7 @@ class CiceroMarkTransformer {
      * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
-     * @param {boolean} [options.unquoteVariables] if true variable nodes are removed
+     * @param {boolean} [options.quoteVariables] if true variable nodes are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, format='concerto', options) {
@@ -162,7 +162,7 @@ class CiceroMarkTransformer {
         }
 
         // remove variables, e.g. {{ variable }}, {{% computed variable %}}
-        if(options && options.quoteVariables && !options.quoteVariables) {
+        if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
             json = unquoteVariables(json);
         }
 
