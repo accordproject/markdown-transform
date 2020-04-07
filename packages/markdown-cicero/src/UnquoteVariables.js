@@ -26,6 +26,7 @@ function mapObject(obj, stack) {
     switch (obj.$class) {
     // Strip quotes
     case 'org.accordproject.ciceromark.ComputedVariable':
+    case 'org.accordproject.ciceromark.ConditionalVariable':
     case 'org.accordproject.ciceromark.Variable':
         stack.append({
             $class: 'org.accordproject.commonmark.Text',
