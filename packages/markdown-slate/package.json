@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-slate",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Transform markdown to/from CommonMark AST",
   "engines": {
     "node": ">=8",
@@ -77,7 +77,7 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.10.3"
+    "@accordproject/markdown-cicero": "0.10.4"
   },
   "license-check-config": {
     "src": [
