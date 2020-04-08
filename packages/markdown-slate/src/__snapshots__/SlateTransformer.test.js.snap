@@ -1278,6 +1278,219 @@ Object {
 }
 `;
 
+exports[`slate converts demandforecast.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "On or before the ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "format": "YYYY/MM/DD",
+          "id": "effectiveDate",
+          "value": "2018/04/02",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "purchaser",
+          "value": "\\"PETER\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " shall send the Supplier ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "supplier",
+          "value": "\\"DAN\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "minimumPercentage",
+          "value": "85.0",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "% of the quantity of the listed Product.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts demandforecast.json to and from CiceroMark 2`] = `"On or before the <variable id=\\"effectiveDate\\" value=\\"2018%2F04%2F02\\" format=\\"YYYY%2FMM%2FDD\\"/>, and thereafter on or before the last day of each calendar quarter, the Purchaser <variable id=\\"purchaser\\" value=\\"%22PETER%22\\"/> shall send the Supplier <variable id=\\"supplier\\" value=\\"%22DAN%22\\"/> a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least <variable id=\\"minimumPercentage\\" value=\\"85.0\\"/>% of the quantity of the listed Product."`;
+
+exports[`slate converts demandforecast.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "On or before the ",
+          },
+          Object {
+            "data": Object {
+              "format": "YYYY/MM/DD",
+              "id": "effectiveDate",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "2018/04/02",
+              },
+            ],
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser ",
+          },
+          Object {
+            "data": Object {
+              "id": "purchaser",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"PETER\\"",
+              },
+            ],
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " shall send the Supplier ",
+          },
+          Object {
+            "data": Object {
+              "id": "supplier",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "\\"DAN\\"",
+              },
+            ],
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least ",
+          },
+          Object {
+            "data": Object {
+              "id": "minimumPercentage",
+            },
+            "nodes": Array [
+              Object {
+                "marks": Array [],
+                "object": "text",
+                "text": "85.0",
+              },
+            ],
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "marks": Array [],
+            "object": "text",
+            "text": "% of the quantity of the listed Product.",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
+exports[`slate converts demandforecast.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "On or before the ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "format": "YYYY/MM/DD",
+          "id": "effectiveDate",
+          "value": "2018/04/02",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "purchaser",
+          "value": "\\"PETER\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " shall send the Supplier ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "supplier",
+          "value": "\\"DAN\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "id": "minimumPercentage",
+          "value": "85.0",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "% of the quantity of the listed Product.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts empty.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

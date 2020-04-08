@@ -305,11 +305,20 @@ const VARIABLE_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
-            return {
-                '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
-                id: el.getAttribute('id'),
-                value: el.textContent,
-            };
+            if (el.getAttribute('format')) {
+                return {
+                    '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
+                    id: el.getAttribute('id'),
+                    value: el.textContent,
+                    format: el.getAttribute('format')
+                };
+            } else {
+                return {
+                    '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
+                    id: el.getAttribute('id'),
+                    value: el.textContent,
+                };
+            }
         }
     }
 };

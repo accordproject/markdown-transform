@@ -166,8 +166,10 @@ class ToSlateVisitor {
                 nodes: this.processChildNodes(thing,parameters),
             };
             break;
-        case 'Variable':
-            result = ToSlateVisitor.handleVariable('variable', { id: thing.id }, thing.value, parameters);
+        case 'Variable': {
+            const data = thing.format ? { id: thing.id, format: thing.format } : { id: thing.id };
+            result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
+        }
             break;
         case 'ConditionalVariable':
             result = ToSlateVisitor.handleVariable('conditional', { id: thing.id, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
