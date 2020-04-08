@@ -1,16 +1,14 @@
 {
-    "object": "value",
     "document": {
         "object": "document",
-        "nodes": [
+        "children": [
             {
                 "object": "block",
                 "type": "paragraph",
-                "nodes": [
+                "children": [
                     {
                         "object": "text",
-                        "text": "On or before the ",
-                        "marks": []
+                        "text": "On or before the "
                     },
                     {
                         "object": "inline",
@@ -19,18 +17,16 @@
                             "id": "effectiveDate",
                             "format": "YYYY/MM/DD"
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
-                                "text": "2018/04/02",
-                                "marks": []
+                                "text": "2018/04/02"
                             }
                         ]
                     },
                     {
                         "object": "text",
-                        "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser ",
-                        "marks": []
+                        "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser "
                     },
                     {
                         "object": "inline",
@@ -38,18 +34,16 @@
                         "data": {
                             "id": "purchaser"
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
-                                "text": "\"PETER\"",
-                                "marks": []
+                                "text": "\"PETER\""
                             }
                         ]
                     },
                     {
                         "object": "text",
-                        "text": " shall send the Supplier ",
-                        "marks": []
+                        "text": " shall send the Supplier "
                     },
                     {
                         "object": "inline",
@@ -57,18 +51,16 @@
                         "data": {
                             "id": "supplier"
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
-                                "text": "\"DAN\"",
-                                "marks": []
+                                "text": "\"DAN\""
                             }
                         ]
                     },
                     {
                         "object": "text",
-                        "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least ",
-                        "marks": []
+                        "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least "
                     },
                     {
                         "object": "inline",
@@ -76,18 +68,16 @@
                         "data": {
                             "id": "minimumPercentage"
                         },
-                        "nodes": [
+                        "children": [
                             {
                                 "object": "text",
-                                "text": "85.0",
-                                "marks": []
+                                "text": "85.0"
                             }
                         ]
                     },
                     {
                         "object": "text",
-                        "text": "% of the quantity of the listed Product.",
-                        "marks": []
+                        "text": "% of the quantity of the listed Product."
                     }
                 ],
                 "data": {}
