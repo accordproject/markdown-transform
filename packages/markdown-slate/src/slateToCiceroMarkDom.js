@@ -254,6 +254,9 @@ function handleVariable(node) {
     if (Object.prototype.hasOwnProperty.call(data,'id')) {
         result.id = data.id;
     }
+    if (Object.prototype.hasOwnProperty.call(data,'format')) {
+        result.format = data.format;
+    }
     if (Object.prototype.hasOwnProperty.call(data,'whenTrue')) {
         result.whenTrue = data.whenTrue;
     }

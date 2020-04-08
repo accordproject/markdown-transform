@@ -115,14 +115,16 @@ class ToCiceroMarkVisitor {
         case 'HtmlInline': {
             if (thing.tag &&
                 thing.tag.tagName === 'variable' &&
-                thing.tag.attributes.length === 2) {
+                (thing.tag.attributes.length === 2 || thing.tag.attributes.length === 3)) {
                 const tag = thing.tag;
                 if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
+                    const format = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'format');
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.id = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
+                    thing.format = format ? decodeURIComponent(format.value) : null;
                     delete thing.tag;
                     delete thing.text;
                 } else {
@@ -176,7 +178,8 @@ class ToCiceroMarkVisitor {
      * @return {*} the attribute or undefined
      */
     static getAttribute(attributes, name) {
-        return attributes.filter(x => x.name === name)[0];
+        const atts = attributes.filter(x => x.name === name);
+        return atts.length === 0 ? null : atts[0];
     }
 
 }

@@ -95,8 +95,10 @@ class ToHtmlStringVisitor {
             // }
             parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
-        case 'Variable':
-            parameters.result += `<span class="variable" id="${thing.id}">${thing.value}</span>`;
+        case 'Variable': {
+            const formatString = thing.format ? ` format="${thing.format}"` : '';
+            parameters.result += `<span class="variable" id="${thing.id}"${formatString}>${thing.value}</span>`;
+        }
             break;
         case 'ConditionalVariable':
             parameters.result += `<span class="conditional" id="${thing.id}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;

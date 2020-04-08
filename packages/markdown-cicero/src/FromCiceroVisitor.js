@@ -156,10 +156,11 @@ class FromCiceroVisitor {
 
             // Create the text for that document
             const content = '';
+            const formatString = thing.format ? ` format="${encodeURIComponent(thing.format)}"` : '';
             const attributeString =
                   thingType === 'ComputedVariable'
-                      ? `value="${encodeURIComponent(thing.value)}"`
-                      : `id="${thing.id}" value="${encodeURIComponent(thing.value)}"`
+                      ? `value="${encodeURIComponent(thing.value)}"${formatString}`
+                      : `id="${thing.id}" value="${encodeURIComponent(thing.value)}"${formatString}`
             ;
             const tagName =
                   thingType === 'ComputedVariable'
@@ -197,6 +198,7 @@ class FromCiceroVisitor {
 
             delete thing.id;
             delete thing.value;
+            delete thing.format;
         }
             break;
         case 'ConditionalVariable': {
