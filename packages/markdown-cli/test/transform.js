@@ -25,14 +25,51 @@ chai.use(require('chai-as-promised'));
 
 const transform = require('../lib/transform').transform;
 const generateTransformationDiagram = require('../lib/transform').generateTransformationDiagram;
+const acceptanceMd = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance.md'), 'utf8');
+const acceptanceJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance.json'), 'utf8'));
 
 describe('#transform', () => {
-    it('ciceroedit -> ciceromark_noquotes -> slate', () => {
-        const sample = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance.md'), 'utf8');
-        const result = transform(sample, 'ciceroedit', ['ciceromark_noquotes','slate']);
-        result.object.should.equal('value');
+
+    describe('#markdown', () => {
+        it('markdown -> commonmark', () => {
+            const result = transform(acceptanceMd, 'ciceroedit', ['commonmark']);
+            result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
     });
+
+    describe('#commonmark', () => {
+        it('commonmark -> markdown', () => {
+            const result = transform(acceptanceJson, 'commonmark', ['markdown']);
+            result.should.startWith('Heading');
+        });
+
+        it('commonmark -> ciceromark', () => {
+            const result = transform(acceptanceJson, 'commonmark', ['ciceromark']);
+            result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
+
+        it('commonmark -> plaintext', () => {
+            const result = transform(acceptanceJson, 'commonmark', ['plaintext']);
+            result.should.startWith('Heading');
+        });
+    });
+
+    describe('#ciceroedit', () => {
+        it('ciceroedit -> ciceromark_noquotes', () => {
+            const result = transform(acceptanceMd, 'ciceroedit', ['ciceromark_noquotes']);
+            result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
+    });
+
+    describe('#multi', () => {
+        it('ciceroedit -> ciceromark_noquotes -> slate', () => {
+            const result = transform(acceptanceMd, 'ciceroedit', ['ciceromark_noquotes','slate']);
+            result.object.should.equal('value');
+        });
+    });
+
 });
+
 
 describe('#generateTransformationDiagram', () => {
     it('converts graph to PlantUML diagram', () => {

@@ -150,26 +150,55 @@ hide empty description
  * throws an exception if the transformation is not possible.
  *
  * @param {*} source the input for the transformation
- * @param {*} sourceFormat the input format
- * @param {*} destinationFormat the destination format
+ * @param {string} sourceFormat the input format
+ * @param {string} destinationFormat the destination format
+ * @param {object} [options] the transform options
+ * @param {string} [options.verbose] output verbose console logs
  * @returns {*} result of the transformation
  */
-function transform(source, sourceFormat, destinationFormat) {
+function transformPath(source, sourceFormat, destinationFormat, options) {
+
+    let result = source;
+    const path = find_path(transforms, sourceFormat, destinationFormat);
+    for(let n=0; n < path.length-1; n++) {
+        const src = path[n];
+        const dest = path[n+1];
+        const srcNode = transforms[src];
+        result = srcNode[dest](result);
+        if(options && options.verbose) {
+            console.log(`Converted from ${src} to ${dest}:`);
+            if(typeof result === 'object') {
+                console.log(JSON.stringify(result, null, 2));
+            }
+            else {
+                console.log(result);
+            }
+        }
+    }
+
+    return result;
+}
+
+/**
+ * Transforms from a source format to a destination format or
+ * throws an exception if the transformation is not possible.
+ *
+ * @param {*} source the input for the transformation
+ * @param {string} sourceFormat the input format
+ * @param {string[]} destinationFormat the destination format as an array,
+ * the transformation are applied in order to reach all formats in the array
+ * @param {object} [options] the transform options
+ * @param {string} [options.verbose] output verbose console logs
+ * @returns {*} result of the transformation
+ */
+function transform(source, sourceFormat, destinationFormat, options) {
     let result = source;
 
     let currentSourceFormat = sourceFormat;
 
     for(let i=0; i < destinationFormat.length; i++) {
         let destination = destinationFormat[i];
-        const path = find_path(transforms, currentSourceFormat, destination);
-        for(let n=0; n < path.length-1; n++) {
-            const src = path[n];
-            const dest = path[n+1];
-            // console.log(`Converting from ${src} to ${dest}....`);
-            const srcNode = transforms[src];
-            result = srcNode[dest](result);
-        }
-
+        result = transformPath(result, currentSourceFormat, destination, options);
         currentSourceFormat = destination;
     }
     return result;
