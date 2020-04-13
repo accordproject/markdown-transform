@@ -43,6 +43,7 @@
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
+    "chai-string": "^1.5.0",
     "chai-things": "0.2.0",
     "eslint": "6.0.1",
     "jsdoc": "3.6.3",
@@ -53,12 +54,13 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.6",
-    "@accordproject/markdown-common": "0.10.4",
     "@accordproject/markdown-cicero": "0.10.4",
-    "@accordproject/markdown-slate": "0.10.4",
+    "@accordproject/markdown-common": "0.10.4",
+    "@accordproject/markdown-docx": "0.10.4",
     "@accordproject/markdown-html": "0.10.4",
     "@accordproject/markdown-pdf": "0.10.4",
-    "@accordproject/markdown-docx": "0.10.4",
+    "@accordproject/markdown-slate": "0.10.4",
+    "dijkstrajs": "^1.0.1",
     "jsome": "2.5.0",
     "winston": "3.2.1",
     "yargs": "13.2.4"

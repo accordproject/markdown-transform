@@ -1,0 +1,50 @@
+@startuml
+hide empty description
+
+markdown : 
+markdown : Markdown format text string
+markdown --> commonmark
+
+commonmark : 
+commonmark : CommonMark DOM (JSON)
+commonmark --> markdown
+commonmark --> ciceromark
+commonmark --> plaintext
+
+plaintext : 
+plaintext : Plain text string
+plaintext --> markdown
+
+ciceromark : 
+ciceromark : CiceroMark DOM (JSON)
+ciceromark --> html
+ciceromark --> ciceromark_noquotes
+ciceromark --> ciceroedit
+ciceromark --> commonmark
+ciceromark --> slate
+
+ciceromark_noquotes : 
+ciceromark_noquotes : CiceroMark DOM (JSON) with quotes around variables removed
+ciceromark_noquotes --> ciceromark
+
+ciceroedit : 
+ciceroedit : Markdown string with embedded variable metadata
+ciceroedit --> markdown
+
+pdf : 
+pdf : PDF file
+pdf --> ciceromark
+
+docx : 
+docx : DOCX file
+docx --> ciceromark
+
+html : 
+html : HTML string
+html --> ciceromark
+
+slate : 
+slate : Slate DOM (JSON)
+slate --> ciceromark
+
+@enduml
