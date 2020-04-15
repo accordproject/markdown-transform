@@ -25,7 +25,7 @@ Note that the call to `transform` returns a `Promise`.
 
 ## Transformation Graph
 
-You can generate a PlantUML state diagram for the supported transformations using the followning code:
+You can generate a PlantUML state diagram for the supported transformations using the following code:
 
 ```
 const generateTransformationDiagram = require('@accordproject/markdown-transform').generateTransformationDiagram;
