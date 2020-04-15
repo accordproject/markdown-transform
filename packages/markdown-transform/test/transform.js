@@ -38,8 +38,13 @@ const acceptancePlainText = fs.readFileSync(path.resolve(__dirname, 'data', 'acc
 describe('#transform', () => {
 
     describe('#markdown', () => {
+        it('markdown -> commonmark (verbose)', async () => {
+            const result = await transform(acceptanceMarkdown, 'markdown', ['commonmark'], {verbose: true});
+            result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
+
         it('markdown -> commonmark', async () => {
-            const result = await transform(acceptanceMarkdown, 'ciceroedit', ['commonmark']);
+            const result = await transform(acceptanceMarkdown, 'markdown', ['commonmark']);
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
@@ -107,6 +112,11 @@ describe('#transform', () => {
             const result = await transform(pdf, 'pdf', ['ciceromark']);
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
+
+        it('pdf -> ciceromark (verbose)', async () => {
+            const result = await transform(pdf, 'pdf', ['ciceromark'], {verbose: true});
+            result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
     });
 
     describe('#docx', () => {
@@ -144,6 +154,12 @@ describe('#transform', () => {
 
         it('ciceroedit -> html', async () => {
             const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['html']);
+            result.should.startWith('<html>');
+            result.should.contain('"Party A"');
+        });
+
+        it('ciceroedit -> html (verbose)', async () => {
+            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['html'], {verbose: true});
             result.should.startWith('<html>');
             result.should.contain('"Party A"');
         });
