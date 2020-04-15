@@ -19,13 +19,12 @@
 
 A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and other DOMs.
 
-![Architecture Diagram](http://www.plantuml.com/plantuml/png/ZPBFwzf04CNl-rSCttkIUob5KAI7Ye8U2k9XsPqag_iZx4w8fVH_BxFQhM2qlIKpR-PzvYMBH3BIwAmOfBh83k73oNZHOVALikO3VWg0uo1ZmfFu9UPKmRdWxyBDlGfxYiPt9_XSZKFr1OxBhE8shBQRau2d4bJHT3snU6UbyN30AvKzxEq38LXi2K8xjx4d6jAdfd51eqsrL2f4FSHmHaLrY5rpGsNovWz-tPEp0hq6tdxtO10sURv709HI6wAJHAY1c7HCc81w104meRMLnjPurF3NbI4WPnbP9Rs6zCEJl1Q0sO2DmXWuu9dGIhvPLEepSHN1_yULHvZZuJ47zfOtMKcOSOlh4-wUDVEaZps0suj983ryFMo-GJIghtBWg0s5-738D4rrDZydvdyBoLVyWv7jodUV_VLrKDUNIoeuhhRBxx0s5b_C3xfzDxvRhSlq0hqUdVqD)
-
-> Note: you can regenerate this diagram by visiting http://www.plantuml.com/plantuml/uml/ and pasting the contents of `architecture.puml` from this repository.
+![Transformations](./packages/markdown-transform/transformations.png)
 
 ## Structure of the Code Repository
 
 Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `lerna`:
+* [markdown-transform](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-transform) : High-level API to transform any supported format
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-common) : converts markdown strings to/from the CommonMark DOM
 * [markdown-cicero](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cicero) : converts CommonMark DOM to/from the CiceroMark DOM
 * [markdown-slate](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-slate) : converts CiceroMark DOM to/from the Slate DOM
