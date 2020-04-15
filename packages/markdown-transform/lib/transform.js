@@ -132,8 +132,7 @@ const transformationGraph = {
  * @returns {string} the PlantUML string
  */
 function generateTransformationDiagram() {
-    let result = ` // Automatically generated. Do not edit!
-@startuml
+    let result = `@startuml
 hide empty description
 
 `;

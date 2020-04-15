@@ -19,8 +19,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run generateDiagram",
     "lint": "eslint .",
+    "generateDiagram" : "node ./scripts/generateDiagram.js",
     "postlint": "npm run licchk",
     "licchk": "license-check",
     "test": "mocha",
@@ -41,6 +42,7 @@
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
   "devDependencies": {
+    "axios": "^0.19.2",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "chai-string": "^1.5.0",
@@ -50,6 +52,7 @@
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
+    "plantuml-encoder": "^1.4.0",
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {

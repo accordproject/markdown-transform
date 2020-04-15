@@ -143,7 +143,7 @@ describe('#transform', () => {
 describe('#generateTransformationDiagram', () => {
     it('converts graph to PlantUML diagram', () => {
         const result = generateTransformationDiagram();
-        result.trim().should.startWith('// Automatically generated. Do not edit!');
+        result.trim().should.startWith('@startuml');
     });
 });
 
