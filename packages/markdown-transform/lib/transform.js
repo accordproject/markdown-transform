@@ -98,17 +98,17 @@ const transformationGraph = {
         }
     },
     pdf: {
-        docs: 'PDF file',
-        ciceromark: async (input) => {
+        docs: 'PDF buffer',
+        ciceromark: (input) => {
             const pdfTransformer = new PdfTransformer();
-            return await pdfTransformer.toCiceroMark(input, 'json');
+            return pdfTransformer.toCiceroMark(input, 'json');
         },
     },
     docx: {
-        docs: 'DOCX file',
+        docs: 'DOCX buffer',
         ciceromark: async (input) => {
             const docxTransformer = new DocxTransformer();
-            return await docxTransformer.toCiceroMark(input, 'json');
+            return docxTransformer.toCiceroMark(input, 'json');
         },
     },
     html: {
