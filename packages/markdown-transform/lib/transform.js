@@ -53,7 +53,7 @@ const transformationGraph = {
     },
     plaintext: {
         docs: 'Plain text string',
-        markdown: (input, options) => {
+        markdown: (input) => {
             return input;
         },
     },
@@ -66,12 +66,6 @@ const transformationGraph = {
         ciceromark_noquotes: (input) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
             return ciceroMarkTransformer.fromCommonMark(input, 'json', {quoteVariables: false});
-        },
-        ciceroedit: (input) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            const dom = ciceroMarkTransformer.toCommonMark(input, {quoteVariables: true}, 'json');
-            const commonMarkTransformer = new CommonMarkTransformer({tagInfo: true});
-            return commonMarkTransformer.toMarkdown(dom);
         },
         commonmark: (input) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
@@ -86,15 +80,6 @@ const transformationGraph = {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',
         ciceromark: (input) => {
             return input;
-        }
-    },
-    ciceroedit: {
-        docs: 'Markdown string with embedded variable metadata',
-        ciceromark: (input) => {
-            const t = new CommonMarkTransformer({tagInfo: true});
-            const dom = t.fromMarkdown(input, 'json');
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.fromCommonMark(dom, 'json');
         }
     },
     pdf: {

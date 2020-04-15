@@ -84,11 +84,6 @@ describe('#transform', () => {
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
-        it('ciceromark -> ciceroedit', async () => {
-            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['ciceroedit']);
-            result.should.startWith('Heading');
-        });
-
         it('ciceromark -> commonmark', async () => {
             const result = await transform(acceptanceCiceroMark, 'ciceromark', ['commonmark']);
             result.$class.should.equal('org.accordproject.commonmark.Document');
@@ -102,7 +97,7 @@ describe('#transform', () => {
 
     describe('#ciceroedit', () => {
         it('ciceroedit -> ciceromark', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark']);
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
@@ -142,24 +137,24 @@ describe('#transform', () => {
 
     describe('#multi', () => {
         it('ciceroedit -> ciceromark_noquotes -> slate', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark_noquotes','slate']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','slate']);
             result.document.object.should.equal('document');
         });
 
         it('ciceroedit -> ciceromark_noquotes -> html', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark_noquotes','html']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','html']);
             result.should.startWith('<html>');
             result.should.not.contain('"Party A"');
         });
 
         it('ciceroedit -> html', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['html']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html']);
             result.should.startWith('<html>');
             result.should.contain('"Party A"');
         });
 
         it('ciceroedit -> html (verbose)', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['html'], {verbose: true});
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html'], {verbose: true});
             result.should.startWith('<html>');
             result.should.contain('"Party A"');
         });
