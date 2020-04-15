@@ -90,29 +90,32 @@ const transformationGraph = {
     },
     ciceroedit: {
         docs: 'Markdown string with embedded variable metadata',
-        markdown: (input) => {
-            return input;
+        ciceromark: (input) => {
+            const t = new CommonMarkTransformer({tagInfo: true});
+            const dom = t.fromMarkdown(input, 'json');
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            return ciceroMarkTransformer.fromCommonMark(dom, 'json');
         }
     },
     pdf: {
         docs: 'PDF file',
-        ciceromark: (input) => {
+        ciceromark: async (input) => {
             const pdfTransformer = new PdfTransformer();
-            return pdfTransformer.toCiceroMark(input);
+            return await pdfTransformer.toCiceroMark(input, 'json');
         },
     },
     docx: {
         docs: 'DOCX file',
-        ciceromark: (input) => {
+        ciceromark: async (input) => {
             const docxTransformer = new DocxTransformer();
-            return docxTransformer.toCiceroMark(input);
+            return await docxTransformer.toCiceroMark(input, 'json');
         },
     },
     html: {
         docs: 'HTML string',
         ciceromark: (input) => {
             const t = new HtmlTransformer();
-            return t.toCiceroMark(input);
+            return t.toCiceroMark(input, 'json');
         },
     },
     slate: {
@@ -171,9 +174,16 @@ function transformToDestination(source, sourceFormat, destinationFormat, options
         const srcNode = transformationGraph[src];
         result = srcNode[dest](result);
         if(options && options.verbose) {
-            console.log(`Converted from ${src} to ${dest}:`);
+            console.log(`Converted from ${src} to ${dest}. Result:`);
             if(typeof result === 'object') {
-                console.log(JSON.stringify(result, null, 2));
+                if(result.then) {
+                    result.then((r) => {
+                        console.log(r);
+                    });
+                }
+                else {
+                    console.log(JSON.stringify(result, null, 2));
+                }
             }
             else {
                 console.log(result);
@@ -194,9 +204,9 @@ function transformToDestination(source, sourceFormat, destinationFormat, options
  * the transformation are applied in order to reach all formats in the array
  * @param {object} [options] the transform options
  * @param {boolean} [options.verbose] output verbose console logs
- * @returns {*} result of the transformation
+ * @returns {Promise} result of the transformation
  */
-function transform(source, sourceFormat, destinationFormat, options) {
+async function transform(source, sourceFormat, destinationFormat, options) {
     let result = source;
 
     let currentSourceFormat = sourceFormat;
