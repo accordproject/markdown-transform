@@ -135,8 +135,19 @@ describe('#transform', () => {
             const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark_noquotes','slate']);
             result.document.object.should.equal('document');
         });
-    });
 
+        it('ciceroedit -> ciceromark_noquotes -> html', async () => {
+            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark_noquotes','html']);
+            result.should.startWith('<html>');
+            result.should.not.contain('"Party A"');
+        });
+
+        it('ciceroedit -> html', async () => {
+            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['html']);
+            result.should.startWith('<html>');
+            result.should.contain('"Party A"');
+        });
+    });
 });
 
 
