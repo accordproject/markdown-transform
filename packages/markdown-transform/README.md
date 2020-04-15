@@ -17,9 +17,11 @@ const transform = require('@accordproject/markdown-transform').transform;
 //   first argument is the markdown string to be converted
 //   second argument is the source format
 //   third argument is an array of destination formats to pass through
-const htmlString = transform(markdownString, 'markdown', ['html']);
+const htmlString = await transform(markdownString, 'markdown', ['html']);
 console.log(htmlString);
 ```
+
+Note that the call to `transform` returns a `Promise`.
 
 ## Transformation Graph
 
