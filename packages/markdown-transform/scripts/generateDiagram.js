@@ -44,6 +44,6 @@ async function downloadImage (url, filename) {
 }
 const plantUML = generateTransformationDiagram();
 const encoded = plantumlEncoder.encode(plantUML);
-const url = `https://www.plantuml.com/plantuml/svg/${encoded}`;
-downloadImage(url, 'transformations.svg');
-console.log('Generated transformations.svg');
+const url = `https://www.plantuml.com/plantuml/png/${encoded}`;
+downloadImage(url, 'transformations.png');
+console.log('Generated transformations.png');
