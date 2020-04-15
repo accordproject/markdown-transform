@@ -8,7 +8,7 @@ High-level API to transform markdown into different formats.
 npm install -g @accordproject/markdown-transform
 ```
 
-## Usage
+## Basic Usage
 
 ```
 const transform = require('@accordproject/markdown-transform').transform;
@@ -22,6 +22,16 @@ console.log(htmlString);
 ```
 
 Note that the call to `transform` returns a `Promise`.
+
+The third argument to the `transform` function can be used to force the transform to visit an optional
+intermediate format. For example, passing `['ciceromark_noquotes','html']` will transform the source
+to `ciceromark_noquotes` followed by all the transformations necessary to transform from `ciceromark_noquotes` to `html`.
+
+The example below transforms input markdown, stripping quotes from around variables, and then converts to HTML.
+
+```
+const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','html']);
+```
 
 ## Transformation Graph
 
