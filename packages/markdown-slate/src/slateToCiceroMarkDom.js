@@ -90,8 +90,7 @@ function _recursive(parent, nodes) {
 
         if('text' in node && !node.type) {
             result = handleText(node);
-        }
-        else {
+        } else {
             switch(node.type) {
             case 'clause':
                 // console.log(JSON.stringify(node, null, 4));
@@ -178,27 +177,18 @@ function _recursive(parent, nodes) {
 }
 
 /**
- * Handles a text node
- * @param {*} node the slate text node
- * @returns {*} the ast node
+ * Handles marks
+ * @param {*} slateNode the slate node
+ * @param {*} newNode the new node
+ * @returns {*} the final ast node
  */
-function handleText(node) {
+function handleMarks(slateNode,newNode) {
     let strong = null;
     let emph = null;
-    let result = null;
+    let result = newNode;
 
-    const isBold = node.bold;
-    const isItalic = node.italic;
-    const isCode = node.code;
-
-    if (isCode) {
-        result = {$class : `${NS}.Code`, text: node.text};
-    }
-
-    const text = {
-        $class : `${NS}.Text`,
-        text : node.text
-    };
+    const isBold = slateNode.bold;
+    const isItalic = slateNode.italic;
 
     if (isBold) {
         strong = {$class : `${NS}.Strong`, nodes: []};
@@ -208,28 +198,34 @@ function handleText(node) {
         emph  = {$class : `${NS}.Emph`, nodes: []};
     }
 
-    if(strong && emph) {
+    if(strong) {
+        strong.nodes.push(result);
+        result = strong;
+    }
+    if(emph) {
+        emph.nodes.push(result);
         result = emph;
-        emph.nodes.push(strong);
-        strong.nodes.push(text);
-    }
-    else {
-        if(strong) {
-            result = strong;
-            strong.nodes.push(text);
-        }
-
-        if(emph) {
-            result = emph;
-            emph.nodes.push(text);
-        }
-    }
-
-    if(!result) {
-        result = text;
     }
 
     return result;
+}
+
+/**
+ * Handles a text node
+ * @param {*} node the slate text node
+ * @returns {*} the ast node
+ */
+function handleText(node) {
+    let result = null;
+    const isCode = node.code;
+
+    if (isCode) {
+        result = {$class : `${NS}.Code`, text: node.text};
+    } else {
+        result = {$class : `${NS}.Text`, text : node.text};
+    }
+
+    return handleMarks(node,result);
 }
 
 /**
@@ -238,7 +234,6 @@ function handleText(node) {
  * @returns {*} the ast node
  */
 function handleVariable(node) {
-
     let result = null;
 
     const textNode = node.children[0]; // inlines always contain a single text node
@@ -267,7 +262,7 @@ function handleVariable(node) {
         result.whenFalse = data.whenFalse;
     }
 
-    return result;
+    return handleMarks(node,result);
 }
 
 module.exports = slateToCiceroMarkDom;

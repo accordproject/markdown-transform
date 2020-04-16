@@ -20,17 +20,16 @@
 class ToSlateVisitor {
 
     /**
-     * Apply marks to a text node
-     * @param {*} textNode the textNode
+     * Apply marks to a leaf node
+     * @param {*} leafNode the leaf node
      * @param {*} parameters the parameters
      */
-    static applyMarks(textNode, parameters) {
-
+    static applyMarks(leafNode, parameters) {
         if (parameters.emph) {
-            textNode.italic = true;
+            leafNode.italic = true;
         }
         if (parameters.strong) {
-            textNode.bold = true;
+            leafNode.bold = true;
         }
     }
 
@@ -94,20 +93,20 @@ class ToSlateVisitor {
      * @returns {*} the slate text node with marks
      */
     static handleVariable(type, data, text, parameters) {
-
         const textNode = {
             object: 'text',
             text: text
         };
 
-        this.applyMarks(textNode,parameters);
-
-        return {
+        const inlineNode = {
             object: 'inline',
             type: type,
             data: data,
             children: [textNode]
         };
+        this.applyMarks(inlineNode,parameters);
+
+        return inlineNode;
     }
 
     /**
