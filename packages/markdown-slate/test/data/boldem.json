@@ -1,0 +1,21 @@
+{
+    "document": {
+        "object": "document",
+        "children": [
+            {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                    {
+                        "object": "text",
+                        "text": "bold",
+                        "italic": true,
+                        "bold": true
+                    }
+                ],
+                "data": {}
+            }
+        ],
+        "data": {}
+    }
+}

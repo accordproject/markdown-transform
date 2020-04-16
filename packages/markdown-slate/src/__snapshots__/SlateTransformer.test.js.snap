@@ -786,6 +786,88 @@ Object {
 }
 `;
 
+exports[`slate converts boldem.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bold",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts boldem.json to and from CiceroMark 2`] = `"_**bold**_"`;
+
+exports[`slate converts boldem.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "bold": true,
+            "italic": true,
+            "object": "text",
+            "text": "bold",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`slate converts boldem.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Strong",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bold",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`slate converts code.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -5544,6 +5626,536 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Text",
           "text": "plain",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts promissory.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "PROMISSORY NOTE",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "format": "0,0.00 CCC",
+              "id": "amount",
+              "value": "1,000.00 USD",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "date",
+              "value": "01/30/2018",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "FOR VALUE RECEIVED, the undersigned, ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "maker",
+              "value": "\\"Daniel\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "id": "individual",
+              "value": "an individual residing",
+              "whenFalse": "a company registered",
+              "whenTrue": "an individual residing",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " at ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "makerAddress",
+              "value": "\\"1 Main Street\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " (“Maker”), hereby promises to pay to the order of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "lender",
+              "value": "\\"Clause Inc.\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "legalEntity",
+              "value": "CORP",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", having offices at ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "lenderAddress",
+              "value": "\\"246 5th Ave, 3rd Fl, New York, NY 10001\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "format": "0,0.00 CCC",
+              "id": "principal",
+              "value": "500.00 USD",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`slate converts promissory.json to and from CiceroMark 2`] = `
+"PROMISSORY NOTE
+====
+
+**<variable id=\\"amount\\" value=\\"1%2C000.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>** **<variable id=\\"date\\" value=\\"01%2F30%2F2018\\"/>**
+
+FOR VALUE RECEIVED, the undersigned, **<variable id=\\"maker\\" value=\\"%22Daniel%22\\"/>**, **<if id=\\"individual\\" value=\\"an%20individual%20residing\\" whenTrue=\\"an%20individual%20residing\\" whenFalse=\\"a%20company%20registered\\"/>** at **<variable id=\\"makerAddress\\" value=\\"%221%20Main%20Street%22\\"/>** (“Maker”), hereby promises to pay to the order of **<variable id=\\"lender\\" value=\\"%22Clause%20Inc.%22\\"/>**, a **<variable id=\\"legalEntity\\" value=\\"CORP\\"/>**, having offices at **<variable id=\\"lenderAddress\\" value=\\"%22246%205th%20Ave%2C%203rd%20Fl%2C%20New%20York%2C%20NY%2010001%22\\"/>**, or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of **<variable id=\\"principal\\" value=\\"500.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>**, plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).
+"
+`;
+
+exports[`slate converts promissory.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "PROMISSORY NOTE",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "heading_one",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "1,000.00 USD",
+              },
+            ],
+            "data": Object {
+              "format": "0,0.00 CCC",
+              "id": "amount",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": " ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "01/30/2018",
+              },
+            ],
+            "data": Object {
+              "id": "date",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "FOR VALUE RECEIVED, the undersigned, ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "\\"Daniel\\"",
+              },
+            ],
+            "data": Object {
+              "id": "maker",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ", ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "an individual residing",
+              },
+            ],
+            "data": Object {
+              "id": "individual",
+              "whenFalse": "a company registered",
+              "whenTrue": "an individual residing",
+            },
+            "object": "inline",
+            "type": "conditional",
+          },
+          Object {
+            "object": "text",
+            "text": " at ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "\\"1 Main Street\\"",
+              },
+            ],
+            "data": Object {
+              "id": "makerAddress",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": " (“Maker”), hereby promises to pay to the order of ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "\\"Clause Inc.\\"",
+              },
+            ],
+            "data": Object {
+              "id": "lender",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ", a ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "CORP",
+              },
+            ],
+            "data": Object {
+              "id": "legalEntity",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ", having offices at ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "\\"246 5th Ave, 3rd Fl, New York, NY 10001\\"",
+              },
+            ],
+            "data": Object {
+              "id": "lenderAddress",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ", or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of ",
+          },
+          Object {
+            "bold": true,
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "500.00 USD",
+              },
+            ],
+            "data": Object {
+              "format": "0,0.00 CCC",
+              "id": "principal",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ", plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`slate converts promissory.json to and from CiceroMark 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "PROMISSORY NOTE",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "format": "0,0.00 CCC",
+              "id": "amount",
+              "value": "1,000.00 USD",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "date",
+              "value": "01/30/2018",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "FOR VALUE RECEIVED, the undersigned, ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "maker",
+              "value": "\\"Daniel\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "id": "individual",
+              "value": "an individual residing",
+              "whenFalse": "a company registered",
+              "whenTrue": "an individual residing",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " at ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "makerAddress",
+              "value": "\\"1 Main Street\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " (“Maker”), hereby promises to pay to the order of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "lender",
+              "value": "\\"Clause Inc.\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "legalEntity",
+              "value": "CORP",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", having offices at ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "id": "lenderAddress",
+              "value": "\\"246 5th Ave, 3rd Fl, New York, NY 10001\\"",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "format": "0,0.00 CCC",
+              "id": "principal",
+              "value": "500.00 USD",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).",
         },
       ],
     },

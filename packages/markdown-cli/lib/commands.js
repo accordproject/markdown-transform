@@ -85,7 +85,6 @@ class Commands {
      */
     static async parse(samplePath, outputPath, options) {
         const { cicero, slate, html, noQuote, verbose } = options;
-        console.log('OPTIONS ' + JSON.stringify(options));
         const commonOptions = {};
         commonOptions.tagInfo = true;
 
