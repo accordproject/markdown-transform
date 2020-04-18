@@ -24,90 +24,15 @@ require('yargs')
     .demandCommand(1, '# Please specify a command')
     .recommendCommands()
     .strict()
-    .command('parse', 'parse and transform a sample markdown', (yargs) => {
-        yargs.option('sample', {
-            describe: 'path to the markdown text',
-            type: 'string'
-        });
-        yargs.option('target', {
-            describe: 'target format',
-            type: 'string',
-            default: 'commonmark'
-        });
-        yargs.option('output', {
-            describe: 'path to the output file',
-            type: 'string'
-        });
-        yargs.option('verbose', {
-            describe: 'verbose output',
-            type: 'boolean',
-            default: false
-        });
-    }, (argv) => {
-        if (argv.verbose) {
-            Logger.info(`parse sample ${argv.sample} markdown`);
-        }
-
-        try {
-            argv = Commands.validateParseArgs(argv);
-            const options = {};
-            options.verbose = argv.verbose;
-            return Commands.parse(argv.sample, argv.target, argv.output, options)
-                .then((result) => {
-                    if(result) {Logger.info('\n'+result);}
-                })
-                .catch((err) => {
-                    Logger.error(err);
-                });
-        } catch (err){
-            Logger.error(err);
-            return;
-        }
-    })
-    .command('draft', 'create markdown text from data', (yargs) => {
-        yargs.option('data', {
-            describe: 'path to the data',
+    .command('transform', 'transform between two formats', (yargs) => {
+        yargs.option('input', {
+            describe: 'path to the input',
             type: 'string'
         });
         yargs.option('source', {
             describe: 'source format',
             type: 'string',
-            default: 'commonmark'
-        });
-        yargs.option('output', {
-            describe: 'path to the output file',
-            type: 'string'
-        });
-        yargs.option('verbose', {
-            describe: 'verbose output',
-            type: 'boolean',
-            default: false
-        });
-    }, (argv) => {
-        if (argv.verbose) {
-            Logger.info(`draft sample markdown from ${argv.data}`);
-        }
-
-        try {
-            argv = Commands.validateDraftArgs(argv);
-            const options = {};
-            options.verbose = argv.verbose;
-            return Commands.draft(argv.data, argv.source, argv.output, options)
-                .then((result) => {
-                    if(result) {Logger.info('\n'+result);}
-                })
-                .catch((err) => {
-                    Logger.error(err);
-                });
-        } catch (err){
-            Logger.error(err);
-            return;
-        }
-    })
-    .command('normalize', 'normalize a sample markdown (parse & redraft)', (yargs) => {
-        yargs.option('sample', {
-            describe: 'path to the markdown text',
-            type: 'string'
+            default: 'markdown'
         });
         yargs.option('target', {
             describe: 'target format',
@@ -123,24 +48,30 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('roundtrip', {
+            describe: 'roundtrip transform',
+            type: 'boolean',
+            default: false
+        });
     }, (argv) => {
         if (argv.verbose) {
-            Logger.info(`normalize ${argv.sample} markdown`);
+            Logger.info(`transform input ${argv.input} file`);
         }
 
         try {
-            argv = Commands.validateNormalizeArgs(argv);
+            argv = Commands.validateTransformArgs(argv);
             const options = {};
             options.verbose = argv.verbose;
-            return Commands.normalize(argv.sample, argv.target, argv.output, options)
+            options.roundtrip = argv.roundtrip;
+            return Commands.transform(argv.input, argv.source, argv.target, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err);
+                    Logger.error(err.message);
                 });
         } catch (err){
-            Logger.error(err);
+            Logger.error(err.message);
             return;
         }
     })

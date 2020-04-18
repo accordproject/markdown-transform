@@ -177,7 +177,7 @@ hide empty description
  * @param {boolean} [options.verbose] output verbose console logs
  * @returns {*} result of the transformation
  */
-function transformToDestination(source, sourceFormat, destinationFormat, options) {
+async function transformToDestination(source, sourceFormat, destinationFormat, options) {
 
     let result = source;
     const path = find_path(rawGraph, sourceFormat, destinationFormat);
@@ -185,7 +185,7 @@ function transformToDestination(source, sourceFormat, destinationFormat, options
         const src = path[n];
         const dest = path[n+1];
         const srcNode = transformationGraph[src];
-        result = srcNode[dest](result);
+        result = await srcNode[dest](result);
         if(options && options.verbose) {
             console.log(`Converted from ${src} to ${dest}. Result:`);
             if(typeof result === 'object') {
