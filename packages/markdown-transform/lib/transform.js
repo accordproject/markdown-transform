@@ -124,7 +124,7 @@ const transformationGraph = {
 /**
  * Prune the graph for traversal
  * @param {object} graph the input graph
- * returns {object} the raw graph for dijsktra
+ * @returns {object} the raw graph for dijsktra
  */
 function pruneGraph(graph) {
     const result = {};
