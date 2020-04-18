@@ -31,7 +31,7 @@
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
     "publish": "./scripts/manualrelease.sh",
-    "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-cli/coverage/*.json packages/markdown-slate/coverage/*.json  packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-html/coverage/*.json && cat ./coverage/lcov.info | coveralls",
+    "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-slate/coverage/*.json packages/markdown-html/coverage/*.json packages/markdown-pdf/coverage/*.json packages/markdown-docx/coverage/*.json packages/markdown-transform/coverage/*.json packages/markdown-cli/coverage/*.json && cat ./coverage/lcov.info | coveralls",
     "pretest": "npm run licchk",
     "test": "lerna exec -- npm run test:cov",
     "repoclean": "lerna clean",
