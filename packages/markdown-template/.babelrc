@@ -1,0 +1,21 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "6.10",
+                    "esmodules": true
+                }
+            }
+        ]
+    ],
+    "env": {
+        "production": {
+            "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+        },
+        "development": {
+            "plugins": ["istanbul","@babel/plugin-proposal-object-rest-spread"]
+        }
+      }
+}
