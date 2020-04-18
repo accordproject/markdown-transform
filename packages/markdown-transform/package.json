@@ -9,9 +9,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "markus": "./index.js"
-  },
   "files": [
     "bin",
     "lib",
@@ -63,10 +60,7 @@
     "@accordproject/markdown-html": "0.10.4",
     "@accordproject/markdown-pdf": "0.10.4",
     "@accordproject/markdown-slate": "0.10.4",
-    "dijkstrajs": "^1.0.1",
-    "jsome": "2.5.0",
-    "winston": "3.2.1",
-    "yargs": "13.2.4"
+    "dijkstrajs": "^1.0.1"
   },
   "license-check-config": {
     "src": [
