@@ -35,7 +35,7 @@ class Commands {
         if (fileFormat === 'json') {
             return JSON.parse(Fs.readFileSync(filePath, 'utf8'));
         } else if (fileFormat === 'binary') {
-            return JSON.parse(Fs.readFileSync(filePath));
+            return Fs.readFileSync(filePath);
         } else {
             return Fs.readFileSync(filePath, 'utf8');
         }
@@ -93,103 +93,43 @@ class Commands {
     }
 
     /**
-     * Set default params before we parse a sample text
+     * Set default params before we transform
      *
      * @param {object} argv the inbound argument values object
      * @returns {object} a modfied argument object
      */
-    static validateParseArgs(argv) {
-        argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
+    static validateTransformArgs(argv) {
+        argv = Commands.setDefaultFileArg(argv, 'input', 'input.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
-            Logger.info(`parse sample ${argv.sample} (or docx, pdf) printing intermediate transformations.`);
+            Logger.info(`transform input ${argv.input} printing intermediate transformations.`);
         }
 
         return argv;
     }
 
     /**
-     * Parse a sample markdown
+     * Transform between formats
      *
-     * @param {string} samplePath to the sample file
+     * @param {string} inputPath to the input file
+     * @param {string} source the target format
      * @param {string} target the target format
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static async parse(samplePath, target, outputPath, options) {
-        const sample = Commands.loadFormatFromFile(samplePath, 'markdown');
-        const result = await transform(sample, 'markdown', [target], options);
-
-        if (outputPath) { Commands.printFormatToFile(result,target,outputPath); }
-        return Promise.resolve(Commands.printFormatToString(result,target));
-    }
-
-    /**
-     * Set default params before we draft a sample text
-     *
-     * @param {object} argv the inbound argument values object
-     * @returns {object} a modfied argument object
-     */
-    static validateDraftArgs(argv) {
-        argv = Commands.setDefaultFileArg(argv, 'data', 'data.json', ((argv, argDefaultName) => { return argDefaultName; }));
-
-        if(argv.verbose) {
-            Logger.info(`draft sample from ${argv.data} printing intermediate transformations.`);
+    static async transform(inputPath, source, target, outputPath, options) {
+        const input = Commands.loadFormatFromFile(inputPath, source);
+        let result = await transform(input, source, [target], options);
+        let finalFormat = target;
+        if (options && options.roundtrip) {
+            result = await transform(result, target, [source], options);
+            finalFormat = source;
         }
 
-        return argv;
-    }
-
-    /**
-     * Parse a sample markdown/pdf/docx
-     *
-     * @param {string} dataPath to the sample file
-     * @param {string} source the source format
-     * @param {string} outputPath to an output file
-     * @param {object} [options] configuration options
-     * @returns {object} Promise to the result of parsing
-     */
-    static async draft(dataPath, source, outputPath, options) {
-        const data = Commands.loadFormatFromFile(dataPath, source);
-        const result = await transform(data, source, ['markdown'], options);
-
-        if (outputPath) { Commands.printFormatToFile(result,'markdown',outputPath); }
-        return Promise.resolve(Commands.printFormatToString(result,'markdown'));
-    }
-
-    /**
-     * Set default params before we normalize a sample text
-     *
-     * @param {object} argv the inbound argument values object
-     * @returns {object} a modfied argument object
-     */
-    static validateNormalizeArgs(argv) {
-        argv = Commands.setDefaultFileArg(argv, 'sample', 'sample.md', ((argv, argDefaultName) => { return argDefaultName; }));
-
-        if(argv.verbose) {
-            Logger.info(`normalize sample ${argv.sample} printing intermediate transformations.`);
-        }
-
-        return argv;
-    }
-
-    /**
-     * Normalize a sample markdown
-     *
-     * @param {string} samplePath to the sample file
-     * @param {string} target the target format
-     * @param {string} outputPath to an output file
-     * @param {object} [options] configuration options
-     * @returns {object} Promise to the result of parsing
-     */
-    static async normalize(samplePath, target, outputPath, options) {
-        const sample = Commands.loadFormatFromFile(samplePath, 'markdown');
-        let result = await transform(sample, 'markdown', [target], options);
-        result = await transform(result, target, ['markdown'], options);
-        if (outputPath) { Commands.printFormatToFile(result,'markdown',outputPath); }
-        return Promise.resolve(Commands.printFormatToString(result,'markdown'));
+        if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
+        return Promise.resolve(Commands.printFormatToString(result,finalFormat));
     }
 
 }

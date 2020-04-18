@@ -35,189 +35,131 @@ function normalizeNLs(input) {
     return text;
 }
 
-describe('#validateParseArgs', () => {
+describe('#validateTransformArgs', () => {
     it('no args specified', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateParseArgs({
-            _: ['parse'],
+        const args  = Commands.validateTransformArgs({
+            _: ['transform'],
         });
-        args.sample.should.match(/sample.md$/);
+        args.input.should.match(/input.md$/);
     });
     it('no args specified (verbose)', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateParseArgs({
-            _: ['parse'],
+        const args  = Commands.validateTransformArgs({
+            _: ['transform'],
             verbose: true
         });
-        args.sample.should.match(/sample.md$/);
+        args.input.should.match(/input.md$/);
     });
     it('all args specified', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateParseArgs({
-            _: ['parse'],
-            sample: 'sample.md'
+        const args  = Commands.validateTransformArgs({
+            _: ['transform'],
+            input: 'input.md'
         });
-        args.sample.should.match(/sample.md$/);
+        args.input.should.match(/input.md$/);
     });
-    it('bad sample.md', () => {
+    it('bad input.md', () => {
         process.chdir(path.resolve(__dirname, 'data/'));
-        (() => Commands.validateParseArgs({
-            _: ['parse'],
-            sample: 'sample_en.md'
-        })).should.throw('A sample.md file is required. Try the --sample flag or create a sample.md.');
-    });
-});
-
-describe('#validateDraftArgs', () => {
-    it('no args specified', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateDraftArgs({
-            _: ['draft'],
-        });
-        args.data.should.match(/data.json$/);
-    });
-    it('no args specified (verbose)', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateDraftArgs({
-            _: ['draft'],
-            verbose: true
-        });
-        args.data.should.match(/data.json$/);
-    });
-    it('all args specified', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateDraftArgs({
-            _: ['draft'],
-            data: 'data.json'
-        });
-        args.data.should.match(/data.json$/);
-    });
-    it('bad data.json', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        (() => Commands.validateDraftArgs({
-            _: ['draft'],
-            data: 'data_en.md'
-        })).should.throw('A data.json file is required. Try the --data flag or create a data.json.');
-    });
-});
-
-describe('#validateNormalizeArgs', () => {
-    it('no args specified', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateNormalizeArgs({
-            _: ['normalize'],
-        });
-        args.sample.should.match(/sample.md$/);
-    });
-    it('no args specified (verbose)', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateNormalizeArgs({
-            _: ['normalize'],
-            verbose: true
-        });
-        args.sample.should.match(/sample.md$/);
-    });
-    it('all args specified', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        const args  = Commands.validateNormalizeArgs({
-            _: ['normalize'],
-            sample: 'sample.md'
-        });
-        args.sample.should.match(/sample.md$/);
-    });
-    it('bad sample.md', () => {
-        process.chdir(path.resolve(__dirname, 'data/'));
-        (() => Commands.validateNormalizeArgs({
-            _: ['normalize'],
-            sample: 'sample_en.md'
-        })).should.throw('A sample.md file is required. Try the --sample flag or create a sample.md.');
+        (() => Commands.validateTransformArgs({
+            _: ['transform'],
+            input: 'input_en.md'
+        })).should.throw('A input.md file is required. Try the --input flag or create a input.md.');
     });
 });
 
 describe('markdown-cli', () => {
-    const sample = path.resolve(__dirname, 'data', 'acceptance.md');
-    const sampleExpected = path.resolve(__dirname, 'data', 'acceptance.json');
-    const sampleExpectedJson = JSON.parse(fs.readFileSync(sampleExpected, 'utf8'));
-    const sampleExpectedCiceroMark = path.resolve(__dirname, 'data', 'acceptance-cicero.json');
-    const sampleExpectedCiceroMarkJson = JSON.parse(fs.readFileSync(sampleExpectedCiceroMark, 'utf8'));
-    const sampleExpectedSlate = path.resolve(__dirname, 'data', 'acceptance-slate.json');
-    const sampleExpectedSlateJson = JSON.parse(fs.readFileSync(sampleExpectedSlate, 'utf8'));
-    const sampleExpectedText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8'));
+    const input = path.resolve(__dirname, 'data', 'acceptance.md');
+    const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
+    const inputExpected = path.resolve(__dirname, 'data', 'acceptance.json');
+    const inputExpectedDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.md');
+    const inputExpectedJson = JSON.parse(fs.readFileSync(inputExpected, 'utf8'));
+    const inputExpectedCiceroMark = path.resolve(__dirname, 'data', 'acceptance-cicero.json');
+    const inputExpectedCiceroMarkJson = JSON.parse(fs.readFileSync(inputExpectedCiceroMark, 'utf8'));
+    const inputExpectedSlate = path.resolve(__dirname, 'data', 'acceptance-slate.json');
+    const inputExpectedSlateJson = JSON.parse(fs.readFileSync(inputExpectedSlate, 'utf8'));
+    const inputExpectedText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8'));
+    const inputExpectedDocxText = normalizeNLs(fs.readFileSync(inputExpectedDocx,'utf8'));
 
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
             const options = {};
-            const result = await Commands.parse(sample, 'commonmark', null, options);
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, options);
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
         });
 
         it('should parse a markdown file to CommonMark (verbose)', async () => {
-            const result = await Commands.parse(sample, 'commonmark', null, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {verbose:true});
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
         });
 
         it('should parse a markdown file to CiceroMark', async () => {
-            const result = await Commands.parse(sample, 'ciceromark', null, {});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {});
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to CiceroMark (verbose)', async () => {
-            const result = await Commands.parse(sample, 'ciceromark', null, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {verbose:true});
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to Slate', async () => {
-            const result = await Commands.parse(sample, 'slate', null, {});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {});
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
         });
 
         it('should parse a markdown file to Slate (verbose)', async () => {
-            const result = await Commands.parse(sample, 'slate', null, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {verbose:true});
+            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
+        });
+
+        it('should generate a markdown file from docx', async () => {
+            const result = await Commands.transform(inputDocx, 'docx', 'markdown', null, {});
+            result.should.eql(inputExpectedDocxText);
         });
     });
 
     describe('#draft', () => {
         it('should generate a markdown file from CommonMark', async () => {
-            const result = await Commands.draft(sampleExpected, 'commonmark', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(inputExpected, 'commonmark', 'markdown', null, {});
+            result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from CiceroMark', async () => {
-            const result = await Commands.draft(sampleExpectedCiceroMark, 'ciceromark', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(inputExpectedCiceroMark, 'ciceromark', 'markdown', null, {});
+            result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from Slate', async () => {
-            const result = await Commands.draft(sampleExpectedSlate, 'slate', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {});
+            result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from Slate (verbose)', async () => {
-            const result = await Commands.draft(sampleExpectedSlate, 'slate', null, {verbose:true});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {verbose:true});
+            result.should.eql(inputExpectedText);
         });
     });
 
     describe('#normalize', () => {
         it('should CommonMark <> Markdown roundtrip', async () => {
-            const result = await Commands.normalize(sample, 'commonmark', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {roundtrip:true});
+            result.should.eql(inputExpectedText);
         });
 
         it('should CiceroMark <> Markdown roundtrip', async () => {
-            const result = await Commands.normalize(sample, 'ciceromark', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {roundtrip:true});
+            result.should.eql(inputExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip', async () => {
-            const result = await Commands.normalize(sample, 'slate', null, {});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {roundtrip:true});
+            result.should.eql(inputExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip (verbose)', async () => {
-            const result = await Commands.normalize(sample, 'slate', null, {verbose:true});
-            result.should.eql(sampleExpectedText);
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {roundtrip:true,verbose:true});
+            result.should.eql(inputExpectedText);
         });
     });
 });
