@@ -178,8 +178,8 @@ hide empty description
  * @returns {*} result of the transformation
  */
 async function transformToDestination(source, sourceFormat, destinationFormat, options) {
-
     let result = source;
+
     const path = find_path(rawGraph, sourceFormat, destinationFormat);
     for(let n=0; n < path.length-1; n++) {
         const src = path[n];
@@ -189,16 +189,8 @@ async function transformToDestination(source, sourceFormat, destinationFormat, o
         if(options && options.verbose) {
             console.log(`Converted from ${src} to ${dest}. Result:`);
             if(typeof result === 'object') {
-                if(result.then) {
-                    result.then((r) => {
-                        console.log(r);
-                    });
-                }
-                else {
-                    console.log(JSON.stringify(result, null, 2));
-                }
-            }
-            else {
+                console.log(JSON.stringify(result, null, 2));
+            } else {
                 console.log(result);
             }
         }
