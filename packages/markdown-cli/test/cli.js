@@ -199,7 +199,7 @@ describe('markdown-cli', () => {
         });
     });
 
-    describe.only('#normalize', () => {
+    describe('#normalize', () => {
         it('should CommonMark <> Markdown roundtrip', async () => {
             const result = await Commands.normalize(sample, 'commonmark', null, {});
             result.should.eql(sampleExpectedText);
