@@ -17,18 +17,56 @@
 const Fs = require('fs');
 const Logger = require('@accordproject/concerto-core').Logger;
 
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
-const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
-const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
-const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
-const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
+const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
  * @class
  */
 class Commands {
+    /**
+     * Load an input file
+     * @param {string} filePath the file name
+     * @param {string} format the format
+     * @returns {*} the content of the file
+     */
+    static loadFormatFromFile(filePath,format) {
+        const fileFormat = formatDescriptor(format).fileFormat;
+        if (fileFormat === 'json') {
+            return JSON.parse(Fs.readFileSync(filePath, 'utf8'));
+        } else if (fileFormat === 'binary') {
+            return JSON.parse(Fs.readFileSync(filePath));
+        } else {
+            return Fs.readFileSync(filePath, 'utf8');
+        }
+    }
+
+    /**
+     * Prints a format to string
+     * @param {*} input the input
+     * @param {string} format the format
+     * @returns {string} the string representation
+     */
+    static printFormatToString(input,format) {
+        const fileFormat = formatDescriptor(format).fileFormat;
+        if (fileFormat === 'json') {
+            return JSON.stringify(input);
+        } else {
+            return input;
+        }
+    }
+
+    /**
+     * Prints a format to file
+     * @param {*} input the input
+     * @param {string} format the format
+     * @param {string} filePath the file name
+     */
+    static printFormatToFile(input,format,filePath) {
+        Logger.info('Creating file: ' + filePath);
+        Fs.writeFileSync(filePath, Commands.printFormatToString(input,format));
+    }
+
     /**
      * Set a default for a file argument
      *
@@ -74,73 +112,18 @@ class Commands {
      * Parse a sample markdown
      *
      * @param {string} samplePath to the sample file
+     * @param {string} target the target format
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
-     * @param {boolean} [options.cicero] whether to further transform for Cicero
-     * @param {boolean} [options.slate] whether to further transform for Slate
-     * @param {boolean} [options.html] whether to further transform for HTML
-     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static async parse(samplePath, outputPath, options) {
-        const { cicero, slate, html, noQuote, verbose } = options;
-        const commonOptions = {};
-        commonOptions.tagInfo = true;
+    static async parse(samplePath, target, outputPath, options) {
+        const sample = Commands.loadFormatFromFile(samplePath, 'markdown');
+        const result = await transform(sample, 'markdown', [target], options);
 
-        const commonMark = new CommonMarkTransformer(commonOptions);
-        const ciceroMark = new CiceroMarkTransformer();
-        const slateMark = new SlateTransformer();
-        const htmlMark = new HtmlTransformer();
-        const docx = new DocxTransformer();
-        const pdf = new PdfTransformer();
-
-        let result = null;
-
-        if(samplePath.endsWith('.pdf')) {
-            const pdfBuffer = Fs.readFileSync(samplePath);
-            result = await pdf.toCiceroMark(pdfBuffer, 'json');
-        }
-        else if(samplePath.endsWith('.docx')) {
-            const docxBuffer = Fs.readFileSync(samplePath);
-            result = await docx.toCiceroMark(docxBuffer, 'json');
-        }
-        else {
-            const markdownText = Fs.readFileSync(samplePath, 'utf8');
-            result = commonMark.fromMarkdown(markdownText, 'json');
-        }
-
-        if(verbose) {
-            Logger.info('=== CommonMark ===');
-            Logger.info(JSON.stringify(result, null, 4));
-        }
-
-        if (cicero || slate || html) {
-            const ciceroOptions = {};
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.fromCommonMark(result, 'json', ciceroOptions);
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        }
-        if (slate) {
-            result = slateMark.fromCiceroMark(result);
-            if(verbose) {
-                Logger.info('=== Slate DOM ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (html) {
-            result = htmlMark.toHtml(result);
-        }
-        if (!html) {
-            result = JSON.stringify(result, null, 4);
-        }
-        if (outputPath) {
-            Logger.info('Creating file: ' + outputPath);
-            Fs.writeFileSync(outputPath, result);
-        }
-        return Promise.resolve(result);
+        if (outputPath) { Commands.printFormatToFile(result,target,outputPath); }
+        return Promise.resolve(Commands.printFormatToString(result,target));
     }
 
     /**
@@ -163,79 +146,17 @@ class Commands {
      * Parse a sample markdown/pdf/docx
      *
      * @param {string} dataPath to the sample file
+     * @param {string} source the source format
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
-     * @param {boolean} [options.cicero] whether to further transform for Cicero
-     * @param {boolean} [options.slate] whether to further transform for Slate
-     * @param {boolean} [options.plainText] whether to remove rich text formatting
-     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
-     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
-     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
-     * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static draft(dataPath, outputPath, options) {
-        const { cicero, slate, html, plainText, noWrap, noQuote, noIndex, verbose } = options;
-        const commonOptions = {};
-        commonOptions.tagInfo = true;
-        commonOptions.noIndex = noIndex ? true : false;
+    static async draft(dataPath, source, outputPath, options) {
+        const data = Commands.loadFormatFromFile(dataPath, source);
+        const result = await transform(data, source, ['markdown'], options);
 
-        const commonMark = new CommonMarkTransformer(commonOptions);
-        const ciceroMark = new CiceroMarkTransformer();
-        const slateMark = new SlateTransformer();
-        const htmlMark = new HtmlTransformer();
-
-        let result = Fs.readFileSync(dataPath, 'utf8');
-        if (!html) {
-            result = JSON.parse(result);
-        }
-        if (cicero) {
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (slate) {
-            result = slateMark.toCiceroMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (html) {
-            result = htmlMark.toCiceroMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        }
-        result = commonMark.toMarkdown(result);
-        if (outputPath) {
-            Logger.info('Creating file: ' + outputPath);
-            Fs.writeFileSync(outputPath, result);
-        }
-        return Promise.resolve(result);
+        if (outputPath) { Commands.printFormatToFile(result,'markdown',outputPath); }
+        return Promise.resolve(Commands.printFormatToString(result,'markdown'));
     }
 
     /**
@@ -258,105 +179,17 @@ class Commands {
      * Normalize a sample markdown
      *
      * @param {string} samplePath to the sample file
+     * @param {string} target the target format
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
-     * @param {boolean} [options.cicero] whether to further transform for Cicero
-     * @param {boolean} [options.slate] whether to further transform for Slate
-     * @param {boolean} [options.plainText] whether to remove rich text formatting
-     * @param {boolean} [options.noWrap] whether to avoid wrapping Cicero variables in XML tags
-     * @param {boolean} [options.noQuote] whether to avoid quoting Cicero variables
-     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
-     * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static normalize(samplePath, outputPath, options) {
-        const { cicero, slate, html, plainText, noWrap, noQuote, noIndex, verbose } = options;
-        const commonOptions = {};
-        commonOptions.tagInfo = true;
-        commonOptions.noIndex = noIndex ? true : false;
-
-        const commonMark = new CommonMarkTransformer(commonOptions);
-        const ciceroMark = new CiceroMarkTransformer();
-        const slateMark = new SlateTransformer();
-        const htmlMark = new HtmlTransformer();
-
-        const markdownText = Fs.readFileSync(samplePath, 'utf8');
-        let result = commonMark.fromMarkdown(markdownText, 'json');
-        result = plainText ? commonMark.removeFormatting(result) : result;
-        if(verbose) {
-            Logger.info('=== CommonMark ===');
-            Logger.info(JSON.stringify(result, null, 4));
-        }
-
-        if (cicero || slate || html) {
-            const ciceroOptions = {};
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.fromCommonMark(result, 'json', ciceroOptions);
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        }
-        if (slate) {
-            result = slateMark.fromCiceroMark(result);
-            if(verbose) {
-                Logger.info('=== Slate DOM ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (html) {
-            result = htmlMark.toHtml(result);
-            if(verbose) {
-                Logger.info('=== HTML ===');
-                Logger.info(result);
-            }
-        }
-        if (cicero) {
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (slate) {
-            result = slateMark.toCiceroMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        } else if (html) {
-            result = htmlMark.toCiceroMark(result, 'json');
-            if(verbose) {
-                Logger.info('=== CiceroMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-            const ciceroOptions = {};
-            ciceroOptions.wrapVariables = noWrap ? false : true;
-            ciceroOptions.quoteVariables = noQuote ? false : true;
-            result = ciceroMark.toCommonMark(result, 'json', ciceroOptions);
-            result = plainText ? commonMark.removeFormatting(result) : result;
-            if(verbose) {
-                Logger.info('=== CommonMark ===');
-                Logger.info(JSON.stringify(result, null, 4));
-            }
-        }
-        result = commonMark.toMarkdown(result);
-        if (outputPath) {
-            Logger.info('Creating file: ' + outputPath);
-            Fs.writeFileSync(outputPath, result);
-        }
-        return Promise.resolve(result);
+    static async normalize(samplePath, target, outputPath, options) {
+        const sample = Commands.loadFormatFromFile(samplePath, 'markdown');
+        let result = await transform(sample, 'markdown', [target], options);
+        result = await transform(result, target, ['markdown'], options);
+        if (outputPath) { Commands.printFormatToFile(result,'markdown',outputPath); }
+        return Promise.resolve(Commands.printFormatToString(result,'markdown'));
     }
 
 }

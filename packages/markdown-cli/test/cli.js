@@ -147,122 +147,76 @@ describe('markdown-cli', () => {
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
             const options = {};
-            options.cicero = false;
-            options.slate = false;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'commonmark', null, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
         });
 
         it('should parse a markdown file to CommonMark (verbose)', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = false;
-            options.verbose = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'commonmark', null, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedJson));
         });
 
         it('should parse a markdown file to CiceroMark', async () => {
-            const options = {};
-            options.cicero = true;
-            options.slate = false;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'ciceromark', null, {});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to CiceroMark (verbose)', async () => {
-            const options = {};
-            options.cicero = true;
-            options.slate = false;
-            options.verbose = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'ciceromark', null, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to Slate', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'slate', null, {});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
         });
 
         it('should parse a markdown file to Slate (verbose)', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            options.verbose = true;
-            const result = await Commands.parse(sample, null, options);
+            const result = await Commands.parse(sample, 'slate', null, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(sampleExpectedSlateJson));
         });
     });
 
     describe('#draft', () => {
         it('should generate a markdown file from CommonMark', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = false;
-            const result = await Commands.draft(sampleExpected, null, options);
+            const result = await Commands.draft(sampleExpected, 'commonmark', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should generate a markdown file from CiceroMark', async () => {
-            const options = {};
-            options.cicero = true;
-            options.slate = false;
-            const result = await Commands.draft(sampleExpectedCiceroMark, null, options);
+            const result = await Commands.draft(sampleExpectedCiceroMark, 'ciceromark', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should generate a markdown file from Slate', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            const result = await Commands.draft(sampleExpectedSlate, null, options);
+            const result = await Commands.draft(sampleExpectedSlate, 'slate', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should generate a markdown file from Slate (verbose)', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            options.verbose = true;
-            const result = await Commands.draft(sampleExpectedSlate, null, options);
+            const result = await Commands.draft(sampleExpectedSlate, 'slate', null, {verbose:true});
             result.should.eql(sampleExpectedText);
         });
     });
 
-    describe('#normalize', () => {
+    describe.only('#normalize', () => {
         it('should CommonMark <> Markdown roundtrip', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = false;
-            const result = await Commands.normalize(sample, null, options);
+            const result = await Commands.normalize(sample, 'commonmark', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should CiceroMark <> Markdown roundtrip', async () => {
-            const options = {};
-            options.cicero = true;
-            options.slate = false;
-            const result = await Commands.normalize(sample, null, options);
+            const result = await Commands.normalize(sample, 'ciceromark', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            const result = await Commands.normalize(sample, null, options);
+            const result = await Commands.normalize(sample, 'slate', null, {});
             result.should.eql(sampleExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip (verbose)', async () => {
-            const options = {};
-            options.cicero = false;
-            options.slate = true;
-            options.verbose = true;
-            const result = await Commands.normalize(sample, null, options);
+            const result = await Commands.normalize(sample, 'slate', null, {verbose:true});
             result.should.eql(sampleExpectedText);
         });
     });

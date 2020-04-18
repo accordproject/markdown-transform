@@ -1,5 +1,5 @@
 {
-  "name": "@accordproject/markdown-transforms",
+  "name": "@accordproject/markdown-transform",
   "version": "0.10.4",
   "description": "API for transforming markdown data",
   "engines": {

@@ -25,6 +25,7 @@ chai.use(require('chai-as-promised'));
 
 const transform = require('../lib/transform').transform;
 const generateTransformationDiagram = require('../lib/transform').generateTransformationDiagram;
+const formatDescriptor = require('../lib/transform').formatDescriptor;
 const acceptanceMarkdown = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance.md'), 'utf8');
 const acceptanceCiceroEdit = fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-ciceroedit.md'), 'utf8');
 const acceptanceCommonMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-commonmark.json'), 'utf8'));
@@ -169,3 +170,13 @@ describe('#generateTransformationDiagram', () => {
     });
 });
 
+describe('#formatDescriptor', () => {
+    it('Lookup valid format', () => {
+        const result = formatDescriptor('commonmark');
+        result.fileFormat.should.equal('json');
+    });
+
+    it('Lookup invalid format', () => {
+        (() => formatDescriptor('foobar')).should.throw('Unknown format foobar');
+    });
+});
