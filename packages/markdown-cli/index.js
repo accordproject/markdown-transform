@@ -29,12 +29,12 @@ require('yargs')
             describe: 'path to the input',
             type: 'string'
         });
-        yargs.option('source', {
+        yargs.option('from', {
             describe: 'source format',
             type: 'string',
             default: 'markdown'
         });
-        yargs.option('target', {
+        yargs.option('to', {
             describe: 'target format',
             type: 'string',
             default: 'commonmark'
@@ -63,7 +63,7 @@ require('yargs')
             const options = {};
             options.verbose = argv.verbose;
             options.roundtrip = argv.roundtrip;
-            return Commands.transform(argv.input, argv.source, argv.target, argv.output, options)
+            return Commands.transform(argv.input, argv.from, argv.to, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
