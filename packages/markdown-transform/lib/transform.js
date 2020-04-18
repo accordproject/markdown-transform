@@ -155,7 +155,7 @@ hide empty description
         result += `${src} : \n`;
         result += `${src} : ${transformationGraph[src].docs}\n`;
         Object.keys(transformationGraph[src]).forEach(dest => {
-            if(dest !== 'docs') {
+            if(dest !== 'docs' && dest !== 'fileFormat') {
                 result += `${src} --> ${dest}\n`;
             }
         });
