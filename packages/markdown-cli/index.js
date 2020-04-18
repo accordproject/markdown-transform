@@ -29,29 +29,14 @@ require('yargs')
             describe: 'path to the markdown text',
             type: 'string'
         });
+        yargs.option('target', {
+            describe: 'target format',
+            type: 'string',
+            default: 'commonmark'
+        });
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
-        });
-        yargs.option('cicero', {
-            describe: 'further transform to CiceroMark',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('slate', {
-            describe: 'further transform to Slate DOM',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('html', {
-            describe: 'further transform to HTML',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noQuote', {
-            describe: 'do use quotes for CiceroMark variables',
-            type: 'boolean',
-            default: false
         });
         yargs.option('verbose', {
             describe: 'verbose output',
@@ -66,20 +51,16 @@ require('yargs')
         try {
             argv = Commands.validateParseArgs(argv);
             const options = {};
-            options.cicero = argv.cicero;
-            options.slate = argv.slate;
-            options.html = argv.html;
-            options.noQuote = argv.noQuote;
             options.verbose = argv.verbose;
-            return Commands.parse(argv.sample, argv.output, options)
+            return Commands.parse(argv.sample, argv.target, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err.message);
+                    Logger.error(err);
                 });
         } catch (err){
-            Logger.error(err.message);
+            Logger.error(err);
             return;
         }
     })
@@ -88,44 +69,14 @@ require('yargs')
             describe: 'path to the data',
             type: 'string'
         });
+        yargs.option('source', {
+            describe: 'source format',
+            type: 'string',
+            default: 'commonmark'
+        });
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
-        });
-        yargs.option('cicero', {
-            describe: 'input data is a CiceroMark DOM',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('slate', {
-            describe: 'input data is a Slate DOM',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('html', {
-            describe: 'input data is HTML',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('plainText', {
-            describe: 'do not use rich text formatting',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noWrap', {
-            describe: 'do not wrap CiceroMark variables as XML tags',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noQuote', {
-            describe: 'do use quotes for CiceroMark variables',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noIndex', {
-            describe: 'do not index ordered lists',
-            type: 'boolean',
-            default: false
         });
         yargs.option('verbose', {
             describe: 'verbose output',
@@ -140,23 +91,16 @@ require('yargs')
         try {
             argv = Commands.validateDraftArgs(argv);
             const options = {};
-            options.cicero = argv.cicero;
-            options.slate = argv.slate;
-            options.html = argv.html;
-            options.plainText = argv.plainText;
-            options.noWrap = argv.noWrap;
-            options.noQuote = argv.noQuote;
-            options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
-            return Commands.draft(argv.data, argv.output, options)
+            return Commands.draft(argv.data, argv.source, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err.message);
+                    Logger.error(err);
                 });
         } catch (err){
-            Logger.error(err.message);
+            Logger.error(err);
             return;
         }
     })
@@ -165,44 +109,14 @@ require('yargs')
             describe: 'path to the markdown text',
             type: 'string'
         });
+        yargs.option('target', {
+            describe: 'target format',
+            type: 'string',
+            default: 'commonmark'
+        });
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
-        });
-        yargs.option('cicero', {
-            describe: 'further transform to CiceroMark',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('slate', {
-            describe: 'further transform to Slate DOM',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('html', {
-            describe: 'further transform to HTML',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('plainText', {
-            describe: 'do not use rich text formatting',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noWrap', {
-            describe: 'do not wrap variables as XML tags',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noQuote', {
-            describe: 'do use quotes for CiceroMark variables',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('noIndex', {
-            describe: 'do not index ordered lists',
-            type: 'boolean',
-            default: false
         });
         yargs.option('verbose', {
             describe: 'verbose output',
@@ -217,23 +131,16 @@ require('yargs')
         try {
             argv = Commands.validateNormalizeArgs(argv);
             const options = {};
-            options.cicero = argv.cicero;
-            options.slate = argv.slate;
-            options.html = argv.html;
-            options.plainText = argv.plainText;
-            options.noWrap = argv.noWrap;
-            options.noQuote = argv.noQuote;
-            options.noIndex = argv.noIndex;
             options.verbose = argv.verbose;
-            return Commands.normalize(argv.sample, argv.output, options)
+            return Commands.normalize(argv.sample, argv.target, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err.message);
+                    Logger.error(err);
                 });
         } catch (err){
-            Logger.error(err.message);
+            Logger.error(err);
             return;
         }
     })

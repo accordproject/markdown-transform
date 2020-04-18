@@ -30,6 +30,7 @@ const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 const transformationGraph = {
     markdown : {
         docs: 'Markdown format text string',
+        fileFormat: 'utf8',
         commonmark : (input) => {
             const t = new CommonMarkTransformer({tagInfo: true});
             return t.fromMarkdown(input, 'json');
@@ -37,6 +38,7 @@ const transformationGraph = {
     },
     commonmark: {
         docs: 'CommonMark DOM (JSON)',
+        fileFormat: 'json',
         markdown: (input) => {
             const commonMarkTransformer = new CommonMarkTransformer({tagInfo: true});
             return commonMarkTransformer.toMarkdown(input);
@@ -53,12 +55,14 @@ const transformationGraph = {
     },
     plaintext: {
         docs: 'Plain text string',
+        fileFormat: 'utf8',
         markdown: (input) => {
             return input;
         },
     },
     ciceromark: {
         docs: 'CiceroMark DOM (JSON)',
+        fileFormat: 'json',
         html: (input) => {
             const t = new HtmlTransformer();
             return t.toHtml(input);
@@ -69,7 +73,7 @@ const transformationGraph = {
         },
         commonmark: (input) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, {quoteVariables: true}, 'json');
+            return ciceroMarkTransformer.toCommonMark(input, 'json', {wrapVariables: true, quoteVariables: true});
         },
         slate: (input) => {
             const slateTransformer = new SlateTransformer();
@@ -78,12 +82,14 @@ const transformationGraph = {
     },
     ciceromark_noquotes: {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',
+        fileFormat: 'json',
         ciceromark: (input) => {
             return input;
         }
     },
     pdf: {
         docs: 'PDF buffer',
+        fileFormat: 'binary',
         ciceromark: (input) => {
             const pdfTransformer = new PdfTransformer();
             return pdfTransformer.toCiceroMark(input, 'json');
@@ -91,6 +97,7 @@ const transformationGraph = {
     },
     docx: {
         docs: 'DOCX buffer',
+        fileFormat: 'binary',
         ciceromark: async (input) => {
             const docxTransformer = new DocxTransformer();
             return docxTransformer.toCiceroMark(input, 'json');
@@ -98,6 +105,7 @@ const transformationGraph = {
     },
     html: {
         docs: 'HTML string',
+        fileFormat: 'utf8',
         ciceromark: (input) => {
             const t = new HtmlTransformer();
             return t.toCiceroMark(input, 'json');
@@ -105,12 +113,33 @@ const transformationGraph = {
     },
     slate: {
         docs: 'Slate DOM (JSON)',
+        fileFormat: 'json',
         ciceromark: (input) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.toCiceroMark(input, 'json');
         },
     },
 };
+
+/**
+ * Prune the graph for traversal
+ * @param {object} graph the input graph
+ * returns {object} the raw graph for dijsktra
+ */
+function pruneGraph(graph) {
+    const result = {};
+    for (const sourceKey in graph) {
+        result[sourceKey] = {};
+        for (const targetKey in graph[sourceKey]) {
+            // Don't forget to remove the meta data which really isn't part of the graph
+            if (targetKey !== 'docs' && targetKey !== 'fileFormat') {
+                result[sourceKey][targetKey] = 1;
+            }
+        }
+    }
+    return result;
+}
+const rawGraph = pruneGraph(transformationGraph);
 
 /**
  * Converts the graph of transformations into a PlantUML text string
@@ -151,7 +180,7 @@ hide empty description
 function transformToDestination(source, sourceFormat, destinationFormat, options) {
 
     let result = source;
-    const path = find_path(transformationGraph, sourceFormat, destinationFormat);
+    const path = find_path(rawGraph, sourceFormat, destinationFormat);
     for(let n=0; n < path.length-1; n++) {
         const src = path[n];
         const dest = path[n+1];
@@ -203,6 +232,21 @@ async function transform(source, sourceFormat, destinationFormat, options) {
     return result;
 }
 
+/**
+ * Return the format descriptor for a given format
+ *
+ * @param {string} format the format
+ * @return {object} the descriptor for that format
+ */
+function formatDescriptor(format) {
+    if (Object.prototype.hasOwnProperty.call(transformationGraph,format)) {
+        return transformationGraph[format];
+    } else {
+        throw new Error('Unknown format ' + format);
+    }
+}
+
+module.exports.formatDescriptor = formatDescriptor;
 module.exports.transform = transform;
 module.exports.transformationGraph = transformationGraph;
 module.exports.generateTransformationDiagram = generateTransformationDiagram;

@@ -53,12 +53,7 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.7",
-    "@accordproject/markdown-common": "0.10.4",
-    "@accordproject/markdown-cicero": "0.10.4",
-    "@accordproject/markdown-slate": "0.10.4",
-    "@accordproject/markdown-html": "0.10.4",
-    "@accordproject/markdown-pdf": "0.10.4",
-    "@accordproject/markdown-docx": "0.10.4",
+    "@accordproject/markdown-transform": "0.10.4",
     "jsome": "2.5.0",
     "winston": "3.2.1",
     "yargs": "13.2.4"
