@@ -113,7 +113,6 @@ describe('#templateparsers', () => {
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            // console.log(JSON.stringify(parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.')));
             parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
