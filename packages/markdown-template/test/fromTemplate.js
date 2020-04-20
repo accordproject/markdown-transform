@@ -17,23 +17,29 @@
 // Parser from template AST
 const parserOfTemplateAst = require('../lib/fromTemplate').parserOfTemplateAst;
 
+// Variables
+const var1 = { 'kind': 'variable', 'name': 'seller', 'type': 'String' };
+const var2 = { 'kind': 'variable', 'name': 'buyer', 'type': 'String' };
+const var3 = { 'kind': 'variable', 'name': 'amount', 'type': 'Double' };
+const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
+
 // Valid templates
 const template1 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var1,
         { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var2,
     ]
 };
 const template2 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var1,
         { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var2,
         { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
     ]
 };
@@ -41,13 +47,13 @@ const template3 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var1,
         { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var2,
         { 'kind': 'text', 'value': ' for the amount of ' },
-        { 'kind': 'variable', 'type': 'Double' },
+        var3,
         { 'kind': 'text', 'value': ' ' },
-        { 'kind': 'variable', 'type': 'Enum', 'value': ['USD','GBP','EUR'] },
+        var4,
         { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
         { 'kind': 'text', 'value': '.' },
     ]
@@ -58,25 +64,25 @@ const templateErr1 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'foo', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var1,
         { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var2,
     ]
 };
 const templateErr2 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'FOO' },
+        { 'kind': 'variable', 'name': 'seller', 'type': 'FOO' },
         { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var2,
     ]
 };
 const templateErr3 = {
     'kind':'sequence',
     'value': [
         { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'type': 'String' },
+        var1,
         { 'kind': 'text', 'value': ' and ' },
         { 'kind': 'block', 'type': 'unknownBlock' },
     ]
@@ -107,6 +113,7 @@ describe('#templateparsers', () => {
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
+            // console.log(JSON.stringify(parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.')));
             parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
