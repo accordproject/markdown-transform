@@ -21,6 +21,7 @@ const stringParser = require('./coreparsers').stringParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
+const clauseParser = require('./coreparsers').clauseParser;
 
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
@@ -34,6 +35,9 @@ function parserOfTemplateAst(ast) {
     switch(ast.kind) {
     case 'text' :
         parser = textParser(ast.value);
+        break;
+    case 'clause' :
+        parser = clauseParser(ast,parserOfTemplateAst(ast.value));
         break;
     case 'variable' : {
         switch(ast.type) {

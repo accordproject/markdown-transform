@@ -35,6 +35,22 @@ function mkVariable(variable,value) {
 }
 
 /**
+ * Creates a clause output
+ * @param {object} clause the clause ast node
+ * @param {*} value the clause value
+ * @returns {object} the clause
+ */
+function mkClause(clause,value) {
+    const result = {};
+    result.$class = clause.type;
+    for(let i = 0; i < value.length; i++) {
+        const field = value[i];
+        result[field.name] = field.value;
+    }
+    return result;
+}
+
+/**
  * Core parsing components
  */
 
@@ -87,7 +103,10 @@ function enumParser(variable, enums) {
  * @returns {object} the parser
  */
 function seqParser(parsers) {
-    return P.seq.apply(null, parsers);
+    return P.seqMap.apply(null, parsers.concat([function () {
+        var args = Array.prototype.slice.call(arguments);
+        return args.filter(function(x) { return !(typeof x === 'string'); });
+    }]));
 }
 
 /**
@@ -100,9 +119,22 @@ function condParser(whenTrue,whenFalse) {
     return P.alt(P.string(whenTrue),P.string(whenFalse));
 }
 
+/**
+ * Creates a parser for a single clause
+ * @param {object} clause the clause ast node
+ * @param {object} content the parser for the content of the clause
+ * @returns {object} the parser
+ */
+function clauseParser(clause,content) {
+    return content.map(function(x) {
+        return mkClause(clause,x);
+    });
+}
+
 module.exports.doubleParser = doubleParser;
 module.exports.textParser = textParser;
 module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.seqParser = seqParser;
 module.exports.condParser = condParser;
+module.exports.clauseParser = clauseParser;
