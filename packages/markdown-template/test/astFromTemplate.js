@@ -15,7 +15,7 @@
 'use strict';
 
 // Parser from template AST
-const parserOfTemplateAst = require('../lib/fromTemplate').parserOfTemplateAst;
+const parserOfTemplateAst = require('../lib/astFromTemplate').parserOfTemplateAst;
 
 // Variables
 const var1 = { 'kind': 'variable', 'name': 'seller', 'type': 'String' };
@@ -25,67 +25,94 @@ const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': 
 
 // Valid templates
 const template1 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'text', 'value': 'This is a contract between ' },
-        var1,
-        { 'kind': 'text', 'value': ' and ' },
-        var2,
-    ]
+    'kind':'clause',
+    'name':'clause1',
+    'type':'org.accordproject.MyClause',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'text', 'value': 'This is a contract between ' },
+            var1,
+            { 'kind': 'text', 'value': ' and ' },
+            var2,
+        ]
+    }
 };
 const template2 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'text', 'value': 'This is a contract between ' },
-        var1,
-        { 'kind': 'text', 'value': ' and ' },
-        var2,
-        { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
-    ]
+    'kind':'clause',
+    'name':'clause2',
+    'type':'org.accordproject.MyContract',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'text', 'value': 'This is a contract between ' },
+            var1,
+            { 'kind': 'text', 'value': ' and ' },
+            var2,
+            { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
+        ]
+    }
 };
 const template3 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'text', 'value': 'This is a contract between ' },
-        var1,
-        { 'kind': 'text', 'value': ' and ' },
-        var2,
-        { 'kind': 'text', 'value': ' for the amount of ' },
-        var3,
-        { 'kind': 'text', 'value': ' ' },
-        var4,
-        { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
-        { 'kind': 'text', 'value': '.' },
-    ]
+    'kind':'clause',
+    'name':'clause3',
+    'type':'org.accordproject.MyContract',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'text', 'value': 'This is a contract between ' },
+            var1,
+            { 'kind': 'text', 'value': ' and ' },
+            var2,
+            { 'kind': 'text', 'value': ' for the amount of ' },
+            var3,
+            { 'kind': 'text', 'value': ' ' },
+            var4,
+            { 'kind': 'block', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+            { 'kind': 'text', 'value': '.' },
+        ]
+    }
 };
 
 // Error templates
 const templateErr1 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'foo', 'value': 'This is a contract between ' },
-        var1,
-        { 'kind': 'text', 'value': ' and ' },
-        var2,
-    ]
+    'kind':'clause',
+    'type':'org.accordproject.MyContract',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'foo', 'value': 'This is a contract between ' },
+            var1,
+            { 'kind': 'text', 'value': ' and ' },
+            var2,
+        ]
+    }
 };
 const templateErr2 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'text', 'value': 'This is a contract between ' },
-        { 'kind': 'variable', 'name': 'seller', 'type': 'FOO' },
-        { 'kind': 'text', 'value': ' and ' },
-        var2,
-    ]
+    'kind':'clause',
+    'type':'org.accordproject.MyContract',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'text', 'value': 'This is a contract between ' },
+            { 'kind': 'variable', 'name': 'seller', 'type': 'FOO' },
+            { 'kind': 'text', 'value': ' and ' },
+            var2,
+        ]
+    }
 };
 const templateErr3 = {
-    'kind':'sequence',
-    'value': [
-        { 'kind': 'text', 'value': 'This is a contract between ' },
-        var1,
-        { 'kind': 'text', 'value': ' and ' },
-        { 'kind': 'block', 'type': 'unknownBlock' },
-    ]
+    'kind':'clause',
+    'type':'org.accordproject.MyContract',
+    'value': {
+        'kind':'sequence',
+        'value': [
+            { 'kind': 'text', 'value': 'This is a contract between ' },
+            var1,
+            { 'kind': 'text', 'value': ' and ' },
+            { 'kind': 'block', 'type': 'unknownBlock' },
+        ]
+    }
 };
 
 // Tests
@@ -113,6 +140,7 @@ describe('#templateparsers', () => {
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
+            console.log(JSON.stringify(parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.')));
             parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
