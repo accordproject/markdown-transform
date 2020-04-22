@@ -120,15 +120,29 @@ function condParser(whenTrue,whenFalse) {
 }
 
 /**
- * Creates a parser for a single clause
+ * Creates a parser for clause content
+ * @param {object} clause the clause ast node
+ * @param {object} content the parser for the content of the clause
+ * @returns {object} the parser
+ */
+function clauseContentParser(clause,content) {
+    return content.map(function(x) {
+        return mkClause(clause,x);
+    });
+}
+
+/**
+ * Creates a parser for a clause
  * @param {object} clause the clause ast node
  * @param {object} content the parser for the content of the clause
  * @returns {object} the parser
  */
 function clauseParser(clause,content) {
+    const clauseBefore = (() => textParser(`\n\`\`\` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">`));
+    const clauseAfter = (() => textParser(`\n\`\`\`\n`));
     return content.map(function(x) {
         return mkClause(clause,x);
-    });
+    }).wrap(clauseBefore(),clauseAfter());
 }
 
 module.exports.doubleParser = doubleParser;
@@ -137,4 +151,5 @@ module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.seqParser = seqParser;
 module.exports.condParser = condParser;
+module.exports.clauseContentParser = clauseContentParser;
 module.exports.clauseParser = clauseParser;

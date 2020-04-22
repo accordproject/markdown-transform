@@ -9,6 +9,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "markus": "./index.js"
+  },
   "files": [
     "bin",
     "lib",
@@ -67,7 +70,7 @@
       "!./node_modules/**/*",
       "!./out/**/*",
       "!./umd/**/*",
-      "!./bin/index.js"
+      "!./index.js"
     ],
     "path": "header.txt",
     "blocking": true,

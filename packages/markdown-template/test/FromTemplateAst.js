@@ -15,7 +15,7 @@
 'use strict';
 
 // Parser from template AST
-const parserOfTemplateAst = require('../lib/astFromTemplate').parserOfTemplateAst;
+const parserOfTemplateAst = require('../lib/FromTemplateAst').parserOfTemplateAst;
 
 // Variables
 const var1 = { 'kind': 'variable', 'name': 'seller', 'type': 'String' };
@@ -25,7 +25,7 @@ const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': 
 
 // Valid templates
 const template1 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'name':'clause1',
     'type':'org.accordproject.MyClause',
     'value': {
@@ -39,7 +39,7 @@ const template1 = {
     }
 };
 const template2 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'name':'clause2',
     'type':'org.accordproject.MyContract',
     'value': {
@@ -54,7 +54,7 @@ const template2 = {
     }
 };
 const template3 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'name':'clause3',
     'type':'org.accordproject.MyContract',
     'value': {
@@ -76,7 +76,7 @@ const template3 = {
 
 // Error templates
 const templateErr1 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -89,7 +89,7 @@ const templateErr1 = {
     }
 };
 const templateErr2 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -102,7 +102,7 @@ const templateErr2 = {
     }
 };
 const templateErr3 = {
-    'kind':'clause',
+    'kind':'clauseContent',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -140,7 +140,6 @@ describe('#templateparsers', () => {
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            console.log(JSON.stringify(parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.')));
             parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
