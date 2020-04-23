@@ -14,6 +14,8 @@
 
 'use strict';
 
+const Fs = require('fs');
+
 // Parser from template AST
 const parserOfTemplateAst = require('../lib/FromTemplateAst').parserOfTemplateAst;
 
@@ -25,7 +27,7 @@ const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': 
 
 // Valid templates
 const template1 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'name':'clause1',
     'type':'org.accordproject.MyClause',
     'value': {
@@ -39,7 +41,7 @@ const template1 = {
     }
 };
 const template2 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'name':'clause2',
     'type':'org.accordproject.MyContract',
     'value': {
@@ -54,7 +56,7 @@ const template2 = {
     }
 };
 const template3 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'name':'clause3',
     'type':'org.accordproject.MyContract',
     'value': {
@@ -73,10 +75,12 @@ const template3 = {
         ]
     }
 };
+const template4 = JSON.parse(Fs.readFileSync('./test/data/template4.json', 'utf8'));
+const text4 = Fs.readFileSync('./test/data/text4.md', 'utf8');
 
 // Error templates
 const templateErr1 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -89,7 +93,7 @@ const templateErr1 = {
     }
 };
 const templateErr2 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -102,7 +106,7 @@ const templateErr2 = {
     }
 };
 const templateErr3 = {
-    'kind':'clauseContent',
+    'kind':'clause',
     'type':'org.accordproject.MyContract',
     'value': {
         'kind':'sequence',
@@ -147,6 +151,12 @@ describe('#templateparsers', () => {
         });
         it('should not parse', async () => {
             parserOfTemplateAst(template3).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
+        });
+    });
+
+    describe('#template4', () => {
+        it('should parse', async () => {
+            parserOfTemplateAst(template4).parse(text4).status.should.equal(true);
         });
     });
 });
