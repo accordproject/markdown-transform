@@ -52,17 +52,19 @@ concept AtomicVariable extends Variable {
 abstract concept Block extends Variable {
 }
 
-concept ConditionalBlock extends Variable {
+concept WithBlock extends Block {
+}
+
+concept ConditionalBlock extends Block {
     o String whenTrue
     o String whenFalse
 }
 
-abstract concept UnorderedListBlock extends Variable {
+abstract concept UnorderedListBlock extends Block {
 }
 
-abstract concept OrderedListBlock extends Variable {
+abstract concept OrderedListBlock extends Block {
 }
-
 `;
 
 module.exports = { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel };
