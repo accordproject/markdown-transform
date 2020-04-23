@@ -66,7 +66,7 @@ function parserOfTemplateAst(ast) {
     case 'block' : {
         switch(ast.type) {
         case 'conditional' :
-            parser = condParser(ast.whenTrue,ast.whenFalse);
+            parser = condParser(ast);
             break;
         default:
             throw new Error('Unknown block type ' + ast.type);

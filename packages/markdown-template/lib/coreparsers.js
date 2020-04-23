@@ -35,6 +35,20 @@ function mkVariable(variable,value) {
 }
 
 /**
+ * Creates a conditional output
+ * @param {object} variable the variable ast node
+ * @param {*} value the variable value
+ * @returns {object} the conditional
+ */
+function mkCond(cond,value) {
+    const result = {};
+    result.name = cond.name;
+    result.type = 'Boolean';
+    result.value = value === cond.whenTrue ? true : false;
+    return result;
+}
+
+/**
  * Creates a clause output
  * @param {object} clause the clause ast node
  * @param {*} value the clause value
@@ -139,12 +153,13 @@ function seqParser(parsers) {
 
 /**
  * Creates a parser for a conditional block
- * @param {string} whenTrue - the text when true
- * @param {string} whenFalse - the text when false
+ * @param {object} cond the conditional ast node
  * @returns {object} the parser
  */
-function condParser(whenTrue,whenFalse) {
-    return P.alt(P.string(whenTrue),P.string(whenFalse));
+function condParser(cond) {
+    return P.alt(P.string(cond.whenTrue),P.string(cond.whenFalse)).map(function(x) {
+        return mkCond(cond,x);
+    });;
 }
 
 /**
