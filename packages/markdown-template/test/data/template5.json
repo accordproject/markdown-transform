@@ -22,6 +22,7 @@
                         { "kind": "text", "value": " " },
                         { "kind": "variable", "name": "currency", "type": "Enum", "value": ["USD","GBP","EUR"] },
                         { "kind": "block", "name":"forceMajeure", "type": "conditional", "whenTrue": ", even in the presence of force majeure", "whenFalse": "" },
+                        { "kind": "block", "name":"badWeather", "type": "conditional", "whenTrue": ", even in the presence of bad weather", "whenFalse": "" },
                         { "kind": "text", "value": "." }
                     ]
                 }
