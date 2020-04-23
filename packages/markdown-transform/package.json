@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "description": "API for transforming markdown data",
   "engines": {
     "node": ">=8",
@@ -18,7 +18,7 @@
   "scripts": {
     "pretest": "npm run lint && npm run generateDiagram",
     "lint": "eslint .",
-    "generateDiagram" : "node ./scripts/generateDiagram.js",
+    "generateDiagram": "node ./scripts/generateDiagram.js",
     "postlint": "npm run licchk",
     "licchk": "license-check",
     "test": "mocha",
@@ -54,12 +54,12 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.7",
-    "@accordproject/markdown-cicero": "0.10.4",
-    "@accordproject/markdown-common": "0.10.4",
-    "@accordproject/markdown-docx": "0.10.4",
-    "@accordproject/markdown-html": "0.10.4",
-    "@accordproject/markdown-pdf": "0.10.4",
-    "@accordproject/markdown-slate": "0.10.4",
+    "@accordproject/markdown-cicero": "0.11.0",
+    "@accordproject/markdown-common": "0.11.0",
+    "@accordproject/markdown-docx": "0.11.0",
+    "@accordproject/markdown-html": "0.11.0",
+    "@accordproject/markdown-pdf": "0.11.0",
+    "@accordproject/markdown-slate": "0.11.0",
     "dijkstrajs": "^1.0.1"
   },
   "license-check-config": {
