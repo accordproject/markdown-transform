@@ -1,0 +1,35 @@
+{
+    "kind":"contract",
+    "name":"contract4",
+    "type":"org.test.MyContract",
+    "value": {
+        "kind":"sequence",
+        "value": [
+            { "kind": "text", "value": "This is contract text, followed by a clause:" },
+            {
+                "kind":"wrappedClause",
+                "name":"clause3",
+                "type":"org.test.MyClause",
+                "value": {
+                    "kind":"sequence",
+                    "value": [
+                        { "kind": "text", "value": "This is a contract between " },
+                        { "kind": "variable", "name": "seller", "type": "String" },
+                        { "kind": "text", "value": " and " },
+                        { "kind": "variable", "name": "buyer", "type": "String" },
+                        { "kind": "text", "value": " for the amount of " },
+                        { "kind": "variable", "name": "amount", "type": "Double" },
+                        { "kind": "text", "value": " " },
+                        { "kind": "variable", "name": "currency", "type": "Enum", "value": ["USD","GBP","EUR"] },
+                        { "kind": "block", "name":"forceMajeure", "type": "conditional", "whenTrue": ", even in the presence of force majeure", "whenFalse": "" },
+                        { "kind": "block", "name":"secondForceMajeure", "type": "conditional", "whenTrue": ", even in the presence of force majeure", "whenFalse": "" },
+                        { "kind": "text", "value": "." }
+                    ]
+                }
+            },
+            { "kind": "text", "value": "There is a penalty of " },
+            { "kind": "variable", "name": "penalty", "type": "Double" },
+            { "kind": "text", "value": "% for non compliance." }
+        ]
+    }
+}
