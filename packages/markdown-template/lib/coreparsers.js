@@ -51,6 +51,26 @@ function mkClause(clause,value) {
 }
 
 /**
+ * Creates a wrapped clause output
+ * @param {object} clause the wrapped clause ast node
+ * @param {*} value the wrapped clause value
+ * @returns {object} the clause
+ */
+function mkWrappedClause(clause,value) {
+    return {'name':clause.name,'type':clause.type,'value':mkClause(clause,value)};
+}
+
+/**
+ * Creates a contract output
+ * @param {object} contract the contract ast node
+ * @param {*} value the contract value
+ * @returns {object} the contract
+ */
+function mkContract(contract,value) {
+    return mkClause(contract,value); // XXX Need to be changed
+}
+
+/**
  * Core parsing components
  */
 
@@ -68,19 +88,27 @@ function textParser(text) {
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function doubleParser(variable) {
+function doubleVariableParser(variable) {
     return P.regexp(/[0-9]+(.[0-9]+)?(e(\+|-)?[0-9]+)?/).map(function(x) {
         return mkVariable(variable,Number(x));
     });
 }
 
 /**
- * Creates a parser for String
+ * Creates a parser for a String
+ * @returns {object} the parser
+ */
+function stringParser() {
+    return P.regexp(/"[^"]*"/);
+}
+
+/**
+ * Creates a parser for a String variable
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function stringParser(variable) {
-    return P.regexp(/"[^"]*"/).map(function(x) {
+function stringVariableParser(variable) {
+    return stringParser().map(function(x) {
         return mkVariable(variable,x.substring(1, x.length-1));
     });
 }
@@ -91,7 +119,7 @@ function stringParser(variable) {
  * @param {string[]} enums - the enum values
  * @returns {object} the parser
  */
-function enumParser(variable, enums) {
+function enumVariableParser(variable, enums) {
     return P.alt.apply(null, enums.map(function (x) {return P.string(x)})).map(function(x) {
         return mkVariable(variable,x);
     });;
@@ -125,9 +153,21 @@ function condParser(whenTrue,whenFalse) {
  * @param {object} content the parser for the content of the clause
  * @returns {object} the parser
  */
-function clauseContentParser(clause,content) {
+function clauseParser(clause,content) {
     return content.map(function(x) {
         return mkClause(clause,x);
+    });
+}
+
+/**
+ * Creates a parser for contract content
+ * @param {object} contract the contract ast node
+ * @param {object} content the parser for the content of the clause
+ * @returns {object} the parser
+ */
+function contractParser(contract,content) {
+    return content.map(function(x) {
+        return mkContract(contract,x);
     });
 }
 
@@ -137,19 +177,20 @@ function clauseContentParser(clause,content) {
  * @param {object} content the parser for the content of the clause
  * @returns {object} the parser
  */
-function clauseParser(clause,content) {
-    const clauseBefore = (() => textParser(`\n\`\`\` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">`));
-    const clauseAfter = (() => textParser(`\n\`\`\`\n`));
-    return content.map(function(x) {
-        return mkClause(clause,x);
-    }).wrap(clauseBefore(),clauseAfter());
+function wrappedClauseParser(clause,content) {
+    const clauseBefore = (() => P.seq(textParser('\n``` <clause src='),stringParser(),textParser(' clauseid='),stringParser(),textParser('>\n')));
+    const clauseAfter = (() => textParser('\n```\n'));
+    return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
+        return mkWrappedClause(clause,x);
+    });
 }
 
-module.exports.doubleParser = doubleParser;
 module.exports.textParser = textParser;
-module.exports.stringParser = stringParser;
-module.exports.enumParser = enumParser;
+module.exports.doubleVariableParser = doubleVariableParser;
+module.exports.stringVariableParser = stringVariableParser;
+module.exports.enumVariableParser = enumVariableParser;
 module.exports.seqParser = seqParser;
 module.exports.condParser = condParser;
-module.exports.clauseContentParser = clauseContentParser;
 module.exports.clauseParser = clauseParser;
+module.exports.wrappedClauseParser = wrappedClauseParser;
+module.exports.contractParser = contractParser;

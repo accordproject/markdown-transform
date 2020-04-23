@@ -15,14 +15,15 @@
 'use strict';
 
 // Basic parser constructors
-const doubleParser = require('./coreparsers').doubleParser;
 const textParser = require('./coreparsers').textParser;
-const stringParser = require('./coreparsers').stringParser;
-const enumParser = require('./coreparsers').enumParser;
+const doubleVariableParser = require('./coreparsers').doubleVariableParser;
+const stringVariableParser = require('./coreparsers').stringVariableParser;
+const enumVariableParser = require('./coreparsers').enumVariableParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
-const clauseContentParser = require('./coreparsers').clauseContentParser;
 const clauseParser = require('./coreparsers').clauseParser;
+const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
+const contractParser = require('./coreparsers').contractParser;
 
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
@@ -40,19 +41,22 @@ function parserOfTemplateAst(ast) {
     case 'clause' :
         parser = clauseParser(ast,parserOfTemplateAst(ast.value));
         break;
-    case 'clauseContent' :
-        parser = clauseContentParser(ast,parserOfTemplateAst(ast.value));
+    case 'wrappedClause' :
+        parser = wrappedClauseParser(ast,parserOfTemplateAst(ast.value));
+        break;
+    case 'contract' :
+        parser = contractParser(ast,parserOfTemplateAst(ast.value));
         break;
     case 'variable' : {
         switch(ast.type) {
         case 'String' :
-            parser = stringParser(ast);
+            parser = stringVariableParser(ast);
             break;
         case 'Double' :
-            parser = doubleParser(ast);
+            parser = doubleVariableParser(ast);
             break;
         case 'Enum' :
-            parser = enumParser(ast,ast.value);
+            parser = enumVariableParser(ast,ast.value);
             break;
         default:
             throw new Error('Unknown variable type ' + ast.type);

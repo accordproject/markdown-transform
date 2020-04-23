@@ -43,7 +43,11 @@ require('yargs')
             const template = JSON.parse(Fs.readFileSync(argv.template, 'utf8'));
             const text = Fs.readFileSync(argv.input, 'utf8');
             const result = parserOfTemplateAst(template).parse(text);
-            Logger.info('\n'+JSON.stringify(result));
+            if (result.status) {
+                Logger.info('\n'+JSON.stringify(result.value));
+            } else {
+                Logger.error(JSON.stringify(result));
+            }
         } catch (err){
             Logger.error(err.message);
             return;

@@ -22,9 +22,9 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
 // Basic parser constructors
-const doubleParser = require('../lib/coreparsers').doubleParser;
-const stringParser = require('../lib/coreparsers').stringParser;
-const enumParser = require('../lib/coreparsers').enumParser;
+const doubleVariableParser = require('../lib/coreparsers').doubleVariableParser;
+const stringVariableParser = require('../lib/coreparsers').stringVariableParser;
+const enumVariableParser = require('../lib/coreparsers').enumVariableParser;
 
 const condParser = require('../lib/coreparsers').condParser;
 
@@ -40,30 +40,30 @@ const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': 
 describe('#coreparsers', () => {
     describe('#variables', () => {
         it('should parse double', async () => {
-            doubleParser(var3).parse('123.313e-33').status.should.equal(true);
+            doubleVariableParser(var3).parse('123.313e-33').status.should.equal(true);
         });
         it('should not parse if not double', async () => {
-            doubleParser(var3).parse('123.a313e-33').status.should.equal(false);
+            doubleVariableParser(var3).parse('123.a313e-33').status.should.equal(false);
         });
 
         it('should parse string', async () => {
-            stringParser(var1).parse('"foo"').status.should.equal(true);
+            stringVariableParser(var1).parse('"foo"').status.should.equal(true);
         });
         it('should not parse string without opening quote', async () => {
-            stringParser(var1).parse('foo"').status.should.equal(false);
+            stringVariableParser(var1).parse('foo"').status.should.equal(false);
         });
         it('should not parse string without closing quote', async () => {
-            stringParser(var1).parse('"foo').status.should.equal(false);
+            stringVariableParser(var1).parse('"foo').status.should.equal(false);
         });
 
         it('should parse enum (first value)', async () => {
-            enumParser(var4,['USD','JPY','GBP']).parse('USD').status.should.equal(true);
+            enumVariableParser(var4,['USD','JPY','GBP']).parse('USD').status.should.equal(true);
         });
         it('should parse enum (last value)', async () => {
-            enumParser(var4,['USD','JPY','GBP']).parse('GBP').status.should.equal(true);
+            enumVariableParser(var4,['USD','JPY','GBP']).parse('GBP').status.should.equal(true);
         });
         it('should not parse value not in enum', async () => {
-            enumParser(var4,['USD','JPY','GBP']).parse('FOO').status.should.equal(false);
+            enumVariableParser(var4,['USD','JPY','GBP']).parse('FOO').status.should.equal(false);
         });
     });
 
@@ -87,10 +87,10 @@ describe('#coreparsers', () => {
             textParser('This is text with breaks and other things\nin it\n').parse('This is text\nwith breaks and other things\nin it\n').status.should.equal(false);
         });
         it('should parse sequences', async () => {
-            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe"\nAnd more text').status.should.equal(true);
+            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringVariableParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe"\nAnd more text').status.should.equal(true);
         });
         it('should not parse sequences when one parser fails', async () => {
-            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe\nAnd more text').status.should.equal(false);
+            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringVariableParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe\nAnd more text').status.should.equal(false);
         });
     });
 });

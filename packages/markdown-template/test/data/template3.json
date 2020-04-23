@@ -1,5 +1,5 @@
 {
-    "kind":"clauseContent",
+    "kind":"clause",
     "name":"clause3",
     "type":"org.test.MyClause",
     "value": {
