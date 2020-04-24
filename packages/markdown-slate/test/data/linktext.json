@@ -25,6 +25,10 @@
                                 "text": "code link"
                             }
                         ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ""
                     }
                 ]
             }

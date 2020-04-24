@@ -26,6 +26,10 @@
                                 "italic": true
                             }
                         ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ""
                     }
                 ]
             }

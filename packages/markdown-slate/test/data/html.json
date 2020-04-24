@@ -18,7 +18,12 @@
                         "data": {
                             "content": "<foo/>"
                         },
-                        "children": [{"text":""}]
+                        "children": [
+                            {
+                                "object": "text",
+                                "text": ""
+                            }
+                        ]
                     },
                     {
                         "object": "text",

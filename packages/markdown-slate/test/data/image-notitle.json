@@ -20,6 +20,10 @@
                 "data": {},
                 "children": [
                     {
+                        "object": "text",
+                        "text": ""
+                    },
+                    {
                         "object": "inline",
                         "type": "image",
                         "data": {
@@ -32,6 +36,10 @@
                                 "text": ""
                             }
                         ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ""
                     }
                 ]
             }
