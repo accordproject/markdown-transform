@@ -78,10 +78,23 @@
                                 ]
                             },
                             {
+                                "object": "text",
+                                "text": ""
+                            },
+                            {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "text",
+                                "text": ""
                             },
                             {
                                 "object": "inline",
@@ -131,10 +144,19 @@
                                 ]
                             },
                             {
+                                "object": "text",
+                                "text": ""
+                            },
+                            {
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
                             },
                             {
                                 "object": "text",
@@ -161,7 +183,12 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
                             },
                             {
                                 "object": "text",
@@ -188,7 +215,12 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
                             },
                             {
                                 "object": "text",
@@ -215,7 +247,12 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
                             },
                             {
                                 "object": "text",
@@ -242,7 +279,12 @@
                                 "object": "inline",
                                 "type": "softbreak",
                                 "data": {},
-                                "children": [{"text":""}]
+                                "children": [
+                                    {
+                                        "object": "text",
+                                        "text": ""
+                                    }
+                                ]
                             },
                             {
                                 "object": "text",
@@ -273,10 +315,12 @@
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
-                "children": [{
-                    "object": "text",
-                    "text": ""
-                }]
+                "children": [
+                    {
+                        "object": "text",
+                        "text": ""
+                    }
+                ]
             }
         ]
     }

@@ -16,7 +16,12 @@
                         "object": "inline",
                         "type": "softbreak",
                         "data": {},
-                        "children": [{"text":""}]
+                        "children": [
+                            {
+                                "object": "text",
+                                "text": ""
+                            }
+                        ]
                     },
                     {
                         "object": "text",

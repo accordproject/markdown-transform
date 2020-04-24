@@ -18,7 +18,12 @@
                 "object": "block",
                 "type": "horizontal_rule",
                 "data": {},
-                "children": [{"text":""}],
+                "children": [
+                    {
+                        "object": "text",
+                        "text": ""
+                    }
+                ],
                 "hr": true
             },
             {
