@@ -183,10 +183,6 @@ Object {
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
@@ -713,10 +709,6 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1517,12 +1509,7 @@ Object {
 exports[`slate converts empty.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
-  "nodes": Array [
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-  ],
+  "nodes": Array [],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -1554,12 +1541,7 @@ Object {
 exports[`slate converts empty.json to and from CiceroMark 4`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
-  "nodes": Array [
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-  ],
+  "nodes": Array [],
   "xmlns": "http://commonmark.org/xml/1.0",
 }
 `;
@@ -2122,7 +2104,12 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
-          "nodes": Array [],
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
           "title": "title",
         },
       ],
@@ -2204,7 +2191,12 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
-          "nodes": Array [],
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
           "title": "title",
         },
       ],
@@ -2233,7 +2225,12 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
-          "nodes": Array [],
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
           "title": "",
         },
       ],
@@ -2315,7 +2312,12 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
-          "nodes": Array [],
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+          ],
           "title": "",
         },
       ],
@@ -2570,10 +2572,6 @@ Object {
         },
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -3103,10 +3101,6 @@ Object {
         },
       ],
       "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -4155,10 +4149,6 @@ Object {
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
     Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-    Object {
       "$class": "org.accordproject.ciceromark.Clause",
       "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
       "nodes": Array [
@@ -4200,10 +4190,6 @@ Object {
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
     },
     Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-    Object {
       "$class": "org.accordproject.ciceromark.Clause",
       "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
       "nodes": Array [
@@ -4218,10 +4204,6 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -4859,10 +4841,6 @@ Object {
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
     Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-    Object {
       "$class": "org.accordproject.ciceromark.Clause",
       "clauseid": "479adbb4-dc55-4d1a-ab12-z6c5e16900c0",
       "nodes": Array [
@@ -4904,10 +4882,6 @@ Object {
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1b",
     },
     Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
-    },
-    Object {
       "$class": "org.accordproject.ciceromark.Clause",
       "clauseid": "479adbb4-dc55-4d1a-ab12-c6c5e16900c0",
       "nodes": Array [
@@ -4922,10 +4896,6 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1c",
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -5016,7 +4986,12 @@ Object {
                 },
                 Object {
                   "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [],
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "",
+                    },
+                  ],
                 },
               ],
               "start": undefined,
@@ -5294,7 +5269,12 @@ Object {
                 },
                 Object {
                   "$class": "org.accordproject.commonmark.Item",
-                  "nodes": Array [],
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "",
+                    },
+                  ],
                 },
               ],
               "start": undefined,
