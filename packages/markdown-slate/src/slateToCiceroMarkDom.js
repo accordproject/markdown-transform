@@ -163,6 +163,9 @@ function _recursive(parent, nodes) {
         // process any children, attaching to first child if it exists (for list items)
         if(node.children && result && result.nodes) {
             _recursive(result.nodes[0] ? result.nodes[0] : result, node.children);
+            if (result.nodes.length === 0) {
+                result.nodes.push({$class : `${NS}.Text`, text : ''});
+            }
         }
 
         if(!parent.nodes) {
