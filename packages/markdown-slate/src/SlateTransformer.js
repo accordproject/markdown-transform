@@ -95,7 +95,8 @@ class SlateTransformer {
      * @returns {*} the CiceroMark DOM
      */
     toCiceroMark(value, format='concerto') {
-        const json = slateToCiceroMarkDom(value);
+        const clonedValue = JSON.parse(JSON.stringify(value)); // Workaround in case value is immutable
+        const json = slateToCiceroMarkDom(clonedValue);
         // console.log(JSON.stringify(json, null, 3));
 
         if(format === 'concerto') {
