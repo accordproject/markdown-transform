@@ -2116,10 +2116,6 @@ Object {
           ],
           "title": "title",
         },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
-        },
       ],
     },
   ],
@@ -2248,10 +2244,6 @@ Object {
             },
           ],
           "title": "",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "",
         },
       ],
     },
