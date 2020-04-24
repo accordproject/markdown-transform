@@ -9,6 +9,10 @@
                 "data": {},
                 "children": [
                     {
+                        "object": "text",
+                        "text": ""
+                    },
+                    {
                         "object": "inline",
                         "type": "link",
                         "data": {

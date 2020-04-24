@@ -341,11 +341,35 @@ class ToSlateVisitor {
 
         // Cleanup block node for Slate
         if (result.object === 'block' || result.object === 'inline') {
+            const bufferText = { object: 'text', text: '' };
             if (!result.data) {
                 result.data = {};
             }
             if (!result.children || result.children.length === 0) {
-                result.children = [ {text: ''}];
+                result.children = [ bufferText ];
+            }
+            if (result.children && result.children.length > 0) {
+                const normalizedChildren = [];
+                for (let i = 0; i < result.children.length; i++) {
+                    const child = result.children[i];
+                    const isLast = i === result.children.length - 1;
+
+                    if (child.object === 'inline') {
+                        if (
+                            normalizedChildren.length === 0 ||
+                            normalizedChildren[normalizedChildren.length - 1].object === 'inline'
+                        ) {
+                            normalizedChildren.push(bufferText, child);
+                        } else if (isLast) {
+                            normalizedChildren.push(child, bufferText);
+                        } else {
+                            normalizedChildren.push(child);
+                        }
+                    } else {
+                        normalizedChildren.push(child);
+                    }
+                }
+                result.children = normalizedChildren;
             }
         }
 

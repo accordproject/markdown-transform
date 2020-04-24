@@ -108,6 +108,10 @@ describe('slate', () => {
                                         'object': 'text',
                                         'text': 'bar'
                                     }]
+                                },
+                                {
+                                    'object': 'text',
+                                    'text': ''
                                 }
                             ]
                         }
@@ -143,6 +147,10 @@ describe('slate', () => {
                                         'object': 'text',
                                         'text': 'bar'
                                     }]
+                                },
+                                {
+                                    'object': 'text',
+                                    'text': ''
                                 }
                             ]
                         }

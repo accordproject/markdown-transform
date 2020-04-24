@@ -1907,6 +1907,7 @@ Object {
           Object {
             "children": Array [
               Object {
+                "object": "text",
                 "text": "",
               },
             ],
@@ -2101,6 +2102,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+        Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
           "nodes": Array [
@@ -2110,6 +2115,10 @@ Object {
             },
           ],
           "title": "title",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -2141,6 +2150,10 @@ Object {
       },
       Object {
         "children": Array [
+          Object {
+            "object": "text",
+            "text": "",
+          },
           Object {
             "children": Array [
               Object {
@@ -2184,6 +2197,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+        Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
           "nodes": Array [
@@ -2218,6 +2235,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+        Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
           "nodes": Array [
@@ -2227,6 +2248,10 @@ Object {
             },
           ],
           "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -2258,6 +2283,10 @@ Object {
       },
       Object {
         "children": Array [
+          Object {
+            "object": "text",
+            "text": "",
+          },
           Object {
             "children": Array [
               Object {
@@ -2300,6 +2329,10 @@ Object {
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "https://studio.accordproject.org/static/img/logo.png",
@@ -2454,7 +2487,15 @@ Object {
               "whenTrue": " except for Force Majeure cases,",
             },
             Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+            Object {
               "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -2478,6 +2519,10 @@ Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "penaltyDuration",
               "value": "2 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",
@@ -2658,14 +2703,23 @@ Object {
                 "type": "conditional",
               },
               Object {
+                "object": "text",
+                "text": "",
+              },
+              Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
                 "data": Object {},
                 "object": "inline",
                 "type": "softbreak",
+              },
+              Object {
+                "object": "text",
+                "text": "",
               },
               Object {
                 "children": Array [
@@ -2715,8 +2769,13 @@ Object {
                 "type": "variable",
               },
               Object {
+                "object": "text",
+                "text": "",
+              },
+              Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
@@ -2748,6 +2807,7 @@ Object {
               Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
@@ -2779,6 +2839,7 @@ Object {
               Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
@@ -2810,6 +2871,7 @@ Object {
               Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
@@ -2841,6 +2903,7 @@ Object {
               Object {
                 "children": Array [
                   Object {
+                    "object": "text",
                     "text": "",
                   },
                 ],
@@ -2965,7 +3028,15 @@ Object {
               "whenTrue": " except for Force Majeure cases,",
             },
             Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
+            },
+            Object {
               "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
@@ -2989,6 +3060,10 @@ Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "id": "penaltyDuration",
               "value": "2 days",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "",
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",
@@ -3134,6 +3209,7 @@ Object {
           Object {
             "children": Array [
               Object {
+                "object": "text",
                 "text": "",
               },
             ],
@@ -3224,6 +3300,10 @@ Object {
           ],
           "title": "title",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3256,6 +3336,10 @@ Object {
             },
             "object": "inline",
             "type": "link",
+          },
+          Object {
+            "object": "text",
+            "text": "",
           },
         ],
         "data": Object {},
@@ -3291,6 +3375,10 @@ Object {
           ],
           "title": "title",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3319,6 +3407,10 @@ Object {
             },
           ],
           "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -3352,6 +3444,10 @@ Object {
             },
             "object": "inline",
             "type": "link",
+          },
+          Object {
+            "object": "text",
+            "text": "",
           },
         ],
         "data": Object {},
@@ -3387,6 +3483,10 @@ Object {
           ],
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3415,6 +3515,10 @@ Object {
             },
           ],
           "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -3467,6 +3571,10 @@ Object {
             "object": "inline",
             "type": "link",
           },
+          Object {
+            "object": "text",
+            "text": "",
+          },
         ],
         "data": Object {},
         "object": "block",
@@ -3517,6 +3625,10 @@ Object {
           ],
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
     Object {
@@ -3564,6 +3676,10 @@ Object {
           ],
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3600,6 +3716,10 @@ Object {
             },
             "object": "inline",
             "type": "link",
+          },
+          Object {
+            "object": "text",
+            "text": "",
           },
         ],
         "data": Object {},
@@ -3640,6 +3760,10 @@ Object {
           ],
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3654,6 +3778,10 @@ Object {
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
         Object {
           "$class": "org.accordproject.commonmark.Link",
           "destination": "http://google.com",
@@ -3711,6 +3839,10 @@ Object {
       Object {
         "children": Array [
           Object {
+            "object": "text",
+            "text": "",
+          },
+          Object {
             "children": Array [
               Object {
                 "object": "text",
@@ -3766,6 +3898,10 @@ Object {
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
         Object {
           "$class": "org.accordproject.commonmark.Link",
           "destination": "http://google.com",
@@ -3836,6 +3972,10 @@ Object {
           ],
           "title": "",
         },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
       ],
     },
   ],
@@ -3872,6 +4012,10 @@ Object {
             "object": "inline",
             "type": "link",
           },
+          Object {
+            "object": "text",
+            "text": "",
+          },
         ],
         "data": Object {},
         "object": "block",
@@ -3905,6 +4049,10 @@ Object {
             },
           ],
           "title": "",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -5059,6 +5207,7 @@ Object {
                           Object {
                             "children": Array [
                               Object {
+                                "object": "text",
                                 "text": "",
                               },
                             ],
@@ -5083,6 +5232,7 @@ Object {
                   Object {
                     "children": Array [
                       Object {
+                        "object": "text",
                         "text": "",
                       },
                     ],
@@ -5652,6 +5802,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+        Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
@@ -5675,6 +5829,10 @@ Object {
               "value": "01/30/2018",
             },
           ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -5821,6 +5979,10 @@ Object {
       Object {
         "children": Array [
           Object {
+            "object": "text",
+            "text": "",
+          },
+          Object {
             "bold": true,
             "children": Array [
               Object {
@@ -5852,6 +6014,10 @@ Object {
             },
             "object": "inline",
             "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
           },
         ],
         "data": Object {},
@@ -6023,6 +6189,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
+        },
+        Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
@@ -6046,6 +6216,10 @@ Object {
               "value": "01/30/2018",
             },
           ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "",
         },
       ],
     },
@@ -6296,6 +6470,7 @@ Object {
           Object {
             "children": Array [
               Object {
+                "object": "text",
                 "text": "",
               },
             ],
@@ -6609,6 +6784,7 @@ Object {
       Object {
         "children": Array [
           Object {
+            "object": "text",
             "text": "",
           },
         ],

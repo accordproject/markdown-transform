@@ -100,7 +100,12 @@
                                                         "object": "inline",
                                                         "type": "softbreak",
                                                         "data": {},
-                                                        "children": [{"text":""}]
+                                                        "children": [
+                                                            {
+                                                                "object": "text",
+                                                                "text": ""
+                                                            }
+                                                        ]
                                                     },
                                                     {
                                                         "object": "text",
@@ -114,7 +119,12 @@
                                         "object": "block",
                                         "type": "list_item",
                                         "data": {},
-                                        "children": [{"text":""}]
+                                        "children": [
+                                            {
+                                                "object": "text",
+                                                "text": ""
+                                            }
+                                        ]
                                     }
                                 ]
                             }

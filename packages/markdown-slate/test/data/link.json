@@ -25,6 +25,10 @@
                                 "text": "link"
                             }
                         ]
+                    },
+                    {
+                        "object": "text",
+                        "text": ""
                     }
                 ]
             }
