@@ -160,19 +160,18 @@ function _recursive(parent, nodes) {
             }
         }
 
-        if(!result) {
-            throw Error(`Failed to process node ${JSON.stringify(node)}`);
-        }
-
         // process any children, attaching to first child if it exists (for list items)
-        if(node.children && result.nodes) {
+        if(node.children && result && result.nodes) {
             _recursive(result.nodes[0] ? result.nodes[0] : result, node.children);
         }
 
         if(!parent.nodes) {
             throw new Error(`Parent node doesn't have children ${JSON.stringify(parent)}`);
         }
-        parent.nodes.push(result);
+
+        if(result) {
+            parent.nodes.push(result);
+        }
     });
 }
 
@@ -218,7 +217,7 @@ function handleMarks(slateNode,newNode) {
 function handleText(node) {
     let result = null;
     const isCode = node.code;
-
+    if (node.object === 'text' && node.text === '') { return null; }
     if (isCode) {
         result = {$class : `${NS}.Code`, text: node.text};
     } else {
