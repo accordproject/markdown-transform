@@ -17,7 +17,7 @@
 
 const Fs = require('fs');
 const Logger = require('@accordproject/concerto-core').Logger;
-const parserOfTemplateAst = require('../lib/FromTemplateAst').parserOfTemplateAst;
+const TemplateTransformer = require('../lib/TemplateTransformer');
 
 require('yargs')
     .scriptName('markus')
@@ -42,7 +42,8 @@ require('yargs')
         try {
             const template = JSON.parse(Fs.readFileSync(argv.template, 'utf8'));
             const text = Fs.readFileSync(argv.input, 'utf8');
-            const result = parserOfTemplateAst(template).parse(text);
+            const templateTransformer = new TemplateTransformer();
+            const result = templateTransformer.parse(text,template);
             if (result.status) {
                 Logger.info('\n'+JSON.stringify(result.value));
             } else {
