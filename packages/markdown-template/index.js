@@ -19,6 +19,6 @@
  * @module markdown-transform
  */
 
-module.exports.parserOfTemplateAst = require('./lib/FromTemplateAst').parserOfTemplateAst;
+module.exports.TemplateTransformer = require('./lib/TemplateTransformer');
 
 
