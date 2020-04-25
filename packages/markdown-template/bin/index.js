@@ -17,7 +17,7 @@
 
 const Fs = require('fs');
 const Logger = require('@accordproject/concerto-core').Logger;
-const TemplateTransformer = require('../lib/TemplateTransformer');
+const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransformer;
 
 require('yargs')
     .scriptName('markus')
