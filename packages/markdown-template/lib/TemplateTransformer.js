@@ -21,6 +21,17 @@ const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('
 const parserOfTemplateAst = require('../lib/FromTemplateAst').parserOfTemplateAst;
 
 /**
+ * Prepare the text for parsing (normalizes new lines, etc)
+ * @param {string} input - the text for the clause
+ * @return {string} - the normalized text for the clause
+ */
+function normalizeText(input) {
+    // we replace all \r and \n with \n
+    let text =  input.replace(/\r/gm,'');
+    return text;
+}
+
+/**
  * Support for CiceroMark Templates
  */
 class TemplateTransformer {
@@ -31,23 +42,14 @@ class TemplateTransformer {
      * @returns {object} the result of parsing
      */
     parse(markdown, template) {
-        const normalizedMarkdown = TemplateTransformer.normalizeText(markdown);
+        const normalizedMarkdown = normalizeText(markdown);
         const parser = parserOfTemplateAst(template);
         const result = parser.parse(normalizedMarkdown);
         // XXX Add error handling here
         return result;
     }
 
-    /**
-     * Prepare the text for parsing (normalizes new lines, etc)
-     * @param {string} input - the text for the clause
-     * @return {string} - the normalized text for the clause
-     */
-    static normalizeText(input) {
-        // we replace all \r and \n with \n
-        let text =  input.replace(/\r/gm,'');
-        return text;
-    }
 }
 
-module.exports = TemplateTransformer;
+module.exports.normalizeText = normalizeText;
+module.exports.TemplateTransformer = TemplateTransformer;

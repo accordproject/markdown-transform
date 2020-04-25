@@ -17,12 +17,13 @@
 const Fs = require('fs');
 
 // Parser from template AST
-const TemplateTransformer = require('../lib/TemplateTransformer');
+const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransformer;
+const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 
 const template4 = JSON.parse(Fs.readFileSync('./test/data/template4.json', 'utf8'));
 const text4 = Fs.readFileSync('./test/data/text4.md', 'utf8');
 
-const textPartLarge = Fs.readFileSync('./test/data/large.txt', 'utf8');
+const textPartLarge = normalizeText(Fs.readFileSync('./test/data/large.txt', 'utf8'));
 const textLarge = Fs.readFileSync('./test/data/large.md', 'utf8');
 const templateLarge = {
     'kind':'contract',
