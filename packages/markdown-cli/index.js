@@ -75,6 +75,45 @@ require('yargs')
             return;
         }
     })
+    .command('parse', 'parse a string against a template', (yargs) => {
+        yargs.option('input', {
+            describe: 'path to the input',
+            type: 'string'
+        });
+        yargs.option('grammar', {
+            describe: 'path to the template grammar',
+            type: 'string'
+        });
+        yargs.option('output', {
+            describe: 'path to the output file',
+            type: 'string'
+        });
+        yargs.option('verbose', {
+            describe: 'verbose output',
+            type: 'boolean',
+            default: false
+        });
+    }, (argv) => {
+        if (argv.verbose) {
+            Logger.info(`transform input ${argv.input} file`);
+        }
+
+        try {
+            argv = Commands.validateTransformArgs(argv);
+            const options = {};
+            options.verbose = argv.verbose;
+            return Commands.parse(argv.input, argv.grammar, argv.output, options)
+                .then((result) => {
+                    if(result) {Logger.info('\n'+result);}
+                })
+                .catch((err) => {
+                    Logger.error(err.message);
+                });
+        } catch (err){
+            Logger.error(err.message);
+            return;
+        }
+    })
     .option('verbose', {
         alias: 'v',
         default: false

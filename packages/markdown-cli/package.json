@@ -54,6 +54,7 @@
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.7",
     "@accordproject/markdown-transform": "0.11.3",
+    "@accordproject/markdown-template": "0.11.2",
     "jsome": "2.5.0",
     "winston": "3.2.1",
     "yargs": "13.2.4"
