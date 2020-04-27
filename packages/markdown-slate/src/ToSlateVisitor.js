@@ -341,12 +341,12 @@ class ToSlateVisitor {
 
         // Cleanup block node for Slate
         if (result.object === 'block' || result.object === 'inline') {
-            const bufferText = { object: 'text', text: '' };
+            const emptyText = () => { return { object: 'text', text: '' }; };
             if (!result.data) {
                 result.data = {};
             }
             if (!result.children || result.children.length === 0) {
-                result.children = [ bufferText ];
+                result.children = [ emptyText() ];
             }
             if (result.children && result.children.length > 0) {
                 const normalizedChildren = [];
@@ -359,9 +359,9 @@ class ToSlateVisitor {
                             normalizedChildren.length === 0 ||
                             normalizedChildren[normalizedChildren.length - 1].object === 'inline'
                         ) {
-                            normalizedChildren.push(bufferText, child);
+                            normalizedChildren.push(emptyText(), child);
                         } else if (isLast) {
-                            normalizedChildren.push(child, bufferText);
+                            normalizedChildren.push(child, emptyText());
                         } else {
                             normalizedChildren.push(child);
                         }
