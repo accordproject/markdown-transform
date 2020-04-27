@@ -32,14 +32,26 @@ function normalizeText(input) {
 }
 
 /**
+ * Minimum length of expected token
+ * @param {object} expected the expected token
+ * @return {number} the minimum length
+ */
+function maxOfExpected(expected) {
+    return Math.max.apply(null,expected.map((x) => {
+        let length = x.length;
+        if (/'[^']*'/.test(x)) { length = length-2; } // To account for parsimmon string tokens
+        return length;
+    }));
+}
+
+/**
  * Throw a parse exception
  * @param {string} markdown a markdown string
  * @param {object} result the parsing failure
  * @param {string} [fileName] - the fileName for the markdown (optional)
  */
-function _throwParseError(markwdown,result,fileName) {
-    const shortMessage = `Parse error at line ${result.index.line} column ${result.index.column}`;
-    const longMessage = shortMessage;
+function _throwParseError(markdown,result,fileName) {
+    // File location
     const fileLocation = {};
     const start = result.index;
     const end = {...start};
@@ -47,6 +59,20 @@ function _throwParseError(markwdown,result,fileName) {
     end.column = end.column+1;
     fileLocation.start = start;
     fileLocation.end = end;
+
+    // Short message
+    const shortMessage = `Parse error at line ${result.index.line} column ${result.index.column}`;
+
+    // Long message
+    const lines = markdown.split('\n');
+    const underline = ((line) => {
+        const maxLength = line.length - (start.column-1);
+        const maxExpected = maxOfExpected(result.expected);
+        return '^'.repeat(maxLength < maxExpected ? maxLength : maxExpected);
+    });
+    const line = lines[start.line - 1];
+    const snippet = line + '\n' + ' '.repeat(start.column-1) + underline(line);
+    const longMessage = shortMessage + '\n' + snippet;
     throw new ParseException(shortMessage, fileLocation, fileName, longMessage, 'markdown-template');
 }
 

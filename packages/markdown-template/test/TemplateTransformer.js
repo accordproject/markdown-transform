@@ -23,6 +23,7 @@ const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 const template4 = JSON.parse(Fs.readFileSync('./test/data/template4.json', 'utf8'));
 const text4 = Fs.readFileSync('./test/data/text4.md', 'utf8');
 const text4Err1 = Fs.readFileSync('./test/data/text4Err1.md', 'utf8');
+const text4Err2 = Fs.readFileSync('./test/data/text4Err2.md', 'utf8');
 
 const textPartLarge = normalizeText(Fs.readFileSync('./test/data/large.txt', 'utf8'));
 const textLarge = Fs.readFileSync('./test/data/large.md', 'utf8');
@@ -72,8 +73,11 @@ describe('#parse', () => {
     });
 
     describe('#template4Err', () => {
-        it('should parse', async () => {
-            (() => (new TemplateTransformer()).parse(text4Err1,template4)).should.throw('Parse error at line 5 column 49');
+        it('should fail parsing (extra text)', async () => {
+            (() => (new TemplateTransformer()).parse(text4Err1,template4)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
+        });
+        it('should fail parsing (wrong text)', async () => {
+            (() => (new TemplateTransformer()).parse(text4Err2,template4)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
         });
     });
 
