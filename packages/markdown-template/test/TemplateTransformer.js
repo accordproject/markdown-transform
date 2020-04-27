@@ -22,6 +22,7 @@ const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 
 const template4 = JSON.parse(Fs.readFileSync('./test/data/template4.json', 'utf8'));
 const text4 = Fs.readFileSync('./test/data/text4.md', 'utf8');
+const text4Err1 = Fs.readFileSync('./test/data/text4Err1.md', 'utf8');
 
 const textPartLarge = normalizeText(Fs.readFileSync('./test/data/large.txt', 'utf8'));
 const textLarge = Fs.readFileSync('./test/data/large.md', 'utf8');
@@ -69,6 +70,13 @@ describe('#parse', () => {
             (new TemplateTransformer()).parse(text4,template4).status.should.equal(true);
         });
     });
+
+    describe('#template4Err', () => {
+        it('should parse', async () => {
+            (() => (new TemplateTransformer()).parse(text4Err1,template4)).should.throw('Parse error at line 5 column 49');
+        });
+    });
+
     describe('#templateLarge', () => {
         it('should parse', async () => {
             (new TemplateTransformer()).parse(textLarge,templateLarge).status.should.equal(true);

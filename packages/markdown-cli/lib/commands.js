@@ -18,6 +18,7 @@ const Fs = require('fs');
 const Logger = require('@accordproject/concerto-core').Logger;
 
 const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
+const { TemplateTransformer } = require('@accordproject/markdown-template');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -109,6 +110,23 @@ class Commands {
     }
 
     /**
+     * Set default params before we parse
+     *
+     * @param {object} argv the inbound argument values object
+     * @returns {object} a modfied argument object
+     */
+    static validateParseArgs(argv) {
+        argv = Commands.setDefaultFileArg(argv, 'input', 'input.md', ((argv, argDefaultName) => { return argDefaultName; }));
+        argv = Commands.setDefaultFileArg(argv, 'grammar', 'grammar.tem.md', ((argv, argDefaultName) => { return argDefaultName; }));
+
+        if(argv.verbose) {
+            Logger.info(`parse input ${argv.input} with template ${argv.template}.`);
+        }
+
+        return argv;
+    }
+
+    /**
      * Transform between formats
      *
      * @param {string} inputPath to the input file
@@ -117,6 +135,7 @@ class Commands {
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
+     * @param {boolean} [options.roundtrip] roundtrip transform back to source format
      * @returns {object} Promise to the result of parsing
      */
     static async transform(inputPath, from, to, outputPath, options) {
@@ -132,6 +151,25 @@ class Commands {
         return Promise.resolve(Commands.printFormatToString(result,finalFormat));
     }
 
+    /**
+     * Parse against a template grammar
+     *
+     * @param {string} inputPath to the input file
+     * @param {string} grammarPath to the grammar file
+     * @param {string} outputPath to an output file
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} Promise to the result of parsing
+     */
+    static async parse(inputPath, grammarPath, outputPath, options) {
+        const text = Fs.readFileSync(inputPath, 'utf8');
+        const template = JSON.parse(Fs.readFileSync(grammarPath, 'utf8'));
+        const templateTransformer = new TemplateTransformer();
+        const result = templateTransformer.parse(text,template,inputPath);
+
+        if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
+        return Promise.resolve(JSON.stringify(result));
+    }
 }
 
 module.exports = Commands;

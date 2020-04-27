@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-template",
-  "version": "0.11.1",
+  "version": "0.11.3",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -8,9 +8,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "bin": {
-    "markus": "./bin/index.js"
   },
   "files": [
     "bin",

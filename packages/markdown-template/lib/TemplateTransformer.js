@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
+const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
 
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
@@ -32,6 +32,25 @@ function normalizeText(input) {
 }
 
 /**
+ * Throw a parse exception
+ * @param {string} markdown a markdown string
+ * @param {object} result the parsing failure
+ * @param {string} [fileName] - the fileName for the markdown (optional)
+ */
+function _throwParseError(markwdown,result,fileName) {
+    const shortMessage = `Parse error at line ${result.index.line} column ${result.index.column}`;
+    const longMessage = shortMessage;
+    const fileLocation = {};
+    const start = result.index;
+    const end = {...start};
+    end.offset = end.offset+1;
+    end.column = end.column+1;
+    fileLocation.start = start;
+    fileLocation.end = end;
+    throw new ParseException(shortMessage, fileLocation, fileName, longMessage, 'markdown-template');
+}
+
+/**
  * Support for CiceroMark Templates
  */
 class TemplateTransformer {
@@ -39,14 +58,18 @@ class TemplateTransformer {
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
      * @param {object} template the template ast
+     * @param {string} [fileName] - the fileName for the markdown (optional)
      * @returns {object} the result of parsing
      */
-    parse(markdown, template) {
+    parse(markdown, template, fileName) {
         const normalizedMarkdown = normalizeText(markdown);
         const parser = parserOfTemplateAst(template);
         const result = parser.parse(normalizedMarkdown);
-        // XXX Add error handling here
-        return result;
+        if (result.status) {
+            return result;
+        } else {
+            _throwParseError(markdown,result,fileName);
+        }
     }
 
 }
