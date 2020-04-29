@@ -35,6 +35,22 @@ function mkVariable(variable,value) {
 }
 
 /**
+ * Creates a compound variable output
+ * @param {object} variable the variable ast node
+ * @param {*} value the variable components
+ * @returns {object} the compound variable
+ */
+function mkCompoundVariable(variable,value) {
+    const result = {};
+    result.$class = variable.type;
+    for(let i = 0; i < value.length; i++) {
+        const field = value[i];
+        result[field.name] = field.value;
+    }
+    return result;
+}
+
+/**
  * Creates a conditional output
  * @param {object} variable the variable ast node
  * @param {*} value the variable value
@@ -55,13 +71,7 @@ function mkCond(cond,value) {
  * @returns {object} the clause
  */
 function mkClause(clause,value) {
-    const result = {};
-    result.$class = clause.type;
-    for(let i = 0; i < value.length; i++) {
-        const field = value[i];
-        result[field.name] = field.value;
-    }
-    return result;
+    return mkCompoundVariable(clause,value);
 }
 
 /**
@@ -98,22 +108,63 @@ function textParser(text) {
 }
 
 /**
+ * Creates a parser for a String
+ * @returns {object} the parser
+ */
+function stringLiteralParser() {
+    return P.regexp(/"[^"]*"/);
+}
+
+/**
+ * Creates a parser for choices
+ * @param {object[]} parsers - the individual parsers
+ * @returns {object} the parser
+ */
+function choiceParser(parsers) {
+    return P.alt.apply(null, parsers);
+}
+
+/**
+ * Creates a parser for choices of strings
+ * @param {string[]} values - the individual strings
+ * @returns {object} the parser
+ */
+function choiceStringsParser(values) {
+    return choiceParser(values.map(function (x) {return P.string(x)}));
+}
+
+/**
+ * Creates a parser for sequences
+ * @param {object[]} parsers - the individual parsers
+ * @returns {object} the parser
+ */
+function seqParser(parsers) {
+    return P.seqMap.apply(null, parsers.concat([function () {
+        var args = Array.prototype.slice.call(arguments);
+        return args.filter(function(x) { return !(typeof x === 'string'); });
+    }]));
+}
+
+/**
  * Creates a parser for Double
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function doubleVariableParser(variable) {
+function doubleParser(variable) {
     return P.regexp(/[0-9]+(.[0-9]+)?(e(\+|-)?[0-9]+)?/).map(function(x) {
         return mkVariable(variable,Number(x));
     });
 }
 
 /**
- * Creates a parser for a String
+ * Creates a parser for Integer
+ * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function stringParser() {
-    return P.regexp(/"[^"]*"/);
+function integerParser(variable) {
+    return P.regexp(/[0-9]+/).map(function(x) {
+        return mkVariable(variable,Number(x));
+    });
 }
 
 /**
@@ -121,8 +172,8 @@ function stringParser() {
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function stringVariableParser(variable) {
-    return stringParser().map(function(x) {
+function stringParser(variable) {
+    return stringLiteralParser().map(function(x) {
         return mkVariable(variable,x.substring(1, x.length-1));
     });
 }
@@ -133,22 +184,10 @@ function stringVariableParser(variable) {
  * @param {string[]} enums - the enum values
  * @returns {object} the parser
  */
-function enumVariableParser(variable, enums) {
-    return P.alt.apply(null, enums.map(function (x) {return P.string(x)})).map(function(x) {
+function enumParser(variable, enums) {
+    return choiceStringsParser(enums).map(function(x) {
         return mkVariable(variable,x);
-    });;
-}
-
-/**
- * Creates a parser for a sequence
- * @param {object[]} parsers - the individual parsers
- * @returns {object} the parser
- */
-function seqParser(parsers) {
-    return P.seqMap.apply(null, parsers.concat([function () {
-        var args = Array.prototype.slice.call(arguments);
-        return args.filter(function(x) { return !(typeof x === 'string'); });
-    }]));
+    });
 }
 
 /**
@@ -193,18 +232,25 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseBefore = (() => P.seq(textParser('\n``` <clause src='),stringParser(),textParser(' clauseid='),stringParser(),textParser('>\n')));
+    const clauseBefore = (() => P.seq(textParser('\n``` <clause src='),stringLiteralParser(),textParser(' clauseid='),stringLiteralParser(),textParser('>\n')));
     const clauseAfter = (() => textParser('\n```\n'));
     return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
         return mkWrappedClause(clause,x);
     });
 }
 
+module.exports.mkVariable = mkVariable;
+module.exports.mkCompoundVariable = mkCompoundVariable;
+module.exports.stringLiteralParser = stringLiteralParser;
+
 module.exports.textParser = textParser;
-module.exports.doubleVariableParser = doubleVariableParser;
-module.exports.stringVariableParser = stringVariableParser;
-module.exports.enumVariableParser = enumVariableParser;
 module.exports.seqParser = seqParser;
+module.exports.choiceStringsParser = choiceStringsParser;
+
+module.exports.doubleParser = doubleParser;
+module.exports.integerParser = integerParser;
+module.exports.stringParser = stringParser;
+module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;

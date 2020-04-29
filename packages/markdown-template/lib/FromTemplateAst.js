@@ -16,14 +16,27 @@
 
 // Basic parser constructors
 const textParser = require('./coreparsers').textParser;
-const doubleVariableParser = require('./coreparsers').doubleVariableParser;
-const stringVariableParser = require('./coreparsers').stringVariableParser;
-const enumVariableParser = require('./coreparsers').enumVariableParser;
+const doubleParser = require('./coreparsers').doubleParser;
+const integerParser = require('./coreparsers').integerParser;
+const stringParser = require('./coreparsers').stringParser;
+const dateTimeParser = require('./dateTimeParser').dateTimeParser;
+const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
+
+/**
+ * Parsing table for variables
+ * This maps types to their parser
+ */
+const parsingTable = {
+    'Integer' : integerParser,
+    'Double' : doubleParser,
+    'String' : stringParser,
+    'DateTime' : dateTimeParser,
+};
 
 /**
  * Creates a parser for Double
@@ -47,17 +60,17 @@ function parserOfTemplateAst(ast) {
         break;
     case 'variable' : {
         switch(ast.type) {
-        case 'String' :
-            parser = stringVariableParser(ast);
-            break;
-        case 'Double' :
-            parser = doubleVariableParser(ast);
-            break;
         case 'Enum' :
-            parser = enumVariableParser(ast,ast.value);
+            parser = enumParser(ast,ast.value);
             break;
-        default:
-            throw new Error('Unknown variable type ' + ast.type);
+        default: {
+            const parserFun = parsingTable[ast.type];
+            if (parserFun) {
+                parser = parserFun(ast);
+            } else {
+                throw new Error('Unknown variable type ' + ast.type);
+            }
+        }
         }
         break;
     }
