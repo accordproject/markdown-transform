@@ -22,9 +22,10 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
 // Basic parser constructors
-const doubleVariableParser = require('../lib/coreparsers').doubleVariableParser;
-const stringVariableParser = require('../lib/coreparsers').stringVariableParser;
-const enumVariableParser = require('../lib/coreparsers').enumVariableParser;
+const integerParser = require('../lib/coreparsers').integerParser;
+const doubleParser = require('../lib/coreparsers').doubleParser;
+const stringParser = require('../lib/coreparsers').stringParser;
+const enumParser = require('../lib/coreparsers').enumParser;
 
 const condParser = require('../lib/coreparsers').condParser;
 
@@ -33,37 +34,43 @@ const seqParser = require('../lib/coreparsers').seqParser;
 
 // Variables
 const var1 = { 'kind': 'variable', 'name': 'seller', 'type': 'String' };
-//const var2 = { 'kind': 'variable', 'name': 'buyer', 'type': 'String' };
+const var2 = { 'kind': 'variable', 'name': 'int', 'type': 'Integer' };
 const var3 = { 'kind': 'variable', 'name': 'amount', 'type': 'Double' };
 const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
 
 describe('#coreparsers', () => {
     describe('#variables', () => {
+        it('should parse integer', async () => {
+            integerParser(var2).parse('123').status.should.equal(true);
+        });
+        it('should not parse integer', async () => {
+            integerParser(var2).parse('123.313e-33').status.should.equal(false);
+        });
         it('should parse double', async () => {
-            doubleVariableParser(var3).parse('123.313e-33').status.should.equal(true);
+            doubleParser(var3).parse('123.313e-33').status.should.equal(true);
         });
         it('should not parse if not double', async () => {
-            doubleVariableParser(var3).parse('123.a313e-33').status.should.equal(false);
+            doubleParser(var3).parse('123.a313e-33').status.should.equal(false);
         });
 
         it('should parse string', async () => {
-            stringVariableParser(var1).parse('"foo"').status.should.equal(true);
+            stringParser(var1).parse('"foo"').status.should.equal(true);
         });
         it('should not parse string without opening quote', async () => {
-            stringVariableParser(var1).parse('foo"').status.should.equal(false);
+            stringParser(var1).parse('foo"').status.should.equal(false);
         });
         it('should not parse string without closing quote', async () => {
-            stringVariableParser(var1).parse('"foo').status.should.equal(false);
+            stringParser(var1).parse('"foo').status.should.equal(false);
         });
 
         it('should parse enum (first value)', async () => {
-            enumVariableParser(var4,['USD','JPY','GBP']).parse('USD').status.should.equal(true);
+            enumParser(var4,['USD','JPY','GBP']).parse('USD').status.should.equal(true);
         });
         it('should parse enum (last value)', async () => {
-            enumVariableParser(var4,['USD','JPY','GBP']).parse('GBP').status.should.equal(true);
+            enumParser(var4,['USD','JPY','GBP']).parse('GBP').status.should.equal(true);
         });
         it('should not parse value not in enum', async () => {
-            enumVariableParser(var4,['USD','JPY','GBP']).parse('FOO').status.should.equal(false);
+            enumParser(var4,['USD','JPY','GBP']).parse('FOO').status.should.equal(false);
         });
     });
 
@@ -87,10 +94,10 @@ describe('#coreparsers', () => {
             textParser('This is text with breaks and other things\nin it\n').parse('This is text\nwith breaks and other things\nin it\n').status.should.equal(false);
         });
         it('should parse sequences', async () => {
-            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringVariableParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe"\nAnd more text').status.should.equal(true);
+            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe"\nAnd more text').status.should.equal(true);
         });
         it('should not parse sequences when one parser fails', async () => {
-            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringVariableParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe\nAnd more text').status.should.equal(false);
+            seqParser([textParser('This is text\nwith breaks and other things\nin it including a variable: '),stringParser(var1),textParser('\nAnd more text')]).parse('This is text\nwith breaks and other things\nin it including a variable: "John Doe\nAnd more text').status.should.equal(false);
         });
     });
 });
