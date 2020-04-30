@@ -18,7 +18,7 @@ const { Factory, Serializer, ParseException } = require('@accordproject/concerto
 
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
-const parserOfTemplateAst = require('../lib/FromTemplateAst').parserOfTemplateAst;
+const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -90,7 +90,7 @@ class TemplateTransformer {
      */
     parse(markdown, template, modelManager, fileName) {
         const normalizedMarkdown = normalizeText(markdown);
-        const parser = parserOfTemplateAst(template);
+        const parser = parserOfTemplate(template,{contract:false});
         let result = parser.parse(normalizedMarkdown);
         if (result.status) {
             result = result.value;

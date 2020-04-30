@@ -43,22 +43,27 @@ const parsingTable = {
  * @param {object} ast - the template AST
  * @returns {object} the parser
  */
-function parserOfTemplateAst(ast) {
+function parserOfTemplate(ast,params) {
     let parser = null;
-    switch(ast.kind) {
-    case 'text' :
+    switch(ast.$class) {
+    case 'org.accordproject.ciceromark.template.Text' :
         parser = textParser(ast.value);
         break;
-    case 'clause' :
-        parser = clauseParser(ast,parserOfTemplateAst(ast.value));
+    case 'org.accordproject.ciceromark.template.Clause' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        if (params.contract) {
+            parser = wrappedClauseParser(ast,childrenParser);
+        } else {
+            parser = clauseParser(ast,childrenParser);
+        }
         break;
-    case 'wrappedClause' :
-        parser = wrappedClauseParser(ast,parserOfTemplateAst(ast.value));
+    }
+    case 'org.accordproject.ciceromark.template.Contract' :
+        params.contract = true;
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = contractParser(ast,childrenParser);
         break;
-    case 'contract' :
-        parser = contractParser(ast,parserOfTemplateAst(ast.value));
-        break;
-    case 'variable' : {
+    case 'org.accordproject.ciceromark.template.Variable' : {
         switch(ast.type) {
         case 'Enum' :
             parser = enumParser(ast,ast.value);
@@ -74,23 +79,13 @@ function parserOfTemplateAst(ast) {
         }
         break;
     }
-    case 'block' : {
-        switch(ast.type) {
-        case 'conditional' :
-            parser = condParser(ast);
-            break;
-        default:
-            throw new Error('Unknown block type ' + ast.type);
-        }
-        break;
-    }
-    case 'sequence' :
-        parser = seqParser(ast.value.map(function (x) { return parserOfTemplateAst(x); }));
+    case 'org.accordproject.ciceromark.template.ConditionalBlock' :
+        parser = condParser(ast);
         break;
     default:
-        throw new Error('Unknown template ast kind ' + ast.kind);
+        throw new Error('Unknown template ast $class ' + ast.$class);
     }
     return parser;
 };
 
-module.exports.parserOfTemplateAst = parserOfTemplateAst;
+module.exports.parserOfTemplate = parserOfTemplate;

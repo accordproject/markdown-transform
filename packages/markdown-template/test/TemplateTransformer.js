@@ -21,7 +21,7 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransformer;
 const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 
-const template4 = JSON.parse(Fs.readFileSync('./test/data/template4.json', 'utf8'));
+const template4 = JSON.parse(Fs.readFileSync('./test/data/grammar4.json', 'utf8'));
 const text4 = Fs.readFileSync('./test/data/text4.md', 'utf8');
 const text4Err1 = Fs.readFileSync('./test/data/text4Err1.md', 'utf8');
 const text4Err2 = Fs.readFileSync('./test/data/text4Err2.md', 'utf8');
@@ -29,42 +29,36 @@ const text4Err2 = Fs.readFileSync('./test/data/text4Err2.md', 'utf8');
 const textPartLarge = normalizeText(Fs.readFileSync('./test/data/large.txt', 'utf8'));
 const textLarge = Fs.readFileSync('./test/data/large.md', 'utf8');
 const templateLarge = {
-    'kind':'contract',
-    'name':'mycontract',
+    '$class':'org.accordproject.ciceromark.template.Contract',
+    'name':'myContract',
     'id':'contract1',
     'type':'org.test.MyContract',
-    'value': {
-        'kind':'sequence',
-        'value': [
-            { 'kind': 'text', 'value': textPartLarge },
-            { 'kind': 'text', 'value': 'This is contract text, followed by a clause:' },
-            {
-                'kind':'wrappedClause',
-                'name':'agreement',
-                'id':'clause1',
-                'type':'org.test.MyClause',
-                'value': {
-                    'kind':'sequence',
-                    'value': [
-                        { 'kind': 'text', 'value': 'This is a contract between ' },
-                        { 'kind': 'variable', 'name': 'seller', 'type': 'String' },
-                        { 'kind': 'text', 'value': ' and ' },
-                        { 'kind': 'variable', 'name': 'buyer', 'type': 'String' },
-                        { 'kind': 'text', 'value': ' for the amount of ' },
-                        { 'kind': 'variable', 'name': 'amount', 'type': 'Double' },
-                        { 'kind': 'text', 'value': ' ' },
-                        { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] },
-                        { 'kind': 'block', 'name':'forceMajeure', 'type': 'conditional', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
-                        { 'kind': 'text', 'value': '.' }
-                    ]
-                }
-            },
-            { 'kind': 'text', 'value': 'There is a penalty of ' },
-            { 'kind': 'variable', 'name': 'penalty', 'type': 'Double' },
-            { 'kind': 'text', 'value': '% for non compliance.' },
-            { 'kind': 'text', 'value': textPartLarge }
-        ]
-    }
+    'nodes': [
+        { '$class': 'org.accordproject.ciceromark.template.Text', 'value': textPartLarge },
+        { '$class': 'org.accordproject.ciceromark.template.Text', 'value': 'This is contract text, followed by a clause:' },
+        {
+            '$class':'org.accordproject.ciceromark.template.Clause',
+            'name':'agreement',
+            'id':'clause1',
+            'type':'org.test.MyClause',
+            'nodes': [
+                { '$class': 'org.accordproject.ciceromark.template.Text', 'value': 'This is a contract between ' },
+                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'seller', 'type': 'String' },
+                { '$class': 'org.accordproject.ciceromark.template.Text', 'value': ' and ' },
+                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'buyer', 'type': 'String' },
+                { '$class': 'org.accordproject.ciceromark.template.Text', 'value': ' for the amount of ' },
+                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'amount', 'type': 'Double' },
+                { '$class': 'org.accordproject.ciceromark.template.Text', 'value': ' ' },
+                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] },
+                { '$class': 'org.accordproject.ciceromark.template.ConditionalBlock', 'name':'forceMajeure', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+                { '$class': 'org.accordproject.ciceromark.template.Text', 'value': '.' }
+            ]
+        },
+        { '$class': 'org.accordproject.ciceromark.template.Text', 'value': 'There is a penalty of ' },
+        { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'penalty', 'type': 'Double' },
+        { '$class': 'org.accordproject.ciceromark.template.Text', 'value': '% for non compliance.' },
+        { '$class': 'org.accordproject.ciceromark.template.Text', 'value': textPartLarge }
+    ]
 };
 
 const model4 = './test/data/model4.cto';
