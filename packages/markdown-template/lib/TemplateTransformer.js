@@ -84,10 +84,11 @@ class TemplateTransformer {
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
      * @param {object} template the template ast
+     * @param {object} modelManager - the model manager (optional)
      * @param {string} [fileName] - the fileName for the markdown (optional)
      * @returns {object} the result of parsing
      */
-    parse(modelManager, markdown, template, fileName) {
+    parse(markdown, template, modelManager, fileName) {
         const normalizedMarkdown = normalizeText(markdown);
         const parser = parserOfTemplateAst(template);
         let result = parser.parse(normalizedMarkdown);

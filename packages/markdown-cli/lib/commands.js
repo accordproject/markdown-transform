@@ -165,7 +165,7 @@ class Commands {
         const text = Fs.readFileSync(inputPath, 'utf8');
         const template = JSON.parse(Fs.readFileSync(grammarPath, 'utf8'));
         const templateTransformer = new TemplateTransformer();
-        const result = templateTransformer.parse(null,text,template,inputPath);
+        const result = templateTransformer.parse(text,template,null,inputPath);
 
         if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
         return Promise.resolve(JSON.stringify(result));

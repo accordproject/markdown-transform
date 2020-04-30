@@ -73,27 +73,27 @@ const model4 = './test/data/model4.cto';
 describe('#parse', () => {
     describe('#template4', () => {
         it('should parse', async () => {
-            (new TemplateTransformer()).parse(null,text4,template4).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(text4,template4).penalty.should.equal(10.99);
         });
         it('should parse (validate)', async () => {
             const modelManager = await ModelLoader.loadModelManager(null,[model4]);
-            (new TemplateTransformer()).parse(modelManager,text4,template4).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(text4,template4,modelManager).penalty.should.equal(10.99);
         });
     });
 
     describe('#template4Err', () => {
         it('should fail parsing (extra text)', async () => {
-            (() => (new TemplateTransformer()).parse(null,text4Err1,template4)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
+            (() => (new TemplateTransformer()).parse(text4Err1,template4)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
         });
         it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateTransformer()).parse(null,text4Err2,template4)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
+            (() => (new TemplateTransformer()).parse(text4Err2,template4)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
         });
     });
 
     describe('#templateLarge', () => {
         it('should parse', async () => {
             const modelManager = await ModelLoader.loadModelManager(null,[model4]);
-            (new TemplateTransformer()).parse(modelManager,textLarge,templateLarge).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(textLarge,templateLarge,modelManager).penalty.should.equal(10.99);
         });
     });
 });
