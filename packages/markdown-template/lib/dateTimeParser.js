@@ -60,14 +60,18 @@ const MMMM = {
  * @returns {object} the variable
  */
 function mkDateTimeVariable(variable,value) {
+    const fillNumber = (x,digits,def) => {
+        const nb = x ? '' + x : '' + def;
+        return nb.padStart(digits,'0');
+    };
     const valueObj = mkCompoundVariable({'type':'DateTime'},value);
-    const year = valueObj.year ? '' + valueObj.year : '0000';
-    const month = valueObj.month ? '' + valueObj.month : '01';
-    const day = valueObj.day ? '' + valueObj.day : '01';
-    const hour = valueObj.hour ? '' + valueObj.hour : '00';
-    const minute = valueObj.minute ? '' + valueObj.minute : '00';
-    const second = valueObj.second ? '' + valueObj.second : '00';
-    const fracsecond = valueObj.fracsecond ? '' + valueObj.fracsecond : '000';
+    const year = fillNumber(valueObj.year,4,0);
+    const month = fillNumber(valueObj.month,2,1);
+    const day = fillNumber(valueObj.day,2,1);
+    const hour = fillNumber(valueObj.hour,2,0);
+    const minute = fillNumber(valueObj.minute,2,0);
+    const second = fillNumber(valueObj.second,2,0);
+    const fracsecond = fillNumber(valueObj.fracsecond,3,0);
     const timezone = valueObj.timezone ? '' + valueObj.timezone : '+00:00';
     const result = `${year}-${month}-${day}T${hour}:${minute}:${second}.${fracsecond}${timezone}`;
     return mkVariable(variable,result);
@@ -255,10 +259,10 @@ function parserOfField(field) {
 /**
  * Creates a parser for a DateTime variable
  * @param {object} variable the variable ast node
- * @param {string} the format (defaults to US 'MM/DD/YYYY')
  * @returns {object} the parser
  */
-function dateTimeParser(variable, format='MM/DD/YYYY') {
+function dateTimeParser(variable) {
+    let format = variable.format ? variable.format : 'MM/DD/YYYY';
     // XXX the format could be parsed as well instead of this split which seems error-prone
     let hasTimeZone = format.charAt(format.length-1) === 'Z';
     if(hasTimeZone) {

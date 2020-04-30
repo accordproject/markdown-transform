@@ -41,7 +41,7 @@ import org.accordproject.commonmark.List from https://models.accordproject.org/m
  */
 
 abtract concept Variable extends Child {
-    o String id
+    o String name
     o String type
     o String format optional
 }

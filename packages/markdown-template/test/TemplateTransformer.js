@@ -22,13 +22,13 @@ const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransf
 const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 
 const grammar2 = JSON.parse(Fs.readFileSync('./test/data/template2/grammar2.json', 'utf8'));
+const model2 = './test/data/template2/model2.cto';
 const sample2 = Fs.readFileSync('./test/data/template2/sample2.md', 'utf8');
 const sample2Err1 = Fs.readFileSync('./test/data/template2/sample2Err1.md', 'utf8');
 const sample2Err2 = Fs.readFileSync('./test/data/template2/sample2Err2.md', 'utf8');
 
 const samplePartLarge = normalizeText(Fs.readFileSync('./test/data/templateLarge/large.txt', 'utf8'));
-const sampleLarge = Fs.readFileSync('./test/data/templateLarge/large.md', 'utf8');
-const templateLarge = {
+const grammarLarge = {
     '$class':'org.accordproject.ciceromark.template.Contract',
     'name':'myContract',
     'id':'contract1',
@@ -60,9 +60,12 @@ const templateLarge = {
         { '$class': 'org.accordproject.ciceromark.template.Text', 'value': samplePartLarge }
     ]
 };
-
-const model2 = './test/data/template2/model2.cto';
 const modelLarge = './test/data/templateLarge/modelLarge.cto';
+const sampleLarge = Fs.readFileSync('./test/data/templateLarge/large.md', 'utf8');
+
+const grammarDateTime = JSON.parse(Fs.readFileSync('./test/data/templateDateTime/grammarDateTime.json', 'utf8'));
+const modelDateTime = './test/data/templateDateTime/modelDateTime.cto';
+const sampleDateTime = Fs.readFileSync('./test/data/templateDateTime/sampleDateTime.md', 'utf8');
 
 // Tests
 describe('#parse', () => {
@@ -88,7 +91,14 @@ describe('#parse', () => {
     describe('#templateLarge', () => {
         it('should parse', async () => {
             const modelManager = await ModelLoader.loadModelManager(null,[modelLarge]);
-            (new TemplateTransformer()).parse(sampleLarge,templateLarge,modelManager).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(sampleLarge,grammarLarge,modelManager).penalty.should.equal(10.99);
+        });
+    });
+
+    describe('#templateDateTime', () => {
+        it('should parse', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelDateTime]);
+            (new TemplateTransformer()).parse(sampleDateTime,grammarDateTime,modelManager).effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
         });
     });
 });
