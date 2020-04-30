@@ -71,7 +71,7 @@ function mkCond(cond,value) {
  * @returns {object} the clause
  */
 function mkClause(clause,value) {
-    return mkCompoundVariable(clause,value);
+    return mkCompoundVariable(clause,value.concat({"name":"clauseId","type":"String","value":clause.id}));
 }
 
 /**
@@ -91,7 +91,7 @@ function mkWrappedClause(clause,value) {
  * @returns {object} the contract
  */
 function mkContract(contract,value) {
-    return mkClause(contract,value); // XXX Need to be changed
+    return mkCompoundVariable(contract,value.concat({"name":"contractId","type":"String","value":contract.id}));
 }
 
 /**

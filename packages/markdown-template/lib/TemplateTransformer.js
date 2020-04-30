@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
+const { Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
 
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
@@ -87,11 +87,17 @@ class TemplateTransformer {
      * @param {string} [fileName] - the fileName for the markdown (optional)
      * @returns {object} the result of parsing
      */
-    parse(markdown, template, fileName) {
+    parse(modelManager, markdown, template, fileName) {
         const normalizedMarkdown = normalizeText(markdown);
         const parser = parserOfTemplateAst(template);
-        const result = parser.parse(normalizedMarkdown);
+        let result = parser.parse(normalizedMarkdown);
         if (result.status) {
+            result = result.value;
+            if (modelManager) {
+                const factory = new Factory(modelManager);
+                const serializer = new Serializer(factory, modelManager);
+                result = serializer.toJSON(serializer.fromJSON(result));
+            }
             return result;
         } else {
             _throwParseError(markdown,result,fileName);

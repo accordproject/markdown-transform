@@ -47,6 +47,7 @@ class CiceroMarkTransformer {
         const factory = new Factory(this.modelManager);
         this.serializer = new Serializer(factory, this.modelManager);
     }
+
     /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
