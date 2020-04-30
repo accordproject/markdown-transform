@@ -17,6 +17,7 @@
 const Fs = require('fs');
 
 // Parser from template AST
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransformer;
 const normalizeText = require('../lib/TemplateTransformer').normalizeText;
 
@@ -29,7 +30,8 @@ const textPartLarge = normalizeText(Fs.readFileSync('./test/data/large.txt', 'ut
 const textLarge = Fs.readFileSync('./test/data/large.md', 'utf8');
 const templateLarge = {
     'kind':'contract',
-    'name':'contract4',
+    'name':'mycontract',
+    'id':'contract1',
     'type':'org.test.MyContract',
     'value': {
         'kind':'sequence',
@@ -38,7 +40,8 @@ const templateLarge = {
             { 'kind': 'text', 'value': 'This is contract text, followed by a clause:' },
             {
                 'kind':'wrappedClause',
-                'name':'clause3',
+                'name':'agreement',
+                'id':'clause1',
                 'type':'org.test.MyClause',
                 'value': {
                     'kind':'sequence',
@@ -64,26 +67,33 @@ const templateLarge = {
     }
 };
 
+const model4 = './test/data/model4.cto';
+
 // Tests
 describe('#parse', () => {
     describe('#template4', () => {
         it('should parse', async () => {
-            (new TemplateTransformer()).parse(text4,template4).status.should.equal(true);
+            (new TemplateTransformer()).parse(null,text4,template4).penalty.should.equal(10.99);
+        });
+        it('should parse (validate)', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[model4]);
+            (new TemplateTransformer()).parse(modelManager,text4,template4).penalty.should.equal(10.99);
         });
     });
 
     describe('#template4Err', () => {
         it('should fail parsing (extra text)', async () => {
-            (() => (new TemplateTransformer()).parse(text4Err1,template4)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
+            (() => (new TemplateTransformer()).parse(null,text4Err1,template4)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
         });
         it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateTransformer()).parse(text4Err2,template4)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
+            (() => (new TemplateTransformer()).parse(null,text4Err2,template4)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
         });
     });
 
     describe('#templateLarge', () => {
         it('should parse', async () => {
-            (new TemplateTransformer()).parse(textLarge,templateLarge).status.should.equal(true);
+            const modelManager = await ModelLoader.loadModelManager(null,[model4]);
+            (new TemplateTransformer()).parse(modelManager,textLarge,templateLarge).penalty.should.equal(10.99);
         });
     });
 });

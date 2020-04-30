@@ -191,7 +191,6 @@ function parsermm() {
  * @returns {object} the parser
  */
 function parserss() {
-    console.log('ss');
     return P.regexp(/[0-5][0-9]/).map(function(x) {
         return mkField('second',Number(x));
     });

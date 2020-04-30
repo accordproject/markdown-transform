@@ -1,6 +1,7 @@
 {
     "kind":"contract",
-    "name":"contract4",
+    "name":"myContract",
+    "id":"contract1",
     "type":"org.test.MyContract",
     "value": {
         "kind":"sequence",
@@ -8,7 +9,8 @@
             { "kind": "text", "value": "This is contract text, followed by a clause:" },
             {
                 "kind":"wrappedClause",
-                "name":"clause3",
+                "name":"agreement",
+                "id":"clause1",
                 "type":"org.test.MyClause",
                 "value": {
                     "kind":"sequence",
