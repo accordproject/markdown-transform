@@ -15,6 +15,7 @@
 'use strict';
 
 const P = require('parsimmon');
+const { ParseException } = require('@accordproject/concerto-core');
 
 /**
  * Utilities
@@ -45,7 +46,14 @@ function mkCompoundVariable(variable,value) {
     result.$class = variable.type;
     for(let i = 0; i < value.length; i++) {
         const field = value[i];
-        result[field.name] = field.value;
+        if(result[field.name]) {
+            if (result[field.name] !== field.value) {
+                const message = `Inconsistent values for variable ${field.name}: ${result[field.name]} and ${field.value}`;
+                throw new Error(message);
+            }
+        } else {
+            result[field.name] = field.value;
+        }
     }
     return result;
 }
