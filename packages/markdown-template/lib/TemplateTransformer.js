@@ -17,19 +17,9 @@
 const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
+const normalizeMarkdown = require('./normalize').normalizeMarkdown;
 
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
-
-/**
- * Prepare the text for parsing (normalizes new lines, etc)
- * @param {string} input - the text for the clause
- * @return {string} - the normalized text for the clause
- */
-function normalizeText(input) {
-    // we replace all \r and \n with \n
-    let text =  input.replace(/\r/gm,'');
-    return text;
-}
 
 /**
  * Minimum length of expected token
@@ -115,7 +105,7 @@ class TemplateTransformer {
      * @returns {object} the result of parsing
      */
     parse(markdown, template, modelManager, fileName) {
-        const normalizedMarkdown = normalizeText(markdown);
+        const normalizedMarkdown = normalizeMarkdown(markdown);
         template = this.serializer.toJSON(this.serializer.fromJSON(template));
         const parser = parserOfTemplate(template,{contract:false});
         let result = parser.parse(normalizedMarkdown);
@@ -134,5 +124,4 @@ class TemplateTransformer {
 
 }
 
-module.exports.normalizeText = normalizeText;
-module.exports.TemplateTransformer = TemplateTransformer;
+module.exports = TemplateTransformer;

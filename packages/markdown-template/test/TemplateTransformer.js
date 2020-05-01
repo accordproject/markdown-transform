@@ -18,8 +18,8 @@ const Fs = require('fs');
 
 // Parser from template AST
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
-const TemplateTransformer = require('../lib/TemplateTransformer').TemplateTransformer;
-const normalizeText = require('../lib/TemplateTransformer').normalizeText;
+const TemplateTransformer = require('../lib/TemplateTransformer');
+const normalizeMarkdown = require('../lib/normalize').normalizeMarkdown;
 
 const grammar2 = JSON.parse(Fs.readFileSync('./test/data/template2/grammar2.json', 'utf8'));
 const model2 = './test/data/template2/model2.cto';
@@ -29,7 +29,7 @@ const sample2Err2 = Fs.readFileSync('./test/data/template2/sample2Err2.md', 'utf
 const sample2Err3 = Fs.readFileSync('./test/data/template2/sample2Err3.md', 'utf8');
 const sample2Err4 = Fs.readFileSync('./test/data/template2/sample2Err4.md', 'utf8');
 
-const samplePartLarge = normalizeText(Fs.readFileSync('./test/data/templateLarge/large.txt', 'utf8'));
+const samplePartLarge = normalizeMarkdown(Fs.readFileSync('./test/data/templateLarge/large.txt', 'utf8'));
 const grammarLarge = {
     '$class':'org.accordproject.ciceromark.template.ContractBlock',
     'name':'myContract',
