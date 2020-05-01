@@ -48,9 +48,17 @@ describe('#coreparsers', () => {
         });
         it('should parse double', async () => {
             doubleParser(var3).parse('123.313e-33').status.should.equal(true);
+            doubleParser(var3).parse('123.313e33').status.should.equal(true);
+            doubleParser(var3).parse('123e33').status.should.equal(true);
+            doubleParser(var3).parse('0e+33').status.should.equal(true);
+            doubleParser(var3).parse('-123.313e-33').status.should.equal(true);
+            doubleParser(var3).parse('-123.313e33').status.should.equal(true);
+            doubleParser(var3).parse('-123e33').status.should.equal(true);
+            doubleParser(var3).parse('-0e+33').status.should.equal(true);
         });
         it('should not parse if not double', async () => {
             doubleParser(var3).parse('123.a313e-33').status.should.equal(false);
+            doubleParser(var3).parse('000e+33').status.should.equal(false);
         });
 
         it('should parse string', async () => {
