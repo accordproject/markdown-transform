@@ -14,8 +14,8 @@
 
 'use strict';
 
-const { Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
-
+const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
+const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
 
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
@@ -81,6 +81,18 @@ function _throwParseError(markdown,result,fileName) {
  */
 class TemplateTransformer {
     /**
+     * Construct the parser.
+     */
+    constructor() {
+        // Setup for validation
+        this.modelManager = new ModelManager();
+        this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+        this.modelManager.addModelFile(CiceroMarkTemplateModel, 'ciceromarktemplate.cto');
+        const factory = new Factory(this.modelManager);
+        this.serializer = new Serializer(factory, this.modelManager);
+    }
+
+    /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
      * @param {object} template the template ast
@@ -90,6 +102,7 @@ class TemplateTransformer {
      */
     parse(markdown, template, modelManager, fileName) {
         const normalizedMarkdown = normalizeText(markdown);
+        template = this.serializer.toJSON(this.serializer.fromJSON(template));
         const parser = parserOfTemplate(template,{contract:false});
         let result = parser.parse(normalizedMarkdown);
         if (result.status) {

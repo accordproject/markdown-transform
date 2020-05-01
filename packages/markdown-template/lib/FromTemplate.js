@@ -47,10 +47,10 @@ const parsingTable = {
 function parserOfTemplate(ast,params) {
     let parser = null;
     switch(ast.$class) {
-    case 'org.accordproject.ciceromark.template.Text' :
+    case 'org.accordproject.ciceromark.template.TextChunk' :
         parser = textParser(ast.value);
         break;
-    case 'org.accordproject.ciceromark.template.Clause' : {
+    case 'org.accordproject.ciceromark.template.ClauseBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         if (params.contract) {
             parser = wrappedClauseParser(ast,childrenParser);
@@ -59,7 +59,7 @@ function parserOfTemplate(ast,params) {
         }
         break;
     }
-    case 'org.accordproject.ciceromark.template.Contract' :
+    case 'org.accordproject.ciceromark.template.ContractBlock' :
         params.contract = true;
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = contractParser(ast,childrenParser);
@@ -83,7 +83,7 @@ function parserOfTemplate(ast,params) {
     case 'org.accordproject.ciceromark.template.ConditionalBlock' :
         parser = condParser(ast);
         break;
-    case 'org.accordproject.ciceromark.template.UListBlock' : {
+    case 'org.accordproject.ciceromark.template.UnorderedListBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = listParser(ast,childrenParser);
         break;

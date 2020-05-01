@@ -1,21 +1,21 @@
 {
-  "$class": "org.accordproject.ciceromark.template.Contract",
+  "$class": "org.accordproject.ciceromark.template.ContractBlock",
   "id": "contract1",
   "name": "myContract",
   "type": "org.test.MyContract",
   "nodes": [
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "This is contract text, followed by a clause:"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Clause",
+      "$class": "org.accordproject.ciceromark.template.ClauseBlock",
       "name": "agreement",
       "id": "clause1",
       "type": "org.test.MyClause",
       "nodes": [
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": "This is a contract between "
         },
         {
@@ -24,7 +24,7 @@
           "type": "String"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": " and "
         },
         {
@@ -33,7 +33,7 @@
           "type": "String"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": " for the amount of "
         },
         {
@@ -42,7 +42,7 @@
           "type": "Double"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": " "
         },
         {
@@ -62,13 +62,13 @@
           "whenFalse": ""
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": "."
         }
       ]
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "There is a penalty of "
     },
     {
@@ -77,16 +77,16 @@
       "type": "Double"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "% for non compliance."
     },
     {
-      "$class": "org.accordproject.ciceromark.template.UListBlock",
+      "$class": "org.accordproject.ciceromark.template.UnorderedListBlock",
       "name": "prices",
       "type": "org.test.Price",
       "nodes": [
         {
-          "$class": "org.accordproject.ciceromark.template.Text",
+          "$class": "org.accordproject.ciceromark.template.TextChunk",
           "value": "The number "
         },
         {
