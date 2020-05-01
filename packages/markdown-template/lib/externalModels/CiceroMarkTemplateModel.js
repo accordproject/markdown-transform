@@ -39,20 +39,29 @@ import org.accordproject.commonmark.List from https://models.accordproject.org/m
 /**
  * A model for Accord Project template extensions to commonmark
  */
+concept TextChunk extends Child {
+    o String value
+}
 
-abtract concept Variable extends Child {
+concept Variable extends Child {
     o String name
     o String type
     o String format optional
+    o String[] value optional // XXX to fix, used in enums
 }
 
-concept AtomicVariable extends Variable {
+concept Block extends Child {
+    o String name
 }
 
-abstract concept Block extends Variable {
+concept ClauseBlock extends Block {
+    o String type
+    o String id
 }
 
-concept WithBlock extends Block {
+concept ContractBlock extends Block {
+    o String type
+    o String id
 }
 
 concept ConditionalBlock extends Block {
@@ -60,10 +69,12 @@ concept ConditionalBlock extends Block {
     o String whenFalse
 }
 
-abstract concept UnorderedListBlock extends Block {
+concept UnorderedListBlock extends Block {
+    o String type
 }
 
-abstract concept OrderedListBlock extends Block {
+concept OrderedListBlock extends Block {
+    o String type
 }
 `;
 

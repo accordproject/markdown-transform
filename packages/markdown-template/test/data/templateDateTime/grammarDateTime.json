@@ -1,11 +1,11 @@
 {
-  "$class": "org.accordproject.ciceromark.template.Clause",
+  "$class": "org.accordproject.ciceromark.template.ClauseBlock",
   "id": "clause1",
   "name": "myClause",
   "type": "org.test.MyClause",
   "nodes": [
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "This is a contract between "
     },
     {
@@ -14,7 +14,7 @@
       "type": "String"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": " and "
     },
     {
@@ -23,7 +23,7 @@
       "type": "String"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": " for the amount of "
     },
     {
@@ -32,7 +32,7 @@
       "type": "Double"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": " "
     },
     {
@@ -52,11 +52,11 @@
       "whenFalse": ""
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "."
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": " This contract becomes effective on "
     },
     {
@@ -66,7 +66,7 @@
         "format": "MMMM D, YYYY"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Text",
+      "$class": "org.accordproject.ciceromark.template.TextChunk",
       "value": "."
     }
   ]
