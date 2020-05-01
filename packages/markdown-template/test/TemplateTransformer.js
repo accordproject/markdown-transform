@@ -61,7 +61,7 @@ const grammarLarge = {
     ]
 };
 const modelLarge = './test/data/templateLarge/modelLarge.cto';
-const sampleLarge = Fs.readFileSync('./test/data/templateLarge/large.md', 'utf8');
+const sampleLarge = Fs.readFileSync('./test/data/templateLarge/sampleLarge.md', 'utf8');
 
 const grammarDateTime = JSON.parse(Fs.readFileSync('./test/data/templateDateTime/grammarDateTime.json', 'utf8'));
 const modelDateTime = './test/data/templateDateTime/modelDateTime.cto';
