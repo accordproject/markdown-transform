@@ -71,6 +71,11 @@ const grammarList = JSON.parse(Fs.readFileSync('./test/data/templateList/grammar
 const modelList = './test/data/templateList/modelList.cto';
 const sampleList = Fs.readFileSync('./test/data/templateList/sampleList.md', 'utf8');
 
+const grammarRepeat = JSON.parse(Fs.readFileSync('./test/data/templateRepeat/grammarRepeat.json', 'utf8'));
+const modelRepeat = './test/data/templateRepeat/modelRepeat.cto';
+const sampleRepeat = Fs.readFileSync('./test/data/templateRepeat/sampleRepeat.md', 'utf8');
+const sampleRepeatErr = Fs.readFileSync('./test/data/templateRepeat/sampleRepeatErr.md', 'utf8');
+
 // Tests
 describe('#parse', () => {
     describe('#template2', () => {
@@ -117,6 +122,21 @@ describe('#parse', () => {
             result.prices[1].number.should.equal(2);
             result.prices[2].$class.should.equal('org.test.Price');
             result.prices[2].number.should.equal(3);
+        });
+    });
+
+    describe('#templateRepeat', () => {
+        it('should parse', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelRepeat]);
+            const result = (new TemplateTransformer()).parse(sampleRepeat,grammarRepeat,modelManager);
+            result.seller.should.equal('Steve');
+            result.buyer.should.equal('Betty');
+        });
+    });
+
+    describe('#templateRepeat (error)', () => {
+        it('should fail parsing (inconsistent variables)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleRepeatErr,grammarRepeat)).should.throw('Inconsistent values for variable seller: Steve and Betty');
         });
     });
 });
