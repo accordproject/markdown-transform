@@ -26,6 +26,8 @@ const model2 = './test/data/template2/model2.cto';
 const sample2 = Fs.readFileSync('./test/data/template2/sample2.md', 'utf8');
 const sample2Err1 = Fs.readFileSync('./test/data/template2/sample2Err1.md', 'utf8');
 const sample2Err2 = Fs.readFileSync('./test/data/template2/sample2Err2.md', 'utf8');
+const sample2Err3 = Fs.readFileSync('./test/data/template2/sample2Err3.md', 'utf8');
+const sample2Err4 = Fs.readFileSync('./test/data/template2/sample2Err4.md', 'utf8');
 
 const samplePartLarge = normalizeText(Fs.readFileSync('./test/data/templateLarge/large.txt', 'utf8'));
 const grammarLarge = {
@@ -94,20 +96,26 @@ const sampleComputedErr = Fs.readFileSync('./test/data/templateComputed/sampleCo
 describe('#parse', () => {
     describe('#template2', () => {
         it('should parse', async () => {
-            (new TemplateTransformer()).parse(sample2,grammar2).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(sample2,grammar2).penalty.should.equal(10);
         });
         it('should parse (validate)', async () => {
             const modelManager = await ModelLoader.loadModelManager(null,[model2]);
-            (new TemplateTransformer()).parse(sample2,grammar2,modelManager).penalty.should.equal(10.99);
+            (new TemplateTransformer()).parse(sample2,grammar2,modelManager).penalty.should.equal(10);
         });
     });
 
     describe('#template2 (error)', () => {
         it('should fail parsing (extra text)', async () => {
-            (() => (new TemplateTransformer()).parse(sample2Err1,grammar2)).should.throw('Parse error at line 5 column 49\nThere is a penalty of 10.99% for non compliance.X');
+            (() => (new TemplateTransformer()).parse(sample2Err1,grammar2)).should.throw('Parse error at line 5 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text');
         });
         it('should fail parsing (wrong text)', async () => {
             (() => (new TemplateTransformer()).parse(sample2Err2,grammar2)).should.throw('Parse error at line 3 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
+        });
+        it('should fail parsing (wrong text)', async () => {
+            (() => (new TemplateTransformer()).parse(sample2Err3,grammar2)).should.throw('Parse error at line 2 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" claused="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^^^^^\nExpected: \' clauseid=\'');
+        });
+        it('should fail parsing (wrong text)', async () => {
+            (() => (new TemplateTransformer()).parse(sample2Err4,grammar2)).should.throw('Parse error at line 5 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal');
         });
     });
 

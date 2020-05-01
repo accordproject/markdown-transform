@@ -74,7 +74,7 @@
     {
       "$class": "org.accordproject.ciceromark.template.Variable",
       "name": "penalty",
-      "type": "Double"
+      "type": "Integer"
     },
     {
       "$class": "org.accordproject.ciceromark.template.TextChunk",

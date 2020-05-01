@@ -15,6 +15,6 @@ asset MyClause extends AccordClause {
 }
 
 asset MyContract extends AccordContract {
-	o Double penalty
+	o Integer penalty
 	o MyClause agreement
 }

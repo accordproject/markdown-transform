@@ -151,7 +151,7 @@ function textParser(text) {
  * @returns {object} the parser
  */
 function stringLiteralParser() {
-    return P.regexp(/"[^"]*"/);
+    return P.regexp(/"[^"]*"/).desc('A String literal "..."');
 }
 
 /**
@@ -189,7 +189,7 @@ function seqParser(parsers) {
  * @returns {object} the parser
  */
 function computedParser() {
-    return P.regexp(/{{[^}]*}}/);
+    return P.regexp(/{{[^}]*}}/).desc('A computed variable {{ ... }}');
 }
 
 /**
@@ -200,7 +200,7 @@ function computedParser() {
 function doubleParser(variable) {
     return P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/).map(function(x) {
         return mkVariable(variable,Number(x));
-    });
+    }).desc('A Double literal');
 }
 
 /**
@@ -211,7 +211,7 @@ function doubleParser(variable) {
 function integerParser(variable) {
     return P.regexp(/[0-9]+/).map(function(x) {
         return mkVariable(variable,Number(x));
-    });
+    }).desc('An Integer literal');
 }
 
 /**
