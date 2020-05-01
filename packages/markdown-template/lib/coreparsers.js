@@ -198,7 +198,7 @@ function computedParser() {
  * @returns {object} the parser
  */
 function doubleParser(variable) {
-    return P.regexp(/[0-9]+(.[0-9]+)?(e(\+|-)?[0-9]+)?/).map(function(x) {
+    return P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/).map(function(x) {
         return mkVariable(variable,Number(x));
     });
 }
