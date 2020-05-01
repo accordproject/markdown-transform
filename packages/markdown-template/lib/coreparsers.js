@@ -52,7 +52,7 @@ function mkCompoundVariable(variable,value) {
 
 /**
  * Creates a conditional output
- * @param {object} variable the variable ast node
+ * @param {object} cond the conditional ast node
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
@@ -61,6 +61,23 @@ function mkCond(cond,value) {
     result.name = cond.name;
     result.type = 'Boolean';
     result.value = value === cond.whenTrue ? true : false;
+    return result;
+}
+
+/**
+ * Creates a List output
+ * @param {object} list the list ast node
+ * @param {*} value the variable value
+ * @returns {object} the conditional
+ */
+function mkList(list,value) {
+    const result = {};
+    result.name = list.name;
+    result.type = 'List';
+    result.value = [];
+    for(let i = 0; i < value.length; i++) {
+        result.value.push(mkCompoundVariable({'type':list.type},value[i]));
+    }
     return result;
 }
 
@@ -202,6 +219,20 @@ function condParser(cond) {
 }
 
 /**
+ * Creates a parser for a list block
+ * @param {object} list the list ast node
+ * @param {object} content the parser for the content of the list
+ * @returns {object} the parser
+ */
+function listParser(list,content) {
+    return P.seq(textParser('\n- '),content).map(function(x) {
+        return x[1]; // XXX First element is bullet
+    }).many().map(function(x) {
+        return mkList(list,x);
+    });
+}
+
+/**
  * Creates a parser for clause content
  * @param {object} clause the clause ast node
  * @param {object} content the parser for the content of the clause
@@ -216,7 +247,7 @@ function clauseParser(clause,content) {
 /**
  * Creates a parser for contract content
  * @param {object} contract the contract ast node
- * @param {object} content the parser for the content of the clause
+ * @param {object} content the parser for the content of the contract
  * @returns {object} the parser
  */
 function contractParser(contract,content) {
@@ -252,6 +283,7 @@ module.exports.integerParser = integerParser;
 module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
+module.exports.listParser = listParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;

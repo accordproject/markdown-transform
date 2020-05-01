@@ -23,6 +23,7 @@ const dateTimeParser = require('./dateTimeParser').dateTimeParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
+const listParser = require('./coreparsers').listParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
@@ -82,6 +83,11 @@ function parserOfTemplate(ast,params) {
     case 'org.accordproject.ciceromark.template.ConditionalBlock' :
         parser = condParser(ast);
         break;
+    case 'org.accordproject.ciceromark.template.UListBlock' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = listParser(ast,childrenParser);
+        break;
+    }
     default:
         throw new Error('Unknown template ast $class ' + ast.$class);
     }
