@@ -24,7 +24,8 @@ const dateTimeParser = require('./dateTimeParser').dateTimeParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
-const listParser = require('./coreparsers').listParser;
+const ulistParser = require('./coreparsers').ulistParser;
+const olistParser = require('./coreparsers').olistParser;
 const withParser = require('./coreparsers').withParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
@@ -79,7 +80,12 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.ciceromark.template.UnorderedListBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = listParser(ast,childrenParser);
+        parser = ulistParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.ciceromark.template.OrderedListBlock' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = olistParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.ciceromark.template.ClauseBlock' : {

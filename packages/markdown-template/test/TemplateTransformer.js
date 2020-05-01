@@ -67,9 +67,14 @@ const grammarDateTime = JSON.parse(Fs.readFileSync('./test/data/templateDateTime
 const modelDateTime = './test/data/templateDateTime/modelDateTime.cto';
 const sampleDateTime = Fs.readFileSync('./test/data/templateDateTime/sampleDateTime.md', 'utf8');
 
-const grammarList = JSON.parse(Fs.readFileSync('./test/data/templateList/grammarList.json', 'utf8'));
-const modelList = './test/data/templateList/modelList.cto';
-const sampleList = Fs.readFileSync('./test/data/templateList/sampleList.md', 'utf8');
+const grammarUList = JSON.parse(Fs.readFileSync('./test/data/templateUList/grammarUList.json', 'utf8'));
+const modelUList = './test/data/templateUList/modelUList.cto';
+const sampleUList = Fs.readFileSync('./test/data/templateUList/sampleUList.md', 'utf8');
+
+const grammarOList = JSON.parse(Fs.readFileSync('./test/data/templateOList/grammarOList.json', 'utf8'));
+const modelOList = './test/data/templateOList/modelOList.cto';
+const sampleOList = Fs.readFileSync('./test/data/templateOList/sampleOList.md', 'utf8');
+const sampleOList2 = Fs.readFileSync('./test/data/templateOList/sampleOList2.md', 'utf8');
 
 const grammarRepeat = JSON.parse(Fs.readFileSync('./test/data/templateRepeat/grammarRepeat.json', 'utf8'));
 const modelRepeat = './test/data/templateRepeat/modelRepeat.cto';
@@ -120,10 +125,10 @@ describe('#parse', () => {
         });
     });
 
-    describe('#templateList', () => {
+    describe('#templateUList', () => {
         it('should parse', async () => {
-            const modelManager = await ModelLoader.loadModelManager(null,[modelList]);
-            const result = (new TemplateTransformer()).parse(sampleList,grammarList,modelManager);
+            const modelManager = await ModelLoader.loadModelManager(null,[modelUList]);
+            const result = (new TemplateTransformer()).parse(sampleUList,grammarUList,modelManager);
             result.prices.length.should.equal(3);
             result.prices[0].$class.should.equal('org.test.Price');
             result.prices[0].number.should.equal(1);
@@ -131,6 +136,34 @@ describe('#parse', () => {
             result.prices[1].number.should.equal(2);
             result.prices[2].$class.should.equal('org.test.Price');
             result.prices[2].number.should.equal(3);
+        });
+    });
+
+    describe('#templateOList', () => {
+        it('should parse (same number)', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelOList]);
+            const result = (new TemplateTransformer()).parse(sampleOList,grammarOList,modelManager);
+            result.prices.length.should.equal(3);
+            result.prices[0].$class.should.equal('org.test.Price');
+            result.prices[0].number.should.equal(1);
+            result.prices[1].$class.should.equal('org.test.Price');
+            result.prices[1].number.should.equal(2);
+            result.prices[2].$class.should.equal('org.test.Price');
+            result.prices[2].number.should.equal(3);
+        });
+
+        it('should parse (same various numbers)', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelOList]);
+            const result = (new TemplateTransformer()).parse(sampleOList2,grammarOList,modelManager);
+            result.prices.length.should.equal(4);
+            result.prices[0].$class.should.equal('org.test.Price');
+            result.prices[0].number.should.equal(1);
+            result.prices[1].$class.should.equal('org.test.Price');
+            result.prices[1].number.should.equal(2);
+            result.prices[2].$class.should.equal('org.test.Price');
+            result.prices[2].number.should.equal(3);
+            result.prices[3].$class.should.equal('org.test.Price');
+            result.prices[3].number.should.equal(4);
         });
     });
 
