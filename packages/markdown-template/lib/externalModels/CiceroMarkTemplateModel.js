@@ -50,6 +50,9 @@ concept Variable extends Child {
     o String[] value optional // XXX to fix, used in enums
 }
 
+concept ComputedVariable extends Variable {
+}
+
 concept Block extends Child {
     o String name
 }

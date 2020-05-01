@@ -80,6 +80,11 @@ const grammarWith = JSON.parse(Fs.readFileSync('./test/data/templateWith/grammar
 const modelWith = './test/data/templateWith/modelWith.cto';
 const sampleWith = Fs.readFileSync('./test/data/templateWith/sampleWith.md', 'utf8');
 
+const grammarComputed = JSON.parse(Fs.readFileSync('./test/data/templateComputed/grammarComputed.json', 'utf8'));
+const modelComputed = './test/data/templateComputed/modelComputed.cto';
+const sampleComputed = Fs.readFileSync('./test/data/templateComputed/sampleComputed.md', 'utf8');
+const sampleComputedErr = Fs.readFileSync('./test/data/templateComputed/sampleComputedErr.md', 'utf8');
+
 // Tests
 describe('#parse', () => {
     describe('#template2', () => {
@@ -154,4 +159,20 @@ describe('#parse', () => {
             result.buyerAddress.city.should.equal('London');
         });
     });
+
+    describe('#templateComputed', () => {
+        it('should parse', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelComputed]);
+            const result = (new TemplateTransformer()).parse(sampleComputed,grammarComputed,modelManager);
+            result.agreement.seller.should.equal('Steve');
+            result.agreement.buyer.should.equal('Betty');
+        });
+    });
+
+    describe('#templateComputed (error)', () => {
+        it('should fail parsing (inconsistent variables)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleComputedErr,grammarComputed)).should.throw('Parse error at line 6 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^');
+        });
+    });
+
 });
