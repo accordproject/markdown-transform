@@ -24,6 +24,7 @@ const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
 const listParser = require('./coreparsers').listParser;
+const withParser = require('./coreparsers').withParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
@@ -47,23 +48,10 @@ const parsingTable = {
 function parserOfTemplate(ast,params) {
     let parser = null;
     switch(ast.$class) {
-    case 'org.accordproject.ciceromark.template.TextChunk' :
+    case 'org.accordproject.ciceromark.template.TextChunk' : {
         parser = textParser(ast.value);
         break;
-    case 'org.accordproject.ciceromark.template.ClauseBlock' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        if (params.contract) {
-            parser = wrappedClauseParser(ast,childrenParser);
-        } else {
-            parser = clauseParser(ast,childrenParser);
-        }
-        break;
     }
-    case 'org.accordproject.ciceromark.template.ContractBlock' :
-        params.contract = true;
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = contractParser(ast,childrenParser);
-        break;
     case 'org.accordproject.ciceromark.template.Variable' : {
         switch(ast.type) {
         case 'Enum' :
@@ -80,14 +68,34 @@ function parserOfTemplate(ast,params) {
         }
         break;
     }
-    case 'org.accordproject.ciceromark.template.ConditionalBlock' :
+    case 'org.accordproject.ciceromark.template.ConditionalBlock' : {
         parser = condParser(ast);
         break;
+    }
     case 'org.accordproject.ciceromark.template.UnorderedListBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = listParser(ast,childrenParser);
         break;
     }
+    case 'org.accordproject.ciceromark.template.ClauseBlock' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        if (params.contract) {
+            parser = wrappedClauseParser(ast,childrenParser);
+        } else {
+            parser = clauseParser(ast,childrenParser);
+        }
+        break;
+    }
+    case 'org.accordproject.ciceromark.template.WithBlock' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = withParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.ciceromark.template.ContractBlock' :
+        params.contract = true;
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = contractParser(ast,childrenParser);
+        break;
     default:
         throw new Error('Unknown template ast $class ' + ast.$class);
     }

@@ -64,6 +64,10 @@ concept ContractBlock extends Block {
     o String id
 }
 
+concept WithBlock extends Block {
+    o String type
+}
+
 concept ConditionalBlock extends Block {
     o String whenTrue
     o String whenFalse
