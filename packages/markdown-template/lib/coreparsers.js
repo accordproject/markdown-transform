@@ -249,17 +249,38 @@ function condParser(condNode) {
 }
 
 /**
- * Creates a parser for a list block
+ * Creates a parser for bulletted lists
  * @param {object} listNode the list ast node
+ * @param {object} bullet the parser for the bullet
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function listParser(listNode,content) {
-    return P.seq(textParser('\n- '),content).map(function(x) {
+function listParser(listNode,bullet,content) {
+    return P.seq(bullet,content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
         return mkList(listNode,x);
     });
+}
+
+/**
+ * Creates a parser for an unordered list block
+ * @param {object} listNode the list ast node
+ * @param {object} content the parser for the content of the list
+ * @returns {object} the parser
+ */
+function ulistParser(listNode,content) {
+    return listParser(listNode,textParser('\n- '),content);
+}
+
+/**
+ * Creates a parser for an ordered list block
+ * @param {object} listNode the list ast node
+ * @param {object} content the parser for the content of the list
+ * @returns {object} the parser
+ */
+function olistParser(listNode,content) {
+    return listParser(listNode,P.seq(P.string('\n'),P.regexp(/[0-9]+/),P.string('. ')),content);
 }
 
 /**
@@ -326,7 +347,8 @@ module.exports.integerParser = integerParser;
 module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
-module.exports.listParser = listParser;
+module.exports.ulistParser = ulistParser;
+module.exports.olistParser = olistParser;
 module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
