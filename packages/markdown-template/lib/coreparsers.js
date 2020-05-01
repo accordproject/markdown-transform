@@ -60,15 +60,15 @@ function mkCompoundVariable(variable,value) {
 
 /**
  * Creates a conditional output
- * @param {object} cond the conditional ast node
+ * @param {object} condNode the conditional ast node
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
-function mkCond(cond,value) {
+function mkCond(condNode,value) {
     const result = {};
-    result.name = cond.name;
+    result.name = condNode.name;
     result.type = 'Boolean';
-    result.value = value === cond.whenTrue ? true : false;
+    result.value = value === condNode.whenTrue ? true : false;
     return result;
 }
 
@@ -78,14 +78,28 @@ function mkCond(cond,value) {
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
-function mkList(list,value) {
+function mkList(listNode,value) {
     const result = {};
-    result.name = list.name;
+    result.name = listNode.name;
     result.type = 'List';
     result.value = [];
     for(let i = 0; i < value.length; i++) {
-        result.value.push(mkCompoundVariable({'type':list.type},value[i]));
+        result.value.push(mkCompoundVariable({'type':listNode.type},value[i]));
     }
+    return result;
+}
+
+/**
+ * Creates a With output
+ * @param {object} withNode the with ast node
+ * @param {*} value the variable value
+ * @returns {object} the with
+ */
+function mkWith(withNode,value) {
+    const result = {};
+    result.name = withNode.name;
+    result.type = withNode.type;
+    result.value = mkCompoundVariable(withNode,value);
     return result;
 }
 
@@ -124,7 +138,7 @@ function mkContract(contract,value) {
  */
 
 /**
- * Creates a parser for Text blocks
+ * Creates a parser for Text chunks
  * @param {string} text the text
  * @returns {object} the parser
  */
@@ -217,26 +231,38 @@ function enumParser(variable, enums) {
 
 /**
  * Creates a parser for a conditional block
- * @param {object} cond the conditional ast node
+ * @param {object} condNode the conditional ast node
  * @returns {object} the parser
  */
-function condParser(cond) {
-    return P.alt(P.string(cond.whenTrue),P.string(cond.whenFalse)).map(function(x) {
-        return mkCond(cond,x);
+function condParser(condNode) {
+    return P.alt(P.string(condNode.whenTrue),P.string(condNode.whenFalse)).map(function(x) {
+        return mkCond(condNode,x);
     });;
 }
 
 /**
  * Creates a parser for a list block
- * @param {object} list the list ast node
+ * @param {object} listNode the list ast node
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function listParser(list,content) {
+function listParser(listNode,content) {
     return P.seq(textParser('\n- '),content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
-        return mkList(list,x);
+        return mkList(listNode,x);
+    });
+}
+
+/**
+ * Creates a parser for a with block
+ * @param {object} withNode the with ast node
+ * @param {object} content the parser for the content of the with
+ * @returns {object} the parser
+ */
+function withParser(withNode,content) {
+    return content.map(function(x) {
+        return mkWith(withNode,x);
     });
 }
 
@@ -292,6 +318,7 @@ module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
 module.exports.listParser = listParser;
+module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;

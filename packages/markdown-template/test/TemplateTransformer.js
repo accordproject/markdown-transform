@@ -76,6 +76,10 @@ const modelRepeat = './test/data/templateRepeat/modelRepeat.cto';
 const sampleRepeat = Fs.readFileSync('./test/data/templateRepeat/sampleRepeat.md', 'utf8');
 const sampleRepeatErr = Fs.readFileSync('./test/data/templateRepeat/sampleRepeatErr.md', 'utf8');
 
+const grammarWith = JSON.parse(Fs.readFileSync('./test/data/templateWith/grammarWith.json', 'utf8'));
+const modelWith = './test/data/templateWith/modelWith.cto';
+const sampleWith = Fs.readFileSync('./test/data/templateWith/sampleWith.md', 'utf8');
+
 // Tests
 describe('#parse', () => {
     describe('#template2', () => {
@@ -137,6 +141,17 @@ describe('#parse', () => {
     describe('#templateRepeat (error)', () => {
         it('should fail parsing (inconsistent variables)', async () => {
             (() => (new TemplateTransformer()).parse(sampleRepeatErr,grammarRepeat)).should.throw('Inconsistent values for variable seller: Steve and Betty');
+        });
+    });
+
+    describe('#templateWith', () => {
+        it('should parse', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelWith]);
+            const result = (new TemplateTransformer()).parse(sampleWith,grammarWith,modelManager);
+            result.agreement.seller.should.equal('Steve');
+            result.agreement.buyer.should.equal('Betty');
+            result.sellerAddress.city.should.equal('NYC');
+            result.buyerAddress.city.should.equal('London');
         });
     });
 });
