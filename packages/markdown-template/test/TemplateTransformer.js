@@ -67,6 +67,10 @@ const grammarDateTime = JSON.parse(Fs.readFileSync('./test/data/templateDateTime
 const modelDateTime = './test/data/templateDateTime/modelDateTime.cto';
 const sampleDateTime = Fs.readFileSync('./test/data/templateDateTime/sampleDateTime.md', 'utf8');
 
+const grammarList = JSON.parse(Fs.readFileSync('./test/data/templateList/grammarList.json', 'utf8'));
+const modelList = './test/data/templateList/modelList.cto';
+const sampleList = Fs.readFileSync('./test/data/templateList/sampleList.md', 'utf8');
+
 // Tests
 describe('#parse', () => {
     describe('#template2', () => {
@@ -99,6 +103,20 @@ describe('#parse', () => {
         it('should parse', async () => {
             const modelManager = await ModelLoader.loadModelManager(null,[modelDateTime]);
             (new TemplateTransformer()).parse(sampleDateTime,grammarDateTime,modelManager).effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
+        });
+    });
+
+    describe('#templateList', () => {
+        it('should parse', async () => {
+            const modelManager = await ModelLoader.loadModelManager(null,[modelList]);
+            const result = (new TemplateTransformer()).parse(sampleList,grammarList,modelManager);
+            result.prices.length.should.equal(3);
+            result.prices[0].$class.should.equal('org.test.Price');
+            result.prices[0].number.should.equal(1);
+            result.prices[1].$class.should.equal('org.test.Price');
+            result.prices[1].number.should.equal(2);
+            result.prices[2].$class.should.equal('org.test.Price');
+            result.prices[2].number.should.equal(3);
         });
     });
 });
