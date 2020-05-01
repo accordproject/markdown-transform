@@ -16,6 +16,7 @@
 
 // Basic parser constructors
 const textParser = require('./coreparsers').textParser;
+const computedParser = require('./coreparsers').computedParser;
 const doubleParser = require('./coreparsers').doubleParser;
 const integerParser = require('./coreparsers').integerParser;
 const stringParser = require('./coreparsers').stringParser;
@@ -66,6 +67,10 @@ function parserOfTemplate(ast,params) {
             }
         }
         }
+        break;
+    }
+    case 'org.accordproject.ciceromark.template.ComputedVariable' : {
+        parser = computedParser(ast.value);
         break;
     }
     case 'org.accordproject.ciceromark.template.ConditionalBlock' : {

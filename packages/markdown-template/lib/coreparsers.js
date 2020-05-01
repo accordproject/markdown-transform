@@ -185,6 +185,14 @@ function seqParser(parsers) {
 }
 
 /**
+ * Creates a parser for a computed value
+ * @returns {object} the parser
+ */
+function computedParser() {
+    return P.regexp(/{{[^}]*}}/);
+}
+
+/**
  * Creates a parser for Double
  * @param {object} variable the variable ast node
  * @returns {object} the parser
@@ -312,6 +320,7 @@ module.exports.textParser = textParser;
 module.exports.seqParser = seqParser;
 module.exports.choiceStringsParser = choiceStringsParser;
 
+module.exports.computedParser = computedParser;
 module.exports.doubleParser = doubleParser;
 module.exports.integerParser = integerParser;
 module.exports.stringParser = stringParser;
