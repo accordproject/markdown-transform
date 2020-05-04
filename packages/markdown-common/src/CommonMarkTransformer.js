@@ -26,6 +26,12 @@ const removeFormatting = require('./removeFormatting');
 const { DOMParser } = require('xmldom');
 const { NS_PREFIX_CommonMarkModel, CommonMarkModel } = require('./externalModels/CommonMarkModel.js');
 
+const mkLineMap = (initMap, text) => {
+    const result = text.split(/\r?\n/g).map(x => x.length+1);
+    return initMap.concat(result.slice(0,result.length-1));
+};
+const mkOffset = (map,line,column) => map.slice(0,line-1).reduce((a, b) => a+b, 0)+column;
+
 /**
  * Parses markdown using the commonmark parser into the
  * intermediate representation: a JSON object that adheres to
@@ -36,8 +42,7 @@ class CommonMarkTransformer {
     /**
      * Construct the parser.
      * @param {object} [options] configuration options
-     * @param {boolean} [options.trimText] trims all text nodes
-     * @param {boolean} [options.enableSourceLocation] if true then location information is returned
+     * @param {boolean} [options.sourcePos] if true then source potision information is returned
      * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.tagInfo] Construct tags for HTML elements
      */
@@ -141,23 +146,25 @@ class CommonMarkTransformer {
      *
      * @param {string} markdown the string to parse
      * @param {string} [format] the format of the object to return. Defaults to 'concerto.
+     * @param {Number[]} [initMap] optional line map
      * Pass 'json' to return the JSON object, skipping Concerto validation
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
-    fromMarkdown(markdown, format='concerto') {
+    fromMarkdown(markdown, format='concerto', initMap=[]) {
         let stack = new Stack();
         const that = this;
-        const parser = sax.parser(true, {position: true});
+        const sourcepos = that.options && that.options.sourcePos;
+        const parser = sax.parser(true, {position:false});
+
+        // Used to calculate offset for source position
+        let prevLines = initMap.length;
+        const lineMap = mkLineMap(initMap, markdown);
 
         parser.onerror = function (e) {
             throw e;
         };
 
         parser.ontext = function (t) {
-            if(that.options && that.options.trimText) {
-                t = t.trim();
-            }
-
             const head = stack.peek();
             if(t.length > 0 && head) {
                 if (CommonMarkTransformer.isLeafNode(head)) {
@@ -175,16 +182,27 @@ class CommonMarkTransformer {
         parser.onopentag = function (node) {
             const newNode = {};
             newNode.$class = CommonMarkTransformer.toClass(node.name);
-            if(that.options && that.options.enableSourceLocation) {
-                newNode.line = parser.line;
-                newNode.column = parser.column;
-                newNode.position = parser.position;
-                newNode.startTagPosition = parser.startTagPosition;
+            if(sourcepos) {
+                const textPos = node.attributes.sourcepos;
+                if (textPos) {
+                    const posRegex = /([0-9]+):([0-9]+)-([0-9]+):([0-9]+)/g;
+                    const match = posRegex.exec(textPos);
+                    newNode.startPos = { '$class': 'org.accordproject.commonmark.SourcePos' };
+                    newNode.startPos.line = match[1] ? Number(match[1]) + prevLines : -1;
+                    newNode.startPos.column = match[2] ? Number(match[2]) : -1;
+                    newNode.startPos.offset = mkOffset(lineMap,newNode.startPos.line,newNode.startPos.column);
+                    newNode.endPos = { '$class': 'org.accordproject.commonmark.SourcePos' };
+                    newNode.endPos.line = match[3] ? Number(match[3]) + prevLines: -1;
+                    newNode.endPos.column = match[4] ? Number(match[4]) : -1;
+                    newNode.endPos.offset = mkOffset(lineMap,newNode.endPos.line,newNode.endPos.column);
+                }
             }
 
             // hoist the attributes into the parent object
             Object.keys(node.attributes).forEach(key => {
-                newNode[key] = node.attributes[key];
+                if (key !== 'sourcepos') {
+                    newNode[key] = node.attributes[key];
+                }
             });
             const head = stack.peek();
 
@@ -211,7 +229,7 @@ class CommonMarkTransformer {
         };
 
         const reader = new commonmark.Parser();
-        const writer = new commonmark.XmlRenderer();
+        const writer = new commonmark.XmlRenderer({sourcepos});
         const parsed = reader.parse(markdown);
         const xml = writer.render(parsed);
         // console.log('====== XML =======');

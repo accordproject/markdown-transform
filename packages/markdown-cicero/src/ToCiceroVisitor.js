@@ -77,7 +77,9 @@ class ToCiceroMarkVisitor {
                     thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
                     thing.clauseid = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid').value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
+                    const clauseStart = thing.startPos ? thing.startPos.line : 0;
+                    const lineMap = parameters.lineMap ? parameters.lineMap.slice(0,clauseStart) : [];
+                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto',lineMap).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text

@@ -48,6 +48,11 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('sourcePos', {
+            describe: 'enable source position',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('roundtrip', {
             describe: 'roundtrip transform',
             type: 'boolean',
@@ -62,6 +67,7 @@ require('yargs')
             argv = Commands.validateTransformArgs(argv);
             const options = {};
             options.verbose = argv.verbose;
+            options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
             return Commands.transform(argv.input, argv.from, argv.to, argv.output, options)
                 .then((result) => {

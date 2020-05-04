@@ -18,74 +18,74 @@
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 
 // Variables
-const var1 = { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'seller', 'type': 'String' };
-const var2 = { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'buyer', 'type': 'String' };
-const var3 = { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'amount', 'type': 'Double' };
-const var4 = { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
+const var1 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'seller', 'type': 'String' };
+const var2 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'buyer', 'type': 'String' };
+const var3 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'amount', 'type': 'Double' };
+const var4 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
 
 // Valid templates
 const template1 = {
-    '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseBlock',
     'id':'clause1',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
     ]
 };
 const template2 = {
-    '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseBlock',
     'id':'clause2',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
-        { '$class': 'org.accordproject.ciceromark.template.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
     ]
 };
 const template3 = {
-    '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseBlock',
     'id':'clause3',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' for the amount of ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' for the amount of ' },
         var3,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' ' },
         var4,
-        { '$class': 'org.accordproject.ciceromark.template.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': '.' },
+        { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': '.' },
     ]
 };
 
 // Error templates
 const templateErr1 = {
-    '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseBlock',
     'type':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'foo', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
     ]
 };
 const templateErr2 = {
-    '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseBlock',
     'type':'org.accordproject.MyContract',
     'nodes': [
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is a contract between ' },
-        { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'seller', 'type': 'FOO' },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'seller', 'type': 'FOO' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
     ]
 };
