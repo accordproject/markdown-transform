@@ -31,35 +31,35 @@ const sample2Err4 = Fs.readFileSync('./test/data/template2/sample2Err4.md', 'utf
 
 const samplePartLarge = normalizeMarkdown(Fs.readFileSync('./test/data/templateLarge/large.txt', 'utf8'));
 const grammarLarge = {
-    '$class':'org.accordproject.ciceromark.template.ContractBlock',
+    '$class':'org.accordproject.templatemark.ContractBlock',
     'name':'myContract',
     'id':'contract1',
     'type':'org.test.MyContract',
     'nodes': [
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': samplePartLarge },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is contract text, followed by a clause:' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': samplePartLarge },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is contract text, followed by a clause:' },
         {
-            '$class':'org.accordproject.ciceromark.template.ClauseBlock',
+            '$class':'org.accordproject.templatemark.ClauseBlock',
             'name':'agreement',
             'id':'clause1',
             'type':'org.test.MyClause',
             'nodes': [
-                { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'This is a contract between ' },
-                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'seller', 'type': 'String' },
-                { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' and ' },
-                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'buyer', 'type': 'String' },
-                { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' for the amount of ' },
-                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'amount', 'type': 'Double' },
-                { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': ' ' },
-                { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] },
-                { '$class': 'org.accordproject.ciceromark.template.ConditionalBlock', 'name':'forceMajeure', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
-                { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': '.' }
+                { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+                { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'seller', 'type': 'String' },
+                { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+                { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'buyer', 'type': 'String' },
+                { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' for the amount of ' },
+                { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'amount', 'type': 'Double' },
+                { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' ' },
+                { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] },
+                { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'name':'forceMajeure', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+                { '$class': 'org.accordproject.templatemark.TextChunk', 'value': '.' }
             ]
         },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': 'There is a penalty of ' },
-        { '$class': 'org.accordproject.ciceromark.template.Variable', 'name': 'penalty', 'type': 'Double' },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': '% for non compliance.' },
-        { '$class': 'org.accordproject.ciceromark.template.TextChunk', 'value': samplePartLarge }
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'There is a penalty of ' },
+        { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'penalty', 'type': 'Double' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': '% for non compliance.' },
+        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': samplePartLarge }
     ]
 };
 const modelLarge = './test/data/templateLarge/modelLarge.cto';

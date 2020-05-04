@@ -24,6 +24,11 @@ const FromCiceroVisitor = require('./FromCiceroVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 const unquoteVariables = require('./UnquoteVariables');
 
+const mkLineMap = (initMap, text) => {
+    const result = text.split(/\r?\n/g).map(x => x.length+1);
+    return initMap.concat(result.slice(0,result.length-1));
+};
+
 /**
  * Converts a CiceroMark DOM to/from a
  * CommonMark DOM.
@@ -35,10 +40,13 @@ class CiceroMarkTransformer {
      * Construct the parser.
      * @param {object} [options] configuration options
      */
-    constructor() {
-
+    constructor(options) {
+        this.options = options ? options : {};
+        if (this.options.sourcePos && this.options.source) {
+            this.lineMap = mkLineMap([],this.options.source);
+        }
         // Setup for Nested Parsing
-        this.commonMark = new CommonMarkTransformer({ tagInfo: true });
+        this.commonMark = new CommonMarkTransformer(Object.assign(this.options,{tagInfo: true}));
 
         // Setup for validation
         this.modelManager = new ModelManager();
@@ -80,6 +88,7 @@ class CiceroMarkTransformer {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer,
+            lineMap: this.lineMap,
         };
         const visitor = new ToCiceroVisitor();
         input.accept( visitor, parameters );

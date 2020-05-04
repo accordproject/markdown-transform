@@ -1,52 +1,52 @@
 {
-  "$class": "org.accordproject.ciceromark.template.ContractBlock",
+  "$class": "org.accordproject.templatemark.ContractBlock",
   "id": "contract1",
   "name": "myContract",
   "type": "org.test.MyContract",
   "nodes": [
     {
-      "$class": "org.accordproject.ciceromark.template.TextChunk",
+      "$class": "org.accordproject.templatemark.TextChunk",
       "value": "This is contract text, followed by a clause:"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.ClauseBlock",
+      "$class": "org.accordproject.templatemark.ClauseBlock",
       "name": "agreement",
       "id": "clause1",
       "type": "org.test.MyClause",
       "nodes": [
         {
-          "$class": "org.accordproject.ciceromark.template.TextChunk",
+          "$class": "org.accordproject.templatemark.TextChunk",
           "value": "This is a contract between "
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Variable",
+          "$class": "org.accordproject.templatemark.TypedVariable",
           "name": "seller",
           "type": "String"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.TextChunk",
+          "$class": "org.accordproject.templatemark.TextChunk",
           "value": " and "
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Variable",
+          "$class": "org.accordproject.templatemark.TypedVariable",
           "name": "buyer",
           "type": "String"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.TextChunk",
+          "$class": "org.accordproject.templatemark.TextChunk",
           "value": " for the amount of "
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Variable",
+          "$class": "org.accordproject.templatemark.TypedVariable",
           "name": "amount",
           "type": "Double"
         },
         {
-          "$class": "org.accordproject.ciceromark.template.TextChunk",
+          "$class": "org.accordproject.templatemark.TextChunk",
           "value": " "
         },
         {
-          "$class": "org.accordproject.ciceromark.template.Variable",
+          "$class": "org.accordproject.templatemark.TypedVariable",
           "name": "currency",
           "type": "Enum",
           "value": [
@@ -56,28 +56,28 @@
           ]
         },
         {
-          "$class": "org.accordproject.ciceromark.template.ConditionalBlock",
+          "$class": "org.accordproject.templatemark.ConditionalBlock",
           "name": "forceMajeure",
           "whenTrue": ", even in the presence of force majeure",
           "whenFalse": ""
         },
         {
-          "$class": "org.accordproject.ciceromark.template.TextChunk",
+          "$class": "org.accordproject.templatemark.TextChunk",
           "value": "."
         }
       ]
     },
     {
-      "$class": "org.accordproject.ciceromark.template.TextChunk",
+      "$class": "org.accordproject.templatemark.TextChunk",
       "value": "There is a penalty of "
     },
     {
-      "$class": "org.accordproject.ciceromark.template.Variable",
+      "$class": "org.accordproject.templatemark.TypedVariable",
       "name": "penalty",
       "type": "Integer"
     },
     {
-      "$class": "org.accordproject.ciceromark.template.TextChunk",
+      "$class": "org.accordproject.templatemark.TextChunk",
       "value": "% for non compliance."
     }
   ]

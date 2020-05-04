@@ -16,7 +16,7 @@
 
 const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { NS_PREFIX_CiceroMarkTemplateModel, CiceroMarkTemplateModel } = require('./externalModels/CiceroMarkTemplateModel.js');
+const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
 const normalizeMarkdown = require('./normalize').normalizeMarkdown;
 
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
@@ -91,7 +91,7 @@ class TemplateTransformer {
         // Setup for validation
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
-        this.modelManager.addModelFile(CiceroMarkTemplateModel, 'ciceromarktemplate.cto');
+        this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
         const factory = new Factory(this.modelManager);
         this.serializer = new Serializer(factory, this.modelManager);
     }

@@ -50,11 +50,11 @@ const parsingTable = {
 function parserOfTemplate(ast,params) {
     let parser = null;
     switch(ast.$class) {
-    case 'org.accordproject.ciceromark.template.TextChunk' : {
+    case 'org.accordproject.templatemark.TextChunk' : {
         parser = textParser(ast.value);
         break;
     }
-    case 'org.accordproject.ciceromark.template.Variable' : {
+    case 'org.accordproject.templatemark.TypedVariable' : {
         switch(ast.type) {
         case 'Enum' :
             parser = enumParser(ast,ast.value);
@@ -70,25 +70,25 @@ function parserOfTemplate(ast,params) {
         }
         break;
     }
-    case 'org.accordproject.ciceromark.template.ComputedVariable' : {
+    case 'org.accordproject.templatemark.ComputedVariable' : {
         parser = computedParser(ast.value);
         break;
     }
-    case 'org.accordproject.ciceromark.template.ConditionalBlock' : {
+    case 'org.accordproject.templatemark.ConditionalBlock' : {
         parser = condParser(ast);
         break;
     }
-    case 'org.accordproject.ciceromark.template.UnorderedListBlock' : {
+    case 'org.accordproject.templatemark.UnorderedListBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = ulistParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.ciceromark.template.OrderedListBlock' : {
+    case 'org.accordproject.templatemark.OrderedListBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = olistParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.ciceromark.template.ClauseBlock' : {
+    case 'org.accordproject.templatemark.ClauseBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         if (params.contract) {
             parser = wrappedClauseParser(ast,childrenParser);
@@ -97,12 +97,12 @@ function parserOfTemplate(ast,params) {
         }
         break;
     }
-    case 'org.accordproject.ciceromark.template.WithBlock' : {
+    case 'org.accordproject.templatemark.WithBlock' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = withParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.ciceromark.template.ContractBlock' :
+    case 'org.accordproject.templatemark.ContractBlock' :
         params.contract = true;
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = contractParser(ast,childrenParser);
