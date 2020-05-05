@@ -18,10 +18,10 @@
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 
 // Variables
-const var1 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'seller', 'type': 'String' };
-const var2 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'buyer', 'type': 'String' };
-const var3 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'amount', 'type': 'Double' };
-const var4 = { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
+const var1 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'seller', 'type': 'String' };
+const var2 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'buyer', 'type': 'String' };
+const var3 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'amount', 'type': 'Double' };
+const var4 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
 
 // Valid templates
 const template1 = {
@@ -84,7 +84,7 @@ const templateErr2 = {
     'type':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
-        { '$class': 'org.accordproject.templatemark.TypedVariable', 'name': 'seller', 'type': 'FOO' },
+        { '$class': 'org.accordproject.templatemark.Variable', 'name': 'seller', 'type': 'FOO' },
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
     ]

@@ -14,12 +14,16 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer, ParseException } = require('@accordproject/concerto-core');
+const uuid = require('uuid');
+
+const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
 const normalizeMarkdown = require('./normalize').normalizeMarkdown;
+const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
-const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
+const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
+const TemplateParser = require('./TemplateParser');
 
 /**
  * Minimum length of expected token
@@ -77,7 +81,7 @@ function _throwParseError(markdown,result,fileName) {
     };
     const expectedMessage = 'Expected: ' + (isEOF(expected) ? 'End of text' : expected.join(' or '));
     const longMessage = shortMessage + '\n' + snippet + '\n' + expectedMessage;
-    throw new ParseException(shortMessage, fileLocation, fileName, longMessage, 'markdown-template');
+    throw new ParseException(shortMessage, fileLocation, fileName ? fileName : '[BUFFER]', longMessage, 'markdown-template');
 }
 
 /**
@@ -97,17 +101,75 @@ class TemplateTransformer {
     }
 
     /**
-     * Converts a markdown string to a CiceroMark DOM
-     * @param {string} markdown a markdown string
-     * @param {object} template the template ast
-     * @param {object} modelManager - the model manager (optional)
-     * @param {string} [fileName] - the fileName for the markdown (optional)
+     * Converts a template grammar string to a TemplateMark DOM
+     * @param {object} grammar the template grammar
+     * @param {string} templateKind - either 'clause' or 'contract'
      * @returns {object} the result of parsing
      */
-    parse(markdown, template, modelManager, fileName) {
+    parseGrammar(grammar, templateKind) {
+        const topClass = templateKind === 'contract' ? 'org.accordproject.templatemark.ContractBlock' : 'org.accordproject.templatemark.ClauseBlock';
+        const topTemplate = {
+            '$class': topClass,
+            'id': uuid.v4(),
+            'name': 'top',
+            'nodes': TemplateParser.contractTemplate.tryParse(grammar)
+        };
+        return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
+    }
+
+    /**
+     * Decorate template with its types
+     * @param {object} introspector - the model introspector for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {ClassDeclaration} templateModel - the contract class
+     * @param {object} template the template AST
+     * @returns {object} the typed template AST
+     */
+    decorateTemplate(introspector,templateKind,templateModel,template) {
+        const input = this.serializer.fromJSON(template);
+
+        const parameters = {
+            introspector: introspector,
+            model: templateModel,
+            kind: templateKind,
+        };
+        const visitor = new TemplateMarkVisitor();
+        input.accept( visitor, parameters );
+        const result = Object.assign({}, this.serializer.toJSON(input));
+
+        return result;
+    }
+
+    /**
+     * Converts a markdown string to a CiceroMark DOM
+     * @param {{fileName:string,content:string}} markdown the markdown input
+     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @returns {object} the result of parsing
+     */
+    parse(markdownInput, grammarInput, modelManager, templateKind) {
+        const markdown = markdownInput.content;
+        const markdownFileName = markdownInput.fileName;
+
+        const grammar = grammarInput.content;
+        const grammarFileName = grammarInput.fileName;
+
+        // Parse / validate / type the template
+        const template = this.parseGrammar(grammar, templateKind);
+        //console.log('===== TemplateMark ');
+        //console.log(JSON.stringify(template,null,2));
+        const introspector = new Introspector(modelManager);
+        const templateModel = this.getTemplateModel(introspector, templateKind);
+        const typedTemplate = this.decorateTemplate(introspector, templateKind, templateModel, template);
+        //console.log('===== Typed TemplateMark ');
+        //console.log(JSON.stringify(typedTemplate,null,2));
+
+        // Construct the template parser
+        const parser = parserOfTemplate(typedTemplate,{contract:false});
+
+        // Parse the markdown
         const normalizedMarkdown = normalizeMarkdown(markdown);
-        template = this.serializer.toJSON(this.serializer.fromJSON(template));
-        const parser = parserOfTemplate(template,{contract:false});
         let result = parser.parse(normalizedMarkdown);
         if (result.status) {
             result = result.value;
@@ -118,7 +180,59 @@ class TemplateTransformer {
             }
             return result;
         } else {
-            _throwParseError(markdown,result,fileName);
+            _throwParseError(markdown,result,markdownFileName);
+        }
+    }
+
+    /**
+     * Check to see if a ClassDeclaration is an instance of the specified fully qualified
+     * type name.
+     * @internal
+     * @param {ClassDeclaration} classDeclaration The class to test
+     * @param {String} fqt The fully qualified type name.
+     * @returns {boolean} True if classDeclaration an instance of the specified fully
+     * qualified type name, false otherwise.
+     */
+    instanceOf(classDeclaration, fqt) {
+        // Check to see if this is an exact instance of the specified type.
+        if (classDeclaration.getFullyQualifiedName() === fqt) {
+            return true;
+        }
+        // Now walk the class hierachy looking to see if it's an instance of the specified type.
+        let superTypeDeclaration = classDeclaration.getSuperTypeDeclaration();
+        while (superTypeDeclaration) {
+            if (superTypeDeclaration.getFullyQualifiedName() === fqt) {
+                return true;
+            }
+            superTypeDeclaration = superTypeDeclaration.getSuperTypeDeclaration();
+        }
+        return false;
+    }
+
+    /**
+     * Returns the template model for the template
+     * @param {object} introspector - the model introspector for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @throws {Error} if no template model is found, or multiple template models are found
+     * @returns {ClassDeclaration} the template model for the template
+     */
+    getTemplateModel(introspector, templateKind) {
+        let modelType = 'org.accordproject.cicero.contract.AccordContract';
+
+        if (templateKind !== 'contract') {
+            modelType = 'org.accordproject.cicero.contract.AccordClause';
+        }
+
+        const templateModels = introspector.getClassDeclarations().filter((item) => {
+            return !item.isAbstract() && this.instanceOf(item,modelType);
+        });
+
+        if (templateModels.length > 1) {
+            throw new Error(`Found multiple instances of ${modelType} in ${this.metadata.getName()}. The model for the template must contain a single asset that extends ${modelType}.`);
+        } else if (templateModels.length === 0) {
+            throw new Error(`Failed to find an asset that extends ${modelType} in ${this.metadata.getName()}. The model for the template must contain a single asset that extends ${modelType}.`);
+        } else {
+            return templateModels[0];
         }
     }
 

@@ -15,7 +15,7 @@
 'use strict';
 
 const Fs = require('fs');
-const Logger = require('@accordproject/concerto-core').Logger;
+const { Logger, ModelLoader } = require('@accordproject/concerto-core');
 
 const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
 const { TemplateTransformer } = require('@accordproject/markdown-template');
@@ -156,16 +156,21 @@ class Commands {
      *
      * @param {string} inputPath to the input file
      * @param {string} grammarPath to the grammar file
+     * @param {string[]} ctoFiles - the CTO files (can be local file paths or URLs)
+     * @param {string} templateKind - either 'clause' or 'contract'
      * @param {string} outputPath to an output file
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} Promise to the result of parsing
      */
-    static async parse(inputPath, grammarPath, outputPath, options) {
-        const text = Fs.readFileSync(inputPath, 'utf8');
-        const template = JSON.parse(Fs.readFileSync(grammarPath, 'utf8'));
+    static async parse(inputPath, grammarPath, ctoFiles, templateKind, outputPath, options) {
+        const markdownInput = { 'fileName': inputPath, 'content' : Fs.readFileSync(inputPath, 'utf8') };
+        const grammarInput = { 'fileName': grammarPath, 'content' : Fs.readFileSync(grammarPath, 'utf8') };
+
+        const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
+
         const templateTransformer = new TemplateTransformer();
-        const result = templateTransformer.parse(text,template,null,inputPath);
+        const result = templateTransformer.parse(markdownInput,grammarInput,modelManager,templateKind);
 
         if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
         return Promise.resolve(JSON.stringify(result));

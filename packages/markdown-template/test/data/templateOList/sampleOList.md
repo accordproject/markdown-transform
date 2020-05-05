@@ -3,6 +3,7 @@ This is contract text, followed by a clause:
 This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.
 ```
 There is a penalty of 10.99% for non compliance.
+
 1. The number 1
 1. The number 2
 1. The number 3
