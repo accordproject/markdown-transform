@@ -57,7 +57,8 @@
     "@accordproject/concerto-core": "^0.82.7",
     "@accordproject/markdown-common": "0.10.4",
     "@accordproject/markdown-cicero": "0.10.4",
-    "parsimmon": "^1.13.0"
+    "parsimmon": "^1.13.0",
+    "uuid": "3.3.2"
   },
   "license-check-config": {
     "src": [

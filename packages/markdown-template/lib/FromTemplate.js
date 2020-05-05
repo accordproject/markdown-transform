@@ -54,7 +54,7 @@ function parserOfTemplate(ast,params) {
         parser = textParser(ast.value);
         break;
     }
-    case 'org.accordproject.templatemark.TypedVariable' : {
+    case 'org.accordproject.templatemark.Variable' : {
         switch(ast.type) {
         case 'Enum' :
             parser = enumParser(ast,ast.value);

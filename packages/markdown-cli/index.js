@@ -90,6 +90,16 @@ require('yargs')
             describe: 'path to the template grammar',
             type: 'string'
         });
+        yargs.option('ctoFiles', {
+            describe: 'array of CTO files',
+            type: 'string',
+            array: true
+        });
+        yargs.option('contract', {
+            describe: 'contract template',
+            type: 'boolean',
+            default: false
+        });
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
@@ -106,17 +116,18 @@ require('yargs')
 
         try {
             argv = Commands.validateTransformArgs(argv);
+            const templateKind = argv.contract ? 'contract' : 'clause';
             const options = {};
             options.verbose = argv.verbose;
-            return Commands.parse(argv.input, argv.grammar, argv.output, options)
+            return Commands.parse(argv.input, argv.grammar, argv.ctoFiles, templateKind, argv.output, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err.message);
+                    Logger.error(err);
                 });
         } catch (err){
-            Logger.error(err.message);
+            Logger.error(err);
             return;
         }
     })
