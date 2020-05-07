@@ -13,3 +13,21 @@ asset MyClause extends AccordClause {
 	o CurrencyCode currency
 	o Boolean forceMajeure
 }
+
+asset MyClause2 extends AccordClause {
+  o String seller
+  o String buyer
+	o Double amount
+	o CurrencyCode currency
+	o Boolean forceMajeure
+}
+
+asset MyContract extends AccordContract {
+	o Double penalty
+	o MyClause agreement
+}
+
+asset MyContract2 extends AccordContract {
+	o Double penalty
+	o MyClause agreement
+}

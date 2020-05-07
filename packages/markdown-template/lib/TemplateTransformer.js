@@ -81,7 +81,7 @@ function _throwParseError(markdown,result,fileName) {
     };
     const expectedMessage = 'Expected: ' + (isEOF(expected) ? 'End of text' : expected.join(' or '));
     const longMessage = shortMessage + '\n' + snippet + '\n' + expectedMessage;
-    throw new ParseException(shortMessage, fileLocation, fileName ? fileName : '[BUFFER]', longMessage, 'markdown-template');
+    throw new ParseException(shortMessage, fileLocation, fileName, longMessage, 'markdown-template');
 }
 
 /**
@@ -107,13 +107,23 @@ class TemplateTransformer {
      * @returns {object} the result of parsing
      */
     parseGrammar(grammar, templateKind) {
-        const topClass = templateKind === 'contract' ? 'org.accordproject.templatemark.ContractBlock' : 'org.accordproject.templatemark.ClauseBlock';
-        const topTemplate = {
-            '$class': topClass,
-            'id': uuid.v4(),
-            'name': 'top',
-            'nodes': TemplateParser.contractTemplate.tryParse(grammar)
-        };
+        let topTemplate;
+
+        if (templateKind === 'contract') {
+            topTemplate = {
+                '$class': 'org.accordproject.templatemark.ContractBlock',
+                'id': uuid.v4(),
+                'name': 'top',
+                'nodes': TemplateParser.contractTemplate.tryParse(grammar)
+            };
+        } else {
+            topTemplate = {
+                '$class': 'org.accordproject.templatemark.ClauseBlock',
+                'id': uuid.v4(),
+                'name': 'top',
+                'nodes': TemplateParser.clauseTemplate.tryParse(grammar)
+            };
+        }
         return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
     }
 
@@ -151,6 +161,13 @@ class TemplateTransformer {
      * @returns {object} the result of parsing
      */
     parse(markdownInput, grammarInput, modelManager, templateKind, options) {
+        if (!modelManager) {
+            throw new Error('Cannot parse without template model');
+        }
+
+        const factory = new Factory(modelManager);
+        const serializer = new Serializer(factory, modelManager);
+
         const markdown = normalizeNLs(markdownInput.content);
         const markdownFileName = markdownInput.fileName;
 
@@ -177,13 +194,7 @@ class TemplateTransformer {
         // Parse the markdown
         let result = parser.parse(markdown);
         if (result.status) {
-            result = result.value;
-            if (modelManager) {
-                const factory = new Factory(modelManager);
-                const serializer = new Serializer(factory, modelManager);
-                result = serializer.toJSON(serializer.fromJSON(result));
-            }
-            return result;
+            return serializer.toJSON(serializer.fromJSON(result.value));
         } else {
             _throwParseError(markdown,result,markdownFileName);
         }
@@ -233,9 +244,9 @@ class TemplateTransformer {
         });
 
         if (templateModels.length > 1) {
-            throw new Error(`Found multiple instances of ${modelType} in ${this.metadata.getName()}. The model for the template must contain a single asset that extends ${modelType}.`);
+            throw new Error(`Found multiple instances of ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
         } else if (templateModels.length === 0) {
-            throw new Error(`Failed to find an asset that extends ${modelType} in ${this.metadata.getName()}. The model for the template must contain a single asset that extends ${modelType}.`);
+            throw new Error(`Failed to find an asset that extends ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
         } else {
             return templateModels[0];
         }

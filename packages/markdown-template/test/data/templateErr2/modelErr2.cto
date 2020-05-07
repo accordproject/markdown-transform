@@ -6,10 +6,15 @@ import org.accordproject.money.CurrencyCode from https://models.accordproject.or
 /**
  * The template model
  */
-asset MyClause extends AccordClause {
+concept MyClause {
   o String seller
   o String buyer
 	o Double amount
 	o CurrencyCode currency
 	o Boolean forceMajeure
+}
+
+concept MyContract {
+	o Double penalty
+	o MyClause agreement
 }

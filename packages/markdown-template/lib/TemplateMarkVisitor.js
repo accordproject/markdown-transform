@@ -121,18 +121,6 @@ class TemplateMarkVisitor {
             TemplateMarkVisitor.visitChildren(this, thing, parameters);
         }
     }
-
-    /**
-     * Find an attribute from its name
-     * @param {*} attributes - the array of attributes
-     * @param {string} name - the name of the attributes
-     * @return {*} the attribute or undefined
-     */
-    static getAttribute(attributes, name) {
-        const atts = attributes.filter(x => x.name === name);
-        return atts.length === 0 ? null : atts[0];
-    }
-
 }
 
 module.exports = TemplateMarkVisitor;
