@@ -146,9 +146,11 @@ class TemplateTransformer {
      * @param {{fileName:string,content:string}} grammar the template grammar
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    parse(markdownInput, grammarInput, modelManager, templateKind) {
+    parse(markdownInput, grammarInput, modelManager, templateKind, options) {
         const markdown = normalizeNLs(markdownInput.content);
         const markdownFileName = markdownInput.fileName;
 
@@ -157,13 +159,17 @@ class TemplateTransformer {
 
         // Parse / validate / type the template
         const template = this.parseGrammar(grammar, templateKind);
-        //console.log('===== TemplateMark ');
-        //console.log(JSON.stringify(template,null,2));
+        if (options && options.verbose) {
+            console.log('===== TemplateMark ');
+            console.log(JSON.stringify(template,null,2));
+        }
         const introspector = new Introspector(modelManager);
         const templateModel = this.getTemplateModel(introspector, templateKind);
         const typedTemplate = this.decorateTemplate(introspector, templateKind, templateModel, template);
-        //console.log('===== Typed TemplateMark ');
-        //console.log(JSON.stringify(typedTemplate,null,2));
+        if (options && options.verbose) {
+            console.log('===== Typed TemplateMark ');
+            console.log(JSON.stringify(typedTemplate,null,2));
+        }
 
         // Construct the template parser
         const parser = parserOfTemplate(typedTemplate,{contract:false});

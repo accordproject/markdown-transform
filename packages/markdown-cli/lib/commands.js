@@ -170,7 +170,7 @@ class Commands {
         const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
 
         const templateTransformer = new TemplateTransformer();
-        const result = templateTransformer.parse(markdownInput,grammarInput,modelManager,templateKind);
+        const result = templateTransformer.parse(markdownInput,grammarInput,modelManager,templateKind,options);
 
         if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
         return Promise.resolve(JSON.stringify(result));

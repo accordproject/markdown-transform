@@ -108,10 +108,14 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateDateTime', () => {
+    describe('#templateDateTime', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelDateTime]);
+        });
+
         it('should parse', async () => {
-            const modelManager = await ModelLoader.loadModelManager(null,[modelDateTime]);
-            (new TemplateTransformer()).parse(sampleDateTime,grammarDateTime,modelManager).effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
+            (new TemplateTransformer()).parse(sampleDateTime,grammarDateTime,modelManager,'clause').effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
         });
     });
 

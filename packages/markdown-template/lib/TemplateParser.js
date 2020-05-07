@@ -50,6 +50,10 @@ function word(str) {
     return P.string(str).thru(token);
 }
 
+function token(parser) {
+  return parser.skip(whitespace);
+}
+
 function string() {
     return token(P.regexp(/"((?:\\.|.)*?)"/, 1))
         .map(interpretEscapes)
@@ -64,8 +68,11 @@ function formula() {
 function mkText(text) {
     return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text };
 }
-function mkVariable(name) {
-    return { '$class': 'org.accordproject.templatemark.Variable', 'name': name };
+function mkVariable(v) {
+    return { '$class': 'org.accordproject.templatemark.Variable', 'name': v };
+}
+function mkVariableAs(v) {
+    return { '$class': 'org.accordproject.templatemark.Variable', 'name': v[0], 'format': v[2] };
 }
 function mkConditional(x) {
     return { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'name': x[0], 'whenTrue': x[1][0], 'whenFalse': x[1][1] };
@@ -101,9 +108,10 @@ let TemplateParser = P.createLanguage({
 
     // Variable
     variableName: r => ident().skip(whitespace).skip(P.string('}}')),
-    variableNameNL: r => ident().skip(whitespace).skip(P.string('}}\n')),
-    variable: r => r.variableName.map(mkVariable),
-    varChunk: r => P.seq(chunkParser('{{').map(mkText).skip(whitespace),r.variable),
+    variableNameNL: r => r.variableName.skip(P.string('\n')),
+    variableAs: r => P.seq(ident().skip(whitespace),word('as'),string()).skip(P.string('}}')).map(mkVariableAs),
+    variableNoAs: r => r.variableName.map(mkVariable),
+    varChunk: r => P.seq(chunkParser('{{').map(mkText).skip(whitespace),P.alt(r.variableAs,r.variableNoAs)),
 
     // Computed Variable
     formulaChunk: r => P.seq(chunkParser('{{%').map(mkText),formula().map(mkFormula)),
