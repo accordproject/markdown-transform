@@ -22,6 +22,21 @@ const TemplateTransformer = require('../lib/TemplateTransformer');
 
 const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
 
+const grammar1 = loadFile('./test/data/template1/grammar1.tem.md');
+const model1 = './test/data/template1/model1.cto';
+const sample1 = loadFile('./test/data/template1/sample1.md');
+const sample1Err1 = loadFile('./test/data/template1/sample1Err1.md');
+const sample1Err2 = loadFile('./test/data/template1/sample1Err2.md');
+const sample1Err3 = loadFile('./test/data/template1/sample1Err3.md');
+
+const grammarErr1 = loadFile('./test/data/templateErr1/grammarErr1.tem.md');
+const modelErr1 = './test/data/templateErr1/modelErr1.cto';
+const sampleErr1 = loadFile('./test/data/templateErr1/sampleErr1.md');
+
+const grammarErr2 = loadFile('./test/data/templateErr2/grammarErr2.tem.md');
+const modelErr2 = './test/data/templateErr2/modelErr2.cto';
+const sampleErr2 = loadFile('./test/data/templateErr2/sampleErr2.md');
+
 const grammar2 = loadFile('./test/data/template2/grammar2.tem.md');
 const model2 = './test/data/template2/model2.cto';
 const sample2 = loadFile('./test/data/template2/sample2.md');
@@ -62,7 +77,73 @@ const sampleComputed = loadFile('./test/data/templateComputed/sampleComputed.md'
 const sampleComputedErr = loadFile('./test/data/templateComputed/sampleComputedErr.md');
 
 // Tests
+describe('#invalidTemplates', () => {
+    describe('#templateErr1', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr1]);
+        });
+
+        it('should fail loading template (duplicate clause)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr1,grammarErr1,modelManager,'clause')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
+        });
+
+        it('should fail loading template (duplicate contract)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr1,grammarErr1,modelManager,'contract')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
+        });
+    });
+
+    describe('#templateErr2', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr2]);
+        });
+
+        it('should fail loading template (duplicate clause)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr2,grammarErr2,modelManager,'clause')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
+        });
+
+        it('should fail loading template (duplicate contract)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr2,grammarErr2,modelManager,'contract')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
+        });
+    });
+});
+
 describe('#parse', () => {
+    describe('#template1', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[model1]);
+        });
+
+        it('should parse', async () => {
+            (new TemplateTransformer()).parse(sample1,grammar1,modelManager,'clause').amount.should.equal(3131);
+        });
+
+        it('should parse (verbose)', async () => {
+            (new TemplateTransformer()).parse(sample1,grammar1,modelManager,'clause',{verbose:true}).amount.should.equal(3131);
+        });
+    });
+
+    describe('#template1 (error)', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[model1]);
+        });
+
+        it('should fail parsing (wrong currency code)', async () => {
+            (() => (new TemplateTransformer()).parse(sample1Err1,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.');
+        });
+
+        it('should fail parsing (wrong string)', async () => {
+            (() => (new TemplateTransformer()).parse(sample1Err2,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.');
+        });
+
+        it('should fail parsing (wrong double)', async () => {
+            (() => (new TemplateTransformer()).parse(sample1Err3,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.');
+        });
+    });
+
     describe('#template2', () => {
         let modelManager;
         before(async () => {
@@ -70,9 +151,6 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            (new TemplateTransformer()).parse(sample2,grammar2,modelManager,'contract').penalty.should.equal(10);
-        });
-        it('should parse (validate)', async () => {
             (new TemplateTransformer()).parse(sample2,grammar2,modelManager,'contract').penalty.should.equal(10);
         });
     });
