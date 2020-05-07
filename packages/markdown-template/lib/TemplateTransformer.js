@@ -19,7 +19,7 @@ const uuid = require('uuid');
 const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
-const normalizeMarkdown = require('./normalize').normalizeMarkdown;
+const normalizeNLs = require('./normalize').normalizeNLs;
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
 const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
@@ -149,10 +149,10 @@ class TemplateTransformer {
      * @returns {object} the result of parsing
      */
     parse(markdownInput, grammarInput, modelManager, templateKind) {
-        const markdown = markdownInput.content;
+        const markdown = normalizeNLs(markdownInput.content);
         const markdownFileName = markdownInput.fileName;
 
-        const grammar = grammarInput.content;
+        const grammar = normalizeNLs(grammarInput.content);
         const grammarFileName = grammarInput.fileName;
 
         // Parse / validate / type the template
@@ -169,8 +169,7 @@ class TemplateTransformer {
         const parser = parserOfTemplate(typedTemplate,{contract:false});
 
         // Parse the markdown
-        const normalizedMarkdown = normalizeMarkdown(markdown);
-        let result = parser.parse(normalizedMarkdown);
+        let result = parser.parse(markdown);
         if (result.status) {
             result = result.value;
             if (modelManager) {
