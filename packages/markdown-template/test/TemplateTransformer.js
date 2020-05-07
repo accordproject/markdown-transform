@@ -37,6 +37,22 @@ const grammarErr2 = loadFile('./test/data/templateErr2/grammarErr2.tem.md');
 const modelErr2 = './test/data/templateErr2/modelErr2.cto';
 const sampleErr2 = loadFile('./test/data/templateErr2/sampleErr2.md');
 
+const grammarErr3 = loadFile('./test/data/templateErr3/grammarErr3.tem.md');
+const modelErr3 = './test/data/templateErr3/modelErr3.cto';
+const sampleErr3 = loadFile('./test/data/templateErr3/sampleErr3.md');
+
+const grammarErr4 = loadFile('./test/data/templateErr4/grammarErr4.tem.md');
+const modelErr4 = './test/data/templateErr4/modelErr4.cto';
+const sampleErr4 = loadFile('./test/data/templateErr4/sampleErr4.md');
+
+const grammarErr5 = loadFile('./test/data/templateErr5/grammarErr5.tem.md');
+const modelErr5 = './test/data/templateErr5/modelErr5.cto';
+const sampleErr5 = loadFile('./test/data/templateErr5/sampleErr5.md');
+
+const grammarErr6 = loadFile('./test/data/templateErr6/grammarErr6.tem.md');
+const modelErr6 = './test/data/templateErr6/modelErr6.cto';
+const sampleErr6 = loadFile('./test/data/templateErr6/sampleErr6.md');
+
 const grammar2 = loadFile('./test/data/template2/grammar2.tem.md');
 const model2 = './test/data/template2/model2.cto';
 const sample2 = loadFile('./test/data/template2/sample2.md');
@@ -105,6 +121,50 @@ describe('#invalidTemplates', () => {
 
         it('should fail loading template (duplicate contract)', async () => {
             (() => (new TemplateTransformer()).parse(sampleErr2,grammarErr2,modelManager,'contract')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
+        });
+    });
+
+    describe('#templateErr3', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr3]);
+        });
+
+        it('should fail loading template (missing clause property)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr3,grammarErr3,modelManager,'clause')).should.throw('Unknown property seller');
+        });
+    });
+
+    describe('#templateErr4', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr4]);
+        });
+
+        it('should fail loading template (missing contract property)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr4,grammarErr4,modelManager,'contract')).should.throw('Unknown property agreement');
+        });
+    });
+
+    describe('#templateErr5', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr5]);
+        });
+
+        it('should fail loading template (missing with property)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr5,grammarErr5,modelManager,'contract')).should.throw('Unknown property sellerAddress');
+        });
+    });
+
+    describe('#templateErr6', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelErr6]);
+        });
+
+        it('should fail loading template (missing list property)', async () => {
+            (() => (new TemplateTransformer()).parse(sampleErr6,grammarErr6,modelManager,'contract')).should.throw('Unknown property prices');
         });
     });
 });
