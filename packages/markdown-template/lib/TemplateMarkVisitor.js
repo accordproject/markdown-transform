@@ -53,14 +53,22 @@ class TemplateMarkVisitor {
     visit(thing, parameters) {
         const currentModel = parameters.model;
         switch(thing.getType()) {
-        case 'Variable': {
+        case 'VariableDefinition':
+        case 'FormattedVariableDefinition': {
             //console.log(`Variable ${thing.name} type in model ${currentModel.getName()}`);
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
                 if (property.isTypeEnum()) {
+                    const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
+                    const enumValueDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumValue');
                     const enumType = property.getParent().getModelFile().getType(property.getType());
-                    thing.type = 'Enum';
-                    thing.value = enumType.getOwnProperties().map(x => x.getName());
+                    thing.$classDeclaration = enumVariableDeclaration;
+                    thing.values = enumType.getOwnProperties().map(x => {
+                        const enumValue = parameters.templateMarkFactory.newConcept(enumValueDeclaration.getNamespace(),
+                                                                                    enumValueDeclaration.getName());
+                        enumValue.value = x.getName();
+                        return enumValue;
+                    });
                 } else {
                     thing.type = property.getFullyQualifiedTypeName();
                 }
@@ -70,7 +78,7 @@ class TemplateMarkVisitor {
             }
         }
             break;
-        case 'ClauseBlock': {
+        case 'ClauseDefinition': {
             if (parameters.kind === 'contract') {
                 const property = currentModel.getOwnProperty(thing.name);
                 if (property) {
@@ -80,14 +88,14 @@ class TemplateMarkVisitor {
                     throw new Error('Unknown property ' + thing.name);
                 }
                 const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-                TemplateMarkVisitor.visitChildren(this, thing, {introspector:parameters.introspector,model:clauseModel});
+                TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
             } else {
                 thing.type = parameters.model.getFullyQualifiedName();
                 TemplateMarkVisitor.visitChildren(this, thing, parameters);
             }
         }
             break;
-        case 'WithBlock': {
+        case 'WithDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
                 thing.type = property.getFullyQualifiedTypeName();
@@ -96,11 +104,11 @@ class TemplateMarkVisitor {
                 throw new Error('Unknown property ' + thing.name);
             }
             const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-            TemplateMarkVisitor.visitChildren(this, thing, {introspector:parameters.introspector,model:clauseModel});
+            TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
         }
             break;
-        case 'OrderedListBlock':
-        case 'UnorderedListBlock': {
+        case 'OrderedListDefinition':
+        case 'UnorderedListDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
                 thing.type = property.getFullyQualifiedTypeName();
@@ -109,10 +117,10 @@ class TemplateMarkVisitor {
                 throw new Error('Unknown property ' + thing.name);
             }
             const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-            TemplateMarkVisitor.visitChildren(this, thing, {introspector:parameters.introspector,model:clauseModel});
+            TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
         }
             break;
-        case 'ContractBlock': {
+        case 'ContractDefinition': {
             thing.type = parameters.model.getFullyQualifiedName();
             TemplateMarkVisitor.visitChildren(this, thing, parameters);
         }

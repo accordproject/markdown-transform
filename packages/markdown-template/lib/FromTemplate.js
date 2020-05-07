@@ -54,41 +54,39 @@ function parserOfTemplate(ast,params) {
         parser = textParser(ast.value);
         break;
     }
-    case 'org.accordproject.templatemark.Variable' : {
-        switch(ast.type) {
-        case 'Enum' :
-            parser = enumParser(ast,ast.value);
-            break;
-        default: {
-            const parserFun = parsingTable[ast.type];
-            if (parserFun) {
-                parser = parserFun(ast);
-            } else {
-                throw new Error('Unknown variable type ' + ast.type);
-            }
-        }
+    case 'org.accordproject.templatemark.EnumVariableDefinition' : {
+        parser = enumParser(ast,ast.values.map(x => x.value));
+        break;
+    }
+    case 'org.accordproject.templatemark.FormattedVariableDefinition' :
+    case 'org.accordproject.templatemark.VariableDefinition' : {
+        const parserFun = parsingTable[ast.type];
+        if (parserFun) {
+            parser = parserFun(ast);
+        } else {
+            throw new Error('Unknown variable type ' + ast.type);
         }
         break;
     }
-    case 'org.accordproject.templatemark.ComputedVariable' : {
+    case 'org.accordproject.templatemark.FormulaDefinition' : {
         parser = computedParser(ast.value);
         break;
     }
-    case 'org.accordproject.templatemark.ConditionalBlock' : {
+    case 'org.accordproject.templatemark.ConditionalDefinition' : {
         parser = condParser(ast);
         break;
     }
-    case 'org.accordproject.templatemark.UnorderedListBlock' : {
+    case 'org.accordproject.templatemark.UnorderedListDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = ulistParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.templatemark.OrderedListBlock' : {
+    case 'org.accordproject.templatemark.OrderedListDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = olistParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.templatemark.ClauseBlock' : {
+    case 'org.accordproject.templatemark.ClauseDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         if (params.contract) {
             parser = wrappedClauseParser(ast,childrenParser);
@@ -97,12 +95,12 @@ function parserOfTemplate(ast,params) {
         }
         break;
     }
-    case 'org.accordproject.templatemark.WithBlock' : {
+    case 'org.accordproject.templatemark.WithDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = withParser(ast,childrenParser);
         break;
     }
-    case 'org.accordproject.templatemark.ContractBlock' :
+    case 'org.accordproject.templatemark.ContractDefinition' :
         params.contract = true;
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = contractParser(ast,childrenParser);

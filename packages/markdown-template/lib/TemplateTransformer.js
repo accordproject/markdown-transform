@@ -14,8 +14,6 @@
 
 'use strict';
 
-const uuid = require('uuid');
-
 const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
@@ -96,8 +94,8 @@ class TemplateTransformer {
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
-        const factory = new Factory(this.modelManager);
-        this.serializer = new Serializer(factory, this.modelManager);
+        this.factory = new Factory(this.modelManager);
+        this.serializer = new Serializer(this.factory, this.modelManager);
     }
 
     /**
@@ -111,15 +109,13 @@ class TemplateTransformer {
 
         if (templateKind === 'contract') {
             topTemplate = {
-                '$class': 'org.accordproject.templatemark.ContractBlock',
-                'id': uuid.v4(),
+                '$class': 'org.accordproject.templatemark.ContractDefinition',
                 'name': 'top',
                 'nodes': TemplateParser.contractTemplate.tryParse(grammar)
             };
         } else {
             topTemplate = {
-                '$class': 'org.accordproject.templatemark.ClauseBlock',
-                'id': uuid.v4(),
+                '$class': 'org.accordproject.templatemark.ClauseDefinition',
                 'name': 'top',
                 'nodes': TemplateParser.clauseTemplate.tryParse(grammar)
             };
@@ -139,6 +135,8 @@ class TemplateTransformer {
         const input = this.serializer.fromJSON(template);
 
         const parameters = {
+            templateMarkModelManager: this.modelManager,
+            templateMarkFactory: this.factory,
             introspector: introspector,
             model: templateModel,
             kind: templateKind,

@@ -46,28 +46,28 @@ function mkText(text) {
     return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text };
 }
 function mkVariable(v) {
-    return { '$class': 'org.accordproject.templatemark.Variable', 'name': v };
+    return { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': v };
 }
 function mkVariableAs(v) {
-    return { '$class': 'org.accordproject.templatemark.Variable', 'name': v[0], 'format': v[2] };
+    return { '$class': 'org.accordproject.templatemark.FormattedVariableDefinition', 'name': v[0], 'format': v[2] };
 }
 function mkConditional(x) {
-    return { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'name': x[0], 'whenTrue': x[1][0], 'whenFalse': x[1][1] };
+    return { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'name': x[0], 'whenTrue': x[1][0], 'whenFalse': x[1][1] };
 }
 function mkClause(x) {
-    return { '$class': 'org.accordproject.templatemark.ClauseBlock', 'name': x[0], 'id': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.ClauseDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkWith(x) {
-    return { '$class': 'org.accordproject.templatemark.WithBlock', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.WithDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkUlist(x) {
-    return { '$class': 'org.accordproject.templatemark.UnorderedListBlock', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.UnorderedListDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkOlist(x) {
-    return { '$class': 'org.accordproject.templatemark.OrderedListBlock', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.OrderedListDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkFormula(content) {
-    return { '$class': 'org.accordproject.templatemark.ComputedVariable', 'name': content };
+    return { '$class': 'org.accordproject.templatemark.FormulaDefinition','name': 'formula', 'code': content, dependencies: [] };
 }
 
 function chunkParser(str) {
