@@ -18,14 +18,14 @@
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 
 // Variables
-const var1 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'seller', 'type': 'String' };
-const var2 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'buyer', 'type': 'String' };
-const var3 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'amount', 'type': 'Double' };
-const var4 = { '$class': 'org.accordproject.templatemark.Variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
+const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'String' };
+const var2 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'buyer', 'type': 'String' };
+const var3 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'amount', 'type': 'Double' };
+const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition', 'name': 'currency', 'type': 'Enum', 'values': [{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'USD'},{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'GBP'},{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'EUR'}] };
 
 // Valid templates
 const template1 = {
-    '$class':'org.accordproject.templatemark.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause1',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
@@ -37,7 +37,7 @@ const template1 = {
     ]
 };
 const template2 = {
-    '$class':'org.accordproject.templatemark.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause2',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
@@ -46,11 +46,11 @@ const template2 = {
         var1,
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
-        { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
     ]
 };
 const template3 = {
-    '$class':'org.accordproject.templatemark.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause3',
     'name':'myClause',
     'type':'org.accordproject.MyClause',
@@ -63,14 +63,14 @@ const template3 = {
         var3,
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' ' },
         var4,
-        { '$class': 'org.accordproject.templatemark.ConditionalBlock', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': '.' },
     ]
 };
 
 // Error templates
 const templateErr1 = {
-    '$class':'org.accordproject.templatemark.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseDefinition',
     'type':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'foo', 'value': 'This is a contract between ' },
@@ -80,11 +80,11 @@ const templateErr1 = {
     ]
 };
 const templateErr2 = {
-    '$class':'org.accordproject.templatemark.ClauseBlock',
+    '$class':'org.accordproject.templatemark.ClauseDefinition',
     'type':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
-        { '$class': 'org.accordproject.templatemark.Variable', 'name': 'seller', 'type': 'FOO' },
+        { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'FOO' },
         { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
         var2,
     ]

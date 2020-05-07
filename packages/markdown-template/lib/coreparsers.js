@@ -15,6 +15,8 @@
 'use strict';
 
 const P = require('parsimmon');
+const uuid = require('uuid');
+
 const { ParseException } = require('@accordproject/concerto-core');
 
 /**
@@ -110,7 +112,7 @@ function mkWith(withNode,value) {
  * @returns {object} the clause
  */
 function mkClause(clause,value) {
-    return mkCompoundVariable(clause,value.concat({"name":"clauseId","type":"String","value":clause.id}));
+    return mkCompoundVariable(clause,value.concat({"name":"clauseId","type":"String","value":uuid.v4()}));
 }
 
 /**
@@ -130,7 +132,7 @@ function mkWrappedClause(clause,value) {
  * @returns {object} the contract
  */
 function mkContract(contract,value) {
-    return mkCompoundVariable(contract,value.concat({"name":"contractId","type":"String","value":contract.id}));
+    return mkCompoundVariable(contract,value.concat({"name":"contractId","type":"String","value":uuid.v4()}));
 }
 
 /**
