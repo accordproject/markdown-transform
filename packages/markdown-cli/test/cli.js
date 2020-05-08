@@ -84,81 +84,82 @@ describe('markdown-cli', () => {
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
             const options = {};
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, options);
+            const parameters = {};
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, parameters, options);
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
         });
 
         it('should parse a markdown file to CommonMark (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {verbose:true});
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {}, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
         });
 
         it('should parse a markdown file to CiceroMark', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {});
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to CiceroMark (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {verbose:true});
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
         });
 
         it('should parse a markdown file to Slate', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {});
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
         });
 
         it('should parse a markdown file to Slate (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {verbose:true});
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {verbose:true});
             JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
         });
 
         it('should generate a markdown file from docx', async () => {
-            const result = await Commands.transform(inputDocx, 'docx', 'markdown', null, {});
+            const result = await Commands.transform(inputDocx, 'docx', 'markdown', null, {}, {});
             result.should.eql(inputExpectedDocxText);
         });
     });
 
     describe('#draft', () => {
         it('should generate a markdown file from CommonMark', async () => {
-            const result = await Commands.transform(inputExpected, 'commonmark', 'markdown', null, {});
+            const result = await Commands.transform(inputExpected, 'commonmark', 'markdown', null, {}, {});
             result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from CiceroMark', async () => {
-            const result = await Commands.transform(inputExpectedCiceroMark, 'ciceromark', 'markdown', null, {});
+            const result = await Commands.transform(inputExpectedCiceroMark, 'ciceromark', 'markdown', null, {}, {});
             result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from Slate', async () => {
-            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {});
+            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {}, {});
             result.should.eql(inputExpectedText);
         });
 
         it('should generate a markdown file from Slate (verbose)', async () => {
-            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {verbose:true});
+            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {}, {verbose:true});
             result.should.eql(inputExpectedText);
         });
     });
 
     describe('#normalize', () => {
         it('should CommonMark <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {roundtrip:true});
+            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {}, {roundtrip:true});
             result.should.eql(inputExpectedText);
         });
 
         it('should CiceroMark <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {roundtrip:true});
+            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {roundtrip:true});
             result.should.eql(inputExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {roundtrip:true});
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {roundtrip:true});
             result.should.eql(inputExpectedText);
         });
 
         it('should Slate <> Markdown roundtrip (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {roundtrip:true,verbose:true});
+            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {roundtrip:true,verbose:true});
             result.should.eql(inputExpectedText);
         });
     });

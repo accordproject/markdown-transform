@@ -58,6 +58,16 @@ require('yargs')
             type: 'boolean',
             default: false
         });
+        yargs.option('ctoFiles', {
+            describe: 'array of CTO files',
+            type: 'string',
+            array: true
+        });
+        yargs.option('contract', {
+            describe: 'contract template',
+            type: 'boolean',
+            default: false
+        });
     }, (argv) => {
         if (argv.verbose) {
             Logger.info(`transform input ${argv.input} file`);
@@ -65,11 +75,15 @@ require('yargs')
 
         try {
             argv = Commands.validateTransformArgs(argv);
+            const parameters = {};
+            parameters.inputFileName = argv.input;
+            parameters.ctoFiles = argv.ctoFiles;
+            parameters.templateKind = argv.contract ? 'contract' : 'clause';
             const options = {};
             options.verbose = argv.verbose;
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
-            return Commands.transform(argv.input, argv.from, argv.to, argv.output, options)
+            return Commands.transform(argv.input, argv.from, argv.to, argv.output, parameters, options)
                 .then((result) => {
                     if(result) {Logger.info('\n'+result);}
                 })

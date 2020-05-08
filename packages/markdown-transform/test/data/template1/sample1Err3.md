@@ -1,0 +1,1 @@
+This is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.

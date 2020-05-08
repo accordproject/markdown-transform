@@ -40,7 +40,7 @@ describe('#transform', () => {
 
     describe('#markdown', () => {
         it('markdown -> commonmark (verbose)', async () => {
-            const result = await transform(acceptanceMarkdown, 'markdown', ['commonmark'], {verbose: true});
+            const result = await transform(acceptanceMarkdown, 'markdown', ['commonmark'], {}, {verbose: true});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
@@ -50,112 +50,122 @@ describe('#transform', () => {
         });
     });
 
+    describe('#markdown_template', () => {
+        it('markdown_template -> templatemark', async () => {
+            const grammar1 = fs.readFileSync('./test/data/template1/grammar1.tem.md', 'utf8');
+            const model1 = './test/data/template1/model1.cto';
+            const parameters = { inputFileName: './test/data/template1/grammar1.tem.md', ctoFiles: [model1], templateKind: 'clause' };
+            const result = await transform(grammar1, 'markdown_template', ['templatemark'], parameters, {});
+            result.$class.should.equal('org.accordproject.templatemark.ClauseDefinition');
+        });
+    });
+
     describe('#commonmark', () => {
         it('commonmark -> markdown', async () => {
-            const result = await transform(acceptanceCommonMark, 'commonmark', ['markdown']);
+            const result = await transform(acceptanceCommonMark, 'commonmark', ['markdown'], {}, {});
             result.should.startWith('Heading');
         });
 
         it('commonmark -> ciceromark', async () => {
-            const result = await transform(acceptanceCommonMark, 'commonmark', ['ciceromark']);
+            const result = await transform(acceptanceCommonMark, 'commonmark', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
         it('commonmark -> plaintext', async () => {
-            const result = await transform(acceptanceCommonMark, 'commonmark', ['plaintext']);
+            const result = await transform(acceptanceCommonMark, 'commonmark', ['plaintext'], {}, {});
             result.should.startWith('Heading');
         });
     });
 
     describe('#plaintext', () => {
         it('plaintext -> markdown', async () => {
-            const result = await transform(acceptancePlainText, 'plaintext', ['markdown']);
+            const result = await transform(acceptancePlainText, 'plaintext', ['markdown'], {}, {});
             result.should.equal(acceptancePlainText);
         });
     });
 
     describe('#ciceromark', () => {
         it('ciceromark -> html', async () => {
-            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['html']);
+            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['html'], {}, {});
             result.should.startWith('<html>');
         });
 
         it('ciceromark -> ciceromark_noquotes', async () => {
-            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['ciceromark_noquotes']);
+            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['ciceromark_noquotes'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
         it('ciceromark -> commonmark', async () => {
-            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['commonmark']);
+            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['commonmark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
         it('ciceromark -> slate', async () => {
-            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['slate']);
+            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['slate'], {}, {});
             result.document.object.should.equal('document');
         });
     });
 
     describe('#ciceroedit', () => {
         it('ciceroedit -> ciceromark', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#pdf', () => {
         it('pdf -> ciceromark', async () => {
-            const result = await transform(pdf, 'pdf', ['ciceromark']);
+            const result = await transform(pdf, 'pdf', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
         it('pdf -> ciceromark (verbose)', async () => {
-            const result = await transform(pdf, 'pdf', ['ciceromark'], {verbose: true});
+            const result = await transform(pdf, 'pdf', ['ciceromark'], {}, {verbose: true});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#docx', () => {
         it('docx -> ciceromark', async () => {
-            const result = await transform(docx, 'docx', ['ciceromark']);
+            const result = await transform(docx, 'docx', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#html', () => {
         it('html -> ciceromark', async () => {
-            const result = await transform(html, 'html', ['ciceromark']);
+            const result = await transform(html, 'html', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#slate', () => {
         it('slate -> ciceromark', async () => {
-            const result = await transform(acceptanceSlate, 'slate', ['ciceromark']);
+            const result = await transform(acceptanceSlate, 'slate', ['ciceromark'], {}, {});
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#multi', () => {
         it('ciceroedit -> ciceromark_noquotes -> slate', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','slate']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','slate'], {}, {});
             result.document.object.should.equal('document');
         });
 
         it('ciceroedit -> ciceromark_noquotes -> html', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','html']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark_noquotes','html'], {}, {});
             result.should.startWith('<html>');
             result.should.not.contain('"Party A"');
         });
 
         it('ciceroedit -> html', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html']);
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html'], {}, {});
             result.should.startWith('<html>');
             result.should.contain('"Party A"');
         });
 
         it('ciceroedit -> html (verbose)', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html'], {verbose: true});
+            const result = await transform(acceptanceCiceroEdit, 'markdown', ['html'], {}, {verbose: true});
             result.should.startWith('<html>');
             result.should.contain('"Party A"');
         });

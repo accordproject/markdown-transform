@@ -17,8 +17,11 @@
 const dijkstra = require('dijkstrajs');
 const find_path = dijkstra.find_path;
 
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
+
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
 const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
@@ -29,25 +32,38 @@ const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
  */
 const transformationGraph = {
     markdown : {
-        docs: 'Markdown format text string',
+        docs: 'Markdown text string',
         fileFormat: 'utf8',
-        commonmark : (input,options) => {
+        commonmark : (input,parameters,options) => {
             const t = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
             return t.fromMarkdown(input, 'json');
         },
     },
+    markdown_template : {
+        docs: 'Markdown template string',
+        fileFormat: 'utf8',
+        templatemark : async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            return t.fromTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
+        },
+    },
+    templatemark : {
+        docs: 'TemplateMark DOM (JSON)',
+        fileFormat: 'json'
+    },
     commonmark: {
         docs: 'CommonMark DOM (JSON)',
         fileFormat: 'json',
-        markdown: (input,options) => {
+        markdown: (input,parameters,options) => {
             const commonMarkTransformer = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
             return commonMarkTransformer.toMarkdown(input);
         },
-        ciceromark: (input,options) => {
+        ciceromark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer(options);
             return ciceroMarkTransformer.fromCommonMark(input, 'json');
         },
-        plaintext: (input,options) => {
+        plaintext: (input,parameters,options) => {
             const commonMarkTransformer = new CommonMarkTransformer(options);
             const result = commonMarkTransformer.removeFormatting(input);
             return commonMarkTransformer.toMarkdown(result);
@@ -56,26 +72,26 @@ const transformationGraph = {
     plaintext: {
         docs: 'Plain text string',
         fileFormat: 'utf8',
-        markdown: (input,options) => {
+        markdown: (input,parameters,options) => {
             return input;
         },
     },
     ciceromark: {
         docs: 'CiceroMark DOM (JSON)',
         fileFormat: 'json',
-        html: (input,options) => {
+        html: (input,parameters,options) => {
             const t = new HtmlTransformer();
             return t.toHtml(input);
         },
-        ciceromark_noquotes: (input,options) => {
+        ciceromark_noquotes: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
             return ciceroMarkTransformer.fromCommonMark(input, 'json', Object.assign(options,{quoteVariables: false}));
         },
-        commonmark: (input,options) => {
+        commonmark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
             return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{wrapVariables: true, quoteVariables: true}));
         },
-        slate: (input,options) => {
+        slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
         }
@@ -83,14 +99,14 @@ const transformationGraph = {
     ciceromark_noquotes: {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',
         fileFormat: 'json',
-        ciceromark: (input,options) => {
+        ciceromark: (input,parameters,options) => {
             return input;
         }
     },
     pdf: {
         docs: 'PDF buffer',
         fileFormat: 'binary',
-        ciceromark: (input,options) => {
+        ciceromark: (input,parameters,options) => {
             const pdfTransformer = new PdfTransformer();
             return pdfTransformer.toCiceroMark(input, 'json');
         },
@@ -98,7 +114,7 @@ const transformationGraph = {
     docx: {
         docs: 'DOCX buffer',
         fileFormat: 'binary',
-        ciceromark: async (input,options) => {
+        ciceromark: async (input,parameters,options) => {
             const docxTransformer = new DocxTransformer();
             return docxTransformer.toCiceroMark(input, 'json');
         },
@@ -106,7 +122,7 @@ const transformationGraph = {
     html: {
         docs: 'HTML string',
         fileFormat: 'utf8',
-        ciceromark: (input,options) => {
+        ciceromark: (input,parameters,options) => {
             const t = new HtmlTransformer();
             return t.toCiceroMark(input, 'json');
         },
@@ -114,7 +130,7 @@ const transformationGraph = {
     slate: {
         docs: 'Slate DOM (JSON)',
         fileFormat: 'json',
-        ciceromark: (input,options) => {
+        ciceromark: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.toCiceroMark(input, 'json');
         },
@@ -173,11 +189,12 @@ hide empty description
  * @param {*} source the input for the transformation
  * @param {string} sourceFormat the input format
  * @param {string} destinationFormat the destination format
+ * @param {object} parameters the transform parameters
  * @param {object} [options] the transform options
  * @param {boolean} [options.verbose] output verbose console logs
  * @returns {*} result of the transformation
  */
-async function transformToDestination(source, sourceFormat, destinationFormat, options) {
+async function transformToDestination(source, sourceFormat, destinationFormat, parameters, options) {
     let result = source;
 
     const path = find_path(rawGraph, sourceFormat, destinationFormat);
@@ -185,7 +202,7 @@ async function transformToDestination(source, sourceFormat, destinationFormat, o
         const src = path[n];
         const dest = path[n+1];
         const srcNode = transformationGraph[src];
-        result = await srcNode[dest](result,options);
+        result = await srcNode[dest](result,parameters,options);
         if(options && options.verbose) {
             console.log(`Converted from ${src} to ${dest}. Result:`);
             if(typeof result === 'object') {
@@ -207,13 +224,15 @@ async function transformToDestination(source, sourceFormat, destinationFormat, o
  * @param {string} sourceFormat the input format
  * @param {string[]} destinationFormat the destination format as an array,
  * the transformation are applied in order to reach all formats in the array
+ * @param {object} parameters the transform parameters
  * @param {object} [options] the transform options
  * @param {boolean} [options.verbose] output verbose console logs
  * @returns {Promise} result of the transformation
  */
-async function transform(source, sourceFormat, destinationFormat, options) {
+async function transform(source, sourceFormat, destinationFormat, parameters, options) {
     let result = source;
     options = options ? options : {};
+    parameters = parameters ? parameters : {};
     if (sourceFormat === 'markdown') {
         options.source = source;
     }
@@ -222,7 +241,7 @@ async function transform(source, sourceFormat, destinationFormat, options) {
 
     for(let i=0; i < destinationFormat.length; i++) {
         let destination = destinationFormat[i];
-        result = transformToDestination(result, currentSourceFormat, destination, options);
+        result = transformToDestination(result, currentSourceFormat, destination, parameters, options);
         currentSourceFormat = destination;
     }
     return result;
