@@ -19,5 +19,5 @@
  * @module markdown-transform
  */
 
-module.exports.TemplateTransformer = require('./lib/TemplateTransformer');
+module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
 module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;

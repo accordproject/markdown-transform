@@ -133,17 +133,18 @@ class Commands {
      * @param {string} from the source format
      * @param {string} to the target format
      * @param {string} outputPath to an output file
+     * @param {object} parameters the transform parameters
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @param {boolean} [options.roundtrip] roundtrip transform back to source format
      * @returns {object} Promise to the result of parsing
      */
-    static async transform(inputPath, from, to, outputPath, options) {
+    static async transform(inputPath, from, to, outputPath, parameters, options) {
         const input = Commands.loadFormatFromFile(inputPath, from);
-        let result = await transform(input, from, [to], options);
+        let result = await transform(input, from, [to], parameters, options);
         let finalFormat = to;
         if (options && options.roundtrip) {
-            result = await transform(result, to, [from], options);
+            result = await transform(result, to, [from], parameters, options);
             finalFormat = from;
         }
 

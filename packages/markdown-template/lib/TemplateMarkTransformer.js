@@ -85,7 +85,7 @@ function _throwParseError(markdown,result,fileName) {
 /**
  * Support for CiceroMark Templates
  */
-class TemplateTransformer {
+class TemplateMarkTransformer {
     /**
      * Construct the parser.
      */
@@ -150,7 +150,6 @@ class TemplateTransformer {
 
     /**
      * Converts a markdown string to a CiceroMark DOM
-     * @param {{fileName:string,content:string}} markdown the markdown input
      * @param {{fileName:string,content:string}} grammar the template grammar
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
@@ -158,16 +157,10 @@ class TemplateTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    parse(markdownInput, grammarInput, modelManager, templateKind, options) {
+    fromTemplate(grammarInput, modelManager, templateKind, options) {
         if (!modelManager) {
             throw new Error('Cannot parse without template model');
         }
-
-        const factory = new Factory(modelManager);
-        const serializer = new Serializer(factory, modelManager);
-
-        const markdown = normalizeNLs(markdownInput.content);
-        const markdownFileName = markdownInput.fileName;
 
         const grammar = normalizeNLs(grammarInput.content);
         const grammarFileName = grammarInput.fileName;
@@ -185,9 +178,32 @@ class TemplateTransformer {
             console.log('===== Typed TemplateMark ');
             console.log(JSON.stringify(typedTemplate,null,2));
         }
+        return typedTemplate;
+    }
+
+    /**
+     * Converts a markdown string to a CiceroMark DOM
+     * @param {{fileName:string,content:string}} markdown the markdown input
+     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    parse(markdownInput, grammarInput, modelManager, templateKind, options) {
+        const factory = new Factory(modelManager);
+        const serializer = new Serializer(factory, modelManager);
+
+        // Translate grammar to TemplateMark
+        const typedTemplate = this.fromTemplate(grammarInput, modelManager, templateKind, options);
 
         // Construct the template parser
         const parser = parserOfTemplate(typedTemplate,{contract:false});
+
+        // Load the markdown input
+        const markdown = normalizeNLs(markdownInput.content);
+        const markdownFileName = markdownInput.fileName;
 
         // Parse the markdown
         let result = parser.parse(markdown);
@@ -252,4 +268,4 @@ class TemplateTransformer {
 
 }
 
-module.exports = TemplateTransformer;
+module.exports = TemplateMarkTransformer;
