@@ -211,6 +211,7 @@ class TemplateMarkVisitor {
             }
                 break;
             case 'VariableDefinition':
+            case 'EnumVariableDefinition':
             case 'ConditionalDefinition': {
                 if (accumulator.partial) {
                     accumulator.partial.nodes.push(currentNode);
