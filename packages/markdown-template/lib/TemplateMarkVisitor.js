@@ -219,6 +219,16 @@ class TemplateMarkVisitor {
                 }
             }
                 break;
+            case 'ClauseDefinition': {
+                if (accumulator.partial) {
+                    accumulator.nodes = accumulator.nodes.concat(accumulator.partial.nodes);
+                    accumulator.partial = null;
+                    accumulator.nodes.push(currentNode);
+                } else {
+                    accumulator.nodes.push(currentNode);
+                }
+            }
+                break;
             default: {
                 accumulator.nodes.push(currentNode);
                 break;
