@@ -17,9 +17,221 @@
 const { NS_PREFIX_TemplateMarkModel } = require('./externalModels/TemplateMarkModel');
 
 /**
+ * Utilities
+ */
+const flatten = (arr) => {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+};
+const leadingSpace = (line) => {
+    const res = line.match(/^([ \t]*)[^]*$/);
+    const space = res ? res[1] : '';
+    return space;
+};
+const trailingSpace = (line) => {
+    const res = line.match(/[^]*[^ \t]+([ \t]*)$/);
+    const space = res ? res[1] : '';
+    return space;
+};
+const logNodeAux = (node) => {
+    let result = '';
+    if (node) {
+        result += '<' + node.getType() + '>';
+        if (node.getType() === 'Text') {
+            result += ' text: ' + JSON.stringify(node.text);
+        } else {
+            result += ' nodes: ['+ (node.nodes ? node.nodes.map(x => logNodeAux(x)) : []).join(',') + ']';
+        }
+    } else {
+        result += '<null>';
+    }
+    return result;
+};
+const logAccAux = (acc) => {
+    let result = '';
+    if (acc.partial) {
+        result += '<' + logNodeAux(acc.partial) + '>';
+    }
+    result += ' nodes: ['+ (acc.nodes ? acc.nodes.map(x => logNodeAux(x)) : []).join(',') + ']';
+    return result;
+};
+const logNode = (pref,node) => {
+    console.log(pref + ' ' + logNodeAux(node));
+};      
+const logAcc = (pref,acc) => {
+    console.log(pref + ' ' + logAccAux(acc));
+};      
+
+const procStartLines = (text,newLines) => {
+    const lines = text.split('\n');
+    if (lines.length === 1) {
+        return { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]) };
+    }
+    let startNLs = 0;
+    for (let i=0; i < lines.length-1; i++) {
+        if (/^[ \t]*$/.test(lines[i])) {
+            startNLs++;
+        } else {
+            break;
+        }
+    }
+    let start;
+    if (startNLs >= 2) {
+        start = { 'closed': true, 'softbreak': false, 'space': '' };
+    } else if (startNLs === 1) {
+        start = { 'closed': false, 'softbreak': true, 'space': '' };
+    } else {
+        start = { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]) };
+    }
+    return start;
+};
+const procEndLines = (text,newLines) => {
+    const lines = text.split('\n');
+    if (lines.length === 1) {
+        return { 'closed': false, 'softbreak': false, 'space': '' };
+    }
+    let endNLs = 0;
+    for (let i=lines.length-1; i > 0; i--) {
+        if (/^[ \t]*$/.test(lines[i])) {
+            endNLs++;
+        } else {
+            break;
+        }
+    }
+    let end;
+    if (endNLs > 2) {
+        end = { 'closed': true, 'softbreak': false, 'space': '' };
+    } else if (endNLs === 1) {
+        end = { 'closed': false, 'softbreak': true, 'space': '' };
+    } else {
+        end = { 'closed': false, 'softbreak': false, 'space': trailingSpace(lines[lines.length-1]) };
+    }
+    return end;
+};
+
+/**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
 class TemplateMarkVisitor {
+    /**
+     * Construct a softbreak node
+     * @param {*} [parameters] optional parameters
+     * @return {*} clean nodes and next partial nodes
+     */
+    static newSoftBreak(parameters) {
+        const node = parameters.templateMarkFactory.newConcept('org.accordproject.commonmark','Softbreak');
+        return node;
+    }
+
+    /**
+     * Construct a text node
+     * @param {string} text content
+     * @param {*} [parameters] optional parameters
+     * @return {*} clean nodes and next partial nodes
+     */
+    static newTextNode(text,parameters) {
+        const node = parameters.templateMarkFactory.newConcept('org.accordproject.commonmark','Text');
+        node.text = text;
+        return node;
+    }
+
+    /**
+     * Process one text chunk
+     * @param {*} node the text node
+     * @param {*} prevPartial the current partial node
+     * @param {*} [parameters] optional parameters
+     * @return {*} clean nodes and next partial nodes
+     */
+    static processChunk(node,currentPartial,parameters) {
+        const text = node.value;
+        let cleanNodes = [];
+
+        let firstNode = null;
+        let lastNode = null;
+
+        const start = procStartLines(text);
+        const end = procEndLines(text);
+
+        // Process beginning of chunk
+        if (currentPartial) {
+            // Process beginning of chunk
+            if (start.closed) {
+                cleanNodes.push(currentPartial);
+                currentPartial = null;
+            } else {
+                if (start.softbreak) {
+                    currentPartial.nodes.push(TemplateMarkVisitor.newSoftBreak(parameters))
+                }
+                if (start.space) {
+                    currentPartial.nodes.push(TemplateMarkVisitor.newTextNode(start.space,parameters))
+                }
+                const firstNode = node.nodes.shift();
+                currentPartial.nodes = currentPartial.nodes.concat(firstNode.nodes);
+            }
+        }
+
+        // Process end of chunk
+        if (end.closed) {
+            if (currentPartial) { cleanNodes.push(currentPartial); }
+            cleanNodes = cleanNodes.concat(node.nodes);
+            currentPartial = null;
+        } else {
+            lastNode = node.nodes.pop();
+            if (lastNode) {
+                if (currentPartial) { cleanNodes.push(currentPartial); }
+                cleanNodes = cleanNodes.concat(node.nodes);
+                currentPartial = lastNode;
+            }
+            if (currentPartial) {
+                if (end.space) {
+                    currentPartial.nodes.push(TemplateMarkVisitor.newTextNode(end.space,parameters))
+                }
+                if (end.softbreak) {
+                    currentPartial.nodes.push(TemplateMarkVisitor.newSoftBreak(parameters))
+                }
+            }
+        }
+        return { cleanNodes: cleanNodes, partial: currentPartial };
+    }
+
+    /**
+     * Fold TemplateMark nodes
+     * @param {*} nodes the children
+     * @param {*} [parameters] optional parameters
+     */
+    static foldNodes(nodes,parameters) {
+        const reducer = (accumulator, currentNode) => {
+            //logNode('FOLDNODES',currentNode);
+            switch(currentNode.getType()) {
+            case 'TextChunk': {
+                const partialCheck = TemplateMarkVisitor.processChunk(currentNode,accumulator.partial,parameters);
+                accumulator.nodes = accumulator.nodes.concat(partialCheck.cleanNodes);
+                if (partialCheck.partial) {
+                    accumulator.partial = partialCheck.partial;
+                }
+            }
+                break;
+            case 'VariableDefinition':
+            case 'ConditionalDefinition': {
+                if (accumulator.partial) {
+                    accumulator.partial.nodes.push(currentNode);
+                } else {
+                    accumulator.nodes.push(currentNode);
+                }
+            }
+                break;
+            default: {
+                accumulator.nodes.push(currentNode);
+                break;
+            }
+            }
+            return accumulator;
+        };
+        const reduced = nodes.reduce(reducer,{partial:null,nodes:[]});
+        if (reduced.partial) {
+            reduced.nodes = reduced.nodes.concat(reduced.partial.nodes);
+        }
+        return reduced.nodes;
+    }
 
     /**
      * Visits a sub-tree and return CiceroMark DOM
@@ -30,6 +242,8 @@ class TemplateMarkVisitor {
     static visitChildren(visitor, thing, parameters) {
         if(thing.nodes) {
             TemplateMarkVisitor.visitNodes(visitor, thing.nodes, parameters);
+            const newNodes = TemplateMarkVisitor.foldNodes(thing.nodes, parameters);
+            thing.nodes = [].concat(newNodes);
         }
     }
 
@@ -53,76 +267,9 @@ class TemplateMarkVisitor {
     visit(thing, parameters) {
         const currentModel = parameters.model;
         switch(thing.getType()) {
-        case 'VariableDefinition':
-        case 'FormattedVariableDefinition': {
-            //console.log(`Variable ${thing.name} type in model ${currentModel.getName()}`);
-            const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                if (property.isTypeEnum()) {
-                    const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
-                    const enumValueDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumValue');
-                    const enumType = property.getParent().getModelFile().getType(property.getType());
-                    thing.$classDeclaration = enumVariableDeclaration;
-                    thing.values = enumType.getOwnProperties().map(x => {
-                        const enumValue = parameters.templateMarkFactory.newConcept(enumValueDeclaration.getNamespace(),
-                                                                                    enumValueDeclaration.getName());
-                        enumValue.value = x.getName();
-                        return enumValue;
-                    });
-                } else {
-                    thing.type = property.getFullyQualifiedTypeName();
-                }
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
-            } else {
-                throw new Error('Unknown property ' + thing.name);
-            }
-        }
-            break;
-        case 'ClauseDefinition': {
-            if (parameters.kind === 'contract') {
-                const property = currentModel.getOwnProperty(thing.name);
-                if (property) {
-                    thing.type = property.getFullyQualifiedTypeName();
-                    //console.log(`Property ${thing.name} has type ${thing.type}`);
-                } else {
-                    throw new Error('Unknown property ' + thing.name);
-                }
-                const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-                TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
-            } else {
-                thing.type = parameters.model.getFullyQualifiedName();
-                TemplateMarkVisitor.visitChildren(this, thing, parameters);
-            }
-        }
-            break;
-        case 'WithDefinition': {
-            const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.type = property.getFullyQualifiedTypeName();
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
-            } else {
-                throw new Error('Unknown property ' + thing.name);
-            }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-            TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
-        }
-            break;
-        case 'OrderedListDefinition':
-        case 'UnorderedListDefinition': {
-            const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.type = property.getFullyQualifiedTypeName();
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
-            } else {
-                throw new Error('Unknown property ' + thing.name);
-            }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
-            TemplateMarkVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
-        }
-            break;
-        case 'ContractDefinition': {
-            thing.type = parameters.model.getFullyQualifiedName();
-            TemplateMarkVisitor.visitChildren(this, thing, parameters);
+        case 'TextChunk': {
+            const newNodes = parameters.commonMark.fromMarkdown(thing.value).nodes;
+            thing.nodes = newNodes;
         }
             break;
         default:

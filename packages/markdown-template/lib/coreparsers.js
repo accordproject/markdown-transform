@@ -304,7 +304,7 @@ function withParser(withNode,content) {
  * @returns {object} the parser
  */
 function clauseParser(clause,content) {
-    return content.map(function(x) {
+    return content.skip(P.optWhitespace).map(function(x) {
         return mkClause(clause,x);
     });
 }
@@ -316,7 +316,7 @@ function clauseParser(clause,content) {
  * @returns {object} the parser
  */
 function contractParser(contract,content) {
-    return content.map(function(x) {
+    return content.skip(P.optWhitespace).map(function(x) {
         return mkContract(contract,x);
     });
 }

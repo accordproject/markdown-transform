@@ -45,6 +45,9 @@ function formula() {
 function mkText(text) {
     return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text };
 }
+function mkEndText(text) {
+    return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text.trimEnd() };
+}
 function mkVariable(v) {
     return { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': v };
 }
@@ -81,7 +84,7 @@ let TemplateParser = P.createLanguage({
     // Main entry points for the parser
     clauseTemplate: r => r.clauseTop,
     contractTemplate: r => r.contractTop,
-    templateEnd: r => chunkParser('').map(mkText),
+    templateEnd: r => chunkParser('').map(mkEndText),
 
     // Variable
     variableName: r => ident().skip(whitespace).skip(P.string('}}')),

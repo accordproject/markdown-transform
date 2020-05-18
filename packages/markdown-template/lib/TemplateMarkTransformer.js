@@ -16,8 +16,11 @@
 
 const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
 const normalizeNLs = require('./normalize').normalizeNLs;
+const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
 const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
@@ -90,6 +93,8 @@ class TemplateMarkTransformer {
      * Construct the parser.
      */
     constructor() {
+        // Setup for Nested Parsing
+        this.commonMark = new CommonMarkTransformer();
         // Setup for validation
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
@@ -131,7 +136,7 @@ class TemplateMarkTransformer {
      * @param {object} template the template AST
      * @returns {object} the typed template AST
      */
-    decorateTemplate(introspector,templateKind,templateModel,template) {
+    typeTemplate(introspector,templateKind,templateModel,template) {
         const input = this.serializer.fromJSON(template);
 
         const parameters = {
@@ -141,7 +146,7 @@ class TemplateMarkTransformer {
             model: templateModel,
             kind: templateKind,
         };
-        const visitor = new TemplateMarkVisitor();
+        const visitor = new TypingVisitor();
         input.accept( visitor, parameters );
         const result = Object.assign({}, this.serializer.toJSON(input));
 
@@ -149,7 +154,27 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Converts a markdown string to a CiceroMark DOM
+     * Unfold text chunks in template
+     * @param {object} template the template AST
+     * @returns {object} the typed template AST
+     */
+    unfoldTemplate(template) {
+        const input = this.serializer.fromJSON(template);
+
+        const parameters = {
+            commonMark: this.commonMark,
+            templateMarkModelManager: this.modelManager,
+            templateMarkFactory: this.factory,
+        };
+        const visitor = new TemplateMarkVisitor();
+        input.accept(visitor, parameters);
+        const result = Object.assign({}, this.serializer.toJSON(input));
+
+        return result;
+    }
+
+    /**
+     * Converts a markdown string to a raw TemplateMark DOM
      * @param {{fileName:string,content:string}} grammar the template grammar
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
@@ -157,7 +182,7 @@ class TemplateMarkTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromTemplate(grammarInput, modelManager, templateKind, options) {
+    fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options) {
         if (!modelManager) {
             throw new Error('Cannot parse without template model');
         }
@@ -168,17 +193,36 @@ class TemplateMarkTransformer {
         // Parse / validate / type the template
         const template = this.parseGrammar(grammar, templateKind);
         if (options && options.verbose) {
-            console.log('===== TemplateMark ');
+            console.log('===== Raw TemplateMark ');
             console.log(JSON.stringify(template,null,2));
         }
         const introspector = new Introspector(modelManager);
         const templateModel = this.getTemplateModel(introspector, templateKind);
-        const typedTemplate = this.decorateTemplate(introspector, templateKind, templateModel, template);
+        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
         if (options && options.verbose) {
-            console.log('===== Typed TemplateMark ');
+            console.log('===== Raw Typed TemplateMark ');
             console.log(JSON.stringify(typedTemplate,null,2));
         }
         return typedTemplate;
+    }
+
+    /**
+     * Converts a markdown string to a TemplateMark DOM
+     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    fromMarkdownTemplate(grammarInput, modelManager, templateKind, options) {
+        const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
+        const unfoldedTemplate = this.unfoldTemplate(typedTemplate);
+        if (options && options.verbose) {
+            console.log('===== Typed TemplateMark ');
+            console.log(JSON.stringify(unfoldedTemplate,null,2));
+        }
+        return unfoldedTemplate;
     }
 
     /**
@@ -196,10 +240,10 @@ class TemplateMarkTransformer {
         const serializer = new Serializer(factory, modelManager);
 
         // Translate grammar to TemplateMark
-        const typedTemplate = this.fromTemplate(grammarInput, modelManager, templateKind, options);
+        const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
 
         // Construct the template parser
-        const parser = parserOfTemplate(typedTemplate,{contract:false});
+        const parser = parserOfTemplate(typedTemplate,{contract:templateKind === 'contract'});
 
         // Load the markdown input
         const markdown = normalizeNLs(markdownInput.content);
