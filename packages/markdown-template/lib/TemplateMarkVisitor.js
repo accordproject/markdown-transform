@@ -61,10 +61,10 @@ const logAcc = (pref,acc) => {
     console.log(pref + ' ' + logAccAux(acc));
 };      
 
-const procStartLines = (text,newLines) => {
+const procStartLines = (text) => {
     const lines = text.split('\n');
     if (lines.length === 1) {
-        return { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]) };
+        return { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]), remaining: [] };
     }
     let startNLs = 0;
     for (let i=0; i < lines.length-1; i++) {
@@ -74,19 +74,19 @@ const procStartLines = (text,newLines) => {
             break;
         }
     }
+    const remaining = lines.slice(startNLs);
     let start;
     if (startNLs >= 2) {
-        start = { 'closed': true, 'softbreak': false, 'space': '' };
+        start = { 'closed': true, 'softbreak': false, 'space': '', remaining: remaining };
     } else if (startNLs === 1) {
-        start = { 'closed': false, 'softbreak': true, 'space': '' };
+        start = { 'closed': false, 'softbreak': true, 'space': '', remaining: remaining };
     } else {
-        start = { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]) };
+        start = { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]), remaining: remaining };
     }
     return start;
 };
-const procEndLines = (text,newLines) => {
-    const lines = text.split('\n');
-    if (lines.length === 1) {
+const procEndLines = (lines) => {
+    if (lines.length === 0) {
         return { 'closed': false, 'softbreak': false, 'space': '' };
     }
     let endNLs = 0;
@@ -149,7 +149,7 @@ class TemplateMarkVisitor {
         let lastNode = null;
 
         const start = procStartLines(text);
-        const end = procEndLines(text);
+        const end = procEndLines(start.remaining);
 
         // Process beginning of chunk
         if (currentPartial) {
