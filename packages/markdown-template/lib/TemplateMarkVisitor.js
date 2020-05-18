@@ -155,7 +155,6 @@ class TemplateMarkVisitor {
         if (currentPartial) {
             // Process beginning of chunk
             if (start.closed) {
-                cleanNodes.push(currentPartial);
                 currentPartial = null;
             } else {
                 if (start.softbreak) {
@@ -171,13 +170,11 @@ class TemplateMarkVisitor {
 
         // Process end of chunk
         if (end.closed) {
-            if (currentPartial) { cleanNodes.push(currentPartial); }
             cleanNodes = cleanNodes.concat(node.nodes);
             currentPartial = null;
         } else {
-            lastNode = node.nodes.pop();
+            lastNode = node.nodes[node.nodes.length-1];
             if (lastNode) {
-                if (currentPartial) { cleanNodes.push(currentPartial); }
                 cleanNodes = cleanNodes.concat(node.nodes);
                 currentPartial = lastNode;
             }
@@ -222,7 +219,6 @@ class TemplateMarkVisitor {
                 break;
             case 'ClauseDefinition': {
                 if (accumulator.partial) {
-                    accumulator.nodes = accumulator.nodes.concat(accumulator.partial.nodes);
                     accumulator.partial = null;
                     accumulator.nodes.push(currentNode);
                 } else {
@@ -238,9 +234,6 @@ class TemplateMarkVisitor {
             return accumulator;
         };
         const reduced = nodes.reduce(reducer,{partial:null,nodes:[]});
-        if (reduced.partial) {
-            reduced.nodes = reduced.nodes.concat(reduced.partial.nodes);
-        }
         return reduced.nodes;
     }
 

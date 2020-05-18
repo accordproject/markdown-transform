@@ -29,11 +29,6 @@ const sample1Err1 = loadFile('./test/data/template1/sample1Err1.md');
 const sample1Err2 = loadFile('./test/data/template1/sample1Err2.md');
 const sample1Err3 = loadFile('./test/data/template1/sample1Err3.md');
 
-const grammarMd1 = loadFile('./test/data/templateMd1/grammarMd1.tem.md');
-const grammarMd1Json = JSON.parse(loadFile('./test/data/templateMd1/grammarMd1.json').content);
-const modelMd1 = './test/data/templateMd1/modelMd1.cto';
-//const sampleMd1 = loadFile('./test/data/templateMd1/sampleMd1.md');
-
 const grammarErr1 = loadFile('./test/data/templateErr1/grammarErr1.tem.md');
 const modelErr1 = './test/data/templateErr1/modelErr1.cto';
 const sampleErr1 = loadFile('./test/data/templateErr1/sampleErr1.md');
@@ -96,6 +91,16 @@ const grammarComputed = loadFile('./test/data/templateComputed/grammarComputed.t
 const modelComputed = './test/data/templateComputed/modelComputed.cto';
 const sampleComputed = loadFile('./test/data/templateComputed/sampleComputed.md');
 const sampleComputedErr = loadFile('./test/data/templateComputed/sampleComputedErr.md');
+
+const grammarMd1 = loadFile('./test/data/templateMd1/grammarMd1.tem.md');
+const grammarMd1Json = JSON.parse(loadFile('./test/data/templateMd1/grammarMd1.json').content);
+const modelMd1 = './test/data/templateMd1/modelMd1.cto';
+//const sampleMd1 = loadFile('./test/data/templateMd1/sampleMd1.md');
+
+const grammarMd2 = loadFile('./test/data/templateMd2/grammarMd2.tem.md');
+const grammarMd2Json = JSON.parse(loadFile('./test/data/templateMd2/grammarMd2.json').content);
+const modelMd2 = './test/data/templateMd2/modelMd2.cto';
+//const sampleMd2 = loadFile('./test/data/templateMd2/sampleMd2.md');
 
 // Tests
 describe('#invalidTemplates', () => {
@@ -385,6 +390,21 @@ describe('#fromMarkdownTemplate', () => {
 
         it('should transform to TemplateMark', async () => {
             (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd1,modelManager,'clause').should.deep.equal(grammarMd1Json);
+        });
+
+        it('should transform to TemplateMark (verbose)', async () => {
+            (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd1,modelManager,'clause',{verbose:true}).should.deep.equal(grammarMd1Json);
+        });
+    });
+
+    describe('#templateMd2', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelMd2]);
+        });
+
+        it('should transform to TemplateMark', async () => {
+            (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd2,modelManager,'contract').should.deep.equal(grammarMd2Json);
         });
     });
 
