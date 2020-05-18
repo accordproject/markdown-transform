@@ -18,7 +18,7 @@ const Fs = require('fs');
 const { Logger, ModelLoader } = require('@accordproject/concerto-core');
 
 const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
-const { TemplateTransformer } = require('@accordproject/markdown-template');
+const { TemplateMarkTransformer } = require('@accordproject/markdown-template');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -170,8 +170,8 @@ class Commands {
 
         const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
 
-        const templateTransformer = new TemplateTransformer();
-        const result = templateTransformer.parse(markdownInput,grammarInput,modelManager,templateKind,options);
+        const templateMarkTransformer = new TemplateMarkTransformer();
+        const result = templateMarkTransformer.parse(markdownInput,grammarInput,modelManager,templateKind,options);
 
         if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
         return Promise.resolve(JSON.stringify(result));

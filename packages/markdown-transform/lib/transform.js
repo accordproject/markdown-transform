@@ -45,7 +45,7 @@ const transformationGraph = {
         templatemark : async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
-            return t.fromTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
+            return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
         },
     },
     templatemark : {
