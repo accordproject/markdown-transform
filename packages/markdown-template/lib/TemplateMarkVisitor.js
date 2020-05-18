@@ -64,7 +64,7 @@ const logAcc = (pref,acc) => {
 const procStartLines = (text) => {
     const lines = text.split('\n');
     if (lines.length === 1) {
-        return { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]), remaining: [] };
+        return { 'closed': false, 'softbreak': false, 'space': leadingSpace(lines[0]), remaining: lines };
     }
     let startNLs = 0;
     for (let i=0; i < lines.length-1; i++) {
