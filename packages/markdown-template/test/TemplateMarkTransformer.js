@@ -340,7 +340,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateWith', () => {
+    describe('#templateWith', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelWith]);
