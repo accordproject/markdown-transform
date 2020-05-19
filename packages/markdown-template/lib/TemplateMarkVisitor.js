@@ -32,34 +32,6 @@ const trailingSpace = (line) => {
     const space = res ? res[1] : '';
     return space;
 };
-const logNodeAux = (node) => {
-    let result = '';
-    if (node) {
-        result += '<' + node.getType() + '>';
-        if (node.getType() === 'Text') {
-            result += ' text: ' + JSON.stringify(node.text);
-        } else {
-            result += ' nodes: ['+ (node.nodes ? node.nodes.map(x => logNodeAux(x)) : []).join(',') + ']';
-        }
-    } else {
-        result += '<null>';
-    }
-    return result;
-};
-const logAccAux = (acc) => {
-    let result = '';
-    if (acc.partial) {
-        result += '<' + logNodeAux(acc.partial) + '>';
-    }
-    result += ' nodes: ['+ (acc.nodes ? acc.nodes.map(x => logNodeAux(x)) : []).join(',') + ']';
-    return result;
-};
-const logNode = (pref,node) => {
-    console.log(pref + ' ' + logNodeAux(node));
-};      
-const logAcc = (pref,acc) => {
-    console.log(pref + ' ' + logAccAux(acc));
-};      
 
 const procStartLines = (text) => {
     const lines = text.split('\n');
@@ -197,7 +169,6 @@ class TemplateMarkVisitor {
      */
     static foldNodes(nodes,parameters) {
         const reducer = (accumulator, currentNode) => {
-            //logNode('FOLDNODES',currentNode);
             switch(currentNode.getType()) {
             case 'TextChunk': {
                 const partialCheck = TemplateMarkVisitor.processChunk(currentNode,accumulator.partial,parameters);
@@ -207,8 +178,10 @@ class TemplateMarkVisitor {
                 }
             }
                 break;
+            case 'FormulaDefinition':
             case 'VariableDefinition':
             case 'EnumVariableDefinition':
+            case 'FormattedVariableDefinition':
             case 'ConditionalDefinition': {
                 if (accumulator.partial) {
                     accumulator.partial.nodes.push(currentNode);
