@@ -40,12 +40,10 @@ class ToMarkdownStringVisitor {
      * @param {*} visitor - the visitor to use
      * @param {*} thing - the node to visit
      * @param {*} parameters - the current parameters
-     * @param {*} paramsFun - function to construct the parameters for children
      * @returns {string} the markdown for the sub tree
      */
-    static visitChildren(visitor, thing, parameters, paramsFun) {
-        const paramsFunActual = paramsFun ? paramsFun : CommonMarkUtils.mkParameters;
-        const parametersIn = paramsFunActual(parameters);
+    static visitChildren(visitor, thing, parameters) {
+        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters);
         if(thing.nodes) {
             thing.nodes.forEach(node => {
                 node.accept(visitor, parametersIn);
@@ -80,19 +78,18 @@ class ToMarkdownStringVisitor {
             parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}**`;
             break;
         case 'BlockQuote':
-            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters, CommonMarkUtils.mkParametersInBlockQuote);
+            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             break;
         case 'Heading': {
             const level = parseInt(thing.level);
+            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
             const headingText = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             if (level < 3 && headingText !== '') {
-                parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
                 parameters.result += headingText;
                 parameters.first = false;
                 parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
                 parameters.result += CommonMarkUtils.mkSetextHeading(level);
             } else {
-                parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
                 parameters.result += CommonMarkUtils.mkATXHeading(level);
                 parameters.result += ' ';
                 parameters.result += headingText;
@@ -133,20 +130,18 @@ class ToMarkdownStringVisitor {
             thing.nodes.forEach(item => {
                 const level = thing.tight && thing.tight === 'false' ? 2 : 1;
                 if(thing.type === 'ordered') {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, CommonMarkUtils.mkParametersInList)}`;
+                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
                 }
                 else {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${ToMarkdownStringVisitor.visitChildren(this, item, parameters, CommonMarkUtils.mkParametersInList)}`;
+                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
                 }
                 index++;
                 parameters.first = false;
             });
         }
             break;
-        case 'Item':
-            // we can hit this case with malformed html
-            {
-                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters, CommonMarkUtils.mkParametersInList)}`;
+        case 'Item': {
+                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
             }
             break;
         case 'Document':

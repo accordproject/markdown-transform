@@ -42,42 +42,32 @@ function toClass(name) {
 
 /**
  * Set parameters for general blocks
+ * @param {*} ast - the current ast node
  * @param {*} parametersOut - the current parameters
  * @return {*} the new parameters with block quote level incremented
  */
-function mkParameters(parametersOut) {
+function mkParameters(ast, parametersOut) {
     let parameters = {};
     parameters.result = '';
-    parameters.first = parametersOut.first;
-    parameters.stack = parametersOut.stack.slice();
-    return parameters;
-}
-
-/**
- * Set parameters for block quote
- * @param {*} parametersOut - the current parameters
- * @return {*} the new parameters with block quote level incremented
- */
-function mkParametersInBlockQuote(parametersOut) {
-    let parameters = {};
-    parameters.result = '';
-    parameters.first = parametersOut.first;
-    parameters.stack = parametersOut.stack.slice();
-    parameters.stack.push('block');
-    return parameters;
-}
-
-/**
- * Set parameters for inner list
- * @param {*} parametersOut - the current parameters
- * @return {*} the new parameters with first set to true
- */
-function mkParametersInList(parametersOut) {
-    let parameters = {};
-    parameters.result = '';
-    parameters.first = true;
-    parameters.stack = parametersOut.stack.slice();
-    parameters.stack.push('list');
+    switch(ast.getType()) {
+    case 'BlockQuote': {
+        parameters.first = parametersOut.first;
+        parameters.stack = parametersOut.stack.slice();
+        parameters.stack.push('block');
+    }
+        break;
+    case 'List':
+    case 'Item': { // we can hit this case with malformed html
+        parameters.first = true;
+        parameters.stack = parametersOut.stack.slice();
+        parameters.stack.push('list');
+    }
+        break;
+    default: {
+        parameters.first = parametersOut.first;
+        parameters.stack = parametersOut.stack.slice();
+    }
+    }
     return parameters;
 }
 
@@ -302,8 +292,6 @@ function mergeAdjacentHtmlNodes(nodes, tagInfo) {
 module.exports.toClass = toClass;
 
 module.exports.mkParameters = mkParameters;
-module.exports.mkParametersInBlockQuote = mkParametersInBlockQuote;
-module.exports.mkParametersInList = mkParametersInList;
 module.exports.mkPrefix = mkPrefix;
 module.exports.mkSetextHeading = mkSetextHeading;
 module.exports.mkATXHeading = mkATXHeading;
