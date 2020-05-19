@@ -18,6 +18,8 @@
 
 const fs = require('fs');
 const diff = require('jest-diff');
+
+const CommonMarkUtils = require('./CommonMarkUtils');
 const CommonMarkTransformer = require('./CommonMarkTransformer');
 
 let commonMark = null;
@@ -172,7 +174,7 @@ describe('merge adjacent text nodes', () => {
             ]
         };
 
-        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        const nodes = CommonMarkUtils.mergeAdjacentTextNodes(input.nodes);
         expect(nodes).toHaveLength(1);
     });
 
@@ -183,7 +185,7 @@ describe('merge adjacent text nodes', () => {
             ]
         };
 
-        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        const nodes = CommonMarkUtils.mergeAdjacentTextNodes(input.nodes);
         expect(nodes).toHaveLength(0);
     });
 
@@ -198,7 +200,7 @@ describe('merge adjacent text nodes', () => {
             ]
         };
 
-        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        const nodes = CommonMarkUtils.mergeAdjacentTextNodes(input.nodes);
         expect(nodes).toHaveLength(1);
     });
 
@@ -226,7 +228,7 @@ describe('merge adjacent text nodes', () => {
             ]
         };
 
-        const nodes = CommonMarkTransformer.mergeAdjacentTextNodes(input.nodes);
+        const nodes = CommonMarkUtils.mergeAdjacentTextNodes(input.nodes);
         expect(nodes).toHaveLength(3);
     });
 });
