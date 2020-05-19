@@ -296,7 +296,7 @@ function olistParser(listNode,content) {
  */
 function withParser(withNode,content) {
     return content.map(function(x) {
-        return mkWith(withNode,x);
+        return mkWith(withNode,flatten(x));
     });
 }
 
