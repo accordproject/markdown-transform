@@ -257,7 +257,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateUList', () => {
+    describe('#templateUList', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelUList]);
@@ -275,7 +275,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateOList', () => {
+    describe('#templateOList', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelOList]);
@@ -306,7 +306,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateRepeat', () => {
+    describe('#templateRepeat', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelRepeat]);
@@ -319,7 +319,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateRepeat (error)', () => {
+    describe('#templateRepeat (error)', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelRepeat]);
