@@ -111,12 +111,12 @@ let TemplateParser = P.createLanguage({
     // UList block
     ulistEnd: r => chunkParser('{{/ulist}}'),
     ulistBlock: r => P.seq(r.variableName,r.clauseContent.many(),r.ulistEnd.map(mkText)).map(mkUlist),
-    ulistBlockCont: r => P.seq(chunkParser('{{#ulist').map(mkText).skip(whitespace),r.ulistBlock),
+    ulistBlockCont: r => P.seq(chunkParser('\n{{#ulist').map(mkText).skip(whitespace),r.ulistBlock),
 
     // OList block
     olistEnd: r => chunkParser('{{/olist}}'),
     olistBlock: r => P.seq(r.variableName,r.clauseContent.many(),r.olistEnd.map(mkText)).map(mkOlist),
-    olistBlockCont: r => P.seq(chunkParser('{{#olist').map(mkText).skip(whitespace),r.olistBlock),
+    olistBlockCont: r => P.seq(chunkParser('\n{{#olist').map(mkText).skip(whitespace),r.olistBlock),
 
     // Clause templates
     clauseContent: r => P.alt(r.withBlockCont,r.ulistBlockCont,r.olistBlockCont,r.ifBlockCont,r.formulaChunk,r.varChunk),
