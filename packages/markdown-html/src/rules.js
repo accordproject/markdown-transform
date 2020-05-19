@@ -14,10 +14,9 @@
 
 'use strict';
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const { isIgnorable } = require('./helpers');
-
 
 /**
  * A rule to deserialize text nodes.
@@ -246,7 +245,7 @@ const CODE_BLOCK_RULE = {
                 const info = children[0].getAttribute('data-ciceromark');
                 if (info) {
                     const decodedInfo = decodeURIComponent(info);
-                    const tag = CommonMarkTransformer.parseHtmlBlock(decodedInfo);
+                    const tag = CommonMarkUtils.parseHtmlBlock(decodedInfo);
                     return {
                         '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
                         text: children[0].textContent,
@@ -399,7 +398,7 @@ const HTML_INLINE_RULE = {
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'html_inline') {
             {
                 const text = el.innerHTML;
-                const tag = CommonMarkTransformer.parseHtmlBlock(text);
+                const tag = CommonMarkUtils.parseHtmlBlock(text);
                 return {
                     '$class': `${NS_PREFIX_CommonMarkModel}HtmlInline`,
                     text: text,
@@ -421,7 +420,7 @@ const HTML_BLOCK_RULE = {
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
             {
                 const text = children[0].innerHTML;
-                const tag = CommonMarkTransformer.parseHtmlBlock(text);
+                const tag = CommonMarkUtils.parseHtmlBlock(text);
                 return {
                     '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
                     text: text,
