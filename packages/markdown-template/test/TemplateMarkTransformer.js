@@ -267,7 +267,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateUList', () => {
+    describe('#templateUList', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelUList]);
@@ -285,7 +285,7 @@ describe('#parse', () => {
         });
     });
 
-    describe.skip('#templateOList', () => {
+    describe('#templateOList', () => {
         let modelManager;
         before(async () => {
             modelManager = await ModelLoader.loadModelManager(null,[modelOList]);

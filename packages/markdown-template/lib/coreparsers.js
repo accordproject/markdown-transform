@@ -264,7 +264,7 @@ function listParser(listNode,bullet,content) {
     return P.seq(bullet,content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
-        return mkList(listNode,x);
+        return mkList(listNode,flatten(x));
     });
 }
 
@@ -275,7 +275,7 @@ function listParser(listNode,bullet,content) {
  * @returns {object} the parser
  */
 function ulistParser(listNode,content) {
-    return listParser(listNode,textParser('\n- '),content);
+    return listParser(listNode,textParser('\n-  '),content);
 }
 
 /**
