@@ -31,6 +31,10 @@ const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
 
+const emphParser = require('./coreparsers').emphParser;
+const paragraphParser = require('./coreparsers').paragraphParser;
+const headingParser = require('./coreparsers').headingParser;
+
 /**
  * Parsing table for variables
  * This maps types to their parser
@@ -105,6 +109,29 @@ function parserOfTemplate(ast,params) {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = contractParser(ast,childrenParser);
         break;
+    case 'org.accordproject.commonmark.Text' : {
+        parser = textParser(ast.text);
+        break;
+    }
+    case 'org.accordproject.commonmark.Softbreak' : {
+        parser = textParser('\n');
+        break;
+    }
+    case 'org.accordproject.commonmark.Paragraph' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = paragraphParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.commonmark.Emph' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = emphParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.commonmark.Heading' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = headingParser(ast,childrenParser);
+        break;
+    }
     default:
         throw new Error('Unknown template ast $class ' + ast.$class);
     }

@@ -18,6 +18,9 @@ const P = require('parsimmon');
 const uuid = require('uuid');
 
 const { ParseException } = require('@accordproject/concerto-core');
+const flatten = (arr) => {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+};
 
 /**
  * Utilities
@@ -122,7 +125,7 @@ function mkClause(clause,value) {
  * @returns {object} the clause
  */
 function mkWrappedClause(clause,value) {
-    return {'name':clause.name,'type':clause.type,'value':mkClause(clause,value)};
+    return [{'name':clause.name,'type':clause.type,'value':mkClause(clause,value)}];
 }
 
 /**
@@ -305,7 +308,7 @@ function withParser(withNode,content) {
  */
 function clauseParser(clause,content) {
     return content.skip(P.optWhitespace).map(function(x) {
-        return mkClause(clause,x);
+        return mkClause(clause,flatten(x));
     });
 }
 
@@ -317,7 +320,7 @@ function clauseParser(clause,content) {
  */
 function contractParser(contract,content) {
     return content.skip(P.optWhitespace).map(function(x) {
-        return mkContract(contract,x);
+        return mkContract(contract,flatten(x));
     });
 }
 
@@ -328,11 +331,41 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseBefore = (() => P.seq(textParser('\n``` <clause src='),stringLiteralParser(),textParser(' clauseid='),stringLiteralParser(),textParser('>\n')));
+    const clauseBefore = (() => P.seq(textParser('\n\n``` <clause src='),stringLiteralParser(),textParser(' clauseid='),stringLiteralParser(),textParser('/>\n')));
     const clauseAfter = (() => textParser('\n```\n'));
     return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
-        return mkWrappedClause(clause,x);
+        return mkWrappedClause(clause,flatten(x));
     });
+}
+
+/**
+ * Creates a parser for emph
+ * @param {object} ast the ast node
+ * @param {object} content the parser for the content of the paragraph
+ * @returns {object} the parser
+ */
+function emphParser(ast,content) {
+    return content.wrap(P.string('*'), P.string('*'));
+}
+
+/**
+ * Creates a parser for a paragraph
+ * @param {object} ast the ast node
+ * @param {object} content the parser for the content of the paragraph
+ * @returns {object} the parser
+ */
+function paragraphParser(ast,content) {
+    return P.seq(P.optWhitespace,content).map(function (x) { return flatten(x[1]); });
+}
+
+/**
+ * Creates a parser for a heading
+ * @param {object} ast the ast node
+ * @param {object} content the parser for the content of the paragraph
+ * @returns {object} the parser
+ */
+function headingParser(ast,content) {
+    return content.skip(P.string('\n----'));
 }
 
 module.exports.mkVariable = mkVariable;
@@ -355,3 +388,7 @@ module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;
+
+module.exports.emphParser = emphParser;
+module.exports.paragraphParser = paragraphParser;
+module.exports.headingParser = headingParser;

@@ -20,6 +20,7 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
 const normalizeNLs = require('./normalize').normalizeNLs;
+const normalizeMarkdown = require('./normalize').normalizeMarkdown;
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
@@ -240,13 +241,14 @@ class TemplateMarkTransformer {
         const serializer = new Serializer(factory, modelManager);
 
         // Translate grammar to TemplateMark
-        const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
+        //const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
+        const typedTemplate = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, options);
 
         // Construct the template parser
-        const parser = parserOfTemplate(typedTemplate,{contract:templateKind === 'contract'});
+        const parser = parserOfTemplate(typedTemplate,{contract:false});
 
         // Load the markdown input
-        const markdown = normalizeNLs(markdownInput.content);
+        const markdown = normalizeMarkdown(markdownInput.content);
         const markdownFileName = markdownInput.fileName;
 
         // Parse the markdown

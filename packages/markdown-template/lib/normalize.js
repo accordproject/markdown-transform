@@ -36,10 +36,9 @@ function normalizeMarkdown(input) {
     // Normalizes new lines
     const inputNLs = normalizeNLs(input);
     // Roundtrip the grammar through the Ciceromark parser
-    //const ciceroMarkTransformer = new CiceroMarkTransformer();
-    //const concertoAst = ciceroMarkTransformer.fromMarkdown(inputNLs);
-    //const result = ciceroMarkTransformer.toMarkdown(concertoAst);
-    const result = inputNLs;
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
+    const concertoAst = ciceroMarkTransformer.fromMarkdown(inputNLs);
+    const result = ciceroMarkTransformer.toMarkdown(concertoAst);
     return result;
 }
 
