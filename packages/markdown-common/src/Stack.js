@@ -80,14 +80,6 @@ class Stack {
     pop() {
         return this.stack.pop();
     }
-
-    /**
-   * Adds a new text leaf node.
-   * @param {*} leaf the text node
-   */
-    addTextLeaf(leaf) {
-        this.append({ object: 'text', text: leaf.text, marks: leaf.marks });
-    }
 }
 
 module.exports = Stack;

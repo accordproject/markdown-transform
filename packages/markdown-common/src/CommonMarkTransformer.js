@@ -20,11 +20,10 @@ const sax = require('sax');
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
 const Stack = require('./Stack');
+const CommonMarkUtils = require('./CommonMarkUtils');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
 const removeFormatting = require('./removeFormatting');
-
-const { DOMParser } = require('xmldom');
-const { NS_PREFIX_CommonMarkModel, CommonMarkModel } = require('./externalModels/CommonMarkModel.js');
+const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
 
 const mkLineMap = (initMap, text) => {
     const result = text.split(/\r?\n/g).map(x => x.length+1);
@@ -43,7 +42,6 @@ class CommonMarkTransformer {
      * Construct the parser.
      * @param {object} [options] configuration options
      * @param {boolean} [options.sourcePos] if true then source potision information is returned
-     * @param {boolean} [options.noIndex] do not index ordered list (i.e., use 1. everywhere)
      * @param {boolean} [options.tagInfo] Construct tags for HTML elements
      */
     constructor(options) {
@@ -52,47 +50,6 @@ class CommonMarkTransformer {
         modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
-    }
-
-    /**
-     * Is it a leaf node?
-     * @param {*} json - the JS Object for the AST
-     * @return {boolean} whether it's a leaf node
-     */
-    static isLeafNode(json) {
-        return (json.$class === (NS_PREFIX_CommonMarkModel + 'Text') ||
-                json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock') ||
-                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
-                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock') ||
-                json.$class === (NS_PREFIX_CommonMarkModel + 'Code'));
-    }
-
-    /**
-     * Is it a HTML node? (html blocks or html inlines)
-     * @param {*} json - the JS Object for the AST
-     * @return {boolean} whether it's a leaf node
-     */
-    static isHtmlNode(json) {
-        return (json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
-                json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock'));
-    }
-
-    /**
-     * Is it a Code Block node?
-     * @param {*} json the JS Object for the AST
-     * @return {boolean} whether it's a leaf node
-     */
-    static isCodeBlockNode(json) {
-        return json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock');
-    }
-
-    /**
-     * Removing escapes
-     * @param {string} input - escaped
-     * @return {string} unescaped
-     */
-    static unescapeCodeBlock(input) {
-        return input.replace(/\\`/g, '`');
     }
 
     /**
@@ -167,12 +124,12 @@ class CommonMarkTransformer {
         parser.ontext = function (t) {
             const head = stack.peek();
             if(t.length > 0 && head) {
-                if (CommonMarkTransformer.isLeafNode(head)) {
-                    head.text = CommonMarkTransformer.isCodeBlockNode(head) ? CommonMarkTransformer.unescapeCodeBlock(t) : t;
+                if (CommonMarkUtils.isLeafNode(head)) {
+                    head.text = CommonMarkUtils.isCodeBlockNode(head) ? CommonMarkUtils.unescapeCodeBlock(t) : t;
                 }
-                if (CommonMarkTransformer.isHtmlNode(head) || CommonMarkTransformer.isCodeBlockNode(head)) {
-                    const maybeHtmlText = CommonMarkTransformer.isHtmlNode(head) ? head.text : head.info;
-                    const tagInfo = that.options && that.options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(maybeHtmlText) : null;
+                if (CommonMarkUtils.isHtmlNode(head) || CommonMarkUtils.isCodeBlockNode(head)) {
+                    const maybeHtmlText = CommonMarkUtils.isHtmlNode(head) ? head.text : head.info;
+                    const tagInfo = that.options && that.options.tagInfo ? CommonMarkUtils.parseHtmlBlock(maybeHtmlText) : null;
                     if (tagInfo) {
                         head.tag = tagInfo;
                     }
@@ -181,7 +138,7 @@ class CommonMarkTransformer {
         };
         parser.onopentag = function (node) {
             const newNode = {};
-            newNode.$class = CommonMarkTransformer.toClass(node.name);
+            newNode.$class = CommonMarkUtils.toClass(node.name);
             if(sourcepos) {
                 const textPos = node.attributes.sourcepos;
                 if (textPos) {
@@ -222,8 +179,8 @@ class CommonMarkTransformer {
             if(name !== 'document') {
                 const json = stack.peek();
                 // console.log(JSON.stringify(json, null, 4));
-                json.nodes = CommonMarkTransformer.mergeAdjacentTextNodes(json.nodes);
-                json.nodes = CommonMarkTransformer.mergeAdjacentHtmlNodes(json.nodes, that.options);
+                json.nodes = CommonMarkUtils.mergeAdjacentTextNodes(json.nodes);
+                json.nodes = CommonMarkUtils.mergeAdjacentHtmlNodes(json.nodes, that.options && that.options.tagInfo);
                 stack.pop();
             }
         };
@@ -256,66 +213,6 @@ class CommonMarkTransformer {
     }
 
     /**
-     * Merge adjacent text nodes in a list of nodes
-     * @param {[*]} nodes a list of nodes
-     * @returns {*} a new list of nodes with redundant text nodes removed
-     */
-    static mergeAdjacentTextNodes(nodes) {
-        if(nodes) {
-            const result = [];
-            for(let n=0; n < nodes.length; n++) {
-                const cur = nodes[n];
-                const next = n+1 < nodes.length ? nodes[n+1] : null;
-
-                if(next &&
-                   cur.$class === (NS_PREFIX_CommonMarkModel + 'Text') &&
-                   next.$class === (NS_PREFIX_CommonMarkModel + 'Text')) {
-                    next.text = cur.text + next.text;  // Fold text in next node, skip current node
-                }
-                else {
-                    result.push(cur);
-                }
-            }
-            return result;
-        }
-        else {
-            return nodes;
-        }
-    }
-
-    /**
-     * Merge adjacent Html nodes in a list of nodes
-     * @param {[*]} nodes - a list of nodes
-     * @param {*} options - options
-     * @returns {*} a new list of nodes with open/closed Html nodes merged
-     */
-    static mergeAdjacentHtmlNodes(nodes, options) {
-        if(nodes) {
-            const result = [];
-            for(let n=0; n < nodes.length; n++) {
-                const cur = nodes[n];
-                const next = n+1 < nodes.length ? nodes[n+1] : null;
-
-                if(next &&
-                   cur.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
-                   next.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
-                   cur.tag &&
-                   next.text === `</${cur.tag.tagName}>`) {
-                    next.text = cur.text + next.text;  // Fold text in next node, skip current node
-                    next.tag = options && options.tagInfo ? CommonMarkTransformer.parseHtmlBlock(next.text) : null;
-                }
-                else {
-                    result.push(cur);
-                }
-            }
-            return result;
-        }
-        else {
-            return nodes;
-        }
-    }
-
-    /**
      * Retrieve the serializer used by the parser
      *
      * @returns {*} a serializer capable of dealing with the Concerto
@@ -325,68 +222,6 @@ class CommonMarkTransformer {
         return this.serializer;
     }
 
-    /**
-     *
-     * @param {string} string the string to capitalize
-     * @returns {string} the string capitalized
-     */
-    static capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    /**
-     *
-     * @param {string} name the name of the commonmark type
-     * @returns {string} the concerto type name
-     */
-    static toClass(name) {
-        const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
-        return NS_PREFIX_CommonMarkModel + CommonMarkTransformer.capitalizeFirstLetter(camelCased);
-    }
-
-    /**
-     * Parses an HTML block and extracts the attributes, tag name and tag contents.
-     * Note that this will return null for strings like this: </foo>
-     * @param {string} string - the HTML block to parse
-     * @return {Object} - a tag object that holds the data for the html block
-     */
-    static parseHtmlBlock(string) {
-        try {
-            const doc = (new DOMParser()).parseFromString(string, 'text/html');
-            const item = doc.childNodes[0];
-            const attributes = item.attributes;
-            const attributeObject = {};
-            let attributeString = '';
-
-            for (let i = 0; i < attributes.length; i += 1) {
-                attributeString += `${attributes[i].name} = "${attributes[i].value}" `;
-                attributeObject[attributes[i].name] = attributes[i].value;
-            }
-
-            const tag = {};
-            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
-            tag.tagName = item.tagName.toLowerCase();
-            tag.attributeString = attributeString;
-            tag.attributes = [];
-            for (const attName in attributeObject) {
-                if (Object.prototype.hasOwnProperty.call(attributeObject, attName)) {
-                    const attValue = attributeObject[attName];
-                    tag.attributes.push({
-                        $class : NS_PREFIX_CommonMarkModel + 'Attribute',
-                        name : attName,
-                        value : attValue,
-                    });
-                }
-            }
-            tag.content = item.textContent;
-            tag.closed = string.endsWith('/>');
-
-            return tag;
-        } catch (err) {
-            // no children, so we return null
-            return null;
-        }
-    }
 }
 
 module.exports = CommonMarkTransformer;
