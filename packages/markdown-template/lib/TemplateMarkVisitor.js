@@ -19,9 +19,6 @@ const { NS_PREFIX_TemplateMarkModel } = require('./externalModels/TemplateMarkMo
 /**
  * Utilities
  */
-const flatten = (arr) => {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-};
 const leadingSpace = (line) => {
     const res = line.match(/^([ \t]*)[^]*$/);
     const space = res ? res[1] : '';
