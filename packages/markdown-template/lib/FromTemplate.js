@@ -32,9 +32,11 @@ const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
 
 const emphParser = require('./coreparsers').emphParser;
+const strongParser = require('./coreparsers').strongParser;
 const documentParser = require('./coreparsers').documentParser;
 const paragraphParser = require('./coreparsers').paragraphParser;
 const headingParser = require('./coreparsers').headingParser;
+const codeBlockParser = require('./coreparsers').codeBlockParser;
 
 /**
  * Parsing table for variables
@@ -128,9 +130,18 @@ function parserOfTemplate(ast,params) {
         parser = paragraphParser(ast,childrenParser);
         break;
     }
+    case 'org.accordproject.commonmark.CodeBlock' : {
+        parser = codeBlockParser(ast.text);
+        break;
+    }
     case 'org.accordproject.commonmark.Emph' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = emphParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.commonmark.Strong' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = strongParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.Heading' : {

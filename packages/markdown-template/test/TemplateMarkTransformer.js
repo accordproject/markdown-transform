@@ -107,6 +107,11 @@ const grammarMd3Json = JSON.parse(loadFile('./test/data/templateMd3/grammarMd3.j
 const modelMd3 = './test/data/templateMd3/modelMd3.cto';
 const sampleMd3 = loadFile('./test/data/templateMd3/sampleMd3.md');
 
+const grammarMd4 = loadFile('./test/data/templateMd4/grammarMd4.tem.md');
+const grammarMd4Json = JSON.parse(loadFile('./test/data/templateMd4/grammarMd4.json').content);
+const modelMd4 = './test/data/templateMd4/modelMd4.cto';
+const sampleMd4 = loadFile('./test/data/templateMd4/sampleMd4.md');
+
 // Tests
 describe('#invalidTemplates', () => {
     describe('#templateErr1', () => {
@@ -436,6 +441,25 @@ describe('#fromMarkdownTemplate', () => {
             result.penalty.should.equal(10);
             result.agreement.seller.should.equal('Steve');
             result.agreement.buyer.should.equal('Betty');
+        });
+    });
+
+    describe('#templateMd4', () => {
+        let modelManager;
+        before(async () => {
+            modelManager = await ModelLoader.loadModelManager(null,[modelMd4]);
+        });
+
+        it('should transform to TemplateMark', async () => {
+            const templateMarkTransformer = new TemplateMarkTransformer();
+            templateMarkTransformer.fromMarkdownTemplate(grammarMd4,modelManager,'clause').should.deep.equal(grammarMd4Json);
+            const result = templateMarkTransformer.parse(sampleMd4,grammarMd4,modelManager,'clause');
+            result.seller.should.equal('Steve');
+            result.buyer.should.equal('Betty');
+        });
+
+        it('should transform to TemplateMark (verbose)', async () => {
+            (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd4,modelManager,'clause').should.deep.equal(grammarMd4Json);
         });
     });
 
