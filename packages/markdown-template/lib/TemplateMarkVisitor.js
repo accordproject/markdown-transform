@@ -186,7 +186,7 @@ class TemplateMarkVisitor {
                 }
             }
                 break;
-            case 'UnorderedListDefinition':
+            case 'ListBlockDefinition':
             case 'ClauseDefinition': {
                 if (accumulator.partial) {
                     accumulator.partial = null;

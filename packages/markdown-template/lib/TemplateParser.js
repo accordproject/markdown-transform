@@ -64,10 +64,10 @@ function mkWith(x) {
     return { '$class': 'org.accordproject.templatemark.WithDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkUlist(x) {
-    return { '$class': 'org.accordproject.templatemark.UnorderedListDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.ListBlockDefinition', 'name': x[0], 'kind': 'bullet', 'tight': 'true', 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkOlist(x) {
-    return { '$class': 'org.accordproject.templatemark.OrderedListDefinition', 'name': x[0], 'nodes': flatten(x[1].concat([[x[2]]])) };
+    return { '$class': 'org.accordproject.templatemark.ListBlockDefinition', 'name': x[0], 'kind': 'ordered', 'tight': 'true', 'start': 1, 'delimiter': 'period', 'nodes': flatten(x[1].concat([[x[2]]])) };
 }
 function mkFormula(content) {
     return { '$class': 'org.accordproject.templatemark.FormulaDefinition','name': 'formula', 'code': content, dependencies: [] };

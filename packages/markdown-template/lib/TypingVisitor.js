@@ -107,8 +107,7 @@ class TypingVisitor {
             TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
         }
             break;
-        case 'OrderedListDefinition':
-        case 'UnorderedListDefinition': {
+        case 'ListBlockDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
                 thing.type = property.getFullyQualifiedTypeName();
