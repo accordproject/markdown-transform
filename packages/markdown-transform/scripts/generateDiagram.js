@@ -43,7 +43,6 @@ async function downloadImage (url, filename) {
     });
 }
 const plantUML = generateTransformationDiagram();
-console.log('PLANT! ' + plantUML);
 const encoded = plantumlEncoder.encode(plantUML);
 const url = `https://www.plantuml.com/plantuml/png/${encoded}`;
 downloadImage(url, 'transformations.png');

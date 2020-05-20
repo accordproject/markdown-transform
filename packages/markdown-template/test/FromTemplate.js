@@ -30,9 +30,9 @@ const template1 = {
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
     ]
 };
@@ -42,9 +42,9 @@ const template2 = {
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
         { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
     ]
@@ -55,16 +55,16 @@ const template3 = {
     'name':'myClause',
     'type':'org.accordproject.MyClause',
     'nodes': [
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' for the amount of ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' for the amount of ' },
         var3,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' ' },
         var4,
         { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': '.' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': '.' },
     ]
 };
 
@@ -75,7 +75,7 @@ const templateErr1 = {
     'nodes': [
         { '$class': 'foo', 'value': 'This is a contract between ' },
         var1,
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
     ]
 };
@@ -83,9 +83,9 @@ const templateErr2 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
     'type':'org.accordproject.MyContract',
     'nodes': [
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': 'This is a contract between ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'FOO' },
-        { '$class': 'org.accordproject.templatemark.TextChunk', 'value': ' and ' },
+        { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
     ]
 };

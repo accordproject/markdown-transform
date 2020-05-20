@@ -14,8 +14,6 @@
 
 'use strict';
 
-const { NS_PREFIX_TemplateMarkModel } = require('./externalModels/TemplateMarkModel');
-
 /**
  * Utilities
  */

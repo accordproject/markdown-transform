@@ -349,6 +349,18 @@ function emphParser(ast,content) {
 }
 
 /**
+ * Creates a parser for a document
+ * @param {object} ast the ast node
+ * @param {object} content the parser for the content of the document
+ * @returns {object} the parser
+ */
+function documentParser(ast,content) {
+    return content.map(function(x) {
+        return x[0];
+    });
+}
+
+/**
  * Creates a parser for a paragraph
  * @param {object} ast the ast node
  * @param {object} content the parser for the content of the paragraph
@@ -390,5 +402,6 @@ module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;
 
 module.exports.emphParser = emphParser;
+module.exports.documentParser = documentParser;
 module.exports.paragraphParser = paragraphParser;
 module.exports.headingParser = headingParser;
