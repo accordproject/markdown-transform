@@ -349,6 +349,16 @@ function emphParser(ast,content) {
 }
 
 /**
+ * Creates a parser for strong
+ * @param {object} ast the ast node
+ * @param {object} content the parser for the content of the paragraph
+ * @returns {object} the parser
+ */
+function strongParser(ast,content) {
+    return content.wrap(P.string('**'), P.string('**'));
+}
+
+/**
  * Creates a parser for a document
  * @param {object} ast the ast node
  * @param {object} content the parser for the content of the document
@@ -380,6 +390,17 @@ function headingParser(ast,content) {
     return content.skip(P.string('\n----'));
 }
 
+/**
+ * Creates a parser for code Block content
+ * @param {object} ast the ast node
+ * @returns {object} the parser
+ */
+function codeBlockParser(text) {
+    const blockBefore = (() => P.seq(P.optWhitespace,textParser('```\n')));
+    const blockAfter = (() => textParser('\n```'));
+    return P.string(text.trim()).wrap(blockBefore(),blockAfter());
+}
+
 module.exports.mkVariable = mkVariable;
 module.exports.mkCompoundVariable = mkCompoundVariable;
 module.exports.stringLiteralParser = stringLiteralParser;
@@ -402,6 +423,8 @@ module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;
 
 module.exports.emphParser = emphParser;
+module.exports.strongParser = strongParser;
 module.exports.documentParser = documentParser;
 module.exports.paragraphParser = paragraphParser;
 module.exports.headingParser = headingParser;
+module.exports.codeBlockParser = codeBlockParser;
