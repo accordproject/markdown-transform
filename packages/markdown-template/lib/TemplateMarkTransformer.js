@@ -21,6 +21,7 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
 const normalizeNLs = require('./normalize').normalizeNLs;
 const normalizeMarkdown = require('./normalize').normalizeMarkdown;
+const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
@@ -241,7 +242,6 @@ class TemplateMarkTransformer {
         const serializer = new Serializer(factory, modelManager);
 
         // Translate grammar to TemplateMark
-        //const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
         const typedTemplate = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, options);
 
         // Construct the template parser
@@ -250,6 +250,36 @@ class TemplateMarkTransformer {
         // Load the markdown input
         const markdown = normalizeMarkdown(markdownInput.content);
         const markdownFileName = markdownInput.fileName;
+
+        // Parse the markdown
+        let result = parser.parse(markdown);
+        if (result.status) {
+            return serializer.toJSON(serializer.fromJSON(result.value));
+        } else {
+            _throwParseError(markdown,result,markdownFileName);
+        }
+    }
+
+    /**
+     * Parse a CiceroMark DOM against a TemplateMark DOM
+     * @param {{fileName:string,content:string}} markdown the markdown input
+     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    parseCiceroMark(ciceroMarkInput, templateMarkInput, modelManager, templateKind, options) {
+        const factory = new Factory(modelManager);
+        const serializer = new Serializer(factory, modelManager);
+
+        // Construct the template parser
+        const parser = parserOfTemplate(templateMarkInput,{contract:false});
+
+        // Load the markdown input
+        const markdown = normalizeToMarkdown(ciceroMarkInput.content);
+        const markdownFileName = ciceroMarkInput.fileName;
 
         // Parse the markdown
         let result = parser.parse(markdown);

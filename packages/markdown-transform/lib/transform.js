@@ -30,7 +30,21 @@ const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 /**
  * The graph of transformation supported
  */
+const markdownTemplateToTemplateMark = async (input,parameters,options) => {
+    const t = new TemplateMarkTransformer();
+    const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+    return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
+};
 const transformationGraph = {
+    markdown_template : {
+        docs: 'Markdown template string',
+        fileFormat: 'utf8',
+        templatemark: markdownTemplateToTemplateMark,
+    },
+    templatemark : {
+        docs: 'TemplateMark DOM (JSON)',
+        fileFormat: 'json'
+    },
     markdown : {
         docs: 'Markdown text string',
         fileFormat: 'utf8',
@@ -39,18 +53,9 @@ const transformationGraph = {
             return t.fromMarkdown(input, 'json');
         },
     },
-    markdown_template : {
-        docs: 'Markdown template string',
-        fileFormat: 'utf8',
-        templatemark : async (input,parameters,options) => {
-            const t = new TemplateMarkTransformer();
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
-            return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
-        },
-    },
-    templatemark : {
-        docs: 'TemplateMark DOM (JSON)',
-        fileFormat: 'json'
+    data : {
+        docs: 'Contract Data (JSON)',
+        fileFormat: 'json',
     },
     commonmark: {
         docs: 'CommonMark DOM (JSON)',
@@ -94,7 +99,15 @@ const transformationGraph = {
         slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
-        }
+        },
+        data: async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            const templateParameters = Object.assign({},parameters);
+            templateParameters.inputFileName = parameters.grammarFileName;
+            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            return t.parseCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
+        },
     },
     ciceromark_noquotes: {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',

@@ -28,6 +28,17 @@ function normalizeNLs(input) {
 }
 
 /**
+ * Normalize CiceroMark to markdown text
+ * @param {*} input - the CiceroMark DOM
+ * @return {string} - the normalized markdown text
+ */
+function normalizeToMarkdown(input) {
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
+    const result = ciceroMarkTransformer.toMarkdown(input);
+    return result;
+}
+
+/**
  * Normalize markdown text
  * @param {string} input - the markdown text
  * @return {string} - the normalized markdown text
@@ -38,9 +49,10 @@ function normalizeMarkdown(input) {
     // Roundtrip the grammar through the Ciceromark parser
     const ciceroMarkTransformer = new CiceroMarkTransformer();
     const concertoAst = ciceroMarkTransformer.fromMarkdown(inputNLs);
-    const result = ciceroMarkTransformer.toMarkdown(concertoAst);
+    const result = normalizeToMarkdown(concertoAst);
     return result;
 }
 
 module.exports.normalizeNLs = normalizeNLs;
+module.exports.normalizeToMarkdown = normalizeToMarkdown;
 module.exports.normalizeMarkdown = normalizeMarkdown;
