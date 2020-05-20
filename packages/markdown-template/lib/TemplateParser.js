@@ -43,10 +43,10 @@ function formula() {
 }
 
 function mkText(text) {
-    return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text };
+    return { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': text };
 }
 function mkEndText(text) {
-    return { '$class': 'org.accordproject.templatemark.TextChunk', 'value': text.trimEnd() };
+    return { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': text.trimEnd() };
 }
 function mkVariable(v) {
     return { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': v };

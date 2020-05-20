@@ -18,10 +18,13 @@ const { ModelManager, Factory, Serializer, Introspector, ParseException } = requ
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 
-const { NS_PREFIX_TemplateMarkModel, TemplateMarkModel } = require('./externalModels/TemplateMarkModel.js');
+const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
+const TemplateMarkRawModel = require('./externalModels/TemplateMarkRaw').TemplateMarkRawModel;
+
 const normalizeNLs = require('./normalize').normalizeNLs;
 const normalizeMarkdown = require('./normalize').normalizeMarkdown;
 const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
+
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 
@@ -100,6 +103,7 @@ class TemplateMarkTransformer {
         // Setup for validation
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+        this.modelManager.addModelFile(TemplateMarkRawModel, 'templatemarkraw.cto');
         this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
@@ -116,15 +120,23 @@ class TemplateMarkTransformer {
 
         if (templateKind === 'contract') {
             topTemplate = {
-                '$class': 'org.accordproject.templatemark.ContractDefinition',
-                'name': 'top',
-                'nodes': TemplateParser.contractTemplate.tryParse(grammar)
+                '$class': 'org.accordproject.commonmark.Document',
+                'xmlns' : 'http://commonmark.org/xml/1.0',
+                'nodes': [{
+                    '$class': 'org.accordproject.templatemark.ContractDefinition',
+                    'name': 'top',
+                    'nodes': TemplateParser.contractTemplate.tryParse(grammar)
+                }]
             };
         } else {
             topTemplate = {
-                '$class': 'org.accordproject.templatemark.ClauseDefinition',
-                'name': 'top',
-                'nodes': TemplateParser.clauseTemplate.tryParse(grammar)
+                '$class': 'org.accordproject.commonmark.Document',
+                'xmlns' : 'http://commonmark.org/xml/1.0',
+                'nodes': [{
+                    '$class': 'org.accordproject.templatemark.ClauseDefinition',
+                    'name': 'top',
+                    'nodes': TemplateParser.clauseTemplate.tryParse(grammar)
+                }]
             };
         }
         return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));

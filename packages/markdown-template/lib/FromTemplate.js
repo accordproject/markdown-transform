@@ -32,6 +32,7 @@ const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
 
 const emphParser = require('./coreparsers').emphParser;
+const documentParser = require('./coreparsers').documentParser;
 const paragraphParser = require('./coreparsers').paragraphParser;
 const headingParser = require('./coreparsers').headingParser;
 
@@ -54,7 +55,7 @@ const parsingTable = {
 function parserOfTemplate(ast,params) {
     let parser = null;
     switch(ast.$class) {
-    case 'org.accordproject.templatemark.TextChunk' : {
+    case 'org.accordproject.templatemark.raw.TextChunk' : {
         parser = textParser(ast.value);
         break;
     }
@@ -115,6 +116,11 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.commonmark.Softbreak' : {
         parser = textParser('\n');
+        break;
+    }
+    case 'org.accordproject.commonmark.Document' : {
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = documentParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.Paragraph' : {

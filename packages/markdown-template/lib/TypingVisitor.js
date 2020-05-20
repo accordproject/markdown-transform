@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_TemplateMarkModel } = require('./externalModels/TemplateMarkModel');
+const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM

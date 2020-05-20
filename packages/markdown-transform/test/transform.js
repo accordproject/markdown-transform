@@ -57,7 +57,7 @@ describe('#transform', () => {
             const model1 = './test/data/template1/model1.cto';
             const parameters = { inputFileName: grammar1File, ctoFiles: [model1], templateKind: 'clause' };
             const result = await transform(grammar1, 'markdown_template', ['templatemark'], parameters, {});
-            result.$class.should.equal('org.accordproject.templatemark.ClauseDefinition');
+            result.nodes[0].$class.should.equal('org.accordproject.templatemark.ClauseDefinition');
         });
     });
 
