@@ -242,15 +242,6 @@ describe('acceptance', () => {
         const newMarkdown = commonMark.toMarkdown(json);
         expect(newMarkdown).toMatchSnapshot();
     });
-
-    it('converts *children* of acceptance to CommonMark DOM', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
-        const json = commonMark.fromMarkdown(markdownText, 'json');
-        // console.log(JSON.stringify(json, null, 4));
-        expect(json).toMatchSnapshot();
-        const newMarkdown = commonMark.toMarkdownChildren(json);
-        expect(newMarkdown).toMatchSnapshot();
-    });
 });
 
 describe('markdown-spec', () => {

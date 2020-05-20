@@ -20,23 +20,23 @@
 class Stack {
 
     /**
-    * Constructor
-    */
+     * Constructor
+     */
     constructor() {
         this.clear();
     }
 
     /**
-   * Clears the stack
-   */
+     * Clears the stack
+     */
     clear() {
         this.stack = [];
     }
 
     /**
-   * Returns the top of the stack or null if the stack is empty
-   * @return {*} the top of the stack
-   */
+     * Returns the top of the stack or null if the stack is empty
+     * @return {*} the top of the stack
+     */
     peek() {
         if(this.stack.length === 0) {
             return null;
@@ -46,11 +46,11 @@ class Stack {
     }
 
     /**
-   * Pushes a new object to the top of the stack
-   * @param {*} obj the node to push
-   * @param {boolean} appendItem whether the item is also appended as a child to
-   * the item at the top of the stack
-   */
+     * Pushes a new object to the top of the stack
+     * @param {*} obj the node to push
+     * @param {boolean} appendItem whether the item is also appended as a child to
+     * the item at the top of the stack
+     */
     push(obj, appendItem = true) {
         if (appendItem) {
             this.append(obj);
@@ -60,9 +60,9 @@ class Stack {
     }
 
     /**
-   * Appends an object to the 'nodes' array of the item at the top of the stack
-   * @param {*} obj the item to append to the top node
-   */
+     * Appends an object to the 'nodes' array of the item at the top of the stack
+     * @param {*} obj the item to append to the top node
+     */
     append(obj) {
         const top = this.peek();
 
@@ -74,9 +74,9 @@ class Stack {
     }
 
     /**
-   * Pops the top of the stack.
-   * @return {*} the top of the stack
-   */
+     * Pops the top of the stack.
+     * @return {*} the top of the stack
+     */
     pop() {
         return this.stack.pop();
     }

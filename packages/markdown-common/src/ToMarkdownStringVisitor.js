@@ -141,8 +141,8 @@ class ToMarkdownStringVisitor {
         }
             break;
         case 'Item': {
-                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
-            }
+            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+        }
             break;
         case 'Document':
             parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);

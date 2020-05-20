@@ -65,7 +65,7 @@ function mkParameters(ast, parametersOut) {
         break;
     default: {
         parameters.first = parametersOut.first;
-        parameters.stack = parametersOut.stack.slice();
+        parameters.stack = parametersOut.stack;
     }
     }
     return parameters;
