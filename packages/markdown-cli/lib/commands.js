@@ -141,6 +141,11 @@ class Commands {
      */
     static async transform(inputPath, from, to, outputPath, parameters, options) {
         const input = Commands.loadFormatFromFile(inputPath, from);
+        parameters.inputFileName = inputPath;
+        if (parameters.grammar) {
+            parameters.grammarFileName = parameters.grammar;
+            parameters.grammar = Commands.loadFormatFromFile(parameters.grammar,'markdown_template');
+        }
         let result = await transform(input, from, [to], parameters, options);
         let finalFormat = to;
         if (options && options.roundtrip) {
@@ -150,31 +155,6 @@ class Commands {
 
         if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
         return Promise.resolve(Commands.printFormatToString(result,finalFormat));
-    }
-
-    /**
-     * Parse against a template grammar
-     *
-     * @param {string} inputPath to the input file
-     * @param {string} grammarPath to the grammar file
-     * @param {string[]} ctoFiles - the CTO files (can be local file paths or URLs)
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {string} outputPath to an output file
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
-     * @returns {object} Promise to the result of parsing
-     */
-    static async parse(inputPath, grammarPath, ctoFiles, templateKind, outputPath, options) {
-        const markdownInput = { 'fileName': inputPath, 'content' : Fs.readFileSync(inputPath, 'utf8') };
-        const grammarInput = { 'fileName': grammarPath, 'content' : Fs.readFileSync(grammarPath, 'utf8') };
-
-        const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
-
-        const templateMarkTransformer = new TemplateMarkTransformer();
-        const result = templateMarkTransformer.parse(markdownInput,grammarInput,modelManager,templateKind,options);
-
-        if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
-        return Promise.resolve(JSON.stringify(result));
     }
 }
 
