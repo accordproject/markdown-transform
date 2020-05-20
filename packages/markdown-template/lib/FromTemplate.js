@@ -83,14 +83,9 @@ function parserOfTemplate(ast,params) {
         parser = condParser(ast);
         break;
     }
-    case 'org.accordproject.templatemark.UnorderedListDefinition' : {
+    case 'org.accordproject.templatemark.ListBlockDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = ulistParser(ast,childrenParser);
-        break;
-    }
-    case 'org.accordproject.templatemark.OrderedListDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = olistParser(ast,childrenParser);
+        parser = ast.kind === 'bullet' ? ulistParser(ast,childrenParser) : olistParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {
