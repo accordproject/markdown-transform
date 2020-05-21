@@ -120,12 +120,16 @@ class ToCiceroMarkVisitor {
                 if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     const format = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'format');
-                    const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
+                    const enumValues = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'enumValues');
+                    const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : enumValues ? NS_PREFIX_CiceroMarkModel + 'EnumVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     if (format) { // For FormattedVariables
                         thing.format = decodeURIComponent(format.value);
+                    }
+                    if (enumValues) {
+                        thing.enumValues = JSON.parse(decodeURIComponent(enumValues.value));
                     }
                     delete thing.tag;
                     delete thing.text;

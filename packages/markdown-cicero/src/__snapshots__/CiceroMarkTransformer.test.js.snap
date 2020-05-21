@@ -1969,6 +1969,174 @@ Object {
 }
 `;
 
+exports[`markdown converts acceptance-formatted.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "HELLO! This is the contract editor.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"Party A\\" will be deemed to have completed its delivery obligations",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "that it is accepting the \\"Widgets\\".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"Party B\\" will have 10 Business Days to inspect and",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "evaluate the \\"Widgets\\" on the delivery date before notifying",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"Party A\\" that it is either accepting or rejecting the",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "\\"Widgets\\".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "must meet for the \\"Party A\\" to comply with its requirements and",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "obligations under this agreement, detailed in \\"Attachment X\\", attached",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "to this agreement.",
+            },
+          ],
+        },
+      ],
+      "src": "ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts acceptance-formula.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -2178,174 +2346,6 @@ Object {
         },
       ],
       "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
-    },
-  ],
-  "xmlns": "http://commonmark.org/xml/1.0",
-}
-`;
-
-exports[`markdown converts acceptance-formatted.md to concerto 1`] = `
-Object {
-  "$class": "org.accordproject.commonmark.Document",
-  "nodes": Array [
-    Object {
-      "$class": "org.accordproject.commonmark.Heading",
-      "level": "1",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "HELLO! This is the contract editor.",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.Paragraph",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": "And below is a ",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Strong",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "clause",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
-          "text": ".",
-        },
-      ],
-    },
-    Object {
-      "$class": "org.accordproject.ciceromark.Clause",
-      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
-          "$class": "org.accordproject.commonmark.Heading",
-          "level": "2",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance of Delivery.",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"Party A\\" will be deemed to have completed its delivery obligations",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "that it is accepting the \\"Widgets\\".",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Heading",
-          "level": "2",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Inspection and Notice.",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"Party B\\" will have 10 Business Days to inspect and",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "evaluate the \\"Widgets\\" on the delivery date before notifying",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"Party A\\" that it is either accepting or rejecting the",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "\\"Widgets\\".",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Heading",
-          "level": "2",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "Acceptance Criteria.",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\"",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "must meet for the \\"Party A\\" to comply with its requirements and",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "obligations under this agreement, detailed in \\"Attachment X\\", attached",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Softbreak",
-            },
-            Object {
-              "$class": "org.accordproject.commonmark.Text",
-              "text": "to this agreement.",
-            },
-          ],
-        },
-      ],
-      "src": "ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -4506,6 +4506,37 @@ Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "name": "shipper",
           "value": "\\"Party A\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts variable-enum.md to concerto 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.EnumVariable",
+          "enumValues": Array [
+            "ABC",
+            "DEF",
+          ],
+          "name": "currency",
+          "value": "ABC",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",

@@ -250,7 +250,7 @@ function handleVariable(node) {
     const type = node.type;
     const data = node.data;
 
-    const baseName = type === 'variable' ? (Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : 'Variable') : 'Conditional';
+    const baseName = type === 'variable' ? (Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : (Object.prototype.hasOwnProperty.call(data,'enumValues') ? 'EnumVariable' : 'Variable')) : 'Conditional';
     const className = `${NS_CICERO}.${baseName}`;
 
     result = {
@@ -261,6 +261,9 @@ function handleVariable(node) {
 
     if (Object.prototype.hasOwnProperty.call(data,'format')) {
         result.format = data.format;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'enumValues')) {
+        result.enumValues = data.enumValues;
     }
     if (Object.prototype.hasOwnProperty.call(data,'whenTrue')) {
         result.whenTrue = data.whenTrue;

@@ -193,6 +193,11 @@ class ToSlateVisitor {
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
+        case 'EnumVariable': {
+            const data = { name: thing.name, enumValues: thing.enumValues };
+            result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
+        }
+            break;
         case 'Conditional':
             result = ToSlateVisitor.handleVariable('conditional', { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
             break;
