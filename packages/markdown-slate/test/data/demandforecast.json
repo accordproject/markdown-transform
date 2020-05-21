@@ -14,7 +14,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "effectiveDate",
+                            "name": "effectiveDate",
                             "format": "YYYY/MM/DD"
                         },
                         "children": [
@@ -32,7 +32,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "purchaser"
+                            "name": "purchaser"
                         },
                         "children": [
                             {
@@ -49,7 +49,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "supplier"
+                            "name": "supplier"
                         },
                         "children": [
                             {
@@ -66,7 +66,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "minimumPercentage"
+                            "name": "minimumPercentage"
                         },
                         "children": [
                             {

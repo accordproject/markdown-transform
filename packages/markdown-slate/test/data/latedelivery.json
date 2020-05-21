@@ -66,7 +66,7 @@
                                 "object": "inline",
                                 "type": "conditional",
                                 "data": {
-                                    "id": "forceMajeure",
+                                    "name": "forceMajeure",
                                     "whenTrue": " except for Force Majeure cases,",
                                     "whenFalse": ""
                                 },
@@ -100,7 +100,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "seller"
+                                    "name": "seller"
                                 },
                                 "children": [
                                     {
@@ -117,7 +117,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "buyer"
+                                    "name": "buyer"
                                 },
                                 "children": [
                                     {
@@ -134,7 +134,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "penaltyDuration"
+                                    "name": "penaltyDuration"
                                 },
                                 "children": [
                                     {
@@ -166,7 +166,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "penaltyPercentage"
+                                    "name": "penaltyPercentage"
                                 },
                                 "children": [
                                     {
@@ -198,7 +198,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "fractionalPart"
+                                    "name": "fractionalPart"
                                 },
                                 "children": [
                                     {
@@ -230,7 +230,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "fractionalPart"
+                                    "name": "fractionalPart"
                                 },
                                 "children": [
                                     {
@@ -262,7 +262,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "capPercentage"
+                                    "name": "capPercentage"
                                 },
                                 "children": [
                                     {
@@ -294,7 +294,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "termination"
+                                    "name": "termination"
                                 },
                                 "children": [
                                     {

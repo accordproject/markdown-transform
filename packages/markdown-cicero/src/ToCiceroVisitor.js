@@ -70,7 +70,6 @@ class ToCiceroMarkVisitor {
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
 
-                //console.log('CONTENT! : ' + tag.content);
                 if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
@@ -85,8 +84,6 @@ class ToCiceroMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-                } else {
-                    //console.log('Found Clause but without \'name\' and \'src\' attributes ');
                 }
             } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListVariable';
@@ -107,8 +104,6 @@ class ToCiceroMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-                } else {
-                    //console.log('List block does not contain a list');
                 }
             }
         }
@@ -119,38 +114,34 @@ class ToCiceroMarkVisitor {
                 thing.tag.tagName === 'variable' &&
                 (thing.tag.attributes.length === 2 || thing.tag.attributes.length === 3)) {
                 const tag = thing.tag;
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id') &&
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     const format = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'format');
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.id = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id').value;
+                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     thing.format = format ? decodeURIComponent(format.value) : null;
                     delete thing.tag;
                     delete thing.text;
-                } else {
-                    //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
             }
             if (thing.tag &&
                 thing.tag.tagName === 'if' &&
                 thing.tag.attributes.length === 4) {
                 const tag = thing.tag;
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id') &&
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ConditionalVariable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.id = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'id').value;
+                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     thing.whenTrue = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
                     thing.whenFalse = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
                     delete thing.tag;
                     delete thing.text;
-                } else {
-                    //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
             }
             if (thing.tag && thing.tag.tagName === 'formula' && thing.tag.attributes.length === 2) {
@@ -163,9 +154,6 @@ class ToCiceroMarkVisitor {
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     delete thing.tag;
                     delete thing.text;
-                }
-                else {
-                    //console.log('Found Formula but without \'value\' or \'name\' attribute');
                 }
             }
         }

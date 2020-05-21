@@ -97,11 +97,11 @@ class ToHtmlStringVisitor {
             break;
         case 'Variable': {
             const formatString = thing.format ? ` format="${thing.format}"` : '';
-            parameters.result += `<span class="variable" id="${thing.id}"${formatString}>${thing.value}</span>`;
+            parameters.result += `<span class="variable" name="${thing.name}"${formatString}>${thing.value}</span>`;
         }
             break;
         case 'ConditionalVariable':
-            parameters.result += `<span class="conditional" id="${thing.id}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;
+            parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;
             break;
         case 'Formula':
             parameters.result += `<span class="formula" name="${thing.name}">${thing.value}</span>`;

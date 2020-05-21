@@ -156,7 +156,7 @@ class FromCiceroVisitor {
             // Create the text for that document
             const content = '';
             const formatString = thing.format ? ` format="${encodeURIComponent(thing.format)}"` : '';
-            const attributeString = `id="${thing.id}" value="${encodeURIComponent(thing.value)}"${formatString}`;
+            const attributeString = `name="${thing.name}" value="${encodeURIComponent(thing.value)}"${formatString}`;
             const tagName = 'variable';
             if (this.options && !this.options.wrapVariables) {
                 thing.text = thing.value;
@@ -175,8 +175,8 @@ class FromCiceroVisitor {
 
             let attribute1 = {};
             attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'id';
-            attribute1.value = thing.id;
+            attribute1.name = 'name';
+            attribute1.value = thing.name;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
@@ -187,7 +187,7 @@ class FromCiceroVisitor {
 
             thing.tag = parameters.serializer.fromJSON(tag);
 
-            delete thing.id;
+            delete thing.name;
             delete thing.value;
             delete thing.format;
         }
@@ -242,7 +242,7 @@ class FromCiceroVisitor {
             // Create the text for that document
             const content = '';
             const attributeString =
-                  `id="${thing.id}" value="${encodeURIComponent(thing.value)}" whenTrue="${encodeURIComponent(thing.whenTrue)}" whenFalse="${encodeURIComponent(thing.whenFalse)}"`
+                  `name="${thing.name}" value="${encodeURIComponent(thing.value)}" whenTrue="${encodeURIComponent(thing.whenTrue)}" whenFalse="${encodeURIComponent(thing.whenFalse)}"`
             ;
             const tagName = 'if';
             if (this.options && !this.options.wrapVariables) {
@@ -262,8 +262,8 @@ class FromCiceroVisitor {
 
             let attribute1 = {};
             attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'id';
-            attribute1.value = thing.id;
+            attribute1.name = 'name';
+            attribute1.value = thing.name;
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
@@ -286,7 +286,7 @@ class FromCiceroVisitor {
 
             thing.tag = parameters.serializer.fromJSON(tag);
 
-            delete thing.id;
+            delete thing.name;
             delete thing.value;
             delete thing.whenTrue;
             delete thing.whenFalse;

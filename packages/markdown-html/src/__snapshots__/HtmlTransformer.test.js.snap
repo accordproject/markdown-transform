@@ -49,7 +49,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -58,7 +58,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -67,7 +67,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -76,7 +76,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -85,7 +85,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -94,7 +94,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -112,7 +112,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -121,7 +121,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
+              "name": "businessDays",
               "value": "10",
             },
             Object {
@@ -130,7 +130,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -139,7 +139,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -148,7 +148,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -166,7 +166,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -175,7 +175,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -184,7 +184,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
+              "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
             Object {
@@ -208,9 +208,9 @@ exports[`html converts acceptance.md to html 2`] = `
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
-<p>Acceptance of Delivery. <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
-<p>Inspection and Notice. <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> will have <span class=\\"variable\\" id=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
-<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
+<p>Acceptance of Delivery. <span class=\\"variable\\" name=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" name=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span class=\\"variable\\" name=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Inspection and Notice. <span class=\\"variable\\" name=\\"receiver\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span class=\\"variable\\" name=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span class=\\"variable\\" name=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span class=\\"variable\\" name=\\"deliverable\\">\\"Widgets\\"</span>.</p>
+<p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" name=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span class=\\"variable\\" name=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" name=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
 </div>
 </div>
 </body>
@@ -274,7 +274,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "loanAmount",
+          "name": "loanAmount",
           "value": "100000.0",
         },
         Object {
@@ -286,7 +286,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "rate",
+          "name": "rate",
           "value": "2.5",
         },
         Object {
@@ -302,7 +302,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "loanDuration",
+          "name": "loanDuration",
           "value": "15",
         },
         Object {
@@ -373,7 +373,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "rate",
+              "name": "rate",
               "value": "2.5",
             },
           ],
@@ -399,9 +399,9 @@ exports[`html converts clause.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span>
-at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%
-with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,
+<p>This is a fixed interest loan to the amount of <span class=\\"variable\\" name=\\"loanAmount\\">100000.0</span>
+at the yearly interest rate of <span class=\\"variable\\" name=\\"rate\\">2.5</span>%
+with a loan term of <span class=\\"variable\\" name=\\"loanDuration\\">15</span>,
 and monthly payments of <span class=\\"formula\\" name=\\"formula1\\">667.0</span></p>
 <p>This is a fixed interest loan to the amount of 100000.0
 at the yearly interest rate of 2.5%
@@ -409,7 +409,7 @@ with a loan term of 15,
 and monthly payments of 667.0</p>
 <div class=\\"clause\\" name=\\"bar\\" src=\\"foo\\">
 <p>this is
-multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span></p>
+multiline <span class=\\"variable\\" name=\\"rate\\">2.5</span></p>
 <p>content</p>
 </div>
 </div>
@@ -510,7 +510,7 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "format": "YYYY/MM/DD",
-          "id": "effectiveDate",
+          "name": "effectiveDate",
           "value": "2018/04/02",
         },
         Object {
@@ -519,7 +519,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "purchaser",
+          "name": "purchaser",
           "value": "\\"PETER\\"",
         },
         Object {
@@ -528,7 +528,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "supplier",
+          "name": "supplier",
           "value": "\\"DAN\\"",
         },
         Object {
@@ -537,7 +537,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "minimumPercentage",
+          "name": "minimumPercentage",
           "value": "85.0",
         },
         Object {
@@ -555,7 +555,7 @@ exports[`html converts demandforecast.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
-<p>On or before the <span class=\\"variable\\" id=\\"effectiveDate\\" format=\\"YYYY/MM/DD\\">2018/04/02</span>, and thereafter on or before the last day of each calendar quarter, the Purchaser <span class=\\"variable\\" id=\\"purchaser\\">\\"PETER\\"</span> shall send the Supplier <span class=\\"variable\\" id=\\"supplier\\">\\"DAN\\"</span> a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least <span class=\\"variable\\" id=\\"minimumPercentage\\">85.0</span>% of the quantity of the listed Product.</p>
+<p>On or before the <span class=\\"variable\\" name=\\"effectiveDate\\" format=\\"YYYY/MM/DD\\">2018/04/02</span>, and thereafter on or before the last day of each calendar quarter, the Purchaser <span class=\\"variable\\" name=\\"purchaser\\">\\"PETER\\"</span> shall send the Supplier <span class=\\"variable\\" name=\\"supplier\\">\\"DAN\\"</span> a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least <span class=\\"variable\\" name=\\"minimumPercentage\\">85.0</span>% of the quantity of the listed Product.</p>
 </div>
 </body>
 </html>"
@@ -1030,14 +1030,14 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "forceMajeure",
+              "name": "forceMajeure",
               "value": " except for Force Majeure cases,",
               "whenFalse": "",
               "whenTrue": " except for Force Majeure cases,",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "seller",
+              "name": "seller",
               "value": "\\"Dan\\"",
             },
             Object {
@@ -1046,7 +1046,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "buyer",
+              "name": "buyer",
               "value": "\\"Steve\\"",
             },
             Object {
@@ -1055,7 +1055,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyDuration",
+              "name": "penaltyDuration",
               "value": "2 days",
             },
             Object {
@@ -1067,7 +1067,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyPercentage",
+              "name": "penaltyPercentage",
               "value": "10.5",
             },
             Object {
@@ -1083,7 +1083,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -1099,7 +1099,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -1115,7 +1115,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "capPercentage",
+              "name": "capPercentage",
               "value": "55.0",
             },
             Object {
@@ -1131,7 +1131,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "termination",
+              "name": "termination",
               "value": "15 days",
             },
             Object {
@@ -1156,12 +1156,12 @@ exports[`html converts latedelivery.md to html 2`] = `
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" name=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
-of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
-whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" id=\\"fractionalPart\\">days</span> is to be
-considered a full <span class=\\"variable\\" id=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
-exceed <span class=\\"variable\\" id=\\"capPercentage\\">55.0</span>% of the total value of the Equipment involved in late delivery.
-If the delay is more than <span class=\\"variable\\" id=\\"termination\\">15 days</span>, the Buyer is entitled to terminate this Contract.</p>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"penaltyDuration\\">2 days</span>
+of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
+exceed <span class=\\"variable\\" name=\\"capPercentage\\">55.0</span>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <span class=\\"variable\\" name=\\"termination\\">15 days</span>, the Buyer is entitled to terminate this Contract.</p>
 </div>
 </div>
 </body>
@@ -1227,14 +1227,14 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "forceMajeure",
+              "name": "forceMajeure",
               "value": "",
               "whenFalse": "",
               "whenTrue": " except for Force Majeure cases,",
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "seller",
+              "name": "seller",
               "value": "\\"Dan\\"",
             },
             Object {
@@ -1243,7 +1243,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "buyer",
+              "name": "buyer",
               "value": "\\"Steve\\"",
             },
             Object {
@@ -1252,7 +1252,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyDuration",
+              "name": "penaltyDuration",
               "value": "2 days",
             },
             Object {
@@ -1264,7 +1264,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyPercentage",
+              "name": "penaltyPercentage",
               "value": "10.5",
             },
             Object {
@@ -1280,7 +1280,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -1296,7 +1296,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -1312,7 +1312,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "capPercentage",
+              "name": "capPercentage",
               "value": "55.0",
             },
             Object {
@@ -1328,7 +1328,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "termination",
+              "name": "termination",
               "value": "15 days",
             },
             Object {
@@ -1353,12 +1353,12 @@ exports[`html converts latedelivery-noforce.md to html 2`] = `
 <p>And below is a <strong>clause</strong>.</p>
 <div class=\\"clause\\" name=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"></span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
-of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
-whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" id=\\"fractionalPart\\">days</span> is to be
-considered a full <span class=\\"variable\\" id=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
-exceed <span class=\\"variable\\" id=\\"capPercentage\\">55.0</span>% of the total value of the Equipment involved in late delivery.
-If the delay is more than <span class=\\"variable\\" id=\\"termination\\">15 days</span>, the Buyer is entitled to terminate this Contract.</p>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"></span><span class=\\"variable\\" name=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"penaltyDuration\\">2 days</span>
+of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\">days</span>. The total amount of penalty shall not however,
+exceed <span class=\\"variable\\" name=\\"capPercentage\\">55.0</span>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <span class=\\"variable\\" name=\\"termination\\">15 days</span>, the Buyer is entitled to terminate this Contract.</p>
 </div>
 </div>
 </body>

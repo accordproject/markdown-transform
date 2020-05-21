@@ -36,7 +36,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -45,7 +45,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -54,7 +54,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -63,7 +63,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -72,7 +72,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -81,7 +81,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -99,7 +99,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -108,7 +108,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
+              "name": "businessDays",
               "value": "10",
             },
             Object {
@@ -117,7 +117,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -126,7 +126,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -135,7 +135,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -153,7 +153,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -162,7 +162,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -171,7 +171,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
+              "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
             Object {
@@ -194,11 +194,11 @@ exports[`slate converts acceptance.json to and from CiceroMark 2`] = `
 And below is a clause.
 
 \`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\">
-Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Acceptance of Delivery. <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
 
-Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Inspection and Notice. <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable name=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable name=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
 \`\`\`"
 `;
 
@@ -244,7 +244,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -261,7 +261,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -278,7 +278,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -295,7 +295,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -312,7 +312,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -329,7 +329,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -357,7 +357,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -374,7 +374,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "businessDays",
+                  "name": "businessDays",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -391,7 +391,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -408,7 +408,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -425,7 +425,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -453,7 +453,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -470,7 +470,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -487,7 +487,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "attachment",
+                  "name": "attachment",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -563,7 +563,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -572,7 +572,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -581,7 +581,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -590,7 +590,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -599,7 +599,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -608,7 +608,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -626,7 +626,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -635,7 +635,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
+              "name": "businessDays",
               "value": "10",
             },
             Object {
@@ -644,7 +644,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -653,7 +653,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -662,7 +662,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -680,7 +680,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -689,7 +689,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -698,7 +698,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
+              "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
             Object {
@@ -1317,7 +1317,7 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "format": "YYYY/MM/DD",
-          "id": "effectiveDate",
+          "name": "effectiveDate",
           "value": "2018/04/02",
         },
         Object {
@@ -1326,7 +1326,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "purchaser",
+          "name": "purchaser",
           "value": "\\"PETER\\"",
         },
         Object {
@@ -1335,7 +1335,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "supplier",
+          "name": "supplier",
           "value": "\\"DAN\\"",
         },
         Object {
@@ -1344,7 +1344,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "minimumPercentage",
+          "name": "minimumPercentage",
           "value": "85.0",
         },
         Object {
@@ -1358,7 +1358,7 @@ Object {
 }
 `;
 
-exports[`slate converts demandforecast.json to and from CiceroMark 2`] = `"On or before the <variable id=\\"effectiveDate\\" value=\\"2018%2F04%2F02\\" format=\\"YYYY%2FMM%2FDD\\"/>, and thereafter on or before the last day of each calendar quarter, the Purchaser <variable id=\\"purchaser\\" value=\\"%22PETER%22\\"/> shall send the Supplier <variable id=\\"supplier\\" value=\\"%22DAN%22\\"/> a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least <variable id=\\"minimumPercentage\\" value=\\"85.0\\"/>% of the quantity of the listed Product."`;
+exports[`slate converts demandforecast.json to and from CiceroMark 2`] = `"On or before the <variable name=\\"effectiveDate\\" value=\\"2018%2F04%2F02\\" format=\\"YYYY%2FMM%2FDD\\"/>, and thereafter on or before the last day of each calendar quarter, the Purchaser <variable name=\\"purchaser\\" value=\\"%22PETER%22\\"/> shall send the Supplier <variable name=\\"supplier\\" value=\\"%22DAN%22\\"/> a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least <variable name=\\"minimumPercentage\\" value=\\"85.0\\"/>% of the quantity of the listed Product."`;
 
 exports[`slate converts demandforecast.json to and from CiceroMark 3`] = `
 Object {
@@ -1379,7 +1379,7 @@ Object {
             ],
             "data": Object {
               "format": "YYYY/MM/DD",
-              "id": "effectiveDate",
+              "name": "effectiveDate",
             },
             "object": "inline",
             "type": "variable",
@@ -1396,7 +1396,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "purchaser",
+              "name": "purchaser",
             },
             "object": "inline",
             "type": "variable",
@@ -1413,7 +1413,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "supplier",
+              "name": "supplier",
             },
             "object": "inline",
             "type": "variable",
@@ -1430,7 +1430,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "minimumPercentage",
+              "name": "minimumPercentage",
             },
             "object": "inline",
             "type": "variable",
@@ -1465,7 +1465,7 @@ Object {
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
           "format": "YYYY/MM/DD",
-          "id": "effectiveDate",
+          "name": "effectiveDate",
           "value": "2018/04/02",
         },
         Object {
@@ -1474,7 +1474,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "purchaser",
+          "name": "purchaser",
           "value": "\\"PETER\\"",
         },
         Object {
@@ -1483,7 +1483,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "supplier",
+          "name": "supplier",
           "value": "\\"DAN\\"",
         },
         Object {
@@ -1492,7 +1492,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.Variable",
-          "id": "minimumPercentage",
+          "name": "minimumPercentage",
           "value": "85.0",
         },
         Object {
@@ -2457,7 +2457,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "forceMajeure",
+              "name": "forceMajeure",
               "value": " except for Force Majeure cases,",
               "whenFalse": "",
               "whenTrue": " except for Force Majeure cases,",
@@ -2467,7 +2467,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "seller",
+              "name": "seller",
               "value": "\\"Dan\\"",
             },
             Object {
@@ -2476,7 +2476,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "buyer",
+              "name": "buyer",
               "value": "\\"Steve\\"",
             },
             Object {
@@ -2485,7 +2485,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyDuration",
+              "name": "penaltyDuration",
               "value": "2 days",
             },
             Object {
@@ -2497,7 +2497,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyPercentage",
+              "name": "penaltyPercentage",
               "value": "10.5",
             },
             Object {
@@ -2513,7 +2513,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -2529,7 +2529,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -2545,7 +2545,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "capPercentage",
+              "name": "capPercentage",
               "value": "55.0",
             },
             Object {
@@ -2561,7 +2561,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "termination",
+              "name": "termination",
               "value": "15 days",
             },
             Object {
@@ -2587,13 +2587,13 @@ And below is a **clause**.
 Late Delivery and Penalty.
 ----
 
-In case of delayed delivery<if id=\\"forceMajeure\\" value=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenTrue=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenFalse=\\"\\"/>
-<variable id=\\"seller\\" value=\\"%22Dan%22\\"/> (the Seller) shall pay to <variable id=\\"buyer\\" value=\\"%22Steve%22\\"/> (the Buyer) for every <variable id=\\"penaltyDuration\\" value=\\"2%20days\\"/>
-of delay penalty amounting to <variable id=\\"penaltyPercentage\\" value=\\"10.5\\"/>% of the total value of the Equipment
-whose delivery has been delayed. Any fractional part of a <variable id=\\"fractionalPart\\" value=\\"days\\"/> is to be
-considered a full <variable id=\\"fractionalPart\\" value=\\"days\\"/>. The total amount of penalty shall not however,
-exceed <variable id=\\"capPercentage\\" value=\\"55.0\\"/>% of the total value of the Equipment involved in late delivery.
-If the delay is more than <variable id=\\"termination\\" value=\\"15%20days\\"/>, the Buyer is entitled to terminate this Contract.
+In case of delayed delivery<if name=\\"forceMajeure\\" value=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenTrue=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenFalse=\\"\\"/>
+<variable name=\\"seller\\" value=\\"%22Dan%22\\"/> (the Seller) shall pay to <variable name=\\"buyer\\" value=\\"%22Steve%22\\"/> (the Buyer) for every <variable name=\\"penaltyDuration\\" value=\\"2%20days\\"/>
+of delay penalty amounting to <variable name=\\"penaltyPercentage\\" value=\\"10.5\\"/>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <variable name=\\"fractionalPart\\" value=\\"days\\"/> is to be
+considered a full <variable name=\\"fractionalPart\\" value=\\"days\\"/>. The total amount of penalty shall not however,
+exceed <variable name=\\"capPercentage\\" value=\\"55.0\\"/>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <variable name=\\"termination\\" value=\\"15%20days\\"/>, the Buyer is entitled to terminate this Contract.
 \`\`\`"
 `;
 
@@ -2659,7 +2659,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "forceMajeure",
+                  "name": "forceMajeure",
                   "whenFalse": "",
                   "whenTrue": " except for Force Majeure cases,",
                 },
@@ -2693,7 +2693,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "seller",
+                  "name": "seller",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2710,7 +2710,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "buyer",
+                  "name": "buyer",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2727,7 +2727,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "penaltyDuration",
+                  "name": "penaltyDuration",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2759,7 +2759,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "penaltyPercentage",
+                  "name": "penaltyPercentage",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2791,7 +2791,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "fractionalPart",
+                  "name": "fractionalPart",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2823,7 +2823,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "fractionalPart",
+                  "name": "fractionalPart",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2855,7 +2855,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "capPercentage",
+                  "name": "capPercentage",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2887,7 +2887,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "termination",
+                  "name": "termination",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -2986,7 +2986,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "forceMajeure",
+              "name": "forceMajeure",
               "value": " except for Force Majeure cases,",
               "whenFalse": "",
               "whenTrue": " except for Force Majeure cases,",
@@ -2996,7 +2996,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "seller",
+              "name": "seller",
               "value": "\\"Dan\\"",
             },
             Object {
@@ -3005,7 +3005,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "buyer",
+              "name": "buyer",
               "value": "\\"Steve\\"",
             },
             Object {
@@ -3014,7 +3014,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyDuration",
+              "name": "penaltyDuration",
               "value": "2 days",
             },
             Object {
@@ -3026,7 +3026,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "penaltyPercentage",
+              "name": "penaltyPercentage",
               "value": "10.5",
             },
             Object {
@@ -3042,7 +3042,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -3058,7 +3058,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "fractionalPart",
+              "name": "fractionalPart",
               "value": "days",
             },
             Object {
@@ -3074,7 +3074,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "capPercentage",
+              "name": "capPercentage",
               "value": "55.0",
             },
             Object {
@@ -3090,7 +3090,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "termination",
+              "name": "termination",
               "value": "15 days",
             },
             Object {
@@ -4001,7 +4001,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4010,7 +4010,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4019,7 +4019,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4028,7 +4028,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4037,7 +4037,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4046,7 +4046,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4064,7 +4064,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4073,7 +4073,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
+              "name": "businessDays",
               "value": "10",
             },
             Object {
@@ -4082,7 +4082,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4091,7 +4091,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4100,7 +4100,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4118,7 +4118,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4127,7 +4127,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4136,7 +4136,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
+              "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
             Object {
@@ -4216,11 +4216,11 @@ exports[`slate converts multiple-clauses.json to and from CiceroMark 2`] = `
 And below is a clause with a clause immediately after.
 
 \`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\">
-Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Acceptance of Delivery. <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
 
-Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Inspection and Notice. <variable name=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable name=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable name=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable name=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
 \`\`\`
 \`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1z\\" name=\\"479adbb4-dc55-4d1a-ab12-z6c5e16900c0\\">
 Acceptance of Nothing.
@@ -4278,7 +4278,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4295,7 +4295,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4312,7 +4312,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4329,7 +4329,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4346,7 +4346,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4363,7 +4363,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4391,7 +4391,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "receiver",
+                  "name": "receiver",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4408,7 +4408,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "businessDays",
+                  "name": "businessDays",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4425,7 +4425,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4442,7 +4442,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4459,7 +4459,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4487,7 +4487,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "deliverable",
+                  "name": "deliverable",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4504,7 +4504,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "shipper",
+                  "name": "shipper",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4521,7 +4521,7 @@ Object {
                   },
                 ],
                 "data": Object {
-                  "id": "attachment",
+                  "name": "attachment",
                 },
                 "object": "inline",
                 "type": "variable",
@@ -4693,7 +4693,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4702,7 +4702,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4711,7 +4711,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4720,7 +4720,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4729,7 +4729,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4738,7 +4738,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4756,7 +4756,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "receiver",
+              "name": "receiver",
               "value": "\\"Party B\\"",
             },
             Object {
@@ -4765,7 +4765,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "businessDays",
+              "name": "businessDays",
               "value": "10",
             },
             Object {
@@ -4774,7 +4774,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4783,7 +4783,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4792,7 +4792,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4810,7 +4810,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "deliverable",
+              "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
             Object {
@@ -4819,7 +4819,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "shipper",
+              "name": "shipper",
               "value": "\\"Party A\\"",
             },
             Object {
@@ -4828,7 +4828,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "attachment",
+              "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
             Object {
@@ -5711,7 +5711,7 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "format": "0,0.00 CCC",
-              "id": "amount",
+              "name": "amount",
               "value": "1,000.00 USD",
             },
           ],
@@ -5725,7 +5725,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "date",
+              "name": "date",
               "value": "01/30/2018",
             },
           ],
@@ -5744,7 +5744,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "maker",
+              "name": "maker",
               "value": "\\"Daniel\\"",
             },
           ],
@@ -5758,7 +5758,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "individual",
+              "name": "individual",
               "value": "an individual residing",
               "whenFalse": "a company registered",
               "whenTrue": "an individual residing",
@@ -5774,7 +5774,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "makerAddress",
+              "name": "makerAddress",
               "value": "\\"1 Main Street\\"",
             },
           ],
@@ -5788,7 +5788,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "lender",
+              "name": "lender",
               "value": "\\"Clause Inc.\\"",
             },
           ],
@@ -5802,7 +5802,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "legalEntity",
+              "name": "legalEntity",
               "value": "CORP",
             },
           ],
@@ -5816,7 +5816,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "lenderAddress",
+              "name": "lenderAddress",
               "value": "\\"246 5th Ave, 3rd Fl, New York, NY 10001\\"",
             },
           ],
@@ -5831,7 +5831,7 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "format": "0,0.00 CCC",
-              "id": "principal",
+              "name": "principal",
               "value": "500.00 USD",
             },
           ],
@@ -5851,9 +5851,9 @@ exports[`slate converts promissory.json to and from CiceroMark 2`] = `
 "PROMISSORY NOTE
 ====
 
-**<variable id=\\"amount\\" value=\\"1%2C000.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>** **<variable id=\\"date\\" value=\\"01%2F30%2F2018\\"/>**
+**<variable name=\\"amount\\" value=\\"1%2C000.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>** **<variable name=\\"date\\" value=\\"01%2F30%2F2018\\"/>**
 
-FOR VALUE RECEIVED, the undersigned, **<variable id=\\"maker\\" value=\\"%22Daniel%22\\"/>**, **<if id=\\"individual\\" value=\\"an%20individual%20residing\\" whenTrue=\\"an%20individual%20residing\\" whenFalse=\\"a%20company%20registered\\"/>** at **<variable id=\\"makerAddress\\" value=\\"%221%20Main%20Street%22\\"/>** (“Maker”), hereby promises to pay to the order of **<variable id=\\"lender\\" value=\\"%22Clause%20Inc.%22\\"/>**, a **<variable id=\\"legalEntity\\" value=\\"CORP\\"/>**, having offices at **<variable id=\\"lenderAddress\\" value=\\"%22246%205th%20Ave%2C%203rd%20Fl%2C%20New%20York%2C%20NY%2010001%22\\"/>**, or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of **<variable id=\\"principal\\" value=\\"500.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>**, plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).
+FOR VALUE RECEIVED, the undersigned, **<variable name=\\"maker\\" value=\\"%22Daniel%22\\"/>**, **<if name=\\"individual\\" value=\\"an%20individual%20residing\\" whenTrue=\\"an%20individual%20residing\\" whenFalse=\\"a%20company%20registered\\"/>** at **<variable name=\\"makerAddress\\" value=\\"%221%20Main%20Street%22\\"/>** (“Maker”), hereby promises to pay to the order of **<variable name=\\"lender\\" value=\\"%22Clause%20Inc.%22\\"/>**, a **<variable name=\\"legalEntity\\" value=\\"CORP\\"/>**, having offices at **<variable name=\\"lenderAddress\\" value=\\"%22246%205th%20Ave%2C%203rd%20Fl%2C%20New%20York%2C%20NY%2010001%22\\"/>**, or its successors and permitted assigns (“Lender” or the “Company”), the principal sum of **<variable name=\\"principal\\" value=\\"500.00%20USD\\" format=\\"0%2C0.00%20CCC\\"/>**, plus any and all interest accrued thereon at the Note Rate (defined below), each due and payable in cash in lawful money of the United States on the dates and in the manner set forth in this Promissory Note (this “Note”).
 "
 `;
 
@@ -5888,7 +5888,7 @@ Object {
             ],
             "data": Object {
               "format": "0,0.00 CCC",
-              "id": "amount",
+              "name": "amount",
             },
             "object": "inline",
             "type": "variable",
@@ -5906,7 +5906,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "date",
+              "name": "date",
             },
             "object": "inline",
             "type": "variable",
@@ -5935,7 +5935,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "maker",
+              "name": "maker",
             },
             "object": "inline",
             "type": "variable",
@@ -5953,7 +5953,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "individual",
+              "name": "individual",
               "whenFalse": "a company registered",
               "whenTrue": "an individual residing",
             },
@@ -5973,7 +5973,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "makerAddress",
+              "name": "makerAddress",
             },
             "object": "inline",
             "type": "variable",
@@ -5991,7 +5991,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "lender",
+              "name": "lender",
             },
             "object": "inline",
             "type": "variable",
@@ -6009,7 +6009,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "legalEntity",
+              "name": "legalEntity",
             },
             "object": "inline",
             "type": "variable",
@@ -6027,7 +6027,7 @@ Object {
               },
             ],
             "data": Object {
-              "id": "lenderAddress",
+              "name": "lenderAddress",
             },
             "object": "inline",
             "type": "variable",
@@ -6046,7 +6046,7 @@ Object {
             ],
             "data": Object {
               "format": "0,0.00 CCC",
-              "id": "principal",
+              "name": "principal",
             },
             "object": "inline",
             "type": "variable",
@@ -6090,7 +6090,7 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "format": "0,0.00 CCC",
-              "id": "amount",
+              "name": "amount",
               "value": "1,000.00 USD",
             },
           ],
@@ -6104,7 +6104,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "date",
+              "name": "date",
               "value": "01/30/2018",
             },
           ],
@@ -6123,7 +6123,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "maker",
+              "name": "maker",
               "value": "\\"Daniel\\"",
             },
           ],
@@ -6137,7 +6137,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.ConditionalVariable",
-              "id": "individual",
+              "name": "individual",
               "value": "an individual residing",
               "whenFalse": "a company registered",
               "whenTrue": "an individual residing",
@@ -6153,7 +6153,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "makerAddress",
+              "name": "makerAddress",
               "value": "\\"1 Main Street\\"",
             },
           ],
@@ -6167,7 +6167,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "lender",
+              "name": "lender",
               "value": "\\"Clause Inc.\\"",
             },
           ],
@@ -6181,7 +6181,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "legalEntity",
+              "name": "legalEntity",
               "value": "CORP",
             },
           ],
@@ -6195,7 +6195,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
-              "id": "lenderAddress",
+              "name": "lenderAddress",
               "value": "\\"246 5th Ave, 3rd Fl, New York, NY 10001\\"",
             },
           ],
@@ -6210,7 +6210,7 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Variable",
               "format": "0,0.00 CCC",
-              "id": "principal",
+              "name": "principal",
               "value": "500.00 USD",
             },
           ],
