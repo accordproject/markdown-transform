@@ -7,7 +7,7 @@
           "js": "packages/markdown-common/src/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
-          "from": "https://js-new-ciceromark--accordproject-models.netlify.app/markdown/ciceromark@0.3.0.cto",
+          "from": "https://js-new-ciceromark--accordproject-models.netlify.app/markdown/ciceromark@0.4.0.cto",
           "js": "packages/markdown-cicero/src/externalModels" },
         { "name": "TemplateMarkModel",
           "namespace" : "org.accordproject.templatemark",
