@@ -104,7 +104,7 @@ class FromCiceroVisitor {
             thing.info = `<clause ${attributeString}/>`;
         }
             break;
-        case 'ListVariable': {
+        case 'ListBlock': {
             let jsonSource = {};
             let jsonTarget = {};
 
@@ -114,13 +114,19 @@ class FromCiceroVisitor {
 
             // Get the content
             const ciceroMarkTag = NS_PREFIX_CommonMarkModel + 'List';
+            const listName = thing.name;
+            thing.type = thing.kind;
+            delete thing.name;
+            delete thing.kind;
+
             thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-            const clauseJson = parameters.serializer.toJSON(thing);
+            const listJson = parameters.serializer.toJSON(thing);
             jsonSource.$class = NS_PREFIX_CommonMarkModel + 'Document';
             jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
-            jsonSource.nodes = [clauseJson];
+            jsonSource.nodes = [listJson];
 
             const content = parameters.commonMark.toMarkdown(jsonSource);
+            const attributeString = `name="${listName}"`;
 
             jsonTarget.text = content + '\n';
 
@@ -128,10 +134,16 @@ class FromCiceroVisitor {
             let tag = {};
             tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
             tag.tagName = 'list';
-            tag.attributeString = '';
+            tag.attributeString = attributeString;
             tag.content = content;
             tag.closed = false;
             tag.attributes = [];
+
+            let attribute1 = {};
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute1.name = 'name';
+            attribute1.value = listName;
+            tag.attributes.push(attribute1);
 
             jsonTarget.tag = tag;
 
@@ -146,7 +158,7 @@ class FromCiceroVisitor {
             thing.tag = validatedTarget.tag;
             thing.nodes = validatedTarget.nodes;
             thing.text = validatedTarget.text;
-            thing.info = '<list/>';
+            thing.info = `<list ${attributeString}/>`;
         }
             break;
         case 'Variable': {

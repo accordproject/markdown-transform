@@ -29,6 +29,7 @@
                 "object": "block",
                 "type": "ul_list",
                 "data": {
+                    "name": "volumes",
                     "tight": "true",
                     "kind": "variable"
                 },

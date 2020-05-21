@@ -85,8 +85,10 @@ class ToCiceroMarkVisitor {
                     delete thing.tag;
                     delete thing.info;
                 }
-            } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListVariable';
+            } else if (tag && tag.tagName === 'list' &&
+                       tag.attributes.length === 1 &&
+                       ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name')) {
+                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListBlock';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
 
@@ -94,7 +96,8 @@ class ToCiceroMarkVisitor {
                 if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
                     const listNode = newNodes[0];
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.type = listNode.type;
+                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    thing.kind = listNode.type;
                     thing.start = listNode.start;
                     thing.tight = listNode.tight;
                     thing.delimiter = listNode.delimiter;
