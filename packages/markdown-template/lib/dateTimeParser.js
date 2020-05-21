@@ -64,7 +64,7 @@ function mkDateTimeVariable(variable,value) {
         const nb = x ? '' + x : '' + def;
         return nb.padStart(digits,'0');
     };
-    const valueObj = mkCompoundVariable({'type':'DateTime'},value);
+    const valueObj = mkCompoundVariable({'elementType':'DateTime'},value);
     const year = fillNumber(valueObj.year,4,0);
     const month = fillNumber(valueObj.month,2,1);
     const day = fillNumber(valueObj.day,2,1);

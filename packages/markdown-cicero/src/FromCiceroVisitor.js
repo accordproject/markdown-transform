@@ -81,7 +81,7 @@ class FromCiceroVisitor {
             let attribute1 = {};
             attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute1.name = 'src';
-            attribute1.value = clauseJson.src;
+            attribute1.value = clauseJson.src ? clauseJson.src : '';
             tag.attributes.push(attribute1);
 
             let attribute2 = {};
@@ -94,6 +94,7 @@ class FromCiceroVisitor {
 
             let validatedTarget = parameters.serializer.fromJSON(jsonTarget);
 
+            delete thing.elementType;
             delete thing.name;
             delete thing.src;
 
@@ -115,9 +116,7 @@ class FromCiceroVisitor {
             // Get the content
             const ciceroMarkTag = NS_PREFIX_CommonMarkModel + 'List';
             const listName = thing.name;
-            thing.type = thing.kind;
             delete thing.name;
-            delete thing.kind;
 
             thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
             const listJson = parameters.serializer.toJSON(thing);
@@ -150,6 +149,7 @@ class FromCiceroVisitor {
             let validatedTarget = parameters.serializer.fromJSON(jsonTarget);
 
             delete thing.type;
+            delete thing.elementType;
             delete thing.start;
             delete thing.tight;
             delete thing.delimiter;
@@ -220,6 +220,7 @@ class FromCiceroVisitor {
 
             thing.tag = parameters.serializer.fromJSON(tag);
 
+            delete thing.elementType;
             delete thing.name;
             delete thing.value;
             delete thing.format;
@@ -264,6 +265,7 @@ class FromCiceroVisitor {
 
             thing.tag = parameters.serializer.fromJSON(tag);
 
+            delete thing.elementType;
             delete thing.name;
             delete thing.value;
             delete thing.format;
@@ -320,6 +322,7 @@ class FromCiceroVisitor {
 
             thing.tag = parameters.serializer.fromJSON(tag);
 
+            delete thing.elementType;
             delete thing.name;
             delete thing.value;
             delete thing.whenTrue;

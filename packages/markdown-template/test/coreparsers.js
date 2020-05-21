@@ -33,10 +33,10 @@ const textParser = require('../lib/coreparsers').textParser;
 const seqParser = require('../lib/coreparsers').seqParser;
 
 // Variables
-const var1 = { 'kind': 'variable', 'name': 'seller', 'type': 'String' };
-const var2 = { 'kind': 'variable', 'name': 'int', 'type': 'Integer' };
-const var3 = { 'kind': 'variable', 'name': 'amount', 'type': 'Double' };
-const var4 = { 'kind': 'variable', 'name': 'currency', 'type': 'Enum', 'value': ['USD','GBP','EUR'] };
+const var1 = { 'kind': 'variable', 'name': 'seller', 'elementType': 'String' };
+const var2 = { 'kind': 'variable', 'name': 'int', 'elementType': 'Integer' };
+const var3 = { 'kind': 'variable', 'name': 'amount', 'elementType': 'Double' };
+const var4 = { 'kind': 'variable', 'name': 'currency', 'elementType': 'Enum', 'value': ['USD','GBP','EUR'] };
 
 describe('#coreparsers', () => {
     describe('#variables', () => {

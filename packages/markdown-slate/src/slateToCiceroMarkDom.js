@@ -147,8 +147,8 @@ function _recursive(parent, nodes) {
                 break;
             case 'ol_list':
             case 'ul_list': {
-                if (node.data.kind === 'variable') {
-                    result = {$class : `${NS_CICERO}.ListBlock`, name: node.data.name, kind: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+                if (node.data.type === 'variable') {
+                    result = {$class : `${NS_CICERO}.ListBlock`, name: node.data.name, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
                 } else {
                     result = {$class : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
                 }

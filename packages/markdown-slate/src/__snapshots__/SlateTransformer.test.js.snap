@@ -6755,7 +6755,6 @@ Object {
     Object {
       "$class": "org.accordproject.ciceromark.ListBlock",
       "delimiter": undefined,
-      "kind": "bullet",
       "name": "volumes",
       "nodes": Array [
         Object {
@@ -6845,6 +6844,7 @@ Object {
       ],
       "start": undefined,
       "tight": "true",
+      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -7005,10 +7005,10 @@ Object {
         ],
         "data": Object {
           "delimiter": undefined,
-          "kind": "variable",
           "name": "volumes",
           "start": undefined,
           "tight": "true",
+          "type": "variable",
         },
         "object": "block",
         "type": "ul_list",
@@ -7046,7 +7046,6 @@ Object {
     Object {
       "$class": "org.accordproject.ciceromark.ListBlock",
       "delimiter": undefined,
-      "kind": "bullet",
       "name": "volumes",
       "nodes": Array [
         Object {
@@ -7136,6 +7135,7 @@ Object {
       ],
       "start": undefined,
       "tight": "true",
+      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
