@@ -9,7 +9,7 @@ at the yearly interest rate of 2.5%
 with a loan term of 15,
 and monthly payments of 667.0
 
-``` <clause src="foo" clauseid="bar"/>
+``` <clause src="foo" name="bar"/>
 this is
 multiline <variable id="rate" value="2.5"/>
 

@@ -36,11 +36,11 @@
        },
        {
            "$class": "org.accordproject.commonmark.CodeBlock",
-           "info": "<clause src=\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\" clauseid=\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\"/>",
+           "info": "<clause src=\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\" name=\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\"/>",
            "tag": {
                "$class": "org.accordproject.commonmark.TagInfo",
                "tagName": "clause",
-               "attributeString": "src = \"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\" clauseid = \"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\" ",
+               "attributeString": "src = \"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\" name = \"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\" ",
                "attributes": [
                    {
                        "$class": "org.accordproject.commonmark.Attribute",
@@ -49,7 +49,7 @@
                    },
                    {
                        "$class": "org.accordproject.commonmark.Attribute",
-                       "name": "clauseid",
+                       "name": "name",
                        "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0"
                    }
                ],

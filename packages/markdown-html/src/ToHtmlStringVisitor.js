@@ -93,7 +93,7 @@ class ToHtmlStringVisitor {
             //     const ciceroMarkTransformer = new CiceroMarkTransformer();
             //     console.log(JSON.stringify(ciceroMarkTransformer.getSerializer().toJSON(thing), null, 4));
             // }
-            parameters.result += `<div class="clause" clauseid="${thing.clauseid}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
+            parameters.result += `<div class="clause" name="${thing.name}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
             break;
         case 'Variable': {
             const formatString = thing.format ? ` format="${thing.format}"` : '';

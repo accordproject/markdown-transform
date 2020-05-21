@@ -1,4 +1,4 @@
-```<clause src="ap://volumediscountulist@0.2.1.cta" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0#8cf849ca763071ed333fde22f3636ed7ef4294dce34f69d71bc3b75d75fca800" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0"/>
+```<clause src="ap://volumediscountulist@0.2.1.cta" name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0#8cf849ca763071ed333fde22f3636ed7ef4294dce34f69d71bc3b75d75fca800" name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0"/>
 #### Discount.
 
 The Discount is determined according to the following table:

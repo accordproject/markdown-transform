@@ -2,7 +2,7 @@
 
 And below is a **clause**.
 
-``` <clause src="ap://acceptance-of-delivery@0.13.2.cta" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0"/>
+``` <clause src="ap://acceptance-of-delivery@0.13.2.cta" name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0"/>
 ## Acceptance of Delivery.
 
 "Party A" will be deemed to have completed its delivery obligations

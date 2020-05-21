@@ -799,7 +799,7 @@ Qui quas ex sint et incidunt voluptatum qui dolorum molestias. Labore eaque amet
 Minima repudiandae recusandae sit ut sunt omnis fugiat. Soluta aperiam sunt. Temporibus eveniet ut quia qui quaerat. Vel et ea placeat. Enim occaecati ut inventore distinctio dignissimos corrupti quas. Praesentium eum quis molestiae ut modi qui.
 Nam hic nisi dolore molestias doloribus culpa quo. Placeat ipsam est laborum eaque consequatur dolorem ea aut. Veniam nihil et. Dolorem sunt ut fuga. Et provident similique dolore.
 This is contract text, followed by a clause:
-``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">
+``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">
 This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.
 ```
 There is a penalty of 10.99% for non compliance.

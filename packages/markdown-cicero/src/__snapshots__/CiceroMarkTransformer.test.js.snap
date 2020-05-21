@@ -38,7 +38,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -238,10 +238,10 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
@@ -250,7 +250,7 @@ Object {
           },
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
+            "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
         ],
@@ -316,7 +316,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -530,10 +530,10 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
@@ -542,7 +542,7 @@ Object {
           },
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
+            "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
         ],
@@ -608,7 +608,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -826,7 +826,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -1034,10 +1034,10 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
@@ -1046,7 +1046,7 @@ Object {
           },
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
+            "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
         ],
@@ -1112,7 +1112,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -1274,10 +1274,10 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
@@ -1286,7 +1286,7 @@ Object {
           },
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
+            "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
         ],
@@ -1378,7 +1378,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -1588,7 +1588,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -1757,7 +1757,7 @@ exports[`acceptance converts acceptance to CommonMark DOM 2`] = `
 
 And below is a **clause**.
 
-\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>
+\`\`\` <clause src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>
 Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
 
 Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
@@ -1804,7 +1804,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -2005,7 +2005,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -2219,7 +2219,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -2387,14 +2387,14 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\">",
+      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\">",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" ",
+        "attributeString": "name = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" ",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
-            "name": "clauseid",
+            "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
           Object {
@@ -2457,7 +2457,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -2745,7 +2745,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "bar",
+      "name": "bar",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -2791,7 +2791,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -3387,7 +3387,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -3567,7 +3567,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
