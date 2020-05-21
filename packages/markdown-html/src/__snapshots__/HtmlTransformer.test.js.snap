@@ -317,7 +317,8 @@ Object {
           "text": "and monthly payments of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark.ComputedVariable",
+          "$class": "org.accordproject.ciceromark.Formula",
+          "name": "formula1",
           "value": "667.0",
         },
       ],
@@ -401,7 +402,7 @@ exports[`html converts clause.md to html 2`] = `
 <p>This is a fixed interest loan to the amount of <span class=\\"variable\\" id=\\"loanAmount\\">100000.0</span>
 at the yearly interest rate of <span class=\\"variable\\" id=\\"rate\\">2.5</span>%
 with a loan term of <span class=\\"variable\\" id=\\"loanDuration\\">15</span>,
-and monthly payments of <span class=\\"computed\\">667.0</span></p>
+and monthly payments of <span class=\\"formula\\" name=\\"formula1\\">667.0</span></p>
 <p>This is a fixed interest loan to the amount of 100000.0
 at the yearly interest rate of 2.5%
 with a loan term of 15,

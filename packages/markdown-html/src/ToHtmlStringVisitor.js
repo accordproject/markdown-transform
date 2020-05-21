@@ -103,8 +103,8 @@ class ToHtmlStringVisitor {
         case 'ConditionalVariable':
             parameters.result += `<span class="conditional" id="${thing.id}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;
             break;
-        case 'ComputedVariable':
-            parameters.result += `<span class="computed">${thing.value}</span>`;
+        case 'Formula':
+            parameters.result += `<span class="formula" name="${thing.name}">${thing.value}</span>`;
             break;
         case 'CodeBlock': {
             const info = thing.info;

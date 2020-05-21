@@ -98,8 +98,10 @@ function _recursive(parent, nodes) {
                 break;
             case 'variable':
             case 'conditional':
-            case 'computed':
                 result = handleVariable(node);
+                break;
+            case 'formula':
+                result = handleFormula(node);
                 break;
             case 'paragraph':
                 result = {$class : `${NS}.Paragraph`, nodes: []};
@@ -242,18 +244,16 @@ function handleVariable(node) {
     node.children = []; // Reset the children for the inline to avoid recursion
 
     const type = node.type;
-    const baseName = type === 'variable' ? 'Variable' : type === 'conditional' ? 'ConditionalVariable' : 'ComputedVariable';
+    const baseName = type === 'variable' ? 'Variable' : 'ConditionalVariable';
     const className = `${NS_CICERO}.${baseName}`;
 
     result = {
         $class : className,
+        id : node.data.id,
         value : textNode.text
     };
 
     const data = node.data;
-    if (Object.prototype.hasOwnProperty.call(data,'id')) {
-        result.id = data.id;
-    }
     if (Object.prototype.hasOwnProperty.call(data,'format')) {
         result.format = data.format;
     }
@@ -262,6 +262,33 @@ function handleVariable(node) {
     }
     if (Object.prototype.hasOwnProperty.call(data,'whenFalse')) {
         result.whenFalse = data.whenFalse;
+    }
+
+    return handleMarks(node,result);
+}
+
+/**
+ * Handles a formula
+ * @param {*} node the slate formula node
+ * @returns {*} the ast node
+ */
+function handleFormula(node) {
+    let result = null;
+
+    const textNode = node.children[0]; // inlines always contain a single text node
+    node.children = []; // Reset the children for the inline to avoid recursion
+
+    const baseName = 'Formula';
+    const className = `${NS_CICERO}.${baseName}`;
+
+    result = {
+        $class : className,
+        value : textNode.text
+    };
+
+    const data = node.data;
+    if (Object.prototype.hasOwnProperty.call(data,'name')) {
+        result.name = data.name;
     }
 
     return handleMarks(node,result);

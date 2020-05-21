@@ -300,8 +300,13 @@ Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
           "tag": Object {
             "$class": "org.accordproject.commonmark.TagInfo",
-            "attributeString": "value = \\"667.0\\" ",
+            "attributeString": "name = \\"formula1\\" value = \\"667.0\\" ",
             "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "name",
+                "value": "formula1",
+              },
               Object {
                 "$class": "org.accordproject.commonmark.Attribute",
                 "name": "value",
@@ -310,9 +315,9 @@ Object {
             ],
             "closed": true,
             "content": "",
-            "tagName": "computed",
+            "tagName": "formula",
           },
-          "text": "<computed value=\\"667.0\\"/>",
+          "text": "<formula name=\\"formula1\\" value=\\"667.0\\"/>",
         },
       ],
     },
@@ -22543,7 +22548,7 @@ exports[`to plain text clause.md 1`] = `
 "This is a fixed interest loan to the amount of <variable id=\\"loanAmount\\" value=\\"100000.0\\"/>
 at the yearly interest rate of <variable id=\\"rate\\" value=\\"2.5\\"/>%
 with a loan term of <variable id=\\"loanDuration\\" value=\\"15\\"/>,
-and monthly payments of <computed value=\\"667.0\\"/>
+and monthly payments of <formula name=\\"formula1\\" value=\\"667.0\\"/>
 
 This is a fixed interest loan to the amount of 100000.0
 at the yearly interest rate of 2.5%

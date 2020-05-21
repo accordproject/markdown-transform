@@ -9,5 +9,5 @@ Inspection and Notice. <variable id="receiver" value="%22Party%20B%22"/> will ha
 
 Acceptance Criteria. The "Acceptance Criteria" are the specifications the <variable id="deliverable" value="%22Widgets%22"/> must meet for the <variable id="shipper" value="%22Party%20A%22"/> to comply with its requirements and obligations under this agreement, detailed in <variable id="attachment" value="%22Attachment%20X%22"/>, attached to this agreement.
 
-This is <computed value="%22Widgets%22"/>
+This is <formula name="formula1" value="%22Widgets%22"/>
 ```

@@ -122,8 +122,8 @@ describe('slate', () => {
             expect(slateValue).toEqual(expectedSlateValue);
         });
 
-        it('converts computed to and from CiceroMark', () => {
-            const slateValue = slateTransformer.fromMarkdown('test <computed value="bar"/>');
+        it('converts formula to and from CiceroMark', () => {
+            const slateValue = slateTransformer.fromMarkdown('test <formula name="formula1" value="bar"/>');
             //console.log(JSON.stringify(slateValue, null, 4));
             const expectedSlateValue = {
                 'document': {
@@ -141,8 +141,10 @@ describe('slate', () => {
                                 },
                                 {
                                     'object': 'inline',
-                                    'type': 'computed',
-                                    'data': {},
+                                    'type': 'formula',
+                                    'data': {
+                                        'name': 'formula1'
+                                    },
                                     'children': [{
                                         'object': 'text',
                                         'text': 'bar'

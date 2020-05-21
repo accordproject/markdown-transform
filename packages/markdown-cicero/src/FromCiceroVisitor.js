@@ -149,24 +149,17 @@ class FromCiceroVisitor {
             thing.info = '<list/>';
         }
             break;
-        case 'Variable':
-        case 'ComputedVariable': {
+        case 'Variable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
             const formatString = thing.format ? ` format="${encodeURIComponent(thing.format)}"` : '';
-            const attributeString =
-                  thingType === 'ComputedVariable'
-                      ? `value="${encodeURIComponent(thing.value)}"${formatString}`
-                      : `id="${thing.id}" value="${encodeURIComponent(thing.value)}"${formatString}`
-            ;
-            const tagName =
-                  thingType === 'ComputedVariable'
-                      ? 'computed' : 'variable';
+            const attributeString = `id="${thing.id}" value="${encodeURIComponent(thing.value)}"${formatString}`;
+            const tagName = 'variable';
             if (this.options && !this.options.wrapVariables) {
-                thing.text = thingType === 'ComputedVariable' ? `{{${thing.value}}}` : thing.value;
+                thing.text = thing.value;
             } else {
                 thing.text = `<${tagName} ${attributeString}/>`;
             }
@@ -180,13 +173,11 @@ class FromCiceroVisitor {
             tag.closed = true;
             tag.attributes = [];
 
-            if (thingType !== 'ComputedVariable') {
-                let attribute1 = {};
-                attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-                attribute1.name = 'id';
-                attribute1.value = thing.id;
-                tag.attributes.push(attribute1);
-            }
+            let attribute1 = {};
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute1.name = 'id';
+            attribute1.value = thing.id;
+            tag.attributes.push(attribute1);
 
             let attribute2 = {};
             attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
@@ -197,6 +188,49 @@ class FromCiceroVisitor {
             thing.tag = parameters.serializer.fromJSON(tag);
 
             delete thing.id;
+            delete thing.value;
+            delete thing.format;
+        }
+            break;
+        case 'Formula': {
+            // Revert to HtmlInline
+            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
+
+            // Create the text for that document
+            const content = '';
+            const formatString = thing.format ? ` format="${encodeURIComponent(thing.format)}"` : '';
+            const attributeString = `name="${thing.name}" value="${encodeURIComponent(thing.value)}"${formatString}`;
+            const tagName = 'formula';
+            if (this.options && !this.options.wrapVariables) {
+                thing.text = `{{${thing.value}}}`;
+            } else {
+                thing.text = `<${tagName} ${attributeString}/>`;
+            }
+
+            // Create the proper tag
+            let tag = {};
+            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
+            tag.tagName = tagName;
+            tag.attributeString = attributeString;
+            tag.content = content;
+            tag.closed = true;
+            tag.attributes = [];
+
+            let attribute1 = {};
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute1.name = 'name';
+            attribute1.value = thing.name;
+            tag.attributes.push(attribute1);
+
+            let attribute2 = {};
+            attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute2.name = 'value';
+            attribute2.value = thing.value;
+            tag.attributes.push(attribute2);
+
+            thing.tag = parameters.serializer.fromJSON(tag);
+
+            delete thing.name;
             delete thing.value;
             delete thing.format;
         }

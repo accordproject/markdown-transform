@@ -479,7 +479,8 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.ComputedVariable",
+              "$class": "org.accordproject.ciceromark.Formula",
+              "name": "formula1",
               "value": "\\"Widgets\\"",
             },
           ],
@@ -989,7 +990,8 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.ComputedVariable",
+              "$class": "org.accordproject.ciceromark.Formula",
+              "name": "formula1",
               "value": "\\"Widgets\\"",
             },
           ],
@@ -1967,7 +1969,7 @@ Object {
 }
 `;
 
-exports[`markdown converts acceptance-computed.md to concerto 1`] = `
+exports[`markdown converts acceptance-formula.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -2168,7 +2170,8 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.ComputedVariable",
+              "$class": "org.accordproject.ciceromark.Formula",
+              "name": "formula1",
               "value": "\\"Widgets\\"",
             },
           ],
@@ -2708,7 +2711,8 @@ Object {
           "text": "and monthly payments of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark.ComputedVariable",
+          "$class": "org.accordproject.ciceromark.Formula",
+          "name": "formula1",
           "value": "667.0",
         },
       ],
@@ -4512,7 +4516,7 @@ Object {
 }
 `;
 
-exports[`markdown converts variable-notcomputed.md to concerto 1`] = `
+exports[`markdown converts variable-notformula.md to concerto 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -4537,9 +4541,9 @@ Object {
             ],
             "closed": true,
             "content": "",
-            "tagName": "computed",
+            "tagName": "formula",
           },
-          "text": "<computed FOO=\\"%22Party%20A%22\\"/>",
+          "text": "<formula FOO=\\"%22Party%20A%22\\"/>",
         },
         Object {
           "$class": "org.accordproject.commonmark.Text",

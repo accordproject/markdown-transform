@@ -153,17 +153,19 @@ class ToCiceroMarkVisitor {
                     //console.log('Found Variable but without \'id\' and \'value\' attributes ');
                 }
             }
-            if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
+            if (thing.tag && thing.tag.tagName === 'formula' && thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ComputedVariable';
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
+                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Formula';
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
+                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     delete thing.tag;
                     delete thing.text;
                 }
                 else {
-                    //console.log('Found ComputedVariable but without \'value\' attributes ');
+                    //console.log('Found Formula but without \'value\' or \'name\' attribute');
                 }
             }
         }

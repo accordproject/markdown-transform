@@ -359,15 +359,16 @@ const CONDITIONAL_VARIABLE_RULE = {
 };
 
 /**
- * A rule to deserialize computed variable nodes.
+ * A rule to deserialize formulas
  * @type {Object}
  */
-const COMPUTED_VARIABLE_RULE = {
+const FORMULA_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
-        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'computed') {
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'formula') {
             return {
-                '$class': `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
+                '$class': `${NS_PREFIX_CiceroMarkModel}Formula`,
+                name: el.getAttribute('name'),
                 value: el.textContent,
             };
         }
@@ -446,7 +447,7 @@ const rules = [
     VARIABLE_RULE,
     CONDITIONAL_VARIABLE_RULE,
     SOFTBREAK_RULE,
-    COMPUTED_VARIABLE_RULE,
+    FORMULA_RULE,
     TEXT_RULE,
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,

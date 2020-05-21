@@ -110,6 +110,30 @@ class ToSlateVisitor {
     }
 
     /**
+     * Converts a formula node to a slate text node with marks
+     * @param {*} data - the data for the formula
+     * @param {*} text - the text for the formula
+     * @param {*} parameters the parameters
+     * @returns {*} the slate text node with marks
+     */
+    static handleFormula(data, text, parameters) {
+        const textNode = {
+            object: 'text',
+            text: text
+        };
+
+        const inlineNode = {
+            object: 'inline',
+            type: 'formula',
+            data: data,
+            children: [textNode]
+        };
+        this.applyMarks(inlineNode,parameters);
+
+        return inlineNode;
+    }
+
+    /**
      * Returns the processed child nodes
      * @param {*} thing a concerto ast nodes
      * @param {*} parameters the parameters
@@ -167,8 +191,8 @@ class ToSlateVisitor {
         case 'ConditionalVariable':
             result = ToSlateVisitor.handleVariable('conditional', { id: thing.id, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
             break;
-        case 'ComputedVariable':
-            result = ToSlateVisitor.handleVariable('computed', {}, thing.value, parameters);
+        case 'Formula':
+            result = ToSlateVisitor.handleFormula({ name: thing.name }, thing.value, parameters);
             break;
         case 'CodeBlock':
             result = {
