@@ -25,7 +25,7 @@ const { Stack } = require('@accordproject/markdown-common');
 function mapObject(obj, stack) {
     switch (obj.$class) {
     // Strip quotes
-    case 'org.accordproject.ciceromark.ComputedVariable':
+    case 'org.accordproject.ciceromark.Formula':
     case 'org.accordproject.ciceromark.ConditionalVariable':
     case 'org.accordproject.ciceromark.Variable':
         stack.append({
@@ -58,7 +58,7 @@ function mapObject(obj, stack) {
 }
 
 /**
-* Replaces variable and computed variables with text nodes
+* Replaces variable and formulas with text nodes
 * @param {*} input input object
 * @param {*} options options object
 * @returns {*} the modified object

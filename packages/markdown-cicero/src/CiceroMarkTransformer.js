@@ -96,7 +96,7 @@ class CiceroMarkTransformer {
         let json = Object.assign({}, this.serializer.toJSON(input));
         let result;
 
-        // remove variables, e.g. {{ variable }}, {{% computed variable %}}
+        // remove variables, e.g. {{ variable }}, {{% formula %}}
         if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
             result = unquoteVariables(json);
         } else {
@@ -171,7 +171,7 @@ class CiceroMarkTransformer {
             json = Object.assign({}, input);
         }
 
-        // remove variables, e.g. {{ variable }}, {{% computed variable %}}
+        // remove variables, e.g. {{ variable }}, {{% formula %}}
         if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
             json = unquoteVariables(json);
         }
