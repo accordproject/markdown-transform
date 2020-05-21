@@ -161,7 +161,8 @@ class FromCiceroVisitor {
             thing.info = `<list ${attributeString}/>`;
         }
             break;
-        case 'Variable': {
+        case 'Variable':
+        case 'FormattedVariable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
