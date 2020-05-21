@@ -110,23 +110,6 @@ class Commands {
     }
 
     /**
-     * Set default params before we parse
-     *
-     * @param {object} argv the inbound argument values object
-     * @returns {object} a modfied argument object
-     */
-    static validateParseArgs(argv) {
-        argv = Commands.setDefaultFileArg(argv, 'input', 'input.md', ((argv, argDefaultName) => { return argDefaultName; }));
-        argv = Commands.setDefaultFileArg(argv, 'grammar', 'grammar.tem.md', ((argv, argDefaultName) => { return argDefaultName; }));
-
-        if(argv.verbose) {
-            Logger.info(`parse input ${argv.input} with template ${argv.template}.`);
-        }
-
-        return argv;
-    }
-
-    /**
      * Transform between formats
      *
      * @param {string} inputPath to the input file
