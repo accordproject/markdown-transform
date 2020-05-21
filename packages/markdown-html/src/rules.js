@@ -340,15 +340,15 @@ const VARIABLE_RULE = {
 };
 
 /**
- * A rule to deserialize conditional variable nodes.
+ * A rule to deserialize conditional nodes.
  * @type {Object}
  */
-const CONDITIONAL_VARIABLE_RULE = {
+const CONDITIONAL_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'conditional') {
             return {
-                '$class': `${NS_PREFIX_CiceroMarkModel}ConditionalVariable`,
+                '$class': `${NS_PREFIX_CiceroMarkModel}Conditional`,
                 name: el.getAttribute('name'),
                 whenTrue: el.getAttribute('whenTrue'),
                 whenFalse: el.getAttribute('whenFalse'),
@@ -445,7 +445,7 @@ const rules = [
     BLOCK_QUOTE_RULE,
     CLAUSE_RULE,
     VARIABLE_RULE,
-    CONDITIONAL_VARIABLE_RULE,
+    CONDITIONAL_RULE,
     SOFTBREAK_RULE,
     FORMULA_RULE,
     TEXT_RULE,

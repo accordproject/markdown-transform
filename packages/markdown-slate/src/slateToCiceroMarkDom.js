@@ -244,7 +244,7 @@ function handleVariable(node) {
     node.children = []; // Reset the children for the inline to avoid recursion
 
     const type = node.type;
-    const baseName = type === 'variable' ? 'Variable' : 'ConditionalVariable';
+    const baseName = type === 'variable' ? 'Variable' : 'Conditional';
     const className = `${NS_CICERO}.${baseName}`;
 
     result = {
