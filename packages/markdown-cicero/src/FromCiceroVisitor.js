@@ -235,7 +235,7 @@ class FromCiceroVisitor {
             delete thing.format;
         }
             break;
-        case 'ConditionalVariable': {
+        case 'Conditional': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 

@@ -188,7 +188,7 @@ class ToSlateVisitor {
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
-        case 'ConditionalVariable':
+        case 'Conditional':
             result = ToSlateVisitor.handleVariable('conditional', { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
             break;
         case 'Formula':

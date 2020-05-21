@@ -134,7 +134,7 @@ class ToCiceroMarkVisitor {
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
-                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ConditionalVariable';
+                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);

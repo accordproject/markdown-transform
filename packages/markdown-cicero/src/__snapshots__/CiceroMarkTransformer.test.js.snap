@@ -3411,7 +3411,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
               "value": " except for Force Majeure cases,",
               "whenFalse": "",
@@ -3591,7 +3591,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark.ConditionalVariable",
+              "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
               "value": "",
               "whenFalse": "",
