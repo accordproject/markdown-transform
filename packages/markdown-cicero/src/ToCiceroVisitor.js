@@ -72,10 +72,10 @@ class ToCiceroMarkVisitor {
 
                 //console.log('CONTENT! : ' + tag.content);
                 if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid')) {
+                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
-                    thing.clauseid = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid').value;
+                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
 
                     const clauseStart = thing.startPos ? thing.startPos.line : 0;
                     const lineMap = parameters.lineMap ? parameters.lineMap.slice(0,clauseStart) : [];
@@ -86,7 +86,7 @@ class ToCiceroMarkVisitor {
                     delete thing.tag;
                     delete thing.info;
                 } else {
-                    //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
+                    //console.log('Found Clause but without \'name\' and \'src\' attributes ');
                 }
             } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListVariable';

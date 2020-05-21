@@ -2,7 +2,7 @@
 
 And below is a **clause**.
 
-``` <clause src="https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta" clauseid="87721b95-7e43-4441-82c7-b4d4db207e6f">
+``` <clause src="https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta" name="87721b95-7e43-4441-82c7-b4d4db207e6f">
 Late Delivery and Penalty.
 ----
 

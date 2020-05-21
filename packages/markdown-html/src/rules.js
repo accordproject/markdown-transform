@@ -305,7 +305,7 @@ const CLAUSE_RULE = {
         if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
-                clauseid: el.getAttribute('clauseid'),
+                name: el.getAttribute('name'),
                 src: el.getAttribute('src'),
                 nodes: next(el.childNodes)
             };

@@ -38,7 +38,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+      "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -207,7 +207,7 @@ exports[`html converts acceptance.md to html 2`] = `
 <div class=\\"document\\">
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
+<div class=\\"clause\\" name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\">
 <p>Acceptance of Delivery. <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations if in <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> satisfies the Acceptance Criteria, and <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> in writing that it is accepting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
 <p>Inspection and Notice. <span class=\\"variable\\" id=\\"receiver\\">\\"Party B\\"</span> will have <span class=\\"variable\\" id=\\"businessDays\\">10</span> Business Days' to inspect and evaluate the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> on the delivery date before notifying <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> that it is either accepting or rejecting the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span>.</p>
 <p>Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" id=\\"deliverable\\">\\"Widgets\\"</span> must meet for the <span class=\\"variable\\" id=\\"shipper\\">\\"Party A\\"</span> to comply with its requirements and obligations under this agreement, detailed in <span class=\\"variable\\" id=\\"attachment\\">\\"Attachment X\\"</span>, attached to this agreement.</p>
@@ -354,7 +354,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "bar",
+      "name": "bar",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Paragraph",
@@ -406,7 +406,7 @@ and monthly payments of <span class=\\"computed\\">667.0</span></p>
 at the yearly interest rate of 2.5%
 with a loan term of 15,
 and monthly payments of 667.0</p>
-<div class=\\"clause\\" clauseid=\\"bar\\" src=\\"foo\\">
+<div class=\\"clause\\" name=\\"bar\\" src=\\"foo\\">
 <p>this is
 multiline <span class=\\"variable\\" id=\\"rate\\">2.5</span></p>
 <p>content</p>
@@ -1008,7 +1008,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -1153,7 +1153,7 @@ exports[`html converts latedelivery.md to html 2`] = `
 <div class=\\"document\\">
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" clauseid=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
+<div class=\\"clause\\" name=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
 <p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
 of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment
@@ -1205,7 +1205,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.Clause",
-      "clauseid": "87721b95-7e43-4441-82c7-b4d4db207e6f",
+      "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Heading",
@@ -1350,7 +1350,7 @@ exports[`html converts latedelivery-noforce.md to html 2`] = `
 <div class=\\"document\\">
 <h1>HELLO! This is the contract editor.</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" clauseid=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
+<div class=\\"clause\\" name=\\"87721b95-7e43-4441-82c7-b4d4db207e6f\\" src=\\"https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta\\">
 <h2>Late Delivery and Penalty.</h2>
 <p>In case of delayed delivery<span class=\\"conditional\\" id=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"></span><span class=\\"variable\\" id=\\"seller\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" id=\\"buyer\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" id=\\"penaltyDuration\\">2 days</span>
 of delay penalty amounting to <span class=\\"variable\\" id=\\"penaltyPercentage\\">10.5</span>% of the total value of the Equipment

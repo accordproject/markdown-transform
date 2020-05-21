@@ -65,7 +65,7 @@ class FromCiceroVisitor {
             jsonSource.nodes = clauseJson.nodes;
 
             const content = parameters.commonMark.toMarkdown(jsonSource);
-            const attributeString = `src="${clauseJson.src}" clauseid="${clauseJson.clauseid}"`;
+            const attributeString = `src="${clauseJson.src}" name="${clauseJson.name}"`;
 
             jsonTarget.text = content + '\n';
 
@@ -86,15 +86,15 @@ class FromCiceroVisitor {
 
             let attribute2 = {};
             attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute2.name = 'clauseid';
-            attribute2.value = clauseJson.clauseid;
+            attribute2.name = 'name';
+            attribute2.value = clauseJson.name;
             tag.attributes.push(attribute2);
 
             jsonTarget.tag = tag;
 
             let validatedTarget = parameters.serializer.fromJSON(jsonTarget);
 
-            delete thing.clauseid;
+            delete thing.name;
             delete thing.src;
 
             thing.$classDeclaration = validatedTarget.$classDeclaration;
