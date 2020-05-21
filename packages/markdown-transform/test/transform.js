@@ -119,6 +119,23 @@ describe('#transform', () => {
         });
     });
 
+    describe('#data', () => {
+        it('data -> ciceromark', async () => {
+            const grammar1File = './test/data/template1/grammar1.tem.md';
+            const grammar1 = fs.readFileSync(grammar1File, 'utf8');
+            const model1 = './test/data/template1/model1.cto';
+            const sample1File = './test/data/template1/sample1.md';
+            const sample1 = fs.readFileSync(sample1File, 'utf8');
+            const parameters = { inputFileName: grammar1File, grammar: grammar1, ctoFiles: [model1], templateKind: 'clause' };
+            const data1 = await transform(sample1, 'markdown', ['data'], parameters, {});
+            data1.$class.should.equal('org.test.MyClause');
+            data1.seller.should.equal('Steve');
+            const result = await transform(data1, 'data', ['ciceromark'], parameters, {});
+            result.nodes[0].$class.should.equal('org.accordproject.ciceromark.Clause');
+            result.nodes[0].elementType.should.equal('org.test.MyClause');
+        });
+    });
+
     describe('#ciceroedit', () => {
         it('ciceroedit -> ciceromark', async () => {
             const result = await transform(acceptanceCiceroEdit, 'markdown', ['ciceromark'], {}, {});
