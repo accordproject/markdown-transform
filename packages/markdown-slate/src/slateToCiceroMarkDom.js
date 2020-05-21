@@ -95,6 +95,9 @@ function _recursive(parent, nodes) {
             case 'clause':
                 // console.log(JSON.stringify(node, null, 4));
                 result = {$class : `${NS_CICERO}.Clause`, name: node.data.name, src: node.data.src, nodes: []};
+                if (node.data.elementType) {
+                    result.elementType = node.data.elementType;
+                }
                 break;
             case 'variable':
             case 'conditional':
@@ -149,6 +152,9 @@ function _recursive(parent, nodes) {
             case 'ul_list': {
                 if (node.data.type === 'variable') {
                     result = {$class : `${NS_CICERO}.ListBlock`, name: node.data.name, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+                    if (node.data.elementType) {
+                        result.elementType = node.data.elementType;
+                    }
                 } else {
                     result = {$class : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
                 }
@@ -259,6 +265,9 @@ function handleVariable(node) {
         value : textNode.text
     };
 
+    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
+        result.elementType = data.elementType;
+    }
     if (Object.prototype.hasOwnProperty.call(data,'format')) {
         result.format = data.format;
     }
@@ -294,6 +303,9 @@ function handleFormula(node) {
     };
 
     const data = node.data;
+    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
+        result.elementType = data.elementType;
+    }
     if (Object.prototype.hasOwnProperty.call(data,'name')) {
         result.name = data.name;
     }

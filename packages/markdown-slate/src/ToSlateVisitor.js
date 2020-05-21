@@ -185,26 +185,45 @@ class ToSlateVisitor {
             break;
         case 'Variable': {
             const data = { name: thing.name };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
         case 'FormattedVariable': {
             const data = { name: thing.name, format: thing.format };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
         case 'EnumVariable': {
             const data = { name: thing.name, enumValues: thing.enumValues };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
-        case 'Conditional':
-            result = ToSlateVisitor.handleVariable('conditional', { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
+        case 'Conditional': {
+            const data = { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
+            result = ToSlateVisitor.handleVariable('conditional', data, thing.value, parameters);
+        }
             break;
-        case 'Formula':
-            result = ToSlateVisitor.handleFormula({ name: thing.name }, thing.value, parameters);
+        case 'Formula': {
+            const data = { name: thing.name };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
+            result = ToSlateVisitor.handleFormula(data, thing.value, parameters);
+        }
             break;
-        case 'CodeBlock':
+        case 'CodeBlock': {
             result = {
                 object: 'block',
                 type: 'code_block',
@@ -219,26 +238,31 @@ class ToSlateVisitor {
                     data: {}
                 }]
             };
+        }
             break;
-        case 'Code':
+        case 'Code': {
             result = {
                 object: 'text',
                 text: thing.text,
                 code: true
             };
+        }
             break;
-        case 'Emph':
+        case 'Emph': {
             parameters.emph = true;
             result = this.processChildNodes(thing,parameters);
+        }
             break;
-        case 'Strong':
+        case 'Strong': {
             parameters.strong = true;
             result = this.processChildNodes(thing,parameters);
+        }
             break;
-        case 'Text':
+        case 'Text': {
             result = ToSlateVisitor.handleFormattedText(thing, parameters);
+        }
             break;
-        case 'BlockQuote':
+        case 'BlockQuote': {
             result = {
                 object: 'block',
                 type: 'block_quote',
@@ -246,36 +270,41 @@ class ToSlateVisitor {
                 children: this.processChildNodes(thing,parameters),
                 data: {}
             };
+        }
             break;
-        case 'Heading':
+        case 'Heading': {
             result = {
                 object: 'block',
                 data: {},
                 type: ToSlateVisitor.getHeadingType(thing),
                 children: this.processChildNodes(thing,parameters)
             };
+        }
             break;
-        case 'ThematicBreak':
+        case 'ThematicBreak': {
             result = {
                 object: 'block',
                 type: 'horizontal_rule',
                 hr: true,
                 children: []
             };
+        }
             break;
-        case 'Linebreak':
+        case 'Linebreak': {
             result = {
                 object: 'inline',
                 type: 'linebreak'
             };
+        }
             break;
-        case 'Softbreak':
+        case 'Softbreak': {
             result = {
                 object: 'inline',
                 type: 'softbreak'
             };
+        }
             break;
-        case 'Link':
+        case 'Link': {
             result = {
                 object: 'inline',
                 type: 'link',
@@ -285,8 +314,9 @@ class ToSlateVisitor {
                 },
                 children: this.processChildNodes(thing,parameters)
             };
+        }
             break;
-        case 'Image':
+        case 'Image': {
             result = {
                 object: 'inline',
                 type: 'image',
@@ -301,16 +331,18 @@ class ToSlateVisitor {
                     }
                 ]
             };
+        }
             break;
-        case 'Paragraph':
+        case 'Paragraph': {
             result = {
                 object: 'block',
                 type: 'paragraph',
                 children: this.processChildNodes(thing,parameters),
                 data: {}
             };
+        }
             break;
-        case 'HtmlBlock':
+        case 'HtmlBlock': {
             result = {
                 object: 'block',
                 type: 'html_block',
@@ -326,8 +358,9 @@ class ToSlateVisitor {
                     data: {}
                 }]
             };
+        }
             break;
-        case 'HtmlInline':
+        case 'HtmlInline': {
             result = {
                 object: 'inline',
                 type: 'html_inline',
@@ -336,37 +369,46 @@ class ToSlateVisitor {
                 },
                 children: [] // XXX
             };
+        }
             break;
-        case 'List':
+        case 'List': {
             result = {
                 object: 'block',
                 data: { tight: thing.tight, start: thing.start, delimiter: thing.delimiter},
                 type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
                 children: this.processChildNodes(thing,parameters)
             };
+        }
             break;
-        case 'ListBlock':
+        case 'ListBlock': {
+            const data = { name: thing.name, tight: thing.tight, start: thing.start, delimiter: thing.delimiter, type: 'variable' };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
             result = {
                 object: 'block',
-                data: { name: thing.name, tight: thing.tight, start: thing.start, delimiter: thing.delimiter, type: 'variable' },
+                data: data,
                 type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
                 children: this.processChildNodes(thing,parameters)
             };
+        }
             break;
-        case 'Item':
+        case 'Item': {
             result = {
                 object: 'block',
                 type: 'list_item',
                 data: {},
                 children: this.processChildNodes(thing,parameters)
             };
+        }
             break;
-        case 'Document':
+        case 'Document': {
             result = {
                 object: 'document',
                 children: this.processChildNodes(thing,parameters),
                 data : {}
             };
+        }
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
