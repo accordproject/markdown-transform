@@ -6753,8 +6753,10 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark.ListVariable",
+      "$class": "org.accordproject.ciceromark.ListBlock",
       "delimiter": undefined,
+      "kind": "bullet",
+      "name": "volumes",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Item",
@@ -6843,7 +6845,6 @@ Object {
       ],
       "start": undefined,
       "tight": "true",
-      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -6854,7 +6855,7 @@ exports[`slate converts ulist.json to and from CiceroMark 2`] = `
 "#### Discount.
 
 The Discount is determined according to the following table:
-\`\`\`<list/>
+\`\`\`<list name=\\"volumes\\"/>
 - 0.0$ million <= Volume < 1.0$ million : 3.1%
 - 1.0$ million <= Volume < 10.0$ million : 3.1%
 - 10.0$ million <= Volume < 50.0$ million : 2.9%
@@ -7005,6 +7006,7 @@ Object {
         "data": Object {
           "delimiter": undefined,
           "kind": "variable",
+          "name": "volumes",
           "start": undefined,
           "tight": "true",
         },
@@ -7042,8 +7044,10 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark.ListVariable",
+      "$class": "org.accordproject.ciceromark.ListBlock",
       "delimiter": undefined,
+      "kind": "bullet",
+      "name": "volumes",
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.Item",
@@ -7132,7 +7136,6 @@ Object {
       ],
       "start": undefined,
       "tight": "true",
-      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",

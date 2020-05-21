@@ -1656,11 +1656,17 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<list/>",
+      "info": "<list name=\\"volumes\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "",
-        "attributes": Array [],
+        "attributeString": "name = \\"volumes\\" ",
+        "attributes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "name",
+            "value": "volumes",
+          },
+        ],
         "closed": true,
         "content": "",
         "tagName": "list",
