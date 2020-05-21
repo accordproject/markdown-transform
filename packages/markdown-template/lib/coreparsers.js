@@ -35,7 +35,7 @@ const flatten = (arr) => {
 function mkVariable(variable,value) {
     const result = {};
     result.name = variable.name;
-    result.type = variable.type;
+    result.elementType = variable.elementType;
     result.value = value;
     return result;
 }
@@ -48,7 +48,7 @@ function mkVariable(variable,value) {
  */
 function mkCompoundVariable(variable,value) {
     const result = {};
-    result.$class = variable.type;
+    result.$class = variable.elementType;
     for(let i = 0; i < value.length; i++) {
         const field = value[i];
         if(result[field.name]) {
@@ -72,7 +72,7 @@ function mkCompoundVariable(variable,value) {
 function mkCond(condNode,value) {
     const result = {};
     result.name = condNode.name;
-    result.type = 'Boolean';
+    result.elementType = 'Boolean';
     result.value = value === condNode.whenTrue ? true : false;
     return result;
 }
@@ -86,10 +86,10 @@ function mkCond(condNode,value) {
 function mkList(listNode,value) {
     const result = {};
     result.name = listNode.name;
-    result.type = 'List';
+    result.elementType = 'List';
     result.value = [];
     for(let i = 0; i < value.length; i++) {
-        result.value.push(mkCompoundVariable({'type':listNode.type},value[i]));
+        result.value.push(mkCompoundVariable({'elementType':listNode.elementType},value[i]));
     }
     return result;
 }
@@ -103,7 +103,7 @@ function mkList(listNode,value) {
 function mkWith(withNode,value) {
     const result = {};
     result.name = withNode.name;
-    result.type = withNode.type;
+    result.elementType = withNode.elementType;
     result.value = mkCompoundVariable(withNode,value);
     return result;
 }
@@ -115,7 +115,7 @@ function mkWith(withNode,value) {
  * @returns {object} the clause
  */
 function mkClause(clause,value) {
-    return mkCompoundVariable(clause,value.concat({"name":"clauseId","type":"String","value":uuid.v4()}));
+    return mkCompoundVariable(clause,value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
 }
 
 /**
@@ -125,7 +125,7 @@ function mkClause(clause,value) {
  * @returns {object} the clause
  */
 function mkWrappedClause(clause,value) {
-    return [{'name':clause.name,'type':clause.type,'value':mkClause(clause,value)}];
+    return [{'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)}];
 }
 
 /**
@@ -135,7 +135,7 @@ function mkWrappedClause(clause,value) {
  * @returns {object} the contract
  */
 function mkContract(contract,value) {
-    return mkCompoundVariable(contract,value.concat({"name":"contractId","type":"String","value":uuid.v4()}));
+    return mkCompoundVariable(contract,value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
 }
 
 /**

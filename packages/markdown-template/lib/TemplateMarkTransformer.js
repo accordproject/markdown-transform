@@ -16,6 +16,7 @@
 
 const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
@@ -27,6 +28,7 @@ const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
 
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
+const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
 const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
 const TemplateParser = require('./TemplateParser');
@@ -103,6 +105,7 @@ class TemplateMarkTransformer {
         // Setup for validation
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+        this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
         this.modelManager.addModelFile(TemplateMarkRawModel, 'templatemarkraw.cto');
         this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
         this.factory = new Factory(this.modelManager);
@@ -274,8 +277,8 @@ class TemplateMarkTransformer {
 
     /**
      * Parse a CiceroMark DOM against a TemplateMark DOM
-     * @param {{fileName:string,content:string}} markdown the markdown input
-     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {{fileName:string,content:string}} ciceroMarkInput the ciceromark input
+     * @param {{fileName:string,content:string}} templateMarkInput the templatemark grammar
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
@@ -300,6 +303,31 @@ class TemplateMarkTransformer {
         } else {
             _throwParseError(markdown,result,markdownFileName);
         }
+    }
+
+    /**
+     * Drafts a CiceroMark DOM from a TemplateMarkDOM
+     * @param {*} data the contract/clause data input
+     * @param {*} template the TemplateMark DOM
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    draftCiceroMark(data, template, templateKind, options) {
+        const input = this.serializer.fromJSON(template);
+
+        const parameters = {
+            templateMarkModelManager: this.modelManager,
+            data: data,
+            kind: templateKind,
+        };
+
+        const visitor = new ToCiceroMarkVisitor();
+        input.accept( visitor, parameters );
+        const result = Object.assign({}, this.serializer.toJSON(input));
+
+        return result;
     }
 
     /**

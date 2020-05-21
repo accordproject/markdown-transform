@@ -2818,7 +2818,6 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.ListBlock",
-          "kind": "bullet",
           "name": "volumes",
           "nodes": Array [
             Object {
@@ -2907,6 +2906,7 @@ Object {
             },
           ],
           "tight": "true",
+          "type": "bullet",
         },
       ],
       "src": "ap://volumediscountulist@0.2.1.cta",
@@ -4235,7 +4235,6 @@ Object {
     },
     Object {
       "$class": "org.accordproject.ciceromark.ListBlock",
-      "kind": "bullet",
       "name": "volumes",
       "nodes": Array [
         Object {
@@ -4324,6 +4323,7 @@ Object {
         },
       ],
       "tight": "true",
+      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",

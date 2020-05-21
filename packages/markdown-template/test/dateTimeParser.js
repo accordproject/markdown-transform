@@ -16,7 +16,7 @@
 
 const dateTimeParser = require('../lib/dateTimeParser').dateTimeParser;
 
-const varDate = { 'kind': 'variable', 'name': 'starting', 'type': 'DateTime' };
+const varDate = { 'kind': 'variable', 'name': 'starting', 'elementType': 'DateTime' };
 
 describe('#date', () => {
     it('should parse valid date [default]', async () => {

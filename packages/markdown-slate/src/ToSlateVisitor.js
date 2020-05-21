@@ -348,8 +348,8 @@ class ToSlateVisitor {
         case 'ListBlock':
             result = {
                 object: 'block',
-                data: { name: thing.name, tight: thing.tight, start: thing.start, delimiter: thing.delimiter, kind: 'variable' },
-                type: thing.kind === 'ordered' ? 'ol_list' : 'ul_list',
+                data: { name: thing.name, tight: thing.tight, start: thing.start, delimiter: thing.delimiter, type: 'variable' },
+                type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
                 children: this.processChildNodes(thing,parameters)
             };
             break;

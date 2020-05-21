@@ -31,7 +31,7 @@
                 "data": {
                     "name": "volumes",
                     "tight": "true",
-                    "kind": "variable"
+                    "type": "variable"
                 },
                 "children": [
                     {

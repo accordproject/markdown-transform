@@ -97,7 +97,7 @@ class ToCiceroMarkVisitor {
                     const listNode = newNodes[0];
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.kind = listNode.type;
+                    thing.type = listNode.type;
                     thing.start = listNode.start;
                     thing.tight = listNode.tight;
                     thing.delimiter = listNode.delimiter;

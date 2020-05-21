@@ -55,7 +55,6 @@ class TypingVisitor {
         switch(thing.getType()) {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
-            //console.log(`Variable ${thing.name} type in model ${currentModel.getName()}`);
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
                 if (property.isTypeEnum()) {
@@ -64,9 +63,8 @@ class TypingVisitor {
                     thing.$classDeclaration = enumVariableDeclaration;
                     thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                 } else {
-                    thing.type = property.getFullyQualifiedTypeName();
+                    thing.elementType = property.getFullyQualifiedTypeName();
                 }
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
@@ -76,15 +74,14 @@ class TypingVisitor {
             if (parameters.kind === 'contract') {
                 const property = currentModel.getOwnProperty(thing.name);
                 if (property) {
-                    thing.type = property.getFullyQualifiedTypeName();
-                    //console.log(`Property ${thing.name} has type ${thing.type}`);
+                    thing.elementType = property.getFullyQualifiedTypeName();
                 } else {
                     throw new Error('Unknown property ' + thing.name);
                 }
-                const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
+                const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
                 TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
             } else {
-                thing.type = parameters.model.getFullyQualifiedName();
+                thing.elementType = parameters.model.getFullyQualifiedName();
                 TypingVisitor.visitChildren(this, thing, parameters);
             }
         }
@@ -92,29 +89,27 @@ class TypingVisitor {
         case 'WithDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
-                thing.type = property.getFullyQualifiedTypeName();
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
+                thing.elementType = property.getFullyQualifiedTypeName();
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
+            const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
         }
             break;
         case 'ListBlockDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             if (property) {
-                thing.type = property.getFullyQualifiedTypeName();
-                //console.log(`Property ${thing.name} has type ${thing.type}`);
+                thing.elementType = property.getFullyQualifiedTypeName();
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.type);
+            const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
         }
             break;
         case 'ContractDefinition': {
-            thing.type = parameters.model.getFullyQualifiedName();
+            thing.elementType = parameters.model.getFullyQualifiedName();
             TypingVisitor.visitChildren(this, thing, parameters);
         }
             break;

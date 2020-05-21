@@ -18,17 +18,17 @@
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 
 // Variables
-const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'String' };
-const var2 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'buyer', 'type': 'String' };
-const var3 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'amount', 'type': 'Double' };
-const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition', 'name': 'currency', 'type': 'Enum', 'enumValues': ['USD', 'GBP', 'EUR'] };
+const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'String' };
+const var2 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'buyer', 'elementType': 'String' };
+const var3 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'amount', 'elementType': 'Double' };
+const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition', 'name': 'currency', 'elementType': 'Enum', 'enumValues': ['USD', 'GBP', 'EUR'] };
 
 // Valid templates
 const template1 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause1',
     'name':'myClause',
-    'type':'org.accordproject.MyClause',
+    'elementType':'org.accordproject.MyClause',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
@@ -40,7 +40,7 @@ const template2 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause2',
     'name':'myClause',
-    'type':'org.accordproject.MyClause',
+    'elementType':'org.accordproject.MyClause',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
@@ -53,7 +53,7 @@ const template3 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
     'id':'clause3',
     'name':'myClause',
-    'type':'org.accordproject.MyClause',
+    'elementType':'org.accordproject.MyClause',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
         var1,
@@ -71,7 +71,7 @@ const template3 = {
 // Error templates
 const templateErr1 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
-    'type':'org.accordproject.MyContract',
+    'elementType':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'foo', 'value': 'This is a contract between ' },
         var1,
@@ -81,10 +81,10 @@ const templateErr1 = {
 };
 const templateErr2 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
-    'type':'org.accordproject.MyContract',
+    'elementType':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': 'This is a contract between ' },
-        { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'FOO' },
+        { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'FOO' },
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
     ]
