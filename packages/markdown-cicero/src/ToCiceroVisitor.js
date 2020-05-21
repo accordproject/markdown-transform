@@ -120,11 +120,13 @@ class ToCiceroMarkVisitor {
                 if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
                     ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     const format = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'format');
-                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Variable';
+                    const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
-                    thing.format = format ? decodeURIComponent(format.value) : null;
+                    if (format) { // For FormattedVariables
+                        thing.format = decodeURIComponent(format.value);
+                    }
                     delete thing.tag;
                     delete thing.text;
                 }

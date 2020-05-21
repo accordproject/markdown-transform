@@ -184,7 +184,12 @@ class ToSlateVisitor {
             };
             break;
         case 'Variable': {
-            const data = thing.format ? { name: thing.name, format: thing.format } : { name: thing.name };
+            const data = { name: thing.name };
+            result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
+        }
+            break;
+        case 'FormattedVariable': {
+            const data = { name: thing.name, format: thing.format };
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;

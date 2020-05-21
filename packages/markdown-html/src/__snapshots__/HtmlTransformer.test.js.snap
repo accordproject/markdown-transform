@@ -508,7 +508,7 @@ Object {
           "text": "On or before the ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark.Variable",
+          "$class": "org.accordproject.ciceromark.FormattedVariable",
           "format": "YYYY/MM/DD",
           "name": "effectiveDate",
           "value": "2018/04/02",

@@ -323,7 +323,7 @@ const VARIABLE_RULE = {
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
             if (el.getAttribute('format')) {
                 return {
-                    '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
+                    '$class': `${NS_PREFIX_CiceroMarkModel}FormattedVariable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                     format: el.getAttribute('format')

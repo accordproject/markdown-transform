@@ -28,6 +28,7 @@ function mapObject(obj, stack) {
     case 'org.accordproject.ciceromark.Formula':
     case 'org.accordproject.ciceromark.Conditional':
     case 'org.accordproject.ciceromark.Variable':
+    case 'org.accordproject.ciceromark.FormattedVariable':
         stack.append({
             $class: 'org.accordproject.commonmark.Text',
             text: obj.value.replace(/^"/, '').replace(/"$/, '')

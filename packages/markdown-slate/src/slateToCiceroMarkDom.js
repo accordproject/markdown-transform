@@ -248,16 +248,17 @@ function handleVariable(node) {
     node.children = []; // Reset the children for the inline to avoid recursion
 
     const type = node.type;
-    const baseName = type === 'variable' ? 'Variable' : 'Conditional';
+    const data = node.data;
+
+    const baseName = type === 'variable' ? (Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : 'Variable') : 'Conditional';
     const className = `${NS_CICERO}.${baseName}`;
 
     result = {
         $class : className,
-        name : node.data.name,
+        name : data.name,
         value : textNode.text
     };
 
-    const data = node.data;
     if (Object.prototype.hasOwnProperty.call(data,'format')) {
         result.format = data.format;
     }
@@ -282,8 +283,7 @@ function handleFormula(node) {
     const textNode = node.children[0]; // inlines always contain a single text node
     node.children = []; // Reset the children for the inline to avoid recursion
 
-    const baseName = 'Formula';
-    const className = `${NS_CICERO}.${baseName}`;
+    const className = `${NS_CICERO}.Formula`;
 
     result = {
         $class : className,

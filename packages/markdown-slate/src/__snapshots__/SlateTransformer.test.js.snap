@@ -1315,7 +1315,7 @@ Object {
           "text": "On or before the ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark.Variable",
+          "$class": "org.accordproject.ciceromark.FormattedVariable",
           "format": "YYYY/MM/DD",
           "name": "effectiveDate",
           "value": "2018/04/02",
@@ -1463,7 +1463,7 @@ Object {
           "text": "On or before the ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark.Variable",
+          "$class": "org.accordproject.ciceromark.FormattedVariable",
           "format": "YYYY/MM/DD",
           "name": "effectiveDate",
           "value": "2018/04/02",
@@ -5709,7 +5709,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark.Variable",
+              "$class": "org.accordproject.ciceromark.FormattedVariable",
               "format": "0,0.00 CCC",
               "name": "amount",
               "value": "1,000.00 USD",
@@ -5829,7 +5829,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark.Variable",
+              "$class": "org.accordproject.ciceromark.FormattedVariable",
               "format": "0,0.00 CCC",
               "name": "principal",
               "value": "500.00 USD",
@@ -6088,7 +6088,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark.Variable",
+              "$class": "org.accordproject.ciceromark.FormattedVariable",
               "format": "0,0.00 CCC",
               "name": "amount",
               "value": "1,000.00 USD",
@@ -6208,7 +6208,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark.Variable",
+              "$class": "org.accordproject.ciceromark.FormattedVariable",
               "format": "0,0.00 CCC",
               "name": "principal",
               "value": "500.00 USD",
