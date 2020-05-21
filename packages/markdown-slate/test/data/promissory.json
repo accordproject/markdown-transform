@@ -25,7 +25,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "amount",
+                            "name": "amount",
                             "format": "0,0.00 CCC"
                         },
                         "children": [
@@ -44,7 +44,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "date"
+                            "name": "date"
                         },
                         "children": [
                             {
@@ -73,7 +73,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "maker"
+                            "name": "maker"
                         },
                         "children": [
                             {
@@ -91,7 +91,7 @@
                         "object": "inline",
                         "type": "conditional",
                         "data": {
-                            "id": "individual",
+                            "name": "individual",
                             "whenTrue": "an individual residing",
                             "whenFalse": "a company registered"
                         },
@@ -111,7 +111,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "makerAddress"
+                            "name": "makerAddress"
                         },
                         "children": [
                             {
@@ -129,7 +129,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "lender"
+                            "name": "lender"
                         },
                         "children": [
                             {
@@ -147,7 +147,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "legalEntity"
+                            "name": "legalEntity"
                         },
                         "children": [
                             {
@@ -165,7 +165,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "lenderAddress"
+                            "name": "lenderAddress"
                         },
                         "children": [
                             {
@@ -183,7 +183,7 @@
                         "object": "inline",
                         "type": "variable",
                         "data": {
-                            "id": "principal",
+                            "name": "principal",
                             "format": "0,0.00 CCC"
                         },
                         "children": [

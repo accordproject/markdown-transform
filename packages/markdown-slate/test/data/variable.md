@@ -1,1 +1,1 @@
-This is a <variable id="shipper" value="%22Party%20A%22"/> property.
+This is a <variable name="shipper" value="%22Party%20A%22"/> property.

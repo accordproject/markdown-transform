@@ -184,12 +184,12 @@ class ToSlateVisitor {
             };
             break;
         case 'Variable': {
-            const data = thing.format ? { id: thing.id, format: thing.format } : { id: thing.id };
+            const data = thing.format ? { name: thing.name, format: thing.format } : { name: thing.name };
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
         case 'ConditionalVariable':
-            result = ToSlateVisitor.handleVariable('conditional', { id: thing.id, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
+            result = ToSlateVisitor.handleVariable('conditional', { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse }, thing.value, parameters);
             break;
         case 'Formula':
             result = ToSlateVisitor.handleFormula({ name: thing.name }, thing.value, parameters);

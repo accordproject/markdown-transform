@@ -249,7 +249,7 @@ function handleVariable(node) {
 
     result = {
         $class : className,
-        id : node.data.id,
+        name : node.data.name,
         value : textNode.text
     };
 

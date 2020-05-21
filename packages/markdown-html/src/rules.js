@@ -324,14 +324,14 @@ const VARIABLE_RULE = {
             if (el.getAttribute('format')) {
                 return {
                     '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
-                    id: el.getAttribute('id'),
+                    name: el.getAttribute('name'),
                     value: el.textContent,
                     format: el.getAttribute('format')
                 };
             } else {
                 return {
                     '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
-                    id: el.getAttribute('id'),
+                    name: el.getAttribute('name'),
                     value: el.textContent,
                 };
             }
@@ -349,7 +349,7 @@ const CONDITIONAL_VARIABLE_RULE = {
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'conditional') {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}ConditionalVariable`,
-                id: el.getAttribute('id'),
+                name: el.getAttribute('name'),
                 whenTrue: el.getAttribute('whenTrue'),
                 whenFalse: el.getAttribute('whenFalse'),
                 value: el.textContent,

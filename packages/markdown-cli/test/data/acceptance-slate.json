@@ -53,7 +53,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "shipper"
+                                    "name": "shipper"
                                 },
                                 "children": [
                                     {
@@ -70,7 +70,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "receiver"
+                                    "name": "receiver"
                                 },
                                 "children": [
                                     {
@@ -87,7 +87,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "deliverable"
+                                    "name": "deliverable"
                                 },
                                 "children": [
                                     {
@@ -104,7 +104,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "receiver"
+                                    "name": "receiver"
                                 },
                                 "children": [
                                     {
@@ -121,7 +121,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "shipper"
+                                    "name": "shipper"
                                 },
                                 "children": [
                                     {
@@ -138,7 +138,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "deliverable"
+                                    "name": "deliverable"
                                 },
                                 "children": [
                                     {
@@ -166,7 +166,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "receiver"
+                                    "name": "receiver"
                                 },
                                 "children": [
                                     {
@@ -183,7 +183,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "businessDays"
+                                    "name": "businessDays"
                                 },
                                 "children": [
                                     {
@@ -200,7 +200,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "deliverable"
+                                    "name": "deliverable"
                                 },
                                 "children": [
                                     {
@@ -217,7 +217,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "shipper"
+                                    "name": "shipper"
                                 },
                                 "children": [
                                     {
@@ -234,7 +234,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "deliverable"
+                                    "name": "deliverable"
                                 },
                                 "children": [
                                     {
@@ -262,7 +262,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "deliverable"
+                                    "name": "deliverable"
                                 },
                                 "children": [
                                     {
@@ -279,7 +279,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "shipper"
+                                    "name": "shipper"
                                 },
                                 "children": [
                                     {
@@ -296,7 +296,7 @@
                                 "object": "inline",
                                 "type": "variable",
                                 "data": {
-                                    "id": "attachment"
+                                    "name": "attachment"
                                 },
                                 "children": [
                                     {

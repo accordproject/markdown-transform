@@ -48,7 +48,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "shipper",
+                           "name": "shipper",
                            "value": "\"Party A\""
                        },
                        {
@@ -57,7 +57,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "receiver",
+                           "name": "receiver",
                            "value": "\"Party B\""
                        },
                        {
@@ -66,7 +66,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "deliverable",
+                           "name": "deliverable",
                            "value": "\"Widgets\""
                        },
                        {
@@ -75,7 +75,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "receiver",
+                           "name": "receiver",
                            "value": "\"Party B\""
                        },
                        {
@@ -84,7 +84,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "shipper",
+                           "name": "shipper",
                            "value": "\"Party A\""
                        },
                        {
@@ -93,7 +93,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "deliverable",
+                           "name": "deliverable",
                            "value": "\"Widgets\""
                        },
                        {
@@ -111,7 +111,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "receiver",
+                           "name": "receiver",
                            "value": "\"Party B\""
                        },
                        {
@@ -120,7 +120,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "businessDays",
+                           "name": "businessDays",
                            "value": "10"
                        },
                        {
@@ -129,7 +129,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "deliverable",
+                           "name": "deliverable",
                            "value": "\"Widgets\""
                        },
                        {
@@ -138,7 +138,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "shipper",
+                           "name": "shipper",
                            "value": "\"Party A\""
                        },
                        {
@@ -147,7 +147,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "deliverable",
+                           "name": "deliverable",
                            "value": "\"Widgets\""
                        },
                        {
@@ -165,7 +165,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "deliverable",
+                           "name": "deliverable",
                            "value": "\"Widgets\""
                        },
                        {
@@ -174,7 +174,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "shipper",
+                           "name": "shipper",
                            "value": "\"Party A\""
                        },
                        {
@@ -183,7 +183,7 @@
                        },
                        {
                            "$class": "org.accordproject.ciceromark.Variable",
-                           "id": "attachment",
+                           "name": "attachment",
                            "value": "\"Attachment X\""
                        },
                        {

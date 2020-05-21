@@ -83,7 +83,7 @@ describe('slate', () => {
         });
 
         it('converts variable to and from CiceroMark', () => {
-            const slateValue = slateTransformer.fromMarkdown('test <variable id="foo" value="bar"/>');
+            const slateValue = slateTransformer.fromMarkdown('test <variable name="foo" value="bar"/>');
             const expectedSlateValue = {
                 'document': {
                     'object': 'document',
@@ -102,7 +102,7 @@ describe('slate', () => {
                                     'object': 'inline',
                                     'type': 'variable',
                                     'data': {
-                                        'id': 'foo'
+                                        'name': 'foo'
                                     },
                                     'children': [{
                                         'object': 'text',
