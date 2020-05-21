@@ -162,14 +162,18 @@ class FromCiceroVisitor {
         }
             break;
         case 'Variable':
+        case 'EnumVariable':
         case 'FormattedVariable': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
             // Create the text for that document
             const content = '';
-            const formatString = thing.format ? ` format="${encodeURIComponent(thing.format)}"` : '';
-            const attributeString = `name="${thing.name}" value="${encodeURIComponent(thing.value)}"${formatString}`;
+            const format = thing.format ? encodeURIComponent(thing.format) : '';
+            const formatString = thing.format ? ` format="${format}"` : '';
+            const enumValues = thing.enumValues ? encodeURIComponent(JSON.stringify(thing.enumValues)) : '';
+            const enumValuesString = thing.enumValues ? ` enumValues="${enumValues}"` : '';
+            const attributeString = `name="${thing.name}" value="${encodeURIComponent(thing.value)}"${formatString}${enumValuesString}`;
             const tagName = 'variable';
             if (this.options && !this.options.wrapVariables) {
                 thing.text = thing.value;
@@ -198,11 +202,28 @@ class FromCiceroVisitor {
             attribute2.value = thing.value;
             tag.attributes.push(attribute2);
 
+            if (thing.format) {
+                let attribute3 = {};
+                attribute3.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+                attribute3.name = 'format';
+                attribute3.value = format;
+                tag.attributes.push(attribute3);
+            }
+
+            if (thing.enumValues) {
+                let attribute4 = {};
+                attribute4.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+                attribute4.name = 'enumValues';
+                attribute4.value = enumValues;
+                tag.attributes.push(attribute4);
+            }
+
             thing.tag = parameters.serializer.fromJSON(tag);
 
             delete thing.name;
             delete thing.value;
             delete thing.format;
+            delete thing.enumValues;
         }
             break;
         case 'Formula': {

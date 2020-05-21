@@ -3320,6 +3320,56 @@ Object {
 }
 `;
 
+exports[`markdown converts variable-enum.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.HtmlInline",
+          "tag": Object {
+            "$class": "org.accordproject.commonmark.TagInfo",
+            "attributeString": "name = \\"currency\\" value = \\"ABC\\" enumValues = \\"%5B%22ABC%22%2C%22DEF%22%5D\\" ",
+            "attributes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "name",
+                "value": "currency",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "value",
+                "value": "ABC",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.Attribute",
+                "name": "enumValues",
+                "value": "%5B%22ABC%22%2C%22DEF%22%5D",
+              },
+            ],
+            "closed": true,
+            "content": "",
+            "tagName": "variable",
+          },
+          "text": "<variable name=\\"currency\\" value=\\"ABC\\" enumValues=\\"%5B%22ABC%22%2C%22DEF%22%5D\\"/>",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " property.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown-spec converts ATX headings-32 to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -22975,3 +23025,5 @@ exports[`to plain text ulist3.md 1`] = `
 `;
 
 exports[`to plain text variable.md 1`] = `"This is a <variable name=\\"shipper\\" value=\\"%22Party%20A%22\\"/> property."`;
+
+exports[`to plain text variable-enum.md 1`] = `"This is a <variable name=\\"currency\\" value=\\"ABC\\" enumValues=\\"%5B%22ABC%22%2C%22DEF%22%5D\\"/> property."`;

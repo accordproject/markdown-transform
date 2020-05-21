@@ -21,7 +21,7 @@ const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
 const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'type': 'String' };
 const var2 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'buyer', 'type': 'String' };
 const var3 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'amount', 'type': 'Double' };
-const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition', 'name': 'currency', 'type': 'Enum', 'values': [{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'USD'},{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'GBP'},{ '$class': 'org.accordproject.templatemark.EnumValue', 'value' : 'EUR'}] };
+const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition', 'name': 'currency', 'type': 'Enum', 'enumValues': ['USD', 'GBP', 'EUR'] };
 
 // Valid templates
 const template1 = {

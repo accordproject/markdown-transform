@@ -62,7 +62,7 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
-        parser = enumParser(ast,ast.values.map(x => x.value));
+        parser = enumParser(ast,ast.enumValues);
         break;
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :

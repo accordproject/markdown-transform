@@ -60,15 +60,9 @@ class TypingVisitor {
             if (property) {
                 if (property.isTypeEnum()) {
                     const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
-                    const enumValueDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumValue');
                     const enumType = property.getParent().getModelFile().getType(property.getType());
                     thing.$classDeclaration = enumVariableDeclaration;
-                    thing.values = enumType.getOwnProperties().map(x => {
-                        const enumValue = parameters.templateMarkFactory.newConcept(enumValueDeclaration.getNamespace(),
-                                                                                    enumValueDeclaration.getName());
-                        enumValue.value = x.getName();
-                        return enumValue;
-                    });
+                    thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                 } else {
                     thing.type = property.getFullyQualifiedTypeName();
                 }

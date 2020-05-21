@@ -328,6 +328,13 @@ const VARIABLE_RULE = {
                     value: el.textContent,
                     format: el.getAttribute('format')
                 };
+            } else if (el.getAttribute('enumValues')) {
+                return {
+                    '$class': `${NS_PREFIX_CiceroMarkModel}EnumVariable`,
+                    name: el.getAttribute('name'),
+                    value: el.textContent,
+                    enumValues: JSON.parse(decodeURIComponent(el.getAttribute('enumValues'))),
+                };
             } else {
                 return {
                     '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,

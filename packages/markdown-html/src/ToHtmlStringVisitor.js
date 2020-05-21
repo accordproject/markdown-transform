@@ -103,6 +103,11 @@ class ToHtmlStringVisitor {
             parameters.result += `<span class="variable" name="${thing.name}" format="${thing.format}">${thing.value}</span>`;
         }
             break;
+        case 'EnumVariable': {
+            const enumValues = encodeURIComponent(JSON.stringify(thing.enumValues));
+            parameters.result += `<span class="variable" name="${thing.name}" enumValues="${enumValues}">${thing.value}</span>`;
+        }
+            break;
         case 'Conditional':
             parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;
             break;
