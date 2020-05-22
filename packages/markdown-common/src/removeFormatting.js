@@ -39,9 +39,11 @@ function mapObject(obj, stack) {
             $class: 'org.accordproject.commonmark.Paragraph',
             nodes: []
         });
-        obj.nodes.forEach(element => {
-            mapObject(element, stack);
-        });
+        if (obj.nodes) {
+            obj.nodes.forEach(element => {
+                mapObject(element, stack);
+            });
+        }
         stack.pop();
         break;
     // wrap in a para and grab text

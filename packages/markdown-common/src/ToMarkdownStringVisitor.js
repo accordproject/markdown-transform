@@ -197,9 +197,10 @@ class ToMarkdownStringVisitor {
             break;
         case 'Heading': {
             const level = parseInt(thing.level);
-            if (level < 3) {
+            const headingText = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            if (level < 3 && headingText !== '') {
                 parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
-                parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+                parameters.result += headingText;
                 parameters.first = false;
                 parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,1);
                 parameters.result += ToMarkdownStringVisitor.mkSetextHeading(level);
@@ -207,7 +208,7 @@ class ToMarkdownStringVisitor {
                 parameters.result += ToMarkdownStringVisitor.mkPrefix(parameters,2);
                 parameters.result += ToMarkdownStringVisitor.mkATXHeading(level);
                 parameters.result += ' ';
-                parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+                parameters.result += headingText;
             }
         }
             break;
