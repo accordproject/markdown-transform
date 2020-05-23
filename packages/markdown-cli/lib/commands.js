@@ -16,9 +16,7 @@
 
 const Fs = require('fs');
 const { Logger, ModelLoader } = require('@accordproject/concerto-core');
-
 const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
-const { TemplateMarkTransformer } = require('@accordproject/markdown-template');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
