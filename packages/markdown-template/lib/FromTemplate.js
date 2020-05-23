@@ -85,7 +85,7 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.templatemark.ListBlockDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = ast.kind === 'bullet' ? ulistParser(ast,childrenParser) : olistParser(ast,childrenParser);
+        parser = ast.type === 'bullet' ? ulistParser(ast,childrenParser) : olistParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {

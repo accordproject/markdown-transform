@@ -15,7 +15,8 @@
 'use strict';
 
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
-const { CiceroMarkModel, NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 
 function flatten(arr) {
     return arr.reduce((acc, val) => acc.concat(val), []);
@@ -25,6 +26,16 @@ function flatten(arr) {
  * Drafts a CiceroMark DOM from a TemplateMark DOM
  */
 class ToCiceroMarkVisitor {
+    /**
+     * Clone a CiceroMark node
+     * @param {*} visitor the visitor to use
+     * @param {*} thing the node to visit
+     * @param {*} [parameters] optional parameters
+     */
+    static cloneNode(serializer, node) {
+        return serializer.fromJSON(serializer.toJSON(node));
+    }
+
     /**
      * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
@@ -65,6 +76,8 @@ class ToCiceroMarkVisitor {
             return NS_PREFIX_CiceroMarkModel + 'Clause';
         } else if (tag === 'ConditionalDefinition') {
             return NS_PREFIX_CiceroMarkModel + 'Conditional';
+        } else if (tag === 'ListBlockDefinition') {
+            return NS_PREFIX_CiceroMarkModel + 'ListBlock';
         } else {
             return tag;
         }
@@ -76,6 +89,7 @@ class ToCiceroMarkVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
+        const that = this;
         const currentModel = parameters.model;
         switch(thing.getType()) {
         case 'VariableDefinition':
@@ -95,6 +109,7 @@ class ToCiceroMarkVisitor {
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const childrenParameters = {
                 templateMarkModelManager: parameters.templateMarkModelManager,
+                templateMarkSerializer: parameters.templateMarkSerializer,
                 data: (parameters.kind === 'contract' ? parameters.data[thing.name] : parameters.data),
                 kind: parameters.kind,
             };
@@ -104,6 +119,7 @@ class ToCiceroMarkVisitor {
         case 'WithDefinition': {
             const childrenParameters = {
                 templateMarkModelManager: parameters.templateMarkModelManager,
+                templateMarkSerializer: parameters.templateMarkSerializer,
                 data: parameters.data[thing.name],
                 kind: parameters.kind,
             };
@@ -118,6 +134,37 @@ class ToCiceroMarkVisitor {
             } else {
                 thing.value = thing.whenFalse;
             }
+        }
+            break;
+        case 'ListBlockDefinition': {
+            // Clone the thing and create an item blueprint
+            const itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,thing);
+            itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
+            delete itemNode.elementType;
+            delete itemNode.name;
+            delete itemNode.type;
+            delete itemNode.type;
+            delete itemNode.start;
+            delete itemNode.tight;
+            delete itemNode.delimiter;
+            
+            const dataItems = parameters.data[thing.name];
+            const mapItems = function(item) {
+                const itemParameters = {
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    data: item,
+                    kind: parameters.kind,
+                };
+                return ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode).accept(that, itemParameters);
+            };
+            
+            // Result List node
+            const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
+            thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
+            thing.nodes = flatten(dataItems.map(mapItems));
+
+            delete thing.elementType;
         }
             break;
         default:
