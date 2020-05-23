@@ -22,75 +22,75 @@ const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
 const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
 
-const grammar1 = loadFile('./test/data/template1/grammar1.tem.md');
-const model1 = './test/data/template1/model1.cto';
-const sample1 = loadFile('./test/data/template1/sample1.md');
-const sample1Err1 = loadFile('./test/data/template1/sample1Err1.md');
-const sample1Err2 = loadFile('./test/data/template1/sample1Err2.md');
-const sample1Err3 = loadFile('./test/data/template1/sample1Err3.md');
+const grammar1 = loadFile('./test/data/test1/grammar.tem.md');
+const model1 = './test/data/test1/model.cto';
+const sample1 = loadFile('./test/data/test1/sample.md');
+const sample1Err1 = loadFile('./test/data/test1/sampleErr1.md');
+const sample1Err2 = loadFile('./test/data/test1/sampleErr2.md');
+const sample1Err3 = loadFile('./test/data/test1/sampleErr3.md');
 
-const grammarErr1 = loadFile('./test/data/templateErr1/grammarErr1.tem.md');
-const modelErr1 = './test/data/templateErr1/modelErr1.cto';
-const sampleErr1 = loadFile('./test/data/templateErr1/sampleErr1.md');
+const grammarErr1 = loadFile('./test/data/testErr1/grammar.tem.md');
+const modelErr1 = './test/data/testErr1/model.cto';
+const sampleErr1 = loadFile('./test/data/testErr1/sample.md');
 
-const grammarErr2 = loadFile('./test/data/templateErr2/grammarErr2.tem.md');
-const modelErr2 = './test/data/templateErr2/modelErr2.cto';
-const sampleErr2 = loadFile('./test/data/templateErr2/sampleErr2.md');
+const grammarErr2 = loadFile('./test/data/testErr2/grammar.tem.md');
+const modelErr2 = './test/data/testErr2/model.cto';
+const sampleErr2 = loadFile('./test/data/testErr2/sample.md');
 
-const grammarErr3 = loadFile('./test/data/templateErr3/grammarErr3.tem.md');
-const modelErr3 = './test/data/templateErr3/modelErr3.cto';
-const sampleErr3 = loadFile('./test/data/templateErr3/sampleErr3.md');
+const grammarErr3 = loadFile('./test/data/testErr3/grammar.tem.md');
+const modelErr3 = './test/data/testErr3/model.cto';
+const sampleErr3 = loadFile('./test/data/testErr3/sample.md');
 
-const grammarErr4 = loadFile('./test/data/templateErr4/grammarErr4.tem.md');
-const modelErr4 = './test/data/templateErr4/modelErr4.cto';
-const sampleErr4 = loadFile('./test/data/templateErr4/sampleErr4.md');
+const grammarErr4 = loadFile('./test/data/testErr4/grammar.tem.md');
+const modelErr4 = './test/data/testErr4/model.cto';
+const sampleErr4 = loadFile('./test/data/testErr4/sample.md');
 
-const grammarErr5 = loadFile('./test/data/templateErr5/grammarErr5.tem.md');
-const modelErr5 = './test/data/templateErr5/modelErr5.cto';
-const sampleErr5 = loadFile('./test/data/templateErr5/sampleErr5.md');
+const grammarErr5 = loadFile('./test/data/testErr5/grammar.tem.md');
+const modelErr5 = './test/data/testErr5/model.cto';
+const sampleErr5 = loadFile('./test/data/testErr5/sample.md');
 
-const grammarErr6 = loadFile('./test/data/templateErr6/grammarErr6.tem.md');
-const modelErr6 = './test/data/templateErr6/modelErr6.cto';
-const sampleErr6 = loadFile('./test/data/templateErr6/sampleErr6.md');
+const grammarErr6 = loadFile('./test/data/testErr6/grammar.tem.md');
+const modelErr6 = './test/data/testErr6/model.cto';
+const sampleErr6 = loadFile('./test/data/testErr6/sample.md');
 
-const grammar2 = loadFile('./test/data/template2/grammar2.tem.md');
-const model2 = './test/data/template2/model2.cto';
-const sample2 = loadFile('./test/data/template2/sample2.md');
-const sample2Err1 = loadFile('./test/data/template2/sample2Err1.md');
-const sample2Err2 = loadFile('./test/data/template2/sample2Err2.md');
-const sample2Err3 = loadFile('./test/data/template2/sample2Err3.md');
-const sample2Err4 = loadFile('./test/data/template2/sample2Err4.md');
+const grammar2 = loadFile('./test/data/test2/grammar.tem.md');
+const model2 = './test/data/test2/model.cto';
+const sample2 = loadFile('./test/data/test2/sample.md');
+const sample2Err1 = loadFile('./test/data/test2/sampleErr1.md');
+const sample2Err2 = loadFile('./test/data/test2/sampleErr2.md');
+const sample2Err3 = loadFile('./test/data/test2/sampleErr3.md');
+const sample2Err4 = loadFile('./test/data/test2/sampleErr4.md');
 
-const grammarLarge = loadFile('./test/data/templateLarge/grammarLarge.tem.md');
-const modelLarge = './test/data/templateLarge/modelLarge.cto';
-const sampleLarge = loadFile('./test/data/templateLarge/sampleLarge.md');
+const grammarLarge = loadFile('./test/data/testLarge/grammar.tem.md');
+const modelLarge = './test/data/testLarge/model.cto';
+const sampleLarge = loadFile('./test/data/testLarge/sample.md');
 
-const grammarDateTime = loadFile('./test/data/templateDateTime/grammarDateTime.tem.md');
-const modelDateTime = './test/data/templateDateTime/modelDateTime.cto';
-const sampleDateTime = loadFile('./test/data/templateDateTime/sampleDateTime.md');
+const grammarDateTime = loadFile('./test/data/testDateTime/grammar.tem.md');
+const modelDateTime = './test/data/testDateTime/model.cto';
+const sampleDateTime = loadFile('./test/data/testDateTime/sample.md');
 
-const grammarUList = loadFile('./test/data/templateUList/grammarUList.tem.md');
-const modelUList = './test/data/templateUList/modelUList.cto';
-const sampleUList = loadFile('./test/data/templateUList/sampleUList.md');
+const grammarUList = loadFile('./test/data/testUList/grammar.tem.md');
+const modelUList = './test/data/testUList/model.cto';
+const sampleUList = loadFile('./test/data/testUList/sample.md');
 
-const grammarOList = loadFile('./test/data/templateOList/grammarOList.tem.md');
-const modelOList = './test/data/templateOList/modelOList.cto';
-const sampleOList = loadFile('./test/data/templateOList/sampleOList.md');
-const sampleOList2 = loadFile('./test/data/templateOList/sampleOList2.md');
+const grammarOList = loadFile('./test/data/testOList/grammar.tem.md');
+const modelOList = './test/data/testOList/model.cto';
+const sampleOList = loadFile('./test/data/testOList/sample.md');
+const sampleOList2 = loadFile('./test/data/testOList/sample2.md');
 
-const grammarRepeat = loadFile('./test/data/templateRepeat/grammarRepeat.tem.md');
-const modelRepeat = './test/data/templateRepeat/modelRepeat.cto';
-const sampleRepeat = loadFile('./test/data/templateRepeat/sampleRepeat.md');
-const sampleRepeatErr = loadFile('./test/data/templateRepeat/sampleRepeatErr.md');
+const grammarRepeat = loadFile('./test/data/testRepeat/grammar.tem.md');
+const modelRepeat = './test/data/testRepeat/model.cto';
+const sampleRepeat = loadFile('./test/data/testRepeat/sample.md');
+const sampleRepeatErr = loadFile('./test/data/testRepeat/sampleErr.md');
 
-const grammarWith = loadFile('./test/data/templateWith/grammarWith.tem.md');
-const modelWith = './test/data/templateWith/modelWith.cto';
-const sampleWith = loadFile('./test/data/templateWith/sampleWith.md');
+const grammarWith = loadFile('./test/data/testWith/grammar.tem.md');
+const modelWith = './test/data/testWith/model.cto';
+const sampleWith = loadFile('./test/data/testWith/sample.md');
 
-const grammarComputed = loadFile('./test/data/templateComputed/grammarComputed.tem.md');
-const modelComputed = './test/data/templateComputed/modelComputed.cto';
-const sampleComputed = loadFile('./test/data/templateComputed/sampleComputed.md');
-const sampleComputedErr = loadFile('./test/data/templateComputed/sampleComputedErr.md');
+const grammarComputed = loadFile('./test/data/testComputed/grammar.tem.md');
+const modelComputed = './test/data/testComputed/model.cto';
+const sampleComputed = loadFile('./test/data/testComputed/sample.md');
+const sampleComputedErr = loadFile('./test/data/testComputed/sampleErr.md');
 
 // Tests
 describe('#invalidTemplates', () => {
