@@ -164,7 +164,7 @@ class TemplateMarkTransformer {
             kind: templateKind,
         };
         const visitor = new TypingVisitor();
-        input.accept( visitor, parameters );
+        input.accept(visitor, parameters);
         const result = Object.assign({}, this.serializer.toJSON(input));
 
         return result;
@@ -319,12 +319,13 @@ class TemplateMarkTransformer {
 
         const parameters = {
             templateMarkModelManager: this.modelManager,
+            templateMarkSerializer: this.serializer,
             data: data,
             kind: templateKind,
         };
 
         const visitor = new ToCiceroMarkVisitor();
-        input.accept( visitor, parameters );
+        input.accept(visitor, parameters);
         const result = Object.assign({}, this.serializer.toJSON(input));
 
         return result;
