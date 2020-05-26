@@ -101,11 +101,11 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (duplicate clause)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr1,grammarErr1,modelManager,'clause')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr1,grammarErr1,modelManager,'clause')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
         });
 
         it('should fail loading template (duplicate contract)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr1,grammarErr1,modelManager,'contract')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr1,grammarErr1,modelManager,'contract')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
         });
     });
 
@@ -116,11 +116,11 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (duplicate clause)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr2,grammarErr2,modelManager,'clause')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr2,grammarErr2,modelManager,'clause')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
         });
 
         it('should fail loading template (duplicate contract)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr2,grammarErr2,modelManager,'contract')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr2,grammarErr2,modelManager,'contract')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
         });
     });
 
@@ -131,7 +131,7 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (missing clause property)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr3,grammarErr3,modelManager,'clause')).should.throw('Unknown property seller');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr3,grammarErr3,modelManager,'clause')).should.throw('Unknown property seller');
         });
     });
 
@@ -142,7 +142,7 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (missing contract property)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr4,grammarErr4,modelManager,'contract')).should.throw('Unknown property agreement');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr4,grammarErr4,modelManager,'contract')).should.throw('Unknown property agreement');
         });
     });
 
@@ -153,7 +153,7 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (missing with property)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr5,grammarErr5,modelManager,'contract')).should.throw('Unknown property sellerAddress');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr5,grammarErr5,modelManager,'contract')).should.throw('Unknown property sellerAddress');
         });
     });
 
@@ -164,7 +164,7 @@ describe('#invalidTemplates', () => {
         });
 
         it('should fail loading template (missing list property)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleErr6,grammarErr6,modelManager,'contract')).should.throw('Unknown property prices');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr6,grammarErr6,modelManager,'contract')).should.throw('Unknown property prices');
         });
     });
 });
@@ -177,11 +177,11 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            (new TemplateMarkTransformer()).parse(sample1,grammar1,modelManager,'clause').amount.should.equal(3131);
+            (new TemplateMarkTransformer()).fromMarkdown(sample1,grammar1,modelManager,'clause').amount.should.equal(3131);
         });
 
         it('should parse (verbose)', async () => {
-            (new TemplateMarkTransformer()).parse(sample1,grammar1,modelManager,'clause',{verbose:true}).amount.should.equal(3131);
+            (new TemplateMarkTransformer()).fromMarkdown(sample1,grammar1,modelManager,'clause',{verbose:true}).amount.should.equal(3131);
         });
     });
 
@@ -192,15 +192,15 @@ describe('#parse', () => {
         });
 
         it('should fail parsing (wrong currency code)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample1Err1,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err1,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.');
         });
 
         it('should fail parsing (wrong string)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample1Err2,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err2,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.');
         });
 
         it('should fail parsing (wrong double)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample1Err3,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err3,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.');
         });
     });
 
@@ -211,7 +211,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            (new TemplateMarkTransformer()).parse(sample2,grammar2,modelManager,'contract').penalty.should.equal(10);
+            (new TemplateMarkTransformer()).fromMarkdown(sample2,grammar2,modelManager,'contract').penalty.should.equal(10);
         });
     });
 
@@ -222,16 +222,16 @@ describe('#parse', () => {
         });
 
         it('should fail parsing (extra text)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample2Err1,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err1,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text');
         });
         it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample2Err2,grammar2,modelManager,'contract')).should.throw('Parse error at line 4 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err2,grammar2,modelManager,'contract')).should.throw('Parse error at line 4 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
         });
         it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample2Err3,grammar2,modelManager,'contract')).should.throw('Parse error at line 3 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" nam="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^\nExpected: \' name=\'');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err3,grammar2,modelManager,'contract')).should.throw('Parse error at line 3 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" nam="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^\nExpected: \' name=\'');
         });
         it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sample2Err4,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err4,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal');
         });
     });
 
@@ -242,7 +242,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            (new TemplateMarkTransformer()).parse(sampleLarge,grammarLarge,modelManager,'contract').penalty.should.equal(10.99);
+            (new TemplateMarkTransformer()).fromMarkdown(sampleLarge,grammarLarge,modelManager,'contract').penalty.should.equal(10.99);
         });
     });
 
@@ -253,7 +253,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            (new TemplateMarkTransformer()).parse(sampleDateTime,grammarDateTime,modelManager,'clause').effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
+            (new TemplateMarkTransformer()).fromMarkdown(sampleDateTime,grammarDateTime,modelManager,'clause').effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
         });
     });
 
@@ -264,7 +264,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleUList,grammarUList,modelManager,'contract');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleUList,grammarUList,modelManager,'contract');
             result.prices.length.should.equal(3);
             result.prices[0].$class.should.equal('org.test.Price');
             result.prices[0].number.should.equal(1);
@@ -282,7 +282,7 @@ describe('#parse', () => {
         });
 
         it('should parse (same number)', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleOList,grammarOList,modelManager,'contract');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleOList,grammarOList,modelManager,'contract');
             result.prices.length.should.equal(3);
             result.prices[0].$class.should.equal('org.test.Price');
             result.prices[0].number.should.equal(1);
@@ -293,7 +293,7 @@ describe('#parse', () => {
         });
 
         it('should parse (same various numbers)', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleOList2,grammarOList,modelManager,'contract');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleOList2,grammarOList,modelManager,'contract');
             result.prices.length.should.equal(4);
             result.prices[0].$class.should.equal('org.test.Price');
             result.prices[0].number.should.equal(1);
@@ -313,7 +313,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleRepeat,grammarRepeat,modelManager,'clause');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleRepeat,grammarRepeat,modelManager,'clause');
             result.seller.should.equal('Steve');
             result.buyer.should.equal('Betty');
         });
@@ -326,7 +326,7 @@ describe('#parse', () => {
         });
 
         it('should fail parsing (inconsistent variables)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleRepeatErr,grammarRepeat,modelManager,'clause')).should.throw('Inconsistent values for variable seller: Steve and Betty');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleRepeatErr,grammarRepeat,modelManager,'clause')).should.throw('Inconsistent values for variable seller: Steve and Betty');
         });
     });
 
@@ -337,7 +337,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleWith,grammarWith,modelManager,'contract');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleWith,grammarWith,modelManager,'contract');
             result.agreement.seller.should.equal('Steve');
             result.agreement.buyer.should.equal('Betty');
             result.sellerAddress.city.should.equal('NYC');
@@ -352,7 +352,7 @@ describe('#parse', () => {
         });
 
         it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).parse(sampleComputed,grammarComputed,modelManager,'contract');
+            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleComputed,grammarComputed,modelManager,'contract');
             result.agreement.seller.should.equal('Steve');
             result.agreement.buyer.should.equal('Betty');
         });
@@ -365,7 +365,7 @@ describe('#parse', () => {
         });
 
         it('should fail parsing (inconsistent variables)', async () => {
-            (() => (new TemplateMarkTransformer()).parse(sampleComputedErr,grammarComputed,modelManager,'contract')).should.throw('Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^');
+            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleComputedErr,grammarComputed,modelManager,'contract')).should.throw('Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^');
         });
     });
 

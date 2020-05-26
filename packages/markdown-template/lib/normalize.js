@@ -14,7 +14,7 @@
 
 'use strict';
 
-const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -28,31 +28,29 @@ function normalizeNLs(input) {
 }
 
 /**
- * Normalize CiceroMark to markdown text
- * @param {*} input - the CiceroMark DOM
+ * Normalize CommonMark to markdown text
+ * @param {*} input - the CommonMark DOM
  * @return {string} - the normalized markdown text
  */
 function normalizeToMarkdown(input) {
-    const ciceroMarkTransformer = new CiceroMarkTransformer();
-    const result = ciceroMarkTransformer.toMarkdown(input);
+    const commonMarkTransformer = new CommonMarkTransformer();
+    const result = commonMarkTransformer.toMarkdown(input);
     return result;
 }
 
 /**
  * Normalize markdown text
  * @param {string} input - the markdown text
- * @return {string} - the normalized markdown text
+ * @return {object} - the normalized commonmark
  */
-function normalizeMarkdown(input) {
+function normalizeFromMarkdown(input) {
     // Normalizes new lines
     const inputNLs = normalizeNLs(input);
-    // Roundtrip the grammar through the Ciceromark parser
-    const ciceroMarkTransformer = new CiceroMarkTransformer();
-    const concertoAst = ciceroMarkTransformer.fromMarkdown(inputNLs);
-    const result = normalizeToMarkdown(concertoAst);
-    return result;
+    // Roundtrip the grammar through the Commonmark parser
+    const commonMarkTransformer = new CommonMarkTransformer();
+    return commonMarkTransformer.fromMarkdown(inputNLs);
 }
 
 module.exports.normalizeNLs = normalizeNLs;
 module.exports.normalizeToMarkdown = normalizeToMarkdown;
-module.exports.normalizeMarkdown = normalizeMarkdown;
+module.exports.normalizeFromMarkdown = normalizeFromMarkdown;
