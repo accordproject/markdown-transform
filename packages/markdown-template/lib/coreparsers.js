@@ -18,13 +18,13 @@ const P = require('parsimmon');
 const uuid = require('uuid');
 
 const { ParseException } = require('@accordproject/concerto-core');
-const flatten = (arr) => {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-};
 
 /**
  * Utilities
  */
+const flatten = (arr) => {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+};
 
 /**
  * Creates a variable output

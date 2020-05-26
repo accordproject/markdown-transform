@@ -18,6 +18,7 @@ const Fs = require('fs');
 
 // Parser from template AST
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
 const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
@@ -72,6 +73,7 @@ const sampleDateTime = loadFile('./test/data/testDateTime/sample.md');
 const grammarUList = loadFile('./test/data/testUList/grammar.tem.md');
 const modelUList = './test/data/testUList/model.cto';
 const sampleUList = loadFile('./test/data/testUList/sample.md');
+const sampleUListJson = JSON.parse(loadFile('./test/data/testUList/sample.json').content);
 
 const grammarOList = loadFile('./test/data/testOList/grammar.tem.md');
 const modelOList = './test/data/testOList/model.cto';
@@ -296,6 +298,22 @@ describe('#parse', () => {
             result.prices[1].number.should.equal(2);
             result.prices[2].$class.should.equal('org.test.Price');
             result.prices[2].number.should.equal(3);
+        });
+
+        it('should instantiate', async () => {
+            const templateMarkTransformer = new TemplateMarkTransformer();
+            const templateUList = templateMarkTransformer.fromMarkdownTemplate(grammarUList, modelManager, 'contract', {});
+            const t = new CiceroMarkTransformer({tagInfo: true});
+            const cmarkUList = {fileName:'cmark.json',content:t.fromMarkdown(sampleUList.content, 'json')};
+            const data = templateMarkTransformer.parseCiceroMark(cmarkUList,templateUList,modelManager,'contract');
+            data.prices.length.should.equal(3);
+            data.prices[0].$class.should.equal('org.test.Price');
+            data.prices[0].number.should.equal(1);
+            data.prices[1].$class.should.equal('org.test.Price');
+            data.prices[1].number.should.equal(2);
+            data.prices[2].$class.should.equal('org.test.Price');
+            data.prices[2].number.should.equal(3);
+            templateMarkTransformer.draftCiceroMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListJson);
         });
     });
 

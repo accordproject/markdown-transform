@@ -62,7 +62,7 @@ const transformationGraph = {
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
             const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
-            return t.draftCiceroMark(input, templateMark, parameters.templateKind, options);
+            return t.draftCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
         },
     },
     commonmark: {

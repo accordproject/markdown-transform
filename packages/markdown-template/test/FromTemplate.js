@@ -16,6 +16,8 @@
 
 // Parser from template AST
 const parserOfTemplate = require('../lib/FromTemplate').parserOfTemplate;
+const parsingTable = require('../lib/parsermanager').parsingTable;
+const params = {contract:false,parsingTable:parsingTable};
 
 // Variables
 const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'String' };
@@ -94,34 +96,34 @@ const templateErr2 = {
 describe('#templateparsers', () => {
     describe('#template1', () => {
         it('should parse', async () => {
-            parserOfTemplate(template1,{contract:false}).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserOfTemplate(template1,params).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplate(template1,{contract:false}).parse('FOO').status.should.equal(false);
+            parserOfTemplate(template1,params).parse('FOO').status.should.equal(false);
         });
     });
 
     describe('#template2', () => {
         it('should parse (no force majeure)', async () => {
-            parserOfTemplate(template2,{contract:false}).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserOfTemplate(template2,params).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserOfTemplate(template2,{contract:false}).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
+            parserOfTemplate(template2,params).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplate(template2,{contract:false}).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
+            parserOfTemplate(template2,params).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
         });
     });
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            parserOfTemplate(template3,{contract:false}).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
+            parserOfTemplate(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserOfTemplate(template3,{contract:false}).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
+            parserOfTemplate(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplate(template3,{contract:false}).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
+            parserOfTemplate(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
         });
     });
 });
@@ -129,13 +131,13 @@ describe('#templateparsers', () => {
 describe('#invalidparsers', () => {
     describe('#templateErr1', () => {
         it('should throw for wrong $class', async () => {
-            (() => parserOfTemplate(templateErr1,{contract:false})).should.throw('Unknown template ast $class foo');
+            (() => parserOfTemplate(templateErr1,params)).should.throw('Unknown template ast $class foo');
         });
     });
 
     describe('#templateErr2', () => {
         it('should throw for wrong variable type', async () => {
-            (() => parserOfTemplate(templateErr2,{contract:false})).should.throw('Unknown variable type FOO');
+            (() => parserOfTemplate(templateErr2,params)).should.throw('Unknown variable type FOO');
         });
     });
 });

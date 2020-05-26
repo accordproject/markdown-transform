@@ -97,7 +97,13 @@ class ToCiceroMarkVisitor {
         case 'EnumVariableDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            thing.value = '' + parameters.data[thing.name]; // TO FIX
+            const data = parameters.data[thing.name];
+            const typeFun = parameters.parserManager.getParsingTable()[thing.elementType];
+            if (typeFun) {
+                thing.value = '' + typeFun.draft(data);
+            } else {
+                thing.value = '' + parameters.data[thing.name]; // XXX should that ever happen ??
+            }
         }
             break;
         case 'ContractDefinition': {
@@ -108,6 +114,7 @@ class ToCiceroMarkVisitor {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const childrenParameters = {
+                parserManager: parameters.parserManager,
                 templateMarkModelManager: parameters.templateMarkModelManager,
                 templateMarkSerializer: parameters.templateMarkSerializer,
                 data: (parameters.kind === 'contract' ? parameters.data[thing.name] : parameters.data),
@@ -118,6 +125,7 @@ class ToCiceroMarkVisitor {
             break;
         case 'WithDefinition': {
             const childrenParameters = {
+                parserManager: parameters.parserManager,
                 templateMarkModelManager: parameters.templateMarkModelManager,
                 templateMarkSerializer: parameters.templateMarkSerializer,
                 data: parameters.data[thing.name],
@@ -151,6 +159,7 @@ class ToCiceroMarkVisitor {
             const dataItems = parameters.data[thing.name];
             const mapItems = function(item) {
                 const itemParameters = {
+                    parserManager: parameters.parserManager,
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     templateMarkSerializer: parameters.templateMarkSerializer,
                     data: item,
