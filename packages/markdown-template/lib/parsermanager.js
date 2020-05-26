@@ -14,6 +14,8 @@
 
 'use strict';
 
+const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
+
 const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
 
 const doubleParser = require('./coreparsers').doubleParser;
@@ -47,13 +49,38 @@ class ParserManager {
      * @param {object} template - the template instance
      */
     constructor(modelManager,grammarAst) {
-        // For this template grammar
         this.modelManager = modelManager;
+        this.factory = new Factory(this.modelManager);
+        this.serializer = new Serializer(this.factory, this.modelManager);
         this.grammarAst = grammarAst;
         this.parser = null;
 
         // Mapping from types to parsers/drafters
         this.parsingTable = parsingTable;
+    }
+
+    /**
+     * Gets the model manager for this parser
+     * @return {object} the model manager
+     */
+    getModelManager() {
+        return this.modelManager;
+    }
+
+    /**
+     * Gets the factory for this parser
+     * @return {object} the factory
+     */
+    getFactory() {
+        return this.factory;
+    }
+
+    /**
+     * Gets the serializer for this parser
+     * @return {object} the serializer
+     */
+    getSerializer() {
+        return this.serializer;
     }
 
     /**
@@ -98,7 +125,9 @@ class ParserManager {
      * Build the parser
      */
     buildParser() {
-        this.parser = parserOfTemplate(this.grammarAst,{parsingTable:this.parsingTable,contract:false});
+        if (!this.parser) {
+            this.parser = parserOfTemplate(this.grammarAst,{parsingTable:this.parsingTable,contract:false});
+        }
     }
 
 }

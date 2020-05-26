@@ -24,8 +24,8 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 const ParserManager = require('./parsermanager').ParserManager;
 
 const normalizeNLs = require('./normalize').normalizeNLs;
-const normalizeMarkdown = require('./normalize').normalizeMarkdown;
 const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
+const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
 
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
@@ -244,6 +244,50 @@ class TemplateMarkTransformer {
     }
 
     /**
+     * Parse a CommonMarkMark DOM against a TemplateMark DOM
+     * @param {{fileName:string,content:string}} commonMarkInput the commonmark input
+     * @param {object} parserManager - the parser manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    dataFromCommonMark(commonMarkInput, parserManager, templateKind, options) {
+        const serializer = parserManager.getSerializer();
+        const parser = parserManager.getParser();
+
+        // Load the markdown input
+        const markdown = normalizeToMarkdown(commonMarkInput.content);
+        const markdownFileName = commonMarkInput.fileName;
+
+        // Parse the markdown
+        let result = parser.parse(markdown);
+        if (result.status) {
+            return serializer.toJSON(serializer.fromJSON(result.value));
+        } else {
+            _throwParseError(markdown,result,markdownFileName);
+        }
+    }
+
+    /**
+     * Parse a CommonMarkMark DOM against a TemplateMark DOM
+     * @param {object} commonMark the CommonMark DOM
+     * @param {object} templateMark the templatemark grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    fromCommonMark(commonMarkInput, templateMark, modelManager, templateKind, options) {
+        // Construct the template parser
+        const parserManager = new ParserManager(modelManager,templateMark);
+        parserManager.buildParser();
+
+        return this.dataFromCommonMark(commonMarkInput, parserManager, templateKind, options);
+    }
+
+    /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {{fileName:string,content:string}} markdown the markdown input
      * @param {{fileName:string,content:string}} grammar the template grammar
@@ -253,65 +297,18 @@ class TemplateMarkTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    parse(markdownInput, grammarInput, modelManager, templateKind, options) {
-        const factory = new Factory(modelManager);
-        const serializer = new Serializer(factory, modelManager);
-
+    fromMarkdown(markdownInput, grammarInput, modelManager, templateKind, options) {
         // Translate grammar to TemplateMark
         const typedTemplate = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, options);
 
-        // Construct the template parser
-        const parserManager = new ParserManager(modelManager,typedTemplate);
-        parserManager.buildParser();
-        const parser = parserManager.getParser();
-
         // Load the markdown input
-        const markdown = normalizeMarkdown(markdownInput.content);
-        const markdownFileName = markdownInput.fileName;
+        const commonMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdown(markdownInput.content)};
 
-        // Parse the markdown
-        let result = parser.parse(markdown);
-        if (result.status) {
-            return serializer.toJSON(serializer.fromJSON(result.value));
-        } else {
-            _throwParseError(markdown,result,markdownFileName);
-        }
+        return this.fromCommonMark(commonMark, typedTemplate, modelManager, templateKind, options);
     }
 
     /**
-     * Parse a CiceroMark DOM against a TemplateMark DOM
-     * @param {{fileName:string,content:string}} ciceroMarkInput the ciceromark input
-     * @param {{fileName:string,content:string}} templateMarkInput the templatemark grammar
-     * @param {object} modelManager - the model manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result of parsing
-     */
-    parseCiceroMark(ciceroMarkInput, templateMarkInput, modelManager, templateKind, options) {
-        const factory = new Factory(modelManager);
-        const serializer = new Serializer(factory, modelManager);
-
-        // Construct the template parser
-        const parserManager = new ParserManager(modelManager,templateMarkInput);
-        parserManager.buildParser();
-        const parser = parserManager.getParser();
-
-        // Load the markdown input
-        const markdown = normalizeToMarkdown(ciceroMarkInput.content);
-        const markdownFileName = ciceroMarkInput.fileName;
-
-        // Parse the markdown
-        let result = parser.parse(markdown);
-        if (result.status) {
-            return serializer.toJSON(serializer.fromJSON(result.value));
-        } else {
-            _throwParseError(markdown,result,markdownFileName);
-        }
-    }
-
-    /**
-     * Drafts a CiceroMark DOM from a TemplateMarkDOM
+     * Instantiate a CiceroMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
      * @param {*} typedTemplate the TemplateMark DOM
      * @param {object} modelManager - the model manager for this template
@@ -320,7 +317,7 @@ class TemplateMarkTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    draftCiceroMark(data, typedTemplate, modelManager, templateKind, options) {
+    instantiateCiceroMark(data, typedTemplate, modelManager, templateKind, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager,typedTemplate);
 

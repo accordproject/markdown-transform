@@ -76,6 +76,18 @@ describe('#transform', () => {
             const result = await transform(acceptanceCommonMark, 'commonmark', ['plaintext'], {}, {});
             result.should.startWith('Heading');
         });
+
+        it('commonmark -> data', async () => {
+            const grammar1File = './test/data/template1/grammar1.tem.md';
+            const grammar1 = fs.readFileSync(grammar1File, 'utf8');
+            const model1 = './test/data/template1/model1.cto';
+            const sample1File = './test/data/template1/sample1.md';
+            const sample1 = fs.readFileSync(sample1File, 'utf8');
+            const parameters = { inputFileName: grammar1File, grammar: grammar1, ctoFiles: [model1], templateKind: 'clause' };
+            const result = await transform(sample1, 'markdown', ['data'], parameters, {});
+            result.$class.should.equal('org.test.MyClause');
+            result.seller.should.equal('Steve');
+        });
     });
 
     describe('#plaintext', () => {
@@ -104,18 +116,6 @@ describe('#transform', () => {
         it('ciceromark -> slate', async () => {
             const result = await transform(acceptanceCiceroMark, 'ciceromark', ['slate'], {}, {});
             result.document.object.should.equal('document');
-        });
-
-        it('ciceromark -> data', async () => {
-            const grammar1File = './test/data/template1/grammar1.tem.md';
-            const grammar1 = fs.readFileSync(grammar1File, 'utf8');
-            const model1 = './test/data/template1/model1.cto';
-            const sample1File = './test/data/template1/sample1.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const parameters = { inputFileName: grammar1File, grammar: grammar1, ctoFiles: [model1], templateKind: 'clause' };
-            const result = await transform(sample1, 'markdown', ['data'], parameters, {});
-            result.$class.should.equal('org.test.MyClause');
-            result.seller.should.equal('Steve');
         });
     });
 

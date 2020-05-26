@@ -23,7 +23,8 @@ chai.use(require('chai-as-promised'));
 
 // Basic parser constructors
 const normalizeNLs = require('../lib/normalize').normalizeNLs;
-const normalizeMarkdown = require('../lib/normalize').normalizeMarkdown;
+const normalizeFromMarkdown = require('../lib/normalize').normalizeFromMarkdown;
+const normalizeToMarkdown = require('../lib/normalize').normalizeToMarkdown;
 
 describe('#normalize', () => {
     describe('#normalizeNLs', () => {
@@ -33,7 +34,7 @@ describe('#normalize', () => {
     });
     describe('#normalizeMarkdown', () => {
         it('should normalize to \n', async () => {
-            normalizeMarkdown('Hello\r\nWorld!').should.equal('Hello\nWorld!');
+            normalizeToMarkdown(normalizeFromMarkdown('Hello\r\nWorld!')).should.equal('Hello\nWorld!');
         });
     });
 });

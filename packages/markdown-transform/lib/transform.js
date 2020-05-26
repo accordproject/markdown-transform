@@ -62,7 +62,7 @@ const transformationGraph = {
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
             const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
-            return t.draftCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
+            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
         },
     },
     commonmark: {
@@ -80,6 +80,14 @@ const transformationGraph = {
             const commonMarkTransformer = new CommonMarkTransformer(options);
             const result = commonMarkTransformer.removeFormatting(input);
             return commonMarkTransformer.toMarkdown(result);
+        },
+        data: async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            const templateParameters = Object.assign({},parameters);
+            templateParameters.inputFileName = parameters.grammarFileName;
+            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            return t.fromCommonMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
         },
     },
     plaintext: {
@@ -107,14 +115,6 @@ const transformationGraph = {
         slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
-        },
-        data: async (input,parameters,options) => {
-            const t = new TemplateMarkTransformer();
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
-            const templateParameters = Object.assign({},parameters);
-            templateParameters.inputFileName = parameters.grammarFileName;
-            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
-            return t.parseCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
         },
     },
     ciceromark_noquotes: {
