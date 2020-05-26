@@ -17,10 +17,11 @@
 const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
 const TemplateMarkRawModel = require('./externalModels/TemplateMarkRaw').TemplateMarkRawModel;
+
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const ParserManager = require('./parsermanager').ParserManager;
 
 const normalizeNLs = require('./normalize').normalizeNLs;
 const normalizeMarkdown = require('./normalize').normalizeMarkdown;
@@ -30,7 +31,6 @@ const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
-const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
 const TemplateParser = require('./TemplateParser');
 
 /**
@@ -99,9 +99,10 @@ class TemplateMarkTransformer {
     /**
      * Construct the parser.
      */
-    constructor() {
+    constructor(modelManager,grammar) {
         // Setup for Nested Parsing
         this.commonMark = new CommonMarkTransformer();
+
         // Setup for validation
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
@@ -260,7 +261,9 @@ class TemplateMarkTransformer {
         const typedTemplate = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, options);
 
         // Construct the template parser
-        const parser = parserOfTemplate(typedTemplate,{contract:false});
+        const parserManager = new ParserManager(modelManager,typedTemplate);
+        parserManager.buildParser();
+        const parser = parserManager.getParser();
 
         // Load the markdown input
         const markdown = normalizeMarkdown(markdownInput.content);
@@ -290,7 +293,9 @@ class TemplateMarkTransformer {
         const serializer = new Serializer(factory, modelManager);
 
         // Construct the template parser
-        const parser = parserOfTemplate(templateMarkInput,{contract:false});
+        const parserManager = new ParserManager(modelManager,templateMarkInput);
+        parserManager.buildParser();
+        const parser = parserManager.getParser();
 
         // Load the markdown input
         const markdown = normalizeToMarkdown(ciceroMarkInput.content);
@@ -308,21 +313,26 @@ class TemplateMarkTransformer {
     /**
      * Drafts a CiceroMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
-     * @param {*} template the TemplateMark DOM
+     * @param {*} typedTemplate the TemplateMark DOM
+     * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    draftCiceroMark(data, template, templateKind, options) {
-        const input = this.serializer.fromJSON(template);
+    draftCiceroMark(data, typedTemplate, modelManager, templateKind, options) {
+        // Construct the template parser
+        const parserManager = new ParserManager(modelManager,typedTemplate);
 
         const parameters = {
+            parserManager: parserManager,
             templateMarkModelManager: this.modelManager,
             templateMarkSerializer: this.serializer,
             data: data,
             kind: templateKind,
         };
+
+        const input = this.serializer.fromJSON(typedTemplate);
 
         const visitor = new ToCiceroMarkVisitor();
         input.accept(visitor, parameters);

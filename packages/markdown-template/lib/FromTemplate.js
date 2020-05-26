@@ -17,10 +17,6 @@
 // Basic parser constructors
 const textParser = require('./coreparsers').textParser;
 const computedParser = require('./coreparsers').computedParser;
-const doubleParser = require('./coreparsers').doubleParser;
-const integerParser = require('./coreparsers').integerParser;
-const stringParser = require('./coreparsers').stringParser;
-const dateTimeParser = require('./dateTimeParser').dateTimeParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
@@ -37,17 +33,6 @@ const documentParser = require('./coreparsers').documentParser;
 const paragraphParser = require('./coreparsers').paragraphParser;
 const headingParser = require('./coreparsers').headingParser;
 const codeBlockParser = require('./coreparsers').codeBlockParser;
-
-/**
- * Parsing table for variables
- * This maps types to their parser
- */
-const parsingTable = {
-    'Integer' : integerParser,
-    'Double' : doubleParser,
-    'String' : stringParser,
-    'DateTime' : dateTimeParser,
-};
 
 /**
  * Creates a parser for Double
@@ -67,9 +52,9 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
     case 'org.accordproject.templatemark.VariableDefinition' : {
-        const parserFun = parsingTable[ast.elementType];
-        if (parserFun) {
-            parser = parserFun(ast);
+        const typeFun = params.parsingTable[ast.elementType];
+        if (typeFun) {
+            parser = typeFun.parse(ast);
         } else {
             throw new Error('Unknown variable type ' + ast.elementType);
         }
