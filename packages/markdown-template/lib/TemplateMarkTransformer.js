@@ -30,6 +30,7 @@ const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
 const TypingVisitor = require('./TypingVisitor');
 const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
+const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 
 const TemplateParser = require('./TemplateParser');
 
@@ -315,7 +316,7 @@ class TemplateMarkTransformer {
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result of parsing
+     * @returns {object} the result
      */
     instantiateCiceroMark(data, typedTemplate, modelManager, templateKind, options) {
         // Construct the template parser
@@ -336,6 +337,31 @@ class TemplateMarkTransformer {
         const result = Object.assign({}, this.serializer.toJSON(input));
 
         return result;
+    }
+
+    /**
+     * Instantiate a CommonMark DOM from a TemplateMarkDOM
+     * @param {*} data the contract/clause data input
+     * @param {*} typedTemplate the TemplateMark DOM
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result
+     */
+    instantiateCommonMark(data, typedTemplate, modelManager, templateKind, options) {
+        const ciceroMark = this.instantiateCiceroMark(data, typedTemplate, modelManager, templateKind, options);
+
+        // convert to common mark
+        const visitor = new ToCommonMarkVisitor();
+        const dom = this.serializer.fromJSON(ciceroMark);
+        dom.accept( visitor, {
+            commonMark: this.commonMark,
+            modelManager : this.modelManager,
+            serializer : this.serializer
+        });
+
+        return this.serializer.toJSON(dom);
     }
 
     /**

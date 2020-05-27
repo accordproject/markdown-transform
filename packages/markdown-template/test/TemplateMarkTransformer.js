@@ -73,7 +73,8 @@ const sampleDateTime = loadFile('./test/data/testDateTime/sample.md');
 const grammarUList = loadFile('./test/data/testUList/grammar.tem.md');
 const modelUList = './test/data/testUList/model.cto';
 const sampleUList = loadFile('./test/data/testUList/sample.md');
-const sampleUListJson = JSON.parse(loadFile('./test/data/testUList/sample.json').content);
+const sampleUListCommon = JSON.parse(loadFile('./test/data/testUList/sample_common.json').content);
+const sampleUListCicero = JSON.parse(loadFile('./test/data/testUList/sample_cicero.json').content);
 
 const grammarOList = loadFile('./test/data/testOList/grammar.tem.md');
 const modelOList = './test/data/testOList/model.cto';
@@ -300,7 +301,7 @@ describe('#parse', () => {
             result.prices[2].number.should.equal(3);
         });
 
-        it('should instantiate', async () => {
+        it('should instantiate to CiceroMark', async () => {
             const templateMarkTransformer = new TemplateMarkTransformer();
             const templateUList = templateMarkTransformer.fromMarkdownTemplate(grammarUList, modelManager, 'contract', {});
             const t = new CommonMarkTransformer();
@@ -313,7 +314,23 @@ describe('#parse', () => {
             data.prices[1].number.should.equal(2);
             data.prices[2].$class.should.equal('org.test.Price');
             data.prices[2].number.should.equal(3);
-            templateMarkTransformer.instantiateCiceroMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListJson);
+            templateMarkTransformer.instantiateCiceroMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListCicero);
+        });
+
+        it('should instantiate to CommonMark', async () => {
+            const templateMarkTransformer = new TemplateMarkTransformer();
+            const templateUList = templateMarkTransformer.fromMarkdownTemplate(grammarUList, modelManager, 'contract', {});
+            const t = new CommonMarkTransformer();
+            const cmarkUList = {fileName:'cmark.json',content:t.fromMarkdown(sampleUList.content, 'json')};
+            const data = templateMarkTransformer.fromCommonMark(cmarkUList,templateUList,modelManager,'contract');
+            data.prices.length.should.equal(3);
+            data.prices[0].$class.should.equal('org.test.Price');
+            data.prices[0].number.should.equal(1);
+            data.prices[1].$class.should.equal('org.test.Price');
+            data.prices[1].number.should.equal(2);
+            data.prices[2].$class.should.equal('org.test.Price');
+            data.prices[2].number.should.equal(3);
+            templateMarkTransformer.instantiateCommonMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListCommon);
         });
     });
 
