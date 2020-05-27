@@ -56,6 +56,14 @@ const transformationGraph = {
     data : {
         docs: 'Contract Data (JSON)',
         fileFormat: 'json',
+        commonmark: async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            const templateParameters = Object.assign({},parameters);
+            templateParameters.inputFileName = parameters.grammarFileName;
+            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            return t.instantiateCommonMark(input, templateMark, modelManager, parameters.templateKind, options);
+        },
         ciceromark: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
