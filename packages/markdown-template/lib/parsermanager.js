@@ -48,11 +48,12 @@ class ParserManager {
      * Create the ParserManager.
      * @param {object} template - the template instance
      */
-    constructor(modelManager,grammarAst) {
+    constructor(modelManager) {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
-        this.grammarAst = grammarAst;
+        this.grammar = null
+        this.grammarAst = null;
         this.parser = null;
 
         // Mapping from types to parsers/drafters
@@ -84,6 +85,22 @@ class ParserManager {
     }
 
     /**
+     * Gets the template grammar
+     * @return {string} the template grammar
+     */
+    getGrammar() {
+        return this.grammar;
+    }
+
+    /**
+     * Sets the template grammar
+     * @param {string} the template grammar
+     */
+    setGrammar(grammar) {
+        this.grammar = grammar;
+    }
+
+    /**
      * Gets the TemplateMark AST for the template grammar
      * @return {object} the AST for the template grammar
      */
@@ -92,6 +109,14 @@ class ParserManager {
             throw new Error('Must call buildParser before calling getGrammarAst');
         }
         return this.grammarAst;
+    }
+
+    /**
+     * Sets the TemplateMark AST for the template grammar
+     * @param {object} the AST for the template grammar
+     */
+    setGrammarAst(grammarAst) {
+        this.grammarAst = grammarAst;
     }
 
     /**
