@@ -34,6 +34,7 @@ const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
  */
 const parsingTable = {
     'Integer' : { parse: integerParser, draft: integerDrafter },
+    'Long' : { parse: integerParser, draft: integerDrafter },
     'Double' : { parse: doubleParser, draft: doubleDrafter },
     'String' : { parse: stringParser, draft: stringDrafter },
     'DateTime' : { parse: dateTimeParser, draft: dateTimeDrafter },
