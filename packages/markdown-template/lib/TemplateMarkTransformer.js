@@ -282,7 +282,8 @@ class TemplateMarkTransformer {
      */
     fromCommonMark(commonMarkInput, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager,templateMark);
+        const parserManager = new ParserManager(modelManager);
+        parserManager.setGrammarAst(templateMark);
         parserManager.buildParser();
 
         return this.dataFromCommonMark(commonMarkInput, parserManager, templateKind, options);
@@ -311,16 +312,17 @@ class TemplateMarkTransformer {
     /**
      * Instantiate a CiceroMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
-     * @param {*} typedTemplate the TemplateMark DOM
+     * @param {*} templateMark - the TemplateMark DOM
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
      */
-    instantiateCiceroMark(data, typedTemplate, modelManager, templateKind, options) {
+    instantiateCiceroMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager,typedTemplate);
+        const parserManager = new ParserManager(modelManager);
+        parserManager.setGrammarAst(templateMark);
 
         const parameters = {
             parserManager: parserManager,
@@ -330,7 +332,7 @@ class TemplateMarkTransformer {
             kind: templateKind,
         };
 
-        const input = this.serializer.fromJSON(typedTemplate);
+        const input = this.serializer.fromJSON(templateMark);
 
         const visitor = new ToCiceroMarkVisitor();
         input.accept(visitor, parameters);
