@@ -100,7 +100,7 @@ class TemplateMarkTransformer {
     /**
      * Construct the parser.
      */
-    constructor(modelManager,grammar) {
+    constructor() {
         // Setup for Nested Parsing
         this.commonMark = new CommonMarkTransformer();
 

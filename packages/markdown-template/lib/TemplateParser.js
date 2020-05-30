@@ -18,6 +18,7 @@ let P = require('parsimmon');
 
 // standard's definition of whitespace rather than Parsimmon's.
 let whitespace = P.regexp(/\s*/m);
+let whitespaceLine = P.regexp(/[ \t]*/m);
 
 function ident() {
     return P.regexp(/[a-zA-Z0-9]+/).skip(whitespace);
@@ -123,7 +124,7 @@ let TemplateParser = P.createLanguage({
     clauseTop: r => P.seq(r.clauseContent.many().map(flatten),r.templateEnd).map(flatten),
 
     // Clause block
-    clauseEnd: r => chunkParser('\n{{/clause}}\n'),
+    clauseEnd: r => chunkParser('\n{{/clause}}').skip(P.seq(whitespaceLine,P.string('\n'))),
     clauseBlock: r => P.seq(r.variableNameNL,r.clauseContent.many(),r.clauseEnd.map(mkText)).map(mkClause),
     clauseBlockCont: r => P.seq(chunkParser('\n{{#clause').map(mkText).skip(whitespace),r.clauseBlock),
 

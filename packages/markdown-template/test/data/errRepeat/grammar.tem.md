@@ -1,0 +1,1 @@
+This is a contract between {{seller}} and {{buyer}} for the amount of {{amount}} {{currency}}, which is due to {{seller}}{{#if forceMajeure}}, even in the presence of force majeure{{/if}}.

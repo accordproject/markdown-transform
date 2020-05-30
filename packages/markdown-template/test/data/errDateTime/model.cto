@@ -12,10 +12,10 @@ asset MyClause extends AccordClause {
 	o Double amount
 	o CurrencyCode currency
 	o Boolean forceMajeure
-	o Boolean badWeather
+	o DateTime effectiveDate
 }
 
 asset MyContract extends AccordContract {
-	o Long penalty
+	o Double penalty
 	o MyClause agreement
 }

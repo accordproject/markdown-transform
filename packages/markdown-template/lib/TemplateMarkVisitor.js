@@ -53,6 +53,7 @@ const procStartLines = (text) => {
     return start;
 };
 const procEndLines = (lines) => {
+    //console.log('ENDLINES ' + JSON.stringify(lines));
     if (lines.length === 0) {
         return { 'closed': false, 'softbreak': false, 'space': '' };
     }
@@ -65,7 +66,7 @@ const procEndLines = (lines) => {
         }
     }
     let end;
-    if (endNLs > 2) {
+    if (endNLs >= 2) {
         end = { 'closed': true, 'softbreak': false, 'space': '' };
     } else if (endNLs === 1) {
         end = { 'closed': false, 'softbreak': true, 'space': '' };
@@ -105,18 +106,22 @@ class TemplateMarkVisitor {
      * Process one text chunk
      * @param {*} node the text node
      * @param {*} prevPartial the current partial node
+     * @param {*} carryOver a carry over node (can only be true if partial is null)
      * @param {*} [parameters] optional parameters
      * @return {*} clean nodes and next partial nodes
      */
-    static processChunk(node,currentPartial,parameters) {
+    static processChunk(node,currentPartial,carryOver,parameters) {
         const text = node.value;
         let cleanNodes = [];
 
         let firstNode = null;
         let lastNode = null;
 
+        //console.log('CHUNK ' + JSON.stringify(text));
         const start = procStartLines(text);
+        //console.log('START ' + JSON.stringify(start));
         const end = procEndLines(start.remaining);
+        //console.log('END   ' + JSON.stringify(end));
 
         // Process beginning of chunk
         if (currentPartial) {
@@ -132,6 +137,10 @@ class TemplateMarkVisitor {
                 }
                 const firstNode = node.nodes.shift();
                 currentPartial.nodes = currentPartial.nodes.concat(firstNode.nodes);
+            }
+        } else if (carryOver) {
+            if (node.nodes[0] && node.nodes[0].nodes) {
+                node.nodes[0].nodes.unshift(carryOver, TemplateMarkVisitor.newTextNode(start.space, parameters));
             }
         }
 
@@ -166,7 +175,7 @@ class TemplateMarkVisitor {
         const reducer = (accumulator, currentNode) => {
             switch(currentNode.getType()) {
             case 'TextChunk': {
-                const partialCheck = TemplateMarkVisitor.processChunk(currentNode,accumulator.partial,parameters);
+                const partialCheck = TemplateMarkVisitor.processChunk(currentNode,accumulator.partial,accumulator.carry,parameters);
                 accumulator.nodes = accumulator.nodes.concat(partialCheck.cleanNodes);
                 if (partialCheck.partial) {
                     accumulator.partial = partialCheck.partial;
@@ -182,7 +191,7 @@ class TemplateMarkVisitor {
                 if (accumulator.partial) {
                     accumulator.partial.nodes.push(currentNode);
                 } else {
-                    accumulator.nodes.push(currentNode);
+                    accumulator.carry = currentNode;
                 }
             }
                 break;
@@ -203,7 +212,7 @@ class TemplateMarkVisitor {
             }
             return accumulator;
         };
-        const reduced = nodes.reduce(reducer,{partial:null,nodes:[]});
+        const reduced = nodes.reduce(reducer,{partial:null,carry:null,nodes:[]});
         return reduced.nodes;
     }
 

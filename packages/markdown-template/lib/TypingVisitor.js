@@ -62,8 +62,16 @@ class TypingVisitor {
                     const enumType = property.getParent().getModelFile().getType(property.getType());
                     thing.$classDeclaration = enumVariableDeclaration;
                     thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
-                } else {
+                } else if (property.isPrimitive()) {
                     thing.elementType = property.getFullyQualifiedTypeName();
+                } else {
+                    const elementType = property.getFullyQualifiedTypeName();
+                    thing.elementType = elementType;
+                    const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
+                    const identifier = nestedTemplateModel.getIdentifierFieldName();
+                    if (identifier) {
+                        thing.identifiedBy = identifier;
+                    }
                 }
             } else {
                 throw new Error('Unknown property ' + thing.name);
