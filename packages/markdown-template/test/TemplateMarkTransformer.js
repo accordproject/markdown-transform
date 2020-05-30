@@ -35,11 +35,6 @@ const sampleUList = loadFile('./test/data/testUList/sample.md');
 const sampleUListCommon = JSON.parse(loadFile('./test/data/testUList/sample_common.json').content);
 const sampleUListCicero = JSON.parse(loadFile('./test/data/testUList/sample_cicero.json').content);
 
-const grammarOList = loadFile('./test/data/testOList/grammar.tem.md');
-const modelOList = './test/data/testOList/model.cto';
-const sampleOList = loadFile('./test/data/testOList/sample.md');
-const sampleOList2 = loadFile('./test/data/testOList/sample2.md');
-
 const successes = [
     {name:'test1',kind:'clause'},
     {name:'test2',kind:'contract'},
@@ -59,6 +54,7 @@ const successes = [
     {name:'testMd4',kind:'clause'},
     {name:'testUList',kind:'contract'},
     {name:'testOList',kind:'contract'},
+    {name:'testOList2',kind:'contract'},
     {name:'testWith',kind:'contract'},
     {name:'helloworld',kind:'clause'},
 ];
@@ -250,36 +246,4 @@ describe('#parse', () => {
             templateMarkTransformer.instantiateCommonMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListCommon);
         });
     });
-
-    describe('#templateOList', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelOList]);
-        });
-
-        it('should parse (same number)', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleOList,grammarOList,modelManager,'contract');
-            result.prices.length.should.equal(3);
-            result.prices[0].$class.should.equal('org.test.Price');
-            result.prices[0].number.should.equal(1);
-            result.prices[1].$class.should.equal('org.test.Price');
-            result.prices[1].number.should.equal(2);
-            result.prices[2].$class.should.equal('org.test.Price');
-            result.prices[2].number.should.equal(3);
-        });
-
-        it('should parse (same various numbers)', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleOList2,grammarOList,modelManager,'contract');
-            result.prices.length.should.equal(4);
-            result.prices[0].$class.should.equal('org.test.Price');
-            result.prices[0].number.should.equal(1);
-            result.prices[1].$class.should.equal('org.test.Price');
-            result.prices[1].number.should.equal(2);
-            result.prices[2].$class.should.equal('org.test.Price');
-            result.prices[2].number.should.equal(3);
-            result.prices[3].$class.should.equal('org.test.Price');
-            result.prices[3].number.should.equal(4);
-        });
-    });
-
 });
