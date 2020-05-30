@@ -16,59 +16,18 @@
 
 const Fs = require('fs');
 
+const Chai = require('chai');
+
+Chai.should();
+Chai.use(require('chai-things'));
+Chai.use(require('chai-as-promised'));
+
 // Parser from template AST
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
 const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
-
-const grammar1 = loadFile('./test/data/test1/grammar.tem.md');
-const model1 = './test/data/test1/model.cto';
-const sample1 = loadFile('./test/data/test1/sample.md');
-const sample1Err1 = loadFile('./test/data/test1/sampleErr1.md');
-const sample1Err2 = loadFile('./test/data/test1/sampleErr2.md');
-const sample1Err3 = loadFile('./test/data/test1/sampleErr3.md');
-
-const grammarErr1 = loadFile('./test/data/testErr1/grammar.tem.md');
-const modelErr1 = './test/data/testErr1/model.cto';
-const sampleErr1 = loadFile('./test/data/testErr1/sample.md');
-
-const grammarErr2 = loadFile('./test/data/testErr2/grammar.tem.md');
-const modelErr2 = './test/data/testErr2/model.cto';
-const sampleErr2 = loadFile('./test/data/testErr2/sample.md');
-
-const grammarErr3 = loadFile('./test/data/testErr3/grammar.tem.md');
-const modelErr3 = './test/data/testErr3/model.cto';
-const sampleErr3 = loadFile('./test/data/testErr3/sample.md');
-
-const grammarErr4 = loadFile('./test/data/testErr4/grammar.tem.md');
-const modelErr4 = './test/data/testErr4/model.cto';
-const sampleErr4 = loadFile('./test/data/testErr4/sample.md');
-
-const grammarErr5 = loadFile('./test/data/testErr5/grammar.tem.md');
-const modelErr5 = './test/data/testErr5/model.cto';
-const sampleErr5 = loadFile('./test/data/testErr5/sample.md');
-
-const grammarErr6 = loadFile('./test/data/testErr6/grammar.tem.md');
-const modelErr6 = './test/data/testErr6/model.cto';
-const sampleErr6 = loadFile('./test/data/testErr6/sample.md');
-
-const grammar2 = loadFile('./test/data/test2/grammar.tem.md');
-const model2 = './test/data/test2/model.cto';
-const sample2 = loadFile('./test/data/test2/sample.md');
-const sample2Err1 = loadFile('./test/data/test2/sampleErr1.md');
-const sample2Err2 = loadFile('./test/data/test2/sampleErr2.md');
-const sample2Err3 = loadFile('./test/data/test2/sampleErr3.md');
-const sample2Err4 = loadFile('./test/data/test2/sampleErr4.md');
-
-const grammarLarge = loadFile('./test/data/testLarge/grammar.tem.md');
-const modelLarge = './test/data/testLarge/model.cto';
-const sampleLarge = loadFile('./test/data/testLarge/sample.md');
-
-const grammarDateTime = loadFile('./test/data/testDateTime/grammar.tem.md');
-const modelDateTime = './test/data/testDateTime/model.cto';
-const sampleDateTime = loadFile('./test/data/testDateTime/sample.md');
 
 const grammarUList = loadFile('./test/data/testUList/grammar.tem.md');
 const modelUList = './test/data/testUList/model.cto';
@@ -81,209 +40,167 @@ const modelOList = './test/data/testOList/model.cto';
 const sampleOList = loadFile('./test/data/testOList/sample.md');
 const sampleOList2 = loadFile('./test/data/testOList/sample2.md');
 
-const grammarRepeat = loadFile('./test/data/testRepeat/grammar.tem.md');
-const modelRepeat = './test/data/testRepeat/model.cto';
-const sampleRepeat = loadFile('./test/data/testRepeat/sample.md');
-const sampleRepeatErr = loadFile('./test/data/testRepeat/sampleErr.md');
+const successes = [
+    {name:'test1',kind:'clause'},
+    {name:'test2',kind:'contract'},
+    {name:'test3',kind:'contract'},
+    {name:'test4',kind:'contract'},
+    {name:'test5',kind:'contract'},
+    {name:'test6',kind:'contract'},
+    {name:'test7',kind:'contract'},
+    {name:'test8',kind:'contract'},
+    {name:'testComputed',kind:'contract'},
+    {name:'testDateTime',kind:'clause'},
+    {name:'testLarge',kind:'contract'},
+    {name:'testRepeat',kind:'clause'},
+    {name:'testMd1',kind:'clause'},
+    {name:'testMd2',kind:'contract'},
+    {name:'testMd3',kind:'contract'},
+    {name:'testMd4',kind:'clause'},
+    {name:'testUList',kind:'contract'},
+    {name:'testOList',kind:'contract'},
+    {name:'testWith',kind:'contract'},
+    {name:'helloworld',kind:'clause'},
+];
 
-const grammarWith = loadFile('./test/data/testWith/grammar.tem.md');
-const modelWith = './test/data/testWith/model.cto';
-const sampleWith = loadFile('./test/data/testWith/sample.md');
+const templateFailures = [
+    {name:'templateErr1',desc:'duplicate contract',kind:'contract','error':'Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
+    {name:'templateErr2',desc:'duplicate clause',kind:'clause','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.'},
+    {name:'templateErr2',desc:'duplicate contract',kind:'contract','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
+    {name:'templateErr3',desc:'missing clause property',kind:'clause','error':'Unknown property seller'},
+    {name:'templateErr4',desc:'missing contract property',kind:'contract','error':'Unknown property agreement'},
+    {name:'templateErr5',desc:'missing with property',kind:'contract','error':'Unknown property sellerAddress'},
+    {name:'templateErr6',desc:'missing with property',kind:'contract','error':'Unknown property prices'},
+];
 
-const grammarComputed = loadFile('./test/data/testComputed/grammar.tem.md');
-const modelComputed = './test/data/testComputed/model.cto';
-const sampleComputed = loadFile('./test/data/testComputed/sample.md');
-const sampleComputedErr = loadFile('./test/data/testComputed/sampleErr.md');
+const parseFailures = [
+    {name:'err1',desc:'',kind:'clause','error':'Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.'},
+    {name:'err2',desc:'',kind:'clause','error':'Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.'},
+    {name:'err3',desc:'',kind:'clause','error':'Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.'},
+    {name:'err4',desc:'extra text',kind:'contract','error':'Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text'},
+    {name:'err5',desc:'wrong text',kind:'contract','error':'Parse error at line 4 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.'},
+    {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 3 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" nam="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^\nExpected: \' name=\''},
+    {name:'err7',desc:'wrong text',kind:'contract','error':'Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal'},
+    {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 ZZZ.'},
+    {name:'errComputed',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^'},
+    {name:'errDateTime',desc:'',kind:'clause','error':'Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.'},
+    {name:'errLarge',desc:'',kind:'contract','error':'Parse error at line 804 column 40\nThis is a contract between "Steve" and Betty" for the amount of 3131.00 EUR.'},
+    {name:'errRepeat',desc:'inconsistent variables',kind:'clause','error':'Inconsistent values for variable seller: Steve and Betty'},
+];
 
-const grammarMd1 = loadFile('./test/data/testMd1/grammar.tem.md');
-const grammarMd1Json = JSON.parse(loadFile('./test/data/testMd1/grammar.json').content);
-const modelMd1 = './test/data/testMd1/model.cto';
-const sampleMd1 = loadFile('./test/data/testMd1/sample.md');
+/**
+ * Run positive tests workload
+ */
+function runSuccesses() {
+    const templateMarkTransformer = new TemplateMarkTransformer();
 
-const grammarMd2 = loadFile('./test/data/testMd2/grammar.tem.md');
-const grammarMd2Json = JSON.parse(loadFile('./test/data/testMd2/grammar.json').content);
-const modelMd2 = './test/data/testMd2/model.cto';
-const sampleMd2 = loadFile('./test/data/testMd2/sample.md');
+    for (const test of successes) {
+        const name = test.name;
+        const kind = test.kind;
+        const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
+        const grammarJson = JSON.parse(loadFile(`./test/data/${name}/grammar.json`).content);
+        const model = `./test/data/${name}/model.cto`;
+        const sample =  loadFile(`./test/data/${name}/sample.md`);
+        const data =  JSON.parse(loadFile(`./test/data/${name}/data.json`).content);
 
-const grammarMd3 = loadFile('./test/data/testMd3/grammar.tem.md');
-const grammarMd3Json = JSON.parse(loadFile('./test/data/testMd3/grammar.json').content);
-const modelMd3 = './test/data/testMd3/model.cto';
-const sampleMd3 = loadFile('./test/data/testMd3/sample.md');
+        describe('#'+name, function () {
+            let modelManager;
+            before(async () => {
+                modelManager = await ModelLoader.loadModelManager(null,[model]);
+            });
 
-const grammarMd4 = loadFile('./test/data/testMd4/grammar.tem.md');
-const grammarMd4Json = JSON.parse(loadFile('./test/data/testMd4/grammar.json').content);
-const modelMd4 = './test/data/testMd4/model.cto';
-const sampleMd4 = loadFile('./test/data/testMd4/sample.md');
+            it('should create template mark', async () => {
+                const result = templateMarkTransformer.fromMarkdownTemplate(grammar,modelManager,kind);
+                result.should.deep.equal(grammarJson);
+            });
 
-const grammarHelloworld = loadFile('./test/data/helloworld/grammar.tem.md');
-const modelHelloworld = './test/data/helloworld/model.cto';
-const sampleHelloworld = loadFile('./test/data/helloworld/sample.md');
-
-// Tests
-describe('#invalidTemplates', () => {
-    describe('#templateErr1', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr1]);
+            it('should parse sample', async () => {
+                const result = templateMarkTransformer.fromMarkdown(sample,grammar,modelManager,kind);
+                if (kind === 'clause') {
+                    delete data.clauseId;
+                    delete result.clauseId;
+                } else {
+                    delete data.contractId;
+                    delete result.contractId;
+                    for(const key in data) {
+                        delete data[key].clauseId;
+                    }
+                    for(const key in result) {
+                        delete result[key].clauseId;
+                    }
+                }
+                result.should.deep.equal(data);
+            });
         });
+    }
+}
 
-        it('should fail loading template (duplicate clause)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr1,grammarErr1,modelManager,'clause')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
-        });
+/**
+ * Run parse failures tests workload
+ */
+function runParseFailures() {
+    for (const test of parseFailures) {
+        const name = test.name;
+        const desc = test.desc;
+        const kind = test.kind;
+        const error = test.error;
 
-        it('should fail loading template (duplicate contract)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr1,grammarErr1,modelManager,'contract')).should.throw('Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
-        });
-    });
+        const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
+        const model = `./test/data/${name}/model.cto`;
+        const sample =  loadFile(`./test/data/${name}/sample.md`);
 
-    describe('#templateErr2', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr2]);
-        });
+        describe(`#${name} [${desc}]`, function () {
+            let modelManager;
+            before(async () => {
+                modelManager = await ModelLoader.loadModelManager(null,[model]);
+            });
 
-        it('should fail loading template (duplicate clause)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr2,grammarErr2,modelManager,'clause')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.');
+            it('should fail to parse sample', async () => {
+                (() => (new TemplateMarkTransformer()).fromMarkdown(sample,grammar,modelManager,kind)).should.throw(error);
+            });
         });
+    }
+}
 
-        it('should fail loading template (duplicate contract)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr2,grammarErr2,modelManager,'contract')).should.throw('Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.');
-        });
-    });
+/**
+ * Run template failures tests workload
+ */
+function runTemplateFailures() {
+    for (const test of templateFailures) {
+        const name = test.name;
+        const desc = test.desc;
+        const kind = test.kind;
+        const error = test.error;
 
-    describe('#templateErr3', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr3]);
-        });
+        const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
+        const model = `./test/data/${name}/model.cto`;
 
-        it('should fail loading template (missing clause property)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr3,grammarErr3,modelManager,'clause')).should.throw('Unknown property seller');
-        });
-    });
+        describe(`#${name} [${desc}]`, function () {
+            let modelManager;
+            before(async () => {
+                modelManager = await ModelLoader.loadModelManager(null,[model]);
+            });
 
-    describe('#templateErr4', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr4]);
+            it('should fail to parse template', async () => {
+                (() => (new TemplateMarkTransformer()).fromMarkdownTemplate(grammar,modelManager,kind)).should.throw(error);
+            });
         });
+    }
+}
 
-        it('should fail loading template (missing contract property)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr4,grammarErr4,modelManager,'contract')).should.throw('Unknown property agreement');
-        });
-    });
+describe('#TemplateMarkTransformer [Template Failure]', () => {
+    runTemplateFailures();
+});
 
-    describe('#templateErr5', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr5]);
-        });
+describe('#TemplateMarkTransformer [Parse Success]', () => {
+    runSuccesses();
+});
 
-        it('should fail loading template (missing with property)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr5,grammarErr5,modelManager,'contract')).should.throw('Unknown property sellerAddress');
-        });
-    });
-
-    describe('#templateErr6', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelErr6]);
-        });
-
-        it('should fail loading template (missing list property)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleErr6,grammarErr6,modelManager,'contract')).should.throw('Unknown property prices');
-        });
-    });
+describe('#TemplateMarkTransformer [Parse Failure]', () => {
+    runParseFailures();
 });
 
 describe('#parse', () => {
-    describe('#template1', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[model1]);
-        });
-
-        it('should parse', async () => {
-            (new TemplateMarkTransformer()).fromMarkdown(sample1,grammar1,modelManager,'clause').amount.should.equal(3131);
-        });
-
-        it('should parse (verbose)', async () => {
-            (new TemplateMarkTransformer()).fromMarkdown(sample1,grammar1,modelManager,'clause',{verbose:true}).amount.should.equal(3131);
-        });
-    });
-
-    describe('#template1 (error)', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[model1]);
-        });
-
-        it('should fail parsing (wrong currency code)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err1,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.');
-        });
-
-        it('should fail parsing (wrong string)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err2,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.');
-        });
-
-        it('should fail parsing (wrong double)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample1Err3,grammar1,modelManager,'clause')).should.throw('Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.');
-        });
-    });
-
-    describe('#template2', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[model2]);
-        });
-
-        it('should parse', async () => {
-            (new TemplateMarkTransformer()).fromMarkdown(sample2,grammar2,modelManager,'contract').penalty.should.equal(10);
-        });
-    });
-
-    describe('#template2 (error)', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[model2]);
-        });
-
-        it('should fail parsing (extra text)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err1,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text');
-        });
-        it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err2,grammar2,modelManager,'contract')).should.throw('Parse error at line 4 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.');
-        });
-        it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err3,grammar2,modelManager,'contract')).should.throw('Parse error at line 3 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" nam="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^\nExpected: \' name=\'');
-        });
-        it('should fail parsing (wrong text)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sample2Err4,grammar2,modelManager,'contract')).should.throw('Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal');
-        });
-    });
-
-    describe('#templateLarge', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelLarge]);
-        });
-
-        it('should parse', async () => {
-            (new TemplateMarkTransformer()).fromMarkdown(sampleLarge,grammarLarge,modelManager,'contract').penalty.should.equal(10.99);
-        });
-    });
-
-    describe('#templateDateTime', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelDateTime]);
-        });
-
-        it('should parse', async () => {
-            (new TemplateMarkTransformer()).fromMarkdown(sampleDateTime,grammarDateTime,modelManager,'clause').effectiveDate.should.equal('2020-01-01T00:00:00.000Z');
-        });
-    });
-
     describe('#templateUList', () => {
         let modelManager;
         before(async () => {
@@ -362,159 +279,6 @@ describe('#parse', () => {
             result.prices[2].number.should.equal(3);
             result.prices[3].$class.should.equal('org.test.Price');
             result.prices[3].number.should.equal(4);
-        });
-    });
-
-    describe('#templateRepeat', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelRepeat]);
-        });
-
-        it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleRepeat,grammarRepeat,modelManager,'clause');
-            result.seller.should.equal('Steve');
-            result.buyer.should.equal('Betty');
-        });
-    });
-
-    describe('#templateRepeat (error)', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelRepeat]);
-        });
-
-        it('should fail parsing (inconsistent variables)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleRepeatErr,grammarRepeat,modelManager,'clause')).should.throw('Inconsistent values for variable seller: Steve and Betty');
-        });
-    });
-
-    describe('#templateWith', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelWith]);
-        });
-
-        it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleWith,grammarWith,modelManager,'contract');
-            result.agreement.seller.should.equal('Steve');
-            result.agreement.buyer.should.equal('Betty');
-            result.sellerAddress.city.should.equal('NYC');
-            result.buyerAddress.city.should.equal('London');
-        });
-    });
-
-    describe('#templateComputed', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelComputed]);
-        });
-
-        it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleComputed,grammarComputed,modelManager,'contract');
-            result.agreement.seller.should.equal('Steve');
-            result.agreement.buyer.should.equal('Betty');
-        });
-    });
-
-    describe('#templateComputed (error)', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelComputed]);
-        });
-
-        it('should fail parsing (inconsistent variables)', async () => {
-            (() => (new TemplateMarkTransformer()).fromMarkdown(sampleComputedErr,grammarComputed,modelManager,'contract')).should.throw('Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^');
-        });
-    });
-
-});
-
-describe('#fromMarkdownTemplate', () => {
-    describe('#templateMd1', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelMd1]);
-        });
-
-        it('should transform to TemplateMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            templateMarkTransformer.fromMarkdownTemplate(grammarMd1,modelManager,'clause').should.deep.equal(grammarMd1Json);
-            const result = templateMarkTransformer.fromMarkdown(sampleMd1,grammarMd1,modelManager,'clause');
-            result.seller.should.equal('Steve');
-            result.buyer.should.equal('Betty');
-        });
-
-        it('should transform to TemplateMark (verbose)', async () => {
-            (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd1,modelManager,'clause').should.deep.equal(grammarMd1Json);
-        });
-    });
-
-    describe('#templateMd2', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelMd2]);
-        });
-
-        it('should transform to TemplateMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            templateMarkTransformer.fromMarkdownTemplate(grammarMd2,modelManager,'contract').should.deep.equal(grammarMd2Json);
-            const result = templateMarkTransformer.fromMarkdown(sampleMd2,grammarMd2,modelManager,'contract');
-            result.penalty.should.equal(10);
-            result.agreement.seller.should.equal('Steve');
-            result.agreement.buyer.should.equal('Betty');
-        });
-    });
-
-
-    describe('#templateMd3', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelMd3]);
-        });
-
-        it('should transform to TemplateMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            templateMarkTransformer.fromMarkdownTemplate(grammarMd3,modelManager,'contract').should.deep.equal(grammarMd3Json);
-            const result = templateMarkTransformer.fromMarkdown(sampleMd3,grammarMd3,modelManager,'contract');
-            result.penalty.should.equal(10);
-            result.agreement.seller.should.equal('Steve');
-            result.agreement.buyer.should.equal('Betty');
-        });
-    });
-
-    describe('#templateMd4', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelMd4]);
-        });
-
-        it('should transform to TemplateMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            templateMarkTransformer.fromMarkdownTemplate(grammarMd4,modelManager,'clause').should.deep.equal(grammarMd4Json);
-            const result = templateMarkTransformer.fromMarkdown(sampleMd4,grammarMd4,modelManager,'clause');
-            result.seller.should.equal('Steve');
-            result.buyer.should.equal('Betty');
-        });
-
-        it('should transform to TemplateMark (verbose)', async () => {
-            (new TemplateMarkTransformer()).fromMarkdownTemplate(grammarMd4,modelManager,'clause').should.deep.equal(grammarMd4Json);
-        });
-    });
-
-});
-
-describe('#libraryTemplates', () => {
-    describe('#templateHelloworld', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelHelloworld]);
-        });
-
-        it('should transform to TemplateMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            const result = templateMarkTransformer.fromMarkdown(sampleHelloworld,grammarHelloworld,modelManager,'clause');
-            result.name.should.equal('Fred Blogs');
         });
     });
 

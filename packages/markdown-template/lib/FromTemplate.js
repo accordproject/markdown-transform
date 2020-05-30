@@ -52,11 +52,12 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
     case 'org.accordproject.templatemark.VariableDefinition' : {
-        const typeFun = params.parsingTable[ast.elementType];
+        const elementType = ast.identifiedBy ? 'String' : ast.elementType;
+        const typeFun = params.parsingTable[elementType];
         if (typeFun) {
             parser = typeFun.parse(ast);
         } else {
-            throw new Error('Unknown variable type ' + ast.elementType);
+            throw new Error('Unknown variable type ' + elementType);
         }
         break;
     }
