@@ -245,8 +245,7 @@ function mergeAdjacentTextNodes(nodes) {
                cur.$class === (NS_PREFIX_CommonMarkModel + 'Text') &&
                next.$class === (NS_PREFIX_CommonMarkModel + 'Text')) {
                 next.text = cur.text + next.text;  // Fold text in next node, skip current node
-            }
-            else {
+            } else {
                 result.push(cur);
             }
         }

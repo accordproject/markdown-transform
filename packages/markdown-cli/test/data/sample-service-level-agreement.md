@@ -42,20 +42,20 @@ This SLA is between:
 
 [company name]
 
-[company address]undefined\
-[address line 2]undefined\
+[company address]\
+[address line 2]\
 [address line 3]
 
-Key contact:	[name]undefined\
+Key contact:	[name]\
 [telephone / email]
 
 [company name]
 
-[company address]undefined\
-[address line 2]undefined\
+[company address]\
+[address line 2]\
 [address line 3]
 
-Key contact:	[name]undefined\
+Key contact:	[name]\
 [telephone / email]
 
 **Dates and reviews**

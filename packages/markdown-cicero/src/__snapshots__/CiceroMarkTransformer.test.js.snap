@@ -5894,7 +5894,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "foo+bar",
+      "info": "foo\\\\+bar",
       "text": "foo
 ",
     },
@@ -10971,7 +10971,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "föö",
+      "info": "f&ouml;&ouml;",
       "text": "foo
 ",
     },
@@ -13653,6 +13653,7 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "/url",
+          "nodes": Array [],
           "title": "",
         },
       ],
@@ -13813,9 +13814,6 @@ Object {
             },
           ],
           "title": "title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -17174,9 +17172,6 @@ Object {
           "title": "title",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-        },
-        Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
@@ -19198,7 +19193,7 @@ Object {
             },
           ],
           "start": "1",
-          "tight": "true",
+          "tight": "false",
           "type": "ordered",
         },
       ],
@@ -19247,7 +19242,7 @@ Object {
             },
           ],
           "start": "1",
-          "tight": "true",
+          "tight": "false",
           "type": "ordered",
         },
       ],
@@ -20934,7 +20929,7 @@ Object {
           ],
         },
       ],
-      "tight": "true",
+      "tight": "false",
       "type": "bullet",
     },
   ],
@@ -20997,7 +20992,7 @@ Object {
           ],
         },
       ],
-      "tight": "true",
+      "tight": "false",
       "type": "bullet",
     },
   ],

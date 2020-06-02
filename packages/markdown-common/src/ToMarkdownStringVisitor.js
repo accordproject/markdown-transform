@@ -128,7 +128,7 @@ class ToMarkdownStringVisitor {
             const first = thing.start ? parseInt(thing.start) : 1;
             let index = first;
             thing.nodes.forEach(item => {
-                const level = thing.tight && thing.tight === 'false' ? 2 : 1;
+                const level = thing.tight && thing.tight === 'false' && index !== first ? 2 : 1;
                 if(thing.type === 'ordered') {
                     parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
                 }
