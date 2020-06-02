@@ -154,38 +154,6 @@ function unescapeCodeBlock(input) {
 }
 
 /**
- * Is it a leaf node?
- * @param {*} json - the JS Object for the AST
- * @return {boolean} whether it's a leaf node
- */
-function isLeafNode(json) {
-    return (json.$class === (NS_PREFIX_CommonMarkModel + 'Text') ||
-            json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock') ||
-            json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
-            json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock') ||
-            json.$class === (NS_PREFIX_CommonMarkModel + 'Code'));
-}
-
-/**
- * Is it a HTML node? (html blocks or html inlines)
- * @param {*} json - the JS Object for the AST
- * @return {boolean} whether it's a leaf node
- */
-function isHtmlNode(json) {
-    return (json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') ||
-            json.$class === (NS_PREFIX_CommonMarkModel + 'HtmlBlock'));
-}
-
-/**
- * Is it a Code Block node?
- * @param {*} json the JS Object for the AST
- * @return {boolean} whether it's a leaf node
- */
-function isCodeBlockNode(json) {
-    return json.$class === (NS_PREFIX_CommonMarkModel + 'CodeBlock');
-}
-
-/**
  * Parses an HTML block and extracts the attributes, tag name and tag contents.
  * Note that this will return null for strings like this: </foo>
  * @param {string} string - the HTML block to parse
@@ -298,10 +266,6 @@ module.exports.mkATXHeading = mkATXHeading;
 module.exports.escapeText = escapeText;
 module.exports.escapeCodeBlock = escapeCodeBlock;
 module.exports.unescapeCodeBlock = unescapeCodeBlock;
-
-module.exports.isLeafNode = isLeafNode;
-module.exports.isHtmlNode = isHtmlNode;
-module.exports.isCodeBlockNode = isCodeBlockNode;
 
 module.exports.parseHtmlBlock = parseHtmlBlock;
 module.exports.mergeAdjacentTextNodes = mergeAdjacentTextNodes;
