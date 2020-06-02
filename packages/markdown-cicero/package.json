@@ -82,9 +82,7 @@
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.7",
     "@accordproject/markdown-common": "0.11.3",
-    "commonmark": "^0.29.0",
     "jsome": "2.5.0",
-    "sax": "^1.2.4",
     "winston": "3.2.1",
     "xmldom": "^0.1.27"
   },

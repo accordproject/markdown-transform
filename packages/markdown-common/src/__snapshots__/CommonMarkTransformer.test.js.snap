@@ -1641,6 +1641,39 @@ Object {
 }
 `;
 
+exports[`markdown converts link-title.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Link",
+          "destination": "http://clause.io",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "a link",
+            },
+          ],
+          "title": "clause",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts listcodeblock.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -1762,7 +1795,7 @@ Object {
           ],
         },
       ],
-      "tight": "true",
+      "tight": "false",
       "type": "bullet",
     },
     Object {
@@ -2647,7 +2680,7 @@ Object {
                       ],
                     },
                   ],
-                  "tight": "true",
+                  "tight": "false",
                   "type": "bullet",
                 },
               ],
@@ -4603,7 +4636,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "foo+bar",
+      "info": "foo\\\\+bar",
       "text": "foo
 ",
     },
@@ -9680,7 +9713,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "föö",
+      "info": "f&ouml;&ouml;",
       "text": "foo
 ",
     },
@@ -12362,6 +12395,7 @@ Object {
         Object {
           "$class": "org.accordproject.commonmark.Image",
           "destination": "/url",
+          "nodes": Array [],
           "title": "",
         },
       ],
@@ -12522,9 +12556,6 @@ Object {
             },
           ],
           "title": "title",
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Text",
         },
         Object {
           "$class": "org.accordproject.commonmark.Softbreak",
@@ -15883,9 +15914,6 @@ Object {
           "title": "title",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Text",
-        },
-        Object {
           "$class": "org.accordproject.commonmark.Softbreak",
         },
         Object {
@@ -17907,7 +17935,7 @@ Object {
             },
           ],
           "start": "1",
-          "tight": "true",
+          "tight": "false",
           "type": "ordered",
         },
       ],
@@ -17956,7 +17984,7 @@ Object {
             },
           ],
           "start": "1",
-          "tight": "true",
+          "tight": "false",
           "type": "ordered",
         },
       ],
@@ -19643,7 +19671,7 @@ Object {
           ],
         },
       ],
-      "tight": "true",
+      "tight": "false",
       "type": "bullet",
     },
   ],
@@ -19706,7 +19734,7 @@ Object {
           ],
         },
       ],
-      "tight": "true",
+      "tight": "false",
       "type": "bullet",
     },
   ],
@@ -22793,6 +22821,8 @@ exports[`to plain text inline-code.md 1`] = `"This is inline code."`;
 
 exports[`to plain text link.md 1`] = `"This is http://clause.io."`;
 
+exports[`to plain text link-title.md 1`] = `"This is http://clause.io."`;
+
 exports[`to plain text listcodeblock.md 1`] = `
 "b) Discount. The Discount is determined according to the following table:
 
@@ -22807,6 +22837,7 @@ exports[`to plain text miniblockquote.md 1`] = `
 linebreak.
 This is a quote.
 -  > one
+
 -  > two
 
 The end"
@@ -22935,6 +22966,7 @@ Ordered lists:
 1. one
    this has more in it
    -  > nested list
+   
    -  > etc.
 2. two
 3. three
@@ -22957,7 +22989,6 @@ The end"
 
 exports[`to plain text ol.md 1`] = `
 "This is an ordered list:
-
 1. one
 
 2. two
@@ -22996,7 +23027,6 @@ A footer."
 
 exports[`to plain text ul.md 1`] = `
 "This is an unordered list:
-
 -  one
 
 -  two
