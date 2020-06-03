@@ -15,7 +15,7 @@
 'use strict';
 
 const MarkdownIt = require('markdown-it');
-const toCommonMark = require('./FromMarkdownIt');
+const FromMarkdownIt = require('./FromMarkdownIt');
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
@@ -29,7 +29,6 @@ const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkMo
  * the 'org.accordproject.commonmark' Concerto model.
  */
 class CommonMarkTransformer {
-
     /**
      * Construct the parser.
      * @param {object} [options] configuration options
@@ -83,7 +82,8 @@ class CommonMarkTransformer {
         const tokenStream = parser.parse(markdown,{});
         //console.log('tokens: ' + JSON.stringify(tokenStream,null,2));
 
-        const json = toCommonMark(tokenStream);
+        const fromMarkdownIt = new FromMarkdownIt();
+        const json = fromMarkdownIt.toCommonMark(tokenStream);
 
         // validate the object using the model
         const validJson = this.serializer.fromJSON(json);

@@ -22,25 +22,6 @@ const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS
  */
 
 /**
- *
- * @param {string} string the string to capitalize
- * @returns {string} the string capitalized
- */
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-/**
- *
- * @param {string} name the name of the commonmark type
- * @returns {string} the concerto type name
- */
-function toClass(name) {
-    const camelCased = name.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
-    return NS_PREFIX_CommonMarkModel + capitalizeFirstLetter(camelCased);
-}
-
-/**
  * Set parameters for general blocks
  * @param {*} ast - the current ast node
  * @param {*} parametersOut - the current parameters
@@ -256,7 +237,59 @@ function mergeAdjacentHtmlNodes(nodes, tagInfo) {
     }
 }
 
-module.exports.toClass = toClass;
+/**
+ * Determine the heading level
+ *
+ * @param {string} tag the heading tag
+ * @returns {string} the heading level
+ */
+function headingLevel(tag) {
+    switch(tag) {
+    case 'h1' : return '1';
+    case 'h2' : return '2';
+    case 'h3' : return '3';
+    case 'h4' : return '4';
+    case 'h5' : return '5';
+    case 'h6' : return '6';
+    default:
+        throw new Error('Unknown heading tag: ' + tag);
+    }
+}
+
+/**
+ * Get an attribute value
+ *
+ * @param {*} attrs open ordered list attributes
+ * @param {string} name attribute name
+ * @param {*} def a default value
+ * @returns {string} the initial index
+ */
+function getAttr(attrs,name,def) {
+    if (attrs) {
+        const startAttrs = attrs.filter((x) => x[0] === name);
+        if (startAttrs[0]) {
+            return '' + startAttrs[0][1];
+        } else {
+            return def;
+        }
+    } else {
+        return def;
+    }
+}
+
+/**
+ * Trim single ending newline
+ *
+ * @param {string} text the input text
+ * @returns {string} the trimmed text
+ */
+function trimEndline(text) {
+    if (text.charAt(text.length-1) && text.charAt(text.length-1) === '\n') {
+        return text.substring(0,text.length-1);
+    } else {
+        return text;
+    }
+}
 
 module.exports.mkParameters = mkParameters;
 module.exports.mkPrefix = mkPrefix;
@@ -270,3 +303,7 @@ module.exports.unescapeCodeBlock = unescapeCodeBlock;
 module.exports.parseHtmlBlock = parseHtmlBlock;
 module.exports.mergeAdjacentTextNodes = mergeAdjacentTextNodes;
 module.exports.mergeAdjacentHtmlNodes = mergeAdjacentHtmlNodes;
+
+module.exports.headingLevel = headingLevel;
+module.exports.getAttr = getAttr;
+module.exports.trimEndline = trimEndline;

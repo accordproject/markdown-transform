@@ -25,3 +25,4 @@ module.exports.CommonMarkModel = require('./lib/externalModels/CommonMarkModel')
 module.exports.CommonMarkUtils = require('./lib/CommonMarkUtils');
 module.exports.CommonMarkTransformer = require('./lib/CommonMarkTransformer');
 module.exports.ToMarkdownStringVisitor = require('./lib/ToMarkdownStringVisitor');
+module.exports.FromMarkdownIt =  require('./lib/FromMarkdownIt');
