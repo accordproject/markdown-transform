@@ -20,6 +20,11 @@ const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMark
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
 const TemplateMarkRawModel = require('./externalModels/TemplateMarkRaw').TemplateMarkRawModel;
 
+const MarkdownIt = require('markdown-it');
+const MarkdownItIns = require('./markdown-it-template');
+const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
+const templaterules = require('./templaterules');
+
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const ParserManager = require('./parsermanager').ParserManager;
 
@@ -28,11 +33,8 @@ const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
 const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
 
 const TypingVisitor = require('./TypingVisitor');
-const TemplateMarkVisitor = require('./TemplateMarkVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
-
-const TemplateParser = require('./TemplateParser');
 
 /**
  * Minimum length of expected token
@@ -115,39 +117,6 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Converts a template grammar string to a TemplateMark DOM
-     * @param {object} grammar the template grammar
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @returns {object} the result of parsing
-     */
-    parseGrammar(grammar, templateKind) {
-        let topTemplate;
-
-        if (templateKind === 'contract') {
-            topTemplate = {
-                '$class': 'org.accordproject.commonmark.Document',
-                'xmlns' : 'http://commonmark.org/xml/1.0',
-                'nodes': [{
-                    '$class': 'org.accordproject.templatemark.ContractDefinition',
-                    'name': 'top',
-                    'nodes': TemplateParser.contractTemplate.tryParse(grammar)
-                }]
-            };
-        } else {
-            topTemplate = {
-                '$class': 'org.accordproject.commonmark.Document',
-                'xmlns' : 'http://commonmark.org/xml/1.0',
-                'nodes': [{
-                    '$class': 'org.accordproject.templatemark.ClauseDefinition',
-                    'name': 'top',
-                    'nodes': TemplateParser.clauseTemplate.tryParse(grammar)
-                }]
-            };
-        }
-        return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
-    }
-
-    /**
      * Decorate template with its types
      * @param {object} introspector - the model introspector for this template
      * @param {string} templateKind - either 'clause' or 'contract'
@@ -173,56 +142,48 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Unfold text chunks in template
-     * @param {object} template the template AST
-     * @returns {object} the typed template AST
-     */
-    unfoldTemplate(template) {
-        const input = this.serializer.fromJSON(template);
-
-        const parameters = {
-            commonMark: this.commonMark,
-            templateMarkModelManager: this.modelManager,
-            templateMarkFactory: this.factory,
-        };
-        const visitor = new TemplateMarkVisitor();
-        input.accept(visitor, parameters);
-        const result = Object.assign({}, this.serializer.toJSON(input));
-
-        return result;
-    }
-
-    /**
-     * Converts a markdown string to a raw TemplateMark DOM
-     * @param {{fileName:string,content:string}} grammar the template grammar
-     * @param {object} modelManager - the model manager for this template
+     * Converts a template grammar string to a TemplateMark DOM
+     * @param {object} grammarInput the template grammar
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options) {
-        if (!modelManager) {
-            throw new Error('Cannot parse without template model');
-        }
-
+    parseGrammar(grammarInput, templateKind, options) {
         const grammar = normalizeNLs(grammarInput.content);
-        const grammarFileName = grammarInput.fileName;
 
-        // Parse / validate / type the template
-        const template = this.parseGrammar(grammar, templateKind);
+        const parser = new MarkdownIt({html:true}).use(MarkdownItIns); // XXX HTML inlines and code blocks true
+        const tokenStream = parser.parse(grammar,{});
         if (options && options.verbose) {
-            console.log('===== Raw TemplateMark ');
-            console.log(JSON.stringify(template,null,2));
+            console.log('tokens: ' + JSON.stringify(tokenStream,null,2));
         }
-        const introspector = new Introspector(modelManager);
-        const templateModel = this.getTemplateModel(introspector, templateKind);
-        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
-        if (options && options.verbose) {
-            console.log('===== Raw Typed TemplateMark ');
-            console.log(JSON.stringify(typedTemplate,null,2));
+
+        const fromMarkdownIt = new FromMarkdownIt(templaterules);
+        const template = fromMarkdownIt.toCommonMark(tokenStream);
+
+        let topTemplate;
+        if (templateKind === 'contract') {
+            topTemplate = {
+                '$class': 'org.accordproject.commonmark.Document',
+                'xmlns' : 'http://commonmark.org/xml/1.0',
+                'nodes': [{
+                    '$class': 'org.accordproject.templatemark.ContractDefinition',
+                    'name': 'top',
+                    'nodes': template.nodes
+                }]
+            };
+        } else {
+            topTemplate = {
+                '$class': 'org.accordproject.commonmark.Document',
+                'xmlns' : 'http://commonmark.org/xml/1.0',
+                'nodes': [{
+                    '$class': 'org.accordproject.templatemark.ClauseDefinition',
+                    'name': 'top',
+                    'nodes': template.nodes
+                }]
+            };
         }
-        return typedTemplate;
+        return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
     }
 
     /**
@@ -235,13 +196,24 @@ class TemplateMarkTransformer {
      * @returns {object} the result of parsing
      */
     fromMarkdownTemplate(grammarInput, modelManager, templateKind, options) {
-        const typedTemplate = this.fromMarkdownTemplateRaw(grammarInput, modelManager, templateKind, options);
-        const unfoldedTemplate = this.unfoldTemplate(typedTemplate);
+        if (!modelManager) {
+            throw new Error('Cannot parse without template model');
+        }
+
+        const template = this.parseGrammar(grammarInput, templateKind, options);
+
+        if (options && options.verbose) {
+            console.log('===== TemplateMark ');
+            console.log(JSON.stringify(template,null,2));
+        }
+        const introspector = new Introspector(modelManager);
+        const templateModel = this.getTemplateModel(introspector, templateKind);
+        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
         if (options && options.verbose) {
             console.log('===== Typed TemplateMark ');
-            console.log(JSON.stringify(unfoldedTemplate,null,2));
+            console.log(JSON.stringify(typedTemplate,null,2));
         }
-        return unfoldedTemplate;
+        return typedTemplate;
     }
 
     /**
