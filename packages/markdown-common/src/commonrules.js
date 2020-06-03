@@ -23,7 +23,7 @@ const textRule = {
     leaf: true,
     open: false,
     close: false,
-    build: (token,callback) => { return { text: token.content }; },
+    enter: (node,token,callback) => { node.text = token.content; },
     skipEmpty: true,
 };
 const codeInlineRule = {
@@ -31,7 +31,7 @@ const codeInlineRule = {
     leaf: true,
     open: false,
     close: false,
-    build: (token,callback) => { return { text: token.content }; },
+    enter: (node,token,callback) => { node.text = token.content; },
     skipEmpty: false,
 };
 const softbreakRule = {
@@ -39,7 +39,6 @@ const softbreakRule = {
     leaf: true,
     open: false,
     close: false,
-    build: (token,callback) => { return {}; },
     skipEmpty: false,
 };
 const hardbreakRule = {
@@ -47,7 +46,6 @@ const hardbreakRule = {
     leaf: true,
     open: false,
     close: false,
-    build: (token,callback) => { return {}; },
     skipEmpty: false,
 };
 const htmlInlineRule = {
@@ -55,7 +53,7 @@ const htmlInlineRule = {
     leaf: true,
     open: false,
     close: false,
-    build: (token,callback) => { return { text: token.content, tag: parseHtmlBlock(token.content) }; },
+    enter: (node,token,callback) => { node.text = token.content; node.tag = parseHtmlBlock(token.content); },
     skipEmpty: false,
 };
 const strongOpenRule = {
@@ -63,7 +61,6 @@ const strongOpenRule = {
     leaf: false,
     open: true,
     close: false,
-    build: (token,callback) => { return {}; },
     skipEmpty: false,
 };
 const strongCloseRule = {
@@ -71,7 +68,6 @@ const strongCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    build: null,
     skipEmpty: false,
 };
 const emphOpenRule = {
@@ -79,7 +75,6 @@ const emphOpenRule = {
     leaf: false,
     open: true,
     close: false,
-    build: (token,callback) => { return {}; },
     skipEmpty: false,
 };
 const emphCloseRule = {
@@ -87,7 +82,6 @@ const emphCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    build: null,
     skipEmpty: false,
 };
 const linkOpenRule = {
@@ -95,10 +89,10 @@ const linkOpenRule = {
     leaf: false,
     open: true,
     close: false,
-    build: (token,callback) => { return {
-        destination: getAttr(token.attrs,'href',''),
-        title : getAttr(token.attrs,'title',''),
-    }; },
+    enter: (node,token,callback) => {
+        node.destination = getAttr(token.attrs,'href','');
+        node.title = getAttr(token.attrs,'title','');
+    },
     skipEmpty: false,
 };
 const linkCloseRule = {
@@ -106,7 +100,6 @@ const linkCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    build: null,
     skipEmpty: false,
 };
 const imageRule = {
@@ -114,11 +107,11 @@ const imageRule = {
     leaf: false,
     open: true,
     close: true,
-    build: (token,callback) => { return {
-        destination: getAttr(token.attrs,'src',''),
-        title: getAttr(token.attrs,'title',''),
-        nodes: callback(token.children),
-    }; },
+    enter: (node,token,callback) => {
+        node.destination = getAttr(token.attrs,'src','');
+        node.title = getAttr(token.attrs,'title','');
+        node.nodes = callback(token.children);
+    },
     skipEmpty: false,
 };
 

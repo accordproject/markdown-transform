@@ -125,6 +125,7 @@ function mkClause(clause,value) {
  * @returns {object} the clause
  */
 function mkWrappedClause(clause,value) {
+    console.log('mkWrappedClause ' + JSON.stringify(value));
     return [{'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)}];
 }
 
@@ -387,7 +388,7 @@ function paragraphParser(ast,content) {
  * @returns {object} the parser
  */
 function headingParser(ast,content) {
-    return content.skip(P.string('\n----'));
+    return P.seq(P.optWhitespace,content.skip(P.string('\n----')));
 }
 
 /**

@@ -29,7 +29,8 @@ class FromMarkdownIt {
     constructor(rules) {
         this.rules = commonrules;
         if (rules) {
-            this.rules = this.rules.concat(rules);
+            this.rules.inlines = Object.assign(this.rules.inlines,rules.inlines);
+            this.rules.blocks = Object.assign(this.rules.blocks,rules.blocks);
         }
     }
 
@@ -58,28 +59,29 @@ class FromMarkdownIt {
         };
         stack.push(rootNode,false);
         for (let i = 0; i < tokens.length; i++) {
-            const currentChild = tokens[i];
-            const rule = rules.inlines[currentChild.type];
+            const token = tokens[i];
+            const rule = rules.inlines[token.type];
             if (!rule) {
-                throw new Error('Unknown inline type ' + currentChild.type);
+                throw new Error('Unknown inline type ' + token.type);
             }
             if (rule.leaf) {
-                const newNode = rule.build(currentChild,FromMarkdownIt.inlineCallback(rules));
-                newNode.$class = rule.tag;
-                if (!(rule.skipEmpty && newNode.text === '')) {
-                    stack.append(newNode);
+                const node = { $class: rule.tag };
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (!(rule.skipEmpty && node.text === '')) {
+                    stack.append(node);
                 }
             } else if (rule.open && rule.close) {
-                const newNode = rule.build(currentChild,FromMarkdownIt.inlineCallback(rules));
-                newNode.$class = rule.tag;
-                stack.append(newNode);
+                const node = { $class: rule.tag };
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                stack.append(node);
             } else if (rule.open) {
-                const newNode = rule.build(currentChild,FromMarkdownIt.inlineCallback(rules));
-                newNode.$class = rule.tag;
-                newNode.nodes = [];
-                stack.push(newNode, true);
+                const node = { $class: rule.tag };
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                node.nodes = [];
+                stack.push(node, true);
             } else if (rule.close) {
-                stack.pop();
+                const node = stack.pop();
+                if (rule.exit) { rule.exit(node,token,FromMarkdownIt.inlineCallback(rules)); }
             }
         }
 
@@ -103,12 +105,12 @@ class FromMarkdownIt {
         stack.push(rootNode,false);
         tight.push({tight:'true'},false);
         for(let i = 0; i < tokens.length; i++) {
-            const currentToken = tokens[i];
-            switch(currentToken.type) {
+            const token = tokens[i];
+            switch(token.type) {
             case 'inline': {
                 const currentNode = stack.peek();
                 if (currentNode) {
-                    currentNode.nodes = FromMarkdownIt.inlineCallback(this.rules)(currentToken.children);
+                    currentNode.nodes = FromMarkdownIt.inlineCallback(this.rules)(token.children);
                 } else {
                     throw new Error('Malformed token stream: no current node');
                 }
@@ -116,18 +118,18 @@ class FromMarkdownIt {
                 break;
             case 'code_block':
             case 'fence': {
-                const info = currentToken.info.trim();
+                const info = token.info.trim();
                 const newNode = {
                     '$class': 'org.accordproject.commonmark.CodeBlock',
                     'info': info ? info : null,
                     'tag': parseHtmlBlock(info),
-                    'text': currentToken.content ? unescapeCodeBlock(currentToken.content) : null,
+                    'text': token.content ? unescapeCodeBlock(token.content) : null,
                 };
                 stack.append(newNode);
             }
                 break;
             case 'html_block': {
-                const content = trimEndline(currentToken.content);
+                const content = trimEndline(token.content);
                 const newNode = {
                     '$class': 'org.accordproject.commonmark.HtmlBlock',
                     'tag': parseHtmlBlock(content),
@@ -148,7 +150,7 @@ class FromMarkdownIt {
                     '$class': 'org.accordproject.commonmark.Paragraph',
                     'nodes': [],
                 };
-                if (!currentToken.hidden) {
+                if (!token.hidden) {
                     tight.peek().tight = 'false';
                 }
                 stack.push(newNode);
@@ -157,7 +159,7 @@ class FromMarkdownIt {
             case 'heading_open':{
                 const newNode = {
                     '$class': 'org.accordproject.commonmark.Heading',
-                    'level': headingLevel(currentToken.tag),
+                    'level': headingLevel(token.tag),
                     'nodes': [],
                 };
                 stack.push(newNode);
@@ -186,9 +188,9 @@ class FromMarkdownIt {
                 const newNode = {
                     '$class': 'org.accordproject.commonmark.List',
                     'type': 'ordered',
-                    'start': getAttr(currentToken.attrs,'start','1'),
+                    'start': getAttr(token.attrs,'start','1'),
                     'tight': 'true',
-                    'delimiter': currentToken.markup === ')' ? 'paren' : 'period',
+                    'delimiter': token.markup === ')' ? 'paren' : 'period',
                     'nodes': [],
                 };
                 stack.push(newNode);
@@ -208,7 +210,7 @@ class FromMarkdownIt {
             case 'blockquote_close':
             case 'list_item_close': {
                 let currentNode = stack.pop();
-                if (currentToken.type !== 'paragraph_close') {
+                if (token.type !== 'paragraph_close') {
                     if (currentNode.nodes.length === 0) {
                         delete currentNode.nodes;
                     }
@@ -221,7 +223,7 @@ class FromMarkdownIt {
             }
                 break;
             default: {
-                throw new Error('Unknown block type: ' + currentToken.type);
+                throw new Error('Unknown block type: ' + token.type);
             }
             }
         }
