@@ -21,7 +21,7 @@ const TemplateMarkModel = require('./externalModels/TemplateMarkModel').Template
 const TemplateMarkRawModel = require('./externalModels/TemplateMarkRaw').TemplateMarkRawModel;
 
 const MarkdownIt = require('markdown-it');
-const MarkdownItIns = require('./markdown-it-template');
+const MarkdownItTemplate = require('@accordproject/markdown-it-template');
 const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
 const templaterules = require('./templaterules');
 
@@ -152,10 +152,11 @@ class TemplateMarkTransformer {
     parseGrammar(grammarInput, templateKind, options) {
         const grammar = normalizeNLs(grammarInput.content);
 
-        const parser = new MarkdownIt({html:true}).use(MarkdownItIns); // XXX HTML inlines and code blocks true
+        const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
         const tokenStream = parser.parse(grammar,{});
         if (options && options.verbose) {
-            console.log('tokens: ' + JSON.stringify(tokenStream,null,2));
+            console.log('===== MarkdownIt Tokens ');
+            console.log(JSON.stringify(tokenStream,null,2));
         }
 
         const fromMarkdownIt = new FromMarkdownIt(templaterules);
