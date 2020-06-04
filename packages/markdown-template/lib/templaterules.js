@@ -60,7 +60,7 @@ const ifCloseRule = {
 
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
-rules.inlines.if_block_inline_open = ifOpenRule;
-rules.inlines.if_block_inline_close = ifCloseRule;
+rules.inlines.inline_block_if_open = ifOpenRule;
+rules.inlines.inline_block_if_close = ifCloseRule;
 
 module.exports = rules;

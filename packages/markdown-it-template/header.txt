@@ -11,15 +11,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict';
-
-/**
- * Export the framework and plugins
- * @module markdown-template
- */
-
-module.exports.ParserManager = require('./lib/parsermanager').ParserManager;
-module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
-module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
-

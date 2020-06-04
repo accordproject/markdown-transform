@@ -15,11 +15,8 @@
 'use strict';
 
 /**
- * Export the framework and plugins
- * @module markdown-template
+ * Export the plugins
+ * @module markdown-it-template
  */
 
-module.exports.ParserManager = require('./lib/parsermanager').ParserManager;
-module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
-module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
-
+module.exports = require('./lib');

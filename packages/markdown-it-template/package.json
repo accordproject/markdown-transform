@@ -1,7 +1,7 @@
 {
-  "name": "@accordproject/markdown-template",
+  "name": "@accordproject/markdown-it-template",
   "version": "0.11.3",
-  "description": "A framework for transforming markdown",
+  "description": "Plugin to introduce template blocks and inlines for the markdown-it markdown parser",
   "engines": {
     "node": ">=8",
     "npm": ">=3"
@@ -45,22 +45,13 @@
     "chai-string": "^1.5.0",
     "chai-things": "0.2.0",
     "eslint": "6.0.1",
-    "handlebars": "^4.4.5",
-    "jest": "^24.8.0",
-    "jest-diff": "^24.8.0",
     "jsdoc": "3.6.3",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.7",
-    "@accordproject/markdown-cicero": "0.11.3",
-    "@accordproject/markdown-common": "0.11.3",
-    "@accordproject/markdown-it-template": "0.11.3",
-    "markdown-it": "^11.0.0",
-    "parsimmon": "^1.13.0",
-    "uuid": "3.3.2"
+    "markdown-it": "^11.0.0"
   },
   "license-check-config": {
     "src": [
@@ -71,8 +62,7 @@
       "!./coverage/**/*",
       "!./node_modules/**/*",
       "!./out/**/*",
-      "!./umd/**/*",
-      "!./bin/index.js"
+      "!./umd/**/*"
     ],
     "path": "header.txt",
     "blocking": true,

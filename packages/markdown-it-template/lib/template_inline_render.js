@@ -14,12 +14,16 @@
 
 'use strict';
 
-/**
- * Export the framework and plugins
- * @module markdown-template
- */
+function template_inline_render(name) {
+    return function renderDefault(tokens, idx, _options, env, slf) {
 
-module.exports.ParserManager = require('./lib/parsermanager').ParserManager;
-module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
-module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
+        // add a class to the opening tag
+        if (tokens[idx].nesting === 1) {
+            tokens[idx].attrJoin('class', name + '_inline');
+        }
 
+        return slf.renderToken(tokens, idx, _options, env, slf);
+    }
+}
+
+module.exports = template_inline_render;
