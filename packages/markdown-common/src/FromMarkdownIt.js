@@ -15,7 +15,7 @@
 'use strict';
 
 const Stack = require('./Stack');
-const { unescapeCodeBlock, parseHtmlBlock, mergeAdjacentHtmlNodes, headingLevel, getAttr, trimEndline } = require('./CommonMarkUtils');
+const { mergeAdjacentHtmlNodes } = require('./CommonMarkUtils');
 const commonrules = require('./commonrules');
 
 /**
@@ -120,119 +120,43 @@ class FromMarkdownIt {
                 tight.peek().tight = 'false';
             }
 
-            switch(token.type) {
-            case 'inline': {
+            // Special purpose for inline nodes
+            if (token.type === 'inline') {
                 const currentNode = stack.peek();
                 if (currentNode) {
                     currentNode.nodes = FromMarkdownIt.inlineCallback(rules)(token.children);
+                    continue; // Continue for loop on next token
                 } else {
                     throw new Error('Malformed token stream: no current node');
                 }
             }
-                break;
-            case 'code_block':
-            case 'fence': {
-                const info = token.info.trim();
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.CodeBlock',
-                    'info': info ? info : null,
-                    'tag': parseHtmlBlock(info),
-                    'text': token.content ? unescapeCodeBlock(token.content) : null,
-                };
-                stack.append(newNode);
+
+            const rule = rules.blocks[token.type];
+            if (!rule) {
+                throw new Error('Unknown block type ' + token.type);
             }
-                break;
-            case 'html_block': {
-                const content = trimEndline(token.content);
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.HtmlBlock',
-                    'tag': parseHtmlBlock(content),
-                    'text': content
-                };
-                stack.append(newNode);
-            }
-                break;
-            case 'hr': {
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.ThematicBreak',
-                };
-                stack.append(newNode);
-            }
-                break;
-            case 'paragraph_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.Paragraph',
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'heading_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.Heading',
-                    'level': headingLevel(token.tag),
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'blockquote_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.BlockQuote',
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'bullet_list_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.List',
-                    'type': 'bullet',
-                    'tight': 'true', // XXX Default but can be overridden when closing the list tag
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'ordered_list_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.List',
-                    'type': 'ordered',
-                    'start': getAttr(token.attrs,'start','1'),
-                    'tight': 'true', // XXX Default but can be overridden when closing the list tag
-                    'delimiter': token.markup === ')' ? 'paren' : 'period',
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'list_item_open':{
-                const newNode = {
-                    '$class': 'org.accordproject.commonmark.Item',
-                    'nodes': [],
-                };
-                stack.push(newNode);
-            }
-                break;
-            case 'paragraph_close':
-            case 'heading_close':
-            case 'blockquote_close':
-            case 'bullet_list_close':
-            case 'ordered_list_close':
-            case 'list_item_close': {
-                let currentNode = stack.pop();
+
+            if (rule.leaf) {
+                const node = { $class: rule.tag };
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                stack.append(node);
+            } else if (rule.open) {
+                const node = { $class: rule.tag };
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                node.nodes = [];
+                stack.push(node, true);
+            } else if (rule.close) {
+                const node = stack.pop();
+                if (rule.exit) { rule.exit(node,token,FromMarkdownIt.inlineCallback(rules)); }
                 if (token.type !== 'paragraph_close') {
-                    if (currentNode.nodes.length === 0) {
-                        delete currentNode.nodes;
+                    if (node.nodes.length === 0) {
+                        delete node.nodes;
                     }
                 }
             }
-                break;
-            default: {
-                throw new Error('Unknown block type: ' + token.type);
-            }
-            }
+
         }
+
         if (!rootNode.nodes || rootNode.nodes.length === 0) {
             rootNode.nodes.push({
                 '$class': 'org.accordproject.commonmark.Paragraph',

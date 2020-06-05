@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { parseHtmlBlock, getAttr } = require('./CommonMarkUtils');
+const { unescapeCodeBlock, parseHtmlBlock, headingLevel, getAttr, trimEndline } = require('./CommonMarkUtils');
 const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS_PREFIX_CommonMarkModel;
 
 // Inline rules
@@ -53,7 +53,10 @@ const htmlInlineRule = {
     leaf: true,
     open: false,
     close: false,
-    enter: (node,token,callback) => { node.text = token.content; node.tag = parseHtmlBlock(token.content); },
+    enter: (node,token,callback) => {
+        node.text = token.content;
+        node.tag = parseHtmlBlock(token.content);
+    },
     skipEmpty: false,
 };
 const strongOpenRule = {
@@ -115,6 +118,131 @@ const imageRule = {
     skipEmpty: false,
 };
 
+// Block rules
+const codeBlockRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'CodeBlock',
+    leaf: true,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        const info = token.info.trim();
+        node.info = info ? info : null;
+        node.tag = parseHtmlBlock(info);
+        node.text = token.content ? unescapeCodeBlock(token.content) : null;
+    },
+};
+const fenceRule = codeBlockRule;
+const htmlBlockRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'HtmlBlock',
+    leaf: true,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        const content = trimEndline(token.content);
+        node.tag = parseHtmlBlock(content);
+        node.text = content;
+    },
+};
+const hrRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'ThematicBreak',
+    leaf: true,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+    },
+};
+const paragraphOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Paragraph',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+    },
+};
+const paragraphCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Paragraph',
+    leaf: false,
+    open: false,
+    close: true,
+};
+const headingOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Heading',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.level = headingLevel(token.tag);
+    },
+};
+const headingCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Heading',
+    leaf: false,
+    open: false,
+    close: true,
+};
+const blockQuoteOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'BlockQuote',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+    },
+};
+const blockQuoteCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'BlockQuote',
+    leaf: false,
+    open: false,
+    close: true,
+};
+const bulletListOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'List',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.type = 'bullet';
+        node.tight = 'true'; // XXX Default but can be overridden when closing the list tag
+    },
+};
+const bulletListCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'List',
+    leaf: false,
+    open: false,
+    close: true,
+};
+const orderedListOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'List',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.type = 'ordered';
+        node.start = getAttr(token.attrs,'start','1');
+        node.tight = 'true'; // XXX Default but can be overridden when closing the list tag
+        node.delimiter = token.markup === ')' ? 'paren' : 'period';
+    },
+};
+const orderedListCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'List',
+    leaf: false,
+    open: false,
+    close: true,
+};
+const listItemOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Item',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+    },
+};
+const listItemCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'List',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.text = textRule;
 rules.inlines.code_inline = codeInlineRule;
@@ -128,5 +256,22 @@ rules.inlines.em_close = emphCloseRule;
 rules.inlines.link_open = linkOpenRule;
 rules.inlines.link_close = linkCloseRule;
 rules.inlines.image = imageRule;
+
+rules.blocks.code_block = codeBlockRule;
+rules.blocks.fence = fenceRule;
+rules.blocks.html_block = htmlBlockRule;
+rules.blocks.hr = hrRule;
+rules.blocks.paragraph_open = paragraphOpenRule;
+rules.blocks.paragraph_close = paragraphCloseRule;
+rules.blocks.heading_open = headingOpenRule;
+rules.blocks.heading_close = headingCloseRule;
+rules.blocks.blockquote_open = blockQuoteOpenRule;
+rules.blocks.blockquote_close = blockQuoteCloseRule;
+rules.blocks.bullet_list_open = bulletListOpenRule;
+rules.blocks.bullet_list_close = bulletListCloseRule;
+rules.blocks.ordered_list_open = orderedListOpenRule;
+rules.blocks.ordered_list_close = orderedListCloseRule;
+rules.blocks.list_item_open = listItemOpenRule;
+rules.blocks.list_item_close = listItemCloseRule;
 
 module.exports = rules;
