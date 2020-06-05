@@ -73,6 +73,20 @@ const ifCloseRule = {
     },
     skipEmpty: false,
 };
+const withOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => { node.name = getAttr(token.attrs,'name',null); },
+    skipEmpty: false,
+};
+const withCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+};
 
 // Block rules
 const clauseOpenRule = {
@@ -89,7 +103,6 @@ const clauseCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    exit: null,
 };
 const ulistOpenRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
@@ -107,7 +120,6 @@ const ulistCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    exit: null,
 };
 const olistOpenRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
@@ -125,7 +137,6 @@ const olistCloseRule = {
     leaf: false,
     open: false,
     close: true,
-    exit: null,
 };
 
 const rules = { inlines: {}, blocks: {}};
@@ -133,6 +144,8 @@ rules.inlines.variable = variableRule;
 rules.inlines.formula = formulaRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
+rules.inlines.inline_block_with_open = withOpenRule;
+rules.inlines.inline_block_with_close = withCloseRule;
 
 rules.blocks.block_clause_open = clauseOpenRule;
 rules.blocks.block_clause_close = clauseCloseRule;
