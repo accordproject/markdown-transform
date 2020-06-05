@@ -89,12 +89,13 @@ class FromMarkdownIt {
     }
 
     /**
-     * Transform a token stream to CommonMark DOM
+     * Transform a block token stream to CommonMark DOM
      *
+     * @param {*[]} rules - the rules for each kind of markdown-it tokens
      * @param {*} tokens - the markdown-it token stream
      * @returns {*} the CommonMark nodes
      */
-    toCommonMark(tokens) {
+    static blockToCommonMark(rules,tokens) {
         let stack = new Stack();
         let tight = new Stack();
         const rootNode = {
@@ -104,13 +105,26 @@ class FromMarkdownIt {
         };
         stack.push(rootNode,false);
         tight.push({tight:'true'},false);
+
         for(let i = 0; i < tokens.length; i++) {
             const token = tokens[i];
+
+            // Special purpose to recover tight v loose information in list nodes
+            if (token.type === 'bullet_list_open' || token.type === 'ordered_list_open') {
+                tight.push({tight:'true'},false);
+            } else if (token.type === 'bullet_list_close' || token.type === 'ordered_list_close') {
+                const isTight = tight.pop();
+                const listNode = stack.peek();
+                listNode.tight = isTight.tight;
+            } else if (token.type === 'paragraph_open' && !token.hidden) {
+                tight.peek().tight = 'false';
+            }
+
             switch(token.type) {
             case 'inline': {
                 const currentNode = stack.peek();
                 if (currentNode) {
-                    currentNode.nodes = FromMarkdownIt.inlineCallback(this.rules)(token.children);
+                    currentNode.nodes = FromMarkdownIt.inlineCallback(rules)(token.children);
                 } else {
                     throw new Error('Malformed token stream: no current node');
                 }
@@ -150,9 +164,6 @@ class FromMarkdownIt {
                     '$class': 'org.accordproject.commonmark.Paragraph',
                     'nodes': [],
                 };
-                if (!token.hidden) {
-                    tight.peek().tight = 'false';
-                }
                 stack.push(newNode);
             }
                 break;
@@ -177,11 +188,10 @@ class FromMarkdownIt {
                 const newNode = {
                     '$class': 'org.accordproject.commonmark.List',
                     'type': 'bullet',
-                    'tight': 'true',
+                    'tight': 'true', // XXX Default but can be overridden when closing the list tag
                     'nodes': [],
                 };
                 stack.push(newNode);
-                tight.push({tight:'true'},false);
             }
                 break;
             case 'ordered_list_open':{
@@ -189,12 +199,11 @@ class FromMarkdownIt {
                     '$class': 'org.accordproject.commonmark.List',
                     'type': 'ordered',
                     'start': getAttr(token.attrs,'start','1'),
-                    'tight': 'true',
+                    'tight': 'true', // XXX Default but can be overridden when closing the list tag
                     'delimiter': token.markup === ')' ? 'paren' : 'period',
                     'nodes': [],
                 };
                 stack.push(newNode);
-                tight.push({tight:'true'},false);
             }
                 break;
             case 'list_item_open':{
@@ -208,6 +217,8 @@ class FromMarkdownIt {
             case 'paragraph_close':
             case 'heading_close':
             case 'blockquote_close':
+            case 'bullet_list_close':
+            case 'ordered_list_close':
             case 'list_item_close': {
                 let currentNode = stack.pop();
                 if (token.type !== 'paragraph_close') {
@@ -215,11 +226,6 @@ class FromMarkdownIt {
                         delete currentNode.nodes;
                     }
                 }
-            }
-                break;
-            case 'bullet_list_close':
-            case 'ordered_list_close': {
-                stack.pop().tight = tight.pop().tight;
             }
                 break;
             default: {
@@ -235,6 +241,17 @@ class FromMarkdownIt {
         }
         return rootNode;
     }
+
+    /**
+     * Transform a token stream to CommonMark DOM
+     *
+     * @param {*} tokens - the markdown-it token stream
+     * @returns {*} the CommonMark nodes
+     */
+    toCommonMark(tokens) {
+        return FromMarkdownIt.blockToCommonMark(this.rules,tokens);
+    }
+
 }
 
 module.exports = FromMarkdownIt;
