@@ -54,12 +54,12 @@ describe('#markdown-it-template', () => {
     describe('#render', () => {
         it('should render to HTML (template markup)', async () => {
             const result = mdit.render(allMarkdown,{});
-            result.should.equal(allHtml);
+            result.should.equal(allHtml.replace(/\r/gm,''));
         });
 
         it('should render to HTML (not template markup)', async () => {
             const result = mdit.render(noneMarkdown,{});
-            result.should.equal(noneHtml);
+            result.should.equal(noneHtml.replace(/\r/gm,''));
         });
     });
 });
