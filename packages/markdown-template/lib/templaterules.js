@@ -74,6 +74,7 @@ const ifCloseRule = {
     skipEmpty: false,
 };
 
+// Block rules
 const clauseOpenRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
     leaf: false,
@@ -90,6 +91,42 @@ const clauseCloseRule = {
     close: true,
     exit: null,
 };
+const ulistOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+        node.type = 'bullet';
+        node.tight = 'true';
+    },
+};
+const ulistCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+    exit: null,
+};
+const olistOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+        node.type = 'ordered';
+        node.tight = 'true';
+    },
+};
+const olistCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+    exit: null,
+};
 
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
@@ -99,5 +136,9 @@ rules.inlines.inline_block_if_close = ifCloseRule;
 
 rules.blocks.block_clause_open = clauseOpenRule;
 rules.blocks.block_clause_close = clauseCloseRule;
+rules.blocks.block_ulist_open = ulistOpenRule;
+rules.blocks.block_ulist_close = ulistCloseRule;
+rules.blocks.block_olist_open = olistOpenRule;
+rules.blocks.block_olist_close = olistCloseRule;
 
 module.exports = rules;

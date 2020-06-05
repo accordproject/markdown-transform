@@ -125,7 +125,6 @@ function mkClause(clause,value) {
  * @returns {object} the clause
  */
 function mkWrappedClause(clause,value) {
-    console.log('mkWrappedClause ' + JSON.stringify(value));
     return [{'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)}];
 }
 
