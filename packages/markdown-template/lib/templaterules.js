@@ -28,6 +28,11 @@ const variableRule = {
     open: false,
     close: false,
     enter: (node,token,callback) => {
+        const format = getAttr(token.attrs,'format',null);;
+        if (format) {
+            node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
+            node.format = format;
+        }
         node.name = getAttr(token.attrs,'name',null);
         node.format = getAttr(token.attrs,'format',null);
     },
