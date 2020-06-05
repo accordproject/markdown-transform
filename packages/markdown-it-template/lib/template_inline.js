@@ -52,9 +52,7 @@ function template_inline(state, silent) {
             token         = state.push('inline_block_' + block + '_open', 'div', 1);
             token.content = match[0];
         }
-        if (block === 'if') {
-            token.attrs = [ [ 'name', match[2] ] ]
-        }
+        token.attrs = [ [ 'name', match[2] ] ]
         state.pos += match[0].length;
         return true;
     } else if (ch === 0x2F/* / */) {
