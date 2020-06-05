@@ -56,6 +56,7 @@ const successes = [
     {name:'testOList',kind:'contract'},
     {name:'testOList2',kind:'contract'},
     {name:'testWith',kind:'contract'},
+    {name:'acceptance-of-delivery',kind:'clause'},
     {name:'helloworld',kind:'clause'},
 ];
 
