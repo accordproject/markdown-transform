@@ -46,6 +46,7 @@ const formulaRule = {
     enter: (node,token,callback) => {
         node.name = getAttr(token.attrs,'name',null);
         node.code = token.content;
+        node.dependencies = [];
     },
     skipEmpty: false,
 };
@@ -70,6 +71,7 @@ const ifCloseRule = {
         jsonSource.nodes = node.nodes;
         const whenTrue = commonMark.toMarkdown(jsonSource);
         node.whenTrue = whenTrue; node.whenFalse = '';
+        delete node.nodes; // Reset children
     },
     skipEmpty: false,
 };
@@ -130,6 +132,8 @@ const olistOpenRule = {
         node.name = getAttr(token.attrs,'name',null);
         node.type = 'ordered';
         node.tight = 'true';
+        node.start = '1';
+        node.delimiter = 'period';
     },
 };
 const olistCloseRule = {
