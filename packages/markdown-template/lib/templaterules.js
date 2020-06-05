@@ -58,9 +58,29 @@ const ifCloseRule = {
     skipEmpty: false,
 };
 
+const clauseOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+    },
+};
+const clauseCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+    exit: null,
+};
+
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
+
+rules.blocks.block_clause_open = clauseOpenRule;
+rules.blocks.block_clause_close = clauseCloseRule;
 
 module.exports = rules;

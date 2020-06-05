@@ -18,10 +18,11 @@ const OPEN_BLOCK_RE = require('./template_re').OPEN_BLOCK_RE;
 const CLOSE_BLOCK_RE = require('./template_re').CLOSE_BLOCK_RE;
 
 function template_block(state, startLine, endLine, silent) {
-    let name,
+    let block_name,
+        name,
         match;
 
-    let pos, nextLine, markup, params, token,
+    let pos, nextLine, markup, token,
         old_parent, old_line_max,
         auto_closed = false,
         start = state.bMarks[startLine] + state.tShift[startLine],
@@ -41,9 +42,9 @@ function template_block(state, startLine, endLine, silent) {
     const block_open = match[1];
     if (block_open !== 'clause' && block_open !== 'ulist' && block_open !== 'olist') { return false; }
 
-    name = block_open;
-    markup = 'clause';
-    params = match[2];
+    block_name = block_open;
+    name = match[2];
+    markup = '';
 
     // Since start is found, we can report success here in validation mode
     //
@@ -107,15 +108,17 @@ function template_block(state, startLine, endLine, silent) {
     // this will prevent lazy continuations from ever going past our end marker
     state.lineMax = nextLine;
 
-    token        = state.push('block_' + name + '_open', 'div', 1);
+    token        = state.push('block_' + block_name + '_open', 'div', 1);
     token.markup = markup;
     token.block  = true;
-    token.info   = params;
+    token.info   = '';
     token.map    = [ startLine, nextLine ];
+
+    token.attrs = [ [ 'name', name ] ];
 
     state.md.block.tokenize(state, startLine + 1, nextLine);
 
-    token        = state.push('block_' + name + '_close', 'div', -1);
+    token        = state.push('block_' + block_name + '_close', 'div', -1);
     token.markup = state.src.slice(start, pos);
     token.block  = true;
 
