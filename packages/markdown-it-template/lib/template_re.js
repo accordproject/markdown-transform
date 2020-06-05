@@ -18,8 +18,8 @@
 
 const string = '"([^"]*)"';
 const format = '(as\\s*'+ string + '\\s*)?';
-const variable = '{{\\s*([A-Za-z][A-Za-z0-9]+)\\s*' + format + '}}';
-const open_block = '{{#\\s*([A-Za-z][A-Za-z0-9]+)\\s*([A-Za-z][A-Za-z0-9]+)\\s*}}';
+const variable = '{{\\s*([A-Za-z][A-Za-z0-9_]+)\\s*' + format + '}}';
+const open_block = '{{#\\s*([A-Za-z][A-Za-z0-9]+)\\s*([A-Za-z][A-Za-z0-9_]+)\\s*}}';
 const close_block = '{{/\\s*([A-Za-z][A-Za-z0-9]+)\\s*}}';
 const formula = '{{%([^%]*)%}}';
 
