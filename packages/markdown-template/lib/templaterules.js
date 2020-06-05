@@ -38,6 +38,17 @@ const variableRule = {
     },
     skipEmpty: false,
 };
+const formulaRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'FormulaDefinition',
+    leaf: true,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+        node.code = token.content;
+    },
+    skipEmpty: false,
+};
 const ifOpenRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
     leaf: false,
@@ -82,6 +93,7 @@ const clauseCloseRule = {
 
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
+rules.inlines.formula = formulaRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
 
