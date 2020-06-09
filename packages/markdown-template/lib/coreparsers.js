@@ -73,7 +73,7 @@ function mkCond(condNode,value) {
     const result = {};
     result.name = condNode.name;
     result.elementType = 'Boolean';
-    result.value = value === condNode.whenTrue ? true : false;
+    result.value = value;
     return result;
 }
 
@@ -245,12 +245,14 @@ function enumParser(variable, enums) {
 /**
  * Creates a parser for a conditional block
  * @param {object} condNode the conditional ast node
+ * @param {object} whenTrue the parser when the condition is true
+ * @param {object} whenFalse the parser when the condition is false
  * @returns {object} the parser
  */
-function condParser(condNode) {
-    return P.alt(P.string(condNode.whenTrue),P.string(condNode.whenFalse)).map(function(x) {
+function condParser(condNode, whenTrue, whenFalse) {
+    return P.alt(whenTrue.map(x => true),whenFalse.map(x => false)).map(function(x) {
         return mkCond(condNode,x);
-    });;
+    });
 }
 
 /**

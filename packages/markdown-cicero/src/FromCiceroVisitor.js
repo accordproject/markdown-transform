@@ -275,14 +275,18 @@ class FromCiceroVisitor {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'HtmlInline');
 
+            const valueText = thing.nodes[0].text;
+            const whenTrueText = thing.whenTrue[0] ? thing.whenTrue[0].text : '';
+            const whenFalseText = thing.whenFalse[0] ? thing.whenFalse[0].text : '';
+
             // Create the text for that document
             const content = '';
             const attributeString =
-                  `name="${thing.name}" value="${encodeURIComponent(thing.value)}" whenTrue="${encodeURIComponent(thing.whenTrue)}" whenFalse="${encodeURIComponent(thing.whenFalse)}"`
+                  `name="${thing.name}" value="${encodeURIComponent(valueText)}" whenTrue="${encodeURIComponent(whenTrueText)}" whenFalse="${encodeURIComponent(whenFalseText)}"`
             ;
             const tagName = 'if';
             if (this.options && !this.options.wrapVariables) {
-                thing.text = thing.value;
+                thing.text = valueText;
             } else {
                 thing.text = `<${tagName} ${attributeString}/>`;
             }
@@ -305,19 +309,19 @@ class FromCiceroVisitor {
             let attribute2 = {};
             attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute2.name = 'value';
-            attribute2.value = thing.value;
+            attribute2.value = valueText;
             tag.attributes.push(attribute2);
 
             let attribute3 = {};
             attribute3.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute3.name = 'whenTrue';
-            attribute3.value = thing.whenTrue;
+            attribute3.value = whenTrueText;
             tag.attributes.push(attribute3);
 
             let attribute4 = {};
             attribute4.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
             attribute4.name = 'whenFalse';
-            attribute4.value = thing.whenFalse;
+            attribute4.value = whenFalseText;
             tag.attributes.push(attribute4);
 
             thing.tag = parameters.serializer.fromJSON(tag);
@@ -327,6 +331,7 @@ class FromCiceroVisitor {
             delete thing.value;
             delete thing.whenTrue;
             delete thing.whenFalse;
+            delete thing.nodes;
         }
             break;
         default:

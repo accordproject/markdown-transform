@@ -137,10 +137,12 @@ class ToCiceroMarkVisitor {
         case 'ConditionalDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
+            ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
+            ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
             if (parameters.data[thing.name]) {
-                thing.value = thing.whenTrue;
+                thing.nodes = thing.whenTrue;
             } else {
-                thing.value = thing.whenFalse;
+                thing.nodes = thing.whenFalse;
             }
         }
             break;

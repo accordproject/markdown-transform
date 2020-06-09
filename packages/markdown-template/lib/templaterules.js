@@ -55,7 +55,9 @@ const ifOpenRule = {
     leaf: false,
     open: true,
     close: false,
-    enter: (node,token,callback) => { node.name = getAttr(token.attrs,'name',null); },
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+    },
     skipEmpty: false,
 };
 const ifCloseRule = {
@@ -64,14 +66,9 @@ const ifCloseRule = {
     open: false,
     close: true,
     exit: (node,token,callback) => {
-        // Recover text from commonmark content
-        const jsonSource = {};
-        jsonSource.$class = NS_PREFIX_CommonMarkModel + 'Document';
-        jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
-        jsonSource.nodes = node.nodes;
-        const whenTrue = commonMark.toMarkdown(jsonSource);
-        node.whenTrue = whenTrue; node.whenFalse = '';
-        delete node.nodes; // Reset children
+        node.whenTrue = node.nodes ? node.nodes : [];
+        node.whenFalse = [{'$class':NS_PREFIX_CommonMarkModel + 'Text','text':''}];
+        delete node.nodes; // Reset children (now in whenTrue or whenFalse)
     },
     skipEmpty: false,
 };

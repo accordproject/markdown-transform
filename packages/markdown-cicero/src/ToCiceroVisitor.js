@@ -76,9 +76,7 @@ class ToCiceroMarkVisitor {
                     thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
 
-                    const clauseStart = thing.startPos ? thing.startPos.line : 0;
-                    const lineMap = parameters.lineMap ? parameters.lineMap.slice(0,clauseStart) : [];
-                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto',lineMap).nodes;
+                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
@@ -146,9 +144,23 @@ class ToCiceroMarkVisitor {
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
-                    thing.whenTrue = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
-                    thing.whenFalse = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
+                    const valueNode = parameters.serializer.fromJSON({
+                        $class: 'org.accordproject.commonmark.Text',
+                        text: decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value)
+                    });
+                    thing.nodes = [valueNode];
+                    const whenTrueText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
+                    const whenTrueNodes = whenTrueText ? [parameters.serializer.fromJSON({
+                        $class: 'org.accordproject.commonmark.Text',
+                        text: whenTrueText
+                    })] : [];
+                    thing.whenTrue = whenTrueNodes;
+                    const whenFalseText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
+                    const whenFalseNodes = whenFalseText ? [parameters.serializer.fromJSON({
+                        $class: 'org.accordproject.commonmark.Text',
+                        text: whenFalseText
+                    })] : [];
+                    thing.whenFalse = whenFalseNodes;
                     delete thing.tag;
                     delete thing.text;
                 }

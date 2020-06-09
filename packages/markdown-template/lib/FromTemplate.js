@@ -66,7 +66,9 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.templatemark.ConditionalDefinition' : {
-        parser = condParser(ast);
+        const whenTrueParser = seqParser(ast.whenTrue.map(function (x) { return parserOfTemplate(x,params); }));
+        const whenFalseParser = seqParser(ast.whenFalse.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = condParser(ast,whenTrueParser,whenFalseParser);
         break;
     }
     case 'org.accordproject.templatemark.ListBlockDefinition' : {

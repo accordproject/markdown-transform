@@ -109,7 +109,7 @@ class ToHtmlStringVisitor {
         }
             break;
         case 'Conditional':
-            parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue}" whenFalse="${thing.whenFalse}">${thing.value}</span>`;
+            parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue[0] ? thing.whenTrue[0].text : ''}" whenFalse="${thing.whenFalse[0] ? thing.whenFalse[0].text : ''}">${thing.nodes[0].text}</span>`;
             break;
         case 'Formula':
             parameters.result += `<span class="formula" name="${thing.name}">${thing.value}</span>`;

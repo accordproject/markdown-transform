@@ -144,7 +144,7 @@ class ToCommonMarkVisitor {
         case 'Conditional': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            thing.text = decodeURIComponent(thing.value);
+            thing.text = decodeURIComponent(thing.nodes[0] ? thing.nodes[0].text : '');
 
             delete thing.elementType;
             delete thing.name;

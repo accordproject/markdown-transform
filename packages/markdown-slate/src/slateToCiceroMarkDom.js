@@ -84,9 +84,21 @@ function slateToCiceroMarkDom(value) {
  * @param {*} nodes an array of Slate nodes
  */
 function _recursive(parent, nodes) {
+    if(!parent.nodes) {
+        throw new Error(`Parent node doesn't have children ${JSON.stringify(parent)}`);
+    }
+    _recursive_nodes(parent.nodes, nodes);
+}
 
+/**
+ * Converts an array of Slate nodes, pushing them into the parent
+ * @param {*} target the target nodes
+ * @param {*} nodes an array of Slate nodes
+ */
+function _recursive_nodes(target, nodes) {
     nodes.forEach((node, index) => {
         let result = null;
+        let handleChildren = true;
 
         if('text' in node && !node.type) {
             result = handleText(node);
@@ -99,9 +111,18 @@ function _recursive(parent, nodes) {
                     result.elementType = node.data.elementType;
                 }
                 break;
-            case 'variable':
-            case 'conditional':
+            case 'conditional': {
+                let whenTrueNodes = [];
+                _recursive_nodes(whenTrueNodes, node.data.whenTrue);
+                let whenFalseNodes = [];
+                _recursive_nodes(whenFalseNodes, node.data.whenFalse);
+                result = handleConditional(node,whenTrueNodes,whenFalseNodes);
+            }
+                break;
+            case 'variable': {
                 result = handleVariable(node);
+                handleChildren = false;
+            }
                 break;
             case 'formula':
                 result = handleFormula(node);
@@ -173,19 +194,15 @@ function _recursive(parent, nodes) {
         }
 
         // process any children, attaching to first child if it exists (for list items)
-        if(node.children && result && result.nodes) {
+        if(node.children && result && result.nodes && handleChildren) {
             _recursive(result.nodes[0] ? result.nodes[0] : result, node.children);
             if (result.nodes.length === 0) {
                 result.nodes.push({$class : `${NS}.Text`, text : ''});
             }
         }
 
-        if(!parent.nodes) {
-            throw new Error(`Parent node doesn't have children ${JSON.stringify(parent)}`);
-        }
-
         if(result) {
-            parent.nodes.push(result);
+            target.push(result);
         }
     });
 }
@@ -253,10 +270,9 @@ function handleVariable(node) {
     const textNode = node.children[0]; // inlines always contain a single text node
     node.children = []; // Reset the children for the inline to avoid recursion
 
-    const type = node.type;
     const data = node.data;
 
-    const baseName = type === 'variable' ? (Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : (Object.prototype.hasOwnProperty.call(data,'enumValues') ? 'EnumVariable' : 'Variable')) : 'Conditional';
+    const baseName = Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : (Object.prototype.hasOwnProperty.call(data,'enumValues') ? 'EnumVariable' : 'Variable');
     const className = `${NS_CICERO}.${baseName}`;
 
     result = {
@@ -274,11 +290,31 @@ function handleVariable(node) {
     if (Object.prototype.hasOwnProperty.call(data,'enumValues')) {
         result.enumValues = data.enumValues;
     }
-    if (Object.prototype.hasOwnProperty.call(data,'whenTrue')) {
-        result.whenTrue = data.whenTrue;
-    }
-    if (Object.prototype.hasOwnProperty.call(data,'whenFalse')) {
-        result.whenFalse = data.whenFalse;
+
+    return handleMarks(node,result);
+}
+
+/**
+ * Handles a conditional node
+ * @param {*} node the slate variable node
+ * @param {*} whenTrue the nodes when true
+ * @param {*} whenFalse the nodes when false
+ * @returns {*} the ast node
+ */
+function handleConditional(node, whenTrue, whenFalse) {
+    const data = node.data;
+
+    let result = {
+        $class : `${NS_CICERO}.Conditional`,
+        name : data.name,
+        nodes: [],
+    };
+
+    result.whenTrue = whenTrue;
+    result.whenFalse = whenFalse;
+
+    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
+        result.elementType = data.elementType;
     }
 
     return handleMarks(node,result);

@@ -58,7 +58,7 @@ const transformationGraph = {
         fileFormat: 'json'
     },
     markdown : {
-        docs: 'Markdown text string',
+        docs: 'Markdown string',
         fileFormat: 'utf8',
         markdown_tokens: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
