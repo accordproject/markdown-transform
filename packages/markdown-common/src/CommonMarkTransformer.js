@@ -70,18 +70,26 @@ class CommonMarkTransformer {
     }
 
     /**
-     * Converts a markdown string into a Concerto DOM object.
+     * Converts a markdown string into a token stream
      *
      * @param {string} markdown the string to parse
+     * @returns {*} a markdown-it token stream
+     */
+    toTokens(markdown) {
+        const parser = new MarkdownIt({html:true}); // XXX HTML inlines and code blocks true
+        const tokenStream = parser.parse(markdown,{});
+        return tokenStream;
+    }
+
+    /**
+     * Converts a token stream into a CommonMark DOM object.
+     *
+     * @param {object} tokenStream the token stream
      * @param {string} [format] the format of the object to return. Defaults to 'concerto.
      * Pass 'json' to return the JSON object, skipping Concerto validation
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
-    fromMarkdown(markdown, format='concerto') {
-        const parser = new MarkdownIt({html:true}); // XXX HTML inlines and code blocks true
-        const tokenStream = parser.parse(markdown,{});
-        //console.log('tokens: ' + JSON.stringify(tokenStream,null,2));
-
+    fromTokens(tokenStream, format='concerto') {
         const fromMarkdownIt = new FromMarkdownIt();
         const json = fromMarkdownIt.toCommonMark(tokenStream);
 
@@ -93,6 +101,19 @@ class CommonMarkTransformer {
         else {
             return this.serializer.toJSON(validJson);
         }
+    }
+
+    /**
+     * Converts a markdown string into a CommonMark DOM object.
+     *
+     * @param {string} markdown the string to parse
+     * @param {string} [format] the format of the object to return. Defaults to 'concerto.
+     * Pass 'json' to return the JSON object, skipping Concerto validation
+     * @returns {*} a Concerto object (DOM) for the markdown content
+     */
+    fromMarkdown(markdown, format='concerto') {
+        const tokenStream = this.toTokens(markdown);
+        return this.fromTokens(tokenStream, format);
     }
 
     /**
