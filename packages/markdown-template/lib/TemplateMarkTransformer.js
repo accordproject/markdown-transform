@@ -130,6 +130,7 @@ class TemplateMarkTransformer {
         const parameters = {
             templateMarkModelManager: this.modelManager,
             templateMarkFactory: this.factory,
+            templateMarkSerializer: this.serializer,
             introspector: introspector,
             model: templateModel,
             kind: templateKind,

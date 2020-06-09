@@ -14,6 +14,8 @@
 
 'use strict';
 
+const ModelVisitor = require('./ModelVisitor');
+
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 /**
@@ -52,6 +54,7 @@ class TypingVisitor {
      */
     visit(thing, parameters) {
         const currentModel = parameters.model;
+        const that = this;
         switch(thing.getType()) {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
@@ -71,6 +74,20 @@ class TypingVisitor {
                     const identifier = nestedTemplateModel.getIdentifierFieldName();
                     if (identifier) {
                         thing.identifiedBy = identifier;
+                    } else {
+                        const propertyType = property.getParent().getModelFile().getType(property.getType());
+                        const modelVisitor = new ModelVisitor();
+                        const genericParameters = {
+                            name: property.getName(),
+                        };
+                        const generic = propertyType.accept(modelVisitor,genericParameters);
+                        const genericData = parameters.templateMarkSerializer.fromJSON(generic);
+                        const withModel = parameters.introspector.getClassDeclaration(elementType);
+                        genericData.accept(that, parameters);
+                        thing.$classDeclaration = genericData.$classDeclaration;
+                        thing.name = genericData.name;
+                        thing.nodes = genericData.nodes;
+                        delete thing.format;
                     }
                 }
             } else {
@@ -87,7 +104,14 @@ class TypingVisitor {
                     throw new Error('Unknown property ' + thing.name);
                 }
                 const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
-                TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
+                TypingVisitor.visitChildren(this, thing, {
+                    templateMarkModelManager:parameters.templateMarkModelManager,
+                    templateMarkFactory:parameters.templateMarkFactory,
+                    templateMarkSerializer:parameters.templateMarkSerializer,
+                    introspector:parameters.introspector,
+                    model:clauseModel,
+                    kind:parameters.kind
+                });
             } else {
                 thing.elementType = parameters.model.getFullyQualifiedName();
                 TypingVisitor.visitChildren(this, thing, parameters);
@@ -101,8 +125,15 @@ class TypingVisitor {
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
-            TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
+            const withModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            TypingVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                templateMarkFactory:parameters.templateMarkFactory,
+                templateMarkSerializer:parameters.templateMarkSerializer,
+                introspector:parameters.introspector,
+                model:withModel,
+                kind:parameters.kind
+            });
         }
             break;
         case 'ListBlockDefinition': {
@@ -112,8 +143,15 @@ class TypingVisitor {
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
-            TypingVisitor.visitChildren(this, thing, {templateMarkModelManager:parameters.templateMarkModelManager,templateMarkFactory:parameters.templateMarkFactory,introspector:parameters.introspector,model:clauseModel,kind:parameters.kind});
+            const listModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            TypingVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                templateMarkFactory:parameters.templateMarkFactory,
+                templateMarkSerializer:parameters.templateMarkSerializer,
+                introspector:parameters.introspector,
+                model:listModel,
+                kind:parameters.kind
+            });
         }
             break;
         case 'ContractDefinition': {

@@ -58,6 +58,7 @@ const successes = [
     {name:'testWith',kind:'contract'},
     {name:'acceptance-of-delivery',kind:'clause'},
     {name:'helloworld',kind:'clause'},
+    {name:'installment-sale',kind:'contract'},
 ];
 
 const templateFailures = [
