@@ -50,13 +50,13 @@ describe('#transform', () => {
         });
     });
 
-    describe('#markdown_template', () => {
-        it('markdown_template -> templatemark', async () => {
+    describe('#grammar', () => {
+        it('grammar -> templatemark', async () => {
             const grammar1File = './test/data/template1/grammar1.tem.md';
             const grammar1 = fs.readFileSync(grammar1File, 'utf8');
             const model1 = './test/data/template1/model1.cto';
             const parameters = { inputFileName: grammar1File, ctoFiles: [model1], templateKind: 'clause' };
-            const result = await transform(grammar1, 'markdown_template', ['templatemark'], parameters, {});
+            const result = await transform(grammar1, 'grammar', ['templatemark'], parameters, {});
             result.nodes[0].$class.should.equal('org.accordproject.templatemark.ClauseDefinition');
         });
     });

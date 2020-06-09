@@ -30,16 +30,28 @@ const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 /**
  * The graph of transformation supported
  */
-const markdownTemplateToTemplateMark = async (input,parameters,options) => {
+const grammarToTemplateMark = async (input,parameters,options) => {
     const t = new TemplateMarkTransformer();
     const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
     return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
 };
 const transformationGraph = {
-    markdown_template : {
-        docs: 'Markdown template string',
+    grammar : {
+        docs: 'Markdown grammar string',
         fileFormat: 'utf8',
-        templatemark: markdownTemplateToTemplateMark,
+        grammar_tokens: (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
+        },
+    },
+    grammar_tokens : {
+        docs: 'Markdown grammar tokens',
+        fileFormat: 'json',
+        templatemark: async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options);
+        },
     },
     templatemark : {
         docs: 'TemplateMark DOM (JSON)',
@@ -48,9 +60,17 @@ const transformationGraph = {
     markdown : {
         docs: 'Markdown text string',
         fileFormat: 'utf8',
-        commonmark : (input,parameters,options) => {
+        markdown_tokens: (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
+        },
+    },
+    markdown_tokens : {
+        docs: 'Markdown tokens',
+        fileFormat: 'json',
+        commonmark: async (input,parameters,options) => {
             const t = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
-            return t.fromMarkdown(input, 'json');
+            return t.fromTokens(input,'json');
         },
     },
     data : {
@@ -61,7 +81,7 @@ const transformationGraph = {
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
-            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            const templateMark = await grammarToTemplateMark(parameters.grammar,templateParameters,options);
             return t.instantiateCommonMark(input, templateMark, modelManager, parameters.templateKind, options);
         },
         ciceromark: async (input,parameters,options) => {
@@ -69,7 +89,7 @@ const transformationGraph = {
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
-            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            const templateMark = await grammarToTemplateMark(parameters.grammar,templateParameters,options);
             return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
         },
     },
@@ -94,7 +114,7 @@ const transformationGraph = {
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
-            const templateMark = await markdownTemplateToTemplateMark(parameters.grammar,templateParameters,options);
+            const templateMark = await grammarToTemplateMark(parameters.grammar,templateParameters,options);
             return t.fromCommonMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
         },
     },

@@ -143,14 +143,13 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Converts a template grammar string to a TemplateMark DOM
+     * Converts a template grammar string to a token stream
      * @param {object} grammarInput the template grammar
-     * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result of parsing
+     * @returns {object} the token stream
      */
-    parseGrammar(grammarInput, templateKind, options) {
+    toTokens(grammarInput, options) {
         const grammar = normalizeNLs(grammarInput.content);
 
         const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
@@ -159,7 +158,18 @@ class TemplateMarkTransformer {
             console.log('===== MarkdownIt Tokens ');
             console.log(JSON.stringify(tokenStream,null,2));
         }
+        return tokenStream;
+    }
 
+    /**
+     * Converts a grammar token strean string to a TemplateMark DOM
+     * @param {object} tokenStream the grammar token stream
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result of parsing
+     */
+    tokensToMarkdownTemplate(tokenStream, templateKind, options) {
         const fromMarkdownIt = new FromMarkdownIt(templaterules);
         const template = fromMarkdownIt.toCommonMark(tokenStream);
 
@@ -202,7 +212,8 @@ class TemplateMarkTransformer {
             throw new Error('Cannot parse without template model');
         }
 
-        const template = this.parseGrammar(grammarInput, templateKind, options);
+        const tokenStream = this.toTokens(grammarInput, options);
+        const template = this.tokensToMarkdownTemplate(tokenStream, templateKind, options);
 
         if (options && options.verbose) {
             console.log('===== TemplateMark ');
