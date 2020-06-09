@@ -42,10 +42,6 @@ const codeBlockParser = require('./coreparsers').codeBlockParser;
 function parserOfTemplate(ast,params) {
     let parser = null;
     switch(ast.$class) {
-    case 'org.accordproject.templatemark.raw.TextChunk' : {
-        parser = textParser(ast.value);
-        break;
-    }
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
         parser = enumParser(ast,ast.enumValues);
         break;
