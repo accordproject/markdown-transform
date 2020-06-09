@@ -125,7 +125,7 @@ class Commands {
         parameters.inputFileName = inputPath;
         if (parameters.grammar) {
             parameters.grammarFileName = parameters.grammar;
-            parameters.grammar = Commands.loadFormatFromFile(parameters.grammar,'markdown_template');
+            parameters.grammar = Commands.loadFormatFromFile(parameters.grammar,'grammar');
         }
         let result = await transform(input, from, [to], parameters, options);
         let finalFormat = to;
