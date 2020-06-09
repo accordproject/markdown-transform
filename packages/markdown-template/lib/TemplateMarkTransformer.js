@@ -18,7 +18,6 @@ const { ModelManager, Factory, Serializer, Introspector, ParseException } = requ
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
-const TemplateMarkRawModel = require('./externalModels/TemplateMarkRaw').TemplateMarkRawModel;
 
 const MarkdownIt = require('markdown-it');
 const MarkdownItTemplate = require('@accordproject/markdown-it-template');
@@ -110,7 +109,6 @@ class TemplateMarkTransformer {
         this.modelManager = new ModelManager();
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
-        this.modelManager.addModelFile(TemplateMarkRawModel, 'templatemarkraw.cto');
         this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
