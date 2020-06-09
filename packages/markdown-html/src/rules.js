@@ -357,9 +357,18 @@ const CONDITIONAL_RULE = {
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Conditional`,
                 name: el.getAttribute('name'),
-                whenTrue: el.getAttribute('whenTrue'),
-                whenFalse: el.getAttribute('whenFalse'),
-                value: el.textContent,
+                whenTrue: el.getAttribute('whenTrue') ? [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: el.getAttribute('whenTrue'),
+                }] : [],
+                whenFalse: el.getAttribute('whenFalse') ? [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: el.getAttribute('whenFalse'),
+                }] : [],
+                nodes: [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: el.textContent,
+                }],
             };
         }
     }

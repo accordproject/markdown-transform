@@ -2458,9 +2458,19 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
-              "value": " except for Force Majeure cases,",
-              "whenFalse": "",
-              "whenTrue": " except for Force Majeure cases,",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
+              "whenFalse": Array [],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",
@@ -2660,8 +2670,13 @@ Object {
                 ],
                 "data": Object {
                   "name": "forceMajeure",
-                  "whenFalse": "",
-                  "whenTrue": " except for Force Majeure cases,",
+                  "whenFalse": Array [],
+                  "whenTrue": Array [
+                    Object {
+                      "object": "text",
+                      "text": " except for Force Majeure cases,",
+                    },
+                  ],
                 },
                 "object": "inline",
                 "type": "conditional",
@@ -2987,9 +3002,19 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
-              "value": " except for Force Majeure cases,",
-              "whenFalse": "",
-              "whenTrue": " except for Force Majeure cases,",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
+              "whenFalse": Array [],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",
@@ -5759,9 +5784,24 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "individual",
-              "value": "an individual residing",
-              "whenFalse": "a company registered",
-              "whenTrue": "an individual residing",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "an individual residing",
+                },
+              ],
+              "whenFalse": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "a company registered",
+                },
+              ],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "an individual residing",
+                },
+              ],
             },
           ],
         },
@@ -5954,8 +5994,18 @@ Object {
             ],
             "data": Object {
               "name": "individual",
-              "whenFalse": "a company registered",
-              "whenTrue": "an individual residing",
+              "whenFalse": Array [
+                Object {
+                  "object": "text",
+                  "text": "a company registered",
+                },
+              ],
+              "whenTrue": Array [
+                Object {
+                  "object": "text",
+                  "text": "an individual residing",
+                },
+              ],
             },
             "object": "inline",
             "type": "conditional",
@@ -6138,9 +6188,24 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "individual",
-              "value": "an individual residing",
-              "whenFalse": "a company registered",
-              "whenTrue": "an individual residing",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "an individual residing",
+                },
+              ],
+              "whenFalse": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "a company registered",
+                },
+              ],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "an individual residing",
+                },
+              ],
             },
           ],
         },

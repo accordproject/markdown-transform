@@ -83,15 +83,25 @@ function template_inline(state, silent) {
     } else {
         match = state.src.slice(pos).match(VARIABLE_RE);
         if (!match) { return false; }
-        if (!silent) {
-            token         = state.push('variable', 'variable', 0);
-            token.content = match[0];
+        const content = match[0];
+        const name = match[1];
+        const format = match[3];
+        if (name === 'else') { // XXX 'else' is reserved in variable names
+            if (!silent) {
+                token         = state.push('else', 'else', 0);
+                token.content = content;
+            }
+        } else {
+            if (!silent) {
+                token         = state.push('variable', 'variable', 0);
+                token.content = content;
+            }
+            token.attrs = [ [ 'name', name ] ];
+            if (format) {
+                token.attrs.push([ 'format', format ]);
+            }
         }
-        token.attrs = [ [ 'name', match[1] ] ];
-        if (match[3]) {
-            token.attrs.push([ 'format', match[3] ]);
-        }
-        state.pos += match[0].length;
+        state.pos += content.length;
         return true;
     }
 }

@@ -3414,9 +3414,19 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
-              "value": " except for Force Majeure cases,",
-              "whenFalse": "",
-              "whenTrue": " except for Force Majeure cases,",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
+              "whenFalse": Array [],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",
@@ -3594,9 +3604,19 @@ Object {
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
               "name": "forceMajeure",
-              "value": "",
-              "whenFalse": "",
-              "whenTrue": " except for Force Majeure cases,",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "",
+                },
+              ],
+              "whenFalse": Array [],
+              "whenTrue": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": " except for Force Majeure cases,",
+                },
+              ],
             },
             Object {
               "$class": "org.accordproject.commonmark.Softbreak",

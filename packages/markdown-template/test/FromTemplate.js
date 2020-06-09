@@ -48,7 +48,9 @@ const template2 = {
         var1,
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' and ' },
         var2,
-        { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure.', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.ConditionalDefinition',
+            'whenTrue': [ { '$class': 'org.accordproject.commonmark.Text', 'text': ', even in the presence of force majeure.' } ],
+            'whenFalse': [] },
     ]
 };
 const template3 = {
@@ -65,7 +67,9 @@ const template3 = {
         var3,
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': ' ' },
         var4,
-        { '$class': 'org.accordproject.templatemark.ConditionalDefinition', 'whenTrue': ', even in the presence of force majeure', 'whenFalse': '' },
+        { '$class': 'org.accordproject.templatemark.ConditionalDefinition',
+            'whenTrue': [ { '$class': 'org.accordproject.commonmark.Text', 'text': ', even in the presence of force majeure' } ],
+            'whenFalse': [] },
         { '$class': 'org.accordproject.templatemark.raw.TextChunk', 'value': '.' },
     ]
 };

@@ -110,6 +110,25 @@ class ToSlateVisitor {
     }
 
     /**
+     * Converts a conditional variable node to a slate node with marks
+     * @param {*} data - the data for the conditional variable
+     * @param {*} nodes - the conditional nodes
+     * @param {*} parameters the parameters
+     * @returns {*} the slate text node with marks
+     */
+    static handleConditionalVariable(data, nodes, parameters) {
+        const inlineNode = {
+            object: 'inline',
+            type: 'conditional',
+            data: data,
+            children: nodes
+        };
+        this.applyMarks(inlineNode,parameters);
+
+        return inlineNode;
+    }
+
+    /**
      * Converts a formula node to a slate text node with marks
      * @param {*} data - the data for the formula
      * @param {*} text - the text for the formula
@@ -134,18 +153,17 @@ class ToSlateVisitor {
     }
 
     /**
-     * Returns the processed child nodes
-     * @param {*} thing a concerto ast nodes
+     * Returns the processed children
+     * @param {*} thing a concerto ast node
+     * @param {string} fieldName name of the field containing the children
      * @param {*} parameters the parameters
      * @returns {*} an array of slate nodes
      */
-    processChildNodes(thing,parameters) {
+    processChildren(thing,fieldName,parameters) {
         const result = [];
-        if(!thing.nodes) {
-            thing.nodes = []; // Treat no nodes as empty array of nods
-        }
+        const nodes = thing[fieldName] ? thing[fieldName] : [];
 
-        thing.nodes.forEach(node => {
+        nodes.forEach(node => {
             //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const newParameters = {
                 strong: parameters.strong,
@@ -160,6 +178,16 @@ class ToSlateVisitor {
         });
 
         return result;
+    }
+
+    /**
+     * Returns the processed child nodes
+     * @param {*} thing a concerto ast node
+     * @param {*} parameters the parameters
+     * @returns {*} an array of slate nodes
+     */
+    processChildNodes(thing,parameters) {
+        return this.processChildren(thing,'nodes',parameters);
     }
 
     /**
@@ -208,11 +236,17 @@ class ToSlateVisitor {
         }
             break;
         case 'Conditional': {
-            const data = { name: thing.name, whenTrue: thing.whenTrue, whenFalse: thing.whenFalse };
+            const localParameters = Object.assign({},parameters);
+            parameters.strong = false;
+            parameters.italic = false;
+            const nodes = this.processChildNodes(thing,parameters);
+            const whenTrue = this.processChildren(thing,'whenTrue',parameters);
+            const whenFalse = this.processChildren(thing,'whenFalse',parameters);
+            const data = { name: thing.name, whenTrue: whenTrue, whenFalse: whenFalse };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
-            result = ToSlateVisitor.handleVariable('conditional', data, thing.value, parameters);
+            result = ToSlateVisitor.handleConditionalVariable(data, nodes, localParameters);
         }
             break;
         case 'Formula': {

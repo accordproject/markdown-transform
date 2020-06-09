@@ -84,13 +84,13 @@ describe('#coreparsers', () => {
 
     describe('#blocks', () => {
         it('should parse conditional (left)', async () => {
-            condParser({name:'cond1',whenTrue:'left',whenFalse:'right'}).parse('left').status.should.equal(true);
+            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('left').status.should.equal(true);
         });
         it('should parse conditional (right)', async () => {
-            condParser({name:'cond1',whenTrue:'left',whenFalse:'right'}).parse('right').status.should.equal(true);
+            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('right').status.should.equal(true);
         });
         it('should not parse conditional neither left nor right', async () => {
-            condParser({name:'cond1',whenTrue:'left',whenFalse:'right'}).parse('foo').status.should.equal(false);
+            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('foo').status.should.equal(false);
         });
     });
 
