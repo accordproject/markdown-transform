@@ -162,14 +162,15 @@ class TemplateMarkTransformer {
     /**
      * Converts a grammar token strean string to a TemplateMark DOM
      * @param {object} tokenStream the grammar token stream
+     * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    tokensToMarkdownTemplate(tokenStream, templateKind, options) {
+    tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options) {
         const fromMarkdownIt = new FromMarkdownIt(templaterules);
-        const template = fromMarkdownIt.toCommonMark(tokenStream);
+        let template = fromMarkdownIt.toCommonMark(tokenStream);
 
         let topTemplate;
         if (templateKind === 'contract') {
@@ -193,7 +194,21 @@ class TemplateMarkTransformer {
                 }]
             };
         }
-        return this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
+
+        // Validate
+        template = this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
+        if (options && options.verbose) {
+            console.log('===== Untyped TemplateMark ');
+            console.log(JSON.stringify(template,null,2));
+        }
+        const introspector = new Introspector(modelManager);
+        const templateModel = this.getTemplateModel(introspector, templateKind);
+        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
+        if (options && options.verbose) {
+            console.log('===== TemplateMark ');
+            console.log(JSON.stringify(typedTemplate,null,2));
+        }
+        return typedTemplate;
     }
 
     /**
@@ -211,19 +226,8 @@ class TemplateMarkTransformer {
         }
 
         const tokenStream = this.toTokens(grammarInput, options);
-        const template = this.tokensToMarkdownTemplate(tokenStream, templateKind, options);
+        const typedTemplate = this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
 
-        if (options && options.verbose) {
-            console.log('===== TemplateMark ');
-            console.log(JSON.stringify(template,null,2));
-        }
-        const introspector = new Introspector(modelManager);
-        const templateModel = this.getTemplateModel(introspector, templateKind);
-        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
-        if (options && options.verbose) {
-            console.log('===== Typed TemplateMark ');
-            console.log(JSON.stringify(typedTemplate,null,2));
-        }
         return typedTemplate;
     }
 

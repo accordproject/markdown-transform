@@ -88,7 +88,7 @@ function template_inline(state, silent) {
         const format = match[3];
         if (name === 'else') { // XXX 'else' is reserved in variable names
             if (!silent) {
-                token         = state.push('else', 'else', 0);
+                token         = state.push('inline_block_if_else', 'else', 0);
                 token.content = content;
             }
         } else {

@@ -57,6 +57,19 @@ const ifOpenRule = {
     close: false,
     enter: (node,token,callback) => {
         node.name = getAttr(token.attrs,'name',null);
+        node.whenTrue = null;
+        node.whenFalse = null;
+    },
+    skipEmpty: false,
+};
+const ifElseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+    leaf: false,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        node.whenTrue = node.nodes ? node.nodes : [];
+        node.nodes = []; // Reset children (now in whenTrue)
     },
     skipEmpty: false,
 };
@@ -66,9 +79,14 @@ const ifCloseRule = {
     open: false,
     close: true,
     exit: (node,token,callback) => {
-        node.whenTrue = node.nodes ? node.nodes : [];
-        node.whenFalse = [{'$class':NS_PREFIX_CommonMarkModel + 'Text','text':''}];
-        delete node.nodes; // Reset children (now in whenTrue or whenFalse)
+        if (node.whenTrue) {
+            node.whenTrue = node.whenTrue;
+            node.whenFalse = node.nodes ? node.nodes : [];
+        } else {
+            node.whenTrue = node.nodes ? node.nodes : [];
+            node.whenFalse = [];
+        }
+        delete node.nodes; // Delete children (now in whenTrue or whenFalse)
     },
     skipEmpty: false,
 };
@@ -144,6 +162,7 @@ const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
 rules.inlines.formula = formulaRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
+rules.inlines.inline_block_if_else = ifElseRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
 rules.inlines.inline_block_with_open = withOpenRule;
 rules.inlines.inline_block_with_close = withCloseRule;
