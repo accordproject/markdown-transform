@@ -389,7 +389,14 @@ function paragraphParser(ast,content) {
  * @returns {object} the parser
  */
 function headingParser(ast,content) {
-    return P.seq(P.optWhitespace,content.skip(P.string('\n----')));
+    const level = parseInt(ast.level);
+    if (level === 1) {
+        return P.seq(P.optWhitespace,content.skip(P.string('\n====')));
+    } else if (level === 2) {
+        return P.seq(P.optWhitespace,content.skip(P.string('\n----')));
+    } else {
+        return P.seq(P.optWhitespace,P.string('#'.repeat(level)+' '),content).map(function(x) {return x[2];});
+    }
 }
 
 /**
