@@ -14,6 +14,8 @@
 
 'use strict';
 
+const uuid = require('uuid');
+
 const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 
 /**
@@ -65,26 +67,24 @@ class ToCiceroMarkVisitor {
         switch(thing.getType()) {
         case 'CodeBlock': {
             const tag = thing.tag;
-            if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
-                // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
+            if (tag && tag.tagName === 'clause' && (tag.attributes.length === 1 || tag.attributes.length === 2)) {
+                const ciceroMarkTag = `${NS_PREFIX_CiceroMarkModel}Clause`; // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
 
-                //console.log('CONTENT! : ' + tag.content);
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid')) {
+                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text); // console.log('CONTENT! : ' + tag.content);
+
+                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
-                    thing.clauseid = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid').value;
-
+                    thing.clauseid = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid')
+                        ? ToCiceroMarkVisitor.getAttribute(tag.attributes, 'clauseid').value
+                        : uuid.v4();
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                     ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
-
                     thing.text = null; // Remove text
+
                     delete thing.tag;
                     delete thing.info;
-                } else {
-                    //console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
+                } else { // console.log('Found Clause but without \'clauseid\' and \'src\' attributes ');
                 }
             } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListVariable';
