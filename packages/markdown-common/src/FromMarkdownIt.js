@@ -82,6 +82,9 @@ class FromMarkdownIt {
             } else if (rule.close) {
                 const node = stack.pop();
                 if (rule.exit) { rule.exit(node,token,FromMarkdownIt.inlineCallback(rules)); }
+            } else {
+                const node = stack.peek();
+                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
             }
         }
 
@@ -154,7 +157,6 @@ class FromMarkdownIt {
                     }
                 }
             }
-
         }
 
         if (!rootNode.nodes || rootNode.nodes.length === 0) {
