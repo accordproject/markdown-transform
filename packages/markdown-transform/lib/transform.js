@@ -37,7 +37,7 @@ const grammarToTemplateMark = async (input,parameters,options) => {
 };
 const transformationGraph = {
     grammar : {
-        docs: 'Markdown grammar string',
+        docs: 'Markdown grammar (string)',
         fileFormat: 'utf8',
         grammar_tokens: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
@@ -45,7 +45,7 @@ const transformationGraph = {
         },
     },
     grammar_tokens : {
-        docs: 'Markdown grammar tokens',
+        docs: 'Markdown grammar tokens (JSON)',
         fileFormat: 'json',
         templatemark: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
@@ -58,7 +58,7 @@ const transformationGraph = {
         fileFormat: 'json'
     },
     markdown : {
-        docs: 'Markdown string',
+        docs: 'Markdown (string)',
         fileFormat: 'utf8',
         markdown_tokens: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
@@ -66,7 +66,7 @@ const transformationGraph = {
         },
     },
     markdown_tokens : {
-        docs: 'Markdown tokens',
+        docs: 'Markdown tokens (JSON)',
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
             const t = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
@@ -119,7 +119,7 @@ const transformationGraph = {
         },
     },
     plaintext: {
-        docs: 'Plain text string',
+        docs: 'Plain text (string)',
         fileFormat: 'utf8',
         markdown: (input,parameters,options) => {
             return input;
@@ -153,7 +153,7 @@ const transformationGraph = {
         }
     },
     pdf: {
-        docs: 'PDF buffer',
+        docs: 'PDF (buffer)',
         fileFormat: 'binary',
         ciceromark: (input,parameters,options) => {
             const pdfTransformer = new PdfTransformer();
@@ -161,7 +161,7 @@ const transformationGraph = {
         },
     },
     docx: {
-        docs: 'DOCX buffer',
+        docs: 'DOCX (buffer)',
         fileFormat: 'binary',
         ciceromark: async (input,parameters,options) => {
             const docxTransformer = new DocxTransformer();
@@ -169,7 +169,7 @@ const transformationGraph = {
         },
     },
     html: {
-        docs: 'HTML string',
+        docs: 'HTML (string)',
         fileFormat: 'utf8',
         ciceromark: (input,parameters,options) => {
             const t = new HtmlTransformer();
