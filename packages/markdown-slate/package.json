@@ -40,8 +40,9 @@
     "url": "https://github.com/accordproject/slate-markdown-transform.git"
   },
   "keywords": [
-    "accord",
+    "accord-project",
     "markdown",
+    "markdown-it",
     "commonmark"
   ],
   "author": "accordproject.org",
