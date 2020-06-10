@@ -45,6 +45,7 @@ const successes = [
     {name:'test7',kind:'contract'},
     {name:'test8',kind:'contract'},
     {name:'test9',kind:'clause'},
+    {name:'test10',kind:'clause'},
     {name:'testFormula',kind:'contract'},
     {name:'testDateTime',kind:'clause'},
     {name:'testLarge',kind:'contract'},
