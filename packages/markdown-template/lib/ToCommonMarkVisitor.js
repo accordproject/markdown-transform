@@ -128,6 +128,7 @@ class ToCommonMarkVisitor {
             delete thing.value;
             delete thing.format;
             delete thing.enumValues;
+            delete thing.identifiedBy;
         }
             break;
         case 'Formula': {
