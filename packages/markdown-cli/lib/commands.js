@@ -14,9 +14,10 @@
 
 'use strict';
 
-const Fs = require('fs');
-const { Logger, ModelLoader } = require('@accordproject/concerto-core');
-const { transform, formatDescriptor } = require('@accordproject/markdown-transform');
+const fs = require('fs');
+const logger = require('@accordproject/concerto-core').Logger;
+const transform = require('@accordproject/markdown-transform').transform;
+const formatDescriptor = require('@accordproject/markdown-transform').formatDescriptor;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -32,11 +33,11 @@ class Commands {
     static loadFormatFromFile(filePath,format) {
         const fileFormat = formatDescriptor(format).fileFormat;
         if (fileFormat === 'json') {
-            return JSON.parse(Fs.readFileSync(filePath, 'utf8'));
+            return JSON.parse(fs.readFileSync(filePath, 'utf8'));
         } else if (fileFormat === 'binary') {
-            return Fs.readFileSync(filePath);
+            return fs.readFileSync(filePath);
         } else {
-            return Fs.readFileSync(filePath, 'utf8');
+            return fs.readFileSync(filePath, 'utf8');
         }
     }
 
@@ -62,8 +63,8 @@ class Commands {
      * @param {string} filePath the file name
      */
     static printFormatToFile(input,format,filePath) {
-        Logger.info('Creating file: ' + filePath);
-        Fs.writeFileSync(filePath, Commands.printFormatToString(input,format));
+        logger.info('Creating file: ' + filePath);
+        fs.writeFileSync(filePath, Commands.printFormatToString(input,format));
     }
 
     /**
@@ -77,12 +78,12 @@ class Commands {
      */
     static setDefaultFileArg(argv, argName, argDefaultName, argDefaultFun) {
         if(!argv[argName]){
-            Logger.info(`Loading a default ${argDefaultName} file.`);
+            logger.info(`Loading a default ${argDefaultName} file.`);
             argv[argName] = argDefaultFun(argv, argDefaultName);
         }
 
         let argExists = true;
-        argExists = Fs.existsSync(argv[argName]);
+        argExists = fs.existsSync(argv[argName]);
 
         if (!argExists){
             throw new Error(`A ${argDefaultName} file is required. Try the --${argName} flag or create a ${argDefaultName}.`);
@@ -101,7 +102,7 @@ class Commands {
         argv = Commands.setDefaultFileArg(argv, 'input', 'input.md', ((argv, argDefaultName) => { return argDefaultName; }));
 
         if(argv.verbose) {
-            Logger.info(`transform input ${argv.input} printing intermediate transformations.`);
+            logger.info(`transform input ${argv.input} printing intermediate transformations.`);
         }
 
         return argv;

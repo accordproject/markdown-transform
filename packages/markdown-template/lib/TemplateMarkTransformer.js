@@ -226,9 +226,7 @@ class TemplateMarkTransformer {
         }
 
         const tokenStream = this.toTokens(grammarInput, options);
-        const typedTemplate = this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
-
-        return typedTemplate;
+        return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
     }
 
     /**
@@ -277,9 +275,9 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Converts a markdown string to a CiceroMark DOM
-     * @param {{fileName:string,content:string}} markdown the markdown input
-     * @param {{fileName:string,content:string}} grammar the template grammar
+     * Parse a markdown file to data
+     * @param {{fileName:string,content:string}} markdownInput the markdown input
+     * @param {{fileName:string,content:string}} grammarInput the template grammar
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
@@ -294,6 +292,20 @@ class TemplateMarkTransformer {
         const commonMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdown(markdownInput.content)};
 
         return this.fromCommonMark(commonMark, typedTemplate, modelManager, templateKind, options);
+    }
+
+    /**
+     * Parse a markdown string to data
+     * @param {string} markdown the markdown input
+     * @param {string} grammar the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @returns {object} the result of parsing
+     */
+    dataFromMarkdown(markdown, grammar, modelManager, templateKind) {
+        const markdownInput = { fileName: '[buffer]', content: markdown };
+        const grammarInput = { fileName: '[buffer]', content: grammar };
+        return this.fromMarkdown(markdownInput, grammarInput, modelManager, templateKind, null);
     }
 
     /**
@@ -326,6 +338,20 @@ class TemplateMarkTransformer {
         const result = Object.assign({}, this.serializer.toJSON(input));
 
         return result;
+    }
+
+    /**
+     * Instantiate a CiceroMark DOM from data
+     * @param {*} data the contract/clause data input
+     * @param {*} grammar - the template grammar
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @returns {object} the result
+     */
+    dataToCiceroMark(data, grammar, modelManager, templateKind) {
+        const grammarInput = { fileName: '[buffer]', content: grammar };
+        const templateMark = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, null);
+        return this.instantiateCiceroMark(data, templateMark, modelManager, templateKind, null);
     }
 
     /**
