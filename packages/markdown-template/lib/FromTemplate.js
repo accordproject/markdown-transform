@@ -20,8 +20,8 @@ const computedParser = require('./coreparsers').computedParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
 const condParser = require('./coreparsers').condParser;
-const ulistParser = require('./coreparsers').ulistParser;
-const olistParser = require('./coreparsers').olistParser;
+const ulistBlockParser = require('./coreparsers').ulistBlockParser;
+const olistBlockParser = require('./coreparsers').olistBlockParser;
 const withParser = require('./coreparsers').withParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
@@ -32,6 +32,8 @@ const strongParser = require('./coreparsers').strongParser;
 const documentParser = require('./coreparsers').documentParser;
 const paragraphParser = require('./coreparsers').paragraphParser;
 const headingParser = require('./coreparsers').headingParser;
+const ulistParser = require('./coreparsers').ulistParser;
+const olistParser = require('./coreparsers').olistParser;
 const codeBlockParser = require('./coreparsers').codeBlockParser;
 
 /**
@@ -69,7 +71,7 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.templatemark.ListBlockDefinition' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
-        parser = ast.type === 'bullet' ? ulistParser(ast,childrenParser) : olistParser(ast,childrenParser);
+        parser = ast.type === 'bullet' ? ulistBlockParser(ast,childrenParser) : olistBlockParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {
@@ -126,6 +128,18 @@ function parserOfTemplate(ast,params) {
     case 'org.accordproject.commonmark.Heading' : {
         const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         parser = headingParser(ast,childrenParser);
+        break;
+    }
+    case 'org.accordproject.commonmark.List' : {
+        const listKind = ast.type;
+        // Carefully here, we do not build a sequence parser quite yet. Instead we keep a list or parsers, one for each item in the list
+        const itemParsers = ast.nodes.map(function (x) { return parserOfTemplate(x,params); });
+        parser = ast.type === 'bullet' ? ulistParser(ast,itemParsers) : olistParser(ast,itemParsers);
+        break;
+    }
+    case 'org.accordproject.commonmark.Item' : {
+        // Parsing a list item is simply parsing its content
+        parser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
         break;
     }
     default:

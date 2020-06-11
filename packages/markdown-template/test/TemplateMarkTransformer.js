@@ -63,6 +63,7 @@ const successes = [
     {name:'empty',kind:'clause'},
     {name:'helloworld',kind:'clause'},
     {name:'installment-sale',kind:'contract'},
+    {name:'ip-payment',kind:'clause'},
     {name:'latedeliveryandpenalty',kind:'contract'},
 ];
 
