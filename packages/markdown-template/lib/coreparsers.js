@@ -41,6 +41,27 @@ function mkVariable(variable,value) {
 }
 
 /**
+ * Are two variable values equal
+ * @param {object} value1 the first value
+ * @param {object} value2 the second value
+ * @returns {object} the compound variable
+ */
+function variableEqual(value1,value2) {
+    const type1 = typeof value1;
+    const type2 = typeof value2;
+    if(type1 === 'object' && type2 === 'object') {
+        for(let key1 in value1) {
+            if(!value2[key1]) return false;
+            if(!variableEqual(value1[key1],value2[key1])) return false;
+        }
+        for(let key2 in value2) {
+            if(!value1[key2]) return false;
+        }
+    } else if(value1 !== value2) return false;
+    return true;
+}
+
+/**
  * Creates a compound variable output
  * @param {object} variable the variable ast node
  * @param {*} value the variable components
@@ -52,7 +73,7 @@ function mkCompoundVariable(variable,value) {
     for(let i = 0; i < value.length; i++) {
         const field = value[i];
         if(result[field.name]) {
-            if (result[field.name] !== field.value) {
+            if (!variableEqual(result[field.name],field.value)) {
                 const message = `Inconsistent values for variable ${field.name}: ${result[field.name]} and ${field.value}`;
                 throw new Error(message);
             }
@@ -256,13 +277,13 @@ function condParser(condNode, whenTrue, whenFalse) {
 }
 
 /**
- * Creates a parser for bulletted lists
+ * Creates a parser for list blocks
  * @param {object} listNode the list ast node
  * @param {object} bullet the parser for the bullet
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function listParser(listNode,bullet,content) {
+function listBlockParser(listNode,bullet,content) {
     return P.seq(bullet,content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
@@ -276,8 +297,8 @@ function listParser(listNode,bullet,content) {
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function ulistParser(listNode,content) {
-    return listParser(listNode,textParser('\n-  '),content);
+function ulistBlockParser(listNode,content) {
+    return listBlockParser(listNode,textParser('\n-  '),content);
 }
 
 /**
@@ -286,8 +307,8 @@ function ulistParser(listNode,content) {
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function olistParser(listNode,content) {
-    return listParser(listNode,P.seq(P.string('\n'),P.regexp(/[0-9]+/),P.string('. ')),content);
+function olistBlockParser(listNode,content) {
+    return listBlockParser(listNode,P.seq(P.string('\n'),P.regexp(/[0-9]+/),P.string('. ')),content);
 }
 
 /**
@@ -400,6 +421,46 @@ function headingParser(ast,content) {
 }
 
 /**
+ * Creates a parser for a list
+ * @param {object} listNode the list ast node
+ * @param {object} bullet the parser for the bullet
+ * @param {object} items the list of parsers for each item
+ * @returns {object} the parser
+ */
+function listParser(listNode,bullet,items) {
+    let first = true;
+    const bulletedItems = items.map(function(item) {
+        const bulletParser = first ? P.seq(P.optWhitespace,bullet) : P.seq(P.optWhitespace,P.string('\n'),bullet)
+        return P.seq(bulletParser,item).map(function(x) {
+            return flatten(x[1]);
+        });
+    });
+    return P.seq(P.optWhitespace,seqParser(bulletedItems)).map(function(x) {
+        return flatten(x[1]);
+    });
+}
+
+/**
+ * Creates a parser for an unordered list
+ * @param {object} listNode the list ast node
+ * @param {object} items the list of parsers for each item
+ * @returns {object} the parser
+ */
+function ulistParser(listNode,items) {
+    return listParser(listNode,textParser('\n-  '),items);
+}
+
+/**
+ * Creates a parser for an ordered list
+ * @param {object} listNode the list ast node
+ * @param {object} items the list of parsers for each item
+ * @returns {object} the parser
+ */
+function olistParser(listNode,items) {
+    return listParser(listNode,P.seq(P.regexp(/[0-9]+/),P.string('. ')),items);
+}
+
+/**
  * Creates a parser for code Block content
  * @param {object} ast the ast node
  * @returns {object} the parser
@@ -424,8 +485,8 @@ module.exports.integerParser = integerParser;
 module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
-module.exports.ulistParser = ulistParser;
-module.exports.olistParser = olistParser;
+module.exports.ulistBlockParser = ulistBlockParser;
+module.exports.olistBlockParser = olistBlockParser;
 module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
@@ -436,4 +497,6 @@ module.exports.strongParser = strongParser;
 module.exports.documentParser = documentParser;
 module.exports.paragraphParser = paragraphParser;
 module.exports.headingParser = headingParser;
+module.exports.ulistParser = ulistParser;
+module.exports.olistParser = olistParser;
 module.exports.codeBlockParser = codeBlockParser;
