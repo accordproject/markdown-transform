@@ -31,14 +31,15 @@ function doubleIEEEDrafter(value) {
  */
 function doubleDrafter(v,format) {
     if (format) {
-        return format.replace(/0.0.00?0?/gi, function(a){
-            const sep1 = a.charAt(1);
-            const sep2 = a.charAt(3);
-            const len = a.length-4;
+        return format.replace(/0(.)0((.)(0+))?/gi, function(_a,sep1,_b,sep2,digits){
+            const len = digits ? digits.length : 0;
             const vs = v.toFixed(len);
-            const d = vs.substring(vs.length - len);
-            let res = sep2 + d;
-            let i = vs.substring(0,vs.length - (len+1));
+            let res = '';
+            if (sep2) {
+                const d = vs.substring(vs.length - len);
+                res += sep2 + d;
+            }
+            let i = vs.substring(0,vs.length - (len === 0 ? 0 : len+1));
             while (i.length > 3) {
                 res = sep1 + i.substring(i.length - 3) + res;
                 i = i.substring(0, i.length - 3);

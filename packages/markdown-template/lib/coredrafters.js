@@ -36,5 +36,16 @@ function stringDrafter(value) {
     return '' + '"' + value + '"';
 }
 
+/**
+ * Creates a drafter for Resources
+ * @param {object} value the String
+ * @returns {object} the text
+ */
+function resourceDrafter(value) {
+    const match = value.match(/resource:[^#]*#([^]*)/);
+    return '' + '"' + decodeURIComponent(match[1]) + '"';
+}
+
 module.exports.integerDrafter = integerDrafter;
 module.exports.stringDrafter = stringDrafter;
+module.exports.resourceDrafter = resourceDrafter;

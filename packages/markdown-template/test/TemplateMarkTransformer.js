@@ -27,13 +27,10 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
-const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
+const normalizeToMarkdown = require('../lib/normalize').normalizeToMarkdown;
+const normalizeFromMarkdown = require('../lib/normalize').normalizeFromMarkdown;
 
-const grammarUList = loadFile('./test/data/testUList/grammar.tem.md');
-const modelUList = './test/data/testUList/model.cto';
-const sampleUList = loadFile('./test/data/testUList/sample.md');
-const sampleUListCommon = JSON.parse(loadFile('./test/data/testUList/sample_common.json').content);
-const sampleUListCicero = JSON.parse(loadFile('./test/data/testUList/sample_cicero.json').content);
+const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
 
 const successes = [
     {name:'test1',kind:'clause'},
@@ -80,17 +77,17 @@ const templateFailures = [
 ];
 
 const parseFailures = [
-    {name:'err1',desc:'',kind:'clause','error':'Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.'},
-    {name:'err2',desc:'',kind:'clause','error':'Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.'},
-    {name:'err3',desc:'',kind:'clause','error':'Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .00 EUR, even in the presence of force majeure.'},
+    {name:'err1',desc:'',kind:'clause','error':'Parse error at line 1 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 GRR, even in the presence of force majeure.'},
+    {name:'err2',desc:'',kind:'clause','error':'Parse error at line 1 column 28\nThis is a contract between Steve" and "Betty" for the amount of 3131.0 EUR, even in the presence of force majeure.'},
+    {name:'err3',desc:'',kind:'clause','error':'Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .0 EUR, even in the presence of force majeure.'},
     {name:'err4',desc:'extra text',kind:'contract','error':'Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text'},
-    {name:'err5',desc:'wrong text',kind:'contract','error':'Parse error at line 4 column 77\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of forcemajeure.'},
-    {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 3 column 118\n``` <clause src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f" nam="479adbb4-dc55-4d1a-ab12-b6c5e16900c0">\n                                                                                                                     ^^^^^^\nExpected: \' name=\''},
+    {name:'err5',desc:'wrong text',kind:'contract','error':'Parse error at line 4 column 76\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 EUR, even in the presence of forcemajeure.'},
+    {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 3 column 29\n``` <clause name="agreement" src="foo"/>\n'},
     {name:'err7',desc:'wrong text',kind:'contract','error':'Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal'},
-    {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 ZZZ.'},
+    {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 ZZZ.'},
     {name:'errFormula',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^'},
-    {name:'errDateTime',desc:'',kind:'clause','error':'Parse error at line 1 column 74\nThis is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.'},
-    {name:'errLarge',desc:'',kind:'contract','error':'Parse error at line 804 column 40\nThis is a contract between "Steve" and Betty" for the amount of 3131.00 EUR.'},
+    {name:'errDateTime',desc:'',kind:'clause','error':'Parse error at line 1 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 GRR, even in the presence of force majeure.'},
+    {name:'errLarge',desc:'',kind:'contract','error':'Parse error at line 804 column 40\nThis is a contract between "Steve" and Betty" for the amount of 3131.0 EUR.'},
     {name:'errRepeat',desc:'inconsistent variables',kind:'clause','error':'Inconsistent values for variable seller: Steve and Betty'},
 ];
 
@@ -99,6 +96,7 @@ const parseFailures = [
  */
 function runSuccesses() {
     const templateMarkTransformer = new TemplateMarkTransformer();
+    const commonMarkTransformer = new CommonMarkTransformer();
 
     for (const test of successes) {
         const name = test.name;
@@ -136,6 +134,13 @@ function runSuccesses() {
                     }
                 }
                 result.should.deep.equal(data);
+            });
+
+            it('should draft sample back (roundtrip)', async () => {
+                const cm = templateMarkTransformer.instantiateCommonMark(data,grammarJson,modelManager,kind);
+                const result = commonMarkTransformer.toMarkdown(cm);
+                const expected = normalizeToMarkdown(normalizeFromMarkdown(sample.content));
+                result.should.equal(expected);
             });
         });
     }
@@ -204,56 +209,4 @@ describe('#TemplateMarkTransformer [Parse Success]', () => {
 
 describe('#TemplateMarkTransformer [Parse Failure]', () => {
     runParseFailures();
-});
-
-describe('#parse', () => {
-    describe('#templateUList', () => {
-        let modelManager;
-        before(async () => {
-            modelManager = await ModelLoader.loadModelManager(null,[modelUList]);
-        });
-
-        it('should parse', async () => {
-            const result = (new TemplateMarkTransformer()).fromMarkdown(sampleUList,grammarUList,modelManager,'contract');
-            result.prices.length.should.equal(3);
-            result.prices[0].$class.should.equal('org.test.Price');
-            result.prices[0].number.should.equal(1);
-            result.prices[1].$class.should.equal('org.test.Price');
-            result.prices[1].number.should.equal(2);
-            result.prices[2].$class.should.equal('org.test.Price');
-            result.prices[2].number.should.equal(3);
-        });
-
-        it('should instantiate to CiceroMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            const templateUList = templateMarkTransformer.fromMarkdownTemplate(grammarUList, modelManager, 'contract', {});
-            const t = new CommonMarkTransformer();
-            const cmarkUList = {fileName:'cmark.json',content:t.fromMarkdown(sampleUList.content, 'json')};
-            const data = templateMarkTransformer.fromCommonMark(cmarkUList,templateUList,modelManager,'contract');
-            data.prices.length.should.equal(3);
-            data.prices[0].$class.should.equal('org.test.Price');
-            data.prices[0].number.should.equal(1);
-            data.prices[1].$class.should.equal('org.test.Price');
-            data.prices[1].number.should.equal(2);
-            data.prices[2].$class.should.equal('org.test.Price');
-            data.prices[2].number.should.equal(3);
-            templateMarkTransformer.instantiateCiceroMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListCicero);
-        });
-
-        it('should instantiate to CommonMark', async () => {
-            const templateMarkTransformer = new TemplateMarkTransformer();
-            const templateUList = templateMarkTransformer.fromMarkdownTemplate(grammarUList, modelManager, 'contract', {});
-            const t = new CommonMarkTransformer();
-            const cmarkUList = {fileName:'cmark.json',content:t.fromMarkdown(sampleUList.content, 'json')};
-            const data = templateMarkTransformer.fromCommonMark(cmarkUList,templateUList,modelManager,'contract');
-            data.prices.length.should.equal(3);
-            data.prices[0].$class.should.equal('org.test.Price');
-            data.prices[0].number.should.equal(1);
-            data.prices[1].$class.should.equal('org.test.Price');
-            data.prices[1].number.should.equal(2);
-            data.prices[2].$class.should.equal('org.test.Price');
-            data.prices[2].number.should.equal(3);
-            templateMarkTransformer.instantiateCommonMark(data,templateUList,modelManager,'contract').should.deep.equal(sampleUListCommon);
-        });
-    });
 });

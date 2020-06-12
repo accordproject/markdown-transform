@@ -343,7 +343,7 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseBefore = (() => P.seq(textParser('\n\n``` <clause src='),stringLiteralParser(),textParser(' name='),stringLiteralParser(),P.alt(textParser('>\n'),textParser('/>\n'))));
+    const clauseBefore = (() => P.seq(textParser('\n\n``` <clause name='),stringLiteralParser(),P.alt(textParser('>\n'),textParser('/>\n'))));
     const clauseAfter = (() => textParser('\n```\n'));
     return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
         return mkWrappedClause(clause,flatten(x));
