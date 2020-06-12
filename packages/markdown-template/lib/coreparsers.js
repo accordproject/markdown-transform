@@ -219,17 +219,6 @@ function computedParser() {
 }
 
 /**
- * Creates a parser for Double
- * @param {object} variable the variable ast node
- * @returns {object} the parser
- */
-function doubleParser(variable) {
-    return P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/).map(function(x) {
-        return mkVariable(variable,Number(x));
-    }).desc('A Double literal');
-}
-
-/**
  * Creates a parser for Integer
  * @param {object} variable the variable ast node
  * @returns {object} the parser
@@ -480,7 +469,6 @@ module.exports.seqParser = seqParser;
 module.exports.choiceStringsParser = choiceStringsParser;
 
 module.exports.computedParser = computedParser;
-module.exports.doubleParser = doubleParser;
 module.exports.integerParser = integerParser;
 module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
