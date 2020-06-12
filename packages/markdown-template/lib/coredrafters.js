@@ -19,16 +19,6 @@
  */
 
 /**
- * Creates a drafter for Double
- * @param {object} value the double
- * @returns {object} the text
- */
-function doubleDrafter(value) {
-    if (Math.floor(value) == value) return (new Number(value)).toFixed(1); // Make sure there is always decimal point
-    else return '' + value;
-}
-
-/**
  * Creates a drafter for Integer
  * @param {object} value the Integer
  * @returns {object} the text
@@ -46,6 +36,5 @@ function stringDrafter(value) {
     return '' + '"' + value + '"';
 }
 
-module.exports.doubleDrafter = doubleDrafter;
 module.exports.integerDrafter = integerDrafter;
 module.exports.stringDrafter = stringDrafter;

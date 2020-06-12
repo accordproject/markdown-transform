@@ -23,7 +23,7 @@ chai.use(require('chai-as-promised'));
 
 // Basic parser constructors
 const integerParser = require('../lib/coreparsers').integerParser;
-const doubleParser = require('../lib/coreparsers').doubleParser;
+const doubleParser = require('../lib/doubleParser').doubleParser;
 const stringParser = require('../lib/coreparsers').stringParser;
 const enumParser = require('../lib/coreparsers').enumParser;
 

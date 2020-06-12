@@ -18,12 +18,12 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-c
 
 const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
 
-const doubleParser = require('./coreparsers').doubleParser;
+const doubleParser = require('./doubleParser').doubleParser;
 const integerParser = require('./coreparsers').integerParser;
 const stringParser = require('./coreparsers').stringParser;
 const dateTimeParser = require('./dateTimeParser').dateTimeParser;
 
-const doubleDrafter = require('./coredrafters').doubleDrafter;
+const doubleDrafter = require('./doubleDrafter').doubleDrafter;
 const integerDrafter = require('./coredrafters').integerDrafter;
 const stringDrafter = require('./coredrafters').stringDrafter;
 const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
