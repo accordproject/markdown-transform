@@ -131,8 +131,7 @@ describe('#transform', () => {
             data1.$class.should.equal('org.test.MyClause');
             data1.seller.should.equal('Steve');
             const result = await transform(data1, 'data', ['commonmark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.commonmark.CodeBlock');
-            result.nodes[0].tag.attributeString.should.equal('src="undefined" name="top"');
+            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
         });
 
         it('data -> ciceromark', async () => {
@@ -146,8 +145,7 @@ describe('#transform', () => {
             data1.$class.should.equal('org.test.MyClause');
             data1.seller.should.equal('Steve');
             const result = await transform(data1, 'data', ['ciceromark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.ciceromark.Clause');
-            result.nodes[0].elementType.should.equal('org.test.MyClause');
+            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
         });
     });
 
