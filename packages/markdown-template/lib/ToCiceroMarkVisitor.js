@@ -72,6 +72,8 @@ class ToCiceroMarkVisitor {
             return NS_PREFIX_CiceroMarkModel + 'FormattedVariable';
         } else if (tag === 'EnumVariableDefinition') {
             return NS_PREFIX_CiceroMarkModel + 'EnumVariable';
+        } else if (tag === 'FormulaDefinition') {
+            return NS_PREFIX_CiceroMarkModel + 'Formula';
         } else if (tag === 'ClauseDefinition') {
             return NS_PREFIX_CiceroMarkModel + 'Clause';
         } else if (tag === 'ConditionalDefinition') {
@@ -98,9 +100,10 @@ class ToCiceroMarkVisitor {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const data = parameters.data[thing.name];
-            const typeFun = parameters.parserManager.getParsingTable()[thing.elementType];
+            const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
+            const typeFun = parameters.parserManager.getParsingTable()[elementType];
             if (typeFun) {
-                thing.value = '' + typeFun.draft(data);
+                thing.value = '' + typeFun.draft(data,thing.format);
             } else {
                 thing.value = '' + parameters.data[thing.name]; // XXX should that ever happen ??
             }
@@ -110,17 +113,27 @@ class ToCiceroMarkVisitor {
             return ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
         }
             break;
-        case 'ClauseDefinition': {
+        case 'FormulaDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            const childrenParameters = {
-                parserManager: parameters.parserManager,
-                templateMarkModelManager: parameters.templateMarkModelManager,
-                templateMarkSerializer: parameters.templateMarkSerializer,
-                data: (parameters.kind === 'contract' ? parameters.data[thing.name] : parameters.data),
-                kind: parameters.kind,
-            };
-            ToCiceroMarkVisitor.visitChildren(this, thing, childrenParameters);
+            thing.value = thing.code;
+        }
+            break;
+        case 'ClauseDefinition': {
+            if (parameters.kind === 'contract') {
+                const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
+                thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
+                const childrenParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    data: parameters.data[thing.name],
+                    kind: parameters.kind,
+                };
+                ToCiceroMarkVisitor.visitChildren(this, thing, childrenParameters);
+            } else {
+                ToCiceroMarkVisitor.visitChildren(this, thing, parameters);
+            }
         }
             break;
         case 'WithDefinition': {
@@ -176,6 +189,11 @@ class ToCiceroMarkVisitor {
             thing.nodes = flatten(dataItems.map(mapItems));
 
             delete thing.elementType;
+        }
+            break;
+        case 'Document': {
+            ToCiceroMarkVisitor.visitChildren(this, thing.nodes[0], parameters);
+            thing.nodes = thing.nodes[0].nodes;
         }
             break;
         default:

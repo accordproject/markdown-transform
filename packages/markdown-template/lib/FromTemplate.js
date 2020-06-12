@@ -50,7 +50,7 @@ function parserOfTemplate(ast,params) {
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
     case 'org.accordproject.templatemark.VariableDefinition' : {
-        const elementType = ast.identifiedBy ? 'String' : ast.elementType;
+        const elementType = ast.identifiedBy ? 'Resource' : ast.elementType;
         const typeFun = params.parsingTable[elementType];
         if (typeFun) {
             parser = typeFun.parse(ast);

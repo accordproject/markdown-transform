@@ -27,6 +27,7 @@ const doubleDrafter = require('./doubleDrafter').doubleDrafter;
 const integerDrafter = require('./coredrafters').integerDrafter;
 const stringDrafter = require('./coredrafters').stringDrafter;
 const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
+const resourceDrafter = require('./coredrafters').resourceDrafter;
 
 /**
  * Parsing table for variables
@@ -38,6 +39,7 @@ const parsingTable = {
     'Double' : { parse: doubleParser, draft: doubleDrafter },
     'String' : { parse: stringParser, draft: stringDrafter },
     'DateTime' : { parse: dateTimeParser, draft: dateTimeDrafter },
+    'Resource' : { parse: stringParser, draft: resourceDrafter },
 };
 
 /**

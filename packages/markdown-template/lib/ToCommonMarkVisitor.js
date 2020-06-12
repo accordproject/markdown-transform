@@ -16,6 +16,10 @@
 
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
+function flatten(arr) {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
 /**
  * Converts a CiceroMark DOM to a CommonMark DOM
  */
@@ -34,9 +38,11 @@ class ToCommonMarkVisitor {
      */
     static visitChildren(visitor, thing, parameters) {
         if(thing.nodes) {
-            thing.nodes.forEach(node => {
-                node.accept(visitor, parameters);
-            });
+            const result =
+                  thing.nodes.map(node => {
+                      return node.accept(visitor, parameters);
+                  });
+            thing.nodes = flatten(result);
         }
     }
 
@@ -63,7 +69,12 @@ class ToCommonMarkVisitor {
             jsonSource.nodes = clauseJson.nodes;
 
             const content = parameters.commonMark.toMarkdown(jsonSource);
-            const attributeString = `src="${clauseJson.src}" name="${clauseJson.name}"`;
+            let attributeString;
+            if (clauseJson.src) {
+                attributeString = `src="${clauseJson.src}" name="${clauseJson.name}"`;
+            } else {
+                attributeString = `name="${clauseJson.name}"`;
+            }
 
             jsonTarget.text = content + '\n';
 
@@ -76,11 +87,13 @@ class ToCommonMarkVisitor {
             tag.closed = false;
             tag.attributes = [];
 
-            let attribute1 = {};
-            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'src';
-            attribute1.value = clauseJson.src ? clauseJson.src : '';
-            tag.attributes.push(attribute1);
+            if (clauseJson.src) {
+                let attribute1 = {};
+                attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+                attribute1.name = 'src';
+                attribute1.value = clauseJson.src ? clauseJson.src : '';
+                tag.attributes.push(attribute1);
+            }
 
             let attribute2 = {};
             attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
@@ -134,29 +147,25 @@ class ToCommonMarkVisitor {
         case 'Formula': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            thing.text = decodeURIComponent(thing.value);
+            thing.text = `{{${decodeURIComponent(thing.value)}}}`;
 
             delete thing.elementType;
             delete thing.name;
             delete thing.value;
-            delete thing.format;
+            delete thing.code;
+            delete thing.dependencies;
         }
             break;
         case 'Conditional': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            thing.text = decodeURIComponent(thing.nodes[0] ? thing.nodes[0].text : '');
-
-            delete thing.elementType;
-            delete thing.name;
-            delete thing.value;
-            delete thing.whenTrue;
-            delete thing.whenFalse;
+            return thing.nodes;
         }
             break;
         default:
             ToCommonMarkVisitor.visitChildren(this, thing, parameters);
         }
+        return [thing];
     }
 }
 

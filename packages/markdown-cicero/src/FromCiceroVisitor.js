@@ -268,7 +268,8 @@ class FromCiceroVisitor {
             delete thing.elementType;
             delete thing.name;
             delete thing.value;
-            delete thing.format;
+            delete thing.code;
+            delete thing.dependencies;
         }
             break;
         case 'Conditional': {

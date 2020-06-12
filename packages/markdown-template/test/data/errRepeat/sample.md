@@ -1,1 +1,1 @@
-This is a contract between "Steve" and "Betty" for the amount of 3131.00 GBP, which is due to "Betty", even in the presence of force majeure.
+This is a contract between "Steve" and "Betty" for the amount of 3131.0 GBP, which is due to "Betty", even in the presence of force majeure.
