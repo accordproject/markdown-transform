@@ -16,7 +16,7 @@
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
-const parserOfTemplate = require('./FromTemplate').parserOfTemplate;
+const parserOfTemplateMark = require('./ParserOfTemplate').parserOfTemplateMark;
 
 const doubleParser = require('./doubleParser').doubleParser;
 const integerParser = require('./coreparsers').integerParser;
@@ -154,7 +154,7 @@ class ParserManager {
      */
     buildParser() {
         if (!this.parser) {
-            this.parser = parserOfTemplate(this.grammarAst,{parsingTable:this.parsingTable,contract:false});
+            this.parser = parserOfTemplateMark(this.grammarAst,{parsingTable:this.parsingTable,contract:false});
         }
     }
 

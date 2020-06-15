@@ -14,6 +14,8 @@
 
 'use strict';
 
+const P = require('parsimmon');
+
 // Basic parser constructors
 const textParser = require('./coreparsers').textParser;
 const computedParser = require('./coreparsers').computedParser;
@@ -37,11 +39,11 @@ const olistParser = require('./coreparsers').olistParser;
 const codeBlockParser = require('./coreparsers').codeBlockParser;
 
 /**
- * Creates a parser for Double
+ * Creates a parser function from a TemplateMark DOM
  * @param {object} ast - the template AST
  * @returns {object} the parser
  */
-function parserOfTemplate(ast,params) {
+function parserFunOfTemplateMark(ast,params) {
     let parser = null;
     switch(ast.$class) {
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
@@ -64,18 +66,18 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.templatemark.ConditionalDefinition' : {
-        const whenTrueParser = seqParser(ast.whenTrue.map(function (x) { return parserOfTemplate(x,params); }));
-        const whenFalseParser = seqParser(ast.whenFalse.map(function (x) { return parserOfTemplate(x,params); }));
+        const whenTrueParser = seqParser(ast.whenTrue.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        const whenFalseParser = seqParser(ast.whenFalse.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = condParser(ast,whenTrueParser,whenFalseParser);
         break;
     }
     case 'org.accordproject.templatemark.ListBlockDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = ast.type === 'bullet' ? ulistBlockParser(ast,childrenParser) : olistBlockParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         if (params.contract) {
             parser = wrappedClauseParser(ast,childrenParser);
         } else {
@@ -84,13 +86,13 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.templatemark.WithDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = withParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.templatemark.ContractDefinition' :
         params.contract = true;
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = contractParser(ast,childrenParser);
         break;
     case 'org.accordproject.commonmark.Text' : {
@@ -102,12 +104,12 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.commonmark.Document' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = documentParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.Paragraph' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = paragraphParser(ast,childrenParser);
         break;
     }
@@ -116,30 +118,30 @@ function parserOfTemplate(ast,params) {
         break;
     }
     case 'org.accordproject.commonmark.Emph' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = emphParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.Strong' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = strongParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.Heading' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         parser = headingParser(ast,childrenParser);
         break;
     }
     case 'org.accordproject.commonmark.List' : {
         const listKind = ast.type;
         // Carefully here, we do not build a sequence parser quite yet. Instead we keep a list or parsers, one for each item in the list
-        const itemParsers = ast.nodes.map(function (x) { return parserOfTemplate(x,params); });
+        const itemParsers = ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); });
         parser = ast.type === 'bullet' ? ulistParser(ast,itemParsers) : olistParser(ast,itemParsers);
         break;
     }
     case 'org.accordproject.commonmark.Item' : {
         // Parsing a list item is simply parsing its content
-        parser = seqParser(ast.nodes.map(function (x) { return parserOfTemplate(x,params); }));
+        parser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         break;
     }
     default:
@@ -148,4 +150,18 @@ function parserOfTemplate(ast,params) {
     return parser;
 };
 
-module.exports.parserOfTemplate = parserOfTemplate;
+/**
+ * Create a parser language from the template
+ * Creates a parser function from a TemplateMark DOM
+ * @param {object} ast - the template AST
+ * @returns {object} the parser
+ */
+function parserOfTemplateMark(ast,params) {
+    const templateParser = {};
+    params.templateParser = templateParser;
+    templateParser.main = () => parserFunOfTemplateMark(ast,params);
+    return P.createLanguage(templateParser).main;
+}
+
+module.exports.parserFunOfTemplateMark = parserFunOfTemplateMark;
+module.exports.parserOfTemplateMark = parserOfTemplateMark;
