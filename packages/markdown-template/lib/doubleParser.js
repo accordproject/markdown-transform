@@ -18,27 +18,15 @@ const P = require('parsimmon');
 const textParser = require('./coreparsers').textParser;
 const seqParser = require('./coreparsers').seqParser;
 const choiceStringsParser = require('./coreparsers').choiceStringsParser;
-const mkVariable = require('./coreparsers').mkVariable;
-
-/**
- * Creates an amount variable output
- * @param {object} variable the variable ast node
- * @param {*} value the parsed value
- * @returns {object} the variable
- */
-function mkAmountVariable(variable,value) {
-    const result = value; // XXX TODO
-    return mkVariable(variable,result);
-}
 
 /**
  * Creates a parser for IEEE Double
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function doubleIEEEParser(variable) {
+function doubleIEEEParser() {
     return P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/).map(function(x) {
-        return mkVariable(variable,Number(x));
+        return Number(x);
     }).desc('A Double literal');
 }
 
@@ -89,21 +77,18 @@ function parserOfField(field) {
 
 /**
  * Creates a parser for a Double variable
- * @param {object} variable the variable ast node
+ * @param {string} format the format
  * @returns {object} the parser
  */
-function doubleParser(variable) {
-    let format = variable.format;
+function doubleParser(format) {
     if (format) {
         let fields = format.split(/(0.0(?:.0+)?)/);
         // remove null or empty strings
         fields = fields.filter(x => x !== '' && x !== null);
         const parsers = fields.map(parserOfField);
-        return seqParser(parsers).map(function(x) {
-            return mkAmountVariable(variable,x);
-        });
+        return seqParser(parsers);
     } else {
-        return doubleIEEEParser(variable);
+        return doubleIEEEParser();
     }
 }
 

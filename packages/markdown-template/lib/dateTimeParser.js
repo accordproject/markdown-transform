@@ -55,11 +55,10 @@ const MMMM = {
 
 /**
  * Creates a DateTime variable output
- * @param {object} variable the variable ast node
  * @param {*} value the date time components
  * @returns {object} the variable
  */
-function mkDateTimeVariable(variable,value) {
+function mkDateTime(value) {
     const fillNumber = (x,digits,def) => {
         const nb = x ? '' + x : '' + def;
         return nb.padStart(digits,'0');
@@ -74,7 +73,7 @@ function mkDateTimeVariable(variable,value) {
     const fracsecond = fillNumber(valueObj.fracsecond,3,0);
     const timezone = valueObj.timezone ? '' + valueObj.timezone : '+00:00';
     const result = `${year}-${month}-${day}T${hour}:${minute}:${second}.${fracsecond}${timezone}`;
-    return mkVariable(variable,result);
+    return result;
 }
 
 /**
@@ -258,11 +257,10 @@ function parserOfField(field) {
 
 /**
  * Creates a parser for a DateTime variable
- * @param {object} variable the variable ast node
+ * @param {format} format the format
  * @returns {object} the parser
  */
-function dateTimeParser(variable) {
-    let format = variable.format ? variable.format : 'MM/DD/YYYY';
+function dateTimeParser(format = 'MM/DD/YYYY') {
     // XXX the format could be parsed as well instead of this split which seems error-prone
     let hasTimeZone = format.charAt(format.length-1) === 'Z';
     if(hasTimeZone) {
@@ -276,7 +274,7 @@ function dateTimeParser(variable) {
     }
     const parsers = fields.map(parserOfField);
     return seqParser(parsers).map(function(x) {
-        return mkDateTimeVariable(variable,x);
+        return mkDateTime(x);
     });
 }
 

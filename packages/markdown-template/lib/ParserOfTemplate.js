@@ -29,6 +29,7 @@ const withParser = require('./coreparsers').withParser;
 const clauseParser = require('./coreparsers').clauseParser;
 const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
 const contractParser = require('./coreparsers').contractParser;
+const mkVariable = require('./coreparsers').mkVariable;
 
 const emphParser = require('./coreparsers').emphParser;
 const strongParser = require('./coreparsers').strongParser;
@@ -48,17 +49,26 @@ function parserFunOfTemplateMark(ast,params) {
     let parser = null;
     switch(ast.$class) {
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
-        parser = (r) => enumParser(ast,ast.enumValues);
+        parser = (r) => enumParser(ast.enumValues).map((value) => mkVariable(ast,value));;
         break;
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
     case 'org.accordproject.templatemark.VariableDefinition' : {
         const elementType = ast.identifiedBy ? 'Resource' : ast.elementType;
-        const typeFun = params.parsingTable[elementType];
-        if (typeFun) {
-            parser = (r) => typeFun.parse(ast);
+        const format = ast.format ? ast.format : null;
+        const parserName = format ? elementType + '_' + format : elementType;
+        if (params.templateParser[parserName]) {
+            parser = (r) => {
+                return r[parserName].map((value) => mkVariable(ast,value));
+            };
+        } else if (params.parsingTable[elementType]) {
+            const parsingFun = params.parsingTable[elementType].parse;
+            params.templateParser[parserName] = (r) => parsingFun(format);
+            parser = (r) => {
+                return r[parserName].map((value) => mkVariable(ast,value));
+            };
         } else {
-            throw new Error('Unknown variable type ' + elementType);
+            throw new Error('No known parser for type ' + elementType);
         }
         break;
     }
@@ -159,9 +169,14 @@ function parserFunOfTemplateMark(ast,params) {
  * @returns {object} the parser
  */
 function parserOfTemplateMark(ast,params) {
+    // Start with an empty parser
     const templateParser = {};
+
+    // Build the parser for the template
     params.templateParser = templateParser;
     templateParser.main = parserFunOfTemplateMark(ast,params);
+
+    // Create the language parser
     return P.createLanguage(templateParser).main;
 }
 

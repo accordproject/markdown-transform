@@ -235,9 +235,9 @@ function computedParser() {
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function integerParser(variable) {
+function integerParser() {
     return P.regexp(/[0-9]+/).map(function(x) {
-        return mkVariable(variable,Number(x));
+        return Number(x);
     }).desc('An Integer literal');
 }
 
@@ -246,9 +246,9 @@ function integerParser(variable) {
  * @param {object} variable the variable ast node
  * @returns {object} the parser
  */
-function stringParser(variable) {
+function stringParser() {
     return stringLiteralParser().map(function(x) {
-        return mkVariable(variable,x.substring(1, x.length-1));
+        return x.substring(1, x.length-1);
     });
 }
 
@@ -258,9 +258,9 @@ function stringParser(variable) {
  * @param {string[]} enums - the enum values
  * @returns {object} the parser
  */
-function enumParser(variable, enums) {
+function enumParser(enums) {
     return choiceStringsParser(enums).map(function(x) {
-        return mkVariable(variable,x);
+        return x;
     });
 }
 
