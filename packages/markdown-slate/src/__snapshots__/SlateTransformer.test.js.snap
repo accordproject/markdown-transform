@@ -2457,6 +2457,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": true,
               "name": "forceMajeure",
               "nodes": Array [
                 Object {
@@ -2669,6 +2670,7 @@ Object {
                   },
                 ],
                 "data": Object {
+                  "isTrue": true,
                   "name": "forceMajeure",
                   "whenFalse": Array [],
                   "whenTrue": Array [
@@ -3001,6 +3003,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": true,
               "name": "forceMajeure",
               "nodes": Array [
                 Object {
@@ -5783,6 +5786,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": true,
               "name": "individual",
               "nodes": Array [
                 Object {
@@ -5993,6 +5997,7 @@ Object {
               },
             ],
             "data": Object {
+              "isTrue": true,
               "name": "individual",
               "whenFalse": Array [
                 Object {
@@ -6187,6 +6192,7 @@ Object {
           "nodes": Array [
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": true,
               "name": "individual",
               "nodes": Array [
                 Object {

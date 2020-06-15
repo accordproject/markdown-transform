@@ -354,20 +354,24 @@ const CONDITIONAL_RULE = {
     deserialize(el, next) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'conditional') {
+            const text = el.textContent;
+            const whenTrueText = el.getAttribute('whenTrue') ? el.getAttribute('whenTrue') : '';
+            const whenFalseText = el.getAttribute('whenFalse') ? el.getAttribute('whenFalse') : '';
             return {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Conditional`,
                 name: el.getAttribute('name'),
-                whenTrue: el.getAttribute('whenTrue') ? [{
+                isTrue: text === whenTrueText,
+                whenTrue: whenTrueText ? [{
                     '$class': `${NS_PREFIX_CommonMarkModel}Text`,
-                    text: el.getAttribute('whenTrue'),
+                    text: whenTrueText,
                 }] : [],
-                whenFalse: el.getAttribute('whenFalse') ? [{
+                whenFalse: whenFalseText ? [{
                     '$class': `${NS_PREFIX_CommonMarkModel}Text`,
-                    text: el.getAttribute('whenFalse'),
+                    text: whenFalseText,
                 }] : [],
                 nodes: [{
                     '$class': `${NS_PREFIX_CommonMarkModel}Text`,
-                    text: el.textContent,
+                    text: text,
                 }],
             };
         }
