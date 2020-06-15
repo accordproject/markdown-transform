@@ -16,8 +16,9 @@
 
 // Parser from template AST
 const parserOfTemplateMark = require('../lib/ParserOfTemplate');
-const parsingTable = require('../lib/parsermanager').parsingTable;
-const params = {contract:false,parsingTable:parsingTable};
+const ParsingTable = require('../lib/parsingtable');
+
+const params = {contract:false,parsingTable:new ParsingTable()};
 
 // Variables
 const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'String' };

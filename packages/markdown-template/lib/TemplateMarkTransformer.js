@@ -25,7 +25,7 @@ const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
 const templaterules = require('./templaterules');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const ParserManager = require('./parsermanager').ParserManager;
+const ParserManager = require('./parsermanager');
 
 const normalizeNLs = require('./normalize').normalizeNLs;
 const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;

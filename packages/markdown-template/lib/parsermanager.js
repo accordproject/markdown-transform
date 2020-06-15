@@ -14,33 +14,10 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
+const { Factory, Serializer } = require('@accordproject/concerto-core');
 
+const ParsingTable = require('./parsingtable');
 const parserOfTemplateMark = require('./ParserOfTemplate');
-
-const doubleParser = require('./doubleParser').doubleParser;
-const integerParser = require('./coreparsers').integerParser;
-const stringParser = require('./coreparsers').stringParser;
-const dateTimeParser = require('./dateTimeParser').dateTimeParser;
-
-const doubleDrafter = require('./doubleDrafter').doubleDrafter;
-const integerDrafter = require('./coredrafters').integerDrafter;
-const stringDrafter = require('./coredrafters').stringDrafter;
-const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
-const resourceDrafter = require('./coredrafters').resourceDrafter;
-
-/**
- * Parsing table for variables
- * This maps types to their parser
- */
-const parsingTable = {
-    'Integer' : { parse: integerParser, draft: integerDrafter },
-    'Long' : { parse: integerParser, draft: integerDrafter },
-    'Double' : { parse: doubleParser, draft: doubleDrafter },
-    'String' : { parse: stringParser, draft: stringDrafter },
-    'DateTime' : { parse: dateTimeParser, draft: dateTimeDrafter },
-    'Resource' : { parse: stringParser, draft: resourceDrafter },
-};
 
 /**
  * Generates and manages a template parser/drafter
@@ -60,7 +37,7 @@ class ParserManager {
         this.parser = null;
 
         // Mapping from types to parsers/drafters
-        this.parsingTable = parsingTable;
+        this.parsingTable = new ParsingTable();
     }
 
     /**
@@ -160,5 +137,4 @@ class ParserManager {
 
 }
 
-module.exports.parsingTable = parsingTable;
-module.exports.ParserManager = ParserManager;
+module.exports = ParserManager;

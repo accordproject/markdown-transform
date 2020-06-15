@@ -61,14 +61,12 @@ function parserFunOfTemplateMark(ast,params) {
             parser = (r) => {
                 return r[parserName].map((value) => mkVariable(ast,value));
             };
-        } else if (params.parsingTable[elementType]) {
-            const parsingFun = params.parsingTable[elementType].parse;
+        } else {
+            const parsingFun = params.parsingTable.getParser(elementType);
             params.templateParser[parserName] = (r) => parsingFun(format);
             parser = (r) => {
                 return r[parserName].map((value) => mkVariable(ast,value));
             };
-        } else {
-            throw new Error('No known parser for type ' + elementType);
         }
         break;
     }
