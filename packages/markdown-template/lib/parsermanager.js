@@ -16,7 +16,7 @@
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
-const parserOfTemplateMark = require('./ParserOfTemplate').parserOfTemplateMark;
+const parserOfTemplateMark = require('./ParserOfTemplate');
 
 const doubleParser = require('./doubleParser').doubleParser;
 const integerParser = require('./coreparsers').integerParser;

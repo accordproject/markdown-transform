@@ -172,13 +172,12 @@ function parserOfTemplateMark(ast,params) {
     // Start with an empty parser
     const templateParser = {};
 
-    // Build the parser for the template
+    // Build the language structure for the template
     params.templateParser = templateParser;
     templateParser.main = parserFunOfTemplateMark(ast,params);
 
-    // Create the language parser
+    // Create the template parser from the language structure
     return P.createLanguage(templateParser).main;
 }
 
-module.exports.parserFunOfTemplateMark = parserFunOfTemplateMark;
-module.exports.parserOfTemplateMark = parserOfTemplateMark;
+module.exports = parserOfTemplateMark;
