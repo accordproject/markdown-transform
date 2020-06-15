@@ -94,19 +94,21 @@ class ToCiceroMarkVisitor {
         const that = this;
         const currentModel = parameters.model;
         switch(thing.getType()) {
-        case 'VariableDefinition':
-        case 'FormattedVariableDefinition':
         case 'EnumVariableDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const data = parameters.data[thing.name];
+            thing.value = '' + parameters.data[thing.name];
+        }
+            break;
+        case 'VariableDefinition':
+        case 'FormattedVariableDefinition': {
+            const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
+            thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
+            const data = parameters.data[thing.name];
             const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
-            const typeFun = parameters.parserManager.getParsingTable()[elementType];
-            if (typeFun) {
-                thing.value = '' + typeFun.draft(data,thing.format);
-            } else {
-                thing.value = '' + parameters.data[thing.name]; // XXX should that ever happen ??
-            }
+            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType);
+            thing.value = '' + draftFun(data,thing.format);
         }
             break;
         case 'ContractDefinition': {
