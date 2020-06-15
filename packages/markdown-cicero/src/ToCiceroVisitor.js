@@ -144,21 +144,23 @@ class ToCiceroMarkVisitor {
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    const valueText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     const valueNode = parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
-                        text: decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value)
+                        text: valueText,
                     });
                     thing.nodes = [valueNode];
                     const whenTrueText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
                     const whenTrueNodes = whenTrueText ? [parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
-                        text: whenTrueText
+                        text: whenTrueText,
                     })] : [];
+                    thing.isTrue = valueText === whenTrueText;
                     thing.whenTrue = whenTrueNodes;
                     const whenFalseText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
                     const whenFalseNodes = whenFalseText ? [parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
-                        text: whenFalseText
+                        text: whenFalseText,
                     })] : [];
                     thing.whenFalse = whenFalseNodes;
                     delete thing.tag;

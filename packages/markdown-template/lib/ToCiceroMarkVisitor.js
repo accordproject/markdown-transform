@@ -153,8 +153,10 @@ class ToCiceroMarkVisitor {
             ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
             ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
             if (parameters.data[thing.name]) {
+                thing.isTrue = true;
                 thing.nodes = thing.whenTrue;
             } else {
+                thing.isTrue = false;
                 thing.nodes = thing.whenFalse;
             }
         }

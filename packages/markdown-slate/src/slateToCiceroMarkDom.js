@@ -112,11 +112,12 @@ function _recursive_nodes(target, nodes) {
                 }
                 break;
             case 'conditional': {
+                const isTrue = node.data.isTrue;
                 let whenTrueNodes = [];
                 _recursive_nodes(whenTrueNodes, node.data.whenTrue);
                 let whenFalseNodes = [];
                 _recursive_nodes(whenFalseNodes, node.data.whenFalse);
-                result = handleConditional(node,whenTrueNodes,whenFalseNodes);
+                result = handleConditional(node,isTrue,whenTrueNodes,whenFalseNodes);
             }
                 break;
             case 'variable': {
@@ -297,11 +298,12 @@ function handleVariable(node) {
 /**
  * Handles a conditional node
  * @param {*} node the slate variable node
+ * @param {*} isTrue is this conditional true
  * @param {*} whenTrue the nodes when true
  * @param {*} whenFalse the nodes when false
  * @returns {*} the ast node
  */
-function handleConditional(node, whenTrue, whenFalse) {
+function handleConditional(node, isTrue, whenTrue, whenFalse) {
     const data = node.data;
 
     let result = {
@@ -310,6 +312,7 @@ function handleConditional(node, whenTrue, whenFalse) {
         nodes: [],
     };
 
+    result.isTrue = isTrue;
     result.whenTrue = whenTrue;
     result.whenFalse = whenFalse;
 

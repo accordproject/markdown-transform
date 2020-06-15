@@ -330,6 +330,7 @@ class FromCiceroVisitor {
             delete thing.elementType;
             delete thing.name;
             delete thing.value;
+            delete thing.isTrue;
             delete thing.whenTrue;
             delete thing.whenFalse;
             delete thing.nodes;

@@ -3413,6 +3413,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": true,
               "name": "forceMajeure",
               "nodes": Array [
                 Object {
@@ -3603,6 +3604,7 @@ Object {
             },
             Object {
               "$class": "org.accordproject.ciceromark.Conditional",
+              "isTrue": false,
               "name": "forceMajeure",
               "nodes": Array [
                 Object {

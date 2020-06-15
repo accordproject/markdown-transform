@@ -242,7 +242,7 @@ class ToSlateVisitor {
             const nodes = this.processChildNodes(thing,parameters);
             const whenTrue = this.processChildren(thing,'whenTrue',parameters);
             const whenFalse = this.processChildren(thing,'whenFalse',parameters);
-            const data = { name: thing.name, whenTrue: whenTrue, whenFalse: whenFalse };
+            const data = { name: thing.name, isTrue: thing.isTrue, whenTrue: whenTrue, whenFalse: whenFalse };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
