@@ -15,7 +15,7 @@
 'use strict';
 
 // Parser from template AST
-const parserOfTemplateMark = require('../lib/ParserOfTemplate').parserOfTemplateMark;
+const parserOfTemplateMark = require('../lib/ParserOfTemplate');
 const parsingTable = require('../lib/parsermanager').parsingTable;
 const params = {contract:false,parsingTable:parsingTable};
 
