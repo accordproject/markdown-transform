@@ -21,6 +21,7 @@ const textParser = require('./coreparsers').textParser;
 const computedParser = require('./coreparsers').computedParser;
 const enumParser = require('./coreparsers').enumParser;
 const seqParser = require('./coreparsers').seqParser;
+const seqFunParser = require('./coreparsers').seqFunParser;
 const condParser = require('./coreparsers').condParser;
 const ulistBlockParser = require('./coreparsers').ulistBlockParser;
 const olistBlockParser = require('./coreparsers').olistBlockParser;
@@ -47,7 +48,7 @@ function parserFunOfTemplateMark(ast,params) {
     let parser = null;
     switch(ast.$class) {
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
-        parser = enumParser(ast,ast.enumValues);
+        parser = (r) => enumParser(ast,ast.enumValues);
         break;
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
@@ -55,81 +56,81 @@ function parserFunOfTemplateMark(ast,params) {
         const elementType = ast.identifiedBy ? 'Resource' : ast.elementType;
         const typeFun = params.parsingTable[elementType];
         if (typeFun) {
-            parser = typeFun.parse(ast);
+            parser = (r) => typeFun.parse(ast);
         } else {
             throw new Error('Unknown variable type ' + elementType);
         }
         break;
     }
     case 'org.accordproject.templatemark.FormulaDefinition' : {
-        parser = computedParser(ast.value);
+        parser = (r) => computedParser(ast.value);
         break;
     }
     case 'org.accordproject.templatemark.ConditionalDefinition' : {
-        const whenTrueParser = seqParser(ast.whenTrue.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        const whenFalseParser = seqParser(ast.whenFalse.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = condParser(ast,whenTrueParser,whenFalseParser);
+        const whenTrueParser = seqFunParser(ast.whenTrue.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        const whenFalseParser = seqFunParser(ast.whenFalse.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => condParser(ast,whenTrueParser(r),whenFalseParser(r));
         break;
     }
     case 'org.accordproject.templatemark.ListBlockDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = ast.type === 'bullet' ? ulistBlockParser(ast,childrenParser) : olistBlockParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = ast.type === 'bullet' ? (r) => ulistBlockParser(ast,childrenParser(r)) : (r) => olistBlockParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
         if (params.contract) {
-            parser = wrappedClauseParser(ast,childrenParser);
+            parser = (r) => wrappedClauseParser(ast,childrenParser(r));
         } else {
-            parser = clauseParser(ast,childrenParser);
+            parser = (r) => clauseParser(ast,childrenParser(r));
         }
         break;
     }
     case 'org.accordproject.templatemark.WithDefinition' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = withParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => withParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.templatemark.ContractDefinition' :
         params.contract = true;
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = contractParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => contractParser(ast,childrenParser(r));
         break;
     case 'org.accordproject.commonmark.Text' : {
-        parser = textParser(ast.text);
+        parser = (r) => textParser(ast.text);
         break;
     }
     case 'org.accordproject.commonmark.Softbreak' : {
-        parser = textParser('\n');
+        parser = (r) => textParser('\n');
         break;
     }
     case 'org.accordproject.commonmark.Document' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = documentParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => documentParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.commonmark.Paragraph' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = paragraphParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => paragraphParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.commonmark.CodeBlock' : {
-        parser = codeBlockParser(ast.text);
+        parser = (r) => codeBlockParser(ast.text);
         break;
     }
     case 'org.accordproject.commonmark.Emph' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = emphParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => emphParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.commonmark.Strong' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = strongParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => strongParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.commonmark.Heading' : {
-        const childrenParser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = headingParser(ast,childrenParser);
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => headingParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.commonmark.List' : {
@@ -141,7 +142,8 @@ function parserFunOfTemplateMark(ast,params) {
     }
     case 'org.accordproject.commonmark.Item' : {
         // Parsing a list item is simply parsing its content
-        parser = seqParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        const itemParsers = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
+        parser = (r) => itemParsers(r);
         break;
     }
     default:
@@ -159,7 +161,7 @@ function parserFunOfTemplateMark(ast,params) {
 function parserOfTemplateMark(ast,params) {
     const templateParser = {};
     params.templateParser = templateParser;
-    templateParser.main = () => parserFunOfTemplateMark(ast,params);
+    templateParser.main = parserFunOfTemplateMark(ast,params);
     return P.createLanguage(templateParser).main;
 }
 

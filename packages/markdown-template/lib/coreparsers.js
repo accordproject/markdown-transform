@@ -211,6 +211,18 @@ function seqParser(parsers) {
 }
 
 /**
+ * Creates a parser for sequences of function parsers
+ * @param {object[]} parsers - the individual parsers
+ * @returns {object} the parser
+ */
+function seqFunParser(parsers) {
+    return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
+        var args = Array.prototype.slice.call(arguments);
+        return args.filter(function(x) { return !(typeof x === 'string'); });
+    }]));
+}
+
+/**
  * Creates a parser for a computed value
  * @returns {object} the parser
  */
@@ -420,11 +432,11 @@ function listParser(listNode,bullet,items) {
     let first = true;
     const bulletedItems = items.map(function(item) {
         const bulletParser = first ? P.seq(P.optWhitespace,bullet) : P.seq(P.optWhitespace,P.string('\n'),bullet)
-        return P.seq(bulletParser,item).map(function(x) {
+        return (r) => P.seq(bulletParser,item(r)).map(function(x) {
             return flatten(x[1]);
         });
     });
-    return P.seq(P.optWhitespace,seqParser(bulletedItems)).map(function(x) {
+    return (r) => P.seq(P.optWhitespace,seqFunParser(bulletedItems)(r)).map(function(x) {
         return flatten(x[1]);
     });
 }
@@ -466,6 +478,7 @@ module.exports.stringLiteralParser = stringLiteralParser;
 
 module.exports.textParser = textParser;
 module.exports.seqParser = seqParser;
+module.exports.seqFunParser = seqFunParser;
 module.exports.choiceStringsParser = choiceStringsParser;
 
 module.exports.computedParser = computedParser;

@@ -100,34 +100,34 @@ const templateErr2 = {
 describe('#templateparsers', () => {
     describe('#template1', () => {
         it('should parse', async () => {
-            parserFunOfTemplateMark(template1,params).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserFunOfTemplateMark(template1,params)().parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserFunOfTemplateMark(template1,params).parse('FOO').status.should.equal(false);
+            parserFunOfTemplateMark(template1,params)().parse('FOO').status.should.equal(false);
         });
     });
 
     describe('#template2', () => {
         it('should parse (no force majeure)', async () => {
-            parserFunOfTemplateMark(template2,params).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserFunOfTemplateMark(template2,params)().parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserFunOfTemplateMark(template2,params).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
+            parserFunOfTemplateMark(template2,params)().parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserFunOfTemplateMark(template2,params).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
+            parserFunOfTemplateMark(template2,params)().parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
         });
     });
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            parserFunOfTemplateMark(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
+            parserFunOfTemplateMark(template3,params)().parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserFunOfTemplateMark(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
+            parserFunOfTemplateMark(template3,params)().parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserFunOfTemplateMark(template3,params).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
+            parserFunOfTemplateMark(template3,params)().parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
         });
     });
 });
