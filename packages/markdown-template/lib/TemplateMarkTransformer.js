@@ -14,24 +14,20 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
-const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
-
-const MarkdownIt = require('markdown-it');
-const MarkdownItTemplate = require('@accordproject/markdown-it-template');
-const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
-const templaterules = require('./templaterules');
+const { ParseException } = require('@accordproject/concerto-core');
+const {
+    templateMarkManager,
+    grammarToTokens,
+    tokensToUntypedTemplateMark,
+    templateMarkTyping,
+} = require('./templatemarkutil');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const ParserManager = require('./parsermanager');
 
-const normalizeNLs = require('./normalize').normalizeNLs;
 const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
 const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
 
-const TypingVisitor = require('./TypingVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 
@@ -99,64 +95,12 @@ function _throwParseError(markdown,result,fileName) {
  */
 class TemplateMarkTransformer {
     /**
-     * Construct the parser.
-     */
-    constructor() {
-        // Setup for Nested Parsing
-        this.commonMark = new CommonMarkTransformer();
-
-        // Setup for validation
-        this.modelManager = new ModelManager();
-        this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
-        this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
-        this.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
-        this.factory = new Factory(this.modelManager);
-        this.serializer = new Serializer(this.factory, this.modelManager);
-    }
-
-    /**
-     * Decorate template with its types
-     * @param {object} introspector - the model introspector for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {ClassDeclaration} templateModel - the contract class
-     * @param {object} template the template AST
-     * @returns {object} the typed template AST
-     */
-    typeTemplate(introspector,templateKind,templateModel,template) {
-        const input = this.serializer.fromJSON(template);
-
-        const parameters = {
-            templateMarkModelManager: this.modelManager,
-            templateMarkFactory: this.factory,
-            templateMarkSerializer: this.serializer,
-            introspector: introspector,
-            model: templateModel,
-            kind: templateKind,
-        };
-        const visitor = new TypingVisitor();
-        input.accept(visitor, parameters);
-        const result = Object.assign({}, this.serializer.toJSON(input));
-
-        return result;
-    }
-
-    /**
-     * Converts a template grammar string to a token stream
+     * Converts a grammar string to a token stream
      * @param {object} grammarInput the template grammar
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
      * @returns {object} the token stream
      */
-    toTokens(grammarInput, options) {
-        const grammar = normalizeNLs(grammarInput.content);
-
-        const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-        const tokenStream = parser.parse(grammar,{});
-        if (options && options.verbose) {
-            console.log('===== MarkdownIt Tokens ');
-            console.log(JSON.stringify(tokenStream,null,2));
-        }
-        return tokenStream;
+    toTokens(grammarInput) {
+        return grammarToTokens(grammarInput.content);
     }
 
     /**
@@ -169,41 +113,12 @@ class TemplateMarkTransformer {
      * @returns {object} the result of parsing
      */
     tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options) {
-        const fromMarkdownIt = new FromMarkdownIt(templaterules);
-        let template = fromMarkdownIt.toCommonMark(tokenStream);
-
-        let topTemplate;
-        if (templateKind === 'contract') {
-            topTemplate = {
-                '$class': 'org.accordproject.commonmark.Document',
-                'xmlns' : 'http://commonmark.org/xml/1.0',
-                'nodes': [{
-                    '$class': 'org.accordproject.templatemark.ContractDefinition',
-                    'name': 'top',
-                    'nodes': template.nodes
-                }]
-            };
-        } else {
-            topTemplate = {
-                '$class': 'org.accordproject.commonmark.Document',
-                'xmlns' : 'http://commonmark.org/xml/1.0',
-                'nodes': [{
-                    '$class': 'org.accordproject.templatemark.ClauseDefinition',
-                    'name': 'top',
-                    'nodes': template.nodes
-                }]
-            };
-        }
-
-        // Validate
-        template = this.serializer.toJSON(this.serializer.fromJSON(topTemplate));
+        const template = tokensToUntypedTemplateMark(tokenStream, templateKind);
         if (options && options.verbose) {
             console.log('===== Untyped TemplateMark ');
             console.log(JSON.stringify(template,null,2));
         }
-        const introspector = new Introspector(modelManager);
-        const templateModel = this.getTemplateModel(introspector, templateKind);
-        const typedTemplate = this.typeTemplate(introspector, templateKind, templateModel, template);
+        const typedTemplate = templateMarkTyping(template, modelManager, templateKind);
         if (options && options.verbose) {
             console.log('===== TemplateMark ');
             console.log(JSON.stringify(typedTemplate,null,2));
@@ -225,7 +140,11 @@ class TemplateMarkTransformer {
             throw new Error('Cannot parse without template model');
         }
 
-        const tokenStream = this.toTokens(grammarInput, options);
+        const tokenStream = this.toTokens(grammarInput);
+        if (options && options.verbose) {
+            console.log('===== MarkdownIt Tokens ');
+            console.log(JSON.stringify(tokenStream,null,2));
+        }
         return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
     }
 
@@ -325,17 +244,17 @@ class TemplateMarkTransformer {
 
         const parameters = {
             parserManager: parserManager,
-            templateMarkModelManager: this.modelManager,
-            templateMarkSerializer: this.serializer,
+            templateMarkModelManager: templateMarkManager.modelManager,
+            templateMarkSerializer: templateMarkManager.serializer,
             data: data,
             kind: templateKind,
         };
 
-        const input = this.serializer.fromJSON(templateMark);
+        const input = templateMarkManager.serializer.fromJSON(templateMark);
 
         const visitor = new ToCiceroMarkVisitor();
         input.accept(visitor, parameters);
-        const result = Object.assign({}, this.serializer.toJSON(input));
+        const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
 
         return result;
     }
@@ -369,66 +288,14 @@ class TemplateMarkTransformer {
 
         // convert to common mark
         const visitor = new ToCommonMarkVisitor();
-        const dom = this.serializer.fromJSON(ciceroMark);
+        const dom = templateMarkManager.serializer.fromJSON(ciceroMark);
         dom.accept( visitor, {
-            commonMark: this.commonMark,
-            modelManager : this.modelManager,
-            serializer : this.serializer
+            commonMark: new CommonMarkTransformer(),
+            modelManager : templateMarkManager.modelManager,
+            serializer : templateMarkManager.serializer
         });
 
-        return this.serializer.toJSON(dom);
-    }
-
-    /**
-     * Check to see if a ClassDeclaration is an instance of the specified fully qualified
-     * type name.
-     * @internal
-     * @param {ClassDeclaration} classDeclaration The class to test
-     * @param {String} fqt The fully qualified type name.
-     * @returns {boolean} True if classDeclaration an instance of the specified fully
-     * qualified type name, false otherwise.
-     */
-    instanceOf(classDeclaration, fqt) {
-        // Check to see if this is an exact instance of the specified type.
-        if (classDeclaration.getFullyQualifiedName() === fqt) {
-            return true;
-        }
-        // Now walk the class hierachy looking to see if it's an instance of the specified type.
-        let superTypeDeclaration = classDeclaration.getSuperTypeDeclaration();
-        while (superTypeDeclaration) {
-            if (superTypeDeclaration.getFullyQualifiedName() === fqt) {
-                return true;
-            }
-            superTypeDeclaration = superTypeDeclaration.getSuperTypeDeclaration();
-        }
-        return false;
-    }
-
-    /**
-     * Returns the template model for the template
-     * @param {object} introspector - the model introspector for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @throws {Error} if no template model is found, or multiple template models are found
-     * @returns {ClassDeclaration} the template model for the template
-     */
-    getTemplateModel(introspector, templateKind) {
-        let modelType = 'org.accordproject.cicero.contract.AccordContract';
-
-        if (templateKind !== 'contract') {
-            modelType = 'org.accordproject.cicero.contract.AccordClause';
-        }
-
-        const templateModels = introspector.getClassDeclarations().filter((item) => {
-            return !item.isAbstract() && this.instanceOf(item,modelType);
-        });
-
-        if (templateModels.length > 1) {
-            throw new Error(`Found multiple instances of ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
-        } else if (templateModels.length === 0) {
-            throw new Error(`Failed to find an asset that extends ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
-        } else {
-            return templateModels[0];
-        }
+        return templateMarkManager.serializer.toJSON(dom);
     }
 
 }

@@ -37,7 +37,7 @@ class ParserManager {
         this.parser = null;
 
         // Mapping from types to parsers/drafters
-        this.parsingTable = new ParsingTable();
+        this.parsingTable = new ParsingTable(this.modelManager);
     }
 
     /**

@@ -49,7 +49,7 @@ function parserFunOfTemplateMark(ast,params) {
     let parser = null;
     switch(ast.$class) {
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
-        parser = (r) => enumParser(ast.enumValues).map((value) => mkVariable(ast,value));;
+        parser = (r) => enumParser(ast.enumValues).map((value) => mkVariable(ast,value));
         break;
     }
     case 'org.accordproject.templatemark.FormattedVariableDefinition' :
@@ -62,8 +62,18 @@ function parserFunOfTemplateMark(ast,params) {
                 return r[parserName].map((value) => mkVariable(ast,value));
             };
         } else {
-            const parsingFun = params.parsingTable.getParser(elementType);
-            params.templateParser[parserName] = (r) => parsingFun(format);
+            const fromTemplateMark = function(nodes) {
+                const childrenParser = seqFunParser(nodes.map(function (x) {
+                    const fragmentParams = {};
+                    fragmentParams.contract = false;
+                    fragmentParams.parsingTable = params.parsingTable;
+                    fragmentParams.templateParser = params.templateParser;
+                    return parserFunOfTemplateMark(x,fragmentParams);
+                }));
+                return (r) => withParser(ast.elementType,childrenParser(r));
+            };
+            const parsingFun = params.parsingTable.getParser(elementType,format,fromTemplateMark);
+            params.templateParser[parserName] = parsingFun;
             parser = (r) => {
                 return r[parserName].map((value) => mkVariable(ast,value));
             };
@@ -96,7 +106,7 @@ function parserFunOfTemplateMark(ast,params) {
     }
     case 'org.accordproject.templatemark.WithDefinition' : {
         const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,params); }));
-        parser = (r) => withParser(ast,childrenParser(r));
+        parser = (r) => withParser(ast.elementType,childrenParser(r)).map((value) => mkVariable(ast,value));
         break;
     }
     case 'org.accordproject.templatemark.ContractDefinition' :
