@@ -17,7 +17,14 @@
 const { Factory, Serializer } = require('@accordproject/concerto-core');
 
 const ParsingTable = require('./parsingtable');
-const parserOfTemplateMark = require('./ParserOfTemplate');
+const parserOfTemplateMark = require('./ParserOfTemplate').parserOfTemplateMark;
+const parserFunOfTemplateMark = require('./ParserOfTemplate').parserFunOfTemplateMark;
+const draftVisitNodes = require('./ToCiceroMarkVisitor').visitNodes;
+
+/**
+ * Hooks
+ */
+
 
 /**
  * Generates and manages a template parser/drafter
@@ -37,7 +44,7 @@ class ParserManager {
         this.parser = null;
 
         // Mapping from types to parsers/drafters
-        this.parsingTable = new ParsingTable(this.modelManager);
+        this.parsingTable = new ParsingTable(this.modelManager,parserFunOfTemplateMark,draftVisitNodes);
     }
 
     /**
