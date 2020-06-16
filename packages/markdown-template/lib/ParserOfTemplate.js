@@ -62,20 +62,19 @@ function parserFunOfTemplateMark(ast,params) {
                 return r[parserName].map((value) => mkVariable(ast,value));
             };
         } else {
-            const fromTemplateMark = function(nodes) {
-                const childrenParser = seqFunParser(nodes.map(function (x) {
-                    const fragmentParams = {};
-                    fragmentParams.contract = false;
-                    fragmentParams.parsingTable = params.parsingTable;
-                    fragmentParams.templateParser = params.templateParser;
-                    return parserFunOfTemplateMark(x,fragmentParams);
-                }));
-                return (r) => withParser(ast.elementType,childrenParser(r));
-            };
-            const parsingFun = params.parsingTable.getParser(elementType,format,fromTemplateMark);
+            const fragmentParams = {};
+            fragmentParams.contract = false;
+            fragmentParams.parsingTable = params.parsingTable;
+            fragmentParams.templateParser = params.templateParser;
+            const parsingFun = params.parsingTable.getParser(elementType,format,fragmentParams);
             params.templateParser[parserName] = parsingFun;
             parser = (r) => {
-                return r[parserName].map((value) => mkVariable(ast,value));
+                try {
+                    return r[parserName].map((value) => mkVariable(ast,value));
+                } catch(err) {
+                    console.log('ERROR HANDLING VARIABLE ' + elementType);
+                    throw err;
+                }
             };
         }
         break;
@@ -188,4 +187,5 @@ function parserOfTemplateMark(ast,params) {
     return P.createLanguage(templateParser).main;
 }
 
-module.exports = parserOfTemplateMark;
+module.exports.parserFunOfTemplateMark = parserFunOfTemplateMark;
+module.exports.parserOfTemplateMark = parserOfTemplateMark;

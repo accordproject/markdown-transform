@@ -37,21 +37,6 @@ class ToCiceroMarkVisitor {
     }
 
     /**
-     * Clone a CiceroMark node
-     * @param {*} visitor the visitor to use
-     * @param {*} nodes the nodes to visit
-     * @param {*} [parameters] optional parameters
-     */
-    static concertoNodes(serializer, nodes) {
-        const rootNode = {
-            '$class': 'org.accordproject.commonmark.Document',
-            'xmlns' : 'http://commonmark.org/xml/1.0',
-            'nodes': nodes
-        };
-        return serializer.fromJSON(rootNode).nodes;
-    }
-
-    /**
      * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
@@ -122,20 +107,8 @@ class ToCiceroMarkVisitor {
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const data = parameters.data[thing.name];
             const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
-            const fromTemplateMark = function(nodes) {
-                const concertoNodes = ToCiceroMarkVisitor.concertoNodes(parameters.templateMarkSerializer,nodes);
-                return (data,format) => {
-                    const childrenParameters = {
-                        parserManager: parameters.parserManager,
-                        templateMarkModelManager: parameters.templateMarkModelManager,
-                        templateMarkSerializer: parameters.templateMarkSerializer,
-                        data: data,
-                        kind: 'clause',
-                    };
-                    return ToCiceroMarkVisitor.visitNodes(that, concertoNodes, childrenParameters);
-                }
-            };
-            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType,fromTemplateMark);
+            parameters.visitor = that;
+            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType,thing.format,parameters);
             const draftedTo = draftFun(data,thing.format);
             if (typeof draftedTo === 'string') {
                 thing.value = '' + draftedTo;
