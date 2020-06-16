@@ -25,17 +25,27 @@ const stringDrafter = require('./coredrafters').stringDrafter;
 const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
 const resourceDrafter = require('./coredrafters').resourceDrafter;
 
+const {
+    templateMarkManager,
+    grammarToTokens,
+    tokensToUntypedTemplateMarkFragment,
+    templateMarkTypingFromType,
+} = require('./templatemarkutil');
+
 /**
  * Parsing table for variables
  * This maps types to their parser
  */
 const defaultParsingTable = {
-    'Integer' : { parse: integerParser, draft: integerDrafter },
-    'Long' : { parse: integerParser, draft: integerDrafter },
-    'Double' : { parse: doubleParser, draft: doubleDrafter },
-    'String' : { parse: stringParser, draft: stringDrafter },
-    'DateTime' : { parse: dateTimeParser, draft: dateTimeDrafter },
-    'Resource' : { parse: stringParser, draft: resourceDrafter },
+    'Integer' : { kind: 'javascript', parse: integerParser, draft: integerDrafter },
+    'Long' : { kind: 'javascript', parse: integerParser, draft: integerDrafter },
+    'Double' : { kind: 'javascript', parse: doubleParser, draft: doubleDrafter },
+    'String' : { kind: 'javascript', parse: stringParser, draft: stringDrafter },
+    'DateTime' : { kind: 'javascript', parse: dateTimeParser, draft: dateTimeDrafter },
+    'Resource' : { kind: 'javascript', parse: stringParser, draft: resourceDrafter },
+    'org.accordproject.time.Duration' : { kind: 'templatemark', nodes: [{'$class':'org.accordproject.templatemark.VariableDefinition','name':'amount','elementType':'Long'},{'$class':'org.accordproject.commonmark.Text','text':' '},{'$class':'org.accordproject.templatemark.EnumVariableDefinition','enumValues':['seconds','minutes','hours','days','weeks'],'name':'unit'}] },
+    'org.accordproject.cicero.contract.AccordParty' : { kind : 'grammar', grammar: '{{partyId}}' },
+    'org.accordproject.money.MonetaryAmount' : { kind: 'templatemark', nodes: [{'$class':'org.accordproject.templatemark.VariableDefinition','name':'doubleValue','elementType':'Double'},{'$class':'org.accordproject.commonmark.Text','text':' '},{'$class':'org.accordproject.templatemark.EnumVariableDefinition','enumValues':['AED','AFN','ALL','AMD','ANG','AOA','ARS','AUD','AWG','AZN','BAM','BBD','BDT','BGN','BHD','BIF','BMD','BND','BOB','BOV','BRL','BSD','BTN','BWP','BYN','BZD','CAD','CDF','CHE','CHF','CHW','CLF','CLP','CNY','COP','COU','CRC','CUC','CUP','CVE','CZK','DJF','DKK','DOP','DZD','EGP','ERN','ETB','EUR','FJD','FKP','GBP','GEL','GHS','GIP','GMD','GNF','GTQ','GYD','HKD','HNL','HRK','HTG','HUF','IDR','ILS','INR','IQD','IRR','ISK','JMD','JOD','JPY','KES','KGS','KHR','KMF','KPW','KRW','KWD','KYD','KZT','LAK','LBP','LKR','LRD','LSL','LYD','MAD','MDL','MGA','MKD','MMK','MNT','MOP','MRU','MUR','MVR','MWK','MXN','MXV','MYR','MZN','NAD','NGN','NIO','NOK','NPR','NZD','OMR','PAB','PEN','PGK','PHP','PKR','PLN','PYG','QAR','RON','RSD','RUB','RWF','SAR','SBD','SCR','SDG','SEK','SGD','SHP','SLL','SOS','SRD','SSP','STN','SVC','SYP','SZL','THB','TJS','TMT','TND','TOP','TRY','TTD','TWD','TZS','UAH','UGX','USD','USN','UYI','UYU','UZS','VEF','VND','VUV','WST','XAF','XAG','XAU','XBA','XBB','XBC','XBD','XCD','XDR','XOF','XPD','XPF','XPT','XSU','XTS','XUA','XXX','YER','ZAR','ZMW','ZWL'],'name':'currencyCode'}] }
 };
 
 /**
@@ -47,7 +57,8 @@ class ParsingTable {
      * Create the ParsingTable
      * @param {object} template - the template instance
      */
-    constructor() {
+    constructor(modelManager) {
+        this.modelManager = modelManager;
         // Mapping from types to parsers/drafters
         this.parsingTable = defaultParsingTable;
     }
@@ -71,14 +82,27 @@ class ParsingTable {
     /**
      * Gets parser for a given type
      * @param {string} elementType the type
+     * @param {string} format the format
+     * @param {object} fromTemplateMark how to get the parser from templatemark
      * @return {*} the parser
      */
-    getParser(elementType) {
+    getParser(elementType,format,fromTemplateMark) {
         const entry = this.getParsingTable()[elementType];
-        if (entry) {
-            return entry.parse;
-        } else {
+        if (!entry) {
             throw new Error('No known parser for type ' + elementType);
+        }
+        if (entry.kind === 'javascript') {
+            return (r) => entry.parse(format);
+        } else if (entry.kind === 'templatemark') {
+            return fromTemplateMark(entry.nodes);
+        } else if (entry.kind === 'grammar') {
+            const tokenStream = grammarToTokens(entry.grammar);
+            const template = tokensToUntypedTemplateMarkFragment(tokenStream);
+            const typedTemplate = templateMarkTypingFromType(template,this.modelManager,elementType);
+
+            return fromTemplateMark(typedTemplate.nodes[0].nodes); // XXX not robust beyond a paragraph
+        } else {
+            throw new Error('Unknown parsing kind ' + entry.kind);
         }
     }
 
@@ -87,12 +111,23 @@ class ParsingTable {
      * @param {string} elementType the type
      * @return {*} the drafter
      */
-    getDrafter(elementType) {
+    getDrafter(elementType,fromTemplateMark) {
         const entry = this.getParsingTable()[elementType];
-        if (entry) {
-            return entry.draft;
-        } else {
+        if (!entry) {
             throw new Error('No known drafter for type ' + elementType);
+        }
+        if (entry.kind === 'javascript') {
+            return entry.draft;
+        } else if (entry.kind === 'templatemark') {
+            return fromTemplateMark(entry.nodes);
+        } else if (entry.kind === 'grammar') {
+            const tokenStream = grammarToTokens(entry.grammar);
+            const template = tokensToUntypedTemplateMarkFragment(tokenStream);
+            const typedTemplate = templateMarkTypingFromType(template,this.modelManager,elementType);
+
+            return fromTemplateMark(typedTemplate.nodes[0].nodes[0].nodes); // XXX not robust beyond a paragraph
+        } else {
+            throw new Error('Unknown kind ' + entry.kind);
         }
     }
 

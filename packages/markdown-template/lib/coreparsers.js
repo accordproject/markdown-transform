@@ -63,13 +63,13 @@ function variableEqual(value1,value2) {
 
 /**
  * Creates a compound variable output
- * @param {object} variable the variable ast node
+ * @param {object} elementType the type of the variable
  * @param {*} value the variable components
  * @returns {object} the compound variable
  */
-function mkCompoundVariable(variable,value) {
+function mkCompoundVariable(elementType,value) {
     const result = {};
-    result.$class = variable.elementType;
+    result.$class = elementType;
     for(let i = 0; i < value.length; i++) {
         const field = value[i];
         if(result[field.name]) {
@@ -110,22 +110,8 @@ function mkList(listNode,value) {
     result.elementType = 'List';
     result.value = [];
     for(let i = 0; i < value.length; i++) {
-        result.value.push(mkCompoundVariable({'elementType':listNode.elementType},value[i]));
+        result.value.push(mkCompoundVariable(listNode.elementType,value[i]));
     }
-    return result;
-}
-
-/**
- * Creates a With output
- * @param {object} withNode the with ast node
- * @param {*} value the variable value
- * @returns {object} the with
- */
-function mkWith(withNode,value) {
-    const result = {};
-    result.name = withNode.name;
-    result.elementType = withNode.elementType;
-    result.value = mkCompoundVariable(withNode,value);
     return result;
 }
 
@@ -136,7 +122,8 @@ function mkWith(withNode,value) {
  * @returns {object} the clause
  */
 function mkClause(clause,value) {
-    return mkCompoundVariable(clause,value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
+    return mkCompoundVariable(clause.elementType,
+                              value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
 }
 
 /**
@@ -156,7 +143,8 @@ function mkWrappedClause(clause,value) {
  * @returns {object} the contract
  */
 function mkContract(contract,value) {
-    return mkCompoundVariable(contract,value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
+    return mkCompoundVariable(contract.elementType,
+                              value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
 }
 
 /**
@@ -314,13 +302,13 @@ function olistBlockParser(listNode,content) {
 
 /**
  * Creates a parser for a with block
- * @param {object} withNode the with ast node
+ * @param {object} elementType the type for the with clause
  * @param {object} content the parser for the content of the with
  * @returns {object} the parser
  */
-function withParser(withNode,content) {
+function withParser(elementType,content) {
     return content.map(function(x) {
-        return mkWith(withNode,flatten(x));
+        return mkCompoundVariable(elementType,flatten(x));
     });
 }
 

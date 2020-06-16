@@ -77,6 +77,9 @@ class TypingVisitor {
                 } else {
                     const elementType = property.getFullyQualifiedTypeName();
                     thing.elementType = elementType;
+                } /* else {
+                    const elementType = property.getFullyQualifiedTypeName();
+                    thing.elementType = elementType;
                     const propertyType = property.getParent().getModelFile().getType(property.getType());
                     const modelVisitor = new ModelVisitor();
                     const genericParameters = {
@@ -90,7 +93,7 @@ class TypingVisitor {
                     thing.name = genericData.name;
                     thing.nodes = genericData.nodes;
                     delete thing.format;
-                }
+                } */
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
@@ -107,8 +110,6 @@ class TypingVisitor {
                 const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
                 TypingVisitor.visitChildren(this, thing, {
                     templateMarkModelManager:parameters.templateMarkModelManager,
-                    templateMarkFactory:parameters.templateMarkFactory,
-                    templateMarkSerializer:parameters.templateMarkSerializer,
                     introspector:parameters.introspector,
                     model:clauseModel,
                     kind:parameters.kind
@@ -129,8 +130,6 @@ class TypingVisitor {
             const withModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypingVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
-                templateMarkFactory:parameters.templateMarkFactory,
-                templateMarkSerializer:parameters.templateMarkSerializer,
                 introspector:parameters.introspector,
                 model:withModel,
                 kind:parameters.kind
@@ -147,8 +146,6 @@ class TypingVisitor {
             const listModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypingVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
-                templateMarkFactory:parameters.templateMarkFactory,
-                templateMarkSerializer:parameters.templateMarkSerializer,
                 introspector:parameters.introspector,
                 model:listModel,
                 kind:parameters.kind

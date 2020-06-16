@@ -28,12 +28,27 @@ function flatten(arr) {
 class ToCiceroMarkVisitor {
     /**
      * Clone a CiceroMark node
-     * @param {*} visitor the visitor to use
-     * @param {*} thing the node to visit
+     * @param {*} serializer the serializer
+     * @param {*} node the node to visit
      * @param {*} [parameters] optional parameters
      */
     static cloneNode(serializer, node) {
         return serializer.fromJSON(serializer.toJSON(node));
+    }
+
+    /**
+     * Clone a CiceroMark node
+     * @param {*} visitor the visitor to use
+     * @param {*} nodes the nodes to visit
+     * @param {*} [parameters] optional parameters
+     */
+    static concertoNodes(serializer, nodes) {
+        const rootNode = {
+            '$class': 'org.accordproject.commonmark.Document',
+            'xmlns' : 'http://commonmark.org/xml/1.0',
+            'nodes': nodes
+        };
+        return serializer.fromJSON(rootNode).nodes;
     }
 
     /**
@@ -107,8 +122,26 @@ class ToCiceroMarkVisitor {
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             const data = parameters.data[thing.name];
             const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
-            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType);
-            thing.value = '' + draftFun(data,thing.format);
+            const fromTemplateMark = function(nodes) {
+                const concertoNodes = ToCiceroMarkVisitor.concertoNodes(parameters.templateMarkSerializer,nodes);
+                return (data,format) => {
+                    const childrenParameters = {
+                        parserManager: parameters.parserManager,
+                        templateMarkModelManager: parameters.templateMarkModelManager,
+                        templateMarkSerializer: parameters.templateMarkSerializer,
+                        data: data,
+                        kind: 'clause',
+                    };
+                    return ToCiceroMarkVisitor.visitNodes(that, concertoNodes, childrenParameters);
+                }
+            };
+            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType,fromTemplateMark);
+            const draftedTo = draftFun(data,thing.format);
+            if (typeof draftedTo === 'string') {
+                thing.value = '' + draftedTo;
+            } else {
+                return draftedTo;
+            }
         }
             break;
         case 'ContractDefinition': {
