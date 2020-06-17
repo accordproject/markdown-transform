@@ -28,6 +28,9 @@ const resourceDrafter = require('./coredrafters').resourceDrafter;
 const seqFunParser = require('./coreparsers').seqFunParser;
 const withParser = require('./coreparsers').withParser;
 
+const Introspector = require('@accordproject/concerto-core').Introspector;
+const ModelVisitor = require('./ModelVisitor');
+
 Error.stackTraceLimit = Infinity;
 
 const {
@@ -81,10 +84,12 @@ class ParsingTable {
      */
     constructor(modelManager,parserFunOfTemplateMark,draftVisitNodes) {
         this.modelManager = modelManager;
+        this.introspector = new Introspector(this.modelManager);
+
         // Mapping from types to parsers/drafters
         this.parsingTable = defaultParsingTable();
 
-        // Hooks
+        // Hook: How to compile from template mark to parser
         this.parseFromTemplateMark = function(nodes,elementType,params) {
             const childrenParser = seqFunParser(nodes.map(function (x) {
                 return parserFunOfTemplateMark(x,params);
@@ -93,6 +98,7 @@ class ParsingTable {
                 return withParser(elementType,childrenParser(r))
             };
         };
+        // Hook: How to draft from template mark to parser
         this.draftFromTemplateMark = function(nodes,elementType,params) {
             return (data) => {
                 const cNodes = concertoNodes(params.templateMarkSerializer,nodes);
@@ -106,6 +112,14 @@ class ParsingTable {
                 return draftVisitNodes(params.visitor, cNodes, childrenParameters);
             }
         };
+        // Hook: How to compile from CTO to ciceromark
+        this.templateMarkFromModel = function(name,model,elementType) {
+            const modelVisitor = new ModelVisitor();
+            const genericParameters = { name: name };
+            const generic = model.accept(modelVisitor,genericParameters);
+            const validated = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(generic));
+            return validated.nodes;
+        }
     }
 
     /**
@@ -125,8 +139,27 @@ class ParsingTable {
     }
 
     /**
+     * Compile a CTO model into its TemplateMark equivalent
+     * @param {string} name the property name
+     * @param {object} parsingTable the parsing table
+     * @param {string} elementType the type
+     */
+    compileModel(name,parsingTable,elementType) {
+        let model;
+        try {
+            model = this.introspector.getClassDeclaration(elementType);
+        } catch(err) {
+            throw err;
+        }
+        const templateMark = this.templateMarkFromModel(name,model,elementType);
+        parsingTable[elementType] = {};
+        parsingTable[elementType]['templatemark'] = {};
+        parsingTable[elementType]['templatemark'].nodes = templateMark;
+    }
+
+    /**
      * Compile an entry into its JavaScript equivalent
-     * @param {object} entry the parsing table
+     * @param {object} entry the parsing table entry for this type
      * @param {string} elementType the type
      * @param {object} parseParams parameters for the nested parse generation
      * @param {object} draftParams parameters for the nested draft generation
@@ -135,20 +168,21 @@ class ParsingTable {
         if (Object.prototype.hasOwnProperty.call(entry,'inline')) {
             const tokenStream = grammarToTokens(entry['inline'].grammar);
             const template = tokensToUntypedTemplateMarkFragment(tokenStream);
-            const typedTemplate = templateMarkTypingFromType(template,this.modelManager,elementType);
             entry['templatemark'] = {};
-            entry['templatemark'].nodes = typedTemplate.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph
+            entry['templatemark'].nodes = template.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph
         }
         if (Object.prototype.hasOwnProperty.call(entry,'templatemark')) {
+            const template = entry['templatemark'].nodes;
+            const typedTemplate = templateMarkTypingFromType(template,this.modelManager,elementType);
             if(parseParams) {
-                const parse = this.parseFromTemplateMark(entry['templatemark'].nodes,elementType,parseParams);
+                const parse = this.parseFromTemplateMark(typedTemplate,elementType,parseParams);
                 if (!Object.prototype.hasOwnProperty.call(entry,'javascript')) {
                     entry['javascript'] = {};
                 }
                 entry['javascript'].parse = (format) => parse;
             }
             if(draftParams) {
-                const draft = this.draftFromTemplateMark(entry['templatemark'].nodes,elementType,draftParams);
+                const draft = this.draftFromTemplateMark(typedTemplate,elementType,draftParams);
                 if (!Object.prototype.hasOwnProperty.call(entry,'javascript')) {
                     entry['javascript'] = {};
                 }
@@ -159,16 +193,18 @@ class ParsingTable {
     
     /**
      * Gets parser for a given type
+     * @param {string} name the property
      * @param {string} elementType the type
      * @param {string} format the format
      * @param {object} parseParams parameters for the nested parse generation
      * @return {*} the parser
      */
-    getParser(elementType,format,parseParams) {
-        const entry = this.getParsingTable()[elementType];
-        if (!entry) {
-            throw new Error('No known parser for type ' + elementType);
+    getParser(name,elementType,format,parseParams) {
+        const parsingTable = this.getParsingTable();
+        if (!parsingTable[elementType]) {
+            this.compileModel(name,parsingTable,elementType);
         }
+        const entry = parsingTable[elementType];
         if (!Object.prototype.hasOwnProperty.call(entry,'javascript'||!entry['javascript'].parse)) {
             this.compileEntry(entry,elementType,parseParams,null);
         }
@@ -181,16 +217,18 @@ class ParsingTable {
 
     /**
      * Gets drafter for a given type
+     * @param {string} name the property
      * @param {string} elementType the type
      * @param {string} format the format
      * @param {object} draftParams parameters for the nested draft generation
      * @return {*} the drafter
      */
-    getDrafter(elementType,format,draftParams) {
-        const entry = this.getParsingTable()[elementType];
-        if (!entry) {
-            throw new Error('No known drafter for type ' + elementType);
+    getDrafter(name,elementType,format,draftParams) {
+        const parsingTable = this.getParsingTable();
+        if (!parsingTable[elementType]) {
+            this.compileModel(name,parsingTable,elementType);
         }
+        const entry = parsingTable[elementType];
         if (!Object.prototype.hasOwnProperty.call(entry,'javascript')||!entry['javascript'].draft) {
             this.compileEntry(entry,elementType,null,draftParams);
         }

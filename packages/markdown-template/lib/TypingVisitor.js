@@ -16,7 +16,6 @@
 
 const RelationshipDeclaration = require('@accordproject/concerto-core').RelationshipDeclaration;
 
-const ModelVisitor = require('./ModelVisitor');
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 /**
@@ -77,23 +76,7 @@ class TypingVisitor {
                 } else {
                     const elementType = property.getFullyQualifiedTypeName();
                     thing.elementType = elementType;
-                } /* else {
-                    const elementType = property.getFullyQualifiedTypeName();
-                    thing.elementType = elementType;
-                    const propertyType = property.getParent().getModelFile().getType(property.getType());
-                    const modelVisitor = new ModelVisitor();
-                    const genericParameters = {
-                        name: property.getName(),
-                    };
-                    const generic = propertyType.accept(modelVisitor,genericParameters);
-                    const genericData = parameters.templateMarkSerializer.fromJSON(generic);
-                    const withModel = parameters.introspector.getClassDeclaration(elementType);
-                    genericData.accept(that, parameters);
-                    thing.$classDeclaration = genericData.$classDeclaration;
-                    thing.name = genericData.name;
-                    thing.nodes = genericData.nodes;
-                    delete thing.format;
-                } */
+                }
             } else {
                 throw new Error('Unknown property ' + thing.name);
             }
