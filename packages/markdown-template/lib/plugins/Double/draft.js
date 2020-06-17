@@ -17,7 +17,7 @@
 /**
  * Creates a drafter for Double
  * @param {object} value the double
- * @returns {object} the text
+ * @returns {string} the text
  */
 function doubleIEEEDrafter(value) {
     if (Math.floor(value) == value) return (new Number(value)).toFixed(1); // Make sure there is always decimal point
@@ -27,7 +27,7 @@ function doubleIEEEDrafter(value) {
 /**
  * Creates a drafter for a double
  * @param {object} value the DateTime
- * @returns {object} the text
+ * @returns {string} the text
  */
 function doubleDrafter(v,format) {
     if (format) {
@@ -51,4 +51,4 @@ function doubleDrafter(v,format) {
     }
 }
 
-module.exports.doubleDrafter = doubleDrafter;
+module.exports = doubleDrafter;

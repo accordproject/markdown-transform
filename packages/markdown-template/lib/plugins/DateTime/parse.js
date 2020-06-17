@@ -15,11 +15,11 @@
 'use strict';
 
 const P = require('parsimmon');
-const textParser = require('./coreparsers').textParser;
-const seqParser = require('./coreparsers').seqParser;
-const choiceStringsParser = require('./coreparsers').choiceStringsParser;
-const mkVariable = require('./coreparsers').mkVariable;
-const mkCompoundVariable = require('./coreparsers').mkCompoundVariable;
+const textParser = require('../../combinators').textParser;
+const seqParser = require('../../combinators').seqParser;
+const choiceStringsParser = require('../../combinators').choiceStringsParser;
+const mkVariable = require('../../combinators').mkVariable;
+const mkCompoundVariable = require('../../combinators').mkCompoundVariable;
 
 /**
  * English-language months
@@ -280,4 +280,4 @@ function dateTimeParser(format) {
     });
 }
 
-module.exports.dateTimeParser = dateTimeParser;
+module.exports = (format) => (r) => dateTimeParser(format);

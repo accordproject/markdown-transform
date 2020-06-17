@@ -15,9 +15,9 @@
 'use strict';
 
 const P = require('parsimmon');
-const textParser = require('./coreparsers').textParser;
-const seqParser = require('./coreparsers').seqParser;
-const choiceStringsParser = require('./coreparsers').choiceStringsParser;
+const textParser = require('../../combinators').textParser;
+const seqParser = require('../../combinators').seqParser;
+const choiceStringsParser = require('../../combinators').choiceStringsParser;
 
 /**
  * Creates a parser for IEEE Double
@@ -92,4 +92,4 @@ function doubleParser(format) {
     }
 }
 
-module.exports.doubleParser = doubleParser;
+module.exports = (format) => (r) => doubleParser(format);

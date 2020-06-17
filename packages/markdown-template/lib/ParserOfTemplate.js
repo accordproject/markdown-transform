@@ -17,28 +17,28 @@
 const P = require('parsimmon');
 
 // Basic parser constructors
-const textParser = require('./coreparsers').textParser;
-const computedParser = require('./coreparsers').computedParser;
-const enumParser = require('./coreparsers').enumParser;
-const seqParser = require('./coreparsers').seqParser;
-const seqFunParser = require('./coreparsers').seqFunParser;
-const condParser = require('./coreparsers').condParser;
-const ulistBlockParser = require('./coreparsers').ulistBlockParser;
-const olistBlockParser = require('./coreparsers').olistBlockParser;
-const withParser = require('./coreparsers').withParser;
-const clauseParser = require('./coreparsers').clauseParser;
-const wrappedClauseParser = require('./coreparsers').wrappedClauseParser;
-const contractParser = require('./coreparsers').contractParser;
-const mkVariable = require('./coreparsers').mkVariable;
+const textParser = require('./combinators').textParser;
+const computedParser = require('./combinators').computedParser;
+const enumParser = require('./combinators').enumParser;
+const seqParser = require('./combinators').seqParser;
+const seqFunParser = require('./combinators').seqFunParser;
+const condParser = require('./combinators').condParser;
+const ulistBlockParser = require('./combinators').ulistBlockParser;
+const olistBlockParser = require('./combinators').olistBlockParser;
+const withParser = require('./combinators').withParser;
+const clauseParser = require('./combinators').clauseParser;
+const wrappedClauseParser = require('./combinators').wrappedClauseParser;
+const contractParser = require('./combinators').contractParser;
+const mkVariable = require('./combinators').mkVariable;
 
-const emphParser = require('./coreparsers').emphParser;
-const strongParser = require('./coreparsers').strongParser;
-const documentParser = require('./coreparsers').documentParser;
-const paragraphParser = require('./coreparsers').paragraphParser;
-const headingParser = require('./coreparsers').headingParser;
-const ulistParser = require('./coreparsers').ulistParser;
-const olistParser = require('./coreparsers').olistParser;
-const codeBlockParser = require('./coreparsers').codeBlockParser;
+const emphParser = require('./combinators').emphParser;
+const strongParser = require('./combinators').strongParser;
+const documentParser = require('./combinators').documentParser;
+const paragraphParser = require('./combinators').paragraphParser;
+const headingParser = require('./combinators').headingParser;
+const ulistParser = require('./combinators').ulistParser;
+const olistParser = require('./combinators').olistParser;
+const codeBlockParser = require('./combinators').codeBlockParser;
 
 /**
  * Creates a parser function from a TemplateMark DOM
