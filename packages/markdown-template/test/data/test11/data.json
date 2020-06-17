@@ -1,1 +1,1 @@
-{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"friend":{"$class":"org.test.Person","firstName":"Steve","lastName":"Doe"},"currency":"EUR","forceMajeure":false,"clauseId":"2ee7579c-061e-4ea2-93a8-ee5e0c914691"}
+{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"friend":{"$class":"org.test.Person","firstName":"Steve","lastName":"Doe"},"currency":"EUR","forceMajeure":false,"clauseId":"592c7f1c-5586-444f-ac0c-95d64dad7719"}
