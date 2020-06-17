@@ -66,7 +66,7 @@ function parserFunOfTemplateMark(ast,params) {
             fragmentParams.contract = false;
             fragmentParams.parsingTable = params.parsingTable;
             fragmentParams.templateParser = params.templateParser;
-            const parsingFun = params.parsingTable.getParser(elementType,format,fragmentParams);
+            const parsingFun = params.parsingTable.getParser(ast.name,elementType,format,fragmentParams);
             params.templateParser[parserName] = parsingFun;
             parser = (r) => {
                 try {

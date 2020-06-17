@@ -151,7 +151,17 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
     const introspector = new Introspector(modelManager);
     const model = findElementModel(introspector, elementType);
 
-    return templateMarkTypingGen(template,introspector,model,'clause');
+    const rootNode = {
+        '$class': 'org.accordproject.commonmark.Document',
+        'xmlns' : 'http://commonmark.org/xml/1.0',
+        'nodes': [{
+            '$class': 'org.accordproject.templatemark.ContractDefinition',
+            'name': 'top',
+            'nodes': template
+        }]
+    };
+    const rootNodeTyped = templateMarkTypingGen(rootNode,introspector,model,'clause');
+    return rootNodeTyped.nodes[0].nodes;
 }
 
 /**

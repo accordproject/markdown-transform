@@ -108,7 +108,7 @@ class ToCiceroMarkVisitor {
             const data = parameters.data[thing.name];
             const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
             parameters.visitor = that;
-            const draftFun = parameters.parserManager.getParsingTable().getDrafter(elementType,thing.format,parameters);
+            const draftFun = parameters.parserManager.getParsingTable().getDrafter(thing.name,elementType,thing.format,parameters);
             const draftedTo = draftFun(data,thing.format);
             if (typeof draftedTo === 'string') {
                 thing.value = '' + draftedTo;

@@ -15,10 +15,11 @@
 'use strict';
 
 // Parser from template AST
+const ModelManager = require('@accordproject/concerto-core').ModelManager;
 const parserOfTemplateMark = require('../lib/ParserOfTemplate').parserOfTemplateMark;
 const ParsingTable = require('../lib/parsingtable');
 
-const params = {contract:false,parsingTable:new ParsingTable()};
+const params = {contract:false,parsingTable:new ParsingTable(new ModelManager())};
 
 // Variables
 const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'String' };
@@ -142,7 +143,7 @@ describe('#invalidparsers', () => {
 
     describe('#templateErr2', () => {
         it('should throw for wrong variable type', async () => {
-            (() => parserOfTemplateMark(templateErr2,params)).should.throw('No known parser for type FOO');
+            (() => parserOfTemplateMark(templateErr2,params)).should.throw('Namespace is not defined for type FOO');
         });
     });
 });
