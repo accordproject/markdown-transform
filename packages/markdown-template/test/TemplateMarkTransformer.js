@@ -99,13 +99,11 @@ const parseFailures = [
  */
 function runSuccesses() {
     // This tests custom extension to the parser
-    const customTable = {
-        'org.test.Person' : { 'inline' : '<First Name: {{firstName}} Last Name: {{lastName}}>' }
-    };
-    const templateMarkTransformer = new TemplateMarkTransformer(customTable);
     const commonMarkTransformer = new CommonMarkTransformer();
 
     for (const test of successes) {
+        const customTable = require('./data/test11/plugin');
+        const templateMarkTransformer = new TemplateMarkTransformer(customTable);
         const name = test.name;
         const kind = test.kind;
         const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
