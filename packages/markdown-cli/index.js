@@ -15,8 +15,9 @@
 
 'use strict';
 
-const Logger = require('@accordproject/concerto-core').Logger;
-const Commands = require('./lib/commands');
+const path = require('path');
+const logger = require('@accordproject/concerto-core').Logger;
+const commands = require('./lib/commands');
 
 require('yargs')
     .scriptName('markus')
@@ -63,6 +64,10 @@ require('yargs')
             type: 'string',
             array: true
         });
+        yargs.option('plugin', {
+            describe: 'path to the parser plugin',
+            type: 'string'
+        });
         yargs.option('grammar', {
             describe: 'template grammar',
             type: 'string'
@@ -74,29 +79,35 @@ require('yargs')
         });
     }, (argv) => {
         if (argv.verbose) {
-            Logger.info(`transform input ${argv.input} file`);
+            logger.info(`transform input ${argv.input} file`);
         }
 
         try {
-            argv = Commands.validateTransformArgs(argv);
+            argv = commands.validateTransformArgs(argv);
             const parameters = {};
             parameters.inputFileName = argv.input;
             parameters.ctoFiles = argv.ctoFiles;
+            // Load the plugin if given
+            let plugin = {};
+            if (argv.plugin) {
+                plugin = require(path.resolve(process.cwd(),argv.plugin));
+            }
+            parameters.plugin = plugin;
             parameters.grammar = argv.grammar;
             parameters.templateKind = argv.contract ? 'contract' : 'clause';
             const options = {};
             options.verbose = argv.verbose;
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
-            return Commands.transform(argv.input, argv.from, argv.to, argv.output, parameters, options)
+            return commands.transform(argv.input, argv.from, argv.to, argv.output, parameters, options)
                 .then((result) => {
-                    if(result) {Logger.info('\n'+result);}
+                    if(result) {logger.info('\n'+result);}
                 })
                 .catch((err) => {
-                    Logger.error(err);
+                    logger.error(err);
                 });
         } catch (err){
-            Logger.error(err);
+            logger.error(err);
             return;
         }
     })
