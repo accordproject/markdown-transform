@@ -94,6 +94,10 @@ function _throwParseError(markdown,result,fileName) {
  * Support for CiceroMark Templates
  */
 class TemplateMarkTransformer {
+    constructor(parsingTable = {}) {
+        this.parsingTable = parsingTable;
+    }
+
     /**
      * Converts a grammar string to a token stream
      * @param {object} grammarInput the template grammar
@@ -186,7 +190,7 @@ class TemplateMarkTransformer {
      */
     fromCommonMark(commonMarkInput, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager);
+        const parserManager = new ParserManager(modelManager,this.parsingTable);
         parserManager.setGrammarAst(templateMark);
         parserManager.buildParser();
 
@@ -239,7 +243,7 @@ class TemplateMarkTransformer {
      */
     instantiateCiceroMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager);
+        const parserManager = new ParserManager(modelManager,this.parsingTable);
         parserManager.setGrammarAst(templateMark);
 
         const parameters = {

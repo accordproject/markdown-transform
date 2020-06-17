@@ -35,7 +35,7 @@ class ParserManager {
      * Create the ParserManager.
      * @param {object} template - the template instance
      */
-    constructor(modelManager) {
+    constructor(modelManager,parsingTable) {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
@@ -45,6 +45,7 @@ class ParserManager {
 
         // Mapping from types to parsers/drafters
         this.parsingTable = new ParsingTable(this.modelManager,parserFunOfTemplateMark,draftVisitNodes);
+        this.parsingTable.addParsingTable(parsingTable);
     }
 
     /**

@@ -97,7 +97,11 @@ const parseFailures = [
  * Run positive tests workload
  */
 function runSuccesses() {
-    const templateMarkTransformer = new TemplateMarkTransformer();
+    // This tests custom extension to the parser
+    const customTable = {
+        'org.test.Person' : { 'inline' : '<First Name: {{firstName}} Last Name: {{lastName}}>' }
+    };
+    const templateMarkTransformer = new TemplateMarkTransformer(customTable);
     const commonMarkTransformer = new CommonMarkTransformer();
 
     for (const test of successes) {

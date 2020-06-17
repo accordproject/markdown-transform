@@ -31,8 +31,6 @@ const withParser = require('./coreparsers').withParser;
 const Introspector = require('@accordproject/concerto-core').Introspector;
 const ModelVisitor = require('./ModelVisitor');
 
-Error.stackTraceLimit = Infinity;
-
 const {
     templateMarkManager,
     grammarToTokens,
@@ -136,6 +134,14 @@ class ParsingTable {
     }
 
     /**
+     * Adds parsing table for variables
+     * @param {object} table the parsing table
+     */
+    addParsingTable(table) {
+        this.parsingTable = Object.assign(this.parsingTable,table);
+    }
+
+    /**
      * Compile a CTO model into its TemplateMark equivalent
      * @param {string} name the property name
      * @param {object} parsingTable the parsing table
@@ -163,7 +169,7 @@ class ParsingTable {
      */
     compileEntry(entry,elementType,parseParams,draftParams) {
         if (Object.prototype.hasOwnProperty.call(entry,'inline')) {
-            const tokenStream = grammarToTokens(entry['inline'].grammar);
+            const tokenStream = grammarToTokens(entry['inline']);
             const template = tokensToUntypedTemplateMarkFragment(tokenStream);
             entry['templatemark'] = {};
             entry['templatemark'].nodes = template.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph
