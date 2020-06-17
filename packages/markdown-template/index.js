@@ -19,7 +19,6 @@
  * @module markdown-template
  */
 
-module.exports.ParserManager = require('./lib/parsermanager').ParserManager;
+module.exports.ParserManager = require('./lib/parsermanager');
 module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
 module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
-
