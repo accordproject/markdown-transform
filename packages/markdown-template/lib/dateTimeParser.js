@@ -260,7 +260,9 @@ function parserOfField(field) {
  * @param {format} format the format
  * @returns {object} the parser
  */
-function dateTimeParser(format = 'MM/DD/YYYY') {
+function dateTimeParser(format) {
+    if (!format) { format = 'MM/DD/YYYY'; }
+
     // XXX the format could be parsed as well instead of this split which seems error-prone
     let hasTimeZone = format.charAt(format.length-1) === 'Z';
     if(hasTimeZone) {
