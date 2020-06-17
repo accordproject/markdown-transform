@@ -14,17 +14,11 @@
 
 'use strict';
 
-const moment = require('moment-mini');
-
-/**
- * Creates a drafter for DateTime
- * @param {object} value the DateTime
- * @param {object} format the the format
- * @returns {object} the text
- */
-function dateTimeDrafter(value,format) {
-    const f = format ? format : 'MM/DD/YYYY';
-    return moment.parseZone(value).format(f);
-}
-
-module.exports.dateTimeDrafter = dateTimeDrafter;
+module.exports = {
+    'Resource': {
+        javascript: {
+            parse: require('./parse'),
+            draft: require('./draft')
+        }
+    }
+};

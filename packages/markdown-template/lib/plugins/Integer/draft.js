@@ -14,38 +14,15 @@
 
 'use strict';
 
-/**
- * Core drafting components
- */
+const P = require('parsimmon');
 
 /**
  * Creates a drafter for Integer
  * @param {object} value the Integer
- * @returns {object} the text
+ * @returns {string} the text
  */
 function integerDrafter(value) {
     return '' + value;
 }
 
-/**
- * Creates a drafter for String
- * @param {object} value the String
- * @returns {object} the text
- */
-function stringDrafter(value) {
-    return '' + '"' + value + '"';
-}
-
-/**
- * Creates a drafter for Resources
- * @param {object} value the String
- * @returns {object} the text
- */
-function resourceDrafter(value) {
-    const match = value.match(/resource:[^#]*#([^]*)/);
-    return '' + '"' + decodeURIComponent(match[1]) + '"';
-}
-
-module.exports.integerDrafter = integerDrafter;
-module.exports.stringDrafter = stringDrafter;
-module.exports.resourceDrafter = resourceDrafter;
+module.exports = integerDrafter;

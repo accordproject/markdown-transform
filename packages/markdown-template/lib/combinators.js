@@ -219,28 +219,6 @@ function computedParser() {
 }
 
 /**
- * Creates a parser for Integer
- * @param {object} variable the variable ast node
- * @returns {object} the parser
- */
-function integerParser() {
-    return P.regexp(/[0-9]+/).map(function(x) {
-        return Number(x);
-    }).desc('An Integer literal');
-}
-
-/**
- * Creates a parser for a String variable
- * @param {object} variable the variable ast node
- * @returns {object} the parser
- */
-function stringParser() {
-    return stringLiteralParser().map(function(x) {
-        return x.substring(1, x.length-1);
-    });
-}
-
-/**
  * Creates a parser for Enums
  * @param {object} variable the variable ast node
  * @param {string[]} enums - the enum values
@@ -470,8 +448,6 @@ module.exports.seqFunParser = seqFunParser;
 module.exports.choiceStringsParser = choiceStringsParser;
 
 module.exports.computedParser = computedParser;
-module.exports.integerParser = integerParser;
-module.exports.stringParser = stringParser;
 module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
 module.exports.ulistBlockParser = ulistBlockParser;

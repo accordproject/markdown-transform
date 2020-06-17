@@ -14,19 +14,15 @@
 
 'use strict';
 
-const doubleParser = require('./doubleParser').doubleParser;
-const integerParser = require('./coreparsers').integerParser;
-const stringParser = require('./coreparsers').stringParser;
-const dateTimeParser = require('./dateTimeParser').dateTimeParser;
+const Integer = require('./plugins/Integer');
+const Long = require('./plugins/Long');
+const Double = require('./plugins/Double');
+const String = require('./plugins/String');
+const DateTime = require('./plugins/DateTime');
+const Resource = require('./plugins/Resource');
 
-const doubleDrafter = require('./doubleDrafter').doubleDrafter;
-const integerDrafter = require('./coredrafters').integerDrafter;
-const stringDrafter = require('./coredrafters').stringDrafter;
-const dateTimeDrafter = require('./dateTimeDrafter').dateTimeDrafter;
-const resourceDrafter = require('./coredrafters').resourceDrafter;
-
-const seqFunParser = require('./coreparsers').seqFunParser;
-const withParser = require('./coreparsers').withParser;
+const seqFunParser = require('./combinators').seqFunParser;
+const withParser = require('./combinators').withParser;
 
 const Introspector = require('@accordproject/concerto-core').Introspector;
 const ModelVisitor = require('./ModelVisitor');
@@ -37,6 +33,15 @@ const {
     tokensToUntypedTemplateMarkFragment,
     templateMarkTypingFromType,
 } = require('./templatemarkutil');
+
+/**
+ * Adds entry to parsing table
+ * @param {object} table the parsing table
+ * @param {object} entry the entry for a given type
+ */
+function addEntryToParsingTable(table,entry) {
+    Object.assign(table,entry);
+}
 
 /**
  * Clone a CiceroMark node
@@ -58,14 +63,15 @@ function concertoNodes(serializer, nodes) {
  * This maps types to their parser
  */
 const defaultParsingTable = () => {
-    return {
-        'Integer' : { 'javascript' : { parse: (format) => (r) => integerParser(), draft: integerDrafter } },
-        'Long' : { 'javascript' : { parse: (format) => (r) => integerParser(), draft: integerDrafter } },
-        'Double' : { 'javascript' : { parse: (format) => (r) => doubleParser(format), draft: doubleDrafter } },
-        'String' : { 'javascript' : { parse: (format) => (r) => stringParser(), draft: stringDrafter } },
-        'DateTime' : { 'javascript' : { parse: (format) => (r) => dateTimeParser(format), draft: dateTimeDrafter } },
-        'Resource' : { 'javascript' : { parse: (format) => (r) => stringParser(), draft: resourceDrafter } },
-    };
+    const table = {};
+    addEntryToParsingTable(table,Integer);
+    addEntryToParsingTable(table,Long);
+    addEntryToParsingTable(table,Double);
+    addEntryToParsingTable(table,Double);
+    addEntryToParsingTable(table,String);
+    addEntryToParsingTable(table,DateTime);
+    addEntryToParsingTable(table,Resource);
+    return table;
 };
 
 /**
@@ -139,6 +145,14 @@ class ParsingTable {
      */
     addParsingTable(table) {
         this.parsingTable = Object.assign(this.parsingTable,table);
+    }
+
+    /**
+     * Adds entry to parsing table
+     * @param {object} entry the entry for a given type
+     */
+    addParsingTableEntry(entry) {
+        addEntryToParsingTable(this.parsingTable,entry);
     }
 
     /**
