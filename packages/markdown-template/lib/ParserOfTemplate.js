@@ -49,6 +49,75 @@ const codeBlockParser = require('./combinators').codeBlockParser;
 function parserFunOfTemplateMark(ast,parameters) {
     let parser = null;
     switch(ast.$class) {
+    // Inlines
+    // case 'org.accordproject.commonmark.Code' : // TODO
+    case 'org.accordproject.commonmark.Emph' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) {
+            return parserFunOfTemplateMark(x,parameters);
+        }));
+        parser = (r) => emphParser(ast,childrenParser(r));
+        break;
+    }
+    case 'org.accordproject.commonmark.Strong' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) {
+            return parserFunOfTemplateMark(x,parameters);
+        }));
+        parser = (r) => strongParser(ast,childrenParser(r));
+        break;
+    }
+    // case 'org.accordproject.commonmark.Link' : // TODO
+    // case 'org.accordproject.commonmark.HtmlInline' : // TODO
+    // case 'org.accordproject.commonmark.Linebreak' : // TODO
+    case 'org.accordproject.commonmark.Softbreak' : {
+        parser = (r) => textParser('\n');
+        break;
+    }
+    case 'org.accordproject.commonmark.Text' : {
+        parser = (r) => textParser(ast.text);
+        break;
+    }
+    // Leaf blocks
+    // case 'org.accordproject.commonmark.ThematicBreak' : // TODO
+    case 'org.accordproject.commonmark.Heading' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) {
+            return parserFunOfTemplateMark(x,parameters);
+        }));
+        parser = (r) => headingParser(ast,childrenParser(r));
+        break;
+    }
+    case 'org.accordproject.commonmark.CodeBlock' : {
+        parser = (r) => codeBlockParser(ast.text);
+        break;
+    }
+    // case 'org.accordproject.commonmark.HtmlBlock' : // TODO
+    case 'org.accordproject.commonmark.Paragraph' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) {
+            return parserFunOfTemplateMark(x,parameters);
+        }));
+        parser = (r) => paragraphParser(ast,childrenParser(r));
+        break;
+    }
+    // Container blocks
+    // case 'org.accordproject.commonmark.BlockQuote' : // TODO
+    case 'org.accordproject.commonmark.Item' : {
+        // Parsing a list item is simply parsing its content
+        const itemParsers = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
+        parser = (r) => itemParsers(r);
+        break;
+    }
+    case 'org.accordproject.commonmark.List' : {
+        const listKind = ast.type;
+        // Carefully here, we do not build a sequence parser quite yet. Instead we keep a list or parsers, one for each item in the list
+        const itemParsers = ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); });
+        parser = ast.type === 'bullet' ? ulistParser(ast,itemParsers) : olistParser(ast,itemParsers);
+        break;
+    }
+    case 'org.accordproject.commonmark.Document' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
+        parser = (r) => documentParser(ast,childrenParser(r));
+        break;
+    }
+    // TemplateMark blocks
     case 'org.accordproject.templatemark.EnumVariableDefinition' : {
         parser = (r) => enumParser(ast.enumValues).map((value) => mkVariable(ast,value));
         break;
@@ -114,56 +183,6 @@ function parserFunOfTemplateMark(ast,parameters) {
         const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
         parser = (r) => contractParser(ast,childrenParser(r));
         break;
-    case 'org.accordproject.commonmark.Text' : {
-        parser = (r) => textParser(ast.text);
-        break;
-    }
-    case 'org.accordproject.commonmark.Softbreak' : {
-        parser = (r) => textParser('\n');
-        break;
-    }
-    case 'org.accordproject.commonmark.Document' : {
-        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => documentParser(ast,childrenParser(r));
-        break;
-    }
-    case 'org.accordproject.commonmark.Paragraph' : {
-        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => paragraphParser(ast,childrenParser(r));
-        break;
-    }
-    case 'org.accordproject.commonmark.CodeBlock' : {
-        parser = (r) => codeBlockParser(ast.text);
-        break;
-    }
-    case 'org.accordproject.commonmark.Emph' : {
-        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => emphParser(ast,childrenParser(r));
-        break;
-    }
-    case 'org.accordproject.commonmark.Strong' : {
-        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => strongParser(ast,childrenParser(r));
-        break;
-    }
-    case 'org.accordproject.commonmark.Heading' : {
-        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => headingParser(ast,childrenParser(r));
-        break;
-    }
-    case 'org.accordproject.commonmark.List' : {
-        const listKind = ast.type;
-        // Carefully here, we do not build a sequence parser quite yet. Instead we keep a list or parsers, one for each item in the list
-        const itemParsers = ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); });
-        parser = ast.type === 'bullet' ? ulistParser(ast,itemParsers) : olistParser(ast,itemParsers);
-        break;
-    }
-    case 'org.accordproject.commonmark.Item' : {
-        // Parsing a list item is simply parsing its content
-        const itemParsers = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
-        parser = (r) => itemParsers(r);
-        break;
-    }
     default:
         throw new Error('Unknown template ast $class ' + ast.$class);
     }

@@ -61,15 +61,9 @@ class ToMarkdownStringVisitor {
     visit(thing, parameters) {
         const nodeText = thing.text ? thing.text : '';
         switch(thing.getType()) {
-        case 'CodeBlock':
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
-            break;
+        // Inlines
         case 'Code':
             parameters.result += `\`${nodeText}\``;
-            break;
-        case 'HtmlInline':
-            parameters.result += nodeText;
             break;
         case 'Emph':
             parameters.result += `*${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}*`;
@@ -77,8 +71,29 @@ class ToMarkdownStringVisitor {
         case 'Strong':
             parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}**`;
             break;
-        case 'BlockQuote':
-            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+        case 'Link':
+            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+            break;
+        case 'Image':
+            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+            break;
+        case 'HtmlInline':
+            parameters.result += nodeText;
+            break;
+        case 'Linebreak':
+            parameters.result += '\\';
+            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
+            break;
+        case 'Softbreak':
+            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
+            break;
+        case 'Text':
+            parameters.result += CommonMarkUtils.escapeText(nodeText);
+            break;
+        // Leaf blocks
+        case 'ThematicBreak':
+            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
+            parameters.result += '---';
             break;
         case 'Heading': {
             const level = parseInt(thing.level);
@@ -96,33 +111,25 @@ class ToMarkdownStringVisitor {
             }
         }
             break;
-        case 'ThematicBreak':
+        case 'CodeBlock':
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            parameters.result += '---';
-            break;
-        case 'Linebreak':
-            parameters.result += '\\';
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
-            break;
-        case 'Softbreak':
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
-            break;
-        case 'Link':
-            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
-            break;
-        case 'Image':
-            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
-            break;
-        case 'Paragraph':
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
             break;
         case 'HtmlBlock':
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
             parameters.result += nodeText;
             break;
-        case 'Text':
-            parameters.result += CommonMarkUtils.escapeText(nodeText);
+        case 'Paragraph':
+            parameters.result += CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
+            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+            break;
+        // Container blocks
+        case 'BlockQuote':
+            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            break;
+        case 'Item': {
+            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+        }
             break;
         case 'List': {
             const first = thing.start ? parseInt(thing.start) : 1;
@@ -138,10 +145,6 @@ class ToMarkdownStringVisitor {
                 index++;
                 CommonMarkUtils.nextNode(parameters);
             });
-        }
-            break;
-        case 'Item': {
-            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
         }
             break;
         case 'Document':
