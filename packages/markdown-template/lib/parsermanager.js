@@ -34,6 +34,7 @@ class ParserManager {
     /**
      * Create the ParserManager.
      * @param {object} template - the template instance
+     * @param {object} parsingTable - parsing table extension
      */
     constructor(modelManager,parsingTable) {
         this.modelManager = modelManager;
@@ -139,7 +140,7 @@ class ParserManager {
      */
     buildParser() {
         if (!this.parser) {
-            this.parser = parserOfTemplateMark(this.grammarAst,{parsingTable:this.parsingTable,contract:false});
+            this.parser = parserOfTemplateMark(this.grammarAst,this.parsingTable);
         }
     }
 
