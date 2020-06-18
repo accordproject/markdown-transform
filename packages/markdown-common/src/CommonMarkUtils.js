@@ -22,64 +22,113 @@ const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS
  */
 
 /**
+ * Initial block stack
+ * @return {*} the block stack
+ */
+function blocksInit() {
+    return {
+        first: true,
+        blocks: [],
+    };
+}
+
+/**
+ * Next node
+ * @param {*} stack the current block stack
+ */
+function blocksNextNode(stack) {
+    stack.first = false;
+}
+
+/**
+ * enter block
+ * @param {*} stack the current block stack
+ * @param {string} blockType the block type
+ * @return {*} the block stack
+ */
+function blocksEnterBlock(stack,blockType) {
+    let newStack = {};
+    switch(blockType) {
+    case 'BlockQuote': {
+        newStack.first = stack.first;
+        newStack.blocks = stack.blocks.slice();
+        newStack.blocks.push('blockquote');
+    }
+        break;
+    case 'List':
+    case 'Item': { // we can hit this case with malformed html
+        newStack.first = true;
+        newStack.blocks = stack.blocks.slice();
+        newStack.blocks.push('list');
+    }
+        break;
+    default: {
+        newStack.first = stack.first;
+        newStack.blocks = stack.blocks;
+    }
+    }
+    return newStack;
+}
+
+/**
+ * current newline (with proper prefix)
+ * @param {*} stack the current block stack
+ * @param {number} nb how many new lines
+ * @return {string} several new lines with the proper prefix
+ */
+function blocksNewLines(stack,nb) {
+    const blocks = stack.blocks;
+    if (nb === 0) {
+        return '';
+    }
+    let prefix = '';
+    for (let i = blocks.length-1; i >= 0; i--) {
+        if (blocks[i] === 'list') {
+            if (stack.first) {
+                break;
+            } else {
+                prefix = '   ' + prefix;
+            }
+        } else if (blocks[i] === 'blockquote') {
+            prefix = '> ' + prefix;
+        }
+    }
+    if (stack.first) {
+        return prefix;
+    } else {
+        return ('\n' + prefix).repeat(nb);
+    }
+}
+
+/**
+ * Next node
+ * @param {*} parameters the current parameters
+ */
+function nextNode(parameters) {
+    blocksNextNode(parameters.stack);
+}
+
+/**
  * Set parameters for general blocks
  * @param {*} ast - the current ast node
  * @param {*} parametersOut - the current parameters
  * @return {*} the new parameters with block quote level incremented
  */
 function mkParameters(ast, parametersOut) {
-    let parameters = Object.assign({},parametersOut);
+    let parameters = {};
     parameters.result = '';
-    switch(ast.getType()) {
-    case 'BlockQuote': {
-        parameters.first = parametersOut.first;
-        parameters.stack = parametersOut.stack.slice();
-        parameters.stack.push('block');
-    }
-        break;
-    case 'List':
-    case 'Item': { // we can hit this case with malformed html
-        parameters.first = true;
-        parameters.stack = parametersOut.stack.slice();
-        parameters.stack.push('list');
-    }
-        break;
-    default: {
-        parameters.first = parametersOut.first;
-        parameters.stack = parametersOut.stack;
-    }
-    }
+    parameters.stack = blocksEnterBlock(parametersOut.stack,ast.getType());
     return parameters;
 }
 
 /**
- * Create prefix
+ * Create a new line with the proper prefix
  * @param {*} parameters - the parameters
- * @param {*} newlines - number of newlines
+ * @param {*} nb - number of newlines
  * @return {string} the prefix
  */
-function mkPrefix(parameters, newlines) {
-    if (newlines === 0) {
-        return '';
-    }
-    const stack = parameters.stack;
-    let prefix = '';
-    for (let i = stack.length-1; i >= 0; i--) {
-        if (stack[i] === 'list') {
-            if (parameters.first) {
-                break;
-            } else {
-                prefix = '   ' + prefix;
-            }
-        } else if (stack[i] === 'block') {
-            prefix = '> ' + prefix;
-        }
-    }
-    if (parameters.first) {
-        return prefix;
-    } else {
-        return ('\n' + prefix).repeat(newlines);
-    }
+function mkPrefix(parameters, nb) {
+    return blocksNewLines(parameters.stack,nb);
 }
 
 /**
@@ -291,6 +340,12 @@ function trimEndline(text) {
     }
 }
 
+module.exports.blocksInit = blocksInit;
+module.exports.blocksNextNode = blocksNextNode;
+module.exports.blocksEnterBlock = blocksEnterBlock;
+module.exports.blocksNewLines = blocksNewLines;
+
+module.exports.nextNode = nextNode;
 module.exports.mkParameters = mkParameters;
 module.exports.mkPrefix = mkPrefix;
 module.exports.mkSetextHeading = mkSetextHeading;
