@@ -67,7 +67,6 @@ const defaultParsingTable = () => {
     addEntryToParsingTable(table,Integer);
     addEntryToParsingTable(table,Long);
     addEntryToParsingTable(table,Double);
-    addEntryToParsingTable(table,Double);
     addEntryToParsingTable(table,String);
     addEntryToParsingTable(table,DateTime);
     addEntryToParsingTable(table,Resource);
