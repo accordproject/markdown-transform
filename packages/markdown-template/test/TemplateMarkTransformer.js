@@ -14,13 +14,14 @@
 
 'use strict';
 
-const Fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
-const Chai = require('chai');
+const chai = require('chai');
 
-Chai.should();
-Chai.use(require('chai-things'));
-Chai.use(require('chai-as-promised'));
+chai.should();
+chai.use(require('chai-things'));
+chai.use(require('chai-as-promised'));
 
 // Parser from template AST
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
@@ -30,7 +31,10 @@ const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 const normalizeToMarkdown = require('../lib/normalize').normalizeToMarkdown;
 const normalizeFromMarkdown = require('../lib/normalize').normalizeFromMarkdown;
 
-const loadFile = (x) => { return { fileName: x, content: Fs.readFileSync(x, 'utf8') }; };
+const loadFile = (x) => { return { fileName: x, content: fs.readFileSync(x, 'utf8') }; };
+const loadPlugin = (x) => {
+    return fs.existsSync(x) ? require(path.join('..',x)) : {};
+};
 
 const successes = [
     {name:'test1',kind:'clause'},
@@ -44,6 +48,7 @@ const successes = [
     {name:'test9',kind:'clause'},
     {name:'test10',kind:'clause'},
     {name:'test11',kind:'clause'},
+    {name:'test12',kind:'clause'},
     {name:'testFormula',kind:'contract'},
     {name:'testDateTime',kind:'clause'},
     {name:'testDateTime2',kind:'clause'},
@@ -102,10 +107,10 @@ function runSuccesses() {
     const commonMarkTransformer = new CommonMarkTransformer();
 
     for (const test of successes) {
-        const customTable = require('./data/test11/plugin');
-        const templateMarkTransformer = new TemplateMarkTransformer(customTable);
         const name = test.name;
         const kind = test.kind;
+        const customTable = loadPlugin(`./test/data/${name}/plugin.js`);
+        const templateMarkTransformer = new TemplateMarkTransformer(customTable);
         const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
         const grammarJson = JSON.parse(loadFile(`./test/data/${name}/grammar.json`).content);
         const model = `./test/data/${name}/model.cto`;
