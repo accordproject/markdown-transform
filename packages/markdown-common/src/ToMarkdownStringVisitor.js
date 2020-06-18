@@ -47,7 +47,7 @@ class ToMarkdownStringVisitor {
         if(thing.nodes) {
             thing.nodes.forEach(node => {
                 node.accept(visitor, parametersIn);
-                parametersIn.first = false;
+                CommonMarkUtils.nextNode(parametersIn);
             });
         }
         return parametersIn.result;
@@ -86,7 +86,7 @@ class ToMarkdownStringVisitor {
             const headingText = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             if (level < 3 && headingText !== '') {
                 parameters.result += headingText;
-                parameters.first = false;
+                CommonMarkUtils.nextNode(parameters);
                 parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
                 parameters.result += CommonMarkUtils.mkSetextHeading(level);
             } else {
@@ -136,7 +136,7 @@ class ToMarkdownStringVisitor {
                     parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
                 }
                 index++;
-                parameters.first = false;
+                CommonMarkUtils.nextNode(parameters);
             });
         }
             break;
@@ -150,7 +150,7 @@ class ToMarkdownStringVisitor {
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
         }
-        parameters.first = false;
+        CommonMarkUtils.nextNode(parameters);
     }
 }
 
