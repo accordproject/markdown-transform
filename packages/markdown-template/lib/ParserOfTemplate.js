@@ -15,6 +15,7 @@
 'use strict';
 
 const P = require('parsimmon');
+const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 
 // Basic parser constructors
 const textParser = require('./combinators').textParser;
@@ -181,11 +182,12 @@ function parserOfTemplateMark(ast,parsingTable) {
     const templateParser = {};
 
     // Build the language structure for the template
-    const parameters = {
-        parsingTable:parsingTable,
-        contract:false,
-        templateParser: templateParser,
-    };
+    const parameters = {};
+    parameters.parsingTable = parsingTable,
+    parameters.contract = false;
+    parameters.templateParser = templateParser;
+    parameters.stack = CommonMarkUtils.blocksInit();
+    
     templateParser.main = parserFunOfTemplateMark(ast,parameters);
 
     // Create the template parser from the language structure
