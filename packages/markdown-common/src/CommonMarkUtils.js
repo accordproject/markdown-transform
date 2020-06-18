@@ -28,7 +28,7 @@ const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS
  * @return {*} the new parameters with block quote level incremented
  */
 function mkParameters(ast, parametersOut) {
-    let parameters = {};
+    let parameters = Object.assign({},parametersOut);
     parameters.result = '';
     switch(ast.getType()) {
     case 'BlockQuote': {
