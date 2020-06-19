@@ -159,7 +159,7 @@ function mkATXHeading(level) {
  * @return {string} escaped
  */
 function escapeText(input) {
-    return input.replace(/[*`&]/g, '\\$&') // Replaces special characters
+    return input.replace(/[*`&>]/g, '\\$&') // Replaces special characters
         .replace(/^(#+) /g, '\\$1 ') // Replaces heading markers
         .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered list markers
         .replace(/^- /g, '\\- ') // Replaces unordered list markers
