@@ -1,29 +1,25 @@
-# CiceroMark Transform
+# TemplateMark Transform
 
-This package extends CommonMark to introduce three new DOM nodes:
-1. Clause
-2. Variable
-3. ComputedVariable
+This package extends CommonMark to introduce Accord Project grammar support with:
+1. Clause definitions
+2. Variable definitions
+3. Formulas
 
-These are expressed using markdown code blocks and html inlines to ensure that they are safely persisted within markdown text.
-
-Use `CiceroMarkTransform` to map from the CommonMark DOM nodes to CiceroMark DOM nodes.
+Use `TemplateMarkTransform` to map from CommonMark to TemplateMark DOM nodes.
 
 ## Installation
 
 ```
-npm install @accordproject/markdown-cicero --save
+npm install @accordproject/markdown-template --save
 ```
 
 ## Usage
 
 ``` javascript
 
-const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const TemplateMarkTransformer = require('@accordproject/markdown-cicero').TemplateMarkTransformer;
 
-const ciceroMarkTransformer = new CiceroMarkTransformer();
-const dom = ciceroMarkTransformer.fromMarkdown( '# Heading One');
-const newMarkdown = ciceroMarkTransformer.toMarkdown(dom);
+const templateMarkTransformer = new TemplateMarkTransformer();
 ```
 
 ## License <a name="license"></a>
