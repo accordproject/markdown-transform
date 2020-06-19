@@ -985,6 +985,24 @@ Object {
 }
 `;
 
+exports[`markdown converts escapes.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "___",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts fixed.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -22737,6 +22755,8 @@ exports[`to plain text emph.md 1`] = `"This is some text."`;
 exports[`to plain text emph-strong.md 1`] = `"This is some text."`;
 
 exports[`to plain text empty.md 1`] = `""`;
+
+exports[`to plain text escapes.md 1`] = `"\\\\___"`;
 
 exports[`to plain text fixed.md 1`] = `
 "Fixed
