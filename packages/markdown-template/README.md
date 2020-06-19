@@ -17,9 +17,13 @@ npm install @accordproject/markdown-template --save
 
 ``` javascript
 
-const TemplateMarkTransformer = require('@accordproject/markdown-cicero').TemplateMarkTransformer;
+const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
+const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
 const templateMarkTransformer = new TemplateMarkTransformer();
+
+return templateMarkTransformer.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, templateKind, options);
 ```
 
 ## License <a name="license"></a>
