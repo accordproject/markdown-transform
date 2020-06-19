@@ -18,6 +18,7 @@ const P = require('parsimmon');
 const uuid = require('uuid');
 
 const { ParseException } = require('@accordproject/concerto-core');
+const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 
 /**
  * Utilities
@@ -157,7 +158,7 @@ function mkContract(contract,value) {
  * @returns {object} the parser
  */
 function textParser(text) {
-    return P.string(text);
+    return P.string(CommonMarkUtils.escapeText(text));
 }
 
 /**
@@ -265,7 +266,7 @@ function listBlockParser(listNode,bullet,content) {
  * @returns {object} the parser
  */
 function ulistBlockParser(listNode,content) {
-    return listBlockParser(listNode,textParser('\n-  '),content);
+    return listBlockParser(listNode,P.string('\n-  '),content);
 }
 
 /**
@@ -321,8 +322,8 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseBefore = (() => P.seq(textParser('\n\n``` <clause name='),stringLiteralParser(),P.alt(textParser('>\n'),textParser('/>\n'))));
-    const clauseAfter = (() => textParser('\n```\n'));
+    const clauseBefore = (() => P.seq(P.string('\n\n``` <clause name='),stringLiteralParser(),P.alt(P.string('>\n'),P.string('/>\n'))));
+    const clauseAfter = (() => P.string('\n```\n'));
     return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
         return mkWrappedClause(clause,flatten(x));
     });
@@ -414,7 +415,7 @@ function listParser(listNode,bullet,items) {
  * @returns {object} the parser
  */
 function ulistParser(listNode,items) {
-    return listParser(listNode,textParser('\n-  '),items);
+    return listParser(listNode,P.string('\n-  '),items);
 }
 
 /**
@@ -433,9 +434,9 @@ function olistParser(listNode,items) {
  * @returns {object} the parser
  */
 function codeBlockParser(text) {
-    const blockBefore = (() => P.seq(P.optWhitespace,textParser('```\n')));
-    const blockAfter = (() => textParser('\n```'));
-    return P.string(text.trim()).wrap(blockBefore(),blockAfter());
+    const blockBefore = (() => P.seq(P.optWhitespace,P.string('```\n')));
+    const blockAfter = (() => P.string('\n```'));
+    return P.string(CommonMarkUtils.escapeCodeBlock(text).trim()).wrap(blockBefore(),blockAfter());
 }
 
 module.exports.mkVariable = mkVariable;

@@ -161,8 +161,9 @@ function mkATXHeading(level) {
 function escapeText(input) {
     return input.replace(/[*`&]/g, '\\$&') // Replaces special characters
         .replace(/^(#+) /g, '\\$1 ') // Replaces heading markers
-        .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered lists markers
-        .replace(/^- /g, '\\- '); // Replaces unordered lists markers
+        .replace(/^(\d+)\. /g, '$1\\. ') // Replaces ordered list markers
+        .replace(/^- /g, '\\- ') // Replaces unordered list markers
+        .replace(/^_/g, '\\_'); // Replaces thematic break markers
 }
 
 /**
