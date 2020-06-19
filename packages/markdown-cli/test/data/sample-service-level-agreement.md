@@ -265,8 +265,8 @@ The level of penalty will be calculated depending on the number of hours for whi
 
 **Priority level**
 
-__Penalty per hour\
-__(Pro-rated to nearest minute)
+\__Penalty per hour\
+\__(Pro-rated to nearest minute)
 
 1
 
@@ -296,7 +296,7 @@ The supplier is deemed to have responded when it has replied to the client’s i
 
 Guaranteed response times depend on the priority of the item(s) affected and the severity of the issue. They are shown in this table:
 
-__Issue severity __(see __Severity levels __section, below)
+\__Issue severity __(see __Severity levels __section, below)
 
 Fatal
 
@@ -364,8 +364,8 @@ The level of penalty will be calculated depending on the number of hours by whic
 
 **Priority level**
 
-__Penalty per hour\
-__(Pro-rated to nearest minute)
+\__Penalty per hour\
+\__(Pro-rated to nearest minute)
 
 1
 
@@ -407,7 +407,7 @@ This right is available to the client **if the supplier fails to meet these serv
 
 This service level agreement is agreed as part of the IT support contract between [client name] and [supplier name]:
 
-__Signed on behalf of the client:	__
+\__Signed on behalf of the client:	__
 
 Name:Click here to enter text.
 
@@ -415,7 +415,7 @@ Position:Click here to enter text.
 
 Date:Click here to enter a date.
 
-__Signed on behalf of the supplier:	__
+\__Signed on behalf of the supplier:	__
 
 Name:Click here to enter text.
 
