@@ -59,96 +59,123 @@ class ToMarkdownStringVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
-        const nodeText = thing.text ? thing.text : '';
         switch(thing.getType()) {
         // Inlines
-        case 'Code':
+        case 'Code': {
+            const nodeText = thing.text ? thing.text : '';
             parameters.result += `\`${nodeText}\``;
+        }
             break;
-        case 'Emph':
-            parameters.result += `*${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}*`;
+        case 'Emph': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `*${children}*`;
+        }
             break;
-        case 'Strong':
-            parameters.result += `**${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}**`;
+        case 'Strong': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `**${children}**`;
+        }
             break;
-        case 'Link':
-            parameters.result += `[${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+        case 'Link': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `[${children}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+        }
             break;
-        case 'Image':
-            parameters.result += `![${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+        case 'Image': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `![${children}](${thing.destination} "${thing.title ? thing.title : ''}")`;
+        }
             break;
-        case 'HtmlInline':
+        case 'HtmlInline': {
+            const nodeText = thing.text ? thing.text : '';
             parameters.result += nodeText;
+        }
             break;
-        case 'Linebreak':
+        case 'Linebreak': {
             parameters.result += '\\';
             parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
+        }
             break;
-        case 'Softbreak':
+        case 'Softbreak': {
             parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
+        }
             break;
-        case 'Text':
+        case 'Text': {
+            const nodeText = thing.text ? thing.text : '';
             parameters.result += CommonMarkUtils.escapeText(nodeText);
+        }
             break;
         // Leaf blocks
-        case 'ThematicBreak':
+        case 'ThematicBreak': {
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
             parameters.result += '---';
+        }
             break;
         case 'Heading': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             const level = parseInt(thing.level);
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            const headingText = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            if (level < 3 && headingText !== '') {
-                parameters.result += headingText;
+            if (level < 3 && children !== '') {
+                parameters.result += children;
                 CommonMarkUtils.nextNode(parameters);
                 parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
                 parameters.result += CommonMarkUtils.mkSetextHeading(level);
             } else {
                 parameters.result += CommonMarkUtils.mkATXHeading(level);
                 parameters.result += ' ';
-                parameters.result += headingText;
+                parameters.result += children;
             }
         }
             break;
-        case 'CodeBlock':
+        case 'CodeBlock': {
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
             parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
+        }
             break;
-        case 'HtmlBlock':
+        case 'HtmlBlock': {
+            const nodeText = thing.text ? thing.text : '';
             parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
             parameters.result += nodeText;
+        }
             break;
-        case 'Paragraph':
+        case 'Paragraph': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
             parameters.result += CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
-            parameters.result += `${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+            parameters.result += `${children}`;
+        }
             break;
         // Container blocks
-        case 'BlockQuote':
-            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+        case 'BlockQuote': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += children;
+        }
             break;
         case 'Item': {
-            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${ToMarkdownStringVisitor.visitChildren(this, thing, parameters)}`;
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${children}`;
         }
             break;
         case 'List': {
-            const first = thing.start ? parseInt(thing.start) : 1;
-            let index = first;
+            const firstIndex = thing.start ? parseInt(thing.start) : 1;
+            let index = firstIndex;
             thing.nodes.forEach(item => {
-                const level = thing.tight && thing.tight === 'false' && index !== first ? 2 : 1;
+                const children = ToMarkdownStringVisitor.visitChildren(this, item, parameters);
+                const level = thing.tight && thing.tight === 'false' && index !== firstIndex ? 2 : 1;
                 if(thing.type === 'ordered') {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
+                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${children}`;
                 }
                 else {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${ToMarkdownStringVisitor.visitChildren(this, item, parameters)}`;
+                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${children}`;
                 }
                 index++;
                 CommonMarkUtils.nextNode(parameters);
             });
         }
             break;
-        case 'Document':
-            parameters.result += ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+        case 'Document': {
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += children;
+        }
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
