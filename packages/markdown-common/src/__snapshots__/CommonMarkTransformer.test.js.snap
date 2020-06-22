@@ -1837,6 +1837,89 @@ Object {
 }
 `;
 
+exports[`markdown converts miniblockquote2.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Linebreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "linebreak.",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is a quote.",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                },
+              ],
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.List",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Item",
+                },
+              ],
+              "tight": "true",
+              "type": "bullet",
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "The end",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts mixed.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -3045,6 +3128,91 @@ Object {
           "text": "This is some text.",
         },
       ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts text2.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is some text.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is more text.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is a blockquote",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "This is an item.",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "This is more inside that item.",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "This is a second item.",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "false",
+      "type": "bullet",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -22873,6 +23041,16 @@ This is a quote.
 The end"
 `;
 
+exports[`to plain text miniblockquote2.md 1`] = `
+"This is a
+linebreak.
+This is a quote.
+-  -  
+-  -  
+
+The end"
+`;
+
 exports[`to plain text mixed.md 1`] = `
 "Heading One
 
@@ -23046,6 +23224,19 @@ This is second paragraph."
 exports[`to plain text strong.md 1`] = `"This is some text."`;
 
 exports[`to plain text text.md 1`] = `"This is some text."`;
+
+exports[`to plain text text2.md 1`] = `
+"This is some text.
+
+This is more text.
+
+this is a blockquote
+-  This is an item.
+   
+   This is more inside that item.
+
+-  This is a second item."
+`;
 
 exports[`to plain text thematicbreak.md 1`] = `
 "This is
