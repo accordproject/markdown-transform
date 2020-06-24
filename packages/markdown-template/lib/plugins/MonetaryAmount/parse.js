@@ -77,7 +77,7 @@ function parserOfField(field) {
 function monetaryAmountParser(format) {
     let parsers;
     if (format) {
-        let fields = format.split(/(CCC|K|0.0.00?0?)/);
+        let fields = format.split(/(CCC|K|0.0(?:.0+)?)/);
         // remove null or empty strings
         fields = fields.filter(x => x !== '' && x !== null);
         parsers = fields.map(parserOfField);
