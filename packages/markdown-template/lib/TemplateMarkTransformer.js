@@ -250,6 +250,7 @@ class TemplateMarkTransformer {
             parserManager: parserManager,
             templateMarkModelManager: templateMarkManager.modelManager,
             templateMarkSerializer: templateMarkManager.serializer,
+            fullData: data,
             data: data,
             kind: templateKind,
         };

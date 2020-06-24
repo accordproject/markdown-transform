@@ -124,7 +124,7 @@ class ToCiceroMarkVisitor {
         case 'FormulaDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            thing.value = thing.code;
+            thing.value = parameters.parserManager.getFormulaEval(thing.code)(thing.fullData);
         }
             break;
         case 'ClauseDefinition': {
@@ -135,6 +135,7 @@ class ToCiceroMarkVisitor {
                     parserManager: parameters.parserManager,
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
                     data: parameters.data[thing.name],
                     kind: parameters.kind,
                 };
@@ -149,6 +150,7 @@ class ToCiceroMarkVisitor {
                 parserManager: parameters.parserManager,
                 templateMarkModelManager: parameters.templateMarkModelManager,
                 templateMarkSerializer: parameters.templateMarkSerializer,
+                fullData: parameters.fullData,
                 data: parameters.data[thing.name],
                 kind: parameters.kind,
             };
@@ -187,6 +189,7 @@ class ToCiceroMarkVisitor {
                     parserManager: parameters.parserManager,
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
                     data: item,
                     kind: parameters.kind,
                 };
