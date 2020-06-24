@@ -25,6 +25,9 @@ const draftVisitNodes = require('./ToCiceroMarkVisitor').visitNodes;
  * Hooks
  */
 
+const defaultFormulaEval = (code) => {
+    return (data) => { return ` eval(${code}) ` };
+};
 
 /**
  * Generates and manages a template parser/drafter
@@ -35,8 +38,9 @@ class ParserManager {
      * Create the ParserManager.
      * @param {object} template - the template instance
      * @param {object} parsingTable - parsing table extension
+     * @param {*} formulaEval - function from formula code to JavaScript evaluation function
      */
-    constructor(modelManager,parsingTable) {
+    constructor(modelManager,parsingTable,formulaEval) {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
@@ -47,6 +51,7 @@ class ParserManager {
         // Mapping from types to parsers/drafters
         this.parsingTable = new ParsingTable(this.modelManager,parserFunOfTemplateMark,draftVisitNodes);
         this.parsingTable.addParsingTable(parsingTable);
+        this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
     }
 
     /**
@@ -144,6 +149,14 @@ class ParserManager {
         }
     }
 
+    /**
+     * Get the execute function for a given formula
+     * @param {string} code - the code for that formula
+     * @return {string} a function taking the contract data and returning the corresponding formula result
+     */
+    getFormulaEval(code) {
+        return this.formulaEval(code);
+    }
 }
 
 module.exports = ParserManager;
