@@ -1,0 +1,1 @@
+This is a contract between "Steve" and "Betty" for the amount of 3,131.00 ¥, even in the presence of force majeure.

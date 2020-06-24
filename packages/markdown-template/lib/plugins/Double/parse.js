@@ -15,50 +15,10 @@
 'use strict';
 
 const P = require('parsimmon');
+const parseDoubleIEEE = require('./format').parseDoubleIEEE;
+const parseDoubleFormat = require('./format').parseDoubleFormat;
 const textParser = require('../../combinators').textParser;
 const seqParser = require('../../combinators').seqParser;
-const choiceStringsParser = require('../../combinators').choiceStringsParser;
-
-/**
- * Creates a parser for IEEE Double
- * @param {object} variable the variable ast node
- * @returns {object} the parser
- */
-function doubleIEEEParser() {
-    return P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/).map(function(x) {
-        return Number(x);
-    }).desc('A Double literal');
-}
-
-function amountFormatParser(field) {
-    const escapeRegex = x => x.replace(/[-\/\\^$*+?.()|\[\]{}]/g, '\\$&');
-
-    let sep1 = null;
-    let sep2 = null;
-    let digits = null;
-    const match = field.match(/0(.)0((.)(0+))?/);
-    sep1 = escapeRegex(match[1]);
-    if (match[2]) {
-        sep2 = escapeRegex(match[3]);
-        digits = match[4].length;
-    }
-    let amount = '';
-    amount += '[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
-    if (sep2) {
-        amount += sep2 + '[0-9]'.repeat(digits);
-    }
-    const AMOUNT_RE = new RegExp(amount);
-    return P.regexp(AMOUNT_RE)
-        .desc('An amount with format "' + field + '"')
-        .map(function(x) {
-            let numberText = x.replace(new RegExp(sep1, 'g'), '');
-            if (sep2) {
-                numberText = numberText.replace(new RegExp(sep2, 'g'), '.');
-            }
-            return Number(numberText);
-        });
-
-}
 
 /**
  * Given a format field (like '0,0.00') this method returns
@@ -69,7 +29,7 @@ function amountFormatParser(field) {
  */
 function parserOfField(field) {
     if (/0.0(?:.0+)?/.test(field)) {
-        return amountFormatParser(field);
+        return parseDoubleFormat(field);
     } else {
         return textParser(field);
     }
@@ -88,7 +48,7 @@ function doubleParser(format) {
         const parsers = fields.map(parserOfField);
         return seqParser(parsers);
     } else {
-        return doubleIEEEParser();
+        return parseDoubleIEEE();
     }
 }
 
