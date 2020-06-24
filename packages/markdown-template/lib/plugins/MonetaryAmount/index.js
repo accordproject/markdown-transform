@@ -14,21 +14,11 @@
 
 'use strict';
 
-const draftDoubleIEEE = require('./format').draftDoubleIEEE;
-const draftDoubleFormat = require('./format').draftDoubleFormat;
-
-/**
- * Creates a drafter for a double
- * @param {number} value - the Double
- * @param {string} format - the format
- * @returns {string} the text
- */
-function doubleDrafter(value,format) {
-    if (format) {
-        return draftDoubleFormat(value,format);
-    } else {
-        return draftDoubleIEEE(value);
+module.exports = {
+    'org.accordproject.money.MonetaryAmount': {
+        javascript: {
+            parse: require('./parse'),
+            draft: require('./draft')
+        }
     }
-}
-
-module.exports = doubleDrafter;
+};

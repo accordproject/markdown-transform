@@ -20,6 +20,7 @@ const Double = require('./plugins/Double');
 const String = require('./plugins/String');
 const DateTime = require('./plugins/DateTime');
 const Resource = require('./plugins/Resource');
+const MonetaryAmount = require('./plugins/MonetaryAmount');
 
 const seqFunParser = require('./combinators').seqFunParser;
 const withParser = require('./combinators').withParser;
@@ -70,6 +71,7 @@ const defaultParsingTable = () => {
     addEntryToParsingTable(table,String);
     addEntryToParsingTable(table,DateTime);
     addEntryToParsingTable(table,Resource);
+    addEntryToParsingTable(table,MonetaryAmount);
     return table;
 };
 
