@@ -56,6 +56,7 @@ const successes = [
     {name:'testAmount2',kind:'clause'},
     {name:'testMonetaryAmount',kind:'clause'},
     {name:'testMonetaryAmount2',kind:'clause'},
+    {name:'testMonetaryAmount3',kind:'clause'},
     {name:'testLarge',kind:'contract'},
     {name:'testRepeat',kind:'clause'},
     {name:'testMd1',kind:'clause'},
