@@ -72,7 +72,7 @@ class TypingVisitor {
                     thing.elementType = elementType;
                     const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
                     const identifier = nestedTemplateModel.getIdentifierFieldName();
-                    thing.identifiedBy = identifier;
+                    thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
                 } else {
                     const elementType = property.getFullyQualifiedTypeName();
                     thing.elementType = elementType;
