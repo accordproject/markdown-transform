@@ -232,6 +232,34 @@ class TemplateMarkTransformer {
     }
 
     /**
+     * Draft a CiceroMark DOM from a TemplateMarkDOM
+     * @param {*} data the contract/clause data input
+     * @param {*} parserManager - the parser manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result
+     */
+    draftCiceroMark(data, parserManager, templateKind, options) {
+        const parameters = {
+            parserManager: parserManager,
+            templateMarkModelManager: templateMarkManager.modelManager,
+            templateMarkSerializer: templateMarkManager.serializer,
+            fullData: data,
+            data: data,
+            kind: templateKind,
+        };
+
+        const input = templateMarkManager.serializer.fromJSON(parserManager.getGrammarAst());
+
+        const visitor = new ToCiceroMarkVisitor();
+        input.accept(visitor, parameters);
+        const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
+
+        return result;
+    }
+
+    /**
      * Instantiate a CiceroMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
      * @param {*} templateMark - the TemplateMark DOM
@@ -243,25 +271,9 @@ class TemplateMarkTransformer {
      */
     instantiateCiceroMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager,this.parsingTable);
+        const parserManager = new ParserManager(modelManager, this.parsingTable);
         parserManager.setGrammarAst(templateMark);
-
-        const parameters = {
-            parserManager: parserManager,
-            templateMarkModelManager: templateMarkManager.modelManager,
-            templateMarkSerializer: templateMarkManager.serializer,
-            fullData: data,
-            data: data,
-            kind: templateKind,
-        };
-
-        const input = templateMarkManager.serializer.fromJSON(templateMark);
-
-        const visitor = new ToCiceroMarkVisitor();
-        input.accept(visitor, parameters);
-        const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
-
-        return result;
+        return this.draftCiceroMark(data, parserManager, templateKind, options);
     }
 
     /**
