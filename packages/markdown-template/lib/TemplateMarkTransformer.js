@@ -291,17 +291,16 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Instantiate a CommonMark DOM from a TemplateMarkDOM
+     * Draft a CommonMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
-     * @param {*} typedTemplate the TemplateMark DOM
-     * @param {object} modelManager - the model manager for this template
+     * @param {*} parserManager - the parser manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
      */
-    instantiateCommonMark(data, typedTemplate, modelManager, templateKind, options) {
-        const ciceroMark = this.instantiateCiceroMark(data, typedTemplate, modelManager, templateKind, options);
+    draftCommonMark(data, parserManager, templateKind, options) {
+        const ciceroMark = this.draftCiceroMark(data, parserManager, templateKind, options);
 
         // convert to common mark
         const visitor = new ToCommonMarkVisitor();
@@ -313,6 +312,23 @@ class TemplateMarkTransformer {
         });
 
         return templateMarkManager.serializer.toJSON(dom);
+    }
+
+    /**
+     * Instantiate a CommonMark DOM from a TemplateMarkDOM
+     * @param {*} data the contract/clause data input
+     * @param {*} templateMark the TemplateMark DOM
+     * @param {object} modelManager - the model manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result
+     */
+    instantiateCommonMark(data, templateMark, modelManager, templateKind, options) {
+        // Construct the template parser
+        const parserManager = new ParserManager(modelManager, this.parsingTable);
+        parserManager.setGrammarAst(templateMark);
+        return this.draftCommonMark(data, parserManager, templateKind, options);
     }
 
 }
