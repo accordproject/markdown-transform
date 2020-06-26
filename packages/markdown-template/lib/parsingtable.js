@@ -14,6 +14,7 @@
 
 'use strict';
 
+const Boolean = require('./plugins/Boolean');
 const Integer = require('./plugins/Integer');
 const Long = require('./plugins/Long');
 const Double = require('./plugins/Double');
@@ -65,6 +66,7 @@ function concertoNodes(serializer, nodes) {
  */
 const defaultParsingTable = () => {
     const table = {};
+    addEntryToParsingTable(table,Boolean);
     addEntryToParsingTable(table,Integer);
     addEntryToParsingTable(table,Long);
     addEntryToParsingTable(table,Double);
