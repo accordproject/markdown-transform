@@ -200,16 +200,19 @@ class ToSlateVisitor {
         let result = null;
 
         switch(thing.getType()) {
-        case 'Clause':
+        case 'Clause': {
+            const data = {};
+            data.name = thing.name;
+            if (thing.src) {
+                data.src = thing.src;
+            }
             result = {
                 object: 'block',
                 type: 'clause',
-                data: {
-                    name: thing.name,
-                    src: thing.src
-                },
+                data: data,
                 children: this.processChildNodes(thing,parameters),
             };
+        }
             break;
         case 'Variable': {
             const data = { name: thing.name };

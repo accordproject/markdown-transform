@@ -199,7 +199,7 @@ class CiceroMarkTransformer {
 
     /**
      * Unquotes a CiceroMark DOM
-     * @param {objectp} input CiceroMark DOM
+     * @param {object} input CiceroMark DOM
      * @returns {object} unquoted CiceroMark DOM
      */
     unquote(input) {
