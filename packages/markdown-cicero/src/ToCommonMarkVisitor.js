@@ -19,7 +19,7 @@ const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').
 /**
  * Converts a CiceroMark DOM to a CommonMark DOM
  */
-class FromCiceroVisitor {
+class ToCommonMarkVisitor {
     /**
      * Construct the visitor
      * @param {object} [options] configuration options
@@ -54,7 +54,7 @@ class FromCiceroVisitor {
             let jsonSource = {};
             let jsonTarget = {};
 
-            FromCiceroVisitor.visitChildren(this, thing, parameters);
+            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
             // Revert to CodeBlock
             jsonTarget.$class = NS_PREFIX_CommonMarkModel + 'CodeBlock';
 
@@ -109,7 +109,7 @@ class FromCiceroVisitor {
             let jsonSource = {};
             let jsonTarget = {};
 
-            FromCiceroVisitor.visitChildren(this, thing, parameters);
+            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
             // Revert to CodeBlock
             jsonTarget.$class = NS_PREFIX_CommonMarkModel + 'CodeBlock';
 
@@ -337,9 +337,9 @@ class FromCiceroVisitor {
         }
             break;
         default:
-            FromCiceroVisitor.visitChildren(this, thing, parameters);
+            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
         }
     }
 }
 
-module.exports = FromCiceroVisitor;
+module.exports = ToCommonMarkVisitor;

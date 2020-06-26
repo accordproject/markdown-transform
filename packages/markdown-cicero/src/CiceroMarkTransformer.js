@@ -19,8 +19,8 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-c
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
-const ToCiceroVisitor = require('./ToCiceroVisitor');
-const FromCiceroVisitor = require('./FromCiceroVisitor');
+const FromCommonMarkVisitor = require('./FromCommonMarkVisitor');
+const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 const unquoteVariables = require('./UnquoteVariables');
 
@@ -81,7 +81,7 @@ class CiceroMarkTransformer {
             modelManager : this.modelManager,
             serializer : this.serializer,
         };
-        const visitor = new ToCiceroVisitor();
+        const visitor = new FromCommonMarkVisitor();
         input.accept( visitor, parameters );
 
         let json = Object.assign({}, this.serializer.toJSON(input));
@@ -127,7 +127,7 @@ class CiceroMarkTransformer {
         }
         if (inputType === 'org.accordproject.ciceromark.Clause') {
             const commonMarkDom = this.toCommonMark(input, 'json', options);
-            return ToCiceroVisitor.codeBlockContent(commonMarkDom.text);
+            return FromCommonMarkVisitor.codeBlockContent(commonMarkDom.text);
         } else {
             throw new Error('Cannot apply getClauseText to non-clause node');
         }
@@ -184,7 +184,7 @@ class CiceroMarkTransformer {
         const concertoDom = this.serializer.fromJSON(json);
 
         // convert to common mark
-        const visitor = new FromCiceroVisitor(options);
+        const visitor = new ToCommonMarkVisitor(options);
         concertoDom.accept( visitor, {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
