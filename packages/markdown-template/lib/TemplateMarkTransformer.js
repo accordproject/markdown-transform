@@ -291,17 +291,13 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Draft a CommonMark DOM from a TemplateMarkDOM
+     * Draft a CommonMark DOM from a CiceroMark DOM
      * @param {*} data the contract/clause data input
-     * @param {*} parserManager - the parser manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
      */
-    draftCommonMark(data, parserManager, templateKind, options) {
-        const ciceroMark = this.draftCiceroMark(data, parserManager, templateKind, options);
-
+    draftCiceroMarkToCommonMark(ciceroMark, options) {
         // convert to common mark
         const visitor = new ToCommonMarkVisitor();
         const dom = templateMarkManager.serializer.fromJSON(ciceroMark);
@@ -312,6 +308,20 @@ class TemplateMarkTransformer {
         });
 
         return templateMarkManager.serializer.toJSON(dom);
+    }
+
+    /**
+     * Draft a CommonMark DOM from a TemplateMark DOM
+     * @param {*} data the contract/clause data input
+     * @param {*} parserManager - the parser manager for this template
+     * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {object} [options] configuration options
+     * @param {boolean} [options.verbose] verbose output
+     * @returns {object} the result
+     */
+    draftCommonMark(data, parserManager, templateKind, options) {
+        const ciceroMark = this.draftCiceroMark(data, parserManager, templateKind, options);
+        return this.draftCiceroMarkToCommonMark(ciceroMark, options)
     }
 
     /**
