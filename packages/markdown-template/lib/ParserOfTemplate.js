@@ -26,6 +26,7 @@ const seqFunParser = require('./combinators').seqFunParser;
 const condParser = require('./combinators').condParser;
 const ulistBlockParser = require('./combinators').ulistBlockParser;
 const olistBlockParser = require('./combinators').olistBlockParser;
+const joinBlockParser = require('./combinators').joinBlockParser;
 const withParser = require('./combinators').withParser;
 const clauseParser = require('./combinators').clauseParser;
 const wrappedClauseParser = require('./combinators').wrappedClauseParser;
@@ -162,6 +163,11 @@ function parserFunOfTemplateMark(ast,parameters) {
     case 'org.accordproject.templatemark.ListBlockDefinition' : {
         const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
         parser = ast.type === 'bullet' ? (r) => ulistBlockParser(ast,childrenParser(r)) : (r) => olistBlockParser(ast,childrenParser(r));
+        break;
+    }
+    case 'org.accordproject.templatemark.JoinDefinition' : {
+        const childrenParser = seqFunParser(ast.nodes.map(function (x) { return parserFunOfTemplateMark(x,parameters); }));
+        parser = (r) => joinBlockParser(ast,childrenParser(r));
         break;
     }
     case 'org.accordproject.templatemark.ClauseDefinition' : {

@@ -178,7 +178,6 @@ class ToCiceroMarkVisitor {
             delete itemNode.elementType;
             delete itemNode.name;
             delete itemNode.type;
-            delete itemNode.type;
             delete itemNode.start;
             delete itemNode.tight;
             delete itemNode.delimiter;
@@ -193,7 +192,8 @@ class ToCiceroMarkVisitor {
                     data: item,
                     kind: parameters.kind,
                 };
-                return ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode).accept(that, itemParameters);
+                return ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
+                    .accept(that, itemParameters);
             };
             
             // Result List node
@@ -202,6 +202,38 @@ class ToCiceroMarkVisitor {
             thing.nodes = flatten(dataItems.map(mapItems));
 
             delete thing.elementType;
+        }
+            break;
+        case 'JoinDefinition': {
+            // Clone the thing and create an item blueprint
+            const itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,thing);
+            itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
+            delete itemNode.elementType;
+            delete itemNode.name;
+            delete itemNode.separator;
+            const dataItems = parameters.data[thing.name];
+            const mapItems = function(item,index) {
+                const itemParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
+                    data: item,
+                    kind: parameters.kind,
+                };
+                const resultNodes = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
+                      .accept(that, itemParameters)[0].nodes;
+                if (index > 0) {
+                    resultNodes.unshift(parameters.templateMarkSerializer.fromJSON({
+                        '$class': 'org.accordproject.commonmark.Text',
+                        'text': thing.separator
+                    }));
+                }
+                return resultNodes;
+            };
+
+            // Result List node
+            return flatten(dataItems.map(mapItems));
         }
             break;
         case 'Document': {

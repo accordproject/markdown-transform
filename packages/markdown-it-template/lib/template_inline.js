@@ -45,7 +45,7 @@ function template_inline(state, silent) {
         if (!match) { return false; }
 
         const block = match[1];
-        if (block !== 'if' && block !== 'with') {
+        if (block !== 'if' && block !== 'with' && block !== 'join') {
             return false;
         }
         if (!silent) {
@@ -53,6 +53,12 @@ function template_inline(state, silent) {
             token.content = match[0];
         }
         token.attrs = [ [ 'name', match[2] ] ]
+        if (block === 'join') {
+            const sep = match[3];
+            if (sep) {
+                token.attrs.push([ 'separator', sep.substring(1, sep.length-1) ]);
+            }
+        }
         state.pos += match[0].length;
         return true;
     } else if (ch === 0x2F/* / */) {
@@ -60,7 +66,7 @@ function template_inline(state, silent) {
         if (!match) { return false; }
 
         const block = match[1];
-        if (block !== 'if' && block !== 'with') {
+        if (block !== 'if' && block !== 'with' && block !== 'join') {
             return false;
         }
         if (!silent) {

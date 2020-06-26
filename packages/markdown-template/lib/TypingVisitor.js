@@ -135,6 +135,22 @@ class TypingVisitor {
             });
         }
             break;
+        case 'JoinDefinition': {
+            const property = currentModel.getOwnProperty(thing.name);
+            if (property) {
+                thing.elementType = property.getFullyQualifiedTypeName();
+            } else {
+                throw new Error('Unknown property ' + thing.name);
+            }
+            const listModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            TypingVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                introspector:parameters.introspector,
+                model:listModel,
+                kind:parameters.kind
+            });
+        }
+            break;
         case 'ContractDefinition': {
             thing.elementType = parameters.model.getFullyQualifiedName();
             TypingVisitor.visitChildren(this, thing, parameters);

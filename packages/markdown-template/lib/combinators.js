@@ -101,7 +101,7 @@ function mkCond(condNode,value) {
 
 /**
  * Creates a List output
- * @param {object} list the list ast node
+ * @param {object} listNode the list ast node
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
@@ -112,6 +112,23 @@ function mkList(listNode,value) {
     result.value = [];
     for(let i = 0; i < value.length; i++) {
         result.value.push(mkCompoundVariable(listNode.elementType,value[i]));
+    }
+    return result;
+}
+
+/**
+ * Creates a Join output
+ * @param {object} joinNode the join ast node
+ * @param {*} value the variable value
+ * @returns {object} the conditional
+ */
+function mkJoin(joinNode,value) {
+    const result = {};
+    result.name = joinNode.name;
+    result.elementType = 'List';
+    result.value = [];
+    for(let i = 0; i < value.length; i++) {
+        result.value.push(mkCompoundVariable(joinNode.elementType,value[i]));
     }
     return result;
 }
@@ -277,6 +294,22 @@ function ulistBlockParser(listNode,content) {
  */
 function olistBlockParser(listNode,content) {
     return listBlockParser(listNode,P.seq(P.string('\n'),P.regexp(/[0-9]+/),P.string('. ')),content);
+}
+
+/**
+ * Creates a parser for joine blocks
+ * @param {object} joinNode the join ast node
+ * @param {string} separator the separator
+ * @param {object} content the parser for the content of the list
+ * @returns {object} the parser
+ */
+function joinBlockParser(joinNode,content) {
+    const separator = joinNode.separator;
+    return P.seq(content,P.seq(P.string(separator),content).map(x => x[1]).many()).map(function(x) {
+        return [x[0]].concat(x[1]);
+    }).map(function(x) {
+        return mkJoin(joinNode,x);
+    });
 }
 
 /**
@@ -453,6 +486,7 @@ module.exports.enumParser = enumParser;
 module.exports.condParser = condParser;
 module.exports.ulistBlockParser = ulistBlockParser;
 module.exports.olistBlockParser = olistBlockParser;
+module.exports.joinBlockParser = joinBlockParser;
 module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;

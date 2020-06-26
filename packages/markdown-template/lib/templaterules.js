@@ -104,6 +104,23 @@ const withCloseRule = {
     open: false,
     close: true,
 };
+const joinOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+        node.separator = getAttr(token.attrs,'separator',',');
+    },
+    skipEmpty: false,
+};
+const joinCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+};
 
 // Block rules
 const clauseOpenRule = {
@@ -166,6 +183,8 @@ rules.inlines.inline_block_if_else = ifElseRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
 rules.inlines.inline_block_with_open = withOpenRule;
 rules.inlines.inline_block_with_close = withCloseRule;
+rules.inlines.inline_block_join_open = joinOpenRule;
+rules.inlines.inline_block_join_close = joinCloseRule;
 
 rules.blocks.block_clause_open = clauseOpenRule;
 rules.blocks.block_clause_close = clauseCloseRule;
