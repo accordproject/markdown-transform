@@ -19,7 +19,7 @@ const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel'
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
-class ToCiceroMarkVisitor {
+class FromCommonMarkVisitor {
 
     /**
      * Remove newline which is part of the code block markup
@@ -40,7 +40,7 @@ class ToCiceroMarkVisitor {
      */
     static visitChildren(visitor, thing, parameters) {
         if(thing.nodes) {
-            ToCiceroMarkVisitor.visitNodes(visitor, thing.nodes, parameters);
+            FromCommonMarkVisitor.visitNodes(visitor, thing.nodes, parameters);
         }
     }
 
@@ -68,16 +68,16 @@ class ToCiceroMarkVisitor {
             if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
+                const clauseText = FromCommonMarkVisitor.codeBlockContent(thing.text);
 
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name')) {
+                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'src') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'name')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.src = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'src').value;
-                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    thing.src = FromCommonMarkVisitor.getAttribute(tag.attributes, 'src').value;
+                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
 
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
-                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
+                    FromCommonMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
                     delete thing.tag;
@@ -85,22 +85,22 @@ class ToCiceroMarkVisitor {
                 }
             } else if (tag && tag.tagName === 'list' &&
                        tag.attributes.length === 1 &&
-                       ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name')) {
+                       FromCommonMarkVisitor.getAttribute(tag.attributes, 'name')) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListBlock';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = ToCiceroMarkVisitor.codeBlockContent(thing.text);
+                const clauseText = FromCommonMarkVisitor.codeBlockContent(thing.text);
 
                 const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
                 if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
                     const listNode = newNodes[0];
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
                     thing.type = listNode.type;
                     thing.start = listNode.start;
                     thing.tight = listNode.tight;
                     thing.delimiter = listNode.delimiter;
                     thing.nodes = listNode.nodes;
-                    ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
+                    FromCommonMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
                     delete thing.tag;
@@ -115,14 +115,14 @@ class ToCiceroMarkVisitor {
                 thing.tag.tagName === 'variable' &&
                 (thing.tag.attributes.length === 2 || thing.tag.attributes.length === 3)) {
                 const tag = thing.tag;
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
-                    const format = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'format');
-                    const enumValues = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'enumValues');
+                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value')) {
+                    const format = FromCommonMarkVisitor.getAttribute(tag.attributes, 'format');
+                    const enumValues = FromCommonMarkVisitor.getAttribute(tag.attributes, 'enumValues');
                     const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : enumValues ? NS_PREFIX_CiceroMarkModel + 'EnumVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
+                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    thing.value = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     if (format) { // For FormattedVariables
                         thing.format = decodeURIComponent(format.value);
                     }
@@ -137,27 +137,27 @@ class ToCiceroMarkVisitor {
                 thing.tag.tagName === 'if' &&
                 thing.tag.attributes.length === 4) {
                 const tag = thing.tag;
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
+                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
                     const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    const valueText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
+                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    const valueText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     const valueNode = parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
                         text: valueText,
                     });
                     thing.nodes = [valueNode];
-                    const whenTrueText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
+                    const whenTrueText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
                     const whenTrueNodes = whenTrueText ? [parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
                         text: whenTrueText,
                     })] : [];
                     thing.isTrue = valueText === whenTrueText;
                     thing.whenTrue = whenTrueNodes;
-                    const whenFalseText = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
+                    const whenFalseText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
                     const whenFalseNodes = whenFalseText ? [parameters.serializer.fromJSON({
                         $class: 'org.accordproject.commonmark.Text',
                         text: whenFalseText,
@@ -170,11 +170,11 @@ class ToCiceroMarkVisitor {
             if (thing.tag && thing.tag.tagName === 'formula' && thing.tag.attributes.length === 2) {
                 const tag = thing.tag;
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Formula';
-                if (ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value')) {
+                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
+                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = ToCiceroMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.value = decodeURIComponent(ToCiceroMarkVisitor.getAttribute(tag.attributes, 'value').value);
+                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
+                    thing.value = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
                     delete thing.tag;
                     delete thing.text;
                 }
@@ -182,7 +182,7 @@ class ToCiceroMarkVisitor {
         }
             break;
         default:
-            ToCiceroMarkVisitor.visitChildren(this, thing, parameters);
+            FromCommonMarkVisitor.visitChildren(this, thing, parameters);
         }
     }
 
@@ -199,4 +199,4 @@ class ToCiceroMarkVisitor {
 
 }
 
-module.exports = ToCiceroMarkVisitor;
+module.exports = FromCommonMarkVisitor;
