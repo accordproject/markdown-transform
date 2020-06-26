@@ -27,6 +27,8 @@ function template_plugin(md) {
     md.renderer.rules['inline_block_if_close'] = template_inline_render('if');
     md.renderer.rules['inline_block_with_open'] = template_inline_render('with');
     md.renderer.rules['inline_block_with_close'] = template_inline_render('with');
+    md.renderer.rules['inline_block_join_open'] = template_inline_render('join');
+    md.renderer.rules['inline_block_join_close'] = template_inline_render('join');
 
     md.block.ruler.before('fence', 'template_block', template_block, {
         alt: [ 'paragraph', 'reference', 'blockquote', 'list' ]

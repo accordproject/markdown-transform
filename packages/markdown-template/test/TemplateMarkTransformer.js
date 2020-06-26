@@ -67,6 +67,7 @@ const successes = [
     {name:'testUList',kind:'contract'},
     {name:'testOList',kind:'contract'},
     {name:'testOList2',kind:'contract'},
+    {name:'testJoin',kind:'contract'},
     {name:'testWith',kind:'contract'},
     {name:'testConditional',kind:'clause'},
     {name:'testUnderscore',kind:'clause'},
