@@ -89,7 +89,7 @@ class CiceroMarkTransformer {
 
         // remove variables, e.g. {{ variable }}, {{% formula %}}
         if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
-            result = unquoteVariables(json);
+            result = this.unquote(json);
         } else {
             result = json;
         }
@@ -164,7 +164,7 @@ class CiceroMarkTransformer {
 
         // remove variables, e.g. {{ variable }}, {{% formula %}}
         if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
-            json = unquoteVariables(json);
+            json = this.unquote(json);
         }
 
         // remove formatting
@@ -195,6 +195,15 @@ class CiceroMarkTransformer {
             return concertoDom;
         }
         return this.serializer.toJSON(concertoDom);
+    }
+
+    /**
+     * Unquotes a CiceroMark DOM
+     * @param {objectp} input CiceroMark DOM
+     * @returns {object} unquoted CiceroMark DOM
+     */
+    unquote(input) {
+        return unquoteVariables(input);
     }
 }
 
