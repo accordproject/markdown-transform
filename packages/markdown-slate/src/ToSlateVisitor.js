@@ -263,6 +263,12 @@ class ToSlateVisitor {
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
+            if (thing.dependencies) {
+                data.dependencies = thing.dependencies;
+            }
+            if (thing.code) {
+                data.code = thing.code;
+            }
             result = ToSlateVisitor.handleFormula(data, thing.value, parameters);
         }
             break;

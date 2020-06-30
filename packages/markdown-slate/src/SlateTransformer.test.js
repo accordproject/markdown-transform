@@ -30,16 +30,16 @@ beforeAll(() => {
 });
 
 /**
- * Get the name and contents of all slate test files
+ * Get the name and contents of all slate test files for Markdown
  * @returns {*} an array of name/contents tuples
  */
-function getSlateFiles() {
+function getMarkdownSlateFiles() {
     const result = [];
-    const files = fs.readdirSync(__dirname + '/../test/data/');
+    const files = fs.readdirSync(__dirname + '/../test/data/markdown/');
 
     files.forEach(function(file) {
         if(file.endsWith('.json')) {
-            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
+            let contents = fs.readFileSync(__dirname + '/../test/data/markdown/' + file, 'utf8');
             result.push([file, contents]);
         }
     });
@@ -47,9 +47,9 @@ function getSlateFiles() {
     return result;
 }
 
-describe('slate', () => {
-    getSlateFiles().forEach( ([file, jsonText], index) => {
-        it(`converts ${file} to and from CiceroMark`, () => {
+describe('markdown <-> slate', () => {
+    getMarkdownSlateFiles().forEach( ([file, jsonText], index) => {
+        it(`converts ${file} to and from Markdown`, () => {
             const value = JSON.parse(jsonText);
             const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
 
@@ -59,7 +59,7 @@ describe('slate', () => {
             // load expected markdown
             const extension = path.extname(file);
             const mdFile = path.basename(file,extension);
-            const expectedMarkdown = fs.readFileSync(__dirname + '/../test/data/' + mdFile + '.md', 'utf8');
+            const expectedMarkdown = fs.readFileSync(__dirname + '/../test/data/markdown/' + mdFile + '.md', 'utf8');
             expect(expectedMarkdown).toMatchSnapshot(); // (2)
 
             // convert the expected markdown to cicero mark and compare
@@ -73,6 +73,53 @@ describe('slate', () => {
             expect(expectedCiceroMark).toMatchSnapshot(); // (4)
             // if(mdFile === 'image') {
             //     console.log('Expected expectedCiceroMark', JSON.stringify(expectedCiceroMark, null, 4));
+            // }
+
+            // check that ast created from slate and from the expected md is the same
+            expect(ciceroMark).toEqual(expectedCiceroMark);
+
+            // check roundtrip
+            expect(expectedSlateValue).toEqual(value);
+        });
+    });
+});
+
+/**
+ * Get the name and contents of all slate test files for CiceroMark
+ * @returns {*} an array of name/contents tuples
+ */
+function getCiceroMarkSlateFiles() {
+    const result = [];
+    const files = fs.readdirSync(__dirname + '/../test/data/ciceromark/');
+
+    files.forEach(function(file) {
+        if(file.endsWith('_slate.json')) {
+            let contents = fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file, 'utf8');
+            result.push([file, contents]);
+        }
+    });
+
+    return result;
+}
+
+describe('ciceromark <-> slate', () => {
+    getCiceroMarkSlateFiles().forEach( ([file, jsonText], index) => {
+        it(`converts ${file} to and from CiceroMark`, () => {
+            const value = JSON.parse(jsonText);
+            const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
+
+            // check no changes to cicero mark
+            expect(ciceroMark).toMatchSnapshot(); // (1)
+
+            // load expected ciceromark
+            const expectedCiceroMark = JSON.parse(fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file.replace(/_slate.json$/,'_ciceromark.json'), 'utf8'));
+            expect(expectedCiceroMark).toMatchSnapshot(); // (2)
+
+            // convert the expected markdown to cicero mark and compare
+            const expectedSlateValue = slateTransformer.fromCiceroMark(expectedCiceroMark);
+            expect(expectedSlateValue).toMatchSnapshot(); // (3)
+            // if(mdFile === 'image') {
+            //     console.log(JSON.stringify(expectedSlateValue, null, 4));
             // }
 
             // check that ast created from slate and from the expected md is the same
