@@ -51,9 +51,10 @@ class ToCiceroMarkVisitor {
      * Deserialize a DOM element.
      *
      * @param {Object} element DOM element
+     * @param {boolean} ignoreSpace override
      * @return {Any} node
      */
-    deserializeElement(element) {
+    deserializeElement(element, ignoreSpace) {
         let node;
 
         //console.log('tagName', element.tagName);
@@ -61,16 +62,16 @@ class ToCiceroMarkVisitor {
             element.tagName = '';
         }
 
-        const next = elements => {
+        const next = (elements, ignoreSpace)  => {
             if (Object.prototype.toString.call(elements) === '[object NodeList]') {
                 elements = Array.from(elements);
             }
 
             switch (typeOf(elements)) {
             case 'array':
-                return this.deserializeElements(elements);
+                return this.deserializeElements(elements, ignoreSpace);
             case 'object':
-                return this.deserializeElement(elements);
+                return this.deserializeElement(elements, ignoreSpace);
             case 'null':
             case 'undefined':
                 return;
@@ -83,7 +84,7 @@ class ToCiceroMarkVisitor {
 
         for (const rule of this.rules) {
             if (!rule.deserialize) {continue;}
-            const ret = rule.deserialize(element, next);
+            const ret = rule.deserialize(element, next, ignoreSpace);
             const type = typeOf(ret);
 
             if (
@@ -118,21 +119,22 @@ class ToCiceroMarkVisitor {
             break;
         }
 
-        return node || next(element.childNodes);
+        return node || next(element.childNodes, ignoreSpace);
     }
 
     /**
      * Deserialize an array of DOM elements.
      *
      * @param {Array} elements DOM elements
+     * @param {boolean} ignoreSpace override
      * @return {Array} array of nodes
      */
-    deserializeElements(elements = []) {
+    deserializeElements(elements = [], ignoreSpace) {
         let nodes = [];
 
         elements.filter(this.cruftNewline).forEach(element => {
             // console.log('element -- ', element);
-            const node = this.deserializeElement(element);
+            const node = this.deserializeElement(element, ignoreSpace);
             // console.log('node -- ', node);
 
             switch (typeOf(node)) {
@@ -166,7 +168,7 @@ class ToCiceroMarkVisitor {
         }
         const children = Array.from(fragment.childNodes);
         // console.log('children -- ', children);
-        const nodes = this.deserializeElements(children);
+        const nodes = this.deserializeElements(children, true);
         // console.log('nodes', nodes);
         return {
             '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,

@@ -1,0 +1,11 @@
+<html>
+<body>
+<div class="document">
+<h2>Fixed rate loan</h2>
+<p>This is a <em>fixed interest</em> loan to the amount of <span class="variable" name="loanAmount" format="K0,0.00" elementType="org.accordproject.money.MonetaryAmount">£100,000.00</span>
+at the yearly interest rate of <span class="variable" name="rate" elementType="Double">2.5</span>%
+with a loan term of <span class="variable" name="loanDuration" elementType="Integer">15</span>,
+and monthly payments of <span class="formula" name="formula" code="%20monthlyPaymentFormula(loanAmount%2Crate%2CloanDuration)%20as%20%22K0%2C0.00%22%20" dependencies="%5B%5D"> eval( monthlyPaymentFormula(loanAmount,rate,loanDuration) as "K0,0.00" ) </span></p>
+</div>
+</body>
+</html>

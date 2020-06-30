@@ -23,14 +23,14 @@ const { isIgnorable } = require('./helpers');
  * @type {Object}
  */
 const TEXT_RULE = {
-    deserialize(el) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'br') {
             // add Linebreak node in ciceromark
             return;
         }
 
         // text nodes will be of type 3
-        if (el.nodeType === 3 && !isIgnorable(el)) {
+        if (el.nodeType === 3 && !isIgnorable(el, ignoreSpace)) {
             const textArray = el.nodeValue.split('\n');
             const textNodes =  textArray.map(text => {
                 if (text) {
@@ -53,13 +53,13 @@ const TEXT_RULE = {
  * @type {Object}
  */
 const LIST_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'ul') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}List`,
                 type: 'bullet',
                 tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, ignoreSpace)
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'ol') {
@@ -69,7 +69,7 @@ const LIST_RULE = {
                 delimiter: el.getAttribute('delimiter'),
                 start: el.getAttribute('start'),
                 tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, ignoreSpace)
             };
         }
 
@@ -87,11 +87,11 @@ const LIST_RULE = {
  * @type {Object}
  */
 const PARAGRAPH_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'p') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Paragraph`,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, false)
             };
         }
     }
@@ -102,11 +102,11 @@ const PARAGRAPH_RULE = {
  * @type {Object}
  */
 const STRONG_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'strong') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Strong`,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, ignoreSpace)
             };
         }
     }
@@ -117,11 +117,11 @@ const STRONG_RULE = {
  * @type {Object}
  */
 const EMPH_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'em') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Emph`,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, ignoreSpace)
             };
         }
     }
@@ -132,11 +132,11 @@ const EMPH_RULE = {
  * @type {Object}
  */
 const LINK_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'a') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Link`,
-                nodes: next(el.childNodes),
+                nodes: next(el.childNodes, ignoreSpace),
                 destination: el.getAttribute('href') ? el.getAttribute('href') : 'none',
                 title: el.getAttribute('title') ? el.getAttribute('title') : '',
             };
@@ -149,11 +149,11 @@ const LINK_RULE = {
  * @type {Object}
  */
 const IMAGE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'img') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Image`,
-                nodes: next(el.childNodes),
+                nodes: next(el.childNodes, ignoreSpace),
                 destination: el.getAttribute('src') ? el.getAttribute('src') : 'none',
                 title: el.getAttribute('title') ? el.getAttribute('title') : '',
             };
@@ -166,7 +166,7 @@ const IMAGE_RULE = {
  * @type {Object}
  */
 const HEADING_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName) {
             let level;
             switch (el.tagName.toLowerCase()) {
@@ -194,7 +194,7 @@ const HEADING_RULE = {
             if (level) {
                 return {
                     '$class': `${NS_PREFIX_CommonMarkModel}Heading`,
-                    nodes: next(el.childNodes),
+                    nodes: next(el.childNodes, false),
                     level,
                 };
             }
@@ -207,7 +207,7 @@ const HEADING_RULE = {
  * @type {Object}
  */
 const THEMATIC_BREAK_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'hr') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
@@ -223,7 +223,7 @@ const THEMATIC_BREAK_RULE = {
 // Look at common mark dingus and see how they are mapping html blocks
 // TODO: figure out how to handle custom html blocks (could be anything?)
 // const HTML_BLOCK_RULE = {
-//     deserialize(el, next) {
+//     deserialize(el, next, ignoreSpace) {
 //         if (el.tagName ) {
 //             return {
 //                 '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
@@ -237,7 +237,7 @@ const THEMATIC_BREAK_RULE = {
  * @type {Object}
  */
 const CODE_BLOCK_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('class') === 'code_block') {
             const children = el.childNodes;
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
@@ -268,7 +268,7 @@ const CODE_BLOCK_RULE = {
  * @type {Object}
  */
 const INLINE_CODE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'code') {
             {
                 return {
@@ -285,11 +285,11 @@ const INLINE_CODE_RULE = {
  * @type {Object}
  */
 const BLOCK_QUOTE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'blockquote') {
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}BlockQuote`,
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, ignoreSpace)
             };
         }
     }
@@ -300,15 +300,21 @@ const BLOCK_QUOTE_RULE = {
  * @type {Object}
  */
 const CLAUSE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         const tag = el.tagName;
         if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
-            return {
+            const clause = {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
                 name: el.getAttribute('name'),
-                src: el.getAttribute('src'),
-                nodes: next(el.childNodes)
+                nodes: next(el.childNodes, false)
             };
+            if (el.getAttribute('elementType')) {
+                clause.elementType = el.getAttribute('elementType');
+            }
+            if (el.getAttribute('src')) {
+                clause.src = el.getAttribute('src');
+            }
+            return clause;
         }
     }
 };
@@ -318,30 +324,38 @@ const CLAUSE_RULE = {
  * @type {Object}
  */
 const VARIABLE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'variable') {
+            let variable;
             if (el.getAttribute('format')) {
-                return {
+                variable = {
                     '$class': `${NS_PREFIX_CiceroMarkModel}FormattedVariable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                     format: el.getAttribute('format')
                 };
             } else if (el.getAttribute('enumValues')) {
-                return {
+                variable = {
                     '$class': `${NS_PREFIX_CiceroMarkModel}EnumVariable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                     enumValues: JSON.parse(decodeURIComponent(el.getAttribute('enumValues'))),
                 };
             } else {
-                return {
+                variable = {
                     '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                 };
             }
+            if (el.getAttribute('elementType')) {
+                variable.elementType = el.getAttribute('elementType');
+            }
+            if (el.getAttribute('identifiedBy')) {
+                variable.identifiedBy = el.getAttribute('identifiedBy');
+            }
+            return variable;
         }
     }
 };
@@ -351,7 +365,7 @@ const VARIABLE_RULE = {
  * @type {Object}
  */
 const CONDITIONAL_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'conditional') {
             const text = el.textContent;
@@ -383,28 +397,21 @@ const CONDITIONAL_RULE = {
  * @type {Object}
  */
 const FORMULA_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'formula') {
-            return {
+            const formula = {
                 '$class': `${NS_PREFIX_CiceroMarkModel}Formula`,
                 name: el.getAttribute('name'),
                 value: el.textContent,
             };
-        }
-    }
-};
-
-/**
- * A rule to deserialize softbreak nodes.
- * @type {Object}
- */
-const SOFTBREAK_RULE = {
-    deserialize(el, next) {
-        if (el.tagName && el.tagName.toLowerCase() === 'wbr') {
-            return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Softbreak`,
-            };
+            if (el.getAttribute('code')) {
+                formula.code = decodeURIComponent(el.getAttribute('code'));
+            }
+            if (el.getAttribute('dependencies')) {
+                formula.dependencies = JSON.parse(decodeURIComponent(el.getAttribute('dependencies')));
+            }
+            return formula;
         }
     }
 };
@@ -414,7 +421,7 @@ const SOFTBREAK_RULE = {
  * @type {Object}
  */
 const HTML_INLINE_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'html_inline') {
             {
@@ -435,7 +442,7 @@ const HTML_INLINE_RULE = {
  * @type {Object}
  */
 const HTML_BLOCK_RULE = {
-    deserialize(el, next) {
+    deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'pre' && el.getAttribute('class') === 'html_block') {
             const children = el.childNodes;
             if (children.length === 1 && children[0].tagName.toLowerCase() === 'code')
@@ -466,7 +473,6 @@ const rules = [
     CLAUSE_RULE,
     VARIABLE_RULE,
     CONDITIONAL_RULE,
-    SOFTBREAK_RULE,
     FORMULA_RULE,
     TEXT_RULE,
     HTML_INLINE_RULE,

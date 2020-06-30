@@ -32,15 +32,17 @@ function isAllWhitespace( node )
  * Determine if a node should be ignored by the iterator functions.
  *
  * @param {object} node  An object implementing the DOM1 |Node| interface.
+ * @param {boolean} ignoreSpace override
  * @return {boolean} true if the node is:
  *                1) A |Text| node that is all whitespace
  *                2) A |Comment| node
  *             and otherwise false.
  */
-function isIgnorable( node )
+function isIgnorable(node, ignoreSpace)
 {
-    return ( node.nodeType === 8) || // A comment node
-         ( (node.nodeType === 3) && isAllWhitespace(node) ); // a text node, all ws
+    return (ignoreSpace && // Is ignoring space allowed in this context
+            ((node.nodeType === 8) || // A comment node
+             (node.nodeType === 3) && isAllWhitespace(node))); // a text node, all ws
 }
 
 module.exports = {

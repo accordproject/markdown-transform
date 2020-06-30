@@ -1,6 +1,725 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`html converts blockquote.md to html 1`] = `
+exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 1`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h1>Heading</h1>
+<p>And below is a <strong>clause</strong>.</p>
+<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause\\">
+<h2>Acceptance of Delivery.</h2>
+<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
+if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
+Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
+that it is accepting the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
+<h2>Inspection and Notice.</h2>
+<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
+evaluate the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> on the delivery date before notifying
+<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
+<span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
+<h2>Acceptance Criteria.</h2>
+<p>The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>
+must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
+obligations under this agreement, detailed in <span class=\\"variable\\" name=\\"attachment\\" elementType=\\"String\\">\\"Attachment X\\"</span>, attached
+to this agreement.</p>
+</div>
+<p>More text</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 2`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h1>Heading</h1>
+<p>And below is a <strong>clause</strong>.</p>
+<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause\\">
+<h2>Acceptance of Delivery.</h2>
+<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
+if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
+Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
+that it is accepting the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
+<h2>Inspection and Notice.</h2>
+<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
+evaluate the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> on the delivery date before notifying
+<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
+<span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
+<h2>Acceptance Criteria.</h2>
+<p>The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>
+must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
+obligations under this agreement, detailed in <span class=\\"variable\\" name=\\"attachment\\" elementType=\\"String\\">\\"Attachment X\\"</span>, attached
+to this agreement.</p>
+</div>
+<p>More text</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 3`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Heading",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "And below is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "clause",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.ciceromark.Clause",
+      "elementType": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause",
+      "name": "deliveryClause",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance of Delivery.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will be deemed to have completed its delivery obligations",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "if in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "'s opinion, the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " satisfies the",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria, and ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " notifies ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " in writing",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "that it is accepting the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Inspection and Notice.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "receiver",
+              "value": "\\"Party B\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " will have ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "Long",
+              "name": "businessDays",
+              "value": "10",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " Business Days to inspect and",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "evaluate the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " on the delivery date before notifying",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " that it is either accepting or rejecting the",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ".",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Heading",
+          "level": "2",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Acceptance Criteria.",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "The \\"Acceptance Criteria\\" are the specifications the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "deliverable",
+              "value": "\\"Widgets\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "must meet for the ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "org.accordproject.organization.Organization",
+              "identifiedBy": "identifier",
+              "name": "shipper",
+              "value": "\\"Party A\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " to comply with its requirements and",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "obligations under this agreement, detailed in ",
+            },
+            Object {
+              "$class": "org.accordproject.ciceromark.Variable",
+              "elementType": "String",
+              "name": "attachment",
+              "value": "\\"Attachment X\\"",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": ", attached",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Softbreak",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "to this agreement.",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "More text",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> html converts fixedinterest.json to and from CiceroMark 1`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h2>Fixed rate loan</h2>
+<p>This is a <em>fixed interest</em> loan to the amount of <span class=\\"variable\\" name=\\"loanAmount\\" format=\\"K0,0.00\\" elementType=\\"org.accordproject.money.MonetaryAmount\\">£100,000.00</span>
+at the yearly interest rate of <span class=\\"variable\\" name=\\"rate\\" elementType=\\"Double\\">2.5</span>%
+with a loan term of <span class=\\"variable\\" name=\\"loanDuration\\" elementType=\\"Integer\\">15</span>,
+and monthly payments of <span class=\\"formula\\" name=\\"formula\\" code=\\"%20monthlyPaymentFormula(loanAmount%2Crate%2CloanDuration)%20as%20%22K0%2C0.00%22%20\\" dependencies=\\"%5B%5D\\"> eval( monthlyPaymentFormula(loanAmount,rate,loanDuration) as \\"K0,0.00\\" ) </span></p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts fixedinterest.json to and from CiceroMark 2`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h2>Fixed rate loan</h2>
+<p>This is a <em>fixed interest</em> loan to the amount of <span class=\\"variable\\" name=\\"loanAmount\\" format=\\"K0,0.00\\" elementType=\\"org.accordproject.money.MonetaryAmount\\">£100,000.00</span>
+at the yearly interest rate of <span class=\\"variable\\" name=\\"rate\\" elementType=\\"Double\\">2.5</span>%
+with a loan term of <span class=\\"variable\\" name=\\"loanDuration\\" elementType=\\"Integer\\">15</span>,
+and monthly payments of <span class=\\"formula\\" name=\\"formula\\" code=\\"%20monthlyPaymentFormula(loanAmount%2Crate%2CloanDuration)%20as%20%22K0%2C0.00%22%20\\" dependencies=\\"%5B%5D\\"> eval( monthlyPaymentFormula(loanAmount,rate,loanDuration) as \\"K0,0.00\\" ) </span></p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts fixedinterest.json to and from CiceroMark 3`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Fixed rate loan",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Emph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "fixed interest",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " loan to the amount of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.FormattedVariable",
+          "elementType": "org.accordproject.money.MonetaryAmount",
+          "format": "K0,0.00",
+          "name": "loanAmount",
+          "value": "£100,000.00",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "at the yearly interest rate of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Double",
+          "name": "rate",
+          "value": "2.5",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "%",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "with a loan term of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Integer",
+          "name": "loanDuration",
+          "value": "15",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "and monthly payments of ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Formula",
+          "code": " monthlyPaymentFormula(loanAmount,rate,loanDuration) as \\"K0,0.00\\" ",
+          "dependencies": Array [],
+          "name": "formula",
+          "value": " eval( monthlyPaymentFormula(loanAmount,rate,loanDuration) as \\"K0,0.00\\" ) ",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 1`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h2>Late Delivery and Penalty.</h2>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>
+of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\" elementType=\\"Double\\">10.5</span>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>. The total amount of penalty shall not however,
+exceed <span class=\\"variable\\" name=\\"capPercentage\\" elementType=\\"Double\\">55.0</span>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 2`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<h2>Late Delivery and Penalty.</h2>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>
+of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\" elementType=\\"Double\\">10.5</span>% of the total value of the Equipment
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>. The total amount of penalty shall not however,
+exceed <span class=\\"variable\\" name=\\"capPercentage\\" elementType=\\"Double\\">55.0</span>% of the total value of the Equipment involved in late delivery.
+If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
+</div>
+</body>
+</html>"
+`;
+
+exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 3`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "2",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Late Delivery and Penalty.",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "In case of delayed delivery",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Conditional",
+          "isTrue": true,
+          "name": "forceMajeure",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " except for Force Majeure cases,",
+            },
+          ],
+          "whenFalse": Array [],
+          "whenTrue": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " except for Force Majeure cases,",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "String",
+          "name": "partyId",
+          "value": "\\"Dan\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " (the Seller) shall pay to ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "String",
+          "name": "partyId",
+          "value": "\\"Steve\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " (the Buyer) for every ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Long",
+          "name": "amount",
+          "value": "2",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.EnumVariable",
+          "enumValues": Array [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+          ],
+          "name": "unit",
+          "value": "days",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "of delay penalty amounting to ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Double",
+          "name": "penaltyPercentage",
+          "value": "10.5",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "% of the total value of the Equipment",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "whose delivery has been delayed. Any fractional part of a ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.EnumVariable",
+          "enumValues": Array [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+          ],
+          "name": "fractionalPart",
+          "value": "days",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " is to be",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "considered a full ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.EnumVariable",
+          "enumValues": Array [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+          ],
+          "name": "fractionalPart",
+          "value": "days",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ". The total amount of penalty shall not however,",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "exceed ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Double",
+          "name": "capPercentage",
+          "value": "55.0",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "% of the total value of the Equipment involved in late delivery.",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "If the delay is more than ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "elementType": "Long",
+          "name": "amount",
+          "value": "15",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.EnumVariable",
+          "enumValues": Array [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+          ],
+          "name": "unit",
+          "value": "days",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", the Buyer is entitled to terminate this Contract.",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> html converts blockquote.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -32,7 +751,7 @@ Object {
 }
 `;
 
-exports[`html converts blockquote.md to html 2`] = `
+exports[`markdown <-> html converts blockquote.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -44,7 +763,7 @@ exports[`html converts blockquote.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts codeblock.md to html 1`] = `
+exports[`markdown <-> html converts codeblock.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -60,7 +779,7 @@ block.
 }
 `;
 
-exports[`html converts codeblock.md to html 2`] = `
+exports[`markdown <-> html converts codeblock.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -73,7 +792,7 @@ block.
 </html>"
 `;
 
-exports[`html converts codeblock-info.md to html 1`] = `
+exports[`markdown <-> html converts codeblock-info.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -107,7 +826,7 @@ Object {
 }
 `;
 
-exports[`html converts codeblock-info.md to html 2`] = `
+exports[`markdown <-> html converts codeblock-info.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -123,7 +842,7 @@ exports[`html converts codeblock-info.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts emph.md to html 1`] = `
+exports[`markdown <-> html converts emph.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -154,7 +873,7 @@ Object {
 }
 `;
 
-exports[`html converts emph.md to html 2`] = `
+exports[`markdown <-> html converts emph.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -164,7 +883,7 @@ exports[`html converts emph.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts emph-strong.md to html 1`] = `
+exports[`markdown <-> html converts emph-strong.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -200,7 +919,7 @@ Object {
 }
 `;
 
-exports[`html converts emph-strong.md to html 2`] = `
+exports[`markdown <-> html converts emph-strong.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -210,7 +929,7 @@ exports[`html converts emph-strong.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h1.md to html 1`] = `
+exports[`markdown <-> html converts h1.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -229,7 +948,7 @@ Object {
 }
 `;
 
-exports[`html converts h1.md to html 2`] = `
+exports[`markdown <-> html converts h1.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -239,7 +958,7 @@ exports[`html converts h1.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h2.md to html 1`] = `
+exports[`markdown <-> html converts h2.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -258,7 +977,7 @@ Object {
 }
 `;
 
-exports[`html converts h2.md to html 2`] = `
+exports[`markdown <-> html converts h2.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -268,7 +987,7 @@ exports[`html converts h2.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h3.md to html 1`] = `
+exports[`markdown <-> html converts h3.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -287,7 +1006,7 @@ Object {
 }
 `;
 
-exports[`html converts h3.md to html 2`] = `
+exports[`markdown <-> html converts h3.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -297,7 +1016,7 @@ exports[`html converts h3.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h4.md to html 1`] = `
+exports[`markdown <-> html converts h4.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -316,7 +1035,7 @@ Object {
 }
 `;
 
-exports[`html converts h4.md to html 2`] = `
+exports[`markdown <-> html converts h4.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -326,7 +1045,7 @@ exports[`html converts h4.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h5.md to html 1`] = `
+exports[`markdown <-> html converts h5.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -345,7 +1064,7 @@ Object {
 }
 `;
 
-exports[`html converts h5.md to html 2`] = `
+exports[`markdown <-> html converts h5.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -355,7 +1074,7 @@ exports[`html converts h5.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts h6.md to html 1`] = `
+exports[`markdown <-> html converts h6.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -374,7 +1093,7 @@ Object {
 }
 `;
 
-exports[`html converts h6.md to html 2`] = `
+exports[`markdown <-> html converts h6.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -384,7 +1103,7 @@ exports[`html converts h6.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts html-inline.md to html 1`] = `
+exports[`markdown <-> html converts html-inline.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -424,7 +1143,7 @@ Object {
 }
 `;
 
-exports[`html converts html-inline.md to html 2`] = `
+exports[`markdown <-> html converts html-inline.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -434,7 +1153,7 @@ exports[`html converts html-inline.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts html-mixed.md to html 1`] = `
+exports[`markdown <-> html converts html-mixed.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -485,7 +1204,7 @@ Object {
 }
 `;
 
-exports[`html converts html-mixed.md to html 2`] = `
+exports[`markdown <-> html converts html-mixed.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -497,7 +1216,7 @@ exports[`html converts html-mixed.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts inline-code.md to html 1`] = `
+exports[`markdown <-> html converts inline-code.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -523,7 +1242,7 @@ Object {
 }
 `;
 
-exports[`html converts inline-code.md to html 2`] = `
+exports[`markdown <-> html converts inline-code.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -533,7 +1252,7 @@ exports[`html converts inline-code.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts link.md to html 1`] = `
+exports[`markdown <-> html converts link.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -566,7 +1285,7 @@ Object {
 }
 `;
 
-exports[`html converts link.md to html 2`] = `
+exports[`markdown <-> html converts link.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -576,7 +1295,7 @@ exports[`html converts link.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts multiline-html-block.md to html 1`] = `
+exports[`markdown <-> html converts multiline-html-block.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -625,7 +1344,7 @@ contents
 }
 `;
 
-exports[`html converts multiline-html-block.md to html 2`] = `
+exports[`markdown <-> html converts multiline-html-block.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -639,7 +1358,7 @@ contents
 </html>"
 `;
 
-exports[`html converts ol.md to html 1`] = `
+exports[`markdown <-> html converts ol.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -717,7 +1436,7 @@ Object {
 }
 `;
 
-exports[`html converts ol.md to html 2`] = `
+exports[`markdown <-> html converts ol.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -735,7 +1454,7 @@ exports[`html converts ol.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts ol-tight.md to html 1`] = `
+exports[`markdown <-> html converts ol-tight.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -813,7 +1532,7 @@ Object {
 }
 `;
 
-exports[`html converts ol-tight.md to html 2`] = `
+exports[`markdown <-> html converts ol-tight.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -831,7 +1550,7 @@ exports[`html converts ol-tight.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts paragraphs.md to html 1`] = `
+exports[`markdown <-> html converts paragraphs.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -858,7 +1577,7 @@ Object {
 }
 `;
 
-exports[`html converts paragraphs.md to html 2`] = `
+exports[`markdown <-> html converts paragraphs.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -869,7 +1588,7 @@ exports[`html converts paragraphs.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts strong.md to html 1`] = `
+exports[`markdown <-> html converts strong.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -900,7 +1619,7 @@ Object {
 }
 `;
 
-exports[`html converts strong.md to html 2`] = `
+exports[`markdown <-> html converts strong.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -910,7 +1629,7 @@ exports[`html converts strong.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts text.md to html 1`] = `
+exports[`markdown <-> html converts text.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -928,7 +1647,7 @@ Object {
 }
 `;
 
-exports[`html converts text.md to html 2`] = `
+exports[`markdown <-> html converts text.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -938,7 +1657,7 @@ exports[`html converts text.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts thematicbreak.md to html 1`] = `
+exports[`markdown <-> html converts thematicbreak.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -968,7 +1687,7 @@ Object {
 }
 `;
 
-exports[`html converts thematicbreak.md to html 2`] = `
+exports[`markdown <-> html converts thematicbreak.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -981,7 +1700,7 @@ exports[`html converts thematicbreak.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts ul.md to html 1`] = `
+exports[`markdown <-> html converts ul.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1057,7 +1776,7 @@ Object {
 }
 `;
 
-exports[`html converts ul.md to html 2`] = `
+exports[`markdown <-> html converts ul.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -1075,7 +1794,7 @@ exports[`html converts ul.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts ul-tight.md to html 1`] = `
+exports[`markdown <-> html converts ul-tight.md to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1151,7 +1870,7 @@ Object {
 }
 `;
 
-exports[`html converts ul-tight.md to html 2`] = `
+exports[`markdown <-> html converts ul-tight.md to html 2`] = `
 "<html>
 <body>
 <div class=\\"document\\">
@@ -1169,7 +1888,7 @@ exports[`html converts ul-tight.md to html 2`] = `
 </html>"
 `;
 
-exports[`html converts unwrapped <li> to html 1`] = `
+exports[`markdown <-> html converts unwrapped <li> to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
   "nodes": Array [
@@ -1205,7 +1924,7 @@ Object {
 }
 `;
 
-exports[`html converts unwrapped <li> to html 2`] = `
+exports[`markdown <-> html converts unwrapped <li> to html 2`] = `
 "Hello
 -  list item
 
