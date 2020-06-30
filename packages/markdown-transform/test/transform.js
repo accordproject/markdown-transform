@@ -27,13 +27,24 @@ const transform = require('../lib/transform').transform;
 const generateTransformationDiagram = require('../lib/transform').generateTransformationDiagram;
 const formatDescriptor = require('../lib/transform').formatDescriptor;
 
+/**
+ * Prepare the text for parsing (normalizes new lines, etc)
+ * @param {string} input - the text for the clause
+ * @return {string} - the normalized text for the clause
+ */
+function normalizeNLs(input) {
+    // we replace all \r and \n with \n
+    let text =  input.replace(/\r/gm,'');
+    return text;
+}
+
 // Acceptance test
 const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
 const acceptanceGrammar = fs.readFileSync(acceptanceGrammarFile, 'utf8');
 const acceptanceGrammarTokens = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar_tokens.json'), 'utf8'));
 const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
 const acceptanceTemplateMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar.json'), 'utf8'));
-const acceptanceMarkdown = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8');
+const acceptanceMarkdown = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8'));
 const acceptanceCiceroEdit = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceroedit.md'), 'utf8');
 const acceptanceCommonMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'commonmark.json'), 'utf8'));
 const acceptanceCiceroMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark.json'), 'utf8'));
@@ -41,8 +52,8 @@ const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dir
 const acceptanceCiceroMarkUntyped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_untyped.json'), 'utf8'));
 const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unquoted.json'), 'utf8'));
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
-const acceptancePlainText = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8');
-const acceptanceHtml = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8');
+const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
+const acceptanceHtml = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8'));
 
 // Sample test
 const samplePdf = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.pdf'));

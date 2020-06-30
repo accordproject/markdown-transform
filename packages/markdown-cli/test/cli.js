@@ -24,18 +24,6 @@ chai.use(require('chai-as-promised'));
 
 const Commands = require('../lib/commands');
 
-// Acceptance test
-const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
-const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
-const acceptanceMarkdownFile = path.resolve(__dirname, 'data/acceptance', 'sample.md');
-const acceptanceMarkdown = fs.readFileSync(acceptanceMarkdownFile, 'utf8');
-const acceptanceCommonMarkFile = path.resolve(__dirname, 'data/acceptance', 'commonmark.json');
-const acceptanceCommonMark = JSON.parse(fs.readFileSync(acceptanceCommonMarkFile, 'utf8'));
-const acceptanceCiceroMarkParsedFile = path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json');
-const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(acceptanceCiceroMarkParsedFile, 'utf8'));
-const acceptanceSlateFile = path.resolve(__dirname, 'data/acceptance', 'slate.json');
-const acceptanceSlate = JSON.parse(fs.readFileSync(acceptanceSlateFile, 'utf8'));
-
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
  * @param {string} input - the text for the clause
@@ -46,6 +34,18 @@ function normalizeNLs(input) {
     let text =  input.replace(/\r/gm,'');
     return text;
 }
+
+// Acceptance test
+const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
+const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
+const acceptanceMarkdownFile = path.resolve(__dirname, 'data/acceptance', 'sample.md');
+const acceptanceMarkdown = normalizeNLs(fs.readFileSync(acceptanceMarkdownFile, 'utf8'));
+const acceptanceCommonMarkFile = path.resolve(__dirname, 'data/acceptance', 'commonmark.json');
+const acceptanceCommonMark = JSON.parse(fs.readFileSync(acceptanceCommonMarkFile, 'utf8'));
+const acceptanceCiceroMarkParsedFile = path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json');
+const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(acceptanceCiceroMarkParsedFile, 'utf8'));
+const acceptanceSlateFile = path.resolve(__dirname, 'data/acceptance', 'slate.json');
+const acceptanceSlate = JSON.parse(fs.readFileSync(acceptanceSlateFile, 'utf8'));
 
 describe('#validateTransformArgs', () => {
     it('no args specified', () => {
