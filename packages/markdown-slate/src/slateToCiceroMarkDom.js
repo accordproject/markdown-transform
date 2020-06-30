@@ -351,6 +351,12 @@ function handleFormula(node) {
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;
     }
+    if (Object.prototype.hasOwnProperty.call(data,'dependencies')) {
+        result.dependencies = data.dependencies;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'code')) {
+        result.code = data.code;
+    }
     if (Object.prototype.hasOwnProperty.call(data,'name')) {
         result.name = data.name;
     }
