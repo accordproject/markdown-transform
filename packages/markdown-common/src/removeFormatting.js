@@ -34,7 +34,7 @@ function mapObject(obj, stack) {
         break;
     // wrap in a para and process child nodes
     case 'org.accordproject.commonmark.Paragraph':
-    case 'org.accordproject.commonmark.Heading':
+    case 'org.accordproject.commonmark.Heading': {
         stack.push({
             $class: 'org.accordproject.commonmark.Paragraph',
             nodes: []
@@ -46,6 +46,7 @@ function mapObject(obj, stack) {
         }
         stack.pop();
         break;
+    }
     // wrap in a para and grab text
     case 'org.accordproject.commonmark.CodeBlock':
     case 'org.accordproject.commonmark.HtmlBlock':

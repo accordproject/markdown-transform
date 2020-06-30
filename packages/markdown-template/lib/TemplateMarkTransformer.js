@@ -23,13 +23,14 @@ const {
 } = require('./templatemarkutil');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const ToCommonMarkVisitor = require('@accordproject/markdown-cicero').ToCommonMarkVisitor;
 const ParserManager = require('./parsermanager');
 
 const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
 const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
+const normalizeCiceroMark = require('./normalize').normalizeCiceroMark;
 
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
-const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 
 /**
  * Minimum length of expected token
@@ -166,7 +167,8 @@ class TemplateMarkTransformer {
         const parser = parserManager.getParser();
 
         // Load the markdown input
-        const markdown = normalizeToMarkdown(commonMarkInput.content);
+        const prepMarkdown = normalizeCiceroMark(commonMarkInput.content);
+        const markdown = normalizeToMarkdown(prepMarkdown);
         const markdownFileName = commonMarkInput.fileName;
 
         // Parse the markdown

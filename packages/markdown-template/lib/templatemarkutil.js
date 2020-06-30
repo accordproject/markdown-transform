@@ -20,7 +20,7 @@ const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMark
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
 
 const normalizeNLs = require('./normalize').normalizeNLs;
-const TypingVisitor = require('./TypingVisitor');
+const TypeVisitor = require('./TypeVisitor');
 const MarkdownIt = require('markdown-it');
 const MarkdownItTemplate = require('@accordproject/markdown-it-template');
 const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
@@ -119,7 +119,7 @@ function templateMarkTypingGen(template,introspector,model,templateKind) {
         model: model,
         kind: templateKind,
     };
-    const visitor = new TypingVisitor();
+    const visitor = new TypeVisitor();
     input.accept(visitor, parameters);
     const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
 

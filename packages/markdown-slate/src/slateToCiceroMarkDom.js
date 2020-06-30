@@ -106,9 +106,12 @@ function _recursive_nodes(target, nodes) {
             switch(node.type) {
             case 'clause':
                 // console.log(JSON.stringify(node, null, 4));
-                result = {$class : `${NS_CICERO}.Clause`, name: node.data.name, src: node.data.src, nodes: []};
+                result = {$class : `${NS_CICERO}.Clause`, name: node.data.name, nodes: []};
                 if (node.data.elementType) {
                     result.elementType = node.data.elementType;
+                }
+                if (node.data.src) {
+                    result.src = node.data.src;
                 }
                 break;
             case 'conditional': {
@@ -290,6 +293,9 @@ function handleVariable(node) {
     }
     if (Object.prototype.hasOwnProperty.call(data,'enumValues')) {
         result.enumValues = data.enumValues;
+    }
+    if (node.data.identifiedBy) {
+        result.identifiedBy = node.data.identifiedBy;
     }
 
     return handleMarks(node,result);

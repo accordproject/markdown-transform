@@ -1,0 +1,66 @@
+{
+   "$class": "org.accordproject.commonmark.Document",
+   "xmlns": "http://commonmark.org/xml/1.0",
+   "nodes": [
+       {
+           "$class": "org.accordproject.commonmark.Heading",
+           "level": "1",
+           "nodes": [
+               {
+                   "$class": "org.accordproject.commonmark.Text",
+                   "text": "Heading"
+               }
+           ]
+       },
+       {
+           "$class": "org.accordproject.commonmark.Paragraph",
+           "nodes": [
+               {
+                   "$class": "org.accordproject.commonmark.Text",
+                   "text": "And below is a "
+               },
+               {
+                   "$class": "org.accordproject.commonmark.Strong",
+                   "nodes": [
+                       {
+                           "$class": "org.accordproject.commonmark.Text",
+                           "text": "clause"
+                       }
+                   ]
+               },
+               {
+                   "$class": "org.accordproject.commonmark.Text",
+                   "text": "."
+               }
+           ]
+       },
+       {
+           "$class": "org.accordproject.commonmark.CodeBlock",
+           "info": "<clause name=\"deliveryClause\"/>",
+           "tag": {
+               "$class": "org.accordproject.commonmark.TagInfo",
+               "tagName": "clause",
+               "attributeString": "name = \"deliveryClause\" ",
+               "attributes": [
+                   {
+                       "$class": "org.accordproject.commonmark.Attribute",
+                       "name": "name",
+                       "value": "deliveryClause"
+                   }
+               ],
+               "content": "",
+               "closed": true
+           },
+           "text": "Acceptance of Delivery.\n----\n\n\"Party A\" will be deemed to have completed its delivery obligations\nif in \"Party B\"'s opinion, the \"Widgets\" satisfies the\nAcceptance Criteria, and \"Party B\" notifies \"Party A\" in writing\nthat it is accepting the \"Widgets\".\n\nInspection and Notice.\n----\n\n\"Party B\" will have 10 Business Days to inspect and\nevaluate the \"Widgets\" on the delivery date before notifying\n\"Party A\" that it is either accepting or rejecting the\n\"Widgets\".\n\nAcceptance Criteria.\n----\n\nThe \"Acceptance Criteria\" are the specifications the \"Widgets\"\nmust meet for the \"Party A\" to comply with its requirements and\nobligations under this agreement, detailed in \"Attachment X\", attached\nto this agreement.\n"
+       },
+       {
+           "$class": "org.accordproject.commonmark.Paragraph",
+           "nodes": [
+               {
+                   "$class": "org.accordproject.commonmark.Text",
+                   "text": "More text"
+               }
+           ]
+       }
+   ]
+}

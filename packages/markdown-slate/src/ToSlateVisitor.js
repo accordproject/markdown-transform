@@ -206,6 +206,9 @@ class ToSlateVisitor {
             if (thing.src) {
                 data.src = thing.src;
             }
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
             result = {
                 object: 'block',
                 type: 'clause',
@@ -218,6 +221,9 @@ class ToSlateVisitor {
             const data = { name: thing.name };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
+            }
+            if (thing.identifiedBy) {
+                data.identifiedBy = thing.identifiedBy;
             }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }

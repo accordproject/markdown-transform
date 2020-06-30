@@ -20,9 +20,11 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 const FromCommonMarkVisitor = require('./FromCommonMarkVisitor');
+const FromCiceroEditVisitor = require('./FromCiceroEditVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 const unquoteVariables = require('./UnquoteVariables');
+const UntypeVisitor = require('./UntypeVisitor');
 
 /**
  * Converts a CiceroMark DOM to/from a
@@ -81,7 +83,7 @@ class CiceroMarkTransformer {
             modelManager : this.modelManager,
             serializer : this.serializer,
         };
-        const visitor = new FromCommonMarkVisitor();
+        const visitor = options && options.ciceroEdit ? new FromCiceroEditVisitor() : new FromCommonMarkVisitor();
         input.accept( visitor, parameters );
 
         let json = Object.assign({}, this.serializer.toJSON(input));
@@ -181,20 +183,20 @@ class CiceroMarkTransformer {
                 });
         }
 
-        const concertoDom = this.serializer.fromJSON(json);
+        const dom = this.serializer.fromJSON(json);
 
         // convert to common mark
         const visitor = new ToCommonMarkVisitor(options);
-        concertoDom.accept( visitor, {
+        dom.accept( visitor, {
             commonMark: this.commonMark,
             modelManager : this.modelManager,
             serializer : this.serializer
         } );
 
         if(format === 'concerto') {
-            return concertoDom;
+            return dom;
         }
-        return this.serializer.toJSON(concertoDom);
+        return this.serializer.toJSON(dom);
     }
 
     /**
@@ -204,6 +206,23 @@ class CiceroMarkTransformer {
      */
     unquote(input) {
         return unquoteVariables(input);
+    }
+
+    /**
+     * Untypes a CiceroMark DOM
+     * @param {object} input CiceroMark DOM
+     * @returns {object} untyped CiceroMark DOM
+     */
+    untype(input) {
+        const concertoInput = this.serializer.fromJSON(input);
+
+        const parameters = {
+            modelManager: this.modelManager,
+        };
+        const visitor = new UntypeVisitor();
+        concertoInput.accept(visitor, parameters);
+        const result = Object.assign({}, this.serializer.toJSON(concertoInput));
+        return result;
     }
 }
 

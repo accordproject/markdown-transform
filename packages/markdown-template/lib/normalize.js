@@ -15,6 +15,7 @@
 'use strict';
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -51,6 +52,19 @@ function normalizeFromMarkdown(input) {
     return commonMarkTransformer.fromMarkdown(inputNLs);
 }
 
+/**
+ * Normalize markdown text
+ * @param {string} input - the markdown text
+ * @return {string} - the normalized text
+ */
+function normalizeCiceroMark(input) {
+    // Roundtrip the grammar through the Commonmark parser
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
+    const result = ciceroMarkTransformer.toCommonMark(ciceroMarkTransformer.fromCommonMark(input,'json'),'json');
+    return result;
+}
+
 module.exports.normalizeNLs = normalizeNLs;
 module.exports.normalizeToMarkdown = normalizeToMarkdown;
 module.exports.normalizeFromMarkdown = normalizeFromMarkdown;
+module.exports.normalizeCiceroMark = normalizeCiceroMark;

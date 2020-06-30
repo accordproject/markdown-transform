@@ -22,5 +22,6 @@
 module.exports.CiceroMarkModel = require('./lib/externalModels/CiceroMarkModel');
 
 module.exports.CiceroMarkTransformer = require('./lib/CiceroMarkTransformer');
-module.exports.ToCiceroVisitor = require('./lib/ToCiceroVisitor');
-module.exports.FromCiceroVisitor = require('./lib/FromCiceroVisitor');
+module.exports.FromCommonMarkVisitor = require('./lib/FromCommonMarkVisitor');
+module.exports.FromCiceroEditVisitor = require('./lib/FromCiceroEditVisitor');
+module.exports.ToCommonMarkVisitor = require('./lib/ToCommonMarkVisitor');

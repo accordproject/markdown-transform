@@ -1,0 +1,1 @@
+This is a <variable value="%22Party%20A%22" id="shipper"/> property.

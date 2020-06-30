@@ -1,1 +1,0 @@
-This is a contract between "Steve" and "Betty" for the amount of 3131.00 GRR, even in the presence of force majeure.
