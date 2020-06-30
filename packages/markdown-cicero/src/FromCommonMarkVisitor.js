@@ -65,15 +65,13 @@ class FromCommonMarkVisitor {
         switch(thing.getType()) {
         case 'CodeBlock': {
             const tag = thing.tag;
-            if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
+            if (tag && tag.tagName === 'clause' && tag.attributes.length === 1) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = FromCommonMarkVisitor.codeBlockContent(thing.text);
 
-                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'src') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'name')) {
+                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.src = FromCommonMarkVisitor.getAttribute(tag.attributes, 'src').value;
                     thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
 
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
@@ -82,101 +80,6 @@ class FromCommonMarkVisitor {
                     thing.text = null; // Remove text
                     delete thing.tag;
                     delete thing.info;
-                }
-            } else if (tag && tag.tagName === 'list' &&
-                       tag.attributes.length === 1 &&
-                       FromCommonMarkVisitor.getAttribute(tag.attributes, 'name')) {
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListBlock';
-                // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = FromCommonMarkVisitor.codeBlockContent(thing.text);
-
-                const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
-                if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
-                    const listNode = newNodes[0];
-                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.type = listNode.type;
-                    thing.start = listNode.start;
-                    thing.tight = listNode.tight;
-                    thing.delimiter = listNode.delimiter;
-                    thing.nodes = listNode.nodes;
-                    FromCommonMarkVisitor.visitNodes(this, thing.nodes, parameters);
-
-                    thing.text = null; // Remove text
-                    delete thing.tag;
-                    delete thing.info;
-                }
-            }
-        }
-            break;
-        //case 'HtmlBlock':
-        case 'HtmlInline': {
-            if (thing.tag &&
-                thing.tag.tagName === 'variable' &&
-                (thing.tag.attributes.length === 2 || thing.tag.attributes.length === 3)) {
-                const tag = thing.tag;
-                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value')) {
-                    const format = FromCommonMarkVisitor.getAttribute(tag.attributes, 'format');
-                    const enumValues = FromCommonMarkVisitor.getAttribute(tag.attributes, 'enumValues');
-                    const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : enumValues ? NS_PREFIX_CiceroMarkModel + 'EnumVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
-                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.value = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
-                    if (format) { // For FormattedVariables
-                        thing.format = decodeURIComponent(format.value);
-                    }
-                    if (enumValues) {
-                        thing.enumValues = JSON.parse(decodeURIComponent(enumValues.value));
-                    }
-                    delete thing.tag;
-                    delete thing.text;
-                }
-            }
-            if (thing.tag &&
-                thing.tag.tagName === 'if' &&
-                thing.tag.attributes.length === 4) {
-                const tag = thing.tag;
-                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenTrue') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenFalse')) {
-                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
-                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    const valueText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
-                    const valueNode = parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
-                        text: valueText,
-                    });
-                    thing.nodes = [valueNode];
-                    const whenTrueText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenTrue').value);
-                    const whenTrueNodes = whenTrueText ? [parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
-                        text: whenTrueText,
-                    })] : [];
-                    thing.isTrue = valueText === whenTrueText;
-                    thing.whenTrue = whenTrueNodes;
-                    const whenFalseText = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'whenFalse').value);
-                    const whenFalseNodes = whenFalseText ? [parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
-                        text: whenFalseText,
-                    })] : [];
-                    thing.whenFalse = whenFalseNodes;
-                    delete thing.tag;
-                    delete thing.text;
-                }
-            }
-            if (thing.tag && thing.tag.tagName === 'formula' && thing.tag.attributes.length === 2) {
-                const tag = thing.tag;
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Formula';
-                if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'name') &&
-                    FromCommonMarkVisitor.getAttribute(tag.attributes, 'value')) {
-                    thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
-                    thing.value = decodeURIComponent(FromCommonMarkVisitor.getAttribute(tag.attributes, 'value').value);
-                    delete thing.tag;
-                    delete thing.text;
                 }
             }
         }

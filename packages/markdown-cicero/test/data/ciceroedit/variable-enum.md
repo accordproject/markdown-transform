@@ -1,0 +1,1 @@
+This is a <variable id="currency" value="ABC"/> property.

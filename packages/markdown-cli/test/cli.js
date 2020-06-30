@@ -24,6 +24,18 @@ chai.use(require('chai-as-promised'));
 
 const Commands = require('../lib/commands');
 
+// Acceptance test
+const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
+const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
+const acceptanceMarkdownFile = path.resolve(__dirname, 'data/acceptance', 'sample.md');
+const acceptanceMarkdown = fs.readFileSync(acceptanceMarkdownFile, 'utf8');
+const acceptanceCommonMarkFile = path.resolve(__dirname, 'data/acceptance', 'commonmark.json');
+const acceptanceCommonMark = JSON.parse(fs.readFileSync(acceptanceCommonMarkFile, 'utf8'));
+const acceptanceCiceroMarkParsedFile = path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json');
+const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(acceptanceCiceroMarkParsedFile, 'utf8'));
+const acceptanceSlateFile = path.resolve(__dirname, 'data/acceptance', 'slate.json');
+const acceptanceSlate = JSON.parse(fs.readFileSync(acceptanceSlateFile, 'utf8'));
+
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
  * @param {string} input - the text for the clause
@@ -68,99 +80,68 @@ describe('#validateTransformArgs', () => {
     });
 });
 
-describe('markdown-cli', () => {
-    const input = path.resolve(__dirname, 'data', 'acceptance.md');
-    const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
-    const inputExpected = path.resolve(__dirname, 'data', 'acceptance.json');
-    const inputExpectedDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.md');
-    const inputExpectedJson = JSON.parse(fs.readFileSync(inputExpected, 'utf8'));
-    const inputExpectedCiceroMark = path.resolve(__dirname, 'data', 'acceptance-cicero.json');
-    const inputExpectedCiceroMarkJson = JSON.parse(fs.readFileSync(inputExpectedCiceroMark, 'utf8'));
-    const inputExpectedSlate = path.resolve(__dirname, 'data', 'acceptance-slate.json');
-    const inputExpectedSlateJson = JSON.parse(fs.readFileSync(inputExpectedSlate, 'utf8'));
-    const inputExpectedText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'acceptance-roundtrip.md'), 'utf8'));
-    const inputExpectedDocxText = normalizeNLs(fs.readFileSync(inputExpectedDocx,'utf8'));
+describe('markdown-cli (acceptance)', () => {
+    let parameters;
+    beforeEach(async () => {
+        parameters = { grammar: acceptanceGrammarFile, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
+    });
 
     describe('#parse', () => {
         it('should parse a markdown file to CommonMark', async () => {
-            const options = {};
-            const parameters = {};
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, parameters, options);
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
+            const result = await Commands.transform(acceptanceMarkdownFile, 'markdown', [], 'commonmark', null, {}, {});
+            result.should.equal(JSON.stringify(acceptanceCommonMark));
         });
 
         it('should parse a markdown file to CommonMark (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {}, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedJson));
+            const result = await Commands.transform(acceptanceMarkdownFile, 'markdown', [], 'commonmark', null, {}, {verbose:true});
+            result.should.deep.equal(JSON.stringify(acceptanceCommonMark));
         });
 
         it('should parse a markdown file to CiceroMark', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
-        });
-
-        it('should parse a markdown file to CiceroMark (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedCiceroMarkJson));
+            const result = await Commands.transform(acceptanceMarkdownFile, 'markdown', ['data'], 'ciceromark', null, parameters, {});
+            result.should.deep.equal(JSON.stringify(acceptanceCiceroMarkParsed));
         });
 
         it('should parse a markdown file to Slate', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
-        });
-
-        it('should parse a markdown file to Slate (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {verbose:true});
-            JSON.stringify(JSON.parse(result)).should.eql(JSON.stringify(inputExpectedSlateJson));
-        });
-
-        it('should generate a markdown file from docx', async () => {
-            const result = await Commands.transform(inputDocx, 'docx', 'markdown', null, {}, {});
-            result.should.eql(inputExpectedDocxText);
+            const result = await Commands.transform(acceptanceMarkdownFile, 'markdown', ['data'], 'slate', null, parameters, {});
+            result.should.deep.equal(JSON.stringify(acceptanceSlate));
         });
     });
 
     describe('#draft', () => {
         it('should generate a markdown file from CommonMark', async () => {
-            const result = await Commands.transform(inputExpected, 'commonmark', 'markdown', null, {}, {});
-            result.should.eql(inputExpectedText);
+            const result = await Commands.transform(acceptanceCommonMarkFile, 'commonmark', [], 'markdown', null, {}, {});
+            result.should.eql(acceptanceMarkdown);
         });
 
         it('should generate a markdown file from CiceroMark', async () => {
-            const result = await Commands.transform(inputExpectedCiceroMark, 'ciceromark', 'markdown', null, {}, {});
-            result.should.eql(inputExpectedText);
+            const result = await Commands.transform(acceptanceCiceroMarkParsedFile, 'ciceromark', [], 'markdown', null, {}, {});
+            result.should.eql(acceptanceMarkdown);
         });
 
         it('should generate a markdown file from Slate', async () => {
-            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {}, {});
-            result.should.eql(inputExpectedText);
-        });
-
-        it('should generate a markdown file from Slate (verbose)', async () => {
-            const result = await Commands.transform(inputExpectedSlate, 'slate', 'markdown', null, {}, {verbose:true});
-            result.should.eql(inputExpectedText);
+            const result = await Commands.transform(acceptanceSlateFile, 'slate', [], 'markdown', null, {}, {});
+            result.should.eql(acceptanceMarkdown);
         });
     });
 
     describe('#normalize', () => {
-        it('should CommonMark <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'commonmark', null, {}, {roundtrip:true});
-            result.should.eql(inputExpectedText);
+        it('should CommonMark <-> Markdown roundtrip', async () => {
+            const result = await Commands.transform(acceptanceMarkdownFile, 'markdown', [], 'commonmark', null, {}, {roundtrip:true});
+            result.should.eql(acceptanceMarkdown);
         });
+    });
+});
 
-        it('should CiceroMark <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'ciceromark', null, {}, {roundtrip:true});
-            result.should.eql(inputExpectedText);
-        });
+describe('markdown-cli (docx)', () => {
+    // Acceptance test
+    const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
+    const inputExpectedDocxText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'sample-service-level-agreement.md'),'utf8'));
 
-        it('should Slate <> Markdown roundtrip', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {roundtrip:true});
-            result.should.eql(inputExpectedText);
-        });
-
-        it('should Slate <> Markdown roundtrip (verbose)', async () => {
-            const result = await Commands.transform(input, 'markdown', 'slate', null, {}, {roundtrip:true,verbose:true});
-            result.should.eql(inputExpectedText);
+    describe('#parse', () => {
+        it('should generate a markdown file from docx', async () => {
+            const result = await Commands.transform(inputDocx, 'docx', [], 'markdown', null, {}, {});
+            result.should.eql(inputExpectedDocxText);
         });
     });
 });

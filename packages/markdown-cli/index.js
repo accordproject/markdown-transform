@@ -40,6 +40,12 @@ require('yargs')
             type: 'string',
             default: 'commonmark'
         });
+        yargs.option('via', {
+            describe: 'intermediate formats',
+            type: 'string',
+            array: true,
+            default: []
+        });
         yargs.option('output', {
             describe: 'path to the output file',
             type: 'string'
@@ -99,7 +105,7 @@ require('yargs')
             options.verbose = argv.verbose;
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
-            return commands.transform(argv.input, argv.from, argv.to, argv.output, parameters, options)
+            return commands.transform(argv.input, argv.from, argv.via, argv.to, argv.output, parameters, options)
                 .then((result) => {
                     if(result) {logger.info('\n'+result);}
                 })

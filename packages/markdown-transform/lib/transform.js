@@ -36,7 +36,7 @@ const grammarToTemplateMark = async (input,parameters,options) => {
     return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
 };
 const transformationGraph = {
-    grammar : {
+    grammar: {
         docs: 'Markdown grammar (string)',
         fileFormat: 'utf8',
         grammar_tokens: (input,parameters,options) => {
@@ -44,7 +44,7 @@ const transformationGraph = {
             return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
         },
     },
-    grammar_tokens : {
+    grammar_tokens: {
         docs: 'Markdown grammar tokens (JSON)',
         fileFormat: 'json',
         templatemark: async (input,parameters,options) => {
@@ -53,11 +53,11 @@ const transformationGraph = {
             return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options);
         },
     },
-    templatemark : {
+    templatemark: {
         docs: 'TemplateMark DOM (JSON)',
         fileFormat: 'json'
     },
-    markdown : {
+    markdown: {
         docs: 'Markdown (string)',
         fileFormat: 'utf8',
         markdown_tokens: (input,parameters,options) => {
@@ -65,7 +65,7 @@ const transformationGraph = {
             return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
         },
     },
-    markdown_tokens : {
+    markdown_tokens: {
         docs: 'Markdown tokens (JSON)',
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
@@ -73,7 +73,7 @@ const transformationGraph = {
             return t.fromTokens(input,'json');
         },
     },
-    data : {
+    data: {
         docs: 'Contract Data (JSON)',
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
@@ -115,7 +115,8 @@ const transformationGraph = {
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.grammarFileName;
             const templateMark = await grammarToTemplateMark(parameters.grammar,templateParameters,options);
-            return t.fromCommonMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
+            const result = await t.fromCommonMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
+            return result;
         },
     },
     plaintext: {
@@ -132,20 +133,42 @@ const transformationGraph = {
             const t = new HtmlTransformer();
             return t.toHtml(input);
         },
-        ciceromark_noquotes: (input,parameters,options) => {
+        ciceromark_unquoted: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
             return ciceroMarkTransformer.fromCommonMark(input, 'json', Object.assign(options,{quoteVariables: false}));
         },
+        ciceromark_untyped: (input,parameters,options) => {
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            return ciceroMarkTransformer.untype(input,options);
+        },
         commonmark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{wrapVariables: true, quoteVariables: true}));
+            return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{quoteVariables: true}));
         },
         slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
         },
     },
-    ciceromark_noquotes: {
+    ciceromark_untyped: {
+        docs: 'Untyped CiceroMark DOM (JSON)',
+        fileFormat: 'json',
+        commonmark: (input,parameters,options) => {
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{quoteVariables: true}));
+        },
+    },
+    ciceroedit: {
+        docs: 'CiceroEdit (string)',
+        fileFormat: 'utf8',
+        ciceromark_untyped: (input,parameters,options) => {
+            const commonMarkTransformer = new CommonMarkTransformer();
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            const commonMark = commonMarkTransformer.fromMarkdown(input,'json');
+            return ciceroMarkTransformer.fromCommonMark(commonMark, 'json', Object.assign(options,{ciceroEdit:true}));
+        },
+    },
+    ciceromark_unquoted: {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',
         fileFormat: 'json',
         ciceromark: (input,parameters,options) => {
@@ -290,7 +313,7 @@ async function transform(source, sourceFormat, destinationFormat, parameters, op
 
     for(let i=0; i < destinationFormat.length; i++) {
         let destination = destinationFormat[i];
-        result = transformToDestination(result, currentSourceFormat, destination, parameters, options);
+        result = await transformToDestination(result, currentSourceFormat, destination, parameters, options);
         currentSourceFormat = destination;
     }
     return result;

@@ -113,6 +113,7 @@ class Commands {
      *
      * @param {string} inputPath to the input file
      * @param {string} from the source format
+     * @param {string[]} via intermediate formats
      * @param {string} to the target format
      * @param {string} outputPath to an output file
      * @param {object} parameters the transform parameters
@@ -121,17 +122,19 @@ class Commands {
      * @param {boolean} [options.roundtrip] roundtrip transform back to source format
      * @returns {object} Promise to the result of parsing
      */
-    static async transform(inputPath, from, to, outputPath, parameters, options) {
+    static async transform(inputPath, from, via, to, outputPath, parameters, options) {
         const input = Commands.loadFormatFromFile(inputPath, from);
         parameters.inputFileName = inputPath;
         if (parameters.grammar) {
             parameters.grammarFileName = parameters.grammar;
             parameters.grammar = Commands.loadFormatFromFile(parameters.grammar,'grammar');
         }
-        let result = await transform(input, from, [to], parameters, options);
+        const pathTo = via.concat([to]);
+        let result = await transform(input, from, pathTo, parameters, options);
         let finalFormat = to;
         if (options && options.roundtrip) {
-            result = await transform(result, to, [from], parameters, options);
+            const pathFrom = via.reverse().concat([from]);
+            result = await transform(result, to, pathFrom, parameters, options);
             finalFormat = from;
         }
 

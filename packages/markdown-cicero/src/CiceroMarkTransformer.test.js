@@ -65,60 +65,16 @@ beforeAll(() => {
  */
 function getMarkdownFiles() {
     const result = [];
-    const files = fs.readdirSync(__dirname + '/../test/data');
+    const files = fs.readdirSync(__dirname + '/../test/data/ciceromark');
 
     files.forEach(function(file) {
         if(file.endsWith('.md')) {
-            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
+            let contents = fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file, 'utf8');
             result.push([file, contents]);
         }
     });
 
     return result;
-}
-
-/**
- * Get the name and contents of all markdown snippets
- * used in a commonmark spec file
- * @returns {*} an array of name/contents tuples
- */
-function getMarkdownSpecFiles() {
-    const result = [];
-    const specExamples = extractSpecTests(__dirname + '/../test/data/spec.txt');
-    specExamples.forEach(function(example) {
-        result.push([`${example.section}-${example.number}`, example.markdown]);
-    });
-
-    return result;
-}
-
-/**
- * Extracts all the test md snippets from a commonmark spec file
- * @param {string} testfile the file to use
- * @return {*} the examples
- */
-function extractSpecTests(testfile) {
-    let data = fs.readFileSync(testfile, 'utf8');
-    let examples = [];
-    let current_section = '';
-    let example_number = 0;
-    let tests = data
-        .replace(/\r\n?/g, '\n') // Normalize newlines for platform independence
-        .replace(/^<!-- END TESTS -->(.|[\n])*/m, '');
-
-    tests.replace(/^`{32} example\n([\s\S]*?)^\.\n([\s\S]*?)^`{32}$|^#{1,6} *(.*)$/gm,
-        function(_, markdownSubmatch, htmlSubmatch, sectionSubmatch){
-            if (sectionSubmatch) {
-                current_section = sectionSubmatch;
-            } else {
-                example_number++;
-                examples.push({markdown: markdownSubmatch,
-                    html: htmlSubmatch,
-                    section: current_section,
-                    number: example_number});
-            }
-        });
-    return examples;
 }
 
 describe('markdown', () => {
@@ -136,7 +92,7 @@ describe('markdown', () => {
 
 describe('acceptance', () => {
     it('converts acceptance to CommonMark DOM', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
@@ -145,7 +101,7 @@ describe('acceptance', () => {
     });
 
     it('converts acceptance clause content to CommonMark string', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
@@ -153,20 +109,8 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
     });
 
-    it('converts acceptance clause content to CommonMark string (no wrapVariable)', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
-        // console.log(JSON.stringify(json, null, 4));
-        expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json.nodes[2], 'json', { wrapVariables: false }).text;
-        expect(newMarkdown).toMatchSnapshot();
-        const clauseText = ciceroMarkTransformer.getClauseText(json.nodes[2], { wrapVariables: false});
-        expect(clauseText).toMatchSnapshot();
-        expect(ciceroMarkTransformer.getClauseText.bind(json.nodes[1], { wrapVariables: false})).toThrow('Cannot apply getClauseText to non-clause node');
-    });
-
     it('converts acceptance clause content to CommonMark string (removeFormatting)', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formatted.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formatted.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true });
@@ -174,7 +118,7 @@ describe('acceptance', () => {
     });
 
     it('converts acceptance clause content to CommonMark string (no quoteVariables)', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formula.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { quoteVariables: false });
@@ -183,7 +127,7 @@ describe('acceptance', () => {
     });
 
     it('converts acceptance clause content to CommonMark string (no quoteVariables 2)', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formula.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json', { quoteVariables: false });
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json');
@@ -192,25 +136,10 @@ describe('acceptance', () => {
     });
 
     it('converts acceptance clause content to CommonMark string (removeFormatting & no quoteVariables)', () => {
-        const markdownText = fs.readFileSync(__dirname + '/../test/data/acceptance-formula.md', 'utf8');
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, quoteVariables: false });
         expect(newMarkdown).toMatchSnapshot();
-    });
-});
-
-describe('markdown-spec', () => {
-    getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto`, () => {
-            const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
-            expect(json).toMatchSnapshot();
-        });
-
-        // currently skipped because not all examples roundtrip
-        // needs more investigation!!
-        it.skip(`roundtrips ${file}`, () => {
-            expect(markdownText).toMarkdownRoundtrip();
-        });
     });
 });
