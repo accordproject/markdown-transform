@@ -180,6 +180,16 @@ function parserHH() {
 }
 
 /**
+ * Creates a parser for hh format
+ * @returns {object} the parser
+ */
+function parserhh() {
+    return P.regexp(/1[0-2]|0[1-9]/).map(function(x) {
+        return mkField('hour',Number(x));
+    });
+}
+
+/**
  * Creates a parser for mm format
  * @returns {object} the parser
  */
@@ -233,6 +243,7 @@ const parsingTable = {
     'YYYY' : parserYYYY,
     'H' : parserH,
     'HH' : parserHH,
+    'hh' : parserhh,
     'mm' : parsermm,
     'ss' : parserss,
     'SSS' : parserSSS,
@@ -270,7 +281,7 @@ function dateTimeParser(format) {
         format = format.substr(0,format.length-1);
     }
 
-    const fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|mm|ss|SSS)+/);
+    const fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|hh|mm|ss|SSS)+/);
     if(hasTimeZone) {
         fields.push('Z');
     }
