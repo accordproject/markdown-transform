@@ -23,6 +23,17 @@ const HtmlTransformer = require('./HtmlTransformer');
 let htmlTransformer = null;
 let ciceroTransformer = null;
 
+/**
+ * Prepare the text for parsing (normalizes new lines, etc)
+ * @param {string} input - the text for the clause
+ * @return {string} - the normalized text for the clause
+ */
+function normalizeNLs(input) {
+    // we replace all \r and \n with \n
+    let text =  input.replace(/\r/gm,'');
+    return text;
+}
+
 // @ts-ignore
 beforeAll(() => {
     htmlTransformer = new HtmlTransformer();
@@ -35,11 +46,11 @@ beforeAll(() => {
  */
 function getMarkdownFiles() {
     const result = [];
-    const files = fs.readdirSync(__dirname + '/../test/data');
+    const files = fs.readdirSync(__dirname + '/../test/data/markdown');
 
     files.forEach(function(file) {
         if(file.endsWith('.md')) {
-            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
+            let contents = fs.readFileSync(__dirname + '/../test/data/markdown/' + file, 'utf8');
             result.push([file, contents]);
         }
     });
@@ -47,51 +58,7 @@ function getMarkdownFiles() {
     return result;
 }
 
-/**
- * Get the name and contents of all markdown snippets
- * used in a commonmark spec file
- * @returns {*} an array of name/contents tuples
- */
-function getMarkdownSpecFiles() {
-    const result = [];
-    const specExamples = extractSpecTests(__dirname + '/../test/data/spec.txt');
-    specExamples.forEach(function(example) {
-        result.push([`${example.section}-${example.number}`, example.markdown]);
-    });
-
-    return result;
-}
-
-/**
- * Extracts all the test md snippets from a commonmark spec file
- * @param {string} testfile the file to use
- * @return {*} the examples
- */
-function extractSpecTests(testfile) {
-    let data = fs.readFileSync(testfile, 'utf8');
-    let examples = [];
-    let current_section = '';
-    let example_number = 0;
-    let tests = data
-        .replace(/\r\n?/g, '\n') // Normalize newlines for platform independence
-        .replace(/^<!-- END TESTS -->(.|[\n])*/m, '');
-
-    tests.replace(/^`{32} example\n([\s\S]*?)^\.\n([\s\S]*?)^`{32}$|^#{1,6} *(.*)$/gm,
-        function(_, markdownSubmatch, htmlSubmatch, sectionSubmatch){
-            if (sectionSubmatch) {
-                current_section = sectionSubmatch;
-            } else {
-                example_number++;
-                examples.push({markdown: markdownSubmatch,
-                    html: htmlSubmatch,
-                    section: current_section,
-                    number: example_number});
-            }
-        });
-    return examples;
-}
-
-describe.only('html', () => {
+describe('markdown <-> html', () => {
     getMarkdownFiles().forEach(([file, markdownText], i) => {
         it(`converts ${file} to html`, () => {
             const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
@@ -111,13 +78,46 @@ describe.only('html', () => {
     });
 });
 
-describe('markdown-spec', () => {
-    getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
-        it(`converts ${file} to concerto JSON`, () => {
-            const json = ciceroTransformer.fromMarkdown(markdownText, 'json');
-            expect(json).toMatchSnapshot(); // (1)
-            const html = htmlTransformer.toHtml(json);
-            expect(html).toMatchSnapshot(); // (2)
+/**
+ * Get the name and contents of all ciceromark test files
+ * @returns {*} an array of name/contents tuples
+ */
+function getCiceroMarkFiles() {
+    const result = [];
+    const files = fs.readdirSync(__dirname + '/../test/data/ciceromark');
+
+    files.forEach(function(file) {
+        if(file.endsWith('.json')) {
+            let contents = normalizeNLs(fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file, 'utf8'));
+            result.push([file, contents]);
+        }
+    });
+
+    return result;
+}
+
+describe('ciceromark <-> html', () => {
+    getCiceroMarkFiles().forEach( ([file, jsonText], index) => {
+        it(`converts ${file} to and from CiceroMark`, () => {
+            const value = JSON.parse(jsonText);
+            const html = htmlTransformer.toHtml(value);
+
+            // check no changes to html
+            expect(html).toMatchSnapshot(); // (1)
+
+            // load expected html
+            const expectedHtml = normalizeNLs(fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file.replace(/.json$/,'.html'), 'utf8'));
+            expect(expectedHtml).toMatchSnapshot(); // (2)
+
+            // convert the expected html and compare
+            const expectedCiceroMarkValue = htmlTransformer.toCiceroMark(expectedHtml);
+            expect(expectedCiceroMarkValue).toMatchSnapshot(); // (3)
+
+            // check that html created from ciceromark and from the expected html is the same
+            expect(html).toEqual(expectedHtml);
+
+            // check roundtrip
+            expect(expectedCiceroMarkValue).toEqual(value);
         });
     });
 });

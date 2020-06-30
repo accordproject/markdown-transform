@@ -55,32 +55,6 @@ class ToHtmlStringVisitor {
     }
 
     /**
-     * Set parameters for inner node
-     * @param {*} parametersOut - the current parameters
-     * @return {*} the new parameters with first set to true
-     */
-    static mkParametersIn(parametersOut) {
-        let parameters = {};
-        parameters.result = '';
-        parameters.first = true;
-        parameters.indent = parametersOut.indent; // Same indentation
-        return parameters;
-    }
-
-    /**
-     * Set parameters for inner list
-     * @param {*} parametersOut - the current parameters
-     * @return {*} the new parameters with first set to true
-     */
-    static mkParametersInList(parametersOut) {
-        let parameters = {};
-        parameters.result = '';
-        parameters.first = true;
-        parameters.indent = parametersOut.indent+1; // Increases indentation
-        return parameters;
-    }
-
-    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
@@ -88,31 +62,64 @@ class ToHtmlStringVisitor {
     visit(thing, parameters) {
 
         switch(thing.getType()) {
-        case 'Clause':
-            // {
-            //     const ciceroMarkTransformer = new CiceroMarkTransformer();
-            //     console.log(JSON.stringify(ciceroMarkTransformer.getSerializer().toJSON(thing), null, 4));
-            // }
-            parameters.result += `<div class="clause" name="${thing.name}" src="${thing.src}">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
+        case 'Clause': {
+            let attributes = `class="clause" name="${thing.name}"`;
+            if (thing.elementType) {
+                attributes += ` elementType="${thing.elementType}"`;
+            }
+            if (thing.src) {
+                attributes += ` src="${thing.src}"`;
+            }
+            parameters.result += `<div ${attributes}>\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n`;
+        }
             break;
         case 'Variable': {
-            parameters.result += `<span class="variable" name="${thing.name}">${thing.value}</span>`;
+            let attributes = `class="variable" name="${thing.name}"`;
+            if (thing.elementType) {
+                attributes += ` elementType="${thing.elementType}"`;
+            }
+            if (thing.identifiedBy) {
+                attributes += ` identifiedBy="${thing.identifiedBy}"`;
+            }
+            parameters.result += `<span ${attributes}>${thing.value}</span>`;
         }
             break;
         case 'FormattedVariable': {
-            parameters.result += `<span class="variable" name="${thing.name}" format="${thing.format}">${thing.value}</span>`;
+            let attributes = `class="variable" name="${thing.name}" format="${thing.format}"`;
+            if (thing.elementType) {
+                attributes += ` elementType="${thing.elementType}"`;
+            }
+            if (thing.identifiedBy) {
+                attributes += ` identifiedBy="${thing.identifiedBy}"`;
+            }
+            parameters.result += `<span ${attributes}>${thing.value}</span>`;
         }
             break;
         case 'EnumVariable': {
             const enumValues = encodeURIComponent(JSON.stringify(thing.enumValues));
-            parameters.result += `<span class="variable" name="${thing.name}" enumValues="${enumValues}">${thing.value}</span>`;
+            let attributes = `class="variable" name="${thing.name}" enumValues="${enumValues}"`;
+            if (thing.elementType) {
+                attributes += ` elementType="${thing.elementType}"`;
+            }
+            if (thing.identifiedBy) {
+                attributes += ` identifiedBy="${thing.identifiedBy}"`;
+            }
+            parameters.result += `<span ${attributes}>${thing.value}</span>`;
         }
             break;
         case 'Conditional':
             parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue[0] ? thing.whenTrue[0].text : ''}" whenFalse="${thing.whenFalse[0] ? thing.whenFalse[0].text : ''}">${thing.nodes[0].text}</span>`;
             break;
-        case 'Formula':
-            parameters.result += `<span class="formula" name="${thing.name}">${thing.value}</span>`;
+        case 'Formula': {
+            let attributes = `class="formula" name="${thing.name}"`;
+            if (thing.code) {
+                attributes += ` code="${encodeURIComponent(thing.code)}"`;
+            }
+            if (thing.dependencies) {
+                attributes += ` dependencies="${encodeURIComponent(JSON.stringify(thing.dependencies))}"`;
+            }
+            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+        }
             break;
         case 'CodeBlock': {
             const info = thing.info;
