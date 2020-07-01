@@ -14,7 +14,7 @@
 
 'use strict';
 
-const CommonMarkUtils = require('./CommonMarkUtils');
+const FromCommonMarkVisitor = require('./FromCommonMarkVisitor');
 const tomarkdownrules = require('./tomarkdownrules');
 
 /**
@@ -27,51 +27,19 @@ const tomarkdownrules = require('./tomarkdownrules');
  *
  * The resulting AST *should* be equivalent however.
  */
-class ToMarkdownStringVisitor {
+class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
     /**
      * Construct the visitor.
      * @param {object} [options] configuration options
      * @param {*} resultSeq how to sequentially combine results
      * @param {object} rules how to process each node type
      */
-    constructor(options,resultSeq,rules) {
-        this.options = options;
-        this.resultSeq = resultSeq ? resultSeq : (parameters,next) => {
+    constructor(options) {
+        const resultSeq = (parameters,next) => {
             parameters.result += next;
         };
-        this.rules = rules ? rules : tomarkdownrules;
-    }
-
-    /**
-     * Visits a sub-tree and return the markdown
-     * @param {*} visitor - the visitor to use
-     * @param {*} thing - the node to visit
-     * @param {*} parameters - the current parameters
-     * @returns {string} the markdown for the sub tree
-     */
-    static visitChildren(visitor, thing, parameters) {
-        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters);
-        if(thing.nodes) {
-            thing.nodes.forEach(node => {
-                node.accept(visitor, parametersIn);
-                CommonMarkUtils.nextNode(parametersIn);
-            });
-        }
-        return parametersIn.result;
-    }
-
-    /**
-     * Visit a node
-     * @param {*} thing the object being visited
-     * @param {*} parameters the parameters
-     */
-    visit(thing, parameters) {
-        const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-        if (this.rules[thing.getType()]) {
-            this.rules[thing.getType()](thing,children,parameters,this.resultSeq);
-        } else {
-            throw new Error(`Unhandled type ${thing.getType()}`);
-        }
+        const rules = tomarkdownrules;
+        super(options,resultSeq,rules);
     }
 }
 

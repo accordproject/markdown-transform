@@ -108,7 +108,6 @@ rules.BlockQuote = (thing,children,parameters,resultSeq) => {
     resultSeq(parameters,next);
 };
 rules.Item = (thing,children,parameters,resultSeq) => {
-    //console.log('ITEM! ' + JSON.stringify(parameters));
     const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
     if(parameters.type === 'ordered') {
         const next = `${CommonMarkUtils.mkPrefix(parameters,level)}${parameters.index}. ${children}`;
