@@ -74,8 +74,7 @@ class FromCiceroEditVisitor {
                 if (FromCiceroEditVisitor.getAttribute(tag.attributes, 'src') &&
                     FromCiceroEditVisitor.getAttribute(tag.attributes, 'clauseid')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-                    // XXX Should be revised
-                    // thing.src = FromCiceroEditVisitor.getAttribute(tag.attributes, 'src').value;
+                    thing.src = FromCiceroEditVisitor.getAttribute(tag.attributes, 'src').value;
                     thing.name = FromCiceroEditVisitor.getAttribute(tag.attributes, 'clauseid').value;
 
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;

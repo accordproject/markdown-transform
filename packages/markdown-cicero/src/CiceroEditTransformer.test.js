@@ -26,9 +26,6 @@ let ciceroMarkTransformer = null;
 
 expect.extend({
     toMarkdownRoundtrip(ciceroEditText,markdownText,testName) {
-        //console.log('TESTNAME   ' + testName);
-        //console.log('CICEROEDIT ' + ciceroEditText);
-        //console.log('CICEROMARK ' + markdownText);
         const jsonEdit = ciceroMarkTransformer.fromMarkdown(ciceroEditText, 'json', { ciceroEdit:true });
         const newMarkdownEdit = ciceroMarkTransformer.toMarkdown(jsonEdit);
         const jsonMark = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
@@ -36,10 +33,6 @@ expect.extend({
         const json1 = ciceroMarkTransformer.fromMarkdown(newMarkdownEdit, 'json');
         const json2 = jsonMark;
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
-
-        //console.log('JSON1 ' + JSON.stringify(json1));
-        //console.log('JSON2 ' + JSON.stringify(json2));
-        //console.log('PASS ' + pass + '['+ testName + ']');
 
         const message = pass
             ? () =>

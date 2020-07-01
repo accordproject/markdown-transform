@@ -36,16 +36,21 @@
        },
        {
            "$class": "org.accordproject.commonmark.CodeBlock",
-           "info": "<clause name=\"deliveryClause\"/>",
+           "info": "<clause name=\"deliveryClause\" src=\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\"/>",
            "tag": {
                "$class": "org.accordproject.commonmark.TagInfo",
                "tagName": "clause",
-               "attributeString": "name = \"deliveryClause\" ",
+               "attributeString": "name = \"deliveryClause\" src = \"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\" ",
                "attributes": [
                    {
                        "$class": "org.accordproject.commonmark.Attribute",
                        "name": "name",
                        "value": "deliveryClause"
+                   },
+                   {
+                       "$class": "org.accordproject.commonmark.Attribute",
+                       "name": "src",
+                       "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"
                    }
                ],
                "content": "",

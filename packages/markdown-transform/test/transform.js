@@ -50,6 +50,7 @@ const acceptanceCommonMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 
 const acceptanceCiceroMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark.json'), 'utf8'));
 const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json'), 'utf8'));
 const acceptanceCiceroMarkUntyped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_untyped.json'), 'utf8'));
+const acceptanceCiceroMarkParsedUntyped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed_untyped.json'), 'utf8'));
 const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unquoted.json'), 'utf8'));
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
@@ -123,7 +124,7 @@ describe('#acceptance', () => {
 
         it('ciceromark -> ciceromark_untyped', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_untyped'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMarkUntyped);
+            result.should.deep.equal(acceptanceCiceroMarkParsedUntyped);
         });
 
         it('ciceromark -> commonmark', async () => {

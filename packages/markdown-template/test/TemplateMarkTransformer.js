@@ -99,7 +99,7 @@ const parseFailures = [
     {name:'err3',desc:'',kind:'clause','error':'Parse error at line 1 column 66\nThis is a contract between "Steve" and "Betty" for the amount of .0 EUR, even in the presence of force majeure.'},
     {name:'err4',desc:'extra text',kind:'contract','error':'Parse error at line 7 column 46\nThere is a penalty of 10% for non compliance.X\n                                             ^\nExpected: End of text'},
     {name:'err5',desc:'wrong text',kind:'contract','error':'Parse error at line 4 column 76\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 EUR, even in the presence of forcemajeure.'},
-    {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 3 column 29\n``` <clause name="agreement" src="foo"/>\n'},
+    {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 1 column 45\n'},
     {name:'err7',desc:'wrong text',kind:'contract','error':'Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal'},
     {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 ZZZ.'},
     {name:'errFormula',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^'},

@@ -3,7 +3,7 @@ Heading
 
 And below is a **clause**.
 
-``` <clause name="deliveryClause"/>
+``` <clause name="deliveryClause" src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"/>
 ## Acceptance of Delivery.
 
 "Party A" will be deemed to have completed its delivery obligations
