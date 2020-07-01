@@ -14,6 +14,7 @@
 
 'use strict';
 
+const CommonMarkUtils = require('./CommonMarkUtils');
 const FromCommonMarkVisitor = require('./FromCommonMarkVisitor');
 const tomarkdownrules = require('./tomarkdownrules');
 
@@ -45,6 +46,19 @@ class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
         };
         const rules = tomarkdownrules;
         super(options,resultString,resultSeq,rules);
+    }
+
+    /**
+     * Converts a CommonMark DOM to a markdown string
+     * @param {*} input - CommonMark DOM (as a Concerto object)
+     * @returns {string} the markdown string
+     */
+    toMarkdown(input) {
+        const parameters = {};
+        parameters.result = '';
+        parameters.stack = CommonMarkUtils.blocksInit();
+        input.accept(this, parameters);
+        return parameters.result.trim();
     }
 }
 
