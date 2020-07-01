@@ -77,7 +77,7 @@ class ToCommonMarkVisitor {
             const content = parameters.commonMark.toMarkdown(jsonSource);
             let attributeString;
             if (clauseJson.src) {
-                attributeString = `src="${clauseJson.src}" name="${clauseJson.name}"`;
+                attributeString = `name="${clauseJson.name}" src="${clauseJson.src}"`;
             } else {
                 attributeString = `name="${clauseJson.name}"`;
             }
@@ -93,19 +93,19 @@ class ToCommonMarkVisitor {
             tag.closed = false;
             tag.attributes = [];
 
-            if (clauseJson.src) {
-                let attribute1 = {};
-                attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-                attribute1.name = 'src';
-                attribute1.value = clauseJson.src ? clauseJson.src : '';
-                tag.attributes.push(attribute1);
-            }
+            let attribute1 = {};
+            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+            attribute1.name = 'name';
+            attribute1.value = clauseJson.name;
+            tag.attributes.push(attribute1);
 
-            let attribute2 = {};
-            attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute2.name = 'name';
-            attribute2.value = clauseJson.name;
-            tag.attributes.push(attribute2);
+            if (clauseJson.src) {
+                let attribute2 = {};
+                attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
+                attribute2.name = 'src';
+                attribute2.value = clauseJson.src ? clauseJson.src : '';
+                tag.attributes.push(attribute2);
+            }
 
             jsonTarget.tag = tag;
 

@@ -65,7 +65,7 @@ class FromCommonMarkVisitor {
         switch(thing.getType()) {
         case 'CodeBlock': {
             const tag = thing.tag;
-            if (tag && tag.tagName === 'clause' && tag.attributes.length === 1) {
+            if (tag && tag.tagName === 'clause' && (tag.attributes.length === 1 || tag.attributes.length === 2)) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = FromCommonMarkVisitor.codeBlockContent(thing.text);
@@ -74,6 +74,9 @@ class FromCommonMarkVisitor {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = FromCommonMarkVisitor.getAttribute(tag.attributes, 'name').value;
 
+                    if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'src')) {
+                        thing.src = FromCommonMarkVisitor.getAttribute(tag.attributes, 'src').value;
+                    }
                     thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
                     FromCommonMarkVisitor.visitNodes(this, thing.nodes, parameters);
 

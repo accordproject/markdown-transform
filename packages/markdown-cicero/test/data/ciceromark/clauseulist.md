@@ -1,4 +1,4 @@
-```<clause name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0"/>
+```<clause name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0" src="ap://volumediscountulist@0.2.1.cta"/>
 #### Discount.
 
 The Discount is determined according to the following table:

@@ -77,6 +77,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -121,15 +122,20 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
           },
         ],
         "closed": false,
@@ -233,6 +239,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -277,15 +284,20 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
           },
         ],
         "closed": false,
@@ -389,6 +401,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -427,15 +440,20 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
           },
         ],
         "closed": false,
@@ -623,6 +641,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -661,15 +680,20 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>",
+      "info": "<clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\"/>",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"",
+        "attributeString": "name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc\\"",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "name",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "src",
+            "value": "ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc",
           },
         ],
         "closed": false,
@@ -790,6 +814,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -873,6 +898,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -885,7 +911,7 @@ exports[`acceptance converts acceptance to CommonMark DOM 2`] = `
 
 And below is a **clause**.
 
-\`\`\` <clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\"/>
+\`\`\` <clause name=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"/>
 Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
 
 Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
@@ -962,6 +988,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1045,6 +1072,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1212,6 +1240,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.13.1#b5505785f4de9000be15687601d869cb1719df2f482cd57f3bf4fbd6774127bc",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1295,6 +1324,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1339,10 +1369,10 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
-      "info": "<clause clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\">",
+      "info": "<clause clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\" BAR=\\"something\\">",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" ",
+        "attributeString": "clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" BAR = \\"something\\" ",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
@@ -1352,6 +1382,11 @@ Object {
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "FOO",
+            "value": "something",
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.Attribute",
+            "name": "BAR",
             "value": "something",
           },
         ],
@@ -1439,6 +1474,7 @@ Object {
           ],
         },
       ],
+      "src": "ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1571,6 +1607,7 @@ Object {
           ],
         },
       ],
+      "src": "foo",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1696,6 +1733,7 @@ Object {
           "type": "bullet",
         },
       ],
+      "src": "ap://volumediscountulist@0.2.1.cta",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2205,6 +2243,7 @@ Object {
           ],
         },
       ],
+      "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -2313,6 +2352,7 @@ Object {
           ],
         },
       ],
+      "src": "https://templates.accordproject.org/archives/latedeliveryandpenalty@0.15.0.cta",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",

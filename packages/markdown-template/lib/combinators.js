@@ -147,11 +147,16 @@ function mkClause(clause,value) {
 /**
  * Creates a wrapped clause output
  * @param {object} clause the wrapped clause ast node
+ * @param {string} src the clause source url
  * @param {*} value the wrapped clause value
  * @returns {object} the clause
  */
-function mkWrappedClause(clause,value) {
-    return [{'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)}];
+function mkWrappedClause(clause,src,value) {
+    const result = {'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)};
+    if(src) {
+        result.src = src;
+    }
+    return [result];
 }
 
 /**
@@ -355,10 +360,13 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseBefore = (() => P.seq(P.string('\n\n``` <clause name='),stringLiteralParser(),P.alt(P.string('>\n'),P.string('/>\n'))));
-    const clauseAfter = (() => P.string('\n```\n'));
-    return content.wrap(clauseBefore(),clauseAfter()).map(function(x) {
-        return mkWrappedClause(clause,flatten(x));
+    const clauseEnd = P.alt(P.string('>\n'),P.string('/>\n'));
+    const clauseBefore = P.seq(P.string('\n\n``` <clause name='),stringLiteralParser(),P.alt(P.seq(P.string(' src='),stringLiteralParser(),clauseEnd),clauseEnd));
+    const clauseAfter = P.string('\n```\n');
+    return P.seq(clauseBefore,content,clauseAfter).map(function(x) {
+        const srcAttr = x[0][2];
+        const src = srcAttr ? srcAttr[1].substring(1,srcAttr[1].length-1) : null;
+        return mkWrappedClause(clause,src,flatten(x[1]));
     });
 }
 
