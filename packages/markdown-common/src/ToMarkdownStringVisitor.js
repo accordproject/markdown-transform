@@ -15,6 +15,7 @@
 'use strict';
 
 const CommonMarkUtils = require('./CommonMarkUtils');
+const tomarkdownrules = require('./tomarkdownrules');
 
 /**
  * Converts a CommonMark DOM to a markdown string.
@@ -30,9 +31,15 @@ class ToMarkdownStringVisitor {
     /**
      * Construct the visitor.
      * @param {object} [options] configuration options
+     * @param {*} resultSeq how to sequentially combine results
+     * @param {object} rules how to process each node type
      */
-    constructor(options) {
+    constructor(options,resultSeq,rules) {
         this.options = options;
+        this.resultSeq = resultSeq ? resultSeq : (parameters,next) => {
+            parameters.result += next;
+        };
+        this.rules = rules ? rules : tomarkdownrules;
     }
 
     /**
@@ -59,120 +66,10 @@ class ToMarkdownStringVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
-        switch(thing.getType()) {
-        // Inlines
-        case 'Code': {
-            const nodeText = thing.text ? thing.text : '';
-            parameters.result += `\`${nodeText}\``;
-        }
-            break;
-        case 'Emph': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `*${children}*`;
-        }
-            break;
-        case 'Strong': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `**${children}**`;
-        }
-            break;
-        case 'Link': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `[${children}](${thing.destination} "${thing.title ? thing.title : ''}")`;
-        }
-            break;
-        case 'Image': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `![${children}](${thing.destination} "${thing.title ? thing.title : ''}")`;
-        }
-            break;
-        case 'HtmlInline': {
-            const nodeText = thing.text ? thing.text : '';
-            parameters.result += nodeText;
-        }
-            break;
-        case 'Linebreak': {
-            parameters.result += '\\';
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
-        }
-            break;
-        case 'Softbreak': {
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
-        }
-            break;
-        case 'Text': {
-            const nodeText = thing.text ? thing.text : '';
-            parameters.result += CommonMarkUtils.escapeText(nodeText);
-        }
-            break;
-        // Leaf blocks
-        case 'ThematicBreak': {
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            parameters.result += '---';
-        }
-            break;
-        case 'Heading': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            const level = parseInt(thing.level);
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            if (level < 3 && children !== '') {
-                parameters.result += children;
-                CommonMarkUtils.nextNode(parameters);
-                parameters.result += CommonMarkUtils.mkPrefix(parameters,1);
-                parameters.result += CommonMarkUtils.mkSetextHeading(level);
-            } else {
-                parameters.result += CommonMarkUtils.mkATXHeading(level);
-                parameters.result += ' ';
-                parameters.result += children;
-            }
-        }
-            break;
-        case 'CodeBlock': {
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            parameters.result += `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
-        }
-            break;
-        case 'HtmlBlock': {
-            const nodeText = thing.text ? thing.text : '';
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,2);
-            parameters.result += nodeText;
-        }
-            break;
-        case 'Paragraph': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
-            parameters.result += `${children}`;
-        }
-            break;
-        // Container blocks
-        case 'BlockQuote': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += children;
-        }
-            break;
-        case 'Item': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            //console.log('ITEM! ' + JSON.stringify(parameters));
-            const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
-            if(parameters.type === 'ordered') {
-                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${parameters.index}. ${children}`;
-            }
-            else {
-                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${children}`;
-            }
-        }
-            break;
-        case 'List': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `${children}`;
-        }
-            break;
-        case 'Document': {
-            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += children;
-        }
-            break;
-        default:
+        const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+        if (this.rules[thing.getType()]) {
+            this.rules[thing.getType()](thing,children,parameters,this.resultSeq);
+        } else {
             throw new Error(`Unhandled type ${thing.getType()}`);
         }
     }
