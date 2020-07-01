@@ -19,7 +19,6 @@ const FromMarkdownIt = require('./FromMarkdownIt');
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
-const CommonMarkUtils = require('./CommonMarkUtils');
 const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
 const removeFormatting = require('./removeFormatting');
 const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
@@ -52,12 +51,8 @@ class CommonMarkTransformer {
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
         }
-        const parameters = {};
-        parameters.result = '';
-        parameters.stack = CommonMarkUtils.blocksInit();
         const visitor = new ToMarkdownStringVisitor(this.options);
-        input.accept(visitor, parameters);
-        return parameters.result.trim();
+        return visitor.toMarkdown(input);
     }
 
     /**
