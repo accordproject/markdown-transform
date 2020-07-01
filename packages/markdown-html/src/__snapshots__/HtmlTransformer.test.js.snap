@@ -491,12 +491,12 @@ exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 1
 <body>
 <div class=\\"document\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>
 of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\" elementType=\\"Double\\">10.5</span>% of the total value of the Equipment
-whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span> is to be
-considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>. The total amount of penalty shall not however,
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>. The total amount of penalty shall not however,
 exceed <span class=\\"variable\\" name=\\"capPercentage\\" elementType=\\"Double\\">55.0</span>% of the total value of the Equipment involved in late delivery.
-If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
+If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
 </div>
 </body>
 </html>"
@@ -507,12 +507,12 @@ exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 2
 <body>
 <div class=\\"document\\">
 <h2>Late Delivery and Penalty.</h2>
-<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>
+<p>In case of delayed delivery<span class=\\"conditional\\" name=\\"forceMajeure\\" whenTrue=\\" except for Force Majeure cases,\\" whenFalse=\\"\\"> except for Force Majeure cases,</span><span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Dan\\"</span> (the Seller) shall pay to <span class=\\"variable\\" name=\\"partyId\\" elementType=\\"String\\">\\"Steve\\"</span> (the Buyer) for every <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">2</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>
 of delay penalty amounting to <span class=\\"variable\\" name=\\"penaltyPercentage\\" elementType=\\"Double\\">10.5</span>% of the total value of the Equipment
-whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span> is to be
-considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>. The total amount of penalty shall not however,
+whose delivery has been delayed. Any fractional part of a <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span> is to be
+considered a full <span class=\\"variable\\" name=\\"fractionalPart\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>. The total amount of penalty shall not however,
 exceed <span class=\\"variable\\" name=\\"capPercentage\\" elementType=\\"Double\\">55.0</span>% of the total value of the Equipment involved in late delivery.
-If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
+If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementType=\\"Long\\">15</span> <span class=\\"variable\\" name=\\"unit\\" enumValues=\\"%5B%22seconds%22%2C%22minutes%22%2C%22hours%22%2C%22days%22%2C%22weeks%22%5D\\" elementType=\\"org.accordproject.time.TemporalUnit\\">days</span>, the Buyer is entitled to terminate this Contract.</p>
 </div>
 </body>
 </html>"
@@ -589,6 +589,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -625,6 +626,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -648,6 +650,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -698,6 +701,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
