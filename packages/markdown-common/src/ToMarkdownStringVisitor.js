@@ -152,24 +152,19 @@ class ToMarkdownStringVisitor {
             break;
         case 'Item': {
             const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
-            parameters.result += `${CommonMarkUtils.mkPrefix(parameters,1)}-  ${children}`;
+            //console.log('ITEM! ' + JSON.stringify(parameters));
+            const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
+            if(parameters.type === 'ordered') {
+                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${parameters.index}. ${children}`;
+            }
+            else {
+                parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${children}`;
+            }
         }
             break;
         case 'List': {
-            const firstIndex = thing.start ? parseInt(thing.start) : 1;
-            let index = firstIndex;
-            thing.nodes.forEach(item => {
-                const children = ToMarkdownStringVisitor.visitChildren(this, item, parameters);
-                const level = thing.tight && thing.tight === 'false' && index !== firstIndex ? 2 : 1;
-                if(thing.type === 'ordered') {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}${index}. ${children}`;
-                }
-                else {
-                    parameters.result += `${CommonMarkUtils.mkPrefix(parameters,level)}-  ${children}`;
-                }
-                index++;
-                CommonMarkUtils.nextNode(parameters);
-            });
+            const children = ToMarkdownStringVisitor.visitChildren(this, thing, parameters);
+            parameters.result += `${children}`;
         }
             break;
         case 'Document': {
@@ -180,7 +175,6 @@ class ToMarkdownStringVisitor {
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
         }
-        CommonMarkUtils.nextNode(parameters);
     }
 }
 

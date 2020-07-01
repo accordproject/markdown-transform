@@ -52,14 +52,13 @@ function blocksEnterBlock(stack,blockType) {
     case 'BlockQuote': {
         newStack.first = stack.first;
         newStack.blocks = stack.blocks.slice();
-        newStack.blocks.push('blockquote');
+        newStack.blocks.push('BlockQuote');
     }
         break;
-    case 'List':
-    case 'Item': { // we can hit this case with malformed html
+    case 'Item': {
         newStack.first = true;
         newStack.blocks = stack.blocks.slice();
-        newStack.blocks.push('list');
+        newStack.blocks.push('Item');
     }
         break;
     default: {
@@ -77,27 +76,30 @@ function blocksEnterBlock(stack,blockType) {
  * @return {string} several new lines with the proper prefix
  */
 function blocksNewLines(stack,nb) {
+    //console.log('NEWLINES ' + JSON.stringify(stack) + ' (' + nb + ')');
     const blocks = stack.blocks;
-    if (nb === 0) {
-        return '';
-    }
-    let prefix = '';
-    for (let i = blocks.length-1; i >= 0; i--) {
-        if (blocks[i] === 'list') {
-            if (stack.first) {
-                break;
-            } else {
-                prefix = '   ' + prefix;
+    let result = '';
+    if (nb !== 0) {
+        let prefix = '';
+        for (let i = blocks.length-1; i >= 0; i--) {
+            if (blocks[i] === 'Item') {
+                if (stack.first) {
+                    break;
+                } else {
+                    prefix = '   ' + prefix;
+                }
+            } else if (blocks[i] === 'BlockQuote') {
+                prefix = '> ' + prefix;
             }
-        } else if (blocks[i] === 'blockquote') {
-            prefix = '> ' + prefix;
+        }
+        if (stack.first) {
+            result = prefix;
+        } else {
+            result = ('\n' + prefix).repeat(nb);
         }
     }
-    if (stack.first) {
-        return prefix;
-    } else {
-        return ('\n' + prefix).repeat(nb);
-    }
+    //console.log('PREFIX ' + JSON.stringify(result));
+    return result;
 }
 
 /**
@@ -106,6 +108,9 @@ function blocksNewLines(stack,nb) {
  */
 function nextNode(parameters) {
     blocksNextNode(parameters.stack);
+    if(parameters.index) {
+        parameters.index++;
+    }
 }
 
 /**
@@ -118,6 +123,12 @@ function mkParameters(ast, parametersOut) {
     let parameters = {};
     parameters.result = '';
     parameters.stack = blocksEnterBlock(parametersOut.stack,ast.getType());
+    if(ast.getType() === 'List') {
+        parameters.indexInit = ast.start ? parseInt(ast.start) : 1; // Initial index
+        parameters.index = parameters.indexInit; // Current index
+        parameters.tight = ast.tight; // Tight or loose list
+        parameters.type = ast.type; // ordered or bulleted list
+    }
     return parameters;
 }
 
