@@ -35,11 +35,16 @@ class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
      * @param {object} rules how to process each node type
      */
     constructor(options) {
-        const resultSeq = (parameters,next) => {
-            parameters.result += next;
+        const resultString = (result) => {
+            return result;
+        };
+        const resultSeq = (parameters,result) => {
+            result.forEach((next) => {
+                parameters.result += next;
+            });
         };
         const rules = tomarkdownrules;
-        super(options,resultSeq,rules);
+        super(options,resultString,resultSeq,rules);
     }
 }
 

@@ -23,11 +23,13 @@ class FromCommonMarkVisitor {
     /**
      * Construct the visitor.
      * @param {object} [options] configuration options
+     * @param {*} resultString how to create a result from a string
      * @param {*} resultSeq how to sequentially combine results
      * @param {object} rules how to process each node type
      */
-    constructor(options,resultSeq,rules) {
+    constructor(options,resultString,resultSeq,rules) {
         this.options = options;
+        this.resultString = resultString;
         this.resultSeq = resultSeq;
         this.rules = rules;
     }
@@ -58,7 +60,7 @@ class FromCommonMarkVisitor {
     visit(thing, parameters) {
         const children = FromCommonMarkVisitor.visitChildren(this, thing, parameters);
         if (this.rules[thing.getType()]) {
-            this.rules[thing.getType()](thing,children,parameters,this.resultSeq);
+            this.rules[thing.getType()](thing,children,parameters,this.resultString,this.resultSeq);
         } else {
             throw new Error(`Unhandled type ${thing.getType()}`);
         }
