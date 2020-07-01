@@ -285,17 +285,17 @@ function handleVariable(node) {
         value : textNode.text
     };
 
-    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
-        result.elementType = data.elementType;
-    }
     if (Object.prototype.hasOwnProperty.call(data,'format')) {
         result.format = data.format;
+    }
+    if (node.data.identifiedBy) {
+        result.identifiedBy = node.data.identifiedBy;
     }
     if (Object.prototype.hasOwnProperty.call(data,'enumValues')) {
         result.enumValues = data.enumValues;
     }
-    if (node.data.identifiedBy) {
-        result.identifiedBy = node.data.identifiedBy;
+    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
+        result.elementType = data.elementType;
     }
 
     return handleMarks(node,result);

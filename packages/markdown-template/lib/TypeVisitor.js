@@ -63,6 +63,7 @@ class TypeVisitor {
                 if (property.isTypeEnum()) {
                     const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
                     const enumType = property.getParent().getModelFile().getType(property.getType());
+                    thing.elementType = property.getFullyQualifiedTypeName();
                     thing.$classDeclaration = enumVariableDeclaration;
                     thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                 } else if (property.isPrimitive()) {

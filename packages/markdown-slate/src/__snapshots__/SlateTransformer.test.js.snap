@@ -1558,6 +1558,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1594,6 +1595,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1617,6 +1619,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1667,6 +1670,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1762,6 +1766,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1798,6 +1803,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1821,6 +1827,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -1871,6 +1878,7 @@ Object {
         },
         Object {
           "$class": "org.accordproject.ciceromark.EnumVariable",
+          "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
             "minutes",
@@ -2015,6 +2023,7 @@ Object {
               },
             ],
             "data": Object {
+              "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
                 "minutes",
@@ -2087,6 +2096,7 @@ Object {
               },
             ],
             "data": Object {
+              "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
                 "minutes",
@@ -2126,6 +2136,7 @@ Object {
               },
             ],
             "data": Object {
+              "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
                 "minutes",
@@ -2216,6 +2227,7 @@ Object {
               },
             ],
             "data": Object {
+              "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
                 "minutes",
