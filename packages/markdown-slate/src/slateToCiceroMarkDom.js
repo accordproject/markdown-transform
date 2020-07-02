@@ -17,6 +17,14 @@
 const NS = 'org.accordproject.commonmark';
 const NS_CICERO = 'org.accordproject.ciceromark';
 
+/**
+ * Quote strings
+ * @param {string} value - the string
+ * @return {string} the quoted string
+ */
+function quoteString(value) {
+    return '"' + value + '"';
+}
 
 /**
  * Removes nodes if they are an empty paragraph
@@ -290,12 +298,16 @@ function handleVariable(node) {
     }
     if (node.data.identifiedBy) {
         result.identifiedBy = node.data.identifiedBy;
+        result.value = quoteString(result.value); // XXX Is this safe?
     }
     if (Object.prototype.hasOwnProperty.call(data,'enumValues')) {
         result.enumValues = data.enumValues;
     }
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;
+        if (result.elementType === 'String') {
+            result.value = quoteString(result.value);
+        }
     }
 
     return handleMarks(node,result);

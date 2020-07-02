@@ -15,6 +15,15 @@
 'use strict';
 
 /**
+ * Unquote strings
+ * @param {string} value - the string
+ * @return {string} the unquoted string
+ */
+function unquoteString(value) {
+    return value.substring(1,value.length-1);
+}
+
+/**
  * Converts a CiceroMark DOM to a Slate JSON.
  */
 class ToSlateVisitor {
@@ -93,9 +102,10 @@ class ToSlateVisitor {
      * @returns {*} the slate text node with marks
      */
     static handleVariable(type, data, text, parameters) {
+        const fixedText = data.elementType === 'String' || data.identifiedBy ? unquoteString(text) : text;
         const textNode = {
             object: 'text',
-            text: text
+            text: fixedText
         };
 
         const inlineNode = {
