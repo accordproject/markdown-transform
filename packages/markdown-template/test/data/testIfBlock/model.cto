@@ -1,0 +1,10 @@
+namespace org.test
+
+import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+
+/**
+ * The template model
+ */
+asset MyClause extends AccordClause {
+  o Boolean flag
+}
