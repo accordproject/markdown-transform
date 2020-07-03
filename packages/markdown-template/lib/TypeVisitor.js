@@ -28,10 +28,11 @@ class TypeVisitor {
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
      * @param {*} [parameters] optional parameters
+     * @param {string} field where the children are
      */
-    static visitChildren(visitor, thing, parameters) {
-        if(thing.nodes) {
-            TypeVisitor.visitNodes(visitor, thing.nodes, parameters);
+    static visitChildren(visitor, thing, parameters, field = 'nodes') {
+        if(thing[field]) {
+            TypeVisitor.visitNodes(visitor, thing[field], parameters);
         }
     }
 
@@ -58,6 +59,9 @@ class TypeVisitor {
         switch(thing.getType()) {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
+            if (!currentModel) {
+                throw new Error('Unknown property ' + thing.name);
+            }
             const property = currentModel.getProperty(thing.name);
             if (property) {
                 if (property.isTypeEnum()) {
@@ -85,6 +89,9 @@ class TypeVisitor {
             break;
         case 'ClauseDefinition': {
             if (parameters.kind === 'contract') {
+                if (!currentModel) {
+                    throw new Error('Unknown property ' + thing.name);
+                }
                 const property = currentModel.getOwnProperty(thing.name);
                 if (property) {
                     thing.elementType = property.getFullyQualifiedTypeName();
@@ -99,7 +106,10 @@ class TypeVisitor {
                     kind:parameters.kind
                 });
             } else {
-                thing.elementType = parameters.model.getFullyQualifiedName();
+                if (!currentModel) {
+                    throw new Error('Unknown property ' + thing.name);
+                }
+                thing.elementType = currentModel.getFullyQualifiedName();
                 TypeVisitor.visitChildren(this, thing, parameters);
             }
         }
@@ -152,8 +162,30 @@ class TypeVisitor {
             });
         }
             break;
+        case 'OptionalDefinition': {
+            const property = currentModel.getOwnProperty(thing.name);
+            if (property) {
+                thing.elementType = property.getFullyQualifiedTypeName();
+            } else {
+                throw new Error('Unknown property ' + thing.name);
+            }
+            const optionalModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            TypeVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                introspector:parameters.introspector,
+                model:optionalModel,
+                kind:parameters.kind
+            }, 'whenSome');
+            TypeVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                introspector:parameters.introspector,
+                model:null,
+                kind:parameters.kind
+            }, 'whenNone');
+        }
+            break;
         case 'ContractDefinition': {
-            thing.elementType = parameters.model.getFullyQualifiedName();
+            thing.elementType = currentModel.getFullyQualifiedName();
             TypeVisitor.visitChildren(this, thing, parameters);
         }
             break;

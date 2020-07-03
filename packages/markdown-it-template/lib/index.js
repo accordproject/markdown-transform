@@ -25,6 +25,8 @@ function template_plugin(md) {
     md.inline.ruler.before('emphasis', 'template', template_inline);
     md.renderer.rules['inline_block_if_open'] = template_inline_render('if');
     md.renderer.rules['inline_block_if_close'] = template_inline_render('if');
+    md.renderer.rules['inline_block_optional_close'] = template_inline_render('optional');
+    md.renderer.rules['inline_block_optional_open'] = template_inline_render('optional');
     md.renderer.rules['inline_block_with_open'] = template_inline_render('with');
     md.renderer.rules['inline_block_with_close'] = template_inline_render('with');
     md.renderer.rules['inline_block_join_open'] = template_inline_render('join');

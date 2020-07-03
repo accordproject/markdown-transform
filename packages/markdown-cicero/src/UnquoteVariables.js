@@ -27,6 +27,7 @@ function mapObject(obj, stack) {
     // Strip quotes
     case 'org.accordproject.ciceromark.Formula':
     case 'org.accordproject.ciceromark.Conditional':
+    case 'org.accordproject.ciceromark.Optional':
     case 'org.accordproject.ciceromark.Variable':
     case 'org.accordproject.ciceromark.FormattedVariable':
         stack.append({

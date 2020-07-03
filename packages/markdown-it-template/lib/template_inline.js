@@ -45,7 +45,7 @@ function template_inline(state, silent) {
         if (!match) { return false; }
 
         const block = match[1];
-        if (block !== 'if' && block !== 'with' && block !== 'join') {
+        if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
         if (!silent) {
@@ -66,7 +66,7 @@ function template_inline(state, silent) {
         if (!match) { return false; }
 
         const block = match[1];
-        if (block !== 'if' && block !== 'with' && block !== 'join') {
+        if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
         if (!silent) {
@@ -94,7 +94,7 @@ function template_inline(state, silent) {
         const format = match[3];
         if (name === 'else') { // XXX 'else' is reserved in variable names
             if (!silent) {
-                token         = state.push('inline_block_if_else', 'else', 0);
+                token         = state.push('inline_block_else', 'else', 0);
                 token.content = content;
             }
         } else {

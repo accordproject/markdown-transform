@@ -21,3 +21,5 @@ one item: **{{item}}**
 - three
 
 {{/clause}}
+
+There is also a new {{#optional name}} inline which can contain {{variables}}{{/optional}}.
