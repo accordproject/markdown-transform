@@ -37,6 +37,8 @@ const loadPlugin = (x) => {
 };
 
 const successes = [
+    {name:'testSpec',kind:'clause'},
+    {name:'testSpecChanged',kind:'clause'},
     {name:'test1',kind:'clause'},
     {name:'test2',kind:'contract'},
     {name:'test3',kind:'contract'},
