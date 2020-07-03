@@ -35,16 +35,17 @@ class FromCommonMarkVisitor {
     }
 
     /**
-     * Visits a sub-tree and return the markdown
+     * Visits a sub-tree
      * @param {*} visitor - the visitor to use
      * @param {*} thing - the node to visit
      * @param {*} parameters - the current parameters
-     * @returns {string} the markdown for the sub tree
+     * @param {string} field - where to find the children nodes
+     * @returns {*} the result for the sub tree
      */
-    static visitChildren(visitor, thing, parameters) {
-        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters);
-        if(thing.nodes) {
-            thing.nodes.forEach(node => {
+    visitChildren(visitor, thing, parameters, field = 'nodes') {
+        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters,this.resultString(''));
+        if(thing[field]) {
+            thing[field].forEach(node => {
                 node.accept(visitor, parametersIn);
                 CommonMarkUtils.nextNode(parametersIn);
             });
@@ -58,9 +59,11 @@ class FromCommonMarkVisitor {
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
-        const children = FromCommonMarkVisitor.visitChildren(this, thing, parameters);
-        if (this.rules[thing.getType()]) {
-            this.rules[thing.getType()](thing,children,parameters,this.resultString,this.resultSeq);
+        const children = this.visitChildren(this, thing, parameters);
+        const rule = this.rules[thing.getType()];
+        if (rule) {
+            // Passing 'this' so that rules can call the visitor if need be (not used for commonmark)
+            rule(this,thing,children,parameters,this.resultString,this.resultSeq);
         } else {
             throw new Error(`Unhandled type ${thing.getType()}`);
         }

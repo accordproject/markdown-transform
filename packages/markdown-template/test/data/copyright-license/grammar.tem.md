@@ -16,7 +16,7 @@ Copyright Notices. Licensee shall ensure that its use of the Work is marked with
 
 {{#clause paymentClause}}
 Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of {{amountText}} ({{amount}}) upon execution of this Agreement, payable as follows: {{paymentProcedure}}.
-{{/clause}} 
+{{/clause}}
 
 General.
 
@@ -27,3 +27,4 @@ Entire Agreement. This Agreement, including and together with any related attach
 Severability. If any term or provision of this Agreement is invalid, illegal, or unenforceable in any jurisdiction, such invalidity, illegality, or unenforceability will not affect the enforceability of any other term or provision of this Agreement, or invalidate or render unenforceable such term or provision in any other jurisdiction. [Upon a determination that any term or provision is invalid, illegal, or unenforceable, [the parties shall negotiate in good faith to/the court may] modify this Agreement to effect the original intent of the parties as closely as possible in order that the transactions contemplated hereby be consummated as originally contemplated to the greatest extent possible.]
 
 Assignment. Licensee may freely assign or otherwise transfer all or any of its rights, or delegate or otherwise transfer all or any of its obligations or performance, under this Agreement without Licensor's consent. This Agreement is binding upon and inures to the benefit of the parties hereto and their respective permitted successors and assigns.
+

@@ -16,7 +16,7 @@
 
 // Parser from template AST
 const ModelManager = require('@accordproject/concerto-core').ModelManager;
-const parserOfTemplateMark = require('../lib/ParserOfTemplate').parserOfTemplateMark;
+const ToParserVisitor = require('../lib/ToParserVisitor');
 const ParsingTable = require('../lib/parsingtable');
 
 const parsingTable = new ParsingTable(new ModelManager());
@@ -30,7 +30,6 @@ const var4 = { '$class': 'org.accordproject.templatemark.EnumVariableDefinition'
 // Valid templates
 const template1 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
-    'id':'clause1',
     'name':'myClause',
     'elementType':'org.accordproject.MyClause',
     'nodes': [
@@ -42,7 +41,6 @@ const template1 = {
 };
 const template2 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
-    'id':'clause2',
     'name':'myClause',
     'elementType':'org.accordproject.MyClause',
     'nodes': [
@@ -51,13 +49,13 @@ const template2 = {
         { '$class': 'org.accordproject.commonmark.Text', 'text': ' and ' },
         var2,
         { '$class': 'org.accordproject.templatemark.ConditionalDefinition',
+            'name': 'forceMajeure',
             'whenTrue': [ { '$class': 'org.accordproject.commonmark.Text', 'text': ', even in the presence of force majeure.' } ],
             'whenFalse': [] },
     ]
 };
 const template3 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
-    'id':'clause3',
     'name':'myClause',
     'elementType':'org.accordproject.MyClause',
     'nodes': [
@@ -70,6 +68,7 @@ const template3 = {
         { '$class': 'org.accordproject.commonmark.Text', 'text': ' ' },
         var4,
         { '$class': 'org.accordproject.templatemark.ConditionalDefinition',
+            'name': 'forceMajeure',
             'whenTrue': [ { '$class': 'org.accordproject.commonmark.Text', 'text': ', even in the presence of force majeure' } ],
             'whenFalse': [] },
         { '$class': 'org.accordproject.commonmark.Text', 'text': '.' },
@@ -79,6 +78,7 @@ const template3 = {
 // Error templates
 const templateErr1 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
+    'name':'myClause',
     'elementType':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'foo', 'text': 'This is a contract between ' },
@@ -89,6 +89,7 @@ const templateErr1 = {
 };
 const templateErr2 = {
     '$class':'org.accordproject.templatemark.ClauseDefinition',
+    'name':'myClause',
     'elementType':'org.accordproject.MyContract',
     'nodes': [
         { '$class': 'org.accordproject.commonmark.Text', 'text': 'This is a contract between ' },
@@ -100,50 +101,60 @@ const templateErr2 = {
 
 // Tests
 describe('#templateparsers', () => {
+    let parserVisitor;
+    before(async () => {
+        parserVisitor = new ToParserVisitor();
+    });
+
     describe('#template1', () => {
         it('should parse', async () => {
-            parserOfTemplateMark(template1,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserVisitor.toParser(template1,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplateMark(template1,parsingTable).parse('FOO').status.should.equal(false);
+            parserVisitor.toParser(template1,parsingTable).parse('FOO').status.should.equal(false);
         });
     });
 
     describe('#template2', () => {
         it('should parse (no force majeure)', async () => {
-            parserOfTemplateMark(template2,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserOfTemplateMark(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
+            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplateMark(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
+            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
         });
     });
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            parserOfTemplateMark(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
+            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserOfTemplateMark(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
+            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserOfTemplateMark(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
+            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
         });
     });
 });
 
 describe('#invalidparsers', () => {
+    let parserVisitor;
+    before(async () => {
+        parserVisitor = new ToParserVisitor();
+    });
+
     describe('#templateErr1', () => {
         it('should throw for wrong $class', async () => {
-            (() => parserOfTemplateMark(templateErr1,parsingTable)).should.throw('Unknown template ast $class foo');
+            (() => parserVisitor.toParser(templateErr1,parsingTable)).should.throw('Namespace is not defined for type foo');
         });
     });
 
     describe('#templateErr2', () => {
         it('should throw for wrong variable type', async () => {
-            (() => parserOfTemplateMark(templateErr2,parsingTable)).should.throw('Namespace is not defined for type FOO');
+            (() => parserVisitor.toParser(templateErr2,parsingTable)).should.throw('Namespace is not defined for type FOO');
         });
     });
 });

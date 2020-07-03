@@ -51,21 +51,20 @@ function blocksEnterBlock(stack,blockType) {
     switch(blockType) {
     case 'BlockQuote': {
         newStack.first = stack.first;
-        newStack.blocks = stack.blocks.slice();
-        newStack.blocks.push('BlockQuote');
     }
         break;
+    case 'ClauseDefinition':
+    case 'ListBlockDefinition':
     case 'Item': {
         newStack.first = true;
-        newStack.blocks = stack.blocks.slice();
-        newStack.blocks.push('Item');
     }
         break;
     default: {
         newStack.first = stack.first;
-        newStack.blocks = stack.blocks;
     }
     }
+    newStack.blocks = stack.blocks.slice();
+    newStack.blocks.push(blockType);
     return newStack;
 }
 
@@ -117,11 +116,12 @@ function nextNode(parameters) {
  * Set parameters for general blocks
  * @param {*} ast - the current ast node
  * @param {*} parametersOut - the current parameters
+ * @param {*} init - initial result value
  * @return {*} the new parameters with block quote level incremented
  */
-function mkParameters(ast, parametersOut) {
-    let parameters = {};
-    parameters.result = '';
+function mkParameters(ast, parametersOut, init) {
+    let parameters = Object.assign({},parametersOut); // This is important to allow extra parameters to be passed
+    parameters.result = init;
     parameters.stack = blocksEnterBlock(parametersOut.stack,ast.getType());
     if(ast.getType() === 'List') {
         parameters.indexInit = ast.start ? parseInt(ast.start) : 1; // Initial index
