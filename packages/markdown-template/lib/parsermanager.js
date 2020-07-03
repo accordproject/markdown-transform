@@ -17,16 +17,18 @@
 const { Factory, Serializer } = require('@accordproject/concerto-core');
 
 const ParsingTable = require('./parsingtable');
-const parserOfTemplateMark = require('./ParserOfTemplate').parserOfTemplateMark;
-const parserFunOfTemplateMark = require('./ParserOfTemplate').parserFunOfTemplateMark;
 const draftVisitNodes = require('./ToCiceroMarkVisitor').visitNodes;
+const ToParserVisitor = require('./ToParserVisitor');
 
 /**
  * Hooks
  */
 
 const defaultFormulaEval = (code) => {
-    return (data) => { return ` eval(${code}) ` };
+    return (data) => {
+        const variables = Object.keys(data).filter((x) => !((x === '$class' || x === 'clauseId' || x === 'contractId')));
+        return ` eval(${code})(${variables}) `
+    };
 };
 
 /**
@@ -49,7 +51,11 @@ class ParserManager {
         this.parser = null;
 
         // Mapping from types to parsers/drafters
-        this.parsingTable = new ParsingTable(this.modelManager,parserFunOfTemplateMark,draftVisitNodes);
+        this.parserVisitor = new ToParserVisitor();
+        const parserHook = function(ast,parameters) {
+            return ToParserVisitor.toParserWithParameters(new ToParserVisitor(),ast,parameters);
+        };
+        this.parsingTable = new ParsingTable(this.modelManager,parserHook,draftVisitNodes);
         this.parsingTable.addParsingTable(parsingTable);
         this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
     }
@@ -145,7 +151,7 @@ class ParserManager {
      */
     buildParser() {
         if (!this.parser) {
-            this.parser = parserOfTemplateMark(this.grammarAst,this.parsingTable);
+            this.parser = this.parserVisitor.toParser(this.grammarAst,this.parsingTable);
         }
     }
 

@@ -73,7 +73,6 @@ const successes = [
     {name:'testConditional',kind:'clause'},
     {name:'testUnderscore',kind:'clause'},
     {name:'testIfEnd',kind:'clause'},
-    {name:'testIfBlock',kind:'clause'},
     {name:'alltypes',kind:'clause'},
     {name:'acceptance-of-delivery',kind:'clause'},
     {name:'conga',kind:'clause'},

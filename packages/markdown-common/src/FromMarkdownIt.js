@@ -16,7 +16,7 @@
 
 const Stack = require('./Stack');
 const { mergeAdjacentHtmlNodes } = require('./CommonMarkUtils');
-const commonrules = require('./commonrules');
+const tocommonmarkrules = require('./tocommonmarkrules');
 
 /**
  * Converts a markdown-it token stream to a CommonMark DOM
@@ -27,7 +27,7 @@ class FromMarkdownIt {
      * @param {*[]} rules - the rules for each kind of markdown-it tokens
      */
     constructor(rules) {
-        this.rules = commonrules;
+        this.rules = tocommonmarkrules;
         if (rules) {
             this.rules.inlines = Object.assign(this.rules.inlines,rules.inlines);
             this.rules.blocks = Object.assign(this.rules.blocks,rules.blocks);

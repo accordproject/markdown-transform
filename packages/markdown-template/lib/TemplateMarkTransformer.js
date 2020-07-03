@@ -173,6 +173,7 @@ class TemplateMarkTransformer {
 
         // Parse the markdown
         let result = parser.parse(markdown);
+        // console.log('RESULT ' + JSON.stringify(result));
         if (result.status) {
             return serializer.toJSON(serializer.fromJSON(result.value));
         } else {

@@ -18,59 +18,59 @@ const CommonMarkUtils = require('./CommonMarkUtils');
 
 const rules = {};
 // Inlines
-rules.Code = (thing,children,parameters,resultString,resultSeq) => {
+rules.Code = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next = `\`${thing.text ? thing.text : ''}\``;
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
-rules.Emph = (thing,children,parameters,resultString,resultSeq) => {
+rules.Emph = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [resultString('*'),children,resultString('*')];
     resultSeq(parameters,result);
 };
-rules.Strong = (thing,children,parameters,resultString,resultSeq) => {
+rules.Strong = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [resultString('**'),children,resultString('**')];
     resultSeq(parameters,result);
 };
-rules.Link = (thing,children,parameters,resultString,resultSeq) => {
+rules.Link = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = '[';
     const next2 = `](${thing.destination} "${thing.title ? thing.title : ''}")`;
     const result = [resultString(next1),children,resultString(next2)];
     resultSeq(parameters,result);
 };
-rules.Image = (thing,children,parameters,resultString,resultSeq) => {
+rules.Image = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = '![';
     const next2 = `](${thing.destination} "${thing.title ? thing.title : ''}")`;
     const result = [resultString(next1),children,resultString(next2)];
     resultSeq(parameters,result);
 };
-rules.HtmlInline = (thing,children,parameters,resultString,resultSeq) => {
+rules.HtmlInline = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next = thing.text ? thing.text : '';
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
-rules.Linebreak = (thing,children,parameters,resultString,resultSeq) => {
+rules.Linebreak = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next = `\\${CommonMarkUtils.mkPrefix(parameters,1)}`;
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
-rules.Softbreak = (thing,children,parameters,resultString,resultSeq) => {
+rules.Softbreak = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next = CommonMarkUtils.mkPrefix(parameters,1);
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
-rules.Text = (thing,children,parameters,resultString,resultSeq) => {
+rules.Text = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next = CommonMarkUtils.escapeText(thing.text ? thing.text : '');
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
 // Leaf blocks
-rules.ThematicBreak = (thing,children,parameters,resultString,resultSeq) => {
+rules.ThematicBreak = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
     const next2 = '---';
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };
-rules.Heading = (thing,children,parameters,resultString,resultSeq) => {
+rules.Heading = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const level = parseInt(thing.level);
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
     if (level < 3 && children !== '') { // XXX empty children -- how to generalize that?
@@ -86,30 +86,30 @@ rules.Heading = (thing,children,parameters,resultString,resultSeq) => {
         resultSeq(parameters,result);
     }
 };
-rules.CodeBlock = (thing,children,parameters,resultString,resultSeq) => {
+rules.CodeBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
     const next2 = `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };
-rules.HtmlBlock = (thing,children,parameters,resultString,resultSeq) => {
+rules.HtmlBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const nodeText = thing.text ? thing.text : '';
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
     const next2 = nodeText;
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };
-rules.Paragraph = (thing,children,parameters,resultString,resultSeq) => {
+rules.Paragraph = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
     const result = [resultString(next1),children];
     resultSeq(parameters,result);
 };
 // Container blocks
-rules.BlockQuote = (thing,children,parameters,resultString,resultSeq) => {
+rules.BlockQuote = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [children];
     resultSeq(parameters,result);
 };
-rules.Item = (thing,children,parameters,resultString,resultSeq) => {
+rules.Item = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
     if(parameters.type === 'ordered') {
         const next1 = `${CommonMarkUtils.mkPrefix(parameters,level)}${parameters.index}. `;
@@ -121,11 +121,11 @@ rules.Item = (thing,children,parameters,resultString,resultSeq) => {
         resultSeq(parameters,result);
     }
 };
-rules.List = (thing,children,parameters,resultString,resultSeq) => {
+rules.List = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [children];
     resultSeq(parameters,result);
 };
-rules.Document = (thing,children,parameters,resultString,resultSeq) => {
+rules.Document = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [children];
     resultSeq(parameters,result);
 };

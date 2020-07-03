@@ -227,6 +227,9 @@ function seqParser(parsers) {
  * @returns {object} the parser
  */
 function seqFunParser(parsers) {
+    if (!Array.isArray(parsers)) {
+        console.log('SEQ ' + parsers);
+    }
     return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
         var args = Array.prototype.slice.call(arguments);
         return args.filter(function(x) { return !(typeof x === 'string'); });
@@ -277,7 +280,7 @@ function listBlockParser(listNode,bullet,content) {
     return P.seq(bullet,content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
-        return mkList(listNode,flatten(x));
+        return mkList(listNode,x);
     });
 }
 
@@ -362,7 +365,7 @@ function contractParser(contract,content) {
 function wrappedClauseParser(clause,content) {
     const clauseEnd = P.alt(P.string('>\n'),P.string('/>\n'));
     const clauseBefore = P.seq(P.string('\n\n``` <clause name='),stringLiteralParser(),P.alt(P.seq(P.string(' src='),stringLiteralParser(),clauseEnd),clauseEnd));
-    const clauseAfter = P.string('\n```\n');
+    const clauseAfter = P.string('\n```');
     return P.seq(clauseBefore,content,clauseAfter).map(function(x) {
         const srcAttr = x[0][2];
         const src = srcAttr ? srcAttr[1].substring(1,srcAttr[1].length-1) : null;
