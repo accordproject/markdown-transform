@@ -58,7 +58,7 @@ class TypeVisitor {
         switch(thing.getType()) {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
-            const property = currentModel.getOwnProperty(thing.name);
+            const property = currentModel.getProperty(thing.name);
             if (property) {
                 if (property.isTypeEnum()) {
                     const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
