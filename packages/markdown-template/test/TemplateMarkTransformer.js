@@ -77,6 +77,7 @@ const successes = [
     {name:'testIfEnd',kind:'clause'},
     {name:'alltypes',kind:'clause'},
     {name:'acceptance-of-delivery',kind:'clause'},
+    {name:'copyright-license',kind:'contract'},
     {name:'conga',kind:'clause'},
     {name:'empty',kind:'clause'},
     {name:'helloworld',kind:'clause'},
@@ -84,6 +85,7 @@ const successes = [
     {name:'ip-payment',kind:'clause'},
     {name:'latedeliveryandpenalty',kind:'contract'},
     {name:'signature-name-date',kind:'clause'},
+    {name:'volumediscountulist',kind:'contract'},
 ];
 
 const templateFailures = [
