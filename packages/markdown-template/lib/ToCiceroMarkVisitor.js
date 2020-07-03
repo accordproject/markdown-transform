@@ -78,6 +78,8 @@ class ToCiceroMarkVisitor {
             return NS_PREFIX_CiceroMarkModel + 'Clause';
         } else if (tag === 'ConditionalDefinition') {
             return NS_PREFIX_CiceroMarkModel + 'Conditional';
+        } else if (tag === 'OptionalDefinition') {
+            return NS_PREFIX_CiceroMarkModel + 'Optional';
         } else if (tag === 'ListBlockDefinition') {
             return NS_PREFIX_CiceroMarkModel + 'ListBlock';
         } else {
@@ -168,6 +170,36 @@ class ToCiceroMarkVisitor {
             } else {
                 thing.isTrue = false;
                 thing.nodes = thing.whenFalse;
+            }
+        }
+            break;
+        case 'OptionalDefinition': {
+            const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
+            thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
+            if (parameters.data[thing.name]) {
+                const someParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
+                    data: parameters.data[thing.name],
+                    kind: parameters.kind,
+                };
+                thing.hasSome = true;
+                thing.nodes = thing.whenSome;
+                ToCiceroMarkVisitor.visitNodes(this, thing.whenSome, someParameters);
+            } else {
+                thing.hasSome = false;
+                thing.nodes = thing.whenNone;
+                const noneParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
+                    data: {},
+                    kind: parameters.kind,
+                };
+                ToCiceroMarkVisitor.visitNodes(this, thing.whenNone, noneParameters);
             }
         }
             break;

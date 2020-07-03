@@ -62,17 +62,6 @@ const ifOpenRule = {
     },
     skipEmpty: false,
 };
-const ifElseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
-    leaf: false,
-    open: false,
-    close: false,
-    enter: (node,token,callback) => {
-        node.whenTrue = node.nodes ? node.nodes : [];
-        node.nodes = []; // Reset children (now in whenTrue)
-    },
-    skipEmpty: false,
-};
 const ifCloseRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
     leaf: false,
@@ -87,6 +76,51 @@ const ifCloseRule = {
             node.whenFalse = [];
         }
         delete node.nodes; // Delete children (now in whenTrue or whenFalse)
+    },
+    skipEmpty: false,
+};
+const elseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+    leaf: false,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        if (node.$class === 'org.accordproject.templatemark.ConditionalDefinition') {
+            node.whenTrue = node.nodes ? node.nodes : [];
+            node.nodes = []; // Reset children (now in whenTrue)
+        } else { // Optional definition
+            node.whenSome = node.nodes ? node.nodes : [];
+            node.nodes = []; // Reset children (now in whenSome)
+        }
+    },
+    skipEmpty: false,
+};
+const optionalOpenRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.name = getAttr(token.attrs,'name',null);
+        node.whenSome = null;
+        node.whenNone = null;
+    },
+    skipEmpty: false,
+};
+const optionalCloseRule = {
+    tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+    leaf: false,
+    open: false,
+    close: true,
+    exit: (node,token,callback) => {
+        if (node.whenSome) {
+            node.whenSome = node.whenSome;
+            node.whenNone = node.nodes ? node.nodes : [];
+        } else {
+            node.whenSome = node.nodes ? node.nodes : [];
+            node.whenNone = [];
+        }
+        delete node.nodes; // Delete children (now in whenSome or whenNone)
     },
     skipEmpty: false,
 };
@@ -179,8 +213,10 @@ const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
 rules.inlines.formula = formulaRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
-rules.inlines.inline_block_if_else = ifElseRule;
 rules.inlines.inline_block_if_close = ifCloseRule;
+rules.inlines.inline_block_optional_close = optionalCloseRule;
+rules.inlines.inline_block_optional_open = optionalOpenRule;
+rules.inlines.inline_block_else = elseRule;
 rules.inlines.inline_block_with_open = withOpenRule;
 rules.inlines.inline_block_with_close = withCloseRule;
 rules.inlines.inline_block_join_open = joinOpenRule;

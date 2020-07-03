@@ -73,6 +73,9 @@ const successes = [
     {name:'testJoin',kind:'contract'},
     {name:'testWith',kind:'contract'},
     {name:'testConditional',kind:'clause'},
+    {name:'testOptionalSome',kind:'clause'},
+    {name:'testOptionalNone',kind:'clause'},
+    {name:'testOptionalElse',kind:'clause'},
     {name:'testUnderscore',kind:'clause'},
     {name:'testIfEnd',kind:'clause'},
     {name:'alltypes',kind:'clause'},
@@ -84,6 +87,7 @@ const successes = [
     {name:'installment-sale',kind:'contract'},
     {name:'ip-payment',kind:'clause'},
     {name:'latedeliveryandpenalty',kind:'contract'},
+    {name:'rental-deposit-with',kind:'contract'},
     {name:'signature-name-date',kind:'clause'},
     {name:'volumediscountulist',kind:'contract'},
 ];

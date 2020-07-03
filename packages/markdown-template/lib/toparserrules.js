@@ -20,7 +20,8 @@ const computedParser = require('./combinators').computedParser;
 const enumParser = require('./combinators').enumParser;
 const seqParser = require('./combinators').seqParser;
 const seqFunParser = require('./combinators').seqFunParser;
-const condParser = require('./combinators').condParser;
+const conditionalParser = require('./combinators').conditionalParser;
+const optionalParser = require('./combinators').optionalParser;
 const ulistBlockParser = require('./combinators').ulistBlockParser;
 const olistBlockParser = require('./combinators').olistBlockParser;
 const joinBlockParser = require('./combinators').joinBlockParser;
@@ -93,7 +94,13 @@ rules.FormattedVariableDefinition = rules.VariableDefinition;
 rules.ConditionalDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const whenTrueParser = visitor.visitChildren(visitor,thing,parameters,'whenTrue');
     const whenFalseParser = visitor.visitChildren(visitor,thing,parameters,'whenFalse');
-    const result = (r) => condParser(thing,whenTrueParser(r),whenFalseParser(r));
+    const result = (r) => conditionalParser(thing,whenTrueParser(r),whenFalseParser(r));
+    resultSeq(parameters,result);
+}
+rules.OptionalDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const whenSomeParser = visitor.visitChildren(visitor,thing,parameters,'whenSome');
+    const whenNoneParser = visitor.visitChildren(visitor,thing,parameters,'whenNone');
+    const result = (r) => optionalParser(thing,whenSomeParser(r),whenNoneParser(r));
     resultSeq(parameters,result);
 }
 rules.JoinDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {

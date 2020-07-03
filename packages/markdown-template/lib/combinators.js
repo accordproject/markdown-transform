@@ -100,6 +100,20 @@ function mkCond(condNode,value) {
 }
 
 /**
+ * Creates an optional output
+ * @param {object} optNode the optional ast node
+ * @param {*} value the variable value
+ * @returns {object} the optional
+ */
+function mkOpt(optNode,value) {
+    const result = {};
+    result.name = optNode.name;
+    result.elementType = optNode.elementType;
+    result.value = value;
+    return result;
+}
+
+/**
  * Creates a List output
  * @param {object} listNode the list ast node
  * @param {*} value the variable value
@@ -263,10 +277,26 @@ function enumParser(enums) {
  * @param {object} whenFalse the parser when the condition is false
  * @returns {object} the parser
  */
-function condParser(condNode, whenTrue, whenFalse) {
+function conditionalParser(condNode, whenTrue, whenFalse) {
     return P.alt(whenTrue.map(x => true),whenFalse.map(x => false)).map(function(x) {
         return mkCond(condNode,x);
     });
+}
+
+
+/**
+ * Creates a parser for an optional block
+ * @param {object} optNode the optional ast node
+ * @param {object} whenSome the parser when the option is present
+ * @param {object} whenNone the parser when the option is absent
+ * @returns {object} the parser
+ */
+function optionalParser(optNode, whenSome, whenNone) {
+    return P.alt(
+        whenSome.map(function(x) {
+            return mkCompoundVariable(optNode.elementType,flatten(x));
+        }),
+        whenNone.map(x => null)).map(function(x) { return mkOpt(optNode,x); });
 }
 
 /**
@@ -494,7 +524,8 @@ module.exports.choiceStringsParser = choiceStringsParser;
 
 module.exports.computedParser = computedParser;
 module.exports.enumParser = enumParser;
-module.exports.condParser = condParser;
+module.exports.conditionalParser = conditionalParser;
+module.exports.optionalParser = optionalParser;
 module.exports.ulistBlockParser = ulistBlockParser;
 module.exports.olistBlockParser = olistBlockParser;
 module.exports.joinBlockParser = joinBlockParser;

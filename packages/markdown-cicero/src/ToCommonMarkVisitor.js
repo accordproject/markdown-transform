@@ -159,9 +159,11 @@ class ToCommonMarkVisitor {
             delete thing.dependencies;
         }
             break;
-        case 'Conditional': {
+        case 'Conditional':
+        case 'Optional': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
+            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
             return thing.nodes;
         }
         default:

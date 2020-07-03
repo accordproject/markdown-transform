@@ -25,7 +25,7 @@ chai.use(require('chai-as-promised'));
 const stringLiteralParser = require('../lib/combinators').stringLiteralParser;
 const enumParser = require('../lib/combinators').enumParser;
 
-const condParser = require('../lib/combinators').condParser;
+const conditionalParser = require('../lib/combinators').conditionalParser;
 
 const textParser = require('../lib/combinators').textParser;
 const seqParser = require('../lib/combinators').seqParser;
@@ -45,13 +45,13 @@ describe('#combinators', () => {
 
     describe('#blocks', () => {
         it('should parse conditional (left)', async () => {
-            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('left').status.should.equal(true);
+            conditionalParser({name:'cond1'},textParser('left'),textParser('right')).parse('left').status.should.equal(true);
         });
         it('should parse conditional (right)', async () => {
-            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('right').status.should.equal(true);
+            conditionalParser({name:'cond1'},textParser('left'),textParser('right')).parse('right').status.should.equal(true);
         });
         it('should not parse conditional neither left nor right', async () => {
-            condParser({name:'cond1'},textParser('left'),textParser('right')).parse('foo').status.should.equal(false);
+            conditionalParser({name:'cond1'},textParser('left'),textParser('right')).parse('foo').status.should.equal(false);
         });
     });
 
