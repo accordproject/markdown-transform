@@ -84,7 +84,8 @@
     "@accordproject/markdown-common": "0.11.3",
     "easy-pdf-parser": "0.0.4",
     "jsdom": "^15.2.1",
-    "type-of": "^2.0.1"
+    "type-of": "^2.0.1",
+    "pdfmake" : "0.1.66"
   },
   "license-check-config": {
     "src": [

@@ -17,6 +17,46 @@
 const parsePdf = require('easy-pdf-parser').parsePdf;
 const extractPlainText = require('easy-pdf-parser').extractPlainText;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const PdfPrinter = require('pdfmake');
+const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
+const fonts = {
+    Courier: {
+        normal: 'Courier',
+        bold: 'Courier-Bold',
+        italics: 'Courier-Oblique',
+        bolditalics: 'Courier-BoldOblique'
+    },
+    Helvetica: {
+        normal: 'Helvetica',
+        bold: 'Helvetica-Bold',
+        italics: 'Helvetica-Oblique',
+        bolditalics: 'Helvetica-BoldOblique'
+    },
+    Times: {
+        normal: 'Times-Roman',
+        bold: 'Times-Bold',
+        italics: 'Times-Italic',
+        bolditalics: 'Times-BoldItalic'
+    },
+    Symbol: {
+        normal: 'Symbol'
+    },
+    ZapfDingbats: {
+        normal: 'ZapfDingbats'
+    },
+    LiberationSerif: {
+        normal: `${__dirname}/fonts/LiberationSerif-Regular.ttf`,
+        bold: `${__dirname}/fonts/LiberationSerif-Bold.ttf`,
+        italics: `${__dirname}/fonts/LiberationSerif-Italic.ttf`,
+        bolditalics: `${__dirname}/fonts/LiberationSerif-BoldItalic.ttf`
+    },
+    Roboto: {
+        normal: `${__dirname}/fonts/Roboto-Regular.ttf`,
+        bold: `${__dirname}/fonts/Roboto-Medium.ttf`,
+        italics: `${__dirname}/fonts/Roboto-Italic.ttf`,
+        bolditalics: `${__dirname}/fonts/Roboto-MediumItalic.ttf`
+    }
+};
 
 /**
  * Converts a PDF to CiceroMark DOM
@@ -43,6 +83,40 @@ class PdfTransformer {
         const plainText = await parsePdf(input).then(extractPlainText);
         return this.ciceroMarkTransformer.fromMarkdown(plainText, format);
 
+    }
+
+    /**
+     * Converts a CiceroMark DOM to a PDF Buffer
+     * @param {*} input - CiceroMark DOM
+     * @param {*} outputStream - the output stream
+     */
+    async toPdf(input, outputStream) {
+
+        const printer = new PdfPrinter(fonts);
+
+        if(!input.getType) {
+            input = this.ciceroMarkTransformer.getSerializer().fromJSON(input);
+        }
+
+        const parameters = {};
+        parameters.result = '';
+        parameters.first = true;
+        parameters.indent = 0;
+        const visitor = new ToPdfMakeVisitor(this.options);
+        input.accept(visitor, parameters);
+        console.log(JSON.stringify(parameters.result, null, 2));
+
+        // let docDefinition = {
+        //     content: [
+        //         'First paragraph',
+        //         'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
+        //     ]
+        // };
+
+        // parameters.result
+        const pdfDoc = printer.createPdfKitDocument(parameters.result);
+        pdfDoc.pipe(outputStream);
+        pdfDoc.end();
     }
 }
 

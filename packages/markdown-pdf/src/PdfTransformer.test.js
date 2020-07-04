@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const PdfTransformer = require('./PdfTransformer');
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 let pdfTransformer = null;
 
@@ -27,7 +28,7 @@ beforeAll(() => {
 });
 
 /**
- * Get the name and contents of all markdown test files
+ * Get the name and contents of all pdf test files
  * @returns {*} an array of name/contents tuples
  */
 function getPdfFiles() {
@@ -44,12 +45,51 @@ function getPdfFiles() {
     return result;
 }
 
-describe.only('pdf import', () => {
+/**
+ * Get the name and contents of all markdown test files
+ * @returns {*} an array of name/contents tuples
+ */
+function getMarkdownFiles() {
+    const result = [];
+    const files = fs.readdirSync(__dirname + '/../test/data');
+
+    files.forEach(function(file) {
+        if(file.endsWith('.md')) {
+            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
+            result.push([file, contents]);
+        }
+    });
+
+    return result;
+}
+
+describe('pdf import', () => {
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
             const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
             //console.log(JSON.stringify(ciceroMarkDom, null, 4));
             expect(ciceroMarkDom).toMatchSnapshot(); // (1)
+        });
+    });
+});
+
+describe('pdf generation', () => {
+    getMarkdownFiles().forEach(([file, markdownContent], i) => {
+        it(`converts ${file} to pdf`, async () => {
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            const ciceroMarkDom = ciceroMarkTransformer.fromMarkdown(markdownContent, 'json');
+            console.log(JSON.stringify(ciceroMarkDom, null, 2));
+            fs.mkdirSync('./output', { recursive: true });
+
+            const promise = new Promise( (resolve) => {
+                const outputStream = fs.createWriteStream(`./output/${file}.pdf`);
+                outputStream.on('finish', () => {
+                    resolve(true);
+                });
+                pdfTransformer.toPdf(ciceroMarkDom, outputStream );
+            });
+
+            return promise;
         });
     });
 });
