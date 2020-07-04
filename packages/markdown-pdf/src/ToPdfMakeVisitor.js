@@ -221,10 +221,15 @@ class ToPdfMakeVisitor {
         case 'Heading': {
             result.style = ToPdfMakeVisitor.getHeadingType(thing);
             result.text = this.processChildNodes(thing,parameters);
+            result.tocItem = true;
+            if(result.style === 'heading_one') {
+                result.pageBreak = 'before';
+            }
         }
             break;
         case 'ThematicBreak': {
-            result.text = '---';
+            result.text = '';
+            result.pageBreak = 'after';
         }
             break;
         case 'Linebreak': {
@@ -254,7 +259,12 @@ class ToPdfMakeVisitor {
             result.pageSize = 'A4';
             result.pageOrientation = 'portrait',
             result.pageMargins = [ 40, 60, 40, 60 ],
-            result.content = this.processChildNodes(thing,parameters);
+            result.content = [{
+                toc: {
+                    title: {text: 'INDEX', style: 'heading_one'}
+                }
+            }];
+            result.content = result.content.concat(this.processChildNodes(thing,parameters));
             result.footer = function(currentPage, pageCount) {
                 return {
                     text: currentPage.toString() + ' of ' + pageCount,
@@ -320,6 +330,14 @@ class ToPdfMakeVisitor {
                     font: 'LiberationSerif',
                     fontSize: 12,
                     alignment: 'justify'
+                },
+                toc: {
+                    font: 'LiberationSerif',
+                    fontSize: 14
+                },
+                tocItem: {
+                    font: 'LiberationSerif',
+                    fontSize: 14
                 },
                 Clause: {
                     font: 'LiberationSerif',
