@@ -94,7 +94,7 @@ class ToSlateVisitor {
     }
 
     /**
-     * Converts a variable node to a slate text node with marks
+     * Converts a variable node to a pdf make text node with marks
      * @param {*} type - the type of variable
      * @param {*} data - the data for the variable
      * @param {*} text - the text for the variable
