@@ -30,8 +30,8 @@ End of the code.
 
 Multiline quotes can be useful.
 
-> No man is an island and,  
-Not all that glitters is gold.
+> *No man is an island and,  
+Not all that glitters is gold.*
 
 Let's insert a block of HTML.
 

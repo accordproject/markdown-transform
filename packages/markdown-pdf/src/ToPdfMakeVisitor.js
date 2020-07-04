@@ -254,6 +254,7 @@ class ToPdfMakeVisitor {
             };
             result.defaultStyle = {
                 fontSize: 12,
+                font: 'LiberationSerif',
                 lineHeight: 1.5
             };
             result.pageSize = 'A4';
@@ -268,66 +269,55 @@ class ToPdfMakeVisitor {
             result.header = function(currentPage, pageCount) {
                 return [{
                     text : 'This is header text',
-                    style : 'Header',
-                    margin : [0, 10, 10, 0]
+                    style : 'Header'
                 }];
             };
             result.footer = function(currentPage, pageCount) {
                 return [{
                     text : 'This is footer text, with a dynamic page number',
-                    style : 'Footer'
+                    style : 'Footer',
                 },
                 {
                     text: currentPage.toString() + ' / ' + pageCount,
-                    style: 'Footer'
+                    style: 'PageNumber'
                 }];
             };
             result.styles = {
                 Footer: {
-                    fontSize: 12,
-                    font: 'LiberationSerif',
-                    alignment: 'center'
+                    alignment: 'left',
+                    margin : [10, 10, 0, 0]
+                },
+                PageNumber: {
+                    alignment: 'center',
+                    margin : [0, 0, 0, 0]
                 },
                 Header: {
-                    fontSize: 12,
-                    font: 'LiberationSerif',
-                    alignment: 'right'
+                    alignment: 'right',
+                    margin : [0, 10, 10, 0]
                 },
                 heading_one: {
                     fontSize: 30,
-                    font: 'LiberationSerif',
                     bold: true,
                     alignment: 'center'
                 },
                 heading_two: {
                     fontSize: 28,
-                    font: 'LiberationSerif',
                     bold: true
                 },
                 heading_three: {
                     fontSize: 26,
-                    font: 'LiberationSerif',
                     bold: true
                 },
                 heading_four: {
                     fontSize: 24,
-                    font: 'LiberationSerif',
                     bold: true
                 },
                 heading_five: {
                     fontSize: 22,
-                    font: 'LiberationSerif',
                     bold: true
                 },
                 heading_six: {
                     fontSize: 20,
-                    font: 'LiberationSerif',
-                    bold: true
-                },
-                Emph: {
-                    italics: true
-                },
-                Strong: {
                     bold: true
                 },
                 Code: {
@@ -343,39 +333,15 @@ class ToPdfMakeVisitor {
                     font: 'Courier',
                 },
                 Paragraph: {
-                    font: 'LiberationSerif',
-                    fontSize: 12,
                     alignment: 'justify'
                 },
                 toc: {
-                    font: 'LiberationSerif',
                     fontSize: 14
-                },
-                tocItem: {
-                    font: 'LiberationSerif',
-                    fontSize: 14
-                },
-                Clause: {
-                    font: 'LiberationSerif',
-                    fontSize: 12
                 },
                 Link: {
-                    font: 'LiberationSerif',
-                    fontSize: 12,
                     color: 'blue'
                 },
-                List: {
-                    font: 'LiberationSerif',
-                    fontSize: 12,
-                },
-                Item: {
-                    font: 'LiberationSerif',
-                    fontSize: 12,
-                },
                 BlockQuote: {
-                    font: 'LiberationSerif',
-                    fontSize: 14,
-                    italics: true,
                     margin: [20, 0]
                 },
             };
