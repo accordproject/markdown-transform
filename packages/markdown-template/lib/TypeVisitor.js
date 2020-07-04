@@ -62,28 +62,55 @@ class TypeVisitor {
             if (!currentModel) {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const property = currentModel.getProperty(thing.name);
-            if (property) {
-                if (property.isTypeEnum()) {
-                    const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
-                    const enumType = property.getParent().getModelFile().getType(property.getType());
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                    thing.$classDeclaration = enumVariableDeclaration;
-                    thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
-                } else if (property.isPrimitive()) {
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                } else if (property instanceof RelationshipDeclaration) {
-                    const elementType = property.getFullyQualifiedTypeName();
-                    thing.elementType = elementType;
-                    const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
-                    const identifier = nestedTemplateModel.getIdentifierFieldName();
-                    thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
-                } else {
-                    const elementType = property.getFullyQualifiedTypeName();
-                    thing.elementType = elementType;
+            if (thing.name === 'this') {
+                const property = currentModel;
+                if (property) {
+                    if (property.isTypeEnum()) {
+                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
+                        const enumType = property.getParent().getModelFile().getType(property.getType());
+                        thing.elementType = property.getFullyQualifiedTypeName();
+                        thing.$classDeclaration = enumVariableDeclaration;
+                        thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
+                    } else if (property.isPrimitive()) {
+                        thing.elementType = property.getFullyQualifiedTypeName();
+                    } else if (property instanceof RelationshipDeclaration) {
+                        const elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = elementType;
+                        const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
+                        const identifier = nestedTemplateModel.getIdentifierFieldName();
+                        thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
+                    } else {
+                        const elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = elementType;
+                    }
                 }
             } else {
-                throw new Error('Unknown property ' + thing.name);
+                if (!currentModel.getProperty) {
+                    throw new Error('Unknown property ' + thing.name);
+                }
+                const property = currentModel.getProperty(thing.name);
+                if (property) {
+                    if (property.isTypeEnum()) {
+                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
+                        const enumType = property.getParent().getModelFile().getType(property.getType());
+                        thing.elementType = property.getFullyQualifiedTypeName();
+                        thing.$classDeclaration = enumVariableDeclaration;
+                        thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
+                    } else if (property.isPrimitive()) {
+                        thing.elementType = property.getFullyQualifiedTypeName();
+                    } else if (property instanceof RelationshipDeclaration) {
+                        const elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = elementType;
+                        const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
+                        const identifier = nestedTemplateModel.getIdentifierFieldName();
+                        thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
+                    } else {
+                        const elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = elementType;
+                    }
+                } else {
+                    throw new Error('Unknown property ' + thing.name);
+                }
             }
         }
             break;
@@ -93,16 +120,20 @@ class TypeVisitor {
                     throw new Error('Unknown property ' + thing.name);
                 }
                 const property = currentModel.getOwnProperty(thing.name);
-                if (property) {
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                } else {
+                let nextModel;
+                if (!property) {
                     throw new Error('Unknown property ' + thing.name);
                 }
-                const clauseModel = parameters.introspector.getClassDeclaration(thing.elementType);
+                if (property.isPrimitive()) {
+                    nextModel = property;
+                } else {
+                    thing.elementType = property.getFullyQualifiedTypeName();
+                    nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+                }
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager:parameters.templateMarkModelManager,
                     introspector:parameters.introspector,
-                    model:clauseModel,
+                    model:nextModel,
                     kind:parameters.kind
                 });
             } else {
@@ -116,64 +147,81 @@ class TypeVisitor {
             break;
         case 'WithDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.elementType = property.getFullyQualifiedTypeName();
-            } else {
+            let nextModel;
+            if (!property) {
                 throw new Error('Unknown property ' + thing.name);
+            }
+            if (property.isPrimitive()) {
+                nextModel = property;
+            } else {
+                thing.elementType = property.getFullyQualifiedTypeName();
+                nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
             const withModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:withModel,
+                model:nextModel,
                 kind:parameters.kind
             });
         }
             break;
         case 'ListBlockDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.elementType = property.getFullyQualifiedTypeName();
-            } else {
+            let nextModel;
+            if (!property) {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const listModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            if (property.isPrimitive()) {
+                nextModel = property;
+            } else {
+                thing.elementType = property.getFullyQualifiedTypeName();
+                nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            }
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:listModel,
+                model:nextModel,
                 kind:parameters.kind
             });
         }
             break;
         case 'JoinDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.elementType = property.getFullyQualifiedTypeName();
-            } else {
+            let nextModel;
+            if (!property) {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const listModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            if (property.isPrimitive()) {
+                nextModel = property;
+            } else {
+                thing.elementType = property.getFullyQualifiedTypeName();
+                nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            }
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:listModel,
+                model:nextModel,
                 kind:parameters.kind
             });
         }
             break;
         case 'OptionalDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
-            if (property) {
-                thing.elementType = property.getFullyQualifiedTypeName();
-            } else {
+            let nextModel;
+            if (!property) {
                 throw new Error('Unknown property ' + thing.name);
             }
-            const optionalModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            if (property.isPrimitive()) {
+                nextModel = property;
+            } else {
+                thing.elementType = property.getFullyQualifiedTypeName();
+                nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            }
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:optionalModel,
+                model:nextModel,
                 kind:parameters.kind
             }, 'whenSome');
             TypeVisitor.visitChildren(this, thing, {

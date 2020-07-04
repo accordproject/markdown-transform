@@ -38,6 +38,22 @@ const variableRule = {
     },
     skipEmpty: false,
 };
+const thisRule = { // 'this' is a special variable for the current data in scope within the template
+    tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
+    leaf: true,
+    open: false,
+    close: false,
+    enter: (node,token,callback) => {
+        const format = getAttr(token.attrs,'format',null);;
+        if (format) {
+            node.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
+            node.format = format;
+        }
+        node.name = 'this';
+        node.format = getAttr(token.attrs,'format',null);
+    },
+    skipEmpty: false,
+};
 const formulaRule = {
     tag: NS_PREFIX_TemplateMarkModel + 'FormulaDefinition',
     leaf: true,
@@ -211,6 +227,7 @@ const olistCloseRule = {
 
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.variable = variableRule;
+rules.inlines['this'] = thisRule;
 rules.inlines.formula = formulaRule;
 rules.inlines.inline_block_if_open = ifOpenRule;
 rules.inlines.inline_block_if_close = ifCloseRule;

@@ -97,6 +97,12 @@ function template_inline(state, silent) {
                 token         = state.push('inline_block_else', 'else', 0);
                 token.content = content;
             }
+        } else if (name === 'this') { // XXX 'this' is reserved in variable names
+            if (!silent) {
+                token         = state.push('this', 'this', 0);
+                token.content = content;
+            }
+            token.attrs = [ ];
         } else {
             if (!silent) {
                 token         = state.push('variable', 'variable', 0);

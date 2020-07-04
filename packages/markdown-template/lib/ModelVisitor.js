@@ -110,6 +110,9 @@ class ModelVisitor {
         result.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
         result.name = fieldName;
         if(field.isArray()) {
+            if (field.isPrimitive()) {
+                result.name = 'this';
+            }
             const arrayResult = {};
             arrayResult.$class = NS_PREFIX_TemplateMarkModel + 'JoinDefinition';
             arrayResult.separator = ' '; // XXX {{#join }}
@@ -118,6 +121,9 @@ class ModelVisitor {
             result = arrayResult;
         }
         if(field.isOptional()) {
+            if (field.isPrimitive()) {
+                result.name = 'this';
+            }
             const optionalResult = {};
             optionalResult.$class = NS_PREFIX_TemplateMarkModel + 'OptionalDefinition';
             optionalResult.name = fieldName;
