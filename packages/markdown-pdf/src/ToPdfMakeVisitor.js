@@ -258,24 +258,40 @@ class ToPdfMakeVisitor {
             };
             result.pageSize = 'A4';
             result.pageOrientation = 'portrait',
-            result.pageMargins = [ 40, 60, 40, 60 ],
+            result.pageMargins = [ 80, 80, 80, 80 ],
             result.content = [{
                 toc: {
                     title: {text: 'INDEX', style: 'heading_one'}
                 }
             }];
             result.content = result.content.concat(this.processChildNodes(thing,parameters));
+            result.header = function(currentPage, pageCount) {
+                return [{
+                    text : 'This is header text',
+                    style : 'Header',
+                    margin : [0, 10, 10, 0]
+                }];
+            };
             result.footer = function(currentPage, pageCount) {
-                return {
+                return [{
+                    text : 'This is footer text, with a dynamic page number',
+                    style : 'Footer'
+                },
+                {
                     text: currentPage.toString() + ' / ' + pageCount,
                     style: 'Footer'
-                };
+                }];
             };
             result.styles = {
                 Footer: {
                     fontSize: 12,
                     font: 'LiberationSerif',
                     alignment: 'center'
+                },
+                Header: {
+                    fontSize: 12,
+                    font: 'LiberationSerif',
+                    alignment: 'right'
                 },
                 heading_one: {
                     fontSize: 30,

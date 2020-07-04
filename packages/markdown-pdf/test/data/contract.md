@@ -44,6 +44,8 @@ render as a code block.
 
 And <inline>html</inline>.
 
+# Smart Clause (Heading One)
+
 And below is a **clause**.
 
 ``` <clause name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0" src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f">
