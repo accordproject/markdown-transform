@@ -222,9 +222,6 @@ class ToPdfMakeVisitor {
             result.style = ToPdfMakeVisitor.getHeadingType(thing);
             result.text = this.processChildNodes(thing,parameters);
             result.tocItem = true;
-            if(result.style === 'heading_one') {
-                result.pageBreak = 'before';
-            }
         }
             break;
         case 'ThematicBreak': {
@@ -246,105 +243,7 @@ class ToPdfMakeVisitor {
         }
             break;
         case 'Document': {
-            result.info = {
-                title: 'Smart Legal Contract',
-                author: 'Clause',
-                subject: 'subject of document',
-                keywords: 'keywords for document',
-            };
-            result.defaultStyle = {
-                fontSize: 12,
-                font: 'LiberationSerif',
-                lineHeight: 1.5
-            };
-            result.pageSize = 'A4';
-            result.pageOrientation = 'portrait',
-            result.pageMargins = [ 80, 80, 80, 80 ],
-            result.content = [{
-                toc: {
-                    title: {text: 'INDEX', style: 'heading_one'}
-                }
-            }];
-            result.content = result.content.concat(this.processChildNodes(thing,parameters));
-            result.header = function(currentPage, pageCount) {
-                return [{
-                    text : 'This is header text',
-                    style : 'Header'
-                }];
-            };
-            result.footer = function(currentPage, pageCount) {
-                return [{
-                    text : 'This is footer text, with a dynamic page number',
-                    style : 'Footer',
-                },
-                {
-                    text: currentPage.toString() + ' / ' + pageCount,
-                    style: 'PageNumber'
-                }];
-            };
-            result.styles = {
-                Footer: {
-                    alignment: 'left',
-                    margin : [10, 10, 0, 0]
-                },
-                PageNumber: {
-                    alignment: 'center',
-                    margin : [0, 0, 0, 0]
-                },
-                Header: {
-                    alignment: 'right',
-                    margin : [0, 10, 10, 0]
-                },
-                heading_one: {
-                    fontSize: 30,
-                    bold: true,
-                    alignment: 'center'
-                },
-                heading_two: {
-                    fontSize: 28,
-                    bold: true
-                },
-                heading_three: {
-                    fontSize: 26,
-                    bold: true
-                },
-                heading_four: {
-                    fontSize: 24,
-                    bold: true
-                },
-                heading_five: {
-                    fontSize: 22,
-                    bold: true
-                },
-                heading_six: {
-                    fontSize: 20,
-                    bold: true
-                },
-                Code: {
-                    font: 'Courier'
-                },
-                CodeBlock: {
-                    font: 'Courier',
-                },
-                HtmlInline: {
-                    font: 'Courier'
-                },
-                HtmlBlock: {
-                    font: 'Courier',
-                },
-                Paragraph: {
-                    alignment: 'justify'
-                },
-                toc: {
-                    fontSize: 14
-                },
-                Link: {
-                    color: 'blue'
-                },
-                BlockQuote: {
-                    margin: [20, 0]
-                },
-            };
+            result.content = this.processChildNodes(thing,parameters);
         }
             break;
         default:

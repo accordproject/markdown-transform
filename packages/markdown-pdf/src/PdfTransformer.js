@@ -88,9 +88,10 @@ class PdfTransformer {
     /**
      * Converts a CiceroMark DOM to a PDF Buffer
      * @param {*} input - CiceroMark DOM
+     * @param {*} options - the PDF generation options
      * @param {*} outputStream - the output stream
      */
-    async toPdf(input, outputStream) {
+    async toPdf(input, options, outputStream) {
 
         const printer = new PdfPrinter(fonts);
 
@@ -104,17 +105,124 @@ class PdfTransformer {
         parameters.indent = 0;
         const visitor = new ToPdfMakeVisitor(this.options);
         input.accept(visitor, parameters);
-        console.log(JSON.stringify(parameters.result, null, 2));
 
-        // let docDefinition = {
-        //     content: [
-        //         'First paragraph',
-        //         'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
-        //     ]
-        // };
+        const dd = parameters.result;
 
-        // parameters.result
-        const pdfDoc = printer.createPdfKitDocument(parameters.result);
+        dd.defaultStyle = {
+            fontSize: 12,
+            font: 'LiberationSerif',
+            lineHeight: 1.5
+        };
+
+        dd.pageSize = 'A4';
+        dd.pageOrientation = 'portrait',
+        dd.pageMargins = [ 80, 80, 80, 80 ];
+
+        // allow overrding top-level options
+        Object.assign(dd, options);
+
+        if(options.tocHeading) {
+            dd.content = [{
+                toc: {
+                    title: {text: options.tocHeading, style: 'toc'}
+                }
+            }].concat( [{text: '', pageBreak: 'after'}].concat(dd.content ));
+        }
+        if(options.headerText) {
+            dd.header = {
+                text : options.headerText,
+                style : 'Header'
+            };
+        }
+        if(options.footerText || options.footerPageNumber) {
+            dd.footer = function(currentPage, pageCount) {
+                const footer = [{
+                    text : options.footerText ? options.footerText : '',
+                    style : 'Footer',
+                }];
+                if(options.footerPageNumber) {
+                    footer.push(
+                        {
+                            text: currentPage.toString() + ' / ' + pageCount,
+                            style: 'PageNumber'
+                        });
+                }
+                return footer;
+            };
+        }
+        const defaultStyles = {
+            Footer: {
+                alignment: 'left',
+                margin : [10, 10, 0, 0]
+            },
+            PageNumber: {
+                alignment: 'center',
+                margin : [0, 0, 0, 0]
+            },
+            Header: {
+                alignment: 'right',
+                margin : [0, 10, 10, 0]
+            },
+            heading_one: {
+                fontSize: 30,
+                bold: true,
+                alignment: 'center'
+            },
+            heading_two: {
+                fontSize: 28,
+                bold: true
+            },
+            heading_three: {
+                fontSize: 26,
+                bold: true
+            },
+            heading_four: {
+                fontSize: 24,
+                bold: true
+            },
+            heading_five: {
+                fontSize: 22,
+                bold: true
+            },
+            heading_six: {
+                fontSize: 20,
+                bold: true
+            },
+            Code: {
+                font: 'Courier'
+            },
+            CodeBlock: {
+                font: 'Courier',
+            },
+            HtmlInline: {
+                font: 'Courier'
+            },
+            HtmlBlock: {
+                font: 'Courier',
+            },
+            Paragraph: {
+                alignment: 'justify'
+            },
+            toc: {
+                fontSize: 30,
+                bold: true,
+                alignment: 'center'
+            },
+            Link: {
+                color: 'blue'
+            },
+            BlockQuote: {
+                margin: [20, 0]
+            },
+        };
+
+        // allow the caller to override default styles
+        dd.styles = defaultStyles;
+        if(options.styles) {
+            Object.assign(dd.styles, options.styles);
+        }
+
+        const pdfDoc = printer.createPdfKitDocument(dd);
         pdfDoc.pipe(outputStream);
         pdfDoc.end();
     }
