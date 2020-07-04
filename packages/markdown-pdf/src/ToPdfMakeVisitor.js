@@ -267,7 +267,7 @@ class ToPdfMakeVisitor {
             result.content = result.content.concat(this.processChildNodes(thing,parameters));
             result.footer = function(currentPage, pageCount) {
                 return {
-                    text: currentPage.toString() + ' of ' + pageCount,
+                    text: currentPage.toString() + ' / ' + pageCount,
                     style: 'Footer'
                 };
             };
