@@ -22,4 +22,4 @@ one item: **{{item}}**
 
 {{/clause}}
 
-There is also a new {{#optional name}} inline which can contain {{variables}}{{/optional}}.
+There is also a new {{#optional name}} inline which can contain {{this}}{{/optional}}.

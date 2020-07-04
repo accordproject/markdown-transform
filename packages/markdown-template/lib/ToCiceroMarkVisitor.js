@@ -107,7 +107,7 @@ class ToCiceroMarkVisitor {
         case 'FormattedVariableDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            const data = parameters.data[thing.name];
+            const data = thing.name === 'this' ? parameters.data : parameters.data[thing.name];
             const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
             parameters.visitor = that;
             const draftFun = parameters.parserManager.getParsingTable().getDrafter(thing.name,elementType,thing.format,parameters);

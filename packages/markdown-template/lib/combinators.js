@@ -34,7 +34,7 @@ const flatten = (arr) => {
  * @returns {object} the variable
  */
 function mkVariable(variable,value) {
-    const result = {};
+    let result = {};
     result.name = variable.name;
     result.elementType = variable.elementType;
     result.value = value;
@@ -69,7 +69,7 @@ function variableEqual(value1,value2) {
  * @returns {object} the compound variable
  */
 function mkCompoundVariable(elementType,value) {
-    const result = {};
+    let result = {};
     result.$class = elementType;
     for(let i = 0; i < value.length; i++) {
         const field = value[i];
@@ -81,6 +81,9 @@ function mkCompoundVariable(elementType,value) {
         } else {
             result[field.name] = field.value;
         }
+    }
+    if (result.this) {
+        result = result.this;
     }
     return result;
 }
@@ -125,7 +128,8 @@ function mkList(listNode,value) {
     result.elementType = 'List';
     result.value = [];
     for(let i = 0; i < value.length; i++) {
-        result.value.push(mkCompoundVariable(listNode.elementType,value[i]));
+        let item = mkCompoundVariable(listNode.elementType,value[i]);
+        result.value.push(item);
     }
     return result;
 }
@@ -241,9 +245,6 @@ function seqParser(parsers) {
  * @returns {object} the parser
  */
 function seqFunParser(parsers) {
-    if (!Array.isArray(parsers)) {
-        console.log('SEQ ' + parsers);
-    }
     return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
         var args = Array.prototype.slice.call(arguments);
         return args.filter(function(x) { return !(typeof x === 'string'); });
