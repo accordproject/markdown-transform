@@ -26,8 +26,8 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'umd'),
-        filename: 'markdown-transform.js',
-        library: 'markdown-transform',
+        filename: 'markdown-pdf.js',
+        library: 'markdown-pdf',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

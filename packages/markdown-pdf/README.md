@@ -1,6 +1,7 @@
 # PDF Transformer
 
-Use `PdfTransformer` to transform a PDF to a CiceroMark DOM.
+Use `PdfTransformer` to transform a PDF to a CiceroMark DOM and vice a versa. Combined with the @accordproject/markdown-cicero
+transformations this can be used to convert Markdown text to and from PDF.
 
 ## Installation
 
@@ -10,10 +11,22 @@ npm install @accordproject/markdown-pdf --save
 
 ## Usage
 
+### Transform a PDF to CiceroMark
+
 ``` javascript
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 pdfTransformer = new PdfTransformer();
 const json = pdfTransformer.toCiceroMark(pdfBuffer);
+```
+
+### Transform CiceroMark to a PDF
+
+``` javascript
+const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
+pdfTransformer = new PdfTransformer();
+const options = {};
+const outputStream = fs.createWriteStream(`./test.pdf`);
+pdfTransformer.toPdf(pdfBuffer, options, outputStream );
 ```
 
 ## License <a name="license"></a>
