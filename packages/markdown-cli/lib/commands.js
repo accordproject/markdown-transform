@@ -16,8 +16,8 @@
 
 const fs = require('fs');
 const logger = require('@accordproject/concerto-core').Logger;
-const transform = require('@accordproject/markdown-transform').transform;
 const formatDescriptor = require('@accordproject/markdown-transform').formatDescriptor;
+const transform = require('@accordproject/markdown-transform').transform;
 
 /**
  * Utility class that implements the commands exposed by the CLI.
