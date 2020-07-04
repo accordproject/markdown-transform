@@ -8,6 +8,11 @@ This is **bold** text.
 
 This is `inline code`.
 
+This is a thematic break (which will force a page break).
+
+--------------
+
+
 This is [a link](https://clause.io)
 
 Below is a code block.
