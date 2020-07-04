@@ -14,6 +14,8 @@
 
 'use strict';
 
+const Stream = require('stream');
+
 const dijkstra = require('dijkstrajs');
 const find_path = dijkstra.find_path;
 
@@ -149,6 +151,28 @@ const transformationGraph = {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
         },
+        pdf : (input, parameters, options) => {
+            const pdfTransformer = new PdfTransformer();
+            const outputStream = new Stream.Writable();
+
+            let arrayBuffer = new ArrayBuffer(8);
+            let memStore = Buffer.from(arrayBuffer);
+            outputStream._write = (chunk, encoding, next) => {
+                let buffer = (Buffer.isBuffer(chunk))
+                    ? chunk  // already is Buffer use it
+                    : new Buffer(chunk, encoding);  // string, convert
+
+                // concat to the buffer already there
+                memStore = Buffer.concat([memStore, buffer]);
+                next();
+            };
+            return new Promise( (resolve) => {
+                outputStream.on('finish', () => {
+                    resolve(memStore);
+                });
+                pdfTransformer.toPdf(input, options, outputStream );
+            });
+        },
     },
     ciceromark_untyped: {
         docs: 'Untyped CiceroMark DOM (JSON)',
@@ -274,13 +298,19 @@ async function transformToDestination(source, sourceFormat, destinationFormat, p
         const src = path[n];
         const dest = path[n+1];
         const srcNode = transformationGraph[src];
+        const destinationNode = transformationGraph[dest];
         result = await srcNode[dest](result,parameters,options);
         if(options && options.verbose) {
             console.log(`Converted from ${src} to ${dest}. Result:`);
-            if(typeof result === 'object') {
-                console.log(JSON.stringify(result, null, 2));
-            } else {
-                console.log(result);
+            if(destinationNode.fileFormat !== 'binary') {
+                if(typeof result === 'object') {
+                    console.log(JSON.stringify(result, null, 2));
+                } else {
+                    console.log(result);
+                }
+            }
+            else {
+                console.log(`<binary ${dest} data>`);
             }
         }
     }

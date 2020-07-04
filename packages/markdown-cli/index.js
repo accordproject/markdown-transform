@@ -17,6 +17,7 @@
 
 const path = require('path');
 const logger = require('@accordproject/concerto-core').Logger;
+const formatDescriptor= require('@accordproject/markdown-transform').formatDescriptor;
 const commands = require('./lib/commands');
 
 require('yargs')
@@ -107,7 +108,15 @@ require('yargs')
             options.roundtrip = argv.roundtrip;
             return commands.transform(argv.input, argv.from, argv.via, argv.to, argv.output, parameters, options)
                 .then((result) => {
-                    if(result) {logger.info('\n'+result);}
+                    const destinationFormat = formatDescriptor(argv.to);
+                    if(result) {
+                        if(destinationFormat.fileFormat !== 'binary') {
+                            logger.info('\n'+result);
+                        }
+                        else {
+                            logger.info(`\n<binary ${argv.to} data>`);
+                        }
+                    }
                 })
                 .catch((err) => {
                     logger.error(err);
