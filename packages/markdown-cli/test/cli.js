@@ -83,7 +83,7 @@ describe('#validateTransformArgs', () => {
 describe('markdown-cli (acceptance)', () => {
     let parameters;
     beforeEach(async () => {
-        parameters = { grammar: acceptanceGrammarFile, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
+        parameters = { template: acceptanceGrammarFile, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
     });
 
     describe('#parse', () => {

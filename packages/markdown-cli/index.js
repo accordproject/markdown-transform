@@ -74,7 +74,7 @@ require('yargs')
             describe: 'path to the parser plugin',
             type: 'string'
         });
-        yargs.option('grammar', {
+        yargs.option('template', {
             describe: 'template grammar',
             type: 'string'
         });
@@ -99,7 +99,7 @@ require('yargs')
                 plugin = require(path.resolve(process.cwd(),argv.plugin));
             }
             parameters.plugin = plugin;
-            parameters.grammar = argv.grammar;
+            parameters.template = argv.template;
             parameters.templateKind = argv.contract ? 'contract' : 'clause';
             const options = {};
             options.verbose = argv.verbose;

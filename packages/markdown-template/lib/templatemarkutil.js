@@ -165,20 +165,20 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
 }
 
 /**
- * Converts a grammar string to a token stream
- * @param {object} grammarInput the template grammar
+ * Converts a template string to a token stream
+ * @param {object} templateInput the template template
  * @returns {object} the token stream
  */
-function grammarToTokens(grammar) {
-    const grammarNorm = normalizeNLs(grammar);
+function templateToTokens(template) {
+    const templateNorm = normalizeNLs(template);
 
     const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-    return parser.parse(grammar,{});
+    return parser.parse(template,{});
 }
 
 /**
- * Converts a grammar token strean string to an untyped TemplateMark DOM
- * @param {object} tokenStream the grammar token stream
+ * Converts a template token strean string to an untyped TemplateMark DOM
+ * @param {object} tokenStream the template token stream
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
@@ -189,8 +189,8 @@ function tokensToUntypedTemplateMarkGen(tokenStream) {
 }
 
 /**
- * Converts a grammar token strean string to an untyped TemplateMark DOM
- * @param {object} tokenStream the grammar token stream
+ * Converts a template token strean string to an untyped TemplateMark DOM
+ * @param {object} tokenStream the template token stream
  * @param {string} templateKind - either 'clause' or 'contract'
  * @returns {object} the TemplateMark DOM
  */
@@ -221,8 +221,8 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 }
 
 /**
- * Converts a grammar token strean string to an untyped TemplateMark DOM
- * @param {object} tokenStream the grammar token stream
+ * Converts a template token strean string to an untyped TemplateMark DOM
+ * @param {object} tokenStream the template token stream
  * @param {string} templateKind - either 'clause' or 'contract'
  * @returns {object} the TemplateMark DOM
  */
@@ -242,7 +242,7 @@ function tokensToUntypedTemplateMarkFragment(tokenStream) {
 module.exports.findTemplateModel = findTemplateModel;
 module.exports.templateMarkManager = templateMarkManager;
 
-module.exports.grammarToTokens = grammarToTokens;
+module.exports.templateToTokens = templateToTokens;
 module.exports.tokensToUntypedTemplateMarkFragment = tokensToUntypedTemplateMarkFragment;
 module.exports.tokensToUntypedTemplateMark = tokensToUntypedTemplateMark;
 module.exports.templateMarkTyping = templateMarkTyping;

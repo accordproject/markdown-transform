@@ -125,9 +125,9 @@ class Commands {
     static async transform(inputPath, from, via, to, outputPath, parameters, options) {
         const input = Commands.loadFormatFromFile(inputPath, from);
         parameters.inputFileName = inputPath;
-        if (parameters.grammar) {
-            parameters.grammarFileName = parameters.grammar;
-            parameters.grammar = Commands.loadFormatFromFile(parameters.grammar,'grammar');
+        if (parameters.template) {
+            parameters.templateFileName = parameters.template;
+            parameters.template = Commands.loadFormatFromFile(parameters.template,'template');
         }
         const pathTo = via.concat([to]);
         let result = await transform(input, from, pathTo, parameters, options);

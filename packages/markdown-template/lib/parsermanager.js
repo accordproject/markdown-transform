@@ -46,8 +46,8 @@ class ParserManager {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
-        this.grammar = null
-        this.grammarAst = null;
+        this.template = null
+        this.templateMark = null;
         this.parser = null;
 
         // Mapping from types to parsers/drafters
@@ -85,38 +85,38 @@ class ParserManager {
     }
 
     /**
-     * Gets the template grammar
-     * @return {string} the template grammar
+     * Gets the template text
+     * @return {string} the template
      */
-    getGrammar() {
-        return this.grammar;
+    getTemplate() {
+        return this.template;
     }
 
     /**
-     * Sets the template grammar
-     * @param {string} the template grammar
+     * Sets the template
+     * @param {string} the template text
      */
-    setGrammar(grammar) {
-        this.grammar = grammar;
+    setTemplate(template) {
+        this.template = template;
     }
 
     /**
-     * Gets the TemplateMark AST for the template grammar
-     * @return {object} the AST for the template grammar
+     * Gets the TemplateMark AST
+     * @return {object} the TemplateMark AST
      */
-    getGrammarAst() {
-        if (!this.grammarAst) {
-            throw new Error('Must call buildParser before calling getGrammarAst');
+    getTemplateMark() {
+        if (!this.templateMark) {
+            throw new Error('Must call buildParser before calling getTemplateMark');
         }
-        return this.grammarAst;
+        return this.templateMark;
     }
 
     /**
-     * Sets the TemplateMark AST for the template grammar
-     * @param {object} the AST for the template grammar
+     * Sets the TemplateMark AST
+     * @param {object} the TemplateMark AST
      */
-    setGrammarAst(grammarAst) {
-        this.grammarAst = grammarAst;
+    setTemplateMark(templateMark) {
+        this.templateMark = templateMark;
     }
 
     /**
@@ -151,7 +151,7 @@ class ParserManager {
      */
     buildParser() {
         if (!this.parser) {
-            this.parser = this.parserVisitor.toParser(this.grammarAst,this.parsingTable);
+            this.parser = this.parserVisitor.toParser(this.templateMark,this.parsingTable);
         }
     }
 

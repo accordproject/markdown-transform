@@ -64,18 +64,18 @@ const sampleHtml = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sampl
 describe('#acceptance', () => {
     let parameters;
     before(async () => {
-        parameters = { inputFileName: acceptanceGrammar, grammar: acceptanceGrammar, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
+        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
     });
 
-    describe('#grammar', () => {
-        it('grammar -> grammar_tokens', async () => {
-            const result = await transform(acceptanceGrammar, 'grammar', ['grammar_tokens']);
+    describe('#template', () => {
+        it('template -> template_tokens', async () => {
+            const result = await transform(acceptanceGrammar, 'template', ['template_tokens']);
             // markdown-it seems to keep some non-JSON stuff around so we roundtrip to JSON for comparison
             JSON.parse(JSON.stringify(result)).should.deep.equal(acceptanceGrammarTokens);
         });
 
-        it('grammar -> grammar_tokens', async () => {
-            const result = await transform(acceptanceGrammar, 'grammar', ['templatemark'], parameters);
+        it('template -> templatemark', async () => {
+            const result = await transform(acceptanceGrammar, 'template', ['templatemark'], parameters);
             result.should.deep.equal(acceptanceTemplateMark);
         });
     });
@@ -195,11 +195,11 @@ describe('#template1', () => {
         const grammarFile = './test/data/template1/grammar.tem.md';
         const grammar = fs.readFileSync(grammarFile, 'utf8');
         const model = './test/data/template1/model.cto';
-        parameters = { inputFileName: grammarFile, grammar: grammar, ctoFiles: [model], templateKind: 'clause' };
+        parameters = { inputFileName: grammarFile, template: grammar, ctoFiles: [model], templateKind: 'clause' };
     });
 
-    describe('#commonmark', () => {
-        it('commonmark -> data', async () => {
+    describe('#markdown', () => {
+        it('markdown -> data', async () => {
             const sample1File = './test/data/template1/sample.md';
             const sample1 = fs.readFileSync(sample1File, 'utf8');
             const result = await transform(sample1, 'markdown', ['data'], parameters, {});
