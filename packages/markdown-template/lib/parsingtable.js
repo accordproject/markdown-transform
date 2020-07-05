@@ -31,7 +31,7 @@ const ModelVisitor = require('./ModelVisitor');
 
 const {
     templateMarkManager,
-    grammarToTokens,
+    templateToTokens,
     tokensToUntypedTemplateMarkFragment,
     templateMarkTypingFromType,
 } = require('./templatemarkutil');
@@ -186,7 +186,7 @@ class ParsingTable {
      */
     compileEntry(entry,elementType,parseParams,draftParams) {
         if (Object.prototype.hasOwnProperty.call(entry,'inline')) {
-            const tokenStream = grammarToTokens(entry['inline']);
+            const tokenStream = templateToTokens(entry['inline']);
             const template = tokensToUntypedTemplateMarkFragment(tokenStream);
             entry['templatemark'] = {};
             entry['templatemark'].nodes = template.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph

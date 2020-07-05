@@ -17,7 +17,7 @@
 const { ParseException } = require('@accordproject/concerto-core');
 const {
     templateMarkManager,
-    grammarToTokens,
+    templateToTokens,
     tokensToUntypedTemplateMark,
     templateMarkTyping,
 } = require('./templatemarkutil');
@@ -100,17 +100,17 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Converts a grammar string to a token stream
-     * @param {object} grammarInput the template grammar
+     * Converts a template string to a token stream
+     * @param {object} templateInput the template template
      * @returns {object} the token stream
      */
-    toTokens(grammarInput) {
-        return grammarToTokens(grammarInput.content);
+    toTokens(templateInput) {
+        return templateToTokens(templateInput.content);
     }
 
     /**
-     * Converts a grammar token strean string to a TemplateMark DOM
-     * @param {object} tokenStream the grammar token stream
+     * Converts a template token strean string to a TemplateMark DOM
+     * @param {object} tokenStream the template token stream
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
@@ -133,19 +133,19 @@ class TemplateMarkTransformer {
 
     /**
      * Converts a markdown string to a TemplateMark DOM
-     * @param {{fileName:string,content:string}} grammar the template grammar
+     * @param {{fileName:string,content:string}} template the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromMarkdownTemplate(grammarInput, modelManager, templateKind, options) {
+    fromMarkdownTemplate(templateInput, modelManager, templateKind, options) {
         if (!modelManager) {
             throw new Error('Cannot parse without template model');
         }
 
-        const tokenStream = this.toTokens(grammarInput);
+        const tokenStream = this.toTokens(templateInput);
         if (options && options.verbose) {
             console.log('===== MarkdownIt Tokens ');
             console.log(JSON.stringify(tokenStream,null,2));
@@ -183,7 +183,7 @@ class TemplateMarkTransformer {
     /**
      * Parse a CommonMarkMark DOM against a TemplateMark DOM
      * @param {object} commonMark the CommonMark DOM
-     * @param {object} templateMark the templatemark grammar
+     * @param {object} templateMark the templatemark template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
@@ -193,7 +193,7 @@ class TemplateMarkTransformer {
     fromCommonMark(commonMarkInput, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager,this.parsingTable);
-        parserManager.setGrammarAst(templateMark);
+        parserManager.setTemplateMark(templateMark);
         parserManager.buildParser();
 
         return this.dataFromCommonMark(commonMarkInput, parserManager, templateKind, options);
@@ -202,16 +202,16 @@ class TemplateMarkTransformer {
     /**
      * Parse a markdown file to data
      * @param {{fileName:string,content:string}} markdownInput the markdown input
-     * @param {{fileName:string,content:string}} grammarInput the template grammar
+     * @param {{fileName:string,content:string}} templateInput the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromMarkdown(markdownInput, grammarInput, modelManager, templateKind, options) {
-        // Translate grammar to TemplateMark
-        const typedTemplate = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, options);
+    fromMarkdown(markdownInput, templateInput, modelManager, templateKind, options) {
+        // Translate template to TemplateMark
+        const typedTemplate = this.fromMarkdownTemplate(templateInput, modelManager, templateKind, options);
 
         // Load the markdown input
         const commonMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdown(markdownInput.content)};
@@ -222,15 +222,15 @@ class TemplateMarkTransformer {
     /**
      * Parse a markdown string to data
      * @param {string} markdown the markdown input
-     * @param {string} grammar the template grammar
+     * @param {string} template the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @returns {object} the result of parsing
      */
-    dataFromMarkdown(markdown, grammar, modelManager, templateKind) {
+    dataFromMarkdown(markdown, template, modelManager, templateKind) {
         const markdownInput = { fileName: '[buffer]', content: markdown };
-        const grammarInput = { fileName: '[buffer]', content: grammar };
-        return this.fromMarkdown(markdownInput, grammarInput, modelManager, templateKind, null);
+        const templateInput = { fileName: '[buffer]', content: template };
+        return this.fromMarkdown(markdownInput, templateInput, modelManager, templateKind, null);
     }
 
     /**
@@ -252,7 +252,7 @@ class TemplateMarkTransformer {
             kind: templateKind,
         };
 
-        const input = templateMarkManager.serializer.fromJSON(parserManager.getGrammarAst());
+        const input = templateMarkManager.serializer.fromJSON(parserManager.getTemplateMark());
 
         const visitor = new ToCiceroMarkVisitor();
         input.accept(visitor, parameters);
@@ -274,21 +274,21 @@ class TemplateMarkTransformer {
     instantiateCiceroMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager, this.parsingTable);
-        parserManager.setGrammarAst(templateMark);
+        parserManager.setTemplateMark(templateMark);
         return this.draftCiceroMark(data, parserManager, templateKind, options);
     }
 
     /**
      * Instantiate a CiceroMark DOM from data
      * @param {*} data the contract/clause data input
-     * @param {*} grammar - the template grammar
+     * @param {*} template - the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @returns {object} the result
      */
-    dataToCiceroMark(data, grammar, modelManager, templateKind) {
-        const grammarInput = { fileName: '[buffer]', content: grammar };
-        const templateMark = this.fromMarkdownTemplate(grammarInput, modelManager, templateKind, null);
+    dataToCiceroMark(data, template, modelManager, templateKind) {
+        const templateInput = { fileName: '[buffer]', content: template };
+        const templateMark = this.fromMarkdownTemplate(templateInput, modelManager, templateKind, null);
         return this.instantiateCiceroMark(data, templateMark, modelManager, templateKind, null);
     }
 
@@ -339,7 +339,7 @@ class TemplateMarkTransformer {
     instantiateCommonMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager, this.parsingTable);
-        parserManager.setGrammarAst(templateMark);
+        parserManager.setTemplateMark(templateMark);
         return this.draftCommonMark(data, parserManager, templateKind, options);
     }
 

@@ -47,7 +47,7 @@ function normalizeToMarkdown(input) {
 function normalizeFromMarkdown(input) {
     // Normalizes new lines
     const inputNLs = normalizeNLs(input);
-    // Roundtrip the grammar through the Commonmark parser
+    // Roundtrip through the CommonMark parser
     const commonMarkTransformer = new CommonMarkTransformer();
     return commonMarkTransformer.fromMarkdown(inputNLs);
 }
@@ -58,7 +58,7 @@ function normalizeFromMarkdown(input) {
  * @return {string} - the normalized text
  */
 function normalizeCiceroMark(input) {
-    // Roundtrip the grammar through the Commonmark parser
+    // Roundtrip through the CiceroMark parser
     const ciceroMarkTransformer = new CiceroMarkTransformer();
     const result = ciceroMarkTransformer.toCommonMark(ciceroMarkTransformer.fromCommonMark(input,'json'),'json');
     return result;
