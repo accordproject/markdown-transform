@@ -63,6 +63,25 @@ function getMarkdownFiles() {
     return result;
 }
 
+/**
+ * Get the name and contents of all JSON test files
+ * @returns {*} an array of name/contents tuples
+ */
+function getJsonFiles() {
+    const result = [];
+    const files = fs.readdirSync(__dirname + '/../test/data');
+
+    files.forEach(function(file) {
+        if(file.endsWith('.json')) {
+            let contents = fs.readFileSync(__dirname + '/../test/data/' + file, 'utf8');
+            result.push([file, contents]);
+        }
+    });
+
+    return result;
+}
+
+
 describe('pdf import', () => {
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
@@ -109,6 +128,45 @@ describe('pdf generation', () => {
                 };
 
                 pdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
+            });
+
+            return promise;
+        });
+    });
+
+    getJsonFiles().forEach(([file, jsonContent], i) => {
+        it(`converts ${file} to pdf`, async () => {
+            fs.mkdirSync('./output', { recursive: true });
+
+            const promise = new Promise( (resolve) => {
+                const outputStream = fs.createWriteStream(`./output/${file}.pdf`);
+                outputStream.on('finish', () => {
+                    resolve(true);
+                });
+
+                const options = {
+                    info: {
+                        title: 'Smart Legal Contract',
+                        author: 'Dan',
+                        subject: 'Test PDF rendering',
+                        keywords: 'accord project, markdown transform, pdf',
+                    },
+                    defaultStyle : {
+                        font: 'LiberationSerif'
+                    },
+                    tocHeading : 'Table of Contents',
+                    headerText : 'Contract ABCDEF',
+                    footerText : 'Copyright Acme Inc.',
+                    footerPageNumber: true,
+                    styles : {
+                        Link : {
+                            color : 'red',
+                            fontSize : 16
+                        }
+                    }
+                };
+
+                pdfTransformer.toPdf(JSON.parse(jsonContent), options, outputStream );
             });
 
             return promise;
