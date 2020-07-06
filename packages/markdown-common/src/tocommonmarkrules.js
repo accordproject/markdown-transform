@@ -128,7 +128,7 @@ const codeBlockRule = {
         const info = token.info.trim();
         node.info = info ? info : null;
         node.tag = parseHtmlBlock(info);
-        node.text = token.content ? unescapeCodeBlock(token.content) : null;
+        node.text = token.content ? unescapeCodeBlock(token.content) : '';
     },
 };
 const fenceRule = codeBlockRule;
