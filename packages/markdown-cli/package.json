@@ -96,7 +96,7 @@
     "check-coverage": true,
     "statements": 78,
     "branches": 61,
-    "functions": 100,
+    "functions": 85,
     "lines": 77
   }
 }
