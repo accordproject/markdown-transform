@@ -19,9 +19,9 @@
  * @param {string} value - the string
  * @return {string} the unquoted string
  */
-// function unquoteString(value) {
-//     return value.substring(1,value.length-1);
-// }
+function unquoteString(value) {
+    return value.substring(1,value.length-1);
+}
 
 /**
  * Converts a CiceroMark DOM to a PDF Make JSON.
@@ -200,7 +200,8 @@ class ToPdfMakeVisitor {
         case 'FormattedVariable':
         case 'Forumla':
         case 'Variable': {
-            result.text = thing.value;
+            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.value) : thing.value;
+            result.text = fixedText;
         }
             break;
         case 'Conditional': {
