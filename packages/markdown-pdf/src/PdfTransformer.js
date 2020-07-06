@@ -50,12 +50,18 @@ const fonts = {
         italics: `${__dirname}/fonts/LiberationSerif-Italic.ttf`,
         bolditalics: `${__dirname}/fonts/LiberationSerif-BoldItalic.ttf`
     },
-    Roboto: {
-        normal: `${__dirname}/fonts/Roboto-Regular.ttf`,
-        bold: `${__dirname}/fonts/Roboto-Medium.ttf`,
-        italics: `${__dirname}/fonts/Roboto-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/Roboto-MediumItalic.ttf`
-    }
+    LiberationSans: {
+        normal: `${__dirname}/fonts/LiberationSans-Regular.ttf`,
+        bold: `${__dirname}/fonts/LiberationSans-Bold.ttf`,
+        italics: `${__dirname}/fonts/LiberationSans-Italic.ttf`,
+        bolditalics: `${__dirname}/fonts/LiberationSans-BoldItalic.ttf`
+    },
+    LiberationMono: {
+        normal: `${__dirname}/fonts/LiberationMono-Regular.ttf`,
+        bold: `${__dirname}/fonts/LiberationMono-Bold.ttf`,
+        italics: `${__dirname}/fonts/LiberationMono-Italic.ttf`,
+        bolditalics: `${__dirname}/fonts/LiberationMono-BoldItalic.ttf`
+    },
 };
 
 /**
@@ -114,7 +120,7 @@ class PdfTransformer {
             lineHeight: 1.5
         };
 
-        dd.pageSize = 'A4';
+        dd.pageSize = 'LETTER';
         dd.pageOrientation = 'portrait',
         dd.pageMargins = [ 80, 80, 80, 80 ];
 
@@ -189,16 +195,16 @@ class PdfTransformer {
                 bold: true
             },
             Code: {
-                font: 'Courier'
+                font: 'LiberationMono'
             },
             CodeBlock: {
-                font: 'Courier',
+                font: 'LiberationMono',
             },
             HtmlInline: {
-                font: 'Courier'
+                font: 'LiberationMono'
             },
             HtmlBlock: {
-                font: 'Courier',
+                font: 'LiberationMono',
             },
             Paragraph: {
                 alignment: 'justify'

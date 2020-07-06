@@ -93,6 +93,9 @@ describe('pdf generation', () => {
                         subject: 'Test PDF rendering',
                         keywords: 'accord project, markdown transform, pdf',
                     },
+                    defaultStyle : {
+                        font: 'LiberationSerif'
+                    },
                     tocHeading : 'Table of Contents',
                     headerText : 'Contract ABCDEF',
                     footerText : 'Copyright Acme Inc.',
