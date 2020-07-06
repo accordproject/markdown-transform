@@ -3,15 +3,15 @@
     "models": [
         { "name": "CommonMarkModel",
           "namespace" : "org.accordproject.commonmark",
-          "from": "https://js-new-ciceromark--accordproject-models.netlify.app/markdown/commonmark@0.2.0.cto",
+          "from": "https://models.accordproject.org/markdown/commonmark@0.2.0.cto",
           "js": "packages/markdown-common/src/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
-          "from": "https://js-new-ciceromark--accordproject-models.netlify.app/markdown/ciceromark@0.4.0.cto",
+          "from": "https://models.accordproject.org/markdown/ciceromark@0.3.0.cto",
           "js": "packages/markdown-cicero/src/externalModels" },
         { "name": "TemplateMarkModel",
           "namespace" : "org.accordproject.templatemark",
-          "from": "https://js-new-ciceromark--accordproject-models.netlify.app/markdown/templatemark.cto",
+          "from": "https://models.accordproject.org/markdown/templatemark.cto",
           "js": "packages/markdown-template/lib/externalModels" }
     ]
 }
