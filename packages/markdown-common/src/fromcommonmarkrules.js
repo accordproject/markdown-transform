@@ -88,7 +88,7 @@ rules.Heading = (visitor,thing,children,parameters,resultString,resultSeq) => {
 };
 rules.CodeBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
-    const next2 = `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${CommonMarkUtils.escapeCodeBlock(thing.text)}\`\`\``;
+    const next2 = `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${thing.text ? CommonMarkUtils.escapeCodeBlock(thing.text) : ''}\`\`\``;
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };

@@ -5194,6 +5194,7 @@ Object {
       "nodes": Array [
         Object {
           "$class": "org.accordproject.commonmark.CodeBlock",
+          "text": "",
         },
       ],
     },
@@ -5208,6 +5209,7 @@ Object {
     },
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -10186,6 +10188,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -10257,6 +10260,7 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -10516,6 +10520,7 @@ Object {
     Object {
       "$class": "org.accordproject.commonmark.CodeBlock",
       "info": ";",
+      "text": "",
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
