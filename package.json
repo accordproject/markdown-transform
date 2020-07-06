@@ -49,7 +49,9 @@
   "keywords": [
     "accord",
     "markdown",
-    "commonmark"
+    "commonmark",
+    "docx",
+    "pdf"
   ],
   "author": "accordproject.org",
   "license": "Apache-2.0",

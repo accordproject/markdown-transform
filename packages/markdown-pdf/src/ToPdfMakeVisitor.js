@@ -122,6 +122,7 @@ class ToPdfMakeVisitor {
             const newParameters = {
                 strong: parameters.strong,
                 emph: parameters.emph,
+                code: parameters.code,
             };
             node.accept(this, newParameters);
             if (Array.isArray(newParameters.result)) {
@@ -198,7 +199,7 @@ class ToPdfMakeVisitor {
             break;
         case 'EnumVariable':
         case 'FormattedVariable':
-        case 'Forumla':
+        case 'Formula':
         case 'Variable': {
             const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.value) : thing.value;
             result.text = fixedText;
@@ -220,8 +221,9 @@ class ToPdfMakeVisitor {
         }
             break;
         case 'Heading': {
+            const child = this.processChildNodes(thing,parameters);
             result.style = ToPdfMakeVisitor.getHeadingType(thing);
-            result.text = this.processChildNodes(thing,parameters);
+            result.text = `\n${child[0].text}\n`;
             result.tocItem = true;
         }
             break;

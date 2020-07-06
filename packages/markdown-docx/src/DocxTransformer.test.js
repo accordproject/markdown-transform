@@ -44,7 +44,7 @@ function getDocxFiles() {
     return result;
 }
 
-describe.only('import docx', () => {
+describe('import docx', () => {
     getDocxFiles().forEach(([file, docx], i) => {
         it(`converts ${file} to ciceromark`, async () => {
             const json = await docxTransformer.toCiceroMark(docx, 'json');

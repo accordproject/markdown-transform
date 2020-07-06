@@ -8,6 +8,12 @@ This is **bold** text.
 
 This is `inline code`.
 
+This is a soft
+break.
+
+This is a hard\
+line break.
+
 This is a thematic break (which will force a page break).
 
 --------------
