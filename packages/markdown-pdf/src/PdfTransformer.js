@@ -113,7 +113,7 @@ class PdfTransformer {
         input.accept(visitor, parameters);
 
         const dd = parameters.result;
-        console.log(JSON.stringify(dd, null, 2));
+        // console.log(JSON.stringify(dd, null, 2));
 
         dd.defaultStyle = {
             fontSize: 12,
