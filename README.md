@@ -37,15 +37,25 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 
 ###  CommonMark DOM
 
-The CommonMark DOM is a model for the elements of CommonMark, expressed as a [Concerto schema](https://github.com/accordproject/concerto), and serialized as a JSON graph.
+The CommonMark DOM is a model for the elements of CommonMark (the specification for markdown text), expressed as a [Concerto schema](https://github.com/accordproject/concerto), and serialized as a JSON graph.
 
-The schema is defined here: https://models.accordproject.org/markdown/commonmark.html
+The schema is defined here: https://models.accordproject.org/markdown/commonmark@0.2.0.html
 
 ###  CiceroMark DOM
 
-The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable` and `ComputedVariable`.
+CiceroMark defines markdown documents with embedded clauses, where each clause is an instance of a template, specified using TemplateMark.
 
-The schema is defined here: https://models.accordproject.org/markdown/ciceromark.html
+The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable` and `Formula` etc.
+
+The schema is defined here: https://models.accordproject.org/markdown/ciceromark@0.3.0.html
+
+###  TemplateMark DOM
+
+TemplateMark defines markdown documents with syntax for embedded variables, optional blocks, formulas etc. It is used to define Accord Project templates.
+
+The TemplateMark DOM extends the CommonMark DOM, defining nodes for `ClauseDefinition`, `VariableDefinition` and `ForumulaDefinition` etc.
+
+The schema is defined here: https://models.accordproject.org/markdown/templatemark.html
 
 ###  Slate DOM
 
