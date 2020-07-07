@@ -32,8 +32,8 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 * [markdown-pdf](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-pdf) : converts a PDF file to/from a CiceroMark DOM
 * [markdown-docx](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-docx) : converts a DOCX file to a CiceroMark DOM
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-cli) : command line utilities
-* [markdown-template](https://github.com/accordproject/markdown-template/tree/master/packages/markdown-template) : converts JSON data and markdown strings to/from TemplateMark
-* [markdown-it-template](https://github.com/accordproject/markdown-it-template/tree/master/packages/markdown-it-template) : plugins to markdown-it for markdown extensions
+* [markdown-template](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-template) : converts JSON data and markdown strings to/from TemplateMark
+* [markdown-it-template](https://github.com/accordproject/markdown-transform/tree/master/packages/markdown-it-template) : plugins to markdown-it for markdown extensions
 
 ###  CommonMark DOM
 
