@@ -213,6 +213,7 @@ class TypeVisitor {
                 throw new Error('Unknown property ' + thing.name);
             }
             if (property.isPrimitive()) {
+                thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();

@@ -139,6 +139,25 @@ class ToSlateVisitor {
     }
 
     /**
+     * Converts a optional variable node to a slate node with marks
+     * @param {*} data - the data for the optional variable
+     * @param {*} nodes - the optional nodes
+     * @param {*} parameters the parameters
+     * @returns {*} the slate text node with marks
+     */
+    static handleOptionalVariable(data, nodes, parameters) {
+        const inlineNode = {
+            object: 'inline',
+            type: 'optional',
+            data: data,
+            children: nodes
+        };
+        this.applyMarks(inlineNode,parameters);
+
+        return inlineNode;
+    }
+
+    /**
      * Converts a formula node to a slate text node with marks
      * @param {*} data - the data for the formula
      * @param {*} text - the text for the formula
@@ -266,6 +285,20 @@ class ToSlateVisitor {
                 data.elementType = thing.elementType;
             }
             result = ToSlateVisitor.handleConditionalVariable(data, nodes, localParameters);
+        }
+            break;
+        case 'Optional': {
+            const localParameters = Object.assign({},parameters);
+            parameters.strong = false;
+            parameters.italic = false;
+            const nodes = this.processChildNodes(thing,parameters);
+            const whenSome = this.processChildren(thing,'whenSome',parameters);
+            const whenNone = this.processChildren(thing,'whenNone',parameters);
+            const data = { name: thing.name, hasSome: thing.hasSome, whenSome: whenSome, whenNone: whenNone };
+            if (thing.elementType) {
+                data.elementType = thing.elementType;
+            }
+            result = ToSlateVisitor.handleOptionalVariable(data, nodes, localParameters);
         }
             break;
         case 'Formula': {
