@@ -17,7 +17,7 @@
 
 ## Introduction
 
-A transformation framework for converting markdown content to HTML, Slate (for rich-text editing) and other DOMs.
+A transformation and parsing framework for converting markdown content to HTML, Slate (for rich-text editing) and other structured document object models (DOMs).
 
 ![Transformations](./packages/markdown-transform/transformations.png)
 
