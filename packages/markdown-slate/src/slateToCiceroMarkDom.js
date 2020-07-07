@@ -131,6 +131,15 @@ function _recursive_nodes(target, nodes) {
                 result = handleConditional(node,isTrue,whenTrueNodes,whenFalseNodes);
             }
                 break;
+            case 'optional': {
+                const hasSome = node.data.hasSome;
+                let whenSomeNodes = [];
+                _recursive_nodes(whenSomeNodes, node.data.whenSome);
+                let whenNoneNodes = [];
+                _recursive_nodes(whenNoneNodes, node.data.whenNone);
+                result = handleOptional(node,hasSome,whenSomeNodes,whenNoneNodes);
+            }
+                break;
             case 'variable': {
                 result = handleVariable(node);
                 handleChildren = false;
@@ -333,6 +342,34 @@ function handleConditional(node, isTrue, whenTrue, whenFalse) {
     result.isTrue = isTrue;
     result.whenTrue = whenTrue;
     result.whenFalse = whenFalse;
+
+    if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
+        result.elementType = data.elementType;
+    }
+
+    return handleMarks(node,result);
+}
+
+/**
+ * Handles a optional node
+ * @param {*} node the slate variable node
+ * @param {*} hasSome is this optional is present
+ * @param {*} whenSome the nodes when present
+ * @param {*} whenNone the nodes when absent
+ * @returns {*} the ast node
+ */
+function handleOptional(node, hasSome, whenSome, whenNone) {
+    const data = node.data;
+
+    let result = {
+        $class : `${NS_CICERO}.Optional`,
+        name : data.name,
+        nodes: [],
+    };
+
+    result.hasSome = hasSome;
+    result.whenSome = whenSome;
+    result.whenNone = whenNone;
 
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;

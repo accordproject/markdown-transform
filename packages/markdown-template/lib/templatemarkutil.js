@@ -239,6 +239,59 @@ function tokensToUntypedTemplateMarkFragment(tokenStream) {
     };
 }
 
+/**
+ * @param {object} modelManager - the model manager
+ * @param {object} type - The type from the model source to generate a JSON for
+ * @return {object} the generated JSON instance
+ */
+function generateJSON(modelManager,type) {
+    const factory = new Factory(modelManager);
+    const serializer = new Serializer(factory, modelManager);
+
+    switch(type) {
+    case 'DateTime':
+        return new Moment();
+    case 'Integer':
+        return 0;
+    case 'Long':
+        return 0;
+    case 'Double':
+        return 0.0;
+    case 'Boolean':
+        return false;
+    case 'String':
+        return '';
+    default: {
+        const classDeclaration = modelManager.getType(type);
+
+        if (classDeclaration.isEnum()) {
+            throw new Error(
+                'Cannot generate JSON for an enumerated type directly, the type should be contained in Concept, Asset, Transaction or Event declaration'
+            );
+        }
+
+        const ns = classDeclaration.getNamespace();
+        const name = classDeclaration.getName();
+        const factoryOptions = {
+            includeOptionalFields: true,
+            generate: true,
+        };
+
+        if (classDeclaration.isConcept()) {
+            const concept = factory.newConcept(ns, name, factoryOptions);
+            return serializer.toJSON(concept);
+        }
+        const resource = factory.newResource(
+            ns,
+            name,
+            'resource1',
+            factoryOptions
+        );
+        return serializer.toJSON(resource);
+    }
+    }
+}
+
 module.exports.findTemplateModel = findTemplateModel;
 module.exports.templateMarkManager = templateMarkManager;
 
@@ -247,3 +300,4 @@ module.exports.tokensToUntypedTemplateMarkFragment = tokensToUntypedTemplateMark
 module.exports.tokensToUntypedTemplateMark = tokensToUntypedTemplateMark;
 module.exports.templateMarkTyping = templateMarkTyping;
 module.exports.templateMarkTypingFromType = templateMarkTypingFromType;
+module.exports.generateJSON = generateJSON;

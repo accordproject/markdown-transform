@@ -14,6 +14,7 @@
 
 'use strict';
 
+const generateJSON = require('./templatemarkutil').generateJSON;
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
@@ -94,7 +95,6 @@ class ToCiceroMarkVisitor {
      */
     visit(thing, parameters) {
         const that = this;
-        const currentModel = parameters.model;
         switch(thing.getType()) {
         case 'EnumVariableDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
@@ -177,6 +177,8 @@ class ToCiceroMarkVisitor {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             if (parameters.data[thing.name]) {
+                thing.hasSome = true;
+                thing.nodes = thing.whenSome;
                 const someParameters = {
                     parserManager: parameters.parserManager,
                     templateMarkModelManager: parameters.templateMarkModelManager,
@@ -185,12 +187,29 @@ class ToCiceroMarkVisitor {
                     data: parameters.data[thing.name],
                     kind: parameters.kind,
                 };
-                thing.hasSome = true;
-                thing.nodes = thing.whenSome;
                 ToCiceroMarkVisitor.visitNodes(this, thing.whenSome, someParameters);
+                const noneParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
+                    data: {},
+                    kind: parameters.kind,
+                };
+                ToCiceroMarkVisitor.visitNodes(this, thing.whenNone, noneParameters);
             } else {
                 thing.hasSome = false;
                 thing.nodes = thing.whenNone;
+                const invented = generateJSON(parameters.parserManager.getModelManager(),thing.elementType);
+                const someParameters = {
+                    parserManager: parameters.parserManager,
+                    templateMarkModelManager: parameters.templateMarkModelManager,
+                    templateMarkSerializer: parameters.templateMarkSerializer,
+                    fullData: parameters.fullData,
+                    data: invented, // Need to invent some data here!
+                    kind: parameters.kind,
+                };
+                ToCiceroMarkVisitor.visitNodes(this, thing.whenSome, someParameters);
                 const noneParameters = {
                     parserManager: parameters.parserManager,
                     templateMarkModelManager: parameters.templateMarkModelManager,
