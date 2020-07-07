@@ -393,6 +393,38 @@ const CONDITIONAL_RULE = {
 };
 
 /**
+ * A rule to deserialize optional nodes.
+ * @type {Object}
+ */
+const OPTIONAL_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        const { tagName } = el;
+        if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'optional') {
+            const text = el.textContent;
+            const whenSomeText = el.getAttribute('whenSome') ? el.getAttribute('whenSome') : '';
+            const whenNoneText = el.getAttribute('whenNone') ? el.getAttribute('whenNone') : '';
+            return {
+                '$class': `${NS_PREFIX_CiceroMarkModel}Optional`,
+                name: el.getAttribute('name'),
+                hasSome: text === whenSomeText,
+                whenSome: whenSomeText ? [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: whenSomeText,
+                }] : [],
+                whenNone: whenNoneText ? [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: whenNoneText,
+                }] : [],
+                nodes: [{
+                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    text: text,
+                }],
+            };
+        }
+    }
+};
+
+/**
  * A rule to deserialize formulas
  * @type {Object}
  */
@@ -473,6 +505,7 @@ const rules = [
     CLAUSE_RULE,
     VARIABLE_RULE,
     CONDITIONAL_RULE,
+    OPTIONAL_RULE,
     FORMULA_RULE,
     TEXT_RULE,
     HTML_INLINE_RULE,
