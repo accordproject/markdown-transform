@@ -108,7 +108,10 @@ class ToHtmlStringVisitor {
         }
             break;
         case 'Conditional':
-            parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue[0] ? thing.whenTrue[0].text : ''}" whenFalse="${thing.whenFalse[0] ? thing.whenFalse[0].text : ''}">${thing.nodes[0].text}</span>`;
+            parameters.result += `<span class="conditional" name="${thing.name}" whenTrue="${thing.whenTrue[0] ? thing.whenTrue[0].text : ''}" whenFalse="${thing.whenFalse[0] ? thing.whenFalse[0].text : ''}">${thing.nodes[0] ? thing.nodes[0].text : ''}</span>`;
+            break;
+        case 'Optional':
+            parameters.result += `<span class="optional" name="${thing.name}" whenSome="${thing.whenSome[0] ? thing.whenSome[0].text : ''}" whenNone="${thing.whenNone[0] ? thing.whenNone[0].text : ''}">${thing.nodes[0] ? thing.nodes[0].text : ''}</span>`;
             break;
         case 'Formula': {
             let attributes = `class="formula" name="${thing.name}"`;
