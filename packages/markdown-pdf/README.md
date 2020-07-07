@@ -26,7 +26,7 @@ const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 pdfTransformer = new PdfTransformer();
 const options = {};
 const outputStream = fs.createWriteStream(`./test.pdf`);
-pdfTransformer.toPdf(pdfBuffer, options, outputStream );
+pdfTransformer.toPdf(ciceroMarkJson, options, outputStream );
 ```
 
 ## License <a name="license"></a>
