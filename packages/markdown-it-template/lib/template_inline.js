@@ -41,6 +41,8 @@ function template_inline(state, silent) {
     // Quick dispatch on third char
     ch = state.src.charCodeAt(pos + 2);
     if (ch === 0x23/* # */) {
+        if (silent) { return false; }
+
         match = state.src.slice(pos).match(OPEN_BLOCK_RE);
         if (!match) { return false; }
 
@@ -48,20 +50,23 @@ function template_inline(state, silent) {
         if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
-        if (!silent) {
-            token         = state.push('inline_block_' + block + '_open', 'div', 1);
-            token.content = match[0];
-        }
+        token         = state.push('inline_block_' + block + '_open', 'div', 1);
+        token.content = match[0];
         token.attrs = [ [ 'name', match[2] ] ]
+
         if (block === 'join') {
             const sep = match[3];
             if (sep) {
                 token.attrs.push([ 'separator', sep.substring(1, sep.length-1) ]);
             }
         }
+
         state.pos += match[0].length;
+
         return true;
     } else if (ch === 0x2F/* / */) {
+        if (silent) { return false; }
+
         match = state.src.slice(pos).match(CLOSE_BLOCK_RE);
         if (!match) { return false; }
 
@@ -69,11 +74,11 @@ function template_inline(state, silent) {
         if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
-        if (!silent) {
-            token         = state.push('inline_block_' + block + '_close', 'div', -1);
-            token.content = match[1];
-        }
+
+        token         = state.push('inline_block_' + block + '_close', 'div', -1);
+        token.content = match[1];
         state.pos += match[0].length;
+
         return true;
     } else if (ch === 0x25/* % */) {
         match = state.src.slice(pos).match(FORMULA_RE);
@@ -82,9 +87,10 @@ function template_inline(state, silent) {
         if (!silent) {
             token         = state.push('formula', 'formula', 0);
             token.content = match[1];
+            token.attrs = [ [ 'name', 'formula' ] ];
         }
-        token.attrs = [ [ 'name', 'formula' ] ];
         state.pos += match[0].length;
+
         return true;
     } else {
         match = state.src.slice(pos).match(VARIABLE_RE);
@@ -92,25 +98,21 @@ function template_inline(state, silent) {
         const content = match[0];
         const name = match[1];
         const format = match[3];
-        if (name === 'else') { // XXX 'else' is reserved in variable names
-            if (!silent) {
+        if (!silent) {
+            if (name === 'else') { // XXX 'else' is reserved in variable names
                 token         = state.push('inline_block_else', 'else', 0);
                 token.content = content;
-            }
-        } else if (name === 'this') { // XXX 'this' is reserved in variable names
-            if (!silent) {
+            } else if (name === 'this') { // XXX 'this' is reserved in variable names
                 token         = state.push('this', 'this', 0);
                 token.content = content;
-            }
-            token.attrs = [ ];
-        } else {
-            if (!silent) {
+                token.attrs = [ ];
+            } else {
                 token         = state.push('variable', 'variable', 0);
                 token.content = content;
-            }
-            token.attrs = [ [ 'name', name ] ];
-            if (format) {
-                token.attrs.push([ 'format', format ]);
+                token.attrs = [ [ 'name', name ] ];
+                if (format) {
+                    token.attrs.push([ 'format', format ]);
+                }
             }
         }
         state.pos += content.length;

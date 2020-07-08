@@ -1,6 +1,6 @@
 # Title
 
-Paragraph with a {seller}} and more text and{{#if forceMajeure}}, this is optional,{{/if}} with some **marker** {{% 1+1 = 3 %}}.
+Paragraph with a {seller}} and more text and{{#if forceMajeure}}, this is optional,{{/if}} with some **marker** {{% % 1+1 = 3 %}}.
 
 {{buyer as "FOO"}}
 
