@@ -34,6 +34,7 @@ const tests = [
     { 'name' : 'clause3' },
     { 'name' : 'clause4' },
     { 'name' : 'clause5' },
+    { 'name' : 'clause6' },
     { 'name' : 'notclause1' },
     { 'name' : 'notclause2' },
     { 'name' : 'notclause3' },

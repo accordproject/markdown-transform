@@ -20,9 +20,10 @@ const VARIABLE_RE = require('./template_re').VARIABLE_RE;
 const OPEN_BLOCK_RE = require('./template_re').OPEN_BLOCK_RE;
 const CLOSE_BLOCK_RE = require('./template_re').CLOSE_BLOCK_RE;
 const FORMULA_RE = require('./template_re').FORMULA_RE;
+const getBlockAttributes = require('./template_re').getBlockAttributes;
 
 function template_inline(state, silent) {
-    let ch, match, max, token,
+    let ch, match, max, token, attrs,
         pos = state.pos;
 
     // Check start
@@ -46,20 +47,15 @@ function template_inline(state, silent) {
         match = state.src.slice(pos).match(OPEN_BLOCK_RE);
         if (!match) { return false; }
 
+        attrs = getBlockAttributes(match);
+
         const block = match[1];
         if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
         token         = state.push('inline_block_' + block + '_open', 'div', 1);
         token.content = match[0];
-        token.attrs = [ [ 'name', match[2] ] ]
-
-        if (block === 'join') {
-            const sep = match[3];
-            if (sep) {
-                token.attrs.push([ 'separator', sep.substring(1, sep.length-1) ]);
-            }
-        }
+        token.attrs = attrs;
 
         state.pos += match[0].length;
 

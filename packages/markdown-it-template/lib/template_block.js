@@ -16,11 +16,13 @@
 
 const OPEN_BLOCK_RE = require('./template_re').OPEN_BLOCK_RE;
 const CLOSE_BLOCK_RE = require('./template_re').CLOSE_BLOCK_RE;
+const getBlockAttributes = require('./template_re').getBlockAttributes;
 
 function template_block(state, startLine, endLine, silent) {
     let block_name,
-        name,
-        match;
+        block_open,
+        match,
+        attrs;
 
     let pos, nextLine, markup, token,
         old_parent, old_line_max,
@@ -39,11 +41,13 @@ function template_block(state, startLine, endLine, silent) {
     match = state.src.slice(start).match(OPEN_BLOCK_RE);
     if (!match) { return false; }
 
-    const block_open = match[1];
+    block_open = match[1];
+
+    attrs = getBlockAttributes(match);
+
     if (block_open !== 'clause' && block_open !== 'ulist' && block_open !== 'olist') { return false; }
 
     block_name = block_open;
-    name = match[2];
     markup = '';
 
     // Since start is found, we can report success here in validation mode
@@ -114,7 +118,7 @@ function template_block(state, startLine, endLine, silent) {
     token.info   = '';
     token.map    = [ startLine, nextLine ];
 
-    token.attrs = [ [ 'name', name ] ];
+    token.attrs = attrs;
 
     state.md.block.tokenize(state, startLine + 1, nextLine);
 
