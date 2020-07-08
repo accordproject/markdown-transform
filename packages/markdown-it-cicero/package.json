@@ -1,0 +1,97 @@
+{
+  "name": "@accordproject/markdown-it-cicero",
+  "version": "0.11.3",
+  "description": "Plugin to introduce cicero blocks and inlines for the markdown-it markdown parser",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "umd"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "postlint": "npm run licchk",
+    "licchk": "license-check",
+    "test": "mocha",
+    "test:cov": "nyc mocha",
+    "jsdoc": "jsdoc -c jsdoc.json package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/accordproject/markdown-transform.git"
+  },
+  "keywords": [
+    "accord-project",
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "commonmark"
+  ],
+  "author": "accordproject.org",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/accordproject/markdown-transform/issues"
+  },
+  "homepage": "https://github.com/accordproject/markdown-transform",
+  "devDependencies": {
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
+    "chai-string": "^1.5.0",
+    "chai-things": "0.2.0",
+    "eslint": "6.0.1",
+    "jsdoc": "3.6.3",
+    "license-check": "1.1.5",
+    "mocha": "6.1.4",
+    "nyc": "14.1.1"
+  },
+  "dependencies": {
+    "markdown-it": "^11.0.0"
+  },
+  "license-check-config": {
+    "src": [
+      "**/*.js",
+      "!./scripts/**/*",
+      "!./.travis/**/*",
+      "!./test/**/*",
+      "!./coverage/**/*",
+      "!./node_modules/**/*",
+      "!./out/**/*",
+      "!./umd/**/*"
+    ],
+    "path": "header.txt",
+    "blocking": true,
+    "logInfo": false,
+    "logError": true
+  },
+  "nyc": {
+    "produce-source-map": "true",
+    "sourceMap": "inline",
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary",
+      "html",
+      "json"
+    ],
+    "include": [
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "scripts/**/*.js"
+    ],
+    "all": true,
+    "check-coverage": true,
+    "statements": 87,
+    "branches": 76,
+    "functions": 84,
+    "lines": 87
+  }
+}
