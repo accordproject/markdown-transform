@@ -1,12 +1,12 @@
 # Title
 
-Paragraph with a {{seller}} and more text and{{#if forceMajeure}}, this is conditional,{{/if}} with some **marker** {{% 1+1 = 3 %}}. {{#join foo ";"}}{{element}}{{/join}}
+Paragraph with a {{seller}} and more text and{{#if forceMajeure}}, this is conditional,{{/if}} with some **marker** {{% 1+1 = 3 %}}. {{#join foo separator=";"}}{{element}}{{/join}}
 
 Paragraph with a {{seller}} and more text and{{#if forceMajeure}}, this is conditional,{{else}} and this is too,{{/if}} with some **marker** {{% 1+1 = 3 %}}. {{#join foo}}{{element}}{{/join}}
 
 {{buyer as "FOO"}}
 
-{{#clause payment}}
+{{#clause payment src="ap://promissory-note-md@0.3.2#b4c966c2081303d017d3dde359bd8039ceb4a5dbacb6e6e09618e33a00d3f566"}}
 BLABLABLABLA
 
 
