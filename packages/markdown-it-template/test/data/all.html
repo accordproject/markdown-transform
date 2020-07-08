@@ -1,5 +1,6 @@
 <h1>Title</h1>
-<p>Paragraph with a <variable name="seller"> and more text and<div name="forceMajeure" class="if_inline">, this is optional,</div> with some <strong>marker</strong> <formula name="formula">. <div name="foo" separator=";" class="join_inline"><variable name="element"></div></p>
+<p>Paragraph with a <variable name="seller"> and more text and<div name="forceMajeure" class="if_inline">, this is conditional,</div> with some <strong>marker</strong> <formula name="formula">. <div name="foo" separator=";" class="join_inline"><variable name="element"></div></p>
+<p>Paragraph with a <variable name="seller"> and more text and<div name="forceMajeure" class="if_inline">, this is conditional,<else> and this is too,</div> with some <strong>marker</strong> <formula name="formula">. <div name="foo" class="join_inline"><variable name="element"></div></p>
 <p><variable name="buyer" format="FOO"></p>
 <div name="payment" class="clause_block">
 <p>BLABLABLABLA</p>
@@ -16,3 +17,11 @@
 </ul>
 </div>
 <p>There is also a new <div name="name" class="optional_inline"> inline which can contain <this></div>.</p>
+<p>There is also a new <div name="name" class="optional_inline"> inline which can contain <this><else>something else</div>.</p>
+<p>This is a <a href="mylink">link with a <variable name="variable"> in it</a>.</p>
+<p>This is a <a href="mylink">link with a <this> in it</a>.</p>
+<p>This is a <a href="mylink">link with an <else> in it</a>.</p>
+<p>This is a <a href="mylink">link with an <div name="name" class="if_inline"> in it</div></a>.</p>
+<p>This is a <a href="mylink">link with an <div name="name" class="optional_inline"> in it</div></a>.</p>
+<p>This is a <a href="mylink">link with a <div name="name" class="join_inline"> in it</div></a>.</p>
+<p>This is a <a href="mylink">link with a <formula name="formula"> in it</a>.</p>

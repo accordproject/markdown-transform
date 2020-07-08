@@ -14,7 +14,8 @@
 
 'use strict';
 
-const Fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
 const chai = require('chai');
 chai.use(require('chai-string'));
@@ -27,39 +28,52 @@ const MarkdownIt = require('markdown-it');
 const MarkdownItTemplate = require('../lib');
 const mdit = new MarkdownIt({html:true}).use(MarkdownItTemplate);
 
-const allMarkdown = Fs.readFileSync('./test/data/all.tem.md', 'utf8');
-const allJson = JSON.parse(Fs.readFileSync('./test/data/all.json', 'utf8'));
-const allHtml = Fs.readFileSync('./test/data/all.html', 'utf8');
+const tests = [
+    { 'name' : 'clause1' },
+    { 'name' : 'clause2' },
+    { 'name' : 'clause3' },
+    { 'name' : 'clause4' },
+    { 'name' : 'clause5' },
+    { 'name' : 'clause6' },
+    { 'name' : 'notclause1' },
+    { 'name' : 'notclause2' },
+    { 'name' : 'notclause3' },
+    { 'name' : 'autoclose1' },
+    { 'name' : 'autoclose2' },
+    { 'name' : 'autoclose3' },
+    { 'name' : 'all' },
+    { 'name' : 'none' },
+];
 
-const noneMarkdown = Fs.readFileSync('./test/data/none.tem.md', 'utf8');
-const noneJson = JSON.parse(Fs.readFileSync('./test/data/none.json', 'utf8'));
-const noneHtml = Fs.readFileSync('./test/data/none.html', 'utf8');
+/**
+ * Run positive tests workload
+ */
+function runTests() {
+
+    for (const test of tests) {
+        const name = test.name;
+        const markdown = fs.readFileSync(path.join('./test/data',name + '.tem.md'), 'utf8');
+        const json = JSON.parse(fs.readFileSync(path.join('./test/data',name + '.json'), 'utf8'));
+        const html = fs.readFileSync(path.join('./test/data',name + '.html'), 'utf8');
+
+        describe('#parse (' + name + ')', () => {
+            it('should parse to a token stream', async () => {
+                const tokens = mdit.parse(markdown,{});
+                const result = JSON.parse(JSON.stringify(tokens));
+                result.should.deep.equal(json);
+            });
+        });
+
+        describe('#render (' + name + ')', () => {
+            it('should render to HTML', async () => {
+                const result = mdit.render(markdown,{});
+                result.should.equal(html.replace(/\r/gm,''));
+            });
+        });
+    }
+}
 
 describe('#markdown-it-template', () => {
-
-    describe('#parse', () => {
-        it('should parse to a token stream (template markup)', async () => {
-            const tokens = mdit.parse(allMarkdown,{});
-            const result = JSON.parse(JSON.stringify(tokens));
-            result.should.deep.equal(allJson);
-        });
-
-        it('should parse to a token stream (not template markup)', async () => {
-            const tokens = mdit.parse(noneMarkdown,{});
-            const result = JSON.parse(JSON.stringify(tokens));
-            result.should.deep.equal(noneJson);
-        });
-    });
-
-    describe('#render', () => {
-        it('should render to HTML (template markup)', async () => {
-            const result = mdit.render(allMarkdown,{});
-            result.should.equal(allHtml.replace(/\r/gm,''));
-        });
-
-        it('should render to HTML (not template markup)', async () => {
-            const result = mdit.render(noneMarkdown,{});
-            result.should.equal(noneHtml.replace(/\r/gm,''));
-        });
-    });
+    runTests();
 });
+

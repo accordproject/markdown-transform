@@ -91,7 +91,7 @@ function template_block(state, startLine, endLine, silent) {
         if (block_close !== block_open) { continue; }
 
         // make sure tail has spaces only
-        pos -= (pos - start) % match[0].length;
+        pos = start + match[0].length;
         pos = state.skipSpaces(pos);
 
         if (pos < max) { continue; }
