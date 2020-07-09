@@ -53,28 +53,22 @@ class CiceroMarkTransformer {
     /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @returns {*} concertoObject concerto ciceromark object
      */
-    fromMarkdown(markdown, format='concerto', options) {
-        const commonMarkDom = this.commonMark.fromMarkdown(markdown, 'json');
-        return this.fromCommonMark(commonMarkDom, format, options);
+    fromMarkdown(markdown, options) {
+        const commonMarkDom = this.commonMark.fromMarkdown(markdown);
+        return this.fromCommonMark(commonMarkDom, options);
     }
 
     /**
      * Converts a CommonMark DOM to a CiceroMark DOM
      * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @returns {*} CiceroMark DOM
      */
-    fromCommonMark(input, format='concerto', options) {
-        if(!input.getType) {
-            input = this.serializer.fromJSON(input);
-        }
+    fromCommonMark(input, options) {
+        const dom = this.serializer.fromJSON(input);
 
         // Add Cicero nodes
         const parameters = {
@@ -84,9 +78,9 @@ class CiceroMarkTransformer {
             serializer : this.serializer,
         };
         const visitor = options && options.ciceroEdit ? new FromCiceroEditVisitor() : new FromCommonMarkVisitor();
-        input.accept( visitor, parameters );
+        dom.accept( visitor, parameters );
 
-        let json = Object.assign({}, this.serializer.toJSON(input));
+        let json = Object.assign({}, this.serializer.toJSON(dom));
         let result;
 
         // remove variables, e.g. {{ variable }}, {{% formula %}}
@@ -96,11 +90,7 @@ class CiceroMarkTransformer {
             result = json;
         }
 
-        if(format === 'concerto') {
-            return this.serializer.fromJSON(result);
-        } else {
-            return result;
-        }
+        return result;
     }
 
     /**
@@ -110,7 +100,7 @@ class CiceroMarkTransformer {
      * @returns {*} markdown string
      */
     toMarkdown(input, options) {
-        const commonMarkDom = this.toCommonMark(input, 'json', options);
+        const commonMarkDom = this.toCommonMark(input, options);
         return this.commonMark.toMarkdown(commonMarkDom);
     }
 
@@ -128,7 +118,7 @@ class CiceroMarkTransformer {
             inputType = input.getNamespace() + input.getType();
         }
         if (inputType === 'org.accordproject.ciceromark.Clause') {
-            const commonMarkDom = this.toCommonMark(input, 'json', options);
+            const commonMarkDom = this.toCommonMark(input, options);
             return FromCommonMarkVisitor.codeBlockContent(commonMarkDom.text);
         } else {
             throw new Error('Cannot apply getClauseText to non-clause node');
@@ -148,21 +138,14 @@ class CiceroMarkTransformer {
     /**
      * Converts a CiceroMark DOM to a CommonMark DOM
      * @param {*} input CiceroMark DOM
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
      * @param {boolean} [options.quoteVariables] if true variable nodes are removed
      * @returns {*} json commonmark object
      */
-    toCommonMark(input, format='concerto', options) {
+    toCommonMark(input, options) {
         // convert from concerto
-        let json;
-        if(input.getType) {
-            json = Object.assign({}, this.serializer.toJSON(input));
-        } else {
-            json = Object.assign({}, input);
-        }
+        let json = Object.assign({}, input);
 
         // remove variables, e.g. {{ variable }}, {{% formula %}}
         if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
@@ -193,9 +176,6 @@ class CiceroMarkTransformer {
             serializer : this.serializer
         } );
 
-        if(format === 'concerto') {
-            return dom;
-        }
         return this.serializer.toJSON(dom);
     }
 

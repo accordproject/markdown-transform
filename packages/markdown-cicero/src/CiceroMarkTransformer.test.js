@@ -26,9 +26,9 @@ let ciceroMarkTransformer = null;
 
 expect.extend({
     toMarkdownRoundtrip(markdownText) {
-        const json1 = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const json1 = ciceroMarkTransformer.fromMarkdown(markdownText);
         const newMarkdown = ciceroMarkTransformer.toMarkdown(json1);
-        const json2 = ciceroMarkTransformer.fromMarkdown(newMarkdown, 'json');
+        const json2 = ciceroMarkTransformer.fromMarkdown(newMarkdown);
         const pass = JSON.stringify(json1) === JSON.stringify(json2);
 
         const message = pass
@@ -93,7 +93,7 @@ describe('markdown', () => {
 describe('acceptance', () => {
     it('converts acceptance to CommonMark DOM', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText);
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toMarkdown(json);
@@ -102,7 +102,7 @@ describe('acceptance', () => {
 
     it('converts acceptance clause content to CommonMark string', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText);
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toCommonMark(json.nodes[2]).text;
@@ -111,9 +111,9 @@ describe('acceptance', () => {
 
     it('converts acceptance clause content to CommonMark string (removeFormatting)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formatted.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText);
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, { removeFormatting: true });
         expect(newMarkdown).toMatchSnapshot();
     });
 
@@ -121,25 +121,25 @@ describe('acceptance', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { quoteVariables: false });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, { quoteVariables: false });
         expect(newMarkdown).toMatchSnapshot();
 
     });
 
     it('converts acceptance clause content to CommonMark string (no quoteVariables 2)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json', { quoteVariables: false });
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText, { quoteVariables: false });
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json');
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json);
         expect(newMarkdown).toMatchSnapshot();
 
     });
 
     it('converts acceptance clause content to CommonMark string (removeFormatting & no quoteVariables)', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance-formula.md', 'utf8');
-        const json = ciceroMarkTransformer.fromMarkdown(markdownText, 'json');
+        const json = ciceroMarkTransformer.fromMarkdown(markdownText);
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, 'json', { removeFormatting: true, quoteVariables: false });
+        const newMarkdown = ciceroMarkTransformer.toCommonMark(json, { removeFormatting: true, quoteVariables: false });
         expect(newMarkdown).toMatchSnapshot();
     });
 });

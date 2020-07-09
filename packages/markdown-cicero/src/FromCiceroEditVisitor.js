@@ -77,7 +77,8 @@ class FromCiceroEditVisitor {
                     thing.src = FromCiceroEditVisitor.getAttribute(tag.attributes, 'src').value;
                     thing.name = FromCiceroEditVisitor.getAttribute(tag.attributes, 'clauseid').value;
 
-                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
+                    const commonMark = parameters.commonMark.fromMarkdown(clauseText);
+                    thing.nodes = parameters.serializer.fromJSON(commonMark).nodes;
                     FromCiceroEditVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
@@ -89,7 +90,8 @@ class FromCiceroEditVisitor {
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = FromCiceroEditVisitor.codeBlockContent(thing.text);
 
-                const newNodes = parameters.commonMark.fromMarkdown(clauseText).nodes;
+                const commonMark = parameters.commonMark.fromMarkdown(clauseText);
+                const newNodes = parameters.serializer.fromJSON(commonMark).nodes;
                 if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
                     const listNode = newNodes[0];
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);

@@ -55,13 +55,11 @@ class HtmlTransformer {
     /**
      * Converts an html string to a CiceroMark DOM
      * @param {string} input - html string
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
      * @returns {*} CiceroMark DOM
      */
-    toCiceroMark(input, format = 'concerto') {
+    toCiceroMark(input) {
         const visitor = new ToCiceroMarkVisitor(this.options);
-        return visitor.toCiceroMark(input, format);
+        return visitor.toCiceroMark(input);
     }
 }
 

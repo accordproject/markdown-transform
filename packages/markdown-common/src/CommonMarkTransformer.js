@@ -44,15 +44,12 @@ class CommonMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {*} input - CommonMark DOM (in JSON or as a Concerto object)
+     * @param {*} input - CommonMark DOM (in JSON)
      * @returns {string} the markdown string
      */
     toMarkdown(input) {
-        if(!input.getType) {
-            input = this.serializer.fromJSON(input);
-        }
         const visitor = new ToMarkdownStringVisitor(this.options);
-        return visitor.toMarkdown(input);
+        return visitor.toMarkdown(this.serializer.fromJSON(input));
     }
 
     /**
@@ -80,35 +77,26 @@ class CommonMarkTransformer {
      * Converts a token stream into a CommonMark DOM object.
      *
      * @param {object} tokenStream the token stream
-     * @param {string} [format] the format of the object to return. Defaults to 'concerto.
-     * Pass 'json' to return the JSON object, skipping Concerto validation
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
-    fromTokens(tokenStream, format='concerto') {
+    fromTokens(tokenStream) {
         const fromMarkdownIt = new FromMarkdownIt();
         const json = fromMarkdownIt.toCommonMark(tokenStream);
 
         // validate the object using the model
         const validJson = this.serializer.fromJSON(json);
-        if(format === 'concerto') {
-            return validJson;
-        }
-        else {
-            return this.serializer.toJSON(validJson);
-        }
+        return this.serializer.toJSON(validJson);
     }
 
     /**
      * Converts a markdown string into a CommonMark DOM object.
      *
      * @param {string} markdown the string to parse
-     * @param {string} [format] the format of the object to return. Defaults to 'concerto.
-     * Pass 'json' to return the JSON object, skipping Concerto validation
      * @returns {*} a Concerto object (DOM) for the markdown content
      */
-    fromMarkdown(markdown, format='concerto') {
+    fromMarkdown(markdown) {
         const tokenStream = this.toTokens(markdown);
-        return this.fromTokens(tokenStream, format);
+        return this.fromTokens(tokenStream);
     }
 
     /**
