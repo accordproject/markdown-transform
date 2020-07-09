@@ -72,7 +72,7 @@ const transformationGraph = {
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
             const t = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
-            return t.fromTokens(input,'json');
+            return t.fromTokens(input);
         },
     },
     data: {
@@ -104,7 +104,7 @@ const transformationGraph = {
         },
         ciceromark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer(options);
-            return ciceroMarkTransformer.fromCommonMark(input, 'json');
+            return ciceroMarkTransformer.fromCommonMark(input, options);
         },
         plaintext: (input,parameters,options) => {
             const commonMarkTransformer = new CommonMarkTransformer(options);
@@ -137,7 +137,7 @@ const transformationGraph = {
         },
         ciceromark_unquoted: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.fromCommonMark(input, 'json', Object.assign(options,{quoteVariables: false}));
+            return ciceroMarkTransformer.fromCommonMark(input, Object.assign(options,{quoteVariables: false}));
         },
         ciceromark_untyped: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
@@ -145,7 +145,7 @@ const transformationGraph = {
         },
         commonmark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{quoteVariables: true}));
+            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
         },
         slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
@@ -179,7 +179,7 @@ const transformationGraph = {
         fileFormat: 'json',
         commonmark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, 'json', Object.assign(options,{quoteVariables: true}));
+            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
         },
     },
     ciceroedit: {
@@ -188,8 +188,8 @@ const transformationGraph = {
         ciceromark_untyped: (input,parameters,options) => {
             const commonMarkTransformer = new CommonMarkTransformer();
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            const commonMark = commonMarkTransformer.fromMarkdown(input,'json');
-            return ciceroMarkTransformer.fromCommonMark(commonMark, 'json', Object.assign(options,{ciceroEdit:true}));
+            const commonMark = commonMarkTransformer.fromMarkdown(input,options);
+            return ciceroMarkTransformer.fromCommonMark(commonMark, Object.assign(options,{ciceroEdit:true}));
         },
     },
     ciceromark_unquoted: {
@@ -204,7 +204,7 @@ const transformationGraph = {
         fileFormat: 'binary',
         ciceromark: (input,parameters,options) => {
             const pdfTransformer = new PdfTransformer();
-            return pdfTransformer.toCiceroMark(input, 'json');
+            return pdfTransformer.toCiceroMark(input, options);
         },
     },
     docx: {
@@ -212,7 +212,7 @@ const transformationGraph = {
         fileFormat: 'binary',
         ciceromark: async (input,parameters,options) => {
             const docxTransformer = new DocxTransformer();
-            return docxTransformer.toCiceroMark(input, 'json');
+            return docxTransformer.toCiceroMark(input, options);
         },
     },
     html: {
@@ -220,7 +220,7 @@ const transformationGraph = {
         fileFormat: 'utf8',
         ciceromark: (input,parameters,options) => {
             const t = new HtmlTransformer();
-            return t.toCiceroMark(input, 'json');
+            return t.toCiceroMark(input, options);
         },
     },
     slate: {
@@ -228,7 +228,7 @@ const transformationGraph = {
         fileFormat: 'json',
         ciceromark: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
-            return slateTransformer.toCiceroMark(input, 'json');
+            return slateTransformer.toCiceroMark(input, options);
         },
     },
 };

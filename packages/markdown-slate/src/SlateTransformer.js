@@ -90,21 +90,11 @@ class SlateTransformer {
     /**
      * Converts a Slate JSON to CiceroMark DOM
      * @param {*} value - Slate json
-     * @param {string} [format] - result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
      * @returns {*} the CiceroMark DOM
      */
-    toCiceroMark(value, format='concerto') {
+    toCiceroMark(value) {
         const clonedValue = JSON.parse(JSON.stringify(value)); // Workaround in case value is immutable
-        const json = slateToCiceroMarkDom(clonedValue);
-        // console.log(JSON.stringify(json, null, 3));
-
-        if(format === 'concerto') {
-            return this.serializer.fromJSON(json);
-        }
-        else {
-            return json;
-        }
+        return slateToCiceroMarkDom(clonedValue);
     }
 
     /**
@@ -114,7 +104,7 @@ class SlateTransformer {
      * @returns {*} markdown string
      */
     toMarkdown(value, options) {
-        const ciceroMark = this.toCiceroMark(value, 'json');
+        const ciceroMark = this.toCiceroMark(value);
         return this.ciceroMarkTransformer.toMarkdown(ciceroMark, options);
     }
 
@@ -124,8 +114,7 @@ class SlateTransformer {
      * @returns {*} Slate json
      */
     fromMarkdown(markdown) {
-        const ciceroMarkDom = this.ciceroMarkTransformer.fromMarkdown(markdown, 'json');
-        // console.log(JSON.stringify(ciceroMarkDom, null, 4));
+        const ciceroMarkDom = this.ciceroMarkTransformer.fromMarkdown(markdown);
         return this.fromCiceroMark(ciceroMarkDom);
     }
 }

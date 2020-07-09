@@ -77,7 +77,8 @@ class FromCommonMarkVisitor {
                     if (FromCommonMarkVisitor.getAttribute(tag.attributes, 'src')) {
                         thing.src = FromCommonMarkVisitor.getAttribute(tag.attributes, 'src').value;
                     }
-                    thing.nodes = parameters.commonMark.fromMarkdown(clauseText,'concerto').nodes;
+                    const commonMark = parameters.commonMark.fromMarkdown(clauseText);
+                    thing.nodes = parameters.serializer.fromJSON(commonMark).nodes;
                     FromCommonMarkVisitor.visitNodes(this, thing.nodes, parameters);
 
                     thing.text = null; // Remove text
