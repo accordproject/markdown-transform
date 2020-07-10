@@ -210,6 +210,14 @@ function stringLiteralParser() {
 }
 
 /**
+ * Creates a parser for a name
+ * @returns {object} the parser
+ */
+function nameParser() {
+    return P.regexp(/[A-Za-z0-9_\-]+/).desc('A name');
+}
+
+/**
  * Creates a parser for choices
  * @param {object[]} parsers - the individual parsers
  * @returns {object} the parser
@@ -394,9 +402,9 @@ function contractParser(contract,content) {
  * @returns {object} the parser
  */
 function wrappedClauseParser(clause,content) {
-    const clauseEnd = P.alt(P.string('>\n'),P.string('/>\n'));
-    const clauseBefore = P.seq(P.string('\n\n``` <clause name='),stringLiteralParser(),P.alt(P.seq(P.string(' src='),stringLiteralParser(),clauseEnd),clauseEnd));
-    const clauseAfter = P.string('\n```');
+    const clauseEnd = P.string('}}\n');
+    const clauseBefore = P.seq(P.string('\n\n{{#clause '),nameParser(),P.alt(P.seq(P.string(' src='),stringLiteralParser(),clauseEnd),clauseEnd));
+    const clauseAfter = P.string('\n{{/clause}}');
     return P.seq(clauseBefore,content,clauseAfter).map(function(x) {
         const srcAttr = x[0][2];
         const src = srcAttr ? srcAttr[1].substring(1,srcAttr[1].length-1) : null;

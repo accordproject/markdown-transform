@@ -3,7 +3,6 @@ Heading
 
 And below is a **clause**.
 
-``` <clause name="deliveryClause"/>
 Acceptance of Delivery.
 ----
 
@@ -27,6 +26,5 @@ The "Acceptance Criteria" are the specifications the "Widgets"
 must meet for the "Party A" to comply with its requirements and
 obligations under this agreement, detailed in "Attachment X", attached
 to this agreement.
-```
 
 More text

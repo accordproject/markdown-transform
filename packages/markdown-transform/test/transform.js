@@ -45,12 +45,12 @@ const acceptanceGrammarTokens = JSON.parse(fs.readFileSync(path.resolve(__dirnam
 const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
 const acceptanceTemplateMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar.json'), 'utf8'));
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8'));
+const acceptanceMarkdownCicero = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample_cicero.md'), 'utf8'));
 const acceptanceCiceroEdit = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceroedit.md'), 'utf8');
 const acceptanceCommonMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'commonmark.json'), 'utf8'));
 const acceptanceCiceroMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark.json'), 'utf8'));
 const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json'), 'utf8'));
-const acceptanceCiceroMarkUntyped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_untyped.json'), 'utf8'));
-const acceptanceCiceroMarkParsedUntyped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed_untyped.json'), 'utf8'));
+const acceptanceCiceroMarkUnwrapped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unwrapped.json'), 'utf8'));
 const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unquoted.json'), 'utf8'));
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
@@ -68,14 +68,14 @@ describe('#acceptance', () => {
     });
 
     describe('#template', () => {
-        it('template -> template_tokens', async () => {
-            const result = await transform(acceptanceGrammar, 'template', ['template_tokens']);
+        it('markdown_template -> templatemark_tokens', async () => {
+            const result = await transform(acceptanceGrammar, 'markdown_template', ['templatemark_tokens']);
             // markdown-it seems to keep some non-JSON stuff around so we roundtrip to JSON for comparison
             JSON.parse(JSON.stringify(result)).should.deep.equal(acceptanceGrammarTokens);
         });
 
-        it('template -> templatemark', async () => {
-            const result = await transform(acceptanceGrammar, 'template', ['templatemark'], parameters);
+        it('markdown_template -> templatemark', async () => {
+            const result = await transform(acceptanceGrammar, 'markdown_template', ['templatemark'], parameters);
             result.should.deep.equal(acceptanceTemplateMark);
         });
     });
@@ -92,6 +92,18 @@ describe('#acceptance', () => {
         });
     });
 
+    describe('#markdown_cicero', () => {
+        it('markdown_cicero -> ciceromark', async () => {
+            const result = await transform(acceptanceMarkdownCicero, 'markdown_cicero', ['ciceromark']);
+            result.should.deep.equal(acceptanceCiceroMark);
+        });
+
+        it('markdown -> commonmark (verbose)', async () => {
+            const result = await transform(acceptanceMarkdownCicero, 'markdown_cicero', ['ciceromark'], {}, {verbose: true});
+            result.should.deep.equal(acceptanceCiceroMark);
+        });
+    });
+
     describe('#commonmark', () => {
         it('commonmark -> markdown', async () => {
             const result = await transform(acceptanceCommonMark, 'commonmark', ['markdown'], {}, {});
@@ -105,7 +117,7 @@ describe('#acceptance', () => {
 
         it('commonmark -> ciceromark', async () => {
             const result = await transform(acceptanceCommonMark, 'commonmark', ['ciceromark'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMark);
+            result.should.deep.equal(acceptanceCommonMark);
         });
     });
 
@@ -117,14 +129,9 @@ describe('#acceptance', () => {
     });
 
     describe('#ciceromark', () => {
-        it('ciceromark -> ciceromark_unquoted', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_unquoted'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMarkUnquoted);
-        });
-
-        it('ciceromark -> ciceromark_untyped', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_untyped'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMarkParsedUntyped);
+        it('ciceromark -> markdown_cicero', async () => {
+            const result = await transform(acceptanceCiceroMark, 'ciceromark', ['markdown_cicero'], {}, {});
+            result.should.equal(acceptanceMarkdownCicero);
         });
 
         it('ciceromark -> commonmark', async () => {
@@ -132,46 +139,47 @@ describe('#acceptance', () => {
             result.$class.should.equal('org.accordproject.commonmark.Document');
         });
 
-        it('ciceromark -> slate', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['slate'], {}, {});
+    });
+
+    describe('#ciceromark_parsed', () => {
+        it('ciceromark_parsed -> ciceromark_unquoted', async () => {
+            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['ciceromark_unquoted'], {}, {});
+            result.should.deep.equal(acceptanceCiceroMarkUnquoted);
+        });
+
+        it('ciceromark_parsed -> slate', async () => {
+            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['slate'], {}, {});
             result.should.deep.equal(acceptanceSlate);
         });
 
-        it('ciceromark -> html', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['html'], {}, {});
+        it('ciceromark_parsed -> html', async () => {
+            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['html'], {}, {});
             result.should.equal(acceptanceHtml);
         });
 
-        it('ciceromark -> html (verbose)', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['html'], {}, {verbose: true});
+        it('ciceromark_parsed -> html (verbose)', async () => {
+            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['html'], {}, {verbose: true});
             result.should.equal(acceptanceHtml);
-        });
-    });
-
-    describe('#ciceromark_untyped', () => {
-        it('ciceromark_untyped -> commonmark', async () => {
-            const result = await transform(acceptanceCiceroMarkUntyped, 'ciceromark_untyped', ['commonmark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
         });
     });
 
     describe('#ciceroedit', () => {
-        it('ciceroedit -> ciceromark_untyped', async () => {
-            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark_untyped'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMarkUntyped);
+        it('ciceroedit -> ciceromark', async () => {
+            const result = await transform(acceptanceCiceroEdit, 'ciceroedit', ['ciceromark'], {}, {});
+            result.should.deep.equal(acceptanceCiceroMarkUnwrapped);
         });
     });
 
     describe('#slate', () => {
         it('slate -> ciceromark', async () => {
-            const result = await transform(acceptanceSlate, 'slate', ['ciceromark'], {}, {});
+            const result = await transform(acceptanceSlate, 'slate', ['ciceromark_parsed'], {}, {});
             result.should.deep.equal(acceptanceCiceroMarkParsed);
         });
     });
 
     describe('#multisteps', () => {
-        it('markdown -> data -> ciceromark', async () => {
-            const result = await transform(acceptanceMarkdown, 'markdown', ['data','ciceromark'], parameters, {});
+        it('markdown_cicero -> data -> ciceromark', async () => {
+            const result = await transform(acceptanceMarkdownCicero, 'markdown_cicero', ['data','ciceromark_parsed'], parameters, {});
             result.should.deep.equal(acceptanceCiceroMarkParsed);
         });
 

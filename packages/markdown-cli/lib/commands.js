@@ -127,7 +127,7 @@ class Commands {
         parameters.inputFileName = inputPath;
         if (parameters.template) {
             parameters.templateFileName = parameters.template;
-            parameters.template = Commands.loadFormatFromFile(parameters.template,'template');
+            parameters.template = Commands.loadFormatFromFile(parameters.template,'markdown_template');
         }
         const pathTo = via.concat([to]);
         let result = await transform(input, from, pathTo, parameters, options);

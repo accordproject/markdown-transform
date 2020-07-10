@@ -38,16 +38,16 @@ const templateToTemplateMark = async (input,parameters,options) => {
     return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
 };
 const transformationGraph = {
-    template: {
-        docs: 'Markdown template (string)',
+    markdown_template: {
+        docs: 'Template markdown (string)',
         fileFormat: 'utf8',
-        template_tokens: (input,parameters,options) => {
+        templatemark_tokens: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
             return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
         },
     },
-    template_tokens: {
-        docs: 'Markdown template tokens (JSON)',
+    templatemark_tokens: {
+        docs: 'TemplateMark tokens (JSON)',
         fileFormat: 'json',
         templatemark: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
@@ -62,12 +62,12 @@ const transformationGraph = {
     markdown: {
         docs: 'Markdown (string)',
         fileFormat: 'utf8',
-        markdown_tokens: (input,parameters,options) => {
+        commonmark_tokens: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
             return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
         },
     },
-    markdown_tokens: {
+    commonmark_tokens: {
         docs: 'Markdown tokens (JSON)',
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
@@ -75,24 +75,20 @@ const transformationGraph = {
             return t.fromTokens(input);
         },
     },
-    data: {
-        docs: 'Contract Data (JSON)',
-        fileFormat: 'json',
-        commonmark: async (input,parameters,options) => {
-            const t = new TemplateMarkTransformer(parameters.plugin);
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
-            const templateParameters = Object.assign({},parameters);
-            templateParameters.inputFileName = parameters.templateFileName;
-            const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
-            return t.instantiateCommonMark(input, templateMark, modelManager, parameters.templateKind, options);
+    markdown_cicero: {
+        docs: 'Cicero markdown (string)',
+        fileFormat: 'utf8',
+        ciceromark_tokens: (input,parameters,options) => {
+            const t = new CiceroMarkTransformer();
+            return t.toTokens(input, options);
         },
+    },
+    ciceromark_tokens: {
+        docs: 'CiceroMark tokens (JSON)',
+        fileFormat: 'json',
         ciceromark: async (input,parameters,options) => {
-            const t = new TemplateMarkTransformer(parameters.plugin);
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
-            const templateParameters = Object.assign({},parameters);
-            templateParameters.inputFileName = parameters.templateFileName;
-            const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
-            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
+            const t = new CiceroMarkTransformer();
+            return t.fromTokens(input);
         },
     },
     commonmark: {
@@ -111,47 +107,53 @@ const transformationGraph = {
             const result = commonMarkTransformer.removeFormatting(input);
             return commonMarkTransformer.toMarkdown(result);
         },
+    },
+    ciceromark: {
+        docs: 'CiceroMark DOM (JSON)',
+        fileFormat: 'json',
+        markdown_cicero: (input,parameters,options) => {
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            const ciceroMarkUntyped = ciceroMarkTransformer.untype(input,options);
+            const ciceroMarkUnwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(ciceroMarkUntyped,options);
+            return ciceroMarkTransformer.toMarkdownCicero(ciceroMarkUnwrapped,options);
+        },
+        commonmark: (input,parameters,options) => {
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
+            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
+        },
+        ciceromark_parsed: (input,parameters,options) => {
+            return input;
+        },
         data: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer(parameters.plugin);
             const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.templateFileName;
             const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
-            const result = await t.fromCommonMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
+            const result = await t.fromCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, options);
             return result;
         },
     },
-    plaintext: {
-        docs: 'Plain text (string)',
-        fileFormat: 'utf8',
-        markdown: (input,parameters,options) => {
-            return input;
-        },
-    },
-    ciceromark: {
-        docs: 'CiceroMark DOM (JSON)',
+    ciceromark_parsed: {
+        docs: 'Parsed CiceroMark DOM (JSON)',
         fileFormat: 'json',
         html: (input,parameters,options) => {
             const t = new HtmlTransformer();
             return t.toHtml(input);
         },
+        ciceromark: (input,parameters,options) => {
+            const t = new CiceroMarkTransformer();
+            return t.toCiceroMarkUnwrapped(input, options);
+        },
         ciceromark_unquoted: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.fromCommonMark(input, Object.assign(options,{quoteVariables: false}));
-        },
-        ciceromark_untyped: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.untype(input,options);
-        },
-        commonmark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
+            const t = new CiceroMarkTransformer();
+            return t.unquote(input, options);
         },
         slate: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.fromCiceroMark(input);
         },
-        pdf : (input, parameters, options) => {
+        pdf: (input, parameters, options) => {
             const pdfTransformer = new PdfTransformer();
             const outputStream = new Stream.Writable();
 
@@ -174,22 +176,31 @@ const transformationGraph = {
             });
         },
     },
-    ciceromark_untyped: {
-        docs: 'Untyped CiceroMark DOM (JSON)',
+    data: {
+        docs: 'Contract Data (JSON)',
         fileFormat: 'json',
-        commonmark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
+        ciceromark_parsed: async (input,parameters,options) => {
+            const t = new TemplateMarkTransformer(parameters.plugin);
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.ctoFiles);
+            const templateParameters = Object.assign({},parameters);
+            templateParameters.inputFileName = parameters.templateFileName;
+            const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
+            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, options);
+        },
+    },
+    plaintext: {
+        docs: 'Plain text (string)',
+        fileFormat: 'utf8',
+        markdown: (input,parameters,options) => {
+            return input;
         },
     },
     ciceroedit: {
         docs: 'CiceroEdit (string)',
         fileFormat: 'utf8',
-        ciceromark_untyped: (input,parameters,options) => {
-            const commonMarkTransformer = new CommonMarkTransformer();
+        ciceromark: (input,parameters,options) => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            const commonMark = commonMarkTransformer.fromMarkdown(input,options);
-            return ciceroMarkTransformer.fromCommonMark(commonMark, Object.assign(options,{ciceroEdit:true}));
+            return ciceroMarkTransformer.fromCiceroEdit(input, options);
         },
     },
     ciceromark_unquoted: {
@@ -202,7 +213,7 @@ const transformationGraph = {
     pdf: {
         docs: 'PDF (buffer)',
         fileFormat: 'binary',
-        ciceromark: (input,parameters,options) => {
+        ciceromark_parsed: (input,parameters,options) => {
             const pdfTransformer = new PdfTransformer();
             return pdfTransformer.toCiceroMark(input, options);
         },
@@ -210,7 +221,7 @@ const transformationGraph = {
     docx: {
         docs: 'DOCX (buffer)',
         fileFormat: 'binary',
-        ciceromark: async (input,parameters,options) => {
+        ciceromark_parsed: async (input,parameters,options) => {
             const docxTransformer = new DocxTransformer();
             return docxTransformer.toCiceroMark(input, options);
         },
@@ -218,7 +229,7 @@ const transformationGraph = {
     html: {
         docs: 'HTML (string)',
         fileFormat: 'utf8',
-        ciceromark: (input,parameters,options) => {
+        ciceromark_parsed: (input,parameters,options) => {
             const t = new HtmlTransformer();
             return t.toCiceroMark(input, options);
         },
@@ -226,7 +237,7 @@ const transformationGraph = {
     slate: {
         docs: 'Slate DOM (JSON)',
         fileFormat: 'json',
-        ciceromark: (input,parameters,options) => {
+        ciceromark_parsed: (input,parameters,options) => {
             const slateTransformer = new SlateTransformer();
             return slateTransformer.toCiceroMark(input, options);
         },

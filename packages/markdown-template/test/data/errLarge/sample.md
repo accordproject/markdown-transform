@@ -799,9 +799,9 @@ Qui quas ex sint et incidunt voluptatum qui dolorum molestias. Labore eaque amet
 Minima repudiandae recusandae sit ut sunt omnis fugiat. Soluta aperiam sunt. Temporibus eveniet ut quia qui quaerat. Vel et ea placeat. Enim occaecati ut inventore distinctio dignissimos corrupti quas. Praesentium eum quis molestiae ut modi qui.
 Nam hic nisi dolore molestias doloribus culpa quo. Placeat ipsam est laborum eaque consequatur dolorem ea aut. Veniam nihil et. Dolorem sunt ut fuga. Et provident similique dolore.
 This is contract text, followed by a clause:
-``` <clause name="agreement"/>
+{{#clause agreement}}
 This is a contract between "Steve" and Betty" for the amount of 3131.0 EUR.
-```
+{{/clause}}
 There is a penalty of 10.99% for non compliance.Doloribus praesentium doloremque non.
 Sit exercitationem debitis provident eum et et aut eveniet quos. Est vel non ad omnis reiciendis aut consectetur. Aliquam neque nihil nesciunt enim similique odit id. Rerum rerum odio. Voluptatem beatae aut. Qui voluptas incidunt explicabo dicta nesciunt voluptas totam aut odit.
 Laudantium aut adipisci. Nesciunt exercitationem quam earum ea sint nostrum. Blanditiis eos autem rerum quos et facere distinctio. Ullam aliquid voluptatem ea non sed.

@@ -26,9 +26,8 @@ const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMa
 const ToCommonMarkVisitor = require('@accordproject/markdown-cicero').ToCommonMarkVisitor;
 const ParserManager = require('./parsermanager');
 
-const normalizeToMarkdown = require('./normalize').normalizeToMarkdown;
-const normalizeFromMarkdown = require('./normalize').normalizeFromMarkdown;
-const normalizeCiceroMark = require('./normalize').normalizeCiceroMark;
+const normalizeToMarkdownCicero = require('./normalize').normalizeToMarkdownCicero;
+const normalizeFromMarkdownCicero = require('./normalize').normalizeFromMarkdownCicero;
 
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
@@ -154,22 +153,21 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Parse a CommonMarkMark DOM against a TemplateMark DOM
-     * @param {{fileName:string,content:string}} commonMarkInput the commonmark input
+     * Parse a CiceroMark DOM against a TemplateMark DOM
+     * @param {{fileName:string,content:string}} input the ciceromark input
      * @param {object} parserManager - the parser manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    dataFromCommonMark(commonMarkInput, parserManager, templateKind, options) {
+    dataFromCiceroMark(input, parserManager, templateKind, options) {
         const serializer = parserManager.getSerializer();
         const parser = parserManager.getParser();
 
         // Load the markdown input
-        const prepMarkdown = normalizeCiceroMark(commonMarkInput.content);
-        const markdown = normalizeToMarkdown(prepMarkdown);
-        const markdownFileName = commonMarkInput.fileName;
+        const markdown = normalizeToMarkdownCicero(input.content);
+        const markdownFileName = input.fileName;
 
         // Parse the markdown
         let result = parser.parse(markdown);
@@ -181,8 +179,8 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Parse a CommonMarkMark DOM against a TemplateMark DOM
-     * @param {object} commonMark the CommonMark DOM
+     * Parse a CiceroMark DOM against a TemplateMark DOM
+     * @param {object} input the CiceroMark DOM
      * @param {object} templateMark the templatemark template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
@@ -190,17 +188,17 @@ class TemplateMarkTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromCommonMark(commonMarkInput, templateMark, modelManager, templateKind, options) {
+    fromCiceroMark(input, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager,this.parsingTable);
         parserManager.setTemplateMark(templateMark);
         parserManager.buildParser();
 
-        return this.dataFromCommonMark(commonMarkInput, parserManager, templateKind, options);
+        return this.dataFromCiceroMark(input, parserManager, templateKind, options);
     }
 
     /**
-     * Parse a markdown file to data
+     * Parse a markdown cicero file to data
      * @param {{fileName:string,content:string}} markdownInput the markdown input
      * @param {{fileName:string,content:string}} templateInput the template template
      * @param {object} modelManager - the model manager for this template
@@ -209,14 +207,14 @@ class TemplateMarkTransformer {
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromMarkdown(markdownInput, templateInput, modelManager, templateKind, options) {
+    fromMarkdownCicero(markdownInput, templateInput, modelManager, templateKind, options) {
         // Translate template to TemplateMark
         const typedTemplate = this.fromMarkdownTemplate(templateInput, modelManager, templateKind, options);
 
         // Load the markdown input
-        const commonMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdown(markdownInput.content)};
+        const ciceroMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdownCicero(markdownInput.content)};
 
-        return this.fromCommonMark(commonMark, typedTemplate, modelManager, templateKind, options);
+        return this.fromCiceroMark(ciceroMark, typedTemplate, modelManager, templateKind, options);
     }
 
     /**
@@ -258,6 +256,7 @@ class TemplateMarkTransformer {
         input.accept(visitor, parameters);
         const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
 
+        //console.log('DRAFT ' + JSON.stringify(result));
         return result;
     }
 

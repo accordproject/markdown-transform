@@ -25,11 +25,11 @@ chai.use(require('chai-as-promised'));
 
 // Parser from template AST
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
-const normalizeToMarkdown = require('../lib/normalize').normalizeToMarkdown;
-const normalizeFromMarkdown = require('../lib/normalize').normalizeFromMarkdown;
+const normalizeToMarkdownCicero = require('../lib/normalize').normalizeToMarkdownCicero;
+const normalizeFromMarkdownCicero = require('../lib/normalize').normalizeFromMarkdownCicero;
 
 const loadFile = (x) => { return { fileName: x, content: fs.readFileSync(x, 'utf8') }; };
 const loadPlugin = (x) => {
@@ -115,7 +115,7 @@ const parseFailures = [
     {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 1 column 45\n'},
     {name:'err7',desc:'wrong text',kind:'contract','error':'Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal'},
     {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 ZZZ.'},
-    {name:'errFormula',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {something something}} is a computed value.\n          ^^^^^^^^^^^'},
+    {name:'errFormula',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {%something something%}} is a computed value.\n          ^^^^^^^^^^^'},
     {name:'errDateTime',desc:'',kind:'clause','error':'Parse error at line 1 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 GRR, even in the presence of force majeure.'},
     {name:'errLarge',desc:'',kind:'contract','error':'Parse error at line 804 column 40\nThis is a contract between "Steve" and Betty" for the amount of 3131.0 EUR.'},
     {name:'errRepeat',desc:'inconsistent variables',kind:'clause','error':'Inconsistent values for variable seller: Steve and Betty'},
@@ -126,7 +126,7 @@ const parseFailures = [
  */
 function runSuccesses() {
     // This tests custom extension to the parser
-    const commonMarkTransformer = new CommonMarkTransformer();
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
 
     for (const test of successes) {
         const name = test.name;
@@ -151,7 +151,7 @@ function runSuccesses() {
             });
 
             it('should parse sample', async () => {
-                const result = templateMarkTransformer.fromMarkdown(sample,grammar,modelManager,kind);
+                const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind);
                 if (kind === 'clause') {
                     delete data.clauseId;
                     delete result.clauseId;
@@ -169,9 +169,10 @@ function runSuccesses() {
             });
 
             it('should draft sample back (roundtrip)', async () => {
-                const cm = templateMarkTransformer.instantiateCommonMark(data,grammarJson,modelManager,kind);
-                const result = commonMarkTransformer.toMarkdown(cm);
-                const expected = normalizeToMarkdown(normalizeFromMarkdown(sample.content));
+                const cm = templateMarkTransformer.instantiateCiceroMark(data,grammarJson,modelManager,kind);
+                const cmUnwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(cm);
+                const result = ciceroMarkTransformer.toMarkdownCicero(cmUnwrapped);
+                const expected = normalizeToMarkdownCicero(normalizeFromMarkdownCicero(sample.content));
                 result.should.equal(expected);
             });
         });
@@ -199,7 +200,7 @@ function runParseFailures() {
             });
 
             it('should fail to parse sample', async () => {
-                (() => (new TemplateMarkTransformer()).fromMarkdown(sample,grammar,modelManager,kind)).should.throw(error);
+                (() => (new TemplateMarkTransformer()).fromMarkdownCicero(sample,grammar,modelManager,kind)).should.throw(error);
             });
         });
     }

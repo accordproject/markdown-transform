@@ -165,15 +165,15 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
 }
 
 /**
- * Converts a template string to a token stream
- * @param {object} templateInput the template template
+ * Converts a templatemark string to a token stream
+ * @param {object} input the templatemark string
  * @returns {object} the token stream
  */
-function templateToTokens(template) {
-    const templateNorm = normalizeNLs(template);
+function templateToTokens(input) {
+    const norm = normalizeNLs(input);
 
     const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-    return parser.parse(template,{});
+    return parser.parse(norm,{});
 }
 
 /**
