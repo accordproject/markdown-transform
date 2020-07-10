@@ -29,42 +29,42 @@ function normalizeNLs(input) {
 }
 
 /**
- * Normalize CommonMark to markdown text
- * @param {*} input - the CommonMark DOM
- * @return {string} - the normalized markdown text
+ * Normalize to markdown cicero text
+ * @param {*} input - the CiceroMark DOM
+ * @return {string} - the normalized markdown cicero text
  */
-function normalizeToMarkdown(input) {
-    const commonMarkTransformer = new CommonMarkTransformer();
-    const result = commonMarkTransformer.toMarkdown(input);
+function normalizeToMarkdownCicero(input) {
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
+    const result = ciceroMarkTransformer.toMarkdownCicero(input);
     return result;
 }
 
 /**
- * Normalize markdown text
- * @param {string} input - the markdown text
- * @return {object} - the normalized commonmark
+ * Normalize from markdown cicero text
+ * @param {string} input - the markdown cicero text
+ * @return {object} - the normalized CiceroMark DOM
  */
-function normalizeFromMarkdown(input) {
+function normalizeFromMarkdownCicero(input) {
     // Normalizes new lines
     const inputNLs = normalizeNLs(input);
     // Roundtrip through the CommonMark parser
-    const commonMarkTransformer = new CommonMarkTransformer();
-    return commonMarkTransformer.fromMarkdown(inputNLs);
+    const ciceroMarkTransformer = new CiceroMarkTransformer();
+    return ciceroMarkTransformer.fromMarkdownCicero(inputNLs);
 }
 
 /**
- * Normalize markdown text
- * @param {string} input - the markdown text
+ * Normalize markdown cicero text
+ * @param {string} input - the markdown cicero text
  * @return {string} - the normalized text
  */
 function normalizeCiceroMark(input) {
     // Roundtrip through the CiceroMark parser
     const ciceroMarkTransformer = new CiceroMarkTransformer();
-    const result = ciceroMarkTransformer.toCommonMark(ciceroMarkTransformer.fromCommonMark(input,'json'),'json');
+    const result = ciceroMarkTransformer.toMarkdownCicero(ciceroMarkTransformer.fromMarkdownCicero(input));
     return result;
 }
 
 module.exports.normalizeNLs = normalizeNLs;
-module.exports.normalizeToMarkdown = normalizeToMarkdown;
-module.exports.normalizeFromMarkdown = normalizeFromMarkdown;
+module.exports.normalizeToMarkdownCicero = normalizeToMarkdownCicero;
+module.exports.normalizeFromMarkdownCicero = normalizeFromMarkdownCicero;
 module.exports.normalizeCiceroMark = normalizeCiceroMark;

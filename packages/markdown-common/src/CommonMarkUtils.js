@@ -53,6 +53,7 @@ function blocksEnterBlock(stack,blockType) {
         newStack.first = stack.first;
     }
         break;
+    case 'Clause':
     case 'ClauseDefinition':
     case 'ListBlockDefinition':
     case 'Item': {
