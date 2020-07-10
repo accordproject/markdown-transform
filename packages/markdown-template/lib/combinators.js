@@ -264,7 +264,7 @@ function seqFunParser(parsers) {
  * @returns {object} the parser
  */
 function computedParser() {
-    return P.regexp(/{{[^}]*}}/).desc('A computed variable {{ ... }}');
+    return P.regexp(/{{%[^%]*%}}/).desc('A computed variable {{ ... }}');
 }
 
 /**
