@@ -206,7 +206,7 @@ const transformationGraph = {
     ciceromark_unquoted: {
         docs: 'CiceroMark DOM (JSON) with quotes around variables removed',
         fileFormat: 'json',
-        ciceromark: (input,parameters,options) => {
+        ciceromark_parsed: (input,parameters,options) => {
             return input;
         }
     },
