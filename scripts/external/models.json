@@ -4,7 +4,7 @@
         { "name": "CommonMarkModel",
           "namespace" : "org.accordproject.commonmark",
           "from": "https://models.accordproject.org/markdown/commonmark@0.2.0.cto",
-          "js": "packages/markdown-common/src/externalModels" },
+          "js": "packages/markdown-common/lib/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
           "from": "https://models.accordproject.org/markdown/ciceromark@0.3.0.cto",
