@@ -8,7 +8,7 @@
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
           "from": "https://models.accordproject.org/markdown/ciceromark@0.3.0.cto",
-          "js": "packages/markdown-cicero/src/externalModels" },
+          "js": "packages/markdown-cicero/lib/externalModels" },
         { "name": "TemplateMarkModel",
           "namespace" : "org.accordproject.templatemark",
           "from": "https://models.accordproject.org/markdown/templatemark.cto",

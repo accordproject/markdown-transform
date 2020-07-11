@@ -11,8 +11,7 @@
   },
   "files": [
     "bin",
-    "lib",
-    "umd"
+    "lib"
   ],
   "main": "index.js",
   "scripts": {
