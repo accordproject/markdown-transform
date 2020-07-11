@@ -28,14 +28,11 @@ const fromcommonmarkrules = require('./fromcommonmarkrules');
  *
  * The resulting AST *should* be equivalent however.
  */
-class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
+class ToMarkdownVisitor extends FromCommonMarkVisitor {
     /**
      * Construct the visitor.
-     * @param {object} [options] configuration options
-     * @param {*} resultSeq how to sequentially combine results
-     * @param {object} rules how to process each node type
      */
-    constructor(options) {
+    constructor() {
         const resultString = (result) => {
             return result;
         };
@@ -44,8 +41,11 @@ class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
                 parameters.result += next;
             });
         };
+        const setFirst = (thingType) => {
+            return thingType === 'Item' ? true : false;
+        };
         const rules = fromcommonmarkrules;
-        super(options,resultString,resultSeq,rules);
+        super({},resultString,resultSeq,rules,setFirst);
     }
 
     /**
@@ -62,4 +62,4 @@ class ToMarkdownStringVisitor extends FromCommonMarkVisitor {
     }
 }
 
-module.exports = ToMarkdownStringVisitor;
+module.exports = ToMarkdownVisitor;

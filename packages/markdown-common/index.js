@@ -27,5 +27,5 @@ module.exports.FromCommonMarkVisitor = require('./lib/FromCommonMarkVisitor');
 module.exports.fromcommonmarkrules = require('./lib/fromcommonmarkrules');
 
 module.exports.CommonMarkTransformer = require('./lib/CommonMarkTransformer');
-module.exports.ToMarkdownStringVisitor = require('./lib/ToMarkdownStringVisitor');
+module.exports.ToMarkdownVisitor = require('./lib/ToMarkdownVisitor');
 module.exports.FromMarkdownIt =  require('./lib/FromMarkdownIt');

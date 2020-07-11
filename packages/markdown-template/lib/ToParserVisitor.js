@@ -51,9 +51,12 @@ class ToParserVisitor extends FromCommonMarkVisitor {
      * @param {object} rules how to process each node type
      */
     constructor(options) {
+        const setFirst = (thingType) => {
+            return thingType === 'Item' || thingType === 'ClauseDefinition' || thingType === 'ListBlockDefinition' ? true : false;
+        };
         const rules = fromcommonmarkrules;
         Object.assign(rules,toparserrules);
-        super(options,resultString,resultSeq,rules);
+        super(options,resultString,resultSeq,rules,setFirst);
     }
 
     /**

@@ -26,12 +26,14 @@ class FromCommonMarkVisitor {
      * @param {*} resultString how to create a result from a string
      * @param {*} resultSeq how to sequentially combine results
      * @param {object} rules how to process each node type
+     * @param {*} setFirst whether entering this block should set first
      */
-    constructor(options,resultString,resultSeq,rules) {
+    constructor(options,resultString,resultSeq,rules,setFirst) {
         this.options = options;
         this.resultString = resultString;
         this.resultSeq = resultSeq;
         this.rules = rules;
+        this.setFirst = setFirst;
     }
 
     /**
@@ -43,7 +45,7 @@ class FromCommonMarkVisitor {
      * @returns {*} the result for the sub tree
      */
     visitChildren(visitor, thing, parameters, field = 'nodes') {
-        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters,this.resultString(''));
+        const parametersIn = CommonMarkUtils.mkParameters(thing, parameters, this.resultString(''), this.setFirst);
         if(thing[field]) {
             thing[field].forEach(node => {
                 node.accept(visitor, parametersIn);
@@ -65,7 +67,7 @@ class FromCommonMarkVisitor {
             // Passing 'this' so that rules can call the visitor if need be (not used for commonmark)
             rule(this,thing,children,parameters,this.resultString,this.resultSeq);
         } else {
-            throw new Error(`Unhandled type ${thing.getType()}`);
+            throw new Error(`No rule to handle type ${thing.getType()}`);
         }
     }
 }

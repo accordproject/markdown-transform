@@ -38,9 +38,12 @@ class ToMarkdownCiceroVisitor extends FromCommonMarkVisitor {
                 parameters.result += next;
             });
         };
+        const setFirst = (thingType) => {
+            return thingType === 'Item' || thingType === 'Clause' ? true : false;
+        };
         const rules = fromcommonmarkrules;
         Object.assign(rules,fromciceromarkrules);
-        super(options,resultString,resultSeq,rules);
+        super(options,resultString,resultSeq,rules,setFirst);
     }
 
     /**

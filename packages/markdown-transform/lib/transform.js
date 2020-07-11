@@ -71,7 +71,7 @@ const transformationGraph = {
         docs: 'Markdown tokens (JSON)',
         fileFormat: 'json',
         commonmark: async (input,parameters,options) => {
-            const t = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
+            const t = new CommonMarkTransformer();
             return t.fromTokens(input);
         },
     },
@@ -95,15 +95,15 @@ const transformationGraph = {
         docs: 'CommonMark DOM (JSON)',
         fileFormat: 'json',
         markdown: (input,parameters,options) => {
-            const commonMarkTransformer = new CommonMarkTransformer(Object.assign(options,{tagInfo: true}));
+            const commonMarkTransformer = new CommonMarkTransformer();
             return commonMarkTransformer.toMarkdown(input);
         },
         ciceromark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer(options);
+            const ciceroMarkTransformer = new CiceroMarkTransformer();
             return ciceroMarkTransformer.fromCommonMark(input, options);
         },
         plaintext: (input,parameters,options) => {
-            const commonMarkTransformer = new CommonMarkTransformer(options);
+            const commonMarkTransformer = new CommonMarkTransformer();
             const result = commonMarkTransformer.removeFormatting(input);
             return commonMarkTransformer.toMarkdown(result);
         },

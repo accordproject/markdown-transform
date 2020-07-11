@@ -44,25 +44,15 @@ function blocksNextNode(stack) {
  * enter block
  * @param {*} stack the current block stack
  * @param {string} blockType the block type
+ * @param {*} setFirst whether entering this block should set first
  * @return {*} the block stack
  */
-function blocksEnterBlock(stack,blockType) {
+function blocksEnterBlock(stack, blockType, setFirst) {
     let newStack = {};
-    switch(blockType) {
-    case 'BlockQuote': {
-        newStack.first = stack.first;
-    }
-        break;
-    case 'Clause':
-    case 'ClauseDefinition':
-    case 'ListBlockDefinition':
-    case 'Item': {
+    if(setFirst(blockType)) {
         newStack.first = true;
-    }
-        break;
-    default: {
+    } else {
         newStack.first = stack.first;
-    }
     }
     newStack.blocks = stack.blocks.slice();
     newStack.blocks.push(blockType);
@@ -75,28 +65,26 @@ function blocksEnterBlock(stack,blockType) {
  * @param {number} nb how many new lines
  * @return {string} several new lines with the proper prefix
  */
-function blocksNewLines(stack,nb) {
+function blocksNewLines(stack, nb) {
     //console.log('NEWLINES ' + JSON.stringify(stack) + ' (' + nb + ')');
     const blocks = stack.blocks;
     let result = '';
-    if (nb !== 0) {
-        let prefix = '';
-        for (let i = blocks.length-1; i >= 0; i--) {
-            if (blocks[i] === 'Item') {
-                if (stack.first) {
-                    break;
-                } else {
-                    prefix = '   ' + prefix;
-                }
-            } else if (blocks[i] === 'BlockQuote') {
-                prefix = '> ' + prefix;
+    let prefix = '';
+    for (let i = blocks.length-1; i >= 0; i--) {
+        if (blocks[i] === 'Item') {
+            if (stack.first) {
+                break;
+            } else {
+                prefix = '   ' + prefix;
             }
+        } else if (blocks[i] === 'BlockQuote') {
+            prefix = '> ' + prefix;
         }
-        if (stack.first) {
-            result = prefix;
-        } else {
-            result = ('\n' + prefix).repeat(nb);
-        }
+    }
+    if (stack.first) {
+        result = prefix;
+    } else {
+        result = ('\n' + prefix).repeat(nb);
     }
     //console.log('PREFIX ' + JSON.stringify(result));
     return result;
@@ -118,12 +106,13 @@ function nextNode(parameters) {
  * @param {*} ast - the current ast node
  * @param {*} parametersOut - the current parameters
  * @param {*} init - initial result value
+ * @param {*} setFirst whether entering this block should set first
  * @return {*} the new parameters with block quote level incremented
  */
-function mkParameters(ast, parametersOut, init) {
+function mkParameters(ast, parametersOut, init, setFirst) {
     let parameters = Object.assign({},parametersOut); // This is important to allow extra parameters to be passed
     parameters.result = init;
-    parameters.stack = blocksEnterBlock(parametersOut.stack,ast.getType());
+    parameters.stack = blocksEnterBlock(parametersOut.stack,ast.getType(),setFirst);
     if(ast.getType() === 'List') {
         parameters.indexInit = ast.start ? parseInt(ast.start) : 1; // Initial index
         parameters.index = parameters.indexInit; // Current index
@@ -241,62 +230,29 @@ function parseHtmlBlock(string) {
 }
 
 /**
- * Merge adjacent text nodes in a list of nodes
- * @param {[*]} nodes a list of nodes
- * @returns {*} a new list of nodes with redundant text nodes removed
- */
-function mergeAdjacentTextNodes(nodes) {
-    if(nodes) {
-        const result = [];
-        for(let n=0; n < nodes.length; n++) {
-            const cur = nodes[n];
-            const next = n+1 < nodes.length ? nodes[n+1] : null;
-
-            if(next &&
-               cur.$class === (NS_PREFIX_CommonMarkModel + 'Text') &&
-               next.$class === (NS_PREFIX_CommonMarkModel + 'Text')) {
-                next.text = cur.text + next.text;  // Fold text in next node, skip current node
-            } else {
-                result.push(cur);
-            }
-        }
-        return result;
-    }
-    else {
-        return nodes;
-    }
-}
-
-/**
  * Merge adjacent Html nodes in a list of nodes
  * @param {[*]} nodes - a list of nodes
  * @param {boolean} tagInfo - whether to extract Html tags
  * @returns {*} a new list of nodes with open/closed Html nodes merged
  */
 function mergeAdjacentHtmlNodes(nodes, tagInfo) {
-    if(nodes) {
-        const result = [];
-        for(let n=0; n < nodes.length; n++) {
-            const cur = nodes[n];
-            const next = n+1 < nodes.length ? nodes[n+1] : null;
+    const result = [];
+    for(let n=0; n < nodes.length; n++) {
+        const cur = nodes[n];
+        const next = n+1 < nodes.length ? nodes[n+1] : null;
 
-            if(next &&
-               cur.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
-               next.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
-               cur.tag &&
-               next.text === `</${cur.tag.tagName}>`) {
-                next.text = cur.text + next.text;  // Fold text in next node, skip current node
-                next.tag = tagInfo ? parseHtmlBlock(next.text) : null;
-            }
-            else {
-                result.push(cur);
-            }
+        if(next &&
+           cur.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
+           next.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
+           cur.tag &&
+           next.text === `</${cur.tag.tagName}>`) {
+            next.text = cur.text + next.text;  // Fold text in next node, skip current node
+            next.tag = tagInfo ? parseHtmlBlock(next.text) : null;
+        } else {
+            result.push(cur);
         }
-        return result;
     }
-    else {
-        return nodes;
-    }
+    return result;
 }
 
 /**
@@ -312,9 +268,7 @@ function headingLevel(tag) {
     case 'h3' : return '3';
     case 'h4' : return '4';
     case 'h5' : return '5';
-    case 'h6' : return '6';
-    default:
-        throw new Error('Unknown heading tag: ' + tag);
+    default: return '6';
     }
 }
 
@@ -355,7 +309,6 @@ function trimEndline(text) {
 
 module.exports.blocksInit = blocksInit;
 module.exports.blocksNextNode = blocksNextNode;
-module.exports.blocksEnterBlock = blocksEnterBlock;
 module.exports.blocksNewLines = blocksNewLines;
 
 module.exports.nextNode = nextNode;
@@ -369,7 +322,6 @@ module.exports.escapeCodeBlock = escapeCodeBlock;
 module.exports.unescapeCodeBlock = unescapeCodeBlock;
 
 module.exports.parseHtmlBlock = parseHtmlBlock;
-module.exports.mergeAdjacentTextNodes = mergeAdjacentTextNodes;
 module.exports.mergeAdjacentHtmlNodes = mergeAdjacentHtmlNodes;
 
 module.exports.headingLevel = headingLevel;
