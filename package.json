@@ -25,7 +25,6 @@
   "version": "0.11.3",
   "private": true,
   "scripts": {
-    "webpack": "webpack --config webpack.config.js --mode production",
     "build": "lerna run build",
     "postinstall": "npm run models:get && lerna bootstrap",
     "models:get": "node ./scripts/external/getExternalModels.js",
