@@ -77,5 +77,4 @@ typings/
 userdata.json
 
 # build output
-lib
 umd
