@@ -139,7 +139,6 @@ class ModelVisitor {
      * Visitor design pattern
      * @param {EnumValueDeclaration} enumValueDeclaration - the object being visited
      * @param {Object} parameters  - the parameter
-     * @return {Object} the result of visiting or null
      * @private
      */
     visitEnumValueDeclaration(enumValueDeclaration, parameters) {
@@ -150,7 +149,6 @@ class ModelVisitor {
      * Visitor design pattern
      * @param {Relationship} relationship - the object being visited
      * @param {Object} parameters  - the parameter
-     * @return {Object} the result of visiting or null
      * @private
      */
     visitRelationshipDeclaration(relationship, parameters) {

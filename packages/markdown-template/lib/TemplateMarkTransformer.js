@@ -46,7 +46,7 @@ function maxOfExpected(expected) {
  * @return {object} nicer looking expected tokens
  */
 function cleanExpected(expected) {
-    return expected.map((x) => new RegExp(/'[^']*'/).test(x) ? x.substr(1,x.length -2) : x)
+    return expected.map((x) => new RegExp(/'[^']*'/).test(x) ? x.substr(1,x.length -2) : x);
 }
 
 /**
@@ -59,7 +59,7 @@ function _throwParseError(markdown,result,fileName) {
     // File location
     const fileLocation = {};
     const start = result.index;
-    const end = {...start};
+    const end = Object.assign({},start);
     end.offset = end.offset+1;
     end.column = end.column+1;
     fileLocation.start = start;
@@ -94,6 +94,10 @@ function _throwParseError(markdown,result,fileName) {
  * Support for CiceroMark Templates
  */
 class TemplateMarkTransformer {
+    /**
+     * Constructor
+     * @param {object} parsingTable - optional parsing table
+     */
     constructor(parsingTable = {}) {
         this.parsingTable = parsingTable;
     }
@@ -132,7 +136,7 @@ class TemplateMarkTransformer {
 
     /**
      * Converts a markdown string to a TemplateMark DOM
-     * @param {{fileName:string,content:string}} template the template template
+     * @param {{fileName:string,content:string}} templateInput the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
@@ -293,7 +297,7 @@ class TemplateMarkTransformer {
 
     /**
      * Draft a CommonMark DOM from a CiceroMark DOM
-     * @param {*} data the contract/clause data input
+     * @param {object} ciceroMark the CiceroMark DOM
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
@@ -322,7 +326,7 @@ class TemplateMarkTransformer {
      */
     draftCommonMark(data, parserManager, templateKind, options) {
         const ciceroMark = this.draftCiceroMark(data, parserManager, templateKind, options);
-        return this.draftCiceroMarkToCommonMark(ciceroMark, options)
+        return this.draftCiceroMarkToCommonMark(ciceroMark, options);
     }
 
     /**

@@ -33,8 +33,11 @@ function parseDoubleIEEE() {
  * @returns {string} the text
  */
 function draftDoubleIEEE(value) {
-    if (Math.floor(value) == value) return (new Number(value)).toFixed(1); // Make sure there is always decimal point
-    else return '' + value;
+    if (Math.floor(value) === value) {
+        return (new Number(value)).toFixed(1); // Make sure there is always decimal point
+    } else {
+        return '' + value;
+    }
 }
 
 /**
@@ -43,7 +46,7 @@ function draftDoubleIEEE(value) {
  * @returns {object} the parser
  */
 function parseDoubleFormat(format) {
-    const escapeRegex = x => x.replace(/[-\/\\^$*+?.()|\[\]{}]/g, '\\$&');
+    const escapeRegex = x => x.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 
     let sep1 = null;
     let sep2 = null;

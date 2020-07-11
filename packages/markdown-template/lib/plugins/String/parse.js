@@ -14,7 +14,6 @@
 
 'use strict';
 
-const P = require('parsimmon');
 const stringLiteralParser = require('../../combinators').stringLiteralParser;
 
 /**

@@ -14,8 +14,6 @@
 
 'use strict';
 
-const P = require('parsimmon');
-
 /**
  * Creates a drafter for String
  * @param {object} value the String

@@ -14,7 +14,6 @@
 
 'use strict';
 
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**

@@ -14,9 +14,9 @@
 
 'use strict';
 
-const uuid = require('uuid');
 const P = require('parsimmon');
 
+const flatten = require('./templatemarkutil').flatten;
 const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 const FromCommonMarkVisitor = require('@accordproject/markdown-common').FromCommonMarkVisitor;
 const fromcommonmarkrules = require('@accordproject/markdown-common').fromcommonmarkrules;
@@ -24,13 +24,6 @@ const toparserrules = require('./toparserrules');
 const templateMarkManager = require('./templatemarkutil').templateMarkManager;
 
 const seqFunParser = require('./combinators').seqFunParser;
-
-/**
- * Utilities
- */
-const flatten = (arr) => {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-};
 
 const resultString = (result) => {
     return (r) => P.string(result);

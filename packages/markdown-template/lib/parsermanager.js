@@ -27,7 +27,7 @@ const ToParserVisitor = require('./ToParserVisitor');
 const defaultFormulaEval = (code) => {
     return (data) => {
         const variables = Object.keys(data).filter((x) => !((x === '$class' || x === 'clauseId' || x === 'contractId')));
-        return ` eval(${code})(${variables}) `
+        return ` eval(${code})(${variables}) `;
     };
 };
 
@@ -38,7 +38,7 @@ const defaultFormulaEval = (code) => {
 class ParserManager {
     /**
      * Create the ParserManager.
-     * @param {object} template - the template instance
+     * @param {object} modelManager - the model manager
      * @param {object} parsingTable - parsing table extension
      * @param {*} formulaEval - function from formula code to JavaScript evaluation function
      */
@@ -46,7 +46,7 @@ class ParserManager {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
-        this.template = null
+        this.template = null;
         this.templateMark = null;
         this.parser = null;
 
@@ -94,7 +94,7 @@ class ParserManager {
 
     /**
      * Sets the template
-     * @param {string} the template text
+     * @param {string} template - the template text
      */
     setTemplate(template) {
         this.template = template;
@@ -102,7 +102,7 @@ class ParserManager {
 
     /**
      * Gets the TemplateMark AST
-     * @return {object} the TemplateMark AST
+     * @return {object} templateMark - the TemplateMark AST
      */
     getTemplateMark() {
         if (!this.templateMark) {
@@ -113,7 +113,7 @@ class ParserManager {
 
     /**
      * Sets the TemplateMark AST
-     * @param {object} the TemplateMark AST
+     * @param {object} templateMark - the TemplateMark AST
      */
     setTemplateMark(templateMark) {
         this.templateMark = templateMark;
