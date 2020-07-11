@@ -14,7 +14,9 @@
 
 'use strict';
 
-const { ModelManager, Factory, Serializer, Introspector, ParseException } = require('@accordproject/concerto-core');
+const moment = require('moment-mini');
+
+const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
@@ -26,6 +28,19 @@ const MarkdownItTemplate = require('@accordproject/markdown-it-template');
 const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
 const templaterules = require('./templaterules');
 
+/**
+ * Flatten an array of array
+ * @param {*[]} arr the input array
+ * @return {*[]} the flattened array
+ */
+function flatten(arr) {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
+/**
+ * Model manager for TemplateMark
+ * @returns {object} model manager and utilities for TemplateMark
+ */
 function mkTemplateMarkManager() {
     const result = {};
     result.modelManager = new ModelManager();
@@ -144,7 +159,7 @@ function templateMarkTyping(template,modelManager,templateKind) {
  * Decorate TemplateMark DOM with its types
  * @param {object} template the TemplateMark DOM
  * @param {object} modelManager - the modelManager for this template
- * @param {string} templateKind - either 'clause' or 'contract'
+ * @param {string} elementType - the element type
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingFromType(template,modelManager,elementType) {
@@ -250,7 +265,7 @@ function generateJSON(modelManager,type) {
 
     switch(type) {
     case 'DateTime':
-        return new Moment();
+        return new moment();
     case 'Integer':
         return 0;
     case 'Long':
@@ -292,6 +307,7 @@ function generateJSON(modelManager,type) {
     }
 }
 
+module.exports.flatten = flatten;
 module.exports.findTemplateModel = findTemplateModel;
 module.exports.templateMarkManager = templateMarkManager;
 

@@ -29,7 +29,7 @@ function monetaryAmountDefaultDrafter(value) {
 
 /**
  * Symbol from a currency code
- * @param {string} code - the currency code 
+ * @param {string} c - the currency code
  * @returns {string} the symbol
  */
 function codeSymbol(c) {
@@ -39,18 +39,20 @@ function codeSymbol(c) {
 /**
  * Creates a drafter for monetary amount with a given format
  * @param {object} value the monetary amount
+ * @param {string} format the format
  * @returns {string} the text
  */
 function monetaryAmountFormatDrafter(value,format) {
     return draftDoubleFormat(value.doubleValue,
-                             format
-                             .replace(/K/gi,codeSymbol(value.currencyCode))
-                             .replace(/CCC/gi,value.currencyCode));
+        format
+            .replace(/K/gi,codeSymbol(value.currencyCode))
+            .replace(/CCC/gi,value.currencyCode));
 }
 
 /**
  * Creates a drafter for a monetary amount
  * @param {object} value the monetary amount
+ * @param {string} format the format
  * @returns {string} the text
  */
 function monetaryAmountDrafter(value,format) {

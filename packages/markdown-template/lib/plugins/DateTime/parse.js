@@ -18,7 +18,6 @@ const P = require('parsimmon');
 const textParser = require('../../combinators').textParser;
 const seqParser = require('../../combinators').seqParser;
 const choiceStringsParser = require('../../combinators').choiceStringsParser;
-const mkVariable = require('../../combinators').mkVariable;
 const mkCompoundVariable = require('../../combinators').mkCompoundVariable;
 
 /**

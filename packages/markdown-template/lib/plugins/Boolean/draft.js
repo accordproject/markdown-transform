@@ -14,8 +14,6 @@
 
 'use strict';
 
-const P = require('parsimmon');
-
 /**
  * Creates a drafter for Boolean
  * @param {object} value the Boolean

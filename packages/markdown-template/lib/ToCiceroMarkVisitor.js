@@ -14,14 +14,10 @@
 
 'use strict';
 
+const flatten = require('./templatemarkutil').flatten;
 const generateJSON = require('./templatemarkutil').generateJSON;
-const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-
-function flatten(arr) {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-}
 
 /**
  * Drafts a CiceroMark DOM from a TemplateMark DOM
@@ -32,6 +28,7 @@ class ToCiceroMarkVisitor {
      * @param {*} serializer the serializer
      * @param {*} node the node to visit
      * @param {*} [parameters] optional parameters
+     * @return {*} the cloned node
      */
     static cloneNode(serializer, node) {
         return serializer.fromJSON(serializer.toJSON(node));
@@ -54,6 +51,7 @@ class ToCiceroMarkVisitor {
      * @param {*} visitor the visitor to use
      * @param {*} things the list node to visit
      * @param {*} [parameters] optional parameters
+     * @return {*} the visited nodes
      */
     static visitNodes(visitor, things, parameters) {
         return flatten(things.map(node => {
@@ -92,6 +90,7 @@ class ToCiceroMarkVisitor {
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
+     * @return {*} the visited nodes
      */
     visit(thing, parameters) {
         const that = this;
@@ -99,7 +98,6 @@ class ToCiceroMarkVisitor {
         case 'EnumVariableDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            const data = parameters.data[thing.name];
             thing.value = '' + parameters.data[thing.name];
         }
             break;
@@ -122,7 +120,6 @@ class ToCiceroMarkVisitor {
         case 'ContractDefinition': {
             return ToCiceroMarkVisitor.visitNodes(this, thing.nodes, parameters);
         }
-            break;
         case 'FormulaDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
@@ -158,7 +155,6 @@ class ToCiceroMarkVisitor {
             };
             return ToCiceroMarkVisitor.visitNodes(this, thing.nodes, childrenParameters);
         }
-            break;
         case 'ConditionalDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
@@ -232,7 +228,7 @@ class ToCiceroMarkVisitor {
             delete itemNode.start;
             delete itemNode.tight;
             delete itemNode.delimiter;
-            
+
             const dataItems = parameters.data[thing.name];
             const mapItems = function(item) {
                 const itemParameters = {
@@ -246,7 +242,7 @@ class ToCiceroMarkVisitor {
                 return ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
                     .accept(that, itemParameters);
             };
-            
+
             // Result List node
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
@@ -273,7 +269,7 @@ class ToCiceroMarkVisitor {
                     kind: parameters.kind,
                 };
                 const resultNodes = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
-                      .accept(that, itemParameters)[0].nodes;
+                    .accept(that, itemParameters)[0].nodes;
                 if (index > 0) {
                     resultNodes.unshift(parameters.templateMarkSerializer.fromJSON({
                         '$class': 'org.accordproject.commonmark.Text',
@@ -286,7 +282,6 @@ class ToCiceroMarkVisitor {
             // Result List node
             return flatten(dataItems.map(mapItems));
         }
-            break;
         case 'Document': {
             ToCiceroMarkVisitor.visitChildren(this, thing.nodes[0], parameters);
             thing.nodes = thing.nodes[0].nodes;

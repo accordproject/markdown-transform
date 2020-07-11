@@ -55,7 +55,6 @@ class TypeVisitor {
      */
     visit(thing, parameters) {
         const currentModel = parameters.model;
-        const that = this;
         switch(thing.getType()) {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
@@ -157,7 +156,6 @@ class TypeVisitor {
                 thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
-            const withModel = parameters.introspector.getClassDeclaration(thing.elementType);
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,

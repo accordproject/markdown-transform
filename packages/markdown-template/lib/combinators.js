@@ -17,15 +17,8 @@
 const P = require('parsimmon');
 const uuid = require('uuid');
 
-const { ParseException } = require('@accordproject/concerto-core');
+const flatten = require('./templatemarkutil').flatten;
 const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
-
-/**
- * Utilities
- */
-const flatten = (arr) => {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-};
 
 /**
  * Creates a variable output
@@ -52,13 +45,21 @@ function variableEqual(value1,value2) {
     const type2 = typeof value2;
     if(type1 === 'object' && type2 === 'object') {
         for(let key1 in value1) {
-            if(!value2[key1]) return false;
-            if(!variableEqual(value1[key1],value2[key1])) return false;
+            if(!value2[key1]) {
+                return false;
+            }
+            if(!variableEqual(value1[key1],value2[key1])) {
+                return false;
+            }
         }
         for(let key2 in value2) {
-            if(!value1[key2]) return false;
+            if(!value1[key2]) {
+                return false;
+            }
         }
-    } else if(value1 !== value2) return false;
+    } else if(value1 !== value2) {
+        return false;
+    }
     return true;
 }
 
@@ -159,7 +160,7 @@ function mkJoin(joinNode,value) {
  */
 function mkClause(clause,value) {
     return mkCompoundVariable(clause.elementType,
-                              value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
+        value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
 }
 
 /**
@@ -185,7 +186,7 @@ function mkWrappedClause(clause,src,value) {
  */
 function mkContract(contract,value) {
     return mkCompoundVariable(contract.elementType,
-                              value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
+        value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
 }
 
 /**
@@ -214,7 +215,7 @@ function stringLiteralParser() {
  * @returns {object} the parser
  */
 function nameParser() {
-    return P.regexp(/[A-Za-z0-9_\-]+/).desc('A name');
+    return P.regexp(/[A-Za-z0-9_-]+/).desc('A name');
 }
 
 /**
@@ -232,7 +233,7 @@ function choiceParser(parsers) {
  * @returns {object} the parser
  */
 function choiceStringsParser(values) {
-    return choiceParser(values.map(function (x) {return P.string(x)}));
+    return choiceParser(values.map(function (x) { return P.string(x); }));
 }
 
 /**
@@ -242,7 +243,7 @@ function choiceStringsParser(values) {
  */
 function seqParser(parsers) {
     return P.seqMap.apply(null, parsers.concat([function () {
-        var args = Array.prototype.slice.call(arguments);
+        const args = Array.prototype.slice.call(arguments);
         return args.filter(function(x) { return !(typeof x === 'string'); });
     }]));
 }
@@ -254,7 +255,7 @@ function seqParser(parsers) {
  */
 function seqFunParser(parsers) {
     return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
-        var args = Array.prototype.slice.call(arguments);
+        const args = Array.prototype.slice.call(arguments);
         return args.filter(function(x) { return !(typeof x === 'string'); });
     }]));
 }
@@ -269,7 +270,6 @@ function computedParser() {
 
 /**
  * Creates a parser for Enums
- * @param {object} variable the variable ast node
  * @param {string[]} enums - the enum values
  * @returns {object} the parser
  */
@@ -346,7 +346,6 @@ function olistBlockParser(listNode,content) {
 /**
  * Creates a parser for joine blocks
  * @param {object} joinNode the join ast node
- * @param {string} separator the separator
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
@@ -481,7 +480,7 @@ function headingParser(ast,content) {
 function listParser(listNode,bullet,items) {
     let first = true;
     const bulletedItems = items.map(function(item) {
-        const bulletParser = first ? P.seq(P.optWhitespace,bullet) : P.seq(P.optWhitespace,P.string('\n'),bullet)
+        const bulletParser = first ? P.seq(P.optWhitespace,bullet) : P.seq(P.optWhitespace,P.string('\n'),bullet);
         return (r) => P.seq(bulletParser,item(r)).map(function(x) {
             return flatten(x[1]);
         });
@@ -513,7 +512,7 @@ function olistParser(listNode,items) {
 
 /**
  * Creates a parser for code Block content
- * @param {object} ast the ast node
+ * @param {object} text the code text
  * @returns {object} the parser
  */
 function codeBlockParser(text) {

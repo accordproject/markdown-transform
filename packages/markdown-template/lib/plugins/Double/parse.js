@@ -14,7 +14,6 @@
 
 'use strict';
 
-const P = require('parsimmon');
 const parseDoubleIEEE = require('./format').parseDoubleIEEE;
 const parseDoubleFormat = require('./format').parseDoubleFormat;
 const textParser = require('../../combinators').textParser;

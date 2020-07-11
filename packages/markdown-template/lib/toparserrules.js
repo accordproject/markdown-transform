@@ -15,11 +15,8 @@
 'use strict';
 
 // Basic parser constructors
-const textParser = require('./combinators').textParser;
 const computedParser = require('./combinators').computedParser;
 const enumParser = require('./combinators').enumParser;
-const seqParser = require('./combinators').seqParser;
-const seqFunParser = require('./combinators').seqFunParser;
 const conditionalParser = require('./combinators').conditionalParser;
 const optionalParser = require('./combinators').optionalParser;
 const ulistBlockParser = require('./combinators').ulistBlockParser;
@@ -30,15 +27,6 @@ const clauseParser = require('./combinators').clauseParser;
 const wrappedClauseParser = require('./combinators').wrappedClauseParser;
 const contractParser = require('./combinators').contractParser;
 const mkVariable = require('./combinators').mkVariable;
-
-const emphParser = require('./combinators').emphParser;
-const strongParser = require('./combinators').strongParser;
-const documentParser = require('./combinators').documentParser;
-const paragraphParser = require('./combinators').paragraphParser;
-const headingParser = require('./combinators').headingParser;
-const ulistParser = require('./combinators').ulistParser;
-const olistParser = require('./combinators').olistParser;
-const codeBlockParser = require('./combinators').codeBlockParser;
 
 /**
  * inContract
@@ -59,7 +47,7 @@ const rules = {};
 rules.EnumVariableDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = (r) => enumParser(thing.enumValues).map((value) => mkVariable(thing,value));
     resultSeq(parameters,result);
-}
+};
 rules.VariableDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const elementType = thing.identifiedBy ? 'Resource' : thing.elementType;
     const format = thing.format ? thing.format : null;
@@ -89,38 +77,38 @@ rules.VariableDefinition = (visitor,thing,children,parameters,resultString,resul
         };
     }
     resultSeq(parameters,result);
-}
+};
 rules.FormattedVariableDefinition = rules.VariableDefinition;
 rules.ConditionalDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const whenTrueParser = visitor.visitChildren(visitor,thing,parameters,'whenTrue');
     const whenFalseParser = visitor.visitChildren(visitor,thing,parameters,'whenFalse');
     const result = (r) => conditionalParser(thing,whenTrueParser(r),whenFalseParser(r));
     resultSeq(parameters,result);
-}
+};
 rules.OptionalDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const whenSomeParser = visitor.visitChildren(visitor,thing,parameters,'whenSome');
     const whenNoneParser = visitor.visitChildren(visitor,thing,parameters,'whenNone');
     const result = (r) => optionalParser(thing,whenSomeParser(r),whenNoneParser(r));
     resultSeq(parameters,result);
-}
+};
 rules.JoinDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = (r) => joinBlockParser(thing,children(r));
     resultSeq(parameters,result);
-}
+};
 rules.WithDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = (r) => withParser(thing.elementType,children(r)).map((value) => mkVariable(thing,value));
     resultSeq(parameters,result);
-}
+};
 rules.FormulaDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = (r) => computedParser(thing.value);
     resultSeq(parameters,result);
-}
+};
 
 // Container blocks
 rules.ListBlockDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = thing.type === 'bullet' ? (r) => ulistBlockParser(thing,children(r)) : (r) => olistBlockParser(thing,children(r));
     resultSeq(parameters,result);
-}
+};
 rules.ClauseDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     let result;
     if (inContract(parameters.stack)) {
@@ -133,6 +121,6 @@ rules.ClauseDefinition = (visitor,thing,children,parameters,resultString,resultS
 rules.ContractDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = (r) => contractParser(thing,children(r));
     resultSeq(parameters,result);
-}
+};
 
 module.exports = rules;

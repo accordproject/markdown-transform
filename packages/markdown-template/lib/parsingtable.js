@@ -47,9 +47,9 @@ function addEntryToParsingTable(table,entry) {
 
 /**
  * Clone a CiceroMark node
- * @param {*} visitor the visitor to use
+ * @param {*} serializer the Concerto serializer
  * @param {*} nodes the nodes to visit
- * @param {*} [parameters] optional parameters
+ * @return {*} the cloned nodes
  */
 function concertoNodes(serializer, nodes) {
     const rootNode = {
@@ -63,8 +63,9 @@ function concertoNodes(serializer, nodes) {
 /**
  * Parsing table for variables
  * This maps types to their parser
+ * @return {object} the default parsing table
  */
-const defaultParsingTable = () => {
+function defaultParsingTable() {
     const table = {};
     addEntryToParsingTable(table,Boolean);
     addEntryToParsingTable(table,Integer);
@@ -75,7 +76,7 @@ const defaultParsingTable = () => {
     addEntryToParsingTable(table,Resource);
     addEntryToParsingTable(table,MonetaryAmount);
     return table;
-};
+}
 
 /**
  * Maintains a parsing table
@@ -84,7 +85,9 @@ const defaultParsingTable = () => {
 class ParsingTable {
     /**
      * Create the ParsingTable
-     * @param {object} template - the template instance
+     * @param {*} modelManager - the model manager
+     * @param {*} parserFunOfTemplateMark - how to get a parser from a TemplateMark DOM
+     * @param {*} draftVisitNodes - visitor for drafting
      */
     constructor(modelManager,parserFunOfTemplateMark,draftVisitNodes) {
         this.modelManager = modelManager;
@@ -99,7 +102,7 @@ class ParsingTable {
                 return parserFunOfTemplateMark(x,params);
             }));
             return (r) => {
-                return withParser(elementType,childrenParser(r))
+                return withParser(elementType,childrenParser(r));
             };
         };
         // Hook: How to draft from template mark to parser
@@ -114,7 +117,7 @@ class ParsingTable {
                     kind: 'clause',
                 };
                 return draftVisitNodes(params.visitor, cNodes, childrenParameters);
-            }
+            };
         };
         // Hook: How to compile from CTO to ciceromark
         this.templateMarkFromModel = function(name,model,elementType) {
@@ -123,7 +126,7 @@ class ParsingTable {
             const generic = model.accept(modelVisitor,genericParameters);
             const validated = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(generic));
             return validated.nodes;
-        }
+        };
     }
 
     /**
@@ -165,16 +168,11 @@ class ParsingTable {
      * @param {string} elementType the type
      */
     compileModel(name,parsingTable,elementType) {
-        let model;
-        try {
-            model = this.introspector.getClassDeclaration(elementType);
-        } catch(err) {
-            throw err;
-        }
+        const model = this.introspector.getClassDeclaration(elementType);
         const templateMark = this.templateMarkFromModel(name,model,elementType);
         parsingTable[elementType] = {};
-        parsingTable[elementType]['templatemark'] = {};
-        parsingTable[elementType]['templatemark'].nodes = templateMark;
+        parsingTable[elementType].templatemark = {};
+        parsingTable[elementType].templatemark.nodes = templateMark;
     }
 
     /**
@@ -186,31 +184,31 @@ class ParsingTable {
      */
     compileEntry(entry,elementType,parseParams,draftParams) {
         if (Object.prototype.hasOwnProperty.call(entry,'inline')) {
-            const tokenStream = templateToTokens(entry['inline']);
+            const tokenStream = templateToTokens(entry.inline);
             const template = tokensToUntypedTemplateMarkFragment(tokenStream);
-            entry['templatemark'] = {};
-            entry['templatemark'].nodes = template.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph
+            entry.templatemark = {};
+            entry.templatemark.nodes = template.nodes[0].nodes[0].nodes; // XXX not robust beyond a paragraph
         }
         if (Object.prototype.hasOwnProperty.call(entry,'templatemark')) {
-            const template = entry['templatemark'].nodes;
+            const template = entry.templatemark.nodes;
             const typedTemplate = templateMarkTypingFromType(template,this.modelManager,elementType);
             if(parseParams) {
                 const parse = this.parseFromTemplateMark(typedTemplate,elementType,parseParams);
                 if (!Object.prototype.hasOwnProperty.call(entry,'javascript')) {
-                    entry['javascript'] = {};
+                    entry.javascript = {};
                 }
-                entry['javascript'].parse = (format) => parse;
+                entry.javascript.parse = (format) => parse;
             }
             if(draftParams) {
                 const draft = this.draftFromTemplateMark(typedTemplate,elementType,draftParams);
                 if (!Object.prototype.hasOwnProperty.call(entry,'javascript')) {
-                    entry['javascript'] = {};
+                    entry.javascript = {};
                 }
-                entry['javascript'].draft = draft;
+                entry.javascript.draft = draft;
             }
         }
     }
-    
+
     /**
      * Gets parser for a given type
      * @param {string} name the property
@@ -225,11 +223,11 @@ class ParsingTable {
             this.compileModel(name,parsingTable,elementType);
         }
         const entry = parsingTable[elementType];
-        if (!Object.prototype.hasOwnProperty.call(entry,'javascript'||!entry['javascript'].parse)) {
+        if (!Object.prototype.hasOwnProperty.call(entry,'javascript'||!entry.javascript.parse)) {
             this.compileEntry(entry,elementType,parseParams,null);
         }
-        if (Object.prototype.hasOwnProperty.call(entry,'javascript')&&entry['javascript'].parse) {
-            return entry['javascript'].parse(format);
+        if (Object.prototype.hasOwnProperty.call(entry,'javascript')&&entry.javascript.parse) {
+            return entry.javascript.parse(format);
         } else {
             throw new Error('No known parser for type ' + elementType);
         }
@@ -249,11 +247,11 @@ class ParsingTable {
             this.compileModel(name,parsingTable,elementType);
         }
         const entry = parsingTable[elementType];
-        if (!Object.prototype.hasOwnProperty.call(entry,'javascript')||!entry['javascript'].draft) {
+        if (!Object.prototype.hasOwnProperty.call(entry,'javascript')||!entry.javascript.draft) {
             this.compileEntry(entry,elementType,null,draftParams);
         }
-        if (Object.prototype.hasOwnProperty.call(entry,'javascript')&&entry['javascript'].draft) {
-            return entry['javascript'].draft;
+        if (Object.prototype.hasOwnProperty.call(entry,'javascript')&&entry.javascript.draft) {
+            return entry.javascript.draft;
         } else {
             throw new Error('No known parser for type ' + elementType);
         }
