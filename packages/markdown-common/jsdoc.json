@@ -5,7 +5,7 @@
   },
   "source": {
     "include": [
-      "./src",
+      "./lib",
       "./index.js"
     ],
     "includePattern": ".+\\.js(doc|x)?$"

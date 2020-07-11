@@ -10,7 +10,6 @@
     "access": "public"
   },
   "files": [
-    "bin",
     "lib"
   ],
   "main": "index.js",
