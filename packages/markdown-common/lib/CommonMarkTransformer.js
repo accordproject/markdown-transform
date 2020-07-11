@@ -19,7 +19,7 @@ const FromMarkdownIt = require('./FromMarkdownIt');
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
-const ToMarkdownStringVisitor = require('./ToMarkdownStringVisitor');
+const ToMarkdownVisitor = require('./ToMarkdownVisitor');
 const removeFormatting = require('./removeFormatting');
 const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
 
@@ -31,11 +31,8 @@ const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkMo
 class CommonMarkTransformer {
     /**
      * Construct the parser.
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.tagInfo] Construct tags for HTML elements
      */
-    constructor(options) {
-        this.options = options;
+    constructor() {
         const modelManager = new ModelManager();
         modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
@@ -48,7 +45,7 @@ class CommonMarkTransformer {
      * @returns {string} the markdown string
      */
     toMarkdown(input) {
-        const visitor = new ToMarkdownStringVisitor(this.options);
+        const visitor = new ToMarkdownVisitor();
         return visitor.toMarkdown(this.serializer.fromJSON(input));
     }
 
@@ -92,7 +89,7 @@ class CommonMarkTransformer {
      * Converts a markdown string into a CommonMark DOM object.
      *
      * @param {string} markdown the string to parse
-     * @returns {*} a Concerto object (DOM) for the markdown content
+     * @returns {object} a CommonMark DOM (JSON) for the markdown content
      */
     fromMarkdown(markdown) {
         const tokenStream = this.toTokens(markdown);
@@ -103,7 +100,6 @@ class CommonMarkTransformer {
      * Retrieve the serializer used by the parser
      *
      * @returns {*} a serializer capable of dealing with the Concerto
-     * object returns by parse
      */
     getSerializer() {
         return this.serializer;

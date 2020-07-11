@@ -42,12 +42,10 @@ const UntypeVisitor = require('./UntypeVisitor');
 class CiceroMarkTransformer {
     /**
      * Construct the parser.
-     * @param {object} [options] configuration options
      */
-    constructor(options) {
-        this.options = options ? options : {};
+    constructor() {
         // Setup for Nested Parsing
-        this.commonMark = new CommonMarkTransformer(Object.assign(this.options,{tagInfo: true}));
+        this.commonMark = new CommonMarkTransformer();
 
         // Setup for validation
         this.modelManager = new ModelManager();

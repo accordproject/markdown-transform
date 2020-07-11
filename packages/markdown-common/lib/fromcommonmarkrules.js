@@ -16,10 +16,26 @@
 
 const CommonMarkUtils = require('./CommonMarkUtils');
 
+/**
+ * get text from a thing
+ * @param {object} thing - the thing
+ * @param {string} field - the field where to look for the text
+ * @param {*} escapeFun - optional function for escaping the text
+ * @return {string} the text in the thing
+ */
+function getText(thing,field,escapeFun) {
+    const text = thing[field] ? thing[field] : '';
+    if(escapeFun) {
+        return escapeFun(text);
+    } else {
+        return text;
+    }
+}
+
 const rules = {};
 // Inlines
 rules.Code = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const next = `\`${thing.text ? thing.text : ''}\``;
+    const next = `\`${getText(thing,'text')}\``;
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
@@ -33,18 +49,18 @@ rules.Strong = (visitor,thing,children,parameters,resultString,resultSeq) => {
 };
 rules.Link = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = '[';
-    const next2 = `](${thing.destination} "${thing.title ? thing.title : ''}")`;
+    const next2 = `](${thing.destination} "${getText(thing,'title')}")`;
     const result = [resultString(next1),children,resultString(next2)];
     resultSeq(parameters,result);
 };
 rules.Image = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = '![';
-    const next2 = `](${thing.destination} "${thing.title ? thing.title : ''}")`;
+    const next2 = `](${thing.destination} "${getText(thing,'title')}")`;
     const result = [resultString(next1),children,resultString(next2)];
     resultSeq(parameters,result);
 };
 rules.HtmlInline = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const next = thing.text ? thing.text : '';
+    const next = getText(thing,'text');
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
@@ -59,7 +75,7 @@ rules.Softbreak = (visitor,thing,children,parameters,resultString,resultSeq) => 
     resultSeq(parameters,result);
 };
 rules.Text = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const next = CommonMarkUtils.escapeText(thing.text ? thing.text : '');
+    const next = getText(thing,'text',CommonMarkUtils.escapeText);
     const result = [resultString(next)];
     resultSeq(parameters,result);
 };
@@ -88,12 +104,12 @@ rules.Heading = (visitor,thing,children,parameters,resultString,resultSeq) => {
 };
 rules.CodeBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
-    const next2 = `\`\`\`${thing.info ? ' ' + thing.info : ''}\n${thing.text ? CommonMarkUtils.escapeCodeBlock(thing.text) : ''}\`\`\``;
+    const next2 = `\`\`\` ${getText(thing,'info')}\n${getText(thing,'text',CommonMarkUtils.escapeCodeBlock)}\`\`\``;
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };
 rules.HtmlBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const nodeText = thing.text ? thing.text : '';
+    const nodeText = getText(thing,'text');
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);
     const next2 = nodeText;
     const result = [resultString(next1),resultString(next2)];

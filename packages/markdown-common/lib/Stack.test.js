@@ -18,8 +18,8 @@
 
 const Stack = require('./Stack');
 
-describe('#stack', () => {
-    it('integers', () => {
+describe('Stack', () => {
+    it('#integers', () => {
         const stack = new Stack();
         expect(stack.peek()).toBeNull();
         stack.push(1,false);
@@ -28,7 +28,7 @@ describe('#stack', () => {
         expect(stack.peek()).toBeNull();
     });
 
-    it.only('nodes', () => {
+    it('#nodes', () => {
         const stack = new Stack();
         expect(stack.peek()).toBeNull();
         stack.push({nodes:[]},false);
@@ -41,7 +41,7 @@ describe('#stack', () => {
         expect(stack.peek()).toBeNull();
     });
 
-    it.only('invalid', () => {
+    it('#invalid', () => {
         const stack = new Stack();
         expect(stack.peek()).toBeNull();
         stack.push({foo:[]},false);
