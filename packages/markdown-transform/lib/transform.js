@@ -95,31 +95,29 @@ const transformationGraph = {
         docs: 'CommonMark DOM (JSON)',
         fileFormat: 'json',
         markdown: (input,parameters,options) => {
-            const commonMarkTransformer = new CommonMarkTransformer();
-            return commonMarkTransformer.toMarkdown(input);
+            const t = new CommonMarkTransformer();
+            return t.toMarkdown(input);
         },
         ciceromark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.fromCommonMark(input, options);
+            const t = new CiceroMarkTransformer();
+            return t.fromCommonMark(input, options);
         },
         plaintext: (input,parameters,options) => {
-            const commonMarkTransformer = new CommonMarkTransformer();
-            const result = commonMarkTransformer.removeFormatting(input);
-            return commonMarkTransformer.toMarkdown(result);
+            const t = new CommonMarkTransformer();
+            return t.toMarkdown(t.removeFormatting(input));
         },
     },
     ciceromark: {
         docs: 'CiceroMark DOM (JSON)',
         fileFormat: 'json',
         markdown_cicero: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            const ciceroMarkUntyped = ciceroMarkTransformer.untype(input,options);
-            const ciceroMarkUnwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(ciceroMarkUntyped,options);
-            return ciceroMarkTransformer.toMarkdownCicero(ciceroMarkUnwrapped,options);
+            const t = new CiceroMarkTransformer();
+            const inputUnwrapped = t.toCiceroMarkUnwrapped(input,options);
+            return t.toMarkdownCicero(inputUnwrapped);
         },
         commonmark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.toCommonMark(input, Object.assign(options,{quoteVariables: true}));
+            const t = new CiceroMarkTransformer();
+            return t.toCommonMark(input, options);
         },
         ciceromark_parsed: (input,parameters,options) => {
             return input;
@@ -150,11 +148,11 @@ const transformationGraph = {
             return t.unquote(input, options);
         },
         slate: (input,parameters,options) => {
-            const slateTransformer = new SlateTransformer();
-            return slateTransformer.fromCiceroMark(input);
+            const t = new SlateTransformer();
+            return t.fromCiceroMark(input);
         },
         pdf: (input, parameters, options) => {
-            const pdfTransformer = new PdfTransformer();
+            const t = new PdfTransformer();
             const outputStream = new Stream.Writable();
 
             let arrayBuffer = new ArrayBuffer(8);
@@ -172,7 +170,7 @@ const transformationGraph = {
                 outputStream.on('finish', () => {
                     resolve(memStore);
                 });
-                pdfTransformer.toPdf(input, options, outputStream );
+                t.toPdf(input, options, outputStream );
             });
         },
     },
@@ -198,9 +196,9 @@ const transformationGraph = {
     ciceroedit: {
         docs: 'CiceroEdit (string)',
         fileFormat: 'utf8',
-        ciceromark: (input,parameters,options) => {
-            const ciceroMarkTransformer = new CiceroMarkTransformer();
-            return ciceroMarkTransformer.fromCiceroEdit(input, options);
+        ciceromark_parsed: (input,parameters,options) => {
+            const t = new CiceroMarkTransformer();
+            return t.fromCiceroEdit(input, options);
         },
     },
     ciceromark_unquoted: {
@@ -214,16 +212,16 @@ const transformationGraph = {
         docs: 'PDF (buffer)',
         fileFormat: 'binary',
         ciceromark_parsed: (input,parameters,options) => {
-            const pdfTransformer = new PdfTransformer();
-            return pdfTransformer.toCiceroMark(input, options);
+            const t = new PdfTransformer();
+            return t.toCiceroMark(input, options);
         },
     },
     docx: {
         docs: 'DOCX (buffer)',
         fileFormat: 'binary',
         ciceromark_parsed: async (input,parameters,options) => {
-            const docxTransformer = new DocxTransformer();
-            return docxTransformer.toCiceroMark(input, options);
+            const t = new DocxTransformer();
+            return t.toCiceroMark(input, options);
         },
     },
     html: {
@@ -238,8 +236,8 @@ const transformationGraph = {
         docs: 'Slate DOM (JSON)',
         fileFormat: 'json',
         ciceromark_parsed: (input,parameters,options) => {
-            const slateTransformer = new SlateTransformer();
-            return slateTransformer.toCiceroMark(input, options);
+            const t = new SlateTransformer();
+            return t.toCiceroMark(input, options);
         },
     },
 };
