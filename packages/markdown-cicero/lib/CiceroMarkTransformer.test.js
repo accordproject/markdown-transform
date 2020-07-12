@@ -78,6 +78,10 @@ function getMarkdownFiles() {
 }
 
 describe('markdown', () => {
+    it('transformer should have a serializer', () => {
+        expect(ciceroMarkTransformer.getSerializer()).toBeTruthy();
+    });
+
     getMarkdownFiles().forEach( ([file, markdownText]) => {
         it(`converts ${file} to concerto`, () => {
             const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText, 'json');
@@ -105,7 +109,16 @@ describe('acceptance', () => {
         const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
-        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{quoteVariables:false});
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{unquoteVariables:true});
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance to markdown string (plaintext)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{removeFormatting:true});
         expect(newMarkdown).toMatchSnapshot();
     });
 

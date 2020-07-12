@@ -105,4 +105,41 @@ describe('acceptance', () => {
         const newMarkdown = ciceroMarkTransformer.toMarkdownCicero(jsonUnwrapped);
         expect(newMarkdown).toMatchSnapshot();
     });
+
+    it('converts acceptance to markdown string (unquoted)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceroedit/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromCiceroEdit(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{unquoteVariables:true});
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance-formula to markdown string', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceroedit/acceptance-formula.md', 'utf8');
+        const json = ciceroMarkTransformer.fromCiceroEdit(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance-formula to markdown string (unquoted)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceroedit/acceptance-formula.md', 'utf8');
+        const json = ciceroMarkTransformer.fromCiceroEdit(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{unquoteVariables:true});
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance-notclause2 to markdown string', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceroedit/acceptance-notclause2.md', 'utf8');
+        const json = ciceroMarkTransformer.fromCiceroEdit(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{unquoteVariables:true});
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
 });
