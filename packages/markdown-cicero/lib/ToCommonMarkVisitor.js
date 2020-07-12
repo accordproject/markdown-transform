@@ -61,96 +61,13 @@ class ToCommonMarkVisitor {
         const thingType = thing.getType();
         switch(thingType) {
         case 'Clause': {
-            let jsonSource = {};
-            let jsonTarget = {};
-
             ToCommonMarkVisitor.visitChildren(this, thing, parameters);
-            // Revert to CodeBlock
-            jsonTarget.$class = NS_PREFIX_CommonMarkModel + 'CodeBlock';
-
-            // Get the content
-            const clauseJson = parameters.serializer.toJSON(thing);
-            jsonSource.$class = NS_PREFIX_CommonMarkModel + 'Document';
-            jsonSource.xmlns = 'http://commonmark.org/xml/1.0';
-            jsonSource.nodes = clauseJson.nodes;
-
-            const content = parameters.commonMark.toMarkdown(jsonSource);
-            let attributeString;
-            if (clauseJson.src) {
-                attributeString = `name="${clauseJson.name}" src="${clauseJson.src}"`;
-            } else {
-                attributeString = `name="${clauseJson.name}"`;
-            }
-
-            jsonTarget.text = content + '\n';
-
-            // Create the proper tag
-            let tag = {};
-            tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
-            tag.tagName = 'clause';
-            tag.attributeString = attributeString;
-            tag.content = content;
-            tag.closed = false;
-            tag.attributes = [];
-
-            let attribute1 = {};
-            attribute1.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-            attribute1.name = 'name';
-            attribute1.value = clauseJson.name;
-            tag.attributes.push(attribute1);
-
-            if (clauseJson.src) {
-                let attribute2 = {};
-                attribute2.$class = NS_PREFIX_CommonMarkModel + 'Attribute';
-                attribute2.name = 'src';
-                attribute2.value = clauseJson.src ? clauseJson.src : '';
-                tag.attributes.push(attribute2);
-            }
-
-            jsonTarget.tag = tag;
-
-            let validatedTarget = parameters.serializer.fromJSON(jsonTarget);
-
-            delete thing.elementType;
-            delete thing.name;
-            delete thing.src;
-
-            thing.$classDeclaration = validatedTarget.$classDeclaration;
-            thing.tag = validatedTarget.tag;
-            thing.nodes = validatedTarget.nodes;
-            thing.text = validatedTarget.text;
-            thing.info = `<clause ${attributeString}/>`;
+            return thing.nodes;
         }
-            break;
-        case 'ListBlock': {
-            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
-
-            const ciceroMarkTag = NS_PREFIX_CommonMarkModel + 'List';
-            thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
-
-            delete thing.name;
-            delete thing.elementType;
-        }
-            break;
-        case 'Variable':
-        case 'EnumVariable':
-        case 'FormattedVariable': {
-            // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            thing.text = decodeURIComponent(thing.value);
-
-            delete thing.elementType;
-            delete thing.name;
-            delete thing.value;
-            delete thing.format;
-            delete thing.enumValues;
-            delete thing.identifiedBy;
-        }
-            break;
         case 'Formula': {
             // Revert to HtmlInline
             thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            thing.text = `{{${decodeURIComponent(thing.value)}}}`;
+            thing.text = decodeURIComponent(thing.value);
 
             delete thing.elementType;
             delete thing.name;
@@ -159,13 +76,6 @@ class ToCommonMarkVisitor {
             delete thing.dependencies;
         }
             break;
-        case 'Conditional':
-        case 'Optional': {
-            // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
-            ToCommonMarkVisitor.visitChildren(this, thing, parameters);
-            return thing.nodes;
-        }
         default:
             ToCommonMarkVisitor.visitChildren(this, thing, parameters);
         }

@@ -91,13 +91,41 @@ describe('markdown', () => {
 });
 
 describe('acceptance', () => {
-    it('converts acceptance to CommonMark DOM', () => {
+    it('converts acceptance to markdown string', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json);
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance to markdown string (unquoted)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const newMarkdown = ciceroMarkTransformer.toMarkdown(json,{quoteVariables:false});
+        expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance to cicero markdown string', () => {
         const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
         const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
         // console.log(JSON.stringify(json, null, 4));
         expect(json).toMatchSnapshot();
         const newMarkdown = ciceroMarkTransformer.toMarkdownCicero(json);
         expect(newMarkdown).toMatchSnapshot();
+    });
+
+    it('converts acceptance clause content to markdown string (getClauseText)', () => {
+        const markdownText = fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8');
+        const json = ciceroMarkTransformer.fromMarkdownCicero(markdownText);
+        // console.log(JSON.stringify(json, null, 4));
+        expect(json).toMatchSnapshot();
+        const clauseText = ciceroMarkTransformer.getClauseText(json.nodes[2]);
+        expect(clauseText).toMatchSnapshot();
+        expect((() => ciceroMarkTransformer.getClauseText(json.nodes[1]))).toThrow('Cannot apply getClauseText to non-clause node');
     });
 
 });

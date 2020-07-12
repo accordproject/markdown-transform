@@ -26,12 +26,10 @@ const ToCiceroMarkUnwrappedVisitor = require('./ToCiceroMarkUnwrappedVisitor');
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
-const FromCommonMarkVisitor = require('./FromCommonMarkVisitor');
 const FromCiceroEditVisitor = require('./FromCiceroEditVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
 const unquoteVariables = require('./UnquoteVariables');
-const UntypeVisitor = require('./UntypeVisitor');
 
 /**
  * Converts a CiceroMark DOM to/from a
@@ -58,19 +56,16 @@ class CiceroMarkTransformer {
     /**
      * Obtain the Clause text for a Clause node
      * @param {*} input CiceroMark DOM
-     * @param {object} [options] configuration options
      * @returns {*} markdown string
      */
-    getClauseText(input, options) {
-        let inputType;
-        if (!input.getType) {
-            inputType = input.$class;
-        } else {
-            inputType = input.getNamespace() + input.getType();
-        }
-        if (inputType === 'org.accordproject.ciceromark.Clause') {
-            const commonMarkDom = this.toCommonMark(input, options);
-            return FromCommonMarkVisitor.codeBlockContent(commonMarkDom.text);
+    getClauseText(input) {
+        if (input.$class === 'org.accordproject.ciceromark.Clause') {
+            const docInput = {
+                $class: 'org.accordproject.commonmark.Document',
+                xmlns : 'http://commonmark.org/xml/1.0',
+                nodes: [input],
+            };
+            return this.toMarkdown(docInput);
         } else {
             throw new Error('Cannot apply getClauseText to non-clause node');
         }
@@ -89,10 +84,9 @@ class CiceroMarkTransformer {
     /**
      * Converts a CiceroEdit string to a CiceroMark DOM
      * @param {*} input - ciceroedit string
-     * @param {object} [options] configuration options
      * @returns {*} CiceroMark DOM
      */
-    fromCiceroEdit(input, options) {
+    fromCiceroEdit(input) {
         const commonMark = this.commonMark.fromMarkdown(input);
         const dom = this.serializer.fromJSON(commonMark);
 
@@ -104,19 +98,23 @@ class CiceroMarkTransformer {
             serializer : this.serializer,
         };
         const visitor = new FromCiceroEditVisitor();
-        dom.accept( visitor, parameters );
-        const ciceroMarkUntyped = Object.assign({}, this.serializer.toJSON(dom));
-
-        return this.toCiceroMarkUnwrapped(ciceroMarkUntyped,options);
+        dom.accept(visitor, parameters);
+        return this.serializer.toJSON(dom);
     }
 
     /**
      * Converts a CiceroMark DOM to a CiceroMark Unwrapped DOM
      * @param {object} input - CiceroMark DOM (JSON)
      * @param {object} [options] configuration options
+     * @param {boolean} [options.quoteVariables] if true variable quotations are removed
      * @returns {*} CiceroMark DOM
      */
     toCiceroMarkUnwrapped(input,options) {
+        // remove variables, e.g. {{ variable }}, {{% formula %}}
+        if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
+            input = this.unquote(input);
+        }
+
         const dom = this.serializer.fromJSON(input);
 
         // convert to common mark
@@ -131,22 +129,20 @@ class CiceroMarkTransformer {
     /**
      * Converts a CommonMark DOM to a CiceroMark DOM
      * @param {*} input - CommonMark DOM (in JSON)
-     * @param {object} [options] configuration options
      * @returns {*} CiceroMark DOM
      */
-    fromCommonMark(input, options) {
+    fromCommonMark(input) {
         return input; // Now the identity
     }
 
     /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
-     * @param {object} [options] configuration options
      * @returns {object} ciceromark object (JSON)
      */
-    fromMarkdown(markdown, options) {
+    fromMarkdown(markdown) {
         const commonMarkDom = this.commonMark.fromMarkdown(markdown);
-        return this.fromCommonMark(commonMarkDom, options);
+        return this.fromCommonMark(commonMarkDom);
     }
 
     /**
@@ -174,12 +170,9 @@ class CiceroMarkTransformer {
     /**
      * Converts a CiceroMark DOM to a cicero markdown string
      * @param {object} input CiceroMark DOM
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
-     * @param {boolean} [options.quoteVariables] if true variable nodes are removed
      * @returns {string} json commonmark object
      */
-    toMarkdownCicero(input, options) {
+    toMarkdownCicero(input) {
         const visitor = new ToMarkdownCiceroVisitor();
         return visitor.toMarkdownCicero(this.serializer.fromJSON(input));
     }
@@ -189,16 +182,11 @@ class CiceroMarkTransformer {
      * @param {*} input CiceroMark DOM
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
-     * @param {boolean} [options.quoteVariables] if true variable nodes are removed
+     * @param {boolean} [options.quoteVariables] if true variable quotations are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, options) {
-        let json = Object.assign({}, input);
-
-        // remove variables, e.g. {{ variable }}, {{% formula %}}
-        if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
-            json = this.unquote(json);
-        }
+        let json = this.toCiceroMarkUnwrapped(input,options);
 
         // remove formatting
         if(options && options.removeFormatting) {
@@ -234,23 +222,6 @@ class CiceroMarkTransformer {
      */
     unquote(input) {
         return unquoteVariables(input);
-    }
-
-    /**
-     * Untypes a CiceroMark DOM
-     * @param {object} input CiceroMark DOM
-     * @returns {object} untyped CiceroMark DOM
-     */
-    untype(input) {
-        const concertoInput = this.serializer.fromJSON(input);
-
-        const parameters = {
-            modelManager: this.modelManager,
-        };
-        const visitor = new UntypeVisitor();
-        concertoInput.accept(visitor, parameters);
-        const result = Object.assign({}, this.serializer.toJSON(concertoInput));
-        return result;
     }
 
     /**
