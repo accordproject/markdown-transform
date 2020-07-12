@@ -20,18 +20,6 @@ const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel'
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
 class FromCiceroEditVisitor {
-
-    /**
-     * Remove newline which is part of the code block markup
-     * @param {string} text - the code block text in the AST
-     * @return {string} the code block text without the new line due to markup
-     */
-    static codeBlockContent(text) {
-        // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-        const result = text.charAt(text.length - 1) === '\n' ? text.substring(0, text.length - 1) : text;
-        return result;
-    }
-
     /**
      * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
@@ -68,7 +56,7 @@ class FromCiceroEditVisitor {
             if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = FromCiceroEditVisitor.codeBlockContent(thing.text);
+                const clauseText = thing.text;
 
                 //console.log('CONTENT! : ' + tag.content);
                 if (FromCiceroEditVisitor.getAttribute(tag.attributes, 'src') &&
@@ -88,9 +76,9 @@ class FromCiceroEditVisitor {
             } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
                 const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListBlock';
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
-                const clauseText = FromCiceroEditVisitor.codeBlockContent(thing.text);
+                const listText = thing.text;
 
-                const commonMark = parameters.commonMark.fromMarkdown(clauseText);
+                const commonMark = parameters.commonMark.fromMarkdown(listText);
                 const newNodes = parameters.serializer.fromJSON(commonMark).nodes;
                 if (newNodes.length === 1 && newNodes[0].getType() === 'List') {
                     const listNode = newNodes[0];

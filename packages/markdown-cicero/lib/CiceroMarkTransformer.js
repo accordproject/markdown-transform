@@ -106,12 +106,12 @@ class CiceroMarkTransformer {
      * Converts a CiceroMark DOM to a CiceroMark Unwrapped DOM
      * @param {object} input - CiceroMark DOM (JSON)
      * @param {object} [options] configuration options
-     * @param {boolean} [options.quoteVariables] if true variable quotations are removed
+     * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
      * @returns {*} CiceroMark DOM
      */
     toCiceroMarkUnwrapped(input,options) {
         // remove variables, e.g. {{ variable }}, {{% formula %}}
-        if(options && Object.prototype.hasOwnProperty.call(options,'quoteVariables') && !options.quoteVariables) {
+        if(options && Object.prototype.hasOwnProperty.call(options,'unquoteVariables') && options.unquoteVariables) {
             input = this.unquote(input);
         }
 
@@ -182,26 +182,11 @@ class CiceroMarkTransformer {
      * @param {*} input CiceroMark DOM
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
-     * @param {boolean} [options.quoteVariables] if true variable quotations are removed
+     * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
      * @returns {*} json commonmark object
      */
     toCommonMark(input, options) {
         let json = this.toCiceroMarkUnwrapped(input,options);
-
-        // remove formatting
-        if(options && options.removeFormatting) {
-            const cmt = new CommonMarkTransformer(options);
-            json = cmt.removeFormatting(json);
-
-            // now we need to also remove the formatting for clause nodes
-            json.nodes
-                .filter(element => element.$class === 'org.accordproject.ciceromark.Clause')
-                .forEach(clause => {
-                    const unformatted = cmt.removeFormatting(Object.assign({}, json, { nodes: clause.nodes }));
-                    clause.nodes = unformatted.nodes;
-                });
-        }
-
         const dom = this.serializer.fromJSON(json);
 
         // convert to common mark
@@ -212,7 +197,14 @@ class CiceroMarkTransformer {
             serializer : this.serializer
         } );
 
-        return this.serializer.toJSON(dom);
+        let result = this.serializer.toJSON(dom);
+        // remove formatting
+        if(options && options.removeFormatting) {
+            const cmt = new CommonMarkTransformer(options);
+            result = cmt.removeFormatting(result);
+        }
+
+        return result;
     }
 
     /**
