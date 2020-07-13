@@ -123,12 +123,13 @@ const parseFailures = [
 
 /**
  * Run positive tests workload
+ * @param {*} tests - the tests to run
  */
-function runSuccesses() {
+function runSuccesses(tests) {
     // This tests custom extension to the parser
     const ciceroMarkTransformer = new CiceroMarkTransformer();
 
-    for (const test of successes) {
+    for (const test of tests) {
         const name = test.name;
         const kind = test.kind;
         const customTable = loadPlugin(`./test/data/${name}/plugin.js`);
@@ -181,9 +182,10 @@ function runSuccesses() {
 
 /**
  * Run parse failures tests workload
+ * @param {*} tests - the tests to run
  */
-function runParseFailures() {
-    for (const test of parseFailures) {
+function runParseFailures(tests) {
+    for (const test of tests) {
         const name = test.name;
         const desc = test.desc;
         const kind = test.kind;
@@ -208,9 +210,10 @@ function runParseFailures() {
 
 /**
  * Run template failures tests workload
+ * @param {*} tests - the tests to run
  */
-function runTemplateFailures() {
-    for (const test of templateFailures) {
+function runTemplateFailures(tests) {
+    for (const test of tests) {
         const name = test.name;
         const desc = test.desc;
         const kind = test.kind;
@@ -233,13 +236,13 @@ function runTemplateFailures() {
 }
 
 describe('#TemplateMarkTransformer [Template Failure]', () => {
-    runTemplateFailures();
+    runTemplateFailures(templateFailures);
 });
 
 describe('#TemplateMarkTransformer [Parse Success]', () => {
-    runSuccesses();
+    runSuccesses(successes);
 });
 
 describe('#TemplateMarkTransformer [Parse Failure]', () => {
-    runParseFailures();
+    runParseFailures(parseFailures);
 });
