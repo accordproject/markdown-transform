@@ -51,19 +51,6 @@ function normalizeFromMarkdownCicero(input) {
     return ciceroMarkTransformer.fromMarkdownCicero(inputNLs);
 }
 
-/**
- * Normalize markdown cicero text
- * @param {string} input - the markdown cicero text
- * @return {string} - the normalized text
- */
-function normalizeCiceroMark(input) {
-    // Roundtrip through the CiceroMark parser
-    const ciceroMarkTransformer = new CiceroMarkTransformer();
-    const result = ciceroMarkTransformer.toMarkdownCicero(ciceroMarkTransformer.fromMarkdownCicero(input));
-    return result;
-}
-
 module.exports.normalizeNLs = normalizeNLs;
 module.exports.normalizeToMarkdownCicero = normalizeToMarkdownCicero;
 module.exports.normalizeFromMarkdownCicero = normalizeFromMarkdownCicero;
-module.exports.normalizeCiceroMark = normalizeCiceroMark;

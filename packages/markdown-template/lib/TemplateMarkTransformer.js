@@ -22,8 +22,6 @@ const {
     templateMarkTyping,
 } = require('./templatemarkutil');
 
-const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const ToCommonMarkVisitor = require('@accordproject/markdown-cicero').ToCommonMarkVisitor;
 const ParserManager = require('./parsermanager');
 
 const normalizeToMarkdownCicero = require('./normalize').normalizeToMarkdownCicero;
@@ -222,20 +220,6 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Parse a markdown string to data
-     * @param {string} markdown the markdown input
-     * @param {string} template the template template
-     * @param {object} modelManager - the model manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @returns {object} the result of parsing
-     */
-    dataFromMarkdown(markdown, template, modelManager, templateKind) {
-        const markdownInput = { fileName: '[buffer]', content: markdown };
-        const templateInput = { fileName: '[buffer]', content: template };
-        return this.fromMarkdown(markdownInput, templateInput, modelManager, templateKind, null);
-    }
-
-    /**
      * Draft a CiceroMark DOM from a TemplateMarkDOM
      * @param {*} data the contract/clause data input
      * @param {*} parserManager - the parser manager for this template
@@ -279,71 +263,6 @@ class TemplateMarkTransformer {
         const parserManager = new ParserManager(modelManager, this.parsingTable);
         parserManager.setTemplateMark(templateMark);
         return this.draftCiceroMark(data, parserManager, templateKind, options);
-    }
-
-    /**
-     * Instantiate a CiceroMark DOM from data
-     * @param {*} data the contract/clause data input
-     * @param {*} template - the template template
-     * @param {object} modelManager - the model manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @returns {object} the result
-     */
-    dataToCiceroMark(data, template, modelManager, templateKind) {
-        const templateInput = { fileName: '[buffer]', content: template };
-        const templateMark = this.fromMarkdownTemplate(templateInput, modelManager, templateKind, null);
-        return this.instantiateCiceroMark(data, templateMark, modelManager, templateKind, null);
-    }
-
-    /**
-     * Draft a CommonMark DOM from a CiceroMark DOM
-     * @param {object} ciceroMark the CiceroMark DOM
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result
-     */
-    draftCiceroMarkToCommonMark(ciceroMark, options) {
-        // convert to common mark
-        const visitor = new ToCommonMarkVisitor();
-        const dom = templateMarkManager.serializer.fromJSON(ciceroMark);
-        dom.accept( visitor, {
-            commonMark: new CommonMarkTransformer(),
-            modelManager : templateMarkManager.modelManager,
-            serializer : templateMarkManager.serializer
-        });
-
-        return templateMarkManager.serializer.toJSON(dom);
-    }
-
-    /**
-     * Draft a CommonMark DOM from a TemplateMark DOM
-     * @param {*} data the contract/clause data input
-     * @param {*} parserManager - the parser manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result
-     */
-    draftCommonMark(data, parserManager, templateKind, options) {
-        const ciceroMark = this.draftCiceroMark(data, parserManager, templateKind, options);
-        return this.draftCiceroMarkToCommonMark(ciceroMark, options);
-    }
-
-    /**
-     * Instantiate a CommonMark DOM from a TemplateMarkDOM
-     * @param {*} data the contract/clause data input
-     * @param {*} templateMark the TemplateMark DOM
-     * @param {object} modelManager - the model manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {object} [options] configuration options
-     * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result
-     */
-    instantiateCommonMark(data, templateMark, modelManager, templateKind, options) {
-        // Construct the template parser
-        const parserManager = new ParserManager(modelManager, this.parsingTable);
-        parserManager.setTemplateMark(templateMark);
-        return this.draftCommonMark(data, parserManager, templateKind, options);
     }
 
 }
