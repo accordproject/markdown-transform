@@ -163,6 +163,14 @@ class ParserManager {
     getFormulaEval(code) {
         return this.formulaEval(code);
     }
+
+    /**
+     * Set a new execute function for formulas
+     * @param {*} eval - the eval logic
+     */
+    setFormulaEval(eval) {
+        this.formulaEval = eval;
+    }
 }
 
 module.exports = ParserManager;
