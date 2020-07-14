@@ -82,7 +82,8 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.12.4",
     "@accordproject/markdown-common": "0.12.4",
-    "mammoth": "^1.4.9"
+    "mammoth": "^1.4.9",
+    "xml-js": "^1.6.11"
   },
   "license-check-config": {
     "src": [
