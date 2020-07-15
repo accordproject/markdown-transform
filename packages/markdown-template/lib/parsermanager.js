@@ -24,8 +24,8 @@ const ToParserVisitor = require('./ToParserVisitor');
  * Hooks
  */
 
-const defaultFormulaEval = (code) => {
-    return (data) => {
+const defaultFormulaEval = (name) => {
+    return (code,data) => {
         const variables = Object.keys(data).filter((x) => !((x === '$class' || x === 'clauseId' || x === 'contractId')));
         return ` eval(${code})(${variables}) `;
     };
@@ -157,19 +157,19 @@ class ParserManager {
 
     /**
      * Get the execute function for a given formula
-     * @param {string} code - the code for that formula
+     * @param {string} name - the name of that formula
      * @return {string} a function taking the contract data and returning the corresponding formula result
      */
-    getFormulaEval(code) {
-        return this.formulaEval(code);
+    getFormulaEval(name) {
+        return this.formulaEval(name);
     }
 
     /**
      * Set a new execute function for formulas
-     * @param {*} eval - the eval logic
+     * @param {*} evalFun - the eval function
      */
-    setFormulaEval(eval) {
-        this.formulaEval = eval;
+    setFormulaEval(evalFun) {
+        this.formulaEval = evalFun;
     }
 }
 
