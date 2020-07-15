@@ -56,16 +56,16 @@ class CiceroMarkTransformer {
     /**
      * Obtain the Clause text for a Clause node
      * @param {*} input CiceroMark DOM
-     * @returns {*} markdown string
+     * @returns {*} markdown_cicero string
      */
     getClauseText(input) {
         if (input.$class === 'org.accordproject.ciceromark.Clause') {
             const docInput = {
                 $class: 'org.accordproject.commonmark.Document',
                 xmlns : 'http://commonmark.org/xml/1.0',
-                nodes: [input],
+                nodes: input.nodes,
             };
-            return this.toMarkdown(docInput);
+            return this.toMarkdownCicero(docInput);
         } else {
             throw new Error('Cannot apply getClauseText to non-clause node');
         }
