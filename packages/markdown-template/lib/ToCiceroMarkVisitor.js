@@ -123,7 +123,7 @@ class ToCiceroMarkVisitor {
         case 'FormulaDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            thing.value = parameters.parserManager.getFormulaEval(thing.code)(parameters.fullData);
+            thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData);
         }
             break;
         case 'ClauseDefinition': {

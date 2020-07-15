@@ -83,7 +83,7 @@ function template_inline(state, silent) {
         if (!silent) {
             token         = state.push('formula', 'formula', 0);
             token.content = match[1];
-            token.attrs = [ [ 'name', 'formula' ] ];
+            token.attrs = [ ];
         }
         state.pos += match[0].length;
 
