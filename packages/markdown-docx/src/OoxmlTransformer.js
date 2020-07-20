@@ -53,6 +53,38 @@ class OoxmlTransformer {
     }
 
     /**
+     * Checks if the element is a line break or not
+     *
+     * @param {object} element the element to be checked
+     * @returns {boolean} whether the element is a line break
+     */
+    isLineBreak(element) {
+        return element.name === 'w:br';
+    }
+
+    /**
+     * Returns if the element is a heading or not and if it is, an attribute
+     * level is also passed to determine the style of the heading.
+     *
+     * @param {object} headingElement the element to be checked
+     * @returns {object} object of `isHeading` and its level
+     */
+    getHeading(headingElement) {
+        if (headingElement.attributes !== undefined) {
+            const headingLevel = headingElement.attributes['w:val'];
+            if (headingElement.name === 'w:pStyle' && headingLevel.includes('Heading')) {
+                return {
+                    isHeading: true,
+                    level: headingLevel[headingLevel.length - 1],
+                };
+            }
+        }
+        return {
+            isHeading: false,
+        };
+    }
+
+    /**
      * Return the node after parsing each element
      *
      * @param {object} element the element of the document node
@@ -61,26 +93,40 @@ class OoxmlTransformer {
     deserializeElement(element) {
         switch (element.name) {
         case 'w:p':
-            return {
-                $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
-                nodes: this.deserializeElements(element.elements)
-            };
+            if (element.elements !== undefined) {
+                const headingElement = this.getHeading(element.elements[0].elements[0]);
+                const lineBreak = this.isLineBreak(element.elements[0].elements[0]);
+                if (headingElement.isHeading) {
+                    return [
+                        {
+                            $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                            level: headingElement.level,
+                            nodes: [this.deserializeElements(element.elements)[0]]
+                        },
+                        {
+                            $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                            nodes: this.deserializeElements(element.elements).slice(1)
+                        },
+                    ];
+                }
+                if (!lineBreak) {
+                    return {
+                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                        nodes: this.deserializeElements(element.elements)
+                    };
+                }
+            }
+            return;
         case 'w:sdt':
             return {
-                $class: `org.accordproject.ciceromark.Variable`,
+                $class: 'org.accordproject.ciceromark.Variable',
                 id: this.getId(element.elements),
                 value: this.getValue(element.elements),
             };
-
         case 'w:r':
             return [...this.deserializeElements(element.elements)];
         case 'w:color':
             return element.attributes['w:color'];
-            // once line break is added in Common Mark
-            // case 'w:br':
-            //     return {
-            //         $class: `${NS_PREFIX_CommonMarkModel}LineBreak`,
-            //     }
         case 'w:t':
             if (element.elements === undefined && element.attributes['xml:space'] === 'preserve') {
                 return {
