@@ -25,8 +25,6 @@ describe('OOXML -> CiceroMark', () => {
         const ooxml = await fs.readFileSync('test/data/ooxml/document.xml', 'utf-8');
         const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/document.json', 'utf-8');
         const convertedObject = JSON.stringify(ooxmlTransformer.toCiceroMark(ooxml));
-        fs.writeFileSync('./test/output.js', convertedObject);
         expect(convertedObject).toBe(testCiceroMark);
-
     });
 });
