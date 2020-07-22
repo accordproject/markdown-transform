@@ -66,14 +66,19 @@ require('yargs')
             type: 'boolean',
             default: false
         });
-        yargs.option('ctoFiles', {
-            describe: 'array of CTO files',
+        yargs.option('model', {
+            describe: 'array of Concerto model files',
             type: 'string',
             array: true
         });
         yargs.option('plugin', {
             describe: 'path to the parser plugin',
             type: 'string'
+        });
+        yargs.option('currentTime', {
+            describe: 'set current time',
+            type: 'string',
+            default: null
         });
         yargs.option('template', {
             describe: 'template grammar',
@@ -93,7 +98,7 @@ require('yargs')
             argv = commands.validateTransformArgs(argv);
             const parameters = {};
             parameters.inputFileName = argv.input;
-            parameters.ctoFiles = argv.ctoFiles;
+            parameters.model = argv.model;
             // Load the plugin if given
             let plugin = {};
             if (argv.plugin) {
@@ -102,6 +107,7 @@ require('yargs')
             parameters.plugin = plugin;
             parameters.template = argv.template;
             parameters.templateKind = argv.contract ? 'contract' : 'clause';
+            parameters.currentTime = argv.currentTime;
             const options = {};
             options.verbose = argv.verbose;
             options.sourcePos = argv.sourcePos;

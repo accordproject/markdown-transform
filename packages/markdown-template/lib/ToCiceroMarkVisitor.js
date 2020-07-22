@@ -123,7 +123,7 @@ class ToCiceroMarkVisitor {
         case 'FormulaDefinition': {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
-            thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData);
+            thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData,parameters.currentTime);
         }
             break;
         case 'ClauseDefinition': {
@@ -137,6 +137,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: parameters.data[thing.name],
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 ToCiceroMarkVisitor.visitChildren(this, thing, childrenParameters);
             } else {
@@ -152,6 +153,7 @@ class ToCiceroMarkVisitor {
                 fullData: parameters.fullData,
                 data: parameters.data[thing.name],
                 kind: parameters.kind,
+                currentTime: parameters.currentTime,
             };
             return ToCiceroMarkVisitor.visitNodes(this, thing.nodes, childrenParameters);
         }
@@ -182,6 +184,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: parameters.data[thing.name],
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 ToCiceroMarkVisitor.visitNodes(this, thing.whenSome, someParameters);
                 const noneParameters = {
@@ -191,6 +194,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: {},
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 ToCiceroMarkVisitor.visitNodes(this, thing.whenNone, noneParameters);
             } else {
@@ -204,6 +208,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: invented, // Need to invent some data here!
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 ToCiceroMarkVisitor.visitNodes(this, thing.whenSome, someParameters);
                 const noneParameters = {
@@ -213,6 +218,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: {},
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 ToCiceroMarkVisitor.visitNodes(this, thing.whenNone, noneParameters);
             }
@@ -238,6 +244,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: item,
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 return ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
                     .accept(that, itemParameters);
@@ -267,6 +274,7 @@ class ToCiceroMarkVisitor {
                     fullData: parameters.fullData,
                     data: item,
                     kind: parameters.kind,
+                    currentTime: parameters.currentTime,
                 };
                 const resultNodes = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,itemNode)
                     .accept(that, itemParameters)[0].nodes;

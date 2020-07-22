@@ -23,7 +23,7 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
-// Parser from template AST
+const datetimeutil = require('../lib/datetimeutil');
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
@@ -36,6 +36,11 @@ const loadPlugin = (x) => {
     return fs.existsSync(x) ? require(path.join('..',x)) : {};
 };
 
+// Current time for testing
+
+const currentTime = datetimeutil.setCurrentTime('2000-07-22T10:45:05+04:00');
+
+// Workloads
 const successes = [
     {name:'testSpec',kind:'clause'},
     {name:'testSpecChanged',kind:'clause'},
@@ -157,7 +162,7 @@ function runSuccesses(tests) {
             });
 
             it('should parse sample', async () => {
-                const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind);
+                const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind,currentTime);
                 if (kind === 'clause') {
                     delete data.clauseId;
                     delete result.clauseId;
@@ -175,7 +180,7 @@ function runSuccesses(tests) {
             });
 
             it('should draft sample back (roundtrip)', async () => {
-                const cm = templateMarkTransformer.instantiateCiceroMark(data,grammarJson,modelManager,kind);
+                const cm = templateMarkTransformer.instantiateCiceroMark(data,grammarJson,modelManager,kind,currentTime);
                 const cmUnwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(cm);
                 const result = ciceroMarkTransformer.toMarkdownCicero(cmUnwrapped);
                 const expected = normalizeToMarkdownCicero(normalizeFromMarkdownCicero(sample.content));

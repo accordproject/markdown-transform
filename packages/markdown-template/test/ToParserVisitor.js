@@ -16,10 +16,12 @@
 
 // Parser from template AST
 const ModelManager = require('@accordproject/concerto-core').ModelManager;
+const ParserManager = require('../lib/parsermanager');
 const ToParserVisitor = require('../lib/ToParserVisitor');
-const ParsingTable = require('../lib/parsingtable');
 
-const parsingTable = new ParsingTable(new ModelManager());
+const modelManager = new ModelManager();
+const parserManager = new ParserManager(modelManager);
+const parsingTable = parserManager.getParsingTable();
 
 // Variables
 const var1 = { '$class': 'org.accordproject.templatemark.VariableDefinition', 'name': 'seller', 'elementType': 'String' };
@@ -108,34 +110,34 @@ describe('#templateparsers', () => {
 
     describe('#template1', () => {
         it('should parse', async () => {
-            parserVisitor.toParser(template1,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserVisitor.toParser(parserManager,template1,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserVisitor.toParser(template1,parsingTable).parse('FOO').status.should.equal(false);
+            parserVisitor.toParser(parserManager,template1,parsingTable).parse('FOO').status.should.equal(false);
         });
     });
 
     describe('#template2', () => {
         it('should parse (no force majeure)', async () => {
-            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
+            parserVisitor.toParser(parserManager,template2,parsingTable).parse('This is a contract between "Steve" and "Betty"').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
+            parserVisitor.toParser(parserManager,template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserVisitor.toParser(template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
+            parserVisitor.toParser(parserManager,template2,parsingTable).parse('This is a contract between "Steve" and "Betty", even in the presence of force majeureXX.').status.should.equal(false);
         });
     });
 
     describe('#template3', () => {
         it('should parse (no force majeure)', async () => {
-            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
+            parserVisitor.toParser(parserManager,template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR.').status.should.equal(true);
         });
         it('should parse (with force majeure)', async () => {
-            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
+            parserVisitor.toParser(parserManager,template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.00 EUR, even in the presence of force majeure.').status.should.equal(true);
         });
         it('should not parse', async () => {
-            parserVisitor.toParser(template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
+            parserVisitor.toParser(parserManager,template3,parsingTable).parse('This is a contract between "Steve" and "Betty" for the amount of 3131.x00 EUR, even in the presence of force majeure.').status.should.equal(false);
         });
     });
 });
@@ -148,13 +150,13 @@ describe('#invalidparsers', () => {
 
     describe('#templateErr1', () => {
         it('should throw for wrong $class', async () => {
-            (() => parserVisitor.toParser(templateErr1,parsingTable)).should.throw('Namespace is not defined for type foo');
+            (() => parserVisitor.toParser(parserManager,templateErr1,parsingTable)).should.throw('Namespace is not defined for type foo');
         });
     });
 
     describe('#templateErr2', () => {
         it('should throw for wrong variable type', async () => {
-            (() => parserVisitor.toParser(templateErr2,parsingTable)).should.throw('Namespace is not defined for type FOO');
+            (() => parserVisitor.toParser(parserManager,templateErr2,parsingTable)).should.throw('Namespace is not defined for type FOO');
         });
     });
 });

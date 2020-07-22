@@ -68,6 +68,7 @@ class ToParserVisitor extends FromCommonMarkVisitor {
      */
     static toParserWithParameters(visitor,ast,parameters) {
         const localParameters = Object.assign({},parameters);
+        localParameters.parserManager = parameters.parserManager;
         localParameters.parsingTable = parameters.parsingTable,
         localParameters.templateParser = parameters.templateParser;
         localParameters.result = resultString('');
@@ -81,15 +82,17 @@ class ToParserVisitor extends FromCommonMarkVisitor {
 
     /**
      * Converts a TemplateMark DOM to a full parser
+     * @param {*} parserManager - the parser manager
      * @param {object} ast - the template AST
      * @param {object} parsingTable - the parsing table
      * @returns {object} the parser
      */
-    toParser(ast,parsingTable) {
+    toParser(parserManager,ast,parsingTable) {
         // Start with an empty parser
         const templateParser = {};
 
         const parameters = {};
+        parameters.parserManager = parserManager;
         parameters.parsingTable = parsingTable,
         parameters.templateParser = templateParser;
         parameters.result = resultString('');

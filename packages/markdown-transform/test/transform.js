@@ -64,7 +64,7 @@ const sampleHtml = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sampl
 describe('#acceptance', () => {
     let parameters;
     before(async () => {
-        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, ctoFiles: [acceptanceModelFile], templateKind: 'contract' };
+        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, model: [acceptanceModelFile], templateKind: 'contract' };
     });
 
     describe('#template', () => {
@@ -203,7 +203,7 @@ describe('#template1', () => {
         const grammarFile = './test/data/template1/grammar.tem.md';
         const grammar = fs.readFileSync(grammarFile, 'utf8');
         const model = './test/data/template1/model.cto';
-        parameters = { inputFileName: grammarFile, template: grammar, ctoFiles: [model], templateKind: 'clause' };
+        parameters = { inputFileName: grammarFile, template: grammar, model: [model], templateKind: 'clause' };
     });
 
     describe('#markdown', () => {
