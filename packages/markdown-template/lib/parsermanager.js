@@ -14,7 +14,7 @@
 
 'use strict';
 
-const moment = require('moment-mini');
+const datetimeutil = require('./datetimeutil');
 
 const { Factory, Serializer } = require('@accordproject/concerto-core');
 
@@ -61,7 +61,7 @@ class ParserManager {
         this.templateMark = null;
         this.parser = null;
         this.templateKind = templateKind ? templateKind : 'clause';
-        this.currentTime = moment();
+        this.currentTime = datetimeutil.setCurrentTime(null); // Default setting to now
 
         // Mapping from types to parsers/drafters
         this.parserVisitor = new ToParserVisitor();
@@ -212,7 +212,7 @@ class ParserManager {
      * @param {string} currentTime the current time
      */
     setCurrentTime(currentTime) {
-        this.currentTime = currentTime;
+        this.currentTime = datetimeutil.setCurrentTime(currentTime);
     }
 
     /**
