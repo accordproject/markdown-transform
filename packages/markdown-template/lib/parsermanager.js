@@ -19,6 +19,14 @@ const { Factory, Serializer } = require('@accordproject/concerto-core');
 const ParsingTable = require('./parsingtable');
 const draftVisitNodes = require('./ToCiceroMarkVisitor').visitNodes;
 const ToParserVisitor = require('./ToParserVisitor');
+const FormulaVisitor = require('./FormulaVisitor');
+
+const {
+    templateMarkManager,
+    templateToTokens,
+    tokensToUntypedTemplateMark,
+    templateMarkTyping,
+} = require('./templatemarkutil');
 
 /**
  * Hooks
@@ -40,15 +48,17 @@ class ParserManager {
      * Create the ParserManager.
      * @param {object} modelManager - the model manager
      * @param {object} parsingTable - parsing table extension
+     * @param {string} templateKind - either 'clause' or 'contract'
      * @param {*} formulaEval - function from formula code to JavaScript evaluation function
      */
-    constructor(modelManager,parsingTable,formulaEval) {
+    constructor(modelManager,parsingTable,templateKind,formulaEval) {
         this.modelManager = modelManager;
         this.factory = new Factory(this.modelManager);
         this.serializer = new Serializer(this.factory, this.modelManager);
         this.template = null;
         this.templateMark = null;
         this.parser = null;
+        this.templateKind = templateKind;
 
         // Mapping from types to parsers/drafters
         this.parserVisitor = new ToParserVisitor();
@@ -56,7 +66,9 @@ class ParserManager {
             return ToParserVisitor.toParserWithParameters(new ToParserVisitor(),ast,parameters);
         };
         this.parsingTable = new ParsingTable(this.modelManager,parserHook,draftVisitNodes);
-        this.parsingTable.addParsingTable(parsingTable);
+        if (parsingTable) {
+            this.parsingTable.addParsingTable(parsingTable);
+        }
         this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
     }
 
@@ -150,9 +162,12 @@ class ParserManager {
      * Build the parser
      */
     buildParser() {
-        if (!this.parser) {
-            this.parser = this.parserVisitor.toParser(this.templateMark,this.parsingTable);
+        if (!this.templateMark) {
+            const tokenStream = templateToTokens(this.template);
+            const template = tokensToUntypedTemplateMark(tokenStream, this.templateKind);
+            this.templateMark = templateMarkTyping(template, this.modelManager, this.templateKind);
         }
+        this.parser = this.parserVisitor.toParser(this.templateMark,this.parsingTable);
     }
 
     /**
@@ -170,6 +185,15 @@ class ParserManager {
      */
     setFormulaEval(evalFun) {
         this.formulaEval = evalFun;
+    }
+
+    /**
+     * Get the formulas for this templatemark
+     * @return {*} the formulas
+     */
+    getFormulas() {
+        const visitor = new FormulaVisitor();
+        return visitor.getFormulas(templateMarkManager.modelManager.serializer,this.getTemplateMark());
     }
 }
 

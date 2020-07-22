@@ -158,12 +158,11 @@ class TemplateMarkTransformer {
      * Parse a CiceroMark DOM against a TemplateMark DOM
      * @param {{fileName:string,content:string}} input the ciceromark input
      * @param {object} parserManager - the parser manager for this template
-     * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    dataFromCiceroMark(input, parserManager, templateKind, options) {
+    dataFromCiceroMark(input, parserManager, options) {
         const serializer = parserManager.getSerializer();
         const parser = parserManager.getParser();
 
@@ -192,11 +191,11 @@ class TemplateMarkTransformer {
      */
     fromCiceroMark(input, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager,this.parsingTable);
+        const parserManager = new ParserManager(modelManager,this.parsingTable,templateKind);
         parserManager.setTemplateMark(templateMark);
         parserManager.buildParser();
 
-        return this.dataFromCiceroMark(input, parserManager, templateKind, options);
+        return this.dataFromCiceroMark(input, parserManager, options);
     }
 
     /**
@@ -260,7 +259,7 @@ class TemplateMarkTransformer {
      */
     instantiateCiceroMark(data, templateMark, modelManager, templateKind, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager, this.parsingTable);
+        const parserManager = new ParserManager(modelManager, this.parsingTable, templateKind);
         parserManager.setTemplateMark(templateMark);
         return this.draftCiceroMark(data, parserManager, templateKind, options);
     }
