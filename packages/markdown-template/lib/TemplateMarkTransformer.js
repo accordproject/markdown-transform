@@ -14,8 +14,6 @@
 
 'use strict';
 
-const datetimeutil = require('./datetimeutil');
-
 const { ParseException } = require('@accordproject/concerto-core');
 const {
     templateMarkManager,
@@ -195,8 +193,7 @@ class TemplateMarkTransformer {
     fromCiceroMark(input, templateMark, modelManager, templateKind, currentTime, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager,this.parsingTable,templateKind);
-        const momentTime = datetimeutil.setCurrentTime(currentTime);
-        parserManager.setCurrentTime(momentTime);
+        parserManager.setCurrentTime(currentTime);
         parserManager.setTemplateMark(templateMark);
         parserManager.buildParser();
 
@@ -228,12 +225,11 @@ class TemplateMarkTransformer {
      * @param {*} data the contract/clause data input
      * @param {*} parserManager - the parser manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
-     * @param {string} currentTime - the definition of 'now'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
      */
-    draftCiceroMark(data, parserManager, templateKind, currentTime, options) {
+    draftCiceroMark(data, parserManager, templateKind, options) {
         const parameters = {
             parserManager: parserManager,
             templateMarkModelManager: templateMarkManager.modelManager,
@@ -241,7 +237,7 @@ class TemplateMarkTransformer {
             fullData: data,
             data: data,
             kind: templateKind,
-            currentTime: currentTime,
+            currentTime: parserManager.getCurrentTime(),
         };
 
         const input = templateMarkManager.serializer.fromJSON(parserManager.getTemplateMark());
@@ -267,10 +263,10 @@ class TemplateMarkTransformer {
      */
     instantiateCiceroMark(data, templateMark, modelManager, templateKind, currentTime, options) {
         // Construct the template parser
-        const momentTime = datetimeutil.setCurrentTime(currentTime);
         const parserManager = new ParserManager(modelManager, this.parsingTable, templateKind);
+        parserManager.setCurrentTime(currentTime);
         parserManager.setTemplateMark(templateMark);
-        return this.draftCiceroMark(data, parserManager, templateKind, momentTime, options);
+        return this.draftCiceroMark(data, parserManager, templateKind, options);
     }
 
 }
