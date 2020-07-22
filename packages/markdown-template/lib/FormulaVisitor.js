@@ -51,8 +51,20 @@ class FormulaVisitor {
      */
     visit(thing, parameters) {
         switch(thing.getType()) {
+        case 'VariableDefinition':
+        case 'FormattedVariableDefinition':
+        case 'EnumVariableDefinition': {
+            if (parameters.calculateDependencies) {
+                parameters.variables.push(thing.name);
+            }
+        }
+            break;
         case 'FormulaDefinition': {
-            parameters.result.push({ name : thing.name, code: thing.code });
+            if (parameters.calculateDependencies) {
+                thing.dependencies = parameters.variables;
+            } else {
+                parameters.result.push({ name : thing.name, code: thing.code });
+            }
         }
             break;
         default:
@@ -61,13 +73,32 @@ class FormulaVisitor {
     }
 
     /**
-     * Returns the list of formulas from a TemplateMark DOM
+     * Calculate dependencies
      * @param {*} serializer - the template mark serializer
      * @param {object} ast - the template AST
      * @returns {*} the formulas
      */
-    getFormulas(serializer,ast) {
+    calculateDependencies(serializer,ast) {
         const parameters = {
+            calculateDependencies: true,
+            variables: [],
+            result: [],
+        };
+        const input = serializer.fromJSON(ast);
+        input.accept(this, parameters);
+        return serializer.toJSON(input);
+    }
+
+    /**
+     * Process formulas and returns the list of those formulas from a TemplateMark DOM
+     * @param {*} serializer - the template mark serializer
+     * @param {object} ast - the template AST
+     * @returns {*} the formulas
+     */
+    processFormulas(serializer,ast) {
+        const parameters = {
+            calculateDependencies: false,
+            variables: [],
             result: [],
         };
         const input = serializer.fromJSON(ast);
