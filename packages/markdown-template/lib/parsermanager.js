@@ -195,6 +195,14 @@ class ParserManager {
         const visitor = new FormulaVisitor();
         return visitor.getFormulas(templateMarkManager.modelManager.serializer,this.getTemplateMark());
     }
+
+    /**
+     * Sets the template kind
+     * @param {string} templateKind - either 'clause' or 'contract'
+     */
+    setTemplateKind(templateKind) {
+        this.templateKind = templateKind;
+    }
 }
 
 module.exports = ParserManager;
