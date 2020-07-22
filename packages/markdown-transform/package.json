@@ -62,6 +62,7 @@
     "@accordproject/markdown-pdf": "0.11.3",
     "@accordproject/markdown-slate": "0.11.3",
     "@accordproject/markdown-template": "0.11.3",
+    "moment-mini": "2.22.1",
     "dijkstrajs": "^1.0.1"
   },
   "license-check-config": {

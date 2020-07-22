@@ -14,6 +14,8 @@
 
 'use strict';
 
+Error.stackTraceLimit = Infinity;
+
 const P = require('parsimmon');
 const textParser = require('../../combinators').textParser;
 const seqParser = require('../../combinators').seqParser;
@@ -54,10 +56,11 @@ const MMMM = {
 
 /**
  * Creates a DateTime variable output
- * @param {*} value the date time components
+ * @param {*} value - the date time components
+ * @param {string} utcOffset - the default UTC offset
  * @returns {object} the variable
  */
-function mkDateTime(value) {
+function mkDateTime(value,utcOffset) {
     const fillNumber = (x,digits,def) => {
         const nb = x ? '' + x : '' + def;
         return nb.padStart(digits,'0');
@@ -70,7 +73,7 @@ function mkDateTime(value) {
     const minute = fillNumber(valueObj.minute,2,0);
     const second = fillNumber(valueObj.second,2,0);
     const fracsecond = fillNumber(valueObj.fracsecond,3,0);
-    const timezone = valueObj.timezone ? '' + valueObj.timezone : '+00:00';
+    const timezone = valueObj.timezone ? '' + valueObj.timezone : utcOffset;
     const result = `${year}-${month}-${day}T${hour}:${minute}:${second}.${fracsecond}${timezone}`;
     return result;
 }
@@ -268,9 +271,13 @@ function parserOfField(field) {
 /**
  * Creates a parser for a DateTime variable
  * @param {format} format the format
+ * @param {*} parserManager - the parser manager
  * @returns {object} the parser
  */
-function dateTimeParser(format) {
+function dateTimeParser(format,parserManager) {
+    // Default UTC offset is extracted from passed current time
+    const utcOffset = parserManager.getCurrentTime().format('Z');
+
     if (!format) { format = 'MM/DD/YYYY'; }
 
     // XXX the format could be parsed as well instead of this split which seems error-prone
@@ -286,8 +293,8 @@ function dateTimeParser(format) {
     }
     const parsers = fields.map(parserOfField);
     return seqParser(parsers).map(function(x) {
-        return mkDateTime(x);
+        return mkDateTime(x,utcOffset);
     });
 }
 
-module.exports = (format) => (r) => dateTimeParser(format);
+module.exports = (format,parserManager) => (r) => dateTimeParser(format,parserManager);

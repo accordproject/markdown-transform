@@ -211,10 +211,10 @@ class ParsingTable {
 
     /**
      * Gets parser for a given type
-     * @param {string} name the property
-     * @param {string} elementType the type
-     * @param {string} format the format
-     * @param {object} parseParams parameters for the nested parse generation
+     * @param {string} name - the property
+     * @param {string} elementType - the type of this node
+     * @param {string} format - the format
+     * @param {object} parseParams - parameters for the nested parse generation
      * @return {*} the parser
      */
     getParser(name,elementType,format,parseParams) {
@@ -227,7 +227,7 @@ class ParsingTable {
             this.compileEntry(entry,elementType,parseParams,null);
         }
         if (Object.prototype.hasOwnProperty.call(entry,'javascript')&&entry.javascript.parse) {
-            return entry.javascript.parse(format);
+            return entry.javascript.parse(format,parseParams.parserManager);
         } else {
             throw new Error('No known parser for type ' + elementType);
         }

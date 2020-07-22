@@ -14,6 +14,8 @@
 
 'use strict';
 
+const moment = require('moment-mini');
+
 const { Factory, Serializer } = require('@accordproject/concerto-core');
 
 const ParsingTable = require('./parsingtable');
@@ -33,9 +35,9 @@ const {
  */
 
 const defaultFormulaEval = (name) => {
-    return (code,data) => {
+    return (code,data,currentTime) => {
         const variables = Object.keys(data).filter((x) => !((x === '$class' || x === 'clauseId' || x === 'contractId')));
-        return ` eval(${code})(${variables}) `;
+        return ` calculate(${code})(${variables}) @ ${currentTime.format()} `;
     };
 };
 
@@ -58,7 +60,8 @@ class ParserManager {
         this.template = null;
         this.templateMark = null;
         this.parser = null;
-        this.templateKind = templateKind;
+        this.templateKind = templateKind ? templateKind : 'clause';
+        this.currentTime = moment();
 
         // Mapping from types to parsers/drafters
         this.parserVisitor = new ToParserVisitor();
@@ -167,7 +170,7 @@ class ParserManager {
             const template = tokensToUntypedTemplateMark(tokenStream, this.templateKind);
             this.templateMark = templateMarkTyping(template, this.modelManager, this.templateKind);
         }
-        this.parser = this.parserVisitor.toParser(this.templateMark,this.parsingTable);
+        this.parser = this.parserVisitor.toParser(this,this.templateMark,this.parsingTable);
     }
 
     /**
@@ -202,6 +205,22 @@ class ParserManager {
      */
     setTemplateKind(templateKind) {
         this.templateKind = templateKind;
+    }
+
+    /**
+     * Sets the current time
+     * @param {string} currentTime the current time
+     */
+    setCurrentTime(currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    /**
+     * Returns the current time
+     * @return {string} the current time
+     */
+    getCurrentTime() {
+        return this.currentTime;
     }
 }
 

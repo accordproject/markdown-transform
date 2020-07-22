@@ -59,6 +59,7 @@ rules.VariableDefinition = (visitor,thing,children,parameters,resultString,resul
         };
     } else {
         const fragmentParameters = {};
+        fragmentParameters.parserManager = parameters.parserManager;
         fragmentParameters.parsingTable = parameters.parsingTable;
         fragmentParameters.templateParser = parameters.templateParser;
         fragmentParameters.result = resultString('');
