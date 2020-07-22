@@ -74,7 +74,8 @@ and monthly payments of {{% monthlyPaymentFormula(loanAmount,rate,loanDuration) 
         const model = './test/data/testFormula/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/testFormula/grammar.tem.md', 'utf8'));
         const modelManager = await ModelLoader.loadModelManager(null,[model]);
-        const parserManager = new ParserManager(modelManager,null,'contract',null);
+        const parserManager = new ParserManager(modelManager,null,'clause',null);
+        parserManager.setTemplateKind('contract');
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal(`This is contract text, followed by a clause:
 {{#clause agreement}}
