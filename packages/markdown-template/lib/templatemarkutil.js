@@ -23,6 +23,7 @@ const TemplateMarkModel = require('./externalModels/TemplateMarkModel').Template
 
 const normalizeNLs = require('./normalize').normalizeNLs;
 const TypeVisitor = require('./TypeVisitor');
+const FormulaVisitor = require('./FormulaVisitor');
 const MarkdownIt = require('markdown-it');
 const MarkdownItTemplate = require('@accordproject/markdown-it-template');
 const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
@@ -136,7 +137,11 @@ function templateMarkTypingGen(template,introspector,model,templateKind) {
     };
     const visitor = new TypeVisitor();
     input.accept(visitor, parameters);
-    const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
+    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
+
+    // Calculates formula dependencies
+    const fvisitor = new FormulaVisitor();
+    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,true);
 
     return result;
 }

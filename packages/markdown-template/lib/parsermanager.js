@@ -196,7 +196,7 @@ class ParserManager {
      */
     getFormulas() {
         const visitor = new FormulaVisitor();
-        return visitor.getFormulas(templateMarkManager.modelManager.serializer,this.getTemplateMark());
+        return visitor.processFormulas(templateMarkManager.modelManager.serializer,this.getTemplateMark());
     }
 
     /**
