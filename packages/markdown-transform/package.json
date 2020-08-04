@@ -54,7 +54,7 @@
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.7",
+    "@accordproject/concerto-core": "^0.82.8",
     "@accordproject/markdown-cicero": "0.12.0",
     "@accordproject/markdown-common": "0.12.0",
     "@accordproject/markdown-docx": "0.12.0",
