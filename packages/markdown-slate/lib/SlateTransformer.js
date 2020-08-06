@@ -109,6 +109,18 @@ class SlateTransformer {
     }
 
     /**
+     * Converts a Slate JSON to a markdown cicero string
+     * @param {*} value - Slate json
+     * @param {object} [options] - configuration options
+     * @returns {*} markdown cicero string
+     */
+    toMarkdownCicero(value, options) {
+        const ciceroMark = this.toCiceroMark(value);
+        const ciceroMarkUnwrapped = this.ciceroMarkTransformer.toCiceroMarkUnwrapped(ciceroMark, options);
+        return this.ciceroMarkTransformer.toMarkdownCicero(ciceroMarkUnwrapped, options);
+    }
+
+    /**
      * Converts a markdown string to a Slate JSON
      * @param {string} markdown - a markdown string
      * @returns {*} Slate json
