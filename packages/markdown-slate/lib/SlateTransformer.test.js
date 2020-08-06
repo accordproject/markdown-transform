@@ -23,6 +23,17 @@ let slateTransformer = null;
 /* eslint-disable no-undef */
 // @ts-nocheck
 
+/**
+ * Prepare the text for parsing (normalizes new lines, etc)
+ * @param {string} input - the text for the clause
+ * @return {string} - the normalized text for the clause
+ */
+function normalizeNLs(input) {
+    // we replace all \r and \n with \n
+    let text =  input.replace(/\r/gm,'');
+    return text;
+}
+
 // @ts-ignore
 // eslint-disable-next-line no-undef
 beforeAll(() => {
@@ -128,5 +139,21 @@ describe('ciceromark <-> slate', () => {
             // check roundtrip
             expect(expectedSlateValue).toEqual(value);
         });
+    });
+});
+
+describe('slate -> markdown_cicero', () => {
+    it('converts acceptance from slate to markdown cicero', () => {
+        // load slate DOM
+        const slateDom = JSON.parse(fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance_slate.json', 'utf8'));
+        // load expected markdown cicero
+        const expectedMarkdownCicero = normalizeNLs(fs.readFileSync(__dirname + '/../test/data/ciceromark/acceptance.md', 'utf8'));
+
+        // convert the slate to markdown cicero and compare
+        const actualMarkdownCicero = slateTransformer.toMarkdownCicero(slateDom);
+        expect(actualMarkdownCicero).toMatchSnapshot(); // (3)
+
+        // check roundtrip
+        expect(actualMarkdownCicero).toEqual(expectedMarkdownCicero);
     });
 });
