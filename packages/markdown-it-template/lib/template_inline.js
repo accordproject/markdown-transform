@@ -53,7 +53,7 @@ function template_inline(state, silent) {
         if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
             return false;
         }
-        token         = state.push('inline_block_' + block + '_open', 'div', 1);
+        token         = state.push('inline_block_' + block + '_open', 'span', 1);
         token.content = match[0];
         token.attrs = attrs;
 
@@ -71,7 +71,7 @@ function template_inline(state, silent) {
             return false;
         }
 
-        token         = state.push('inline_block_' + block + '_close', 'div', -1);
+        token         = state.push('inline_block_' + block + '_close', 'span', -1);
         token.content = match[1];
         state.pos += match[0].length;
 
