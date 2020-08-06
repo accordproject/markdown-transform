@@ -48,7 +48,7 @@ const variable_inline = function (tokens, idx /*, options, env */) {
 };
 
 const else_inline = function (tokens, idx /*, options, env */) {
-  return `</span><span class="else">`;
+  return `</span><span class="else_inline">`;
 };
 
 const formula_inline = function (tokens, idx /*, options, env */) {
