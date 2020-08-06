@@ -48,11 +48,14 @@ html
           textarea.source.full-height= s.source
         section.col-xs-6.full-height
           .demo-control
-            a(href='#' data-result-as='html') html
-            a(href='#' data-result-as='src') source
-            a(href='#' data-result-as='debug') debug
+            a(href='#' data-result-as='html') preview
+            a(href='#' data-result-as='src') html
+            a(href='#' data-result-as='debug') tokens
+            a(href='#' data-result-as='ast') ast
           .result-html.full-height
           pre.hljs.result-src.full-height
             code.result-src-content.full-height
           pre.hljs.result-debug.full-height
             code.result-debug-content.full-height
+          pre.hljs.result-ast.full-height
+            code.result-ast-content.full-height
