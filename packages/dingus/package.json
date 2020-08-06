@@ -1,6 +1,6 @@
 {
   "name": "dingus",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "description": "Markdown Transform Dingus",
   "keywords": [
     "accord-project",
@@ -16,7 +16,7 @@
   "files": [],
   "dependencies": {},
   "devDependencies": {
-    "@accordproject/markdown-it-template": "0.12.1",
+    "@accordproject/markdown-it-template": "0.12.2",
     "autoprefixer-stylus": "^0.14.0",
     "browserify": "^16.3.0",
     "highlight.js": "^10.0.3",
