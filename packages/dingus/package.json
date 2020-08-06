@@ -11,12 +11,13 @@
   "repository": "accordproject/markdown-transform",
   "license": "Apache-2.0",
   "scripts": {
-    "demo": "node scripts/build_demo.js"
+    "dingus": "node scripts/build_dingus.js"
   },
   "files": [],
   "dependencies": {},
   "devDependencies": {
     "@accordproject/markdown-it-template": "0.12.2",
+    "@accordproject/markdown-template": "0.12.2",
     "autoprefixer-stylus": "^0.14.0",
     "browserify": "^16.3.0",
     "highlight.js": "^10.0.3",

@@ -4,6 +4,7 @@
 /*global $, _*/
 
 const markdownit = require('markdown-it');
+const tokensToUntypedTemplateMark = require('@accordproject/markdown-template').templatemarkutil.tokensToUntypedTemplateMark;
 
 var mdurl = require('mdurl');
 
@@ -72,7 +73,7 @@ var defaults = {
   // options below are for demo only
   _highlight: true,
   _strict: false,
-  _view: 'html'               // html / src / debug
+  _view: 'html'               // html / src / debug / ast
 };
 
 defaults.highlight = function (str, lang) {
@@ -117,6 +118,7 @@ function setResultView(val) {
   $('body').removeClass('result-as-html');
   $('body').removeClass('result-as-src');
   $('body').removeClass('result-as-debug');
+  $('body').removeClass('result-as-ast');
   $('body').addClass('result-as-' + val);
   defaults._view = val;
 }
@@ -172,7 +174,7 @@ function updateResult() {
   var source = $('.source').val();
 
   // Update only active view to avoid slowdowns
-  // (debug & src view with highlighting are a bit slow)
+  // (debug & ast & src view with highlighting are a bit slow)
   if (defaults._view === 'src') {
     setHighlightedlContent('.result-src-content', mdSrc.render(source), 'html');
 
@@ -180,6 +182,13 @@ function updateResult() {
     setHighlightedlContent(
       '.result-debug-content',
       JSON.stringify(mdSrc.parse(source, { references: {} }), null, 2),
+      'json'
+    );
+
+  } else if (defaults._view === 'ast') {
+    setHighlightedlContent(
+      '.result-ast-content',
+      JSON.stringify(tokensToUntypedTemplateMark(mdSrc.parse(source, { references: {} }),'contract'), null, 2),
       'json'
     );
 
@@ -377,7 +386,7 @@ function loadPermalink() {
   });
 
   // sanitize for sure
-  if ([ 'html', 'src', 'debug' ].indexOf(defaults._view) === -1) {
+  if ([ 'html', 'src', 'debug', 'ast' ].indexOf(defaults._view) === -1) {
     defaults._view = 'html';
   }
 }
