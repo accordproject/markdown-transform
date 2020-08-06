@@ -18,9 +18,14 @@ const cicero_inline = require('./cicero_inline');
 const cicero_block = require('./cicero_block');
 const cicero_block_render = require('./cicero_block_render');
 
-// Regexps to match cicero elements
+const formula_inline = function (tokens, idx /*, options, env */) {
+  const token = tokens[idx];
+  return `<span class="formula">${token.content}</span>`;
+};
 
 function cicero_plugin(md) {
+    md.renderer.rules['formula'] = formula_inline;
+
     md.inline.ruler.before('emphasis', 'cicero', cicero_inline);
 
     md.block.ruler.before('fence', 'cicero_block', cicero_block, {

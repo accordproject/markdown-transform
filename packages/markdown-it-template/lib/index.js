@@ -19,7 +19,38 @@ const template_inline_render = require('./template_inline_render');
 const template_block = require('./template_block');
 const template_block_render = require('./template_block_render');
 
-// Regexps to match template elements
+/**
+ * Get an attribute value
+ *
+ * @param {*} attrs open ordered list attributes
+ * @param {string} name attribute name
+ * @param {*} def a default value
+ * @returns {string} the initial index
+ */
+function getAttr(attrs,name,def) {
+    const startAttrs = attrs.filter((x) => x[0] === name);
+    if (startAttrs[0]) {
+        return '' + startAttrs[0][1];
+    } else {
+        return def;
+    }
+}
+
+const variable_inline = function (tokens, idx /*, options, env */) {
+  const token = tokens[idx];
+  const name = getAttr(token.attrs,'name',null);
+  const format = getAttr(token.attrs,'format',null);
+  let attrs = `name="${name}"`;
+  if(format) {
+    attrs += ` format="${format}"`;
+  }
+  return `<span class="variable" ${attrs}>${name}</span>`;
+};
+
+const formula_inline = function (tokens, idx /*, options, env */) {
+  const token = tokens[idx];
+  return `<span class="formula">${token.content}</span>`;
+};
 
 function template_plugin(md) {
     md.inline.ruler.before('emphasis', 'template', template_inline);
@@ -31,6 +62,8 @@ function template_plugin(md) {
     md.renderer.rules['inline_block_with_close'] = template_inline_render('with');
     md.renderer.rules['inline_block_join_open'] = template_inline_render('join');
     md.renderer.rules['inline_block_join_close'] = template_inline_render('join');
+    md.renderer.rules['variable'] = variable_inline;
+    md.renderer.rules['formula'] = formula_inline;
 
     md.block.ruler.before('fence', 'template_block', template_block, {
         alt: [ 'paragraph', 'reference', 'blockquote', 'list' ]
