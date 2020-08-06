@@ -32,8 +32,6 @@ This is a [link with a {{variable}} in it](mylink).
 
 This is a [link with a {{this}} in it](mylink).
 
-This is a [link with an {{else}} in it](mylink).
-
 This is a [link with an {{#if name}} in it{{/if}}](mylink).
 
 This is a [link with an {{#optional name}} in it{{/optional}}](mylink).

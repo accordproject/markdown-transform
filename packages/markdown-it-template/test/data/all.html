@@ -1,6 +1,6 @@
 <h1>Title</h1>
-<p>Paragraph with a <span class="variable" name="seller">seller</span> and more text and<div name="forceMajeure" class="if_inline">, this is conditional,</div> with some <strong>marker</strong> <span class="formula"> 1+1 = 3 </span>. <div name="foo" separator=";" class="join_inline"><span class="variable" name="element">element</span></div></p>
-<p>Paragraph with a <span class="variable" name="seller">seller</span> and more text and<div name="forceMajeure" class="if_inline">, this is conditional,<else> and this is too,</div> with some <strong>marker</strong> <span class="formula"> 1+1 = 3 </span>. <div name="foo" class="join_inline"><span class="variable" name="element">element</span></div></p>
+<p>Paragraph with a <span class="variable" name="seller">seller</span> and more text and<span name="forceMajeure" class="if_inline">, this is conditional,</span> with some <strong>marker</strong> <span class="formula"> 1+1 = 3 </span>. <span name="foo" separator=";" class="join_inline"><span class="variable" name="element">element</span></span></p>
+<p>Paragraph with a <span class="variable" name="seller">seller</span> and more text and<span name="forceMajeure" class="if_inline">, this is conditional,</span><span class="else"> and this is too,</span> with some <strong>marker</strong> <span class="formula"> 1+1 = 3 </span>. <span name="foo" class="join_inline"><span class="variable" name="element">element</span></span></p>
 <p><span class="variable" name="buyer" format="FOO">buyer</span></p>
 <div name="payment" src="ap://promissory-note-md@0.3.2#b4c966c2081303d017d3dde359bd8039ceb4a5dbacb6e6e09618e33a00d3f566" class="clause_block">
 <p>BLABLABLABLA</p>
@@ -16,12 +16,11 @@
 <li>three</li>
 </ul>
 </div>
-<p>There is also a new <div name="name" class="optional_inline"> inline which can contain <this></div>.</p>
-<p>There is also a new <div name="name" class="optional_inline"> inline which can contain <this><else>something else</div>.</p>
+<p>There is also a new <span name="name" class="optional_inline"> inline which can contain <this></span>.</p>
+<p>There is also a new <span name="name" class="optional_inline"> inline which can contain <this></span><span class="else">something else</span>.</p>
 <p>This is a <a href="mylink">link with a <span class="variable" name="variable">variable</span> in it</a>.</p>
 <p>This is a <a href="mylink">link with a <this> in it</a>.</p>
-<p>This is a <a href="mylink">link with an <else> in it</a>.</p>
-<p>This is a <a href="mylink">link with an <div name="name" class="if_inline"> in it</div></a>.</p>
-<p>This is a <a href="mylink">link with an <div name="name" class="optional_inline"> in it</div></a>.</p>
-<p>This is a <a href="mylink">link with a <div name="name" class="join_inline"> in it</div></a>.</p>
+<p>This is a <a href="mylink">link with an <span name="name" class="if_inline"> in it</span></a>.</p>
+<p>This is a <a href="mylink">link with an <span name="name" class="optional_inline"> in it</span></a>.</p>
+<p>This is a <a href="mylink">link with a <span name="name" class="join_inline"> in it</span></a>.</p>
 <p>This is a <a href="mylink">link with a <span class="formula"> formula </span> in it</a>.</p>
