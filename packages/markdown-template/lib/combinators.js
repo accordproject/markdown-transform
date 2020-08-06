@@ -17,7 +17,7 @@
 const P = require('parsimmon');
 const uuid = require('uuid');
 
-const flatten = require('./templatemarkutil').flatten;
+const flatten = require('./util').flatten;
 const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 
 /**

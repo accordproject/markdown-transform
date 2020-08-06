@@ -14,20 +14,9 @@
 
 'use strict';
 
-const crypto = require('crypto');
+const formulaName = require('./util').formulaName;
 const { getAttr } = require('@accordproject/markdown-common').CommonMarkUtils;
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
-
-/**
- * Returns a unique chosen name for a formula
- * @param {string} code - the formula code
- * @return {string} the unique name
- */
-function formulaName(code) {
-    const hasher = crypto.createHash('sha256');
-    hasher.update(code);
-    return hasher.digest('hex');
-}
 
 // Inline rules
 const variableRule = {

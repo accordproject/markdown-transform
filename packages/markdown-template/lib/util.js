@@ -14,13 +14,27 @@
 
 'use strict';
 
-/**
- * Export the framework and plugins
- * @module markdown-template
- */
+const crypto = require('crypto');
 
-module.exports.util = require('./lib/util');
-module.exports.datetimeutil = require('./lib/datetimeutil');
-module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
-module.exports.ParserManager = require('./lib/parsermanager');
-module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
+/**
+ * Flatten an array of array
+ * @param {*[]} arr the input array
+ * @return {*[]} the flattened array
+ */
+function flatten(arr) {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
+/**
+ * Returns a unique chosen name for a formula
+ * @param {string} code - the formula code
+ * @return {string} the unique name
+ */
+function formulaName(code) {
+    const hasher = crypto.createHash('sha256');
+    hasher.update(code);
+    return 'formula_' + hasher.digest('hex');
+}
+
+module.exports.flatten = flatten;
+module.exports.formulaName = formulaName;

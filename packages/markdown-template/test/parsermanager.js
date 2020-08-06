@@ -65,7 +65,7 @@ and monthly payments of {{% monthlyPaymentFormula(loanAmount,rate,loanDuration) 
 `);
         parserManager.buildParser();
         parserManager.getFormulas().should.deep.equal([{
-            name:'d02c8642fa12d6ed08dea71f0af7a77b0c7893804d0b43b537eb18ea6f666463',
+            name:'formula_d02c8642fa12d6ed08dea71f0af7a77b0c7893804d0b43b537eb18ea6f666463',
             code:' monthlyPaymentFormula(loanAmount,rate,loanDuration) as "K0,0.00" ',
         }]);
     });
@@ -86,10 +86,10 @@ And this: {{% 3.14+2.98 %}} is a formula
 - And this is another formula in a list {{% firstName ++ " " ++ lastName %}}`);
         parserManager.buildParser();
         parserManager.getFormulas().should.deep.equal([{
-            name:'f2fdbcfc705ed55d07f02e6ca8b5a9dc725eef44c32f77e4ce9307626fe09a63',
+            name:'formula_f2fdbcfc705ed55d07f02e6ca8b5a9dc725eef44c32f77e4ce9307626fe09a63',
             code:' 3.14+2.98 ',
         },{
-            name:'2906467fe4dc174f6c4bf9b01ea281014784c2a0581868fd5689675e367c362b',
+            name:'formula_2906467fe4dc174f6c4bf9b01ea281014784c2a0581868fd5689675e367c362b',
             code:' firstName ++ " " ++ lastName ',
         }]);
     });
