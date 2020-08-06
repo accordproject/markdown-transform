@@ -25,6 +25,7 @@
   "version": "0.12.1",
   "private": true,
   "scripts": {
+    "dingus": "lerna exec --scope dingus -- npm run demo",
     "build": "lerna run build",
     "postinstall": "npm run models:get && lerna bootstrap",
     "models:get": "node ./scripts/external/getExternalModels.js",
@@ -32,7 +33,7 @@
     "publish": "./scripts/manualrelease.sh",
     "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-it-cicero/coverage/*.json packages/markdown-it-template/coverage/*.json packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-template/coverage/*.json packages/markdown-slate/coverage/*.json packages/markdown-html/coverage/*.json packages/markdown-pdf/coverage/*.json packages/markdown-docx/coverage/*.json packages/markdown-transform/coverage/*.json packages/markdown-cli/coverage/*.json && cat ./coverage/lcov.info | coveralls",
     "pretest": "npm run licchk",
-    "test": "lerna exec -- npm run test:cov",
+    "test": "lerna exec --ignore dingus -- npm run test:cov",
     "repoclean": "lerna clean",
     "licchk": "license-check-and-add",
     "pkgcheck": "node ./scripts/pkgcheck.js",

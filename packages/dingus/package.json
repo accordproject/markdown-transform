@@ -1,0 +1,32 @@
+{
+  "name": "dingus",
+  "version": "0.12.1",
+  "description": "Markdown Transform Dingus",
+  "keywords": [
+    "accord-project",
+    "markdown",
+    "markdown-it",
+    "commonmark"
+  ],
+  "repository": "accordproject/markdown-transform",
+  "license": "Apache-2.0",
+  "scripts": {
+    "demo": "node scripts/build_demo.js"
+  },
+  "files": [],
+  "dependencies": {},
+  "devDependencies": {
+    "@accordproject/markdown-it-template": "0.12.1",
+    "autoprefixer-stylus": "^0.14.0",
+    "browserify": "^16.3.0",
+    "highlight.js": "^10.0.3",
+    "ndoc": "^5.0.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "shelljs": "^0.8.4",
+    "stylus": "^0.54.5",
+    "terser": "^4.1.2"
+  },
+  "mocha": {
+    "inline-diffs": true
+  }
+}
