@@ -16,7 +16,7 @@
 
 const P = require('parsimmon');
 
-const flatten = require('./templatemarkutil').flatten;
+const flatten = require('./util').flatten;
 const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 const FromCommonMarkVisitor = require('@accordproject/markdown-common').FromCommonMarkVisitor;
 const fromcommonmarkrules = require('@accordproject/markdown-common').fromcommonmarkrules;

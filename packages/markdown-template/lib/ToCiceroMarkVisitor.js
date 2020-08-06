@@ -14,7 +14,7 @@
 
 'use strict';
 
-const flatten = require('./templatemarkutil').flatten;
+const flatten = require('./util').flatten;
 const generateJSON = require('./templatemarkutil').generateJSON;
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;

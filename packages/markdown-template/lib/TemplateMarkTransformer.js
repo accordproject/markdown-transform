@@ -246,7 +246,6 @@ class TemplateMarkTransformer {
         input.accept(visitor, parameters);
         const result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
 
-        //console.log('DRAFT ' + JSON.stringify(result));
         return result;
     }
 

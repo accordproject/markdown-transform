@@ -30,15 +30,6 @@ const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
 const templaterules = require('./templaterules');
 
 /**
- * Flatten an array of array
- * @param {*[]} arr the input array
- * @return {*[]} the flattened array
- */
-function flatten(arr) {
-    return arr.reduce((acc, val) => acc.concat(val), []);
-}
-
-/**
  * Model manager for TemplateMark
  * @returns {object} model manager and utilities for TemplateMark
  */
@@ -312,7 +303,6 @@ function generateJSON(modelManager,type) {
     }
 }
 
-module.exports.flatten = flatten;
 module.exports.findTemplateModel = findTemplateModel;
 module.exports.templateMarkManager = templateMarkManager;
 
