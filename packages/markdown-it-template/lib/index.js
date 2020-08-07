@@ -47,6 +47,10 @@ const variable_inline = function (tokens, idx /*, options, env */) {
   return `<span class="variable" ${attrs}>${name}</span>`;
 };
 
+const this_inline = function (tokens, idx /*, options, env */) {
+  return `<span class="variable" name="this">this</span>`;
+};
+
 const else_inline = function (tokens, idx /*, options, env */) {
   return `</span><span class="else_inline">`;
 };
@@ -68,6 +72,7 @@ function template_plugin(md) {
     md.renderer.rules['inline_block_join_close'] = template_inline_render('join');
     md.renderer.rules['inline_block_else'] = else_inline;
     md.renderer.rules['variable'] = variable_inline;
+    md.renderer.rules['this'] = this_inline;
     md.renderer.rules['formula'] = formula_inline;
 
     md.block.ruler.before('fence', 'template_block', template_block, {
