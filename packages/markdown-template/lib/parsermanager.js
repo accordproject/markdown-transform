@@ -62,17 +62,26 @@ class ParserManager {
         this.parser = null;
         this.templateKind = templateKind ? templateKind : 'clause';
         this.currentTime = datetimeutil.setCurrentTime(null); // Default setting to now
+        this.userParsingTable = parsingTable;
+        this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
 
+        // Initialize parsing table
+        this.initParsingTable();
+    }
+
+    /**
+     * Initialize parsing table
+     */
+    initParsingTable() {
         // Mapping from types to parsers/drafters
         this.parserVisitor = new ToParserVisitor();
         const parserHook = function(ast,parameters) {
             return ToParserVisitor.toParserWithParameters(new ToParserVisitor(),ast,parameters);
         };
         this.parsingTable = new ParsingTable(this.modelManager,parserHook,draftVisitNodes);
-        if (parsingTable) {
-            this.parsingTable.addParsingTable(parsingTable);
+        if (this.userParsingTable) {
+            this.parsingTable.addParsingTable(this.userParsingTable);
         }
-        this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
     }
 
     /**
@@ -154,23 +163,49 @@ class ParserManager {
     }
 
     /**
-     * Sets parsing table for variables
+     * Sets parsing table extension
      * @param {object} table the parsing table
      */
     setParsingTable(table) {
-        this.parsingTable = table;
+        this.userParsingTable = table;
     }
 
     /**
-     * Build the parser
+     * Initialize the parser
      */
-    buildParser() {
+    initParser() {
         if (!this.templateMark) {
             const tokenStream = templateToTokens(this.template);
             const template = tokensToUntypedTemplateMark(tokenStream, this.templateKind);
             this.templateMark = templateMarkTyping(template, this.modelManager, this.templateKind);
         }
         this.parser = this.parserVisitor.toParser(this,this.templateMark,this.parsingTable);
+    }
+
+    /**
+     * Build the parser
+     */
+    buildParser() {
+        if (this.parser) {
+            this.rebuildParser();
+        } else {
+            this.initParser();
+        }
+    }
+
+    /**
+     * Rebuild the parser
+     */
+    rebuildParser() {
+        // Clear the parser
+        this.parser = null;
+        // Reinitialize the parsing table
+        this.initParsingTable();
+        // Clear templateMark if a template grammar exists
+        if (this.template && this.templateMark) {
+            this.templateMark = null;
+        }
+        this.initParser();
     }
 
     /**

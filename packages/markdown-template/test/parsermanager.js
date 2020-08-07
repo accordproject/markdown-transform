@@ -50,6 +50,20 @@ describe('#constructor', () => {
         should.exist(parserManager.getTemplateMark());
     });
 
+    it('rebuild a parser', async () => {
+        const model = './test/data/helloworld/model.cto';
+        const template = normalizeNLs(fs.readFileSync('./test/data/helloworld/grammar.tem.md', 'utf8'));
+        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const parserManager = new ParserManager(modelManager,'clause',null,null);
+        parserManager.setTemplate(template);
+        parserManager.getTemplate().should.equal('Name of the person to greet: {{name}}.\nThank you!');
+        (() => parserManager.getTemplateMark()).should.throw('Must call buildParser before calling getTemplateMark');
+        (() => parserManager.getParser()).should.throw('Must call buildParser before calling getParser');
+        parserManager.buildParser();
+        parserManager.buildParser();
+        should.exist(parserManager.getTemplateMark());
+    });
+
     it('handle formulas', async () => {
         const model = './test/data/fixed-interests/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/fixed-interests/grammar.tem.md', 'utf8'));
