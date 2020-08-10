@@ -456,9 +456,13 @@ $(function () {
     if (_.isBoolean(val)) {
       $el.prop('checked', val);
       $el.on('change', function () {
-        var value = Boolean($el.prop('checked'));
-        setOptionClass(key, value);
-        defaults[key] = value;
+        $("._tipbox").prop('checked', false);
+        defaults['templateMark'] = false;
+        defaults['ciceroMark'] = false;
+        defaults['_strict'] = false;
+        $(this).prop('checked', true);
+        setOptionClass(key, true);
+        defaults[key] = true;
         mdInit();
         updateResult();
       });

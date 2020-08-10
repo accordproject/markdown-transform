@@ -1,4 +1,4 @@
-h1 { font-family: monospace; font-size: 180%; font-weight: bold }
+h1 { font-family: monospace; font-size: 180%; font-weight: bold; margin-bottom: 0.5em; }
 
 .variable {
 	  border: #A4BBE7 1px solid;
