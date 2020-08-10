@@ -19,6 +19,8 @@ shell.exec('node_modules/.bin/stylus -u autoprefixer-stylus \
 < lib/index.styl \
 > demo/index.css');
 
+shell.cp('lib/templatemark.css', 'demo/templatemark.css');
+
 shell.rm('-rf', 'lib/sample.json');
 
 shell.exec('node_modules/.bin/browserify lib/index.js \
