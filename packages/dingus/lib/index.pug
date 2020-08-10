@@ -16,7 +16,6 @@ html
 
     link(rel='stylesheet' href='https://cdn.jsdelivr.net/highlight.js/9.1.0/styles/github.min.css')
 
-    script(src='markdown-it.js')
     script(src='https://twemoji.maxcdn.com/twemoji.min.js')
 
     link(rel='stylesheet' href='templatemark.css')
@@ -36,9 +35,17 @@ html
 
       .form-inline.demo-options
         .checkbox
-          label._tip(title='force strict CommonMark mode - output will be equal to reference parser')
+          label._tip(title='templatemark mode - output will include template extensions')
+            input#templateMark(type='checkbox')
+            |  templatemark
+        .checkbox
+          label._tip(title='ciceromark mode - output will include contract extensions')
+            input#ciceroMark(type='checkbox')
+            |  ciceromark
+        .checkbox
+          label._tip(title='commonmark mode - output will be equal to reference parser')
             input#_strict(type='checkbox')
-            |  CommonMark strict
+            |  commonmark
 
     .container.full-height
       .row.full-height

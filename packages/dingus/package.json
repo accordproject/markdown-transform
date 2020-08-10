@@ -16,7 +16,10 @@
   "files": [],
   "dependencies": {},
   "devDependencies": {
+    "@accordproject/markdown-common": "0.12.3",
+    "@accordproject/markdown-it-cicero": "0.12.3",
     "@accordproject/markdown-it-template": "0.12.3",
+    "@accordproject/markdown-cicero": "0.12.3",
     "@accordproject/markdown-template": "0.12.3",
     "autoprefixer-stylus": "^0.14.0",
     "browserify": "^16.3.0",
