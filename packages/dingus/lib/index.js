@@ -4,7 +4,26 @@
 /*global $, _*/
 
 const markdownit = require('markdown-it');
+
+// For CommonMark AST
+const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
+const tokensToCommonMark = (tokens) => {
+  const commonmarkTransformer = new CommonMarkTransformer();
+  return commonmarkTransformer.fromTokens(tokens);
+};
+
+// For CiceroMark AST
+const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const tokensToCiceroMark = (tokens) => {
+  const ciceromarkTransformer = new CiceroMarkTransformer();
+  return ciceromarkTransformer.fromTokens(tokens);
+};
+
+// For TemplateMark AST
 const tokensToUntypedTemplateMark = require('@accordproject/markdown-template').templatemarkutil.tokensToUntypedTemplateMark;
+const tokensToTemplateMark = (tokens) => {
+  return tokensToUntypedTemplateMark(tokens,'contract');
+};
 
 var mdurl = require('mdurl');
 
@@ -70,6 +89,9 @@ hljs.registerLanguage('yaml',         require('highlight.js/lib/languages/yaml')
 var mdHtml, mdSrc, permalink, scrollMap;
 
 var defaults = {
+  templateMark : true,
+  ciceroMark : false,
+
   // options below are for demo only
   _highlight: true,
   _strict: false,
@@ -127,6 +149,11 @@ function mdInit() {
   if (defaults._strict) {
     mdHtml = markdownit('commonmark');
     mdSrc = markdownit('commonmark');
+  } else if(defaults.ciceroMark) {
+    mdHtml = markdownit(defaults)
+      .use(require('@accordproject/markdown-it-cicero'))
+    mdSrc = markdownit(defaults)
+      .use(require('@accordproject/markdown-it-cicero'))
   } else {
     mdHtml = markdownit(defaults)
       .use(require('@accordproject/markdown-it-template'))
@@ -186,9 +213,17 @@ function updateResult() {
     );
 
   } else if (defaults._view === 'ast') {
+    let fromTokens;
+    if (defaults._strict) {
+      fromTokens = tokensToCommonMark;
+    } else if (defaults.ciceroMark) {
+      fromTokens = tokensToCiceroMark;
+    } else {
+      fromTokens = tokensToTemplateMark;
+    }
     setHighlightedlContent(
       '.result-ast-content',
-      JSON.stringify(tokensToUntypedTemplateMark(mdSrc.parse(source, { references: {} }),'contract'), null, 2),
+      JSON.stringify(fromTokens(mdSrc.parse(source, { references: {} })), null, 2),
       'json'
     );
 
