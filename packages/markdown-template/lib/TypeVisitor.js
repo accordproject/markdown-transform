@@ -61,7 +61,7 @@ class TypeVisitor {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
             if (!currentModel) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (thing.name === 'this') {
                 const property = currentModel;
@@ -87,7 +87,7 @@ class TypeVisitor {
                 }
             } else {
                 if (!currentModel.getProperty) {
-                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 const property = currentModel.getProperty(thing.name);
                 if (property) {
@@ -110,7 +110,7 @@ class TypeVisitor {
                         thing.elementType = elementType;
                     }
                 } else {
-                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
             }
         }
@@ -118,12 +118,12 @@ class TypeVisitor {
         case 'ClauseDefinition': {
             if (parameters.kind === 'contract') {
                 if (!currentModel) {
-                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 const property = currentModel.getOwnProperty(thing.name);
                 let nextModel;
                 if (!property) {
-                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 if (property.isPrimitive()) {
                     nextModel = property;
@@ -139,7 +139,7 @@ class TypeVisitor {
                 });
             } else {
                 if (!currentModel) {
-                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 thing.elementType = currentModel.getFullyQualifiedName();
                 TypeVisitor.visitChildren(this, thing, parameters);
@@ -150,7 +150,7 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -170,10 +170,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (!property.isArray()) {
-                _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name);
+                _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name, thing);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -193,10 +193,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (!property.isArray()) {
-                _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name);
+                _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -216,10 +216,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (property.getType() !== 'Boolean') {
-                _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name);
+                _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
             }
             nextModel = property;
             TypeVisitor.visitChildren(this, thing, {
@@ -240,10 +240,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (!property.isOptional()) {
-                _throwTemplateExceptionForElement('Optional template not on an optional property: ' + thing.name);
+                _throwTemplateExceptionForElement('Optional template not on an optional property: ' + thing.name, thing);
             }
             if (property.isPrimitive()) {
                 thing.elementType = property.getFullyQualifiedTypeName();
