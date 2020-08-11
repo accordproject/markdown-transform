@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { ParseException } = require('@accordproject/concerto-core');
+const _throwParseException = require('./errorutil')._throwParseException;
 const {
     templateMarkManager,
     templateToTokens,
@@ -28,65 +28,6 @@ const normalizeToMarkdownCicero = require('./normalize').normalizeToMarkdownCice
 const normalizeFromMarkdownCicero = require('./normalize').normalizeFromMarkdownCicero;
 
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
-
-/**
- * Minimum length of expected token
- * @param {object} expected the expected token
- * @return {number} the minimum length
- */
-function maxOfExpected(expected) {
-    return Math.max.apply(null,expected.map((x) => x.length));
-}
-
-/**
- * Clean up expected tokens
- * @param {object} expected the expected token
- * @return {object} nicer looking expected tokens
- */
-function cleanExpected(expected) {
-    return expected.map((x) => new RegExp(/'[^']*'/).test(x) ? x.substr(1,x.length -2) : x);
-}
-
-/**
- * Throw a parse exception
- * @param {string} markdown a markdown string
- * @param {object} result the parsing failure
- * @param {string} [fileName] - the fileName for the markdown (optional)
- */
-function _throwParseError(markdown,result,fileName) {
-    // File location
-    const fileLocation = {};
-    const start = result.index;
-    const end = Object.assign({},start);
-    end.offset = end.offset+1;
-    end.column = end.column+1;
-    fileLocation.start = start;
-    fileLocation.end = end;
-
-    // Short message
-    const shortMessage = `Parse error at line ${result.index.line} column ${result.index.column}`;
-
-    // Long message
-    const lines = markdown.split('\n');
-    const expected = result.expected;
-    const underline = ((line) => {
-        const maxLength = line.length - (start.column-1);
-        const maxExpected = maxOfExpected(cleanExpected(expected));
-        return '^'.repeat(maxLength < maxExpected ? maxLength : maxExpected);
-    });
-    const line = lines[start.line - 1];
-    const snippet = line + '\n' + ' '.repeat(start.column-1) + underline(line);
-    const isEOF = (x) => {
-        if (x[0] && x[0] === 'EOF') {
-            return true;
-        } else {
-            return false;
-        }
-    };
-    const expectedMessage = 'Expected: ' + (isEOF(expected) ? 'End of text' : expected.join(' or '));
-    const longMessage = shortMessage + '\n' + snippet + '\n' + expectedMessage;
-    throw new ParseException(shortMessage, fileLocation, fileName, longMessage, 'markdown-template');
-}
 
 /**
  * Support for CiceroMark Templates
@@ -171,11 +112,16 @@ class TemplateMarkTransformer {
         const markdownFileName = input.fileName;
 
         // Parse the markdown
-        let result = parser.parse(markdown);
+        let result;
+        try {
+            result = parser.parse(markdown);
+        } catch(err) {
+            _throwParseException(markdown,err.message,markdownFileName);
+        }
         if (result.status) {
             return serializer.toJSON(serializer.fromJSON(result.value));
         } else {
-            _throwParseError(markdown,result,markdownFileName);
+            _throwParseException(markdown,result,markdownFileName);
         }
     }
 

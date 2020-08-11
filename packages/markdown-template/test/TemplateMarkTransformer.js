@@ -133,7 +133,7 @@ const parseFailures = [
     {name:'err6',desc:'wrong text',kind:'contract','error':'Parse error at line 1 column 45\n'},
     {name:'err7',desc:'wrong text',kind:'contract','error':'Parse error at line 7 column 23\nThere is a penalty of .10% for non compliance.\n                      ^^^^^^^^^^^^^^^^^^\nExpected: An Integer literal'},
     {name:'err8',desc:'',kind:'contract','error':'Parse error at line 4 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 ZZZ.'},
-    {name:'errFormula',desc:'inconsistent variables',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {%something something%}} is a computed value.\n          ^^^^^^^^^^^'},
+    {name:'errFormula',desc:'wrong formula',kind:'contract','error':'Parse error at line 8 column 11\nAnd this: {%something something%}} is a computed value.\n          ^^^^^^^^^^^'},
     {name:'errDateTime',desc:'',kind:'clause','error':'Parse error at line 1 column 73\nThis is a contract between "Steve" and "Betty" for the amount of 3131.0 GRR, even in the presence of force majeure.'},
     {name:'errLarge',desc:'',kind:'contract','error':'Parse error at line 804 column 40\nThis is a contract between "Steve" and Betty" for the amount of 3131.0 EUR.'},
     {name:'errRepeat',desc:'inconsistent variables',kind:'clause','error':'Inconsistent values for variable seller: Steve and Betty'},
