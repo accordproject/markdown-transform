@@ -24,4 +24,5 @@ module.exports.templatemarkutil = require('./lib/templatemarkutil');
 module.exports.datetimeutil = require('./lib/datetimeutil');
 module.exports.normalizeNLs = require('./lib/normalize').normalizeNLs;
 module.exports.ParserManager = require('./lib/parsermanager');
+module.exports.TemplateException = require('./lib/templateexception');
 module.exports.TemplateMarkTransformer = require('./lib/TemplateMarkTransformer');
