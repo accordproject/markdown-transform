@@ -18,6 +18,8 @@ const RelationshipDeclaration = require('@accordproject/concerto-core').Relation
 
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
+const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
+
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
@@ -59,7 +61,7 @@ class TypeVisitor {
         case 'VariableDefinition':
         case 'FormattedVariableDefinition': {
             if (!currentModel) {
-                throw new Error('Unknown property ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
             }
             if (thing.name === 'this') {
                 const property = currentModel;
@@ -85,7 +87,7 @@ class TypeVisitor {
                 }
             } else {
                 if (!currentModel.getProperty) {
-                    throw new Error('Unknown property ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
                 }
                 const property = currentModel.getProperty(thing.name);
                 if (property) {
@@ -108,7 +110,7 @@ class TypeVisitor {
                         thing.elementType = elementType;
                     }
                 } else {
-                    throw new Error('Unknown property ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
                 }
             }
         }
@@ -116,12 +118,12 @@ class TypeVisitor {
         case 'ClauseDefinition': {
             if (parameters.kind === 'contract') {
                 if (!currentModel) {
-                    throw new Error('Unknown property ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
                 }
                 const property = currentModel.getOwnProperty(thing.name);
                 let nextModel;
                 if (!property) {
-                    throw new Error('Unknown property ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
                 }
                 if (property.isPrimitive()) {
                     nextModel = property;
@@ -137,7 +139,7 @@ class TypeVisitor {
                 });
             } else {
                 if (!currentModel) {
-                    throw new Error('Unknown property ' + thing.name);
+                    _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
                 }
                 thing.elementType = currentModel.getFullyQualifiedName();
                 TypeVisitor.visitChildren(this, thing, parameters);
@@ -148,7 +150,7 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                throw new Error('Unknown property ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -168,7 +170,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                throw new Error('Unknown property ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+            }
+            if (!property.isArray()) {
+                _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -188,7 +193,10 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                throw new Error('Unknown property ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+            }
+            if (!property.isArray()) {
+                _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name);
             }
             if (property.isPrimitive()) {
                 nextModel = property;
@@ -204,11 +212,38 @@ class TypeVisitor {
             });
         }
             break;
+        case 'ConditionalDefinition': {
+            const property = currentModel.getOwnProperty(thing.name);
+            let nextModel;
+            if (!property) {
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+            }
+            if (property.getType() !== 'Boolean') {
+                _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name);
+            }
+            nextModel = property;
+            TypeVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                introspector:parameters.introspector,
+                model:nextModel,
+                kind:parameters.kind
+            }, 'whenTrue');
+            TypeVisitor.visitChildren(this, thing, {
+                templateMarkModelManager:parameters.templateMarkModelManager,
+                introspector:parameters.introspector,
+                model:null,
+                kind:parameters.kind
+            }, 'whenFalse');
+        }
+            break;
         case 'OptionalDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
             if (!property) {
-                throw new Error('Unknown property ' + thing.name);
+                _throwTemplateExceptionForElement('Unknown property: ' + thing.name);
+            }
+            if (!property.isOptional()) {
+                _throwTemplateExceptionForElement('Optional template not on an optional property: ' + thing.name);
             }
             if (property.isPrimitive()) {
                 thing.elementType = property.getFullyQualifiedTypeName();

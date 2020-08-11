@@ -125,10 +125,10 @@ require('yargs')
                     }
                 })
                 .catch((err) => {
-                    logger.error(err);
+                    logger.error(err.message);
                 });
         } catch (err){
-            logger.error(err);
+            logger.error(err.message);
             return;
         }
     })
