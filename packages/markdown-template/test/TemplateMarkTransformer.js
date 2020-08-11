@@ -110,10 +110,18 @@ const templateFailures = [
     {name:'templateErr1',desc:'duplicate contract',kind:'contract','error':'Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
     {name:'templateErr2',desc:'duplicate clause',kind:'clause','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.'},
     {name:'templateErr2',desc:'duplicate contract',kind:'contract','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
-    {name:'templateErr3',desc:'missing clause property',kind:'clause','error':'Unknown property seller'},
-    {name:'templateErr4',desc:'missing contract property',kind:'contract','error':'Unknown property agreement'},
-    {name:'templateErr5',desc:'missing with property',kind:'contract','error':'Unknown property sellerAddress'},
-    {name:'templateErr6',desc:'missing with property',kind:'contract','error':'Unknown property prices'},
+    {name:'templateErr3',desc:'missing clause property',kind:'clause','error':'Unknown property: seller'},
+    {name:'templateErr4',desc:'missing contract property',kind:'contract','error':'Unknown property: agreement'},
+    {name:'templateErr5',desc:'missing with property',kind:'contract','error':'Unknown property: sellerAddress'},
+    {name:'templateErr6',desc:'missing with property',kind:'contract','error':'Unknown property: prices'},
+    {name:'templateNotConditional',desc:'wrong type for conditional',kind:'clause','error':'Conditional template not on a boolean property: forceMajeure'},
+    {name:'templateUnknownInConditional',desc:'variable inside conditional',kind:'clause','error':'Unknown property: foo'},
+    {name:'templateNotOptional',desc:'wrong type for optional',kind:'clause','error':'Optional template not on an optional property: forceMajeure'},
+    {name:'templateNotOList',desc:'wrong type for list',kind:'contract','error':'List template not on an array property: prices'},
+    {name:'templateNotJoin',desc:'wrong type for join',kind:'contract','error':'Join template not on an array property: rates'},
+    {name:'templateUnknownOptional',desc:'missing optional property',kind:'clause','error':'Unknown property: forceMajeure'},
+    {name:'templateUnknownOList',desc:'missing list property',kind:'contract','error':'Unknown property: prices'},
+    {name:'templateUnknownJoin',desc:'missing join property',kind:'contract','error':'Unknown property: rates'},
 ];
 
 const parseFailures = [
