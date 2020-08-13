@@ -35,6 +35,7 @@ class OoxmlTransformer {
                 return property.attributes['w:val'];
             }
         }
+        return null;
     }
 
     /**
@@ -50,6 +51,7 @@ class OoxmlTransformer {
                 return property.elements[0].text;
             }
         }
+        return null;
     }
 
     /**
@@ -59,7 +61,7 @@ class OoxmlTransformer {
      * @returns {boolean} whether the element is a line break
      */
     isLineBreak(element) {
-        return element.name === 'w:br';
+        return element.name === 'w:p' && element.elements === undefined;
     }
 
     /**
@@ -97,17 +99,11 @@ class OoxmlTransformer {
                 const headingElement = this.getHeading(element.elements[0].elements[0]);
                 const lineBreak = this.isLineBreak(element.elements[0].elements[0]);
                 if (headingElement.isHeading) {
-                    return [
-                        {
-                            $class: `${NS_PREFIX_CommonMarkModel}Heading`,
-                            level: headingElement.level,
-                            nodes: [this.deserializeElements(element.elements)[0]]
-                        },
-                        {
-                            $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
-                            nodes: this.deserializeElements(element.elements).slice(1)
-                        },
-                    ];
+                    return {
+                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                        level: headingElement.level,
+                        nodes: [this.deserializeElements(element.elements)[0]],
+                    };
                 }
                 if (!lineBreak) {
                     return {
@@ -117,22 +113,27 @@ class OoxmlTransformer {
                 }
             }
             return;
-        case 'w:sdt':
+        case 'w:sdt': {
+            const id = this.getId(element.elements);
+            const value = this.getValue(element.elements);
+            if (id && value) {
+                return {
+                    $class: 'org.accordproject.ciceromark.Variable',
+                    id: this.getId(element.elements),
+                    value: this.getValue(element.elements),
+                };
+            }
+            return this.deserializeElements(element.elements);
+        }
+        case 'w:sym':
             return {
-                $class: 'org.accordproject.ciceromark.Variable',
-                id: this.getId(element.elements),
-                value: this.getValue(element.elements),
+                $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         case 'w:r':
             return [...this.deserializeElements(element.elements)];
         case 'w:color':
             return element.attributes['w:color'];
         case 'w:t':
-            if (element.elements === undefined && element.attributes['xml:space'] === 'preserve') {
-                return {
-                    $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
-                };
-            }
             return {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
                 text: element.elements[0].text
