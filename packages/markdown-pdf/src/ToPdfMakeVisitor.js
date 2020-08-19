@@ -222,9 +222,10 @@ class ToPdfMakeVisitor {
             break;
         case 'Heading': {
             const child = this.processChildNodes(thing,parameters);
+            const text = child && child[0] && child[0].text ? child[0].text : '';
             result.style = ToPdfMakeVisitor.getHeadingType(thing);
-            result.text = `\n${child[0].text}\n`;
-            result.tocItem = true;
+            result.text = `\n${text}\n`;
+            result.tocItem = text.length > 0 ? true : false;
         }
             break;
         case 'ThematicBreak': {
