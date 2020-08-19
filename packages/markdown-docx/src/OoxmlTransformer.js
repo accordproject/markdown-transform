@@ -26,13 +26,32 @@ class OoxmlTransformer {
      * Gets the id of the variable
      *
      * @param {Array} elements the variable elements
-     * @returns {string} the name/id of the variable
+     * @returns {string} the name of the variable
      */
-    getId(elements) {
+    getName(elements) {
         const variableProperties = elements[0];
         for (const property of variableProperties.elements) {
             if (property.name === 'w:tag') {
                 return property.attributes['w:val'];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get the type of the element
+     *
+     * @param {Array} elements the variable elements
+     * @returns {string} the type of the element
+     */
+    getElementType(elements) {
+        const variableProperties = elements[0];
+        for (const property of variableProperties.elements) {
+            if (property.name === 'w:alias') {
+                // eg. "Shipper1 | org.accordproject.organization.Organization"
+                const combinedTitle = property.attributes['w:val'];
+                // Index 1 will return the type
+                return combinedTitle.split(' | ')[1];
             }
         }
         return null;
@@ -114,13 +133,15 @@ class OoxmlTransformer {
             }
             return;
         case 'w:sdt': {
-            const id = this.getId(element.elements);
+            const name = this.getName(element.elements);
             const value = this.getValue(element.elements);
-            if (id && value) {
+            const elementType = this.getElementType(element.elements);
+            if (name && value && elementType) {
                 return {
                     $class: 'org.accordproject.ciceromark.Variable',
-                    id: this.getId(element.elements),
-                    value: this.getValue(element.elements),
+                    value,
+                    name,
+                    elementType,
                 };
             }
             return this.deserializeElements(element.elements);
@@ -178,7 +199,7 @@ class OoxmlTransformer {
      *
      * @param {string} input the ooxml string
      * @param {string} pkgName the package name of the xml to be converted
-     * @returns {string} CiceroMark object
+     * @returns {object} CiceroMark object
      */
     toCiceroMark(input, pkgName='/word/document.xml') {
         // Parses the OOXML 'test/data/ooxml/document.xml' to JSON
@@ -191,15 +212,11 @@ class OoxmlTransformer {
         for (const node of rootNode) {
             if (node.attributes['pkg:name'] === pkgName) {
                 // Gets the document node
-                // https://gist.github.com/algomaster99/56b37d43b22bdf9e1d5c25c5d5cb6e5e
-                // we shall be iterating over this Gist
                 documentNode = node.elements[0].elements[0];
                 break;
             }
         }
         const nodes = this.deserializeElements(documentNode.elements);
-        // the output:
-        // https://gist.github.com/algomaster99/1986e9c08f6f3089a563846b2ff54321
         return {
             '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             xmlns: 'http://commonmark.org/xml/1.0',
