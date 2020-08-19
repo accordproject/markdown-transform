@@ -15,6 +15,9 @@
 'use strict';
 
 const fs = require('fs');
+const chai = require('chai');
+
+const expect = chai.expect;
 
 const OoxmlTransformer = require('./OoxmlTransformer');
 
@@ -22,9 +25,9 @@ describe('OOXML -> CiceroMark', () => {
 
     it('converts ooxml to json', async () => {
         const ooxmlTransformer = new OoxmlTransformer();
-        const ooxml = await fs.readFileSync('test/data/ooxml/document.xml', 'utf-8');
-        const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/document.json', 'utf-8');
-        const convertedObject = JSON.stringify(ooxmlTransformer.toCiceroMark(ooxml));
-        expect(convertedObject).toBe(testCiceroMark);
+        const ooxml = await fs.readFileSync('test/data/ooxml/acceptance-of-delivery.xml', 'utf-8');
+        const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/acceptance-of-delivery.json', 'utf-8');
+        const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
+        expect(convertedObject).to.deep.equal(JSON.parse(testCiceroMark));
     });
 });
