@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.12.4",
+  "version": "0.12.5",
   "description": "API for transforming markdown data",
   "engines": {
     "node": ">=8",
@@ -55,13 +55,13 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "^0.82.8",
-    "@accordproject/markdown-cicero": "0.12.4",
-    "@accordproject/markdown-common": "0.12.4",
-    "@accordproject/markdown-docx": "0.12.4",
-    "@accordproject/markdown-html": "0.12.4",
-    "@accordproject/markdown-pdf": "0.12.4",
-    "@accordproject/markdown-slate": "0.12.4",
-    "@accordproject/markdown-template": "0.12.4",
+    "@accordproject/markdown-cicero": "0.12.5",
+    "@accordproject/markdown-common": "0.12.5",
+    "@accordproject/markdown-docx": "0.12.5",
+    "@accordproject/markdown-html": "0.12.5",
+    "@accordproject/markdown-pdf": "0.12.5",
+    "@accordproject/markdown-slate": "0.12.5",
+    "@accordproject/markdown-template": "0.12.5",
     "moment-mini": "2.22.1",
     "dijkstrajs": "^1.0.1"
   },
