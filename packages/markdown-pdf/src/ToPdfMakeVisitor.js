@@ -205,8 +205,10 @@ class ToPdfMakeVisitor {
             result.text = fixedText;
         }
             break;
+        case 'Optional':
         case 'Conditional': {
-            result.text = thing.nodes[0].text;
+            const child = this.processChildNodes(thing,parameters);
+            result.text = child;
         }
             break;
         case 'HtmlInline':
