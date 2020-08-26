@@ -51,8 +51,49 @@ function getBlockAttributes(match) {
     return result;
 }
 
+/**
+ * Match opening blocks
+ * @param {string} text - the text
+ * @param {Array<string>} stack - the block stack
+ * @return {*} open tag
+ */
+function matchOpenBlock(text,stack) {
+    var match = text.match(OPEN_BLOCK_RE);
+    if (!match) { return null; }
+    var block_open = match[1];
+    if (block_open !== 'clause' && block_open !== 'ulist' && block_open !== 'olist') { return null; }
+    stack.unshift(block_open);
+    return { tag: block_open, attrs: getBlockAttributes(match), matched: match };
+}
+/**
+ * Match closing blocks
+ * @param {string} text - the text
+ * @param {string} block_open - the opening block name
+ * @param {Array<string>} stack - the block stack
+ * @return {*} close tag
+ */
+function matchCloseBlock(text,block_open,stack) {
+    var match = text.match(CLOSE_BLOCK_RE);
+    if (!match) {
+        return null;
+    }
+    var block_close = match[1];
+    // Handle proper nesting
+    if (stack[0] === block_close) {
+        stack.shift()
+    }
+    // Handle stack depleted
+    if (stack.length > 0) {
+        return null;
+    } else {
+        return { tag: block_close, matched: match };
+    }
+}
+
 module.exports.VARIABLE_RE = VARIABLE_RE;
 module.exports.OPEN_BLOCK_RE = OPEN_BLOCK_RE;
 module.exports.CLOSE_BLOCK_RE = CLOSE_BLOCK_RE;
 module.exports.FORMULA_RE = FORMULA_RE;
+module.exports.matchOpenBlock = matchOpenBlock;
+module.exports.matchCloseBlock = matchCloseBlock;
 module.exports.getBlockAttributes = getBlockAttributes;
