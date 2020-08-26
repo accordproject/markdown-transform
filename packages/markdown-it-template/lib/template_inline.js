@@ -55,7 +55,7 @@ function template_inline(state, silent) {
         }
         token         = state.push('inline_block_' + block + '_open', 'span', 1);
         token.content = match[0];
-        token.attrs = attrs;
+        token.attrs   = attrs;
 
         state.pos += match[0].length;
 
