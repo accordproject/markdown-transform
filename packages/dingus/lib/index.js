@@ -91,6 +91,7 @@ var mdHtml, mdSrc, permalink, scrollMap;
 var defaults = {
   templateMark : true,
   ciceroMark : false,
+  html : true,
 
   // options below are for demo only
   _highlight: true,
