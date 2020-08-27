@@ -14,8 +14,6 @@
 
 'use strict';
 
-const OPEN_BLOCK_RE = require('./template_re').OPEN_BLOCK_RE;
-const CLOSE_BLOCK_RE = require('./template_re').CLOSE_BLOCK_RE;
 const matchOpenBlock = require('./template_re').matchOpenBlock;
 const matchCloseBlock = require('./template_re').matchCloseBlock;
 
@@ -41,6 +39,13 @@ function template_block(state, startLine, endLine, silent) {
 
     match = matchOpenBlock(state.src.slice(start),stack);
     if (!match) { return false; }
+
+    // make sure tail has spaces only
+    pos = start + match.matched[0].length;
+    pos = state.skipSpaces(pos);
+
+    if (pos < max) { return false; }
+
     block_open = match.tag;
     attrs = match.attrs;
 
