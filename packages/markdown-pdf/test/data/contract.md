@@ -54,13 +54,31 @@ And <inline>html</inline>.
 
 And below is a **clause**.
 
-``` <clause name="479adbb4-dc55-4d1a-ab12-b6c5e16900c0" src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f">
-Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
+{{#clause f30a9f03-8d0f-481a-81bb-4a64f46ab297 src="ap://acceptance-of-delivery@0.14.0#5d2fd778622e85e0f9224be383df3db2d4dfdc878d70b94a0a6231d53b3bf5ee"}}
+Acceptance of Delivery.
+----
 
-Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
+"Barilla" will be deemed to have completed its delivery obligations
+if in "Acme"'s opinion, the "Pasta" satisfies the
+Acceptance Criteria, and "Acme" notifies "Barilla" in writing
+that it is accepting the "Pasta".
 
-Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.
-```
+Inspection and Notice.
+----
+
+"Acme" will have 10 Business Days to inspect and
+evaluate the "Pasta" on the delivery date before notifying
+"Barilla" that it is either accepting or rejecting the
+"Pasta".
+
+Acceptance Criteria.
+----
+
+The "Acceptance Criteria" are the specifications the "Pasta"
+must meet for the "Barilla" to comply with its requirements and
+obligations under this agreement, detailed in "Attachment X", attached
+to this agreement.
+{{/clause}}
 
 ## Image (Heading Two)
 
