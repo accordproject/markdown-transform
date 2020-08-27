@@ -66,12 +66,11 @@ function blocksEnterBlock(stack, blockType, setFirst) {
  * @return {string} several new lines with the proper prefix
  */
 function blocksNewLines(stack, nb) {
-    //console.log('NEWLINES ' + JSON.stringify(stack) + ' (' + nb + ')');
     const blocks = stack.blocks;
     let result = '';
     let prefix = '';
     for (let i = blocks.length-1; i >= 0; i--) {
-        if (blocks[i] === 'Item') {
+        if (blocks[i] === 'Item' || blocks[i] === 'ListBlockDefinition') {
             if (stack.first) {
                 break;
             } else {

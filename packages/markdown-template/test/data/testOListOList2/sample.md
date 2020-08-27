@@ -5,15 +5,12 @@ This is a contract between "Steve" and "Betty" for the amount of 3131.0 EUR, eve
 {{/clause}}
 
 There is a penalty of 10.99% for non compliance.
+
 1. Prices for "Tomato"
    1. Region: "North America" (299.99)
    2. Region: "EMEA" (349.99)
-   
-   Note: subject to local tax
 2. Prices for "Potato"
    1. Region: "North America" (199.99)
    2. Region: "EMEA" (249.99)
-   
-   Note: subject to local tax
 
 Please contact your local reseller for details.

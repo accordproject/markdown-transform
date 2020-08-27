@@ -14,6 +14,8 @@
 
 'use strict';
 
+const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
+
 // Basic parser constructors
 const computedParser = require('./combinators').computedParser;
 const enumParser = require('./combinators').enumParser;
@@ -107,7 +109,10 @@ rules.FormulaDefinition = (visitor,thing,children,parameters,resultString,result
 
 // Container blocks
 rules.ListBlockDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const result = thing.type === 'bullet' ? (r) => ulistBlockParser(thing,children(r)) : (r) => olistBlockParser(thing,children(r));
+    // const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
+    const level = 1;
+    const prefix = CommonMarkUtils.mkPrefix(parameters,level);
+    const result = thing.type === 'bullet' ? (r) => ulistBlockParser(thing,children(r),prefix) : (r) => olistBlockParser(thing,children(r),prefix);
     resultSeq(parameters,result);
 };
 rules.ClauseDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {

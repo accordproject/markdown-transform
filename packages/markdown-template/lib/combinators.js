@@ -316,7 +316,8 @@ function optionalParser(optNode, whenSome, whenNone) {
  * @returns {object} the parser
  */
 function listBlockParser(listNode,bullet,content) {
-    return P.seq(bullet,content).map(function(x) {
+    // XXX optionally insert a new line for non-tight lists
+    return P.seq(P.alt(bullet,P.seq(P.string('\n'),bullet)),content).map(function(x) {
         return x[1]; // XXX First element is bullet
     }).many().map(function(x) {
         return mkList(listNode,x);
@@ -325,22 +326,24 @@ function listBlockParser(listNode,bullet,content) {
 
 /**
  * Creates a parser for an unordered list block
- * @param {object} listNode the list ast node
- * @param {object} content the parser for the content of the list
+ * @param {object} listNode - the list ast node
+ * @param {object} content - the parser for the content of the list
+ * @param {string} prefix - the list item prefix
  * @returns {object} the parser
  */
-function ulistBlockParser(listNode,content) {
-    return listBlockParser(listNode,P.string('\n-  '),content);
+function ulistBlockParser(listNode,content,prefix) {
+    return listBlockParser(listNode,P.seq(P.string(prefix),P.string('-  ')),content);
 }
 
 /**
  * Creates a parser for an ordered list block
  * @param {object} listNode the list ast node
  * @param {object} content the parser for the content of the list
+ * @param {string} prefix - the list item prefix
  * @returns {object} the parser
  */
-function olistBlockParser(listNode,content) {
-    return listBlockParser(listNode,P.seq(P.string('\n'),P.regexp(/[0-9]+/),P.string('. ')),content);
+function olistBlockParser(listNode,content,prefix) {
+    return listBlockParser(listNode,P.seq(P.string(prefix),P.regexp(/[0-9]+/),P.string('. ')),content);
 }
 
 /**
