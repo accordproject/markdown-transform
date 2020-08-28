@@ -103,8 +103,11 @@ rules.Heading = (visitor,thing,children,parameters,resultString,resultSeq) => {
     }
 };
 rules.CodeBlock = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const next1 = CommonMarkUtils.mkPrefix(parameters,2);
-    const next2 = `\`\`\` ${getText(thing,'info')}\n${getText(thing,'text',CommonMarkUtils.escapeCodeBlock)}\`\`\``;
+    const prefix = CommonMarkUtils.mkPrefix(parameters,2);
+    const newLine = CommonMarkUtils.mkNewLine(parameters);
+    const next1 = `${prefix}\`\`\` ${getText(thing,'info')}`;
+    const lines = getText(thing,'text',CommonMarkUtils.escapeCodeBlock).split('\n');
+    const next2 = `${newLine}${lines.join(newLine)}\`\`\``;
     const result = [resultString(next1),resultString(next2)];
     resultSeq(parameters,result);
 };

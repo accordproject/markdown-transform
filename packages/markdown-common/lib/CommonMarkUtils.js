@@ -60,33 +60,37 @@ function blocksEnterBlock(stack, blockType, setFirst) {
 }
 
 /**
- * current newline (with proper prefix)
- * @param {*} stack the current block stack
- * @param {number} nb how many new lines
- * @return {string} several new lines with the proper prefix
+ * Create a prefix within an existing line
+ * @param {Array<string>} blocks - the ancestor blocks
+ * @return {string} the prefix to add to the current line
  */
-function blocksNewLines(stack, nb) {
-    const blocks = stack.blocks;
-    let result = '';
+function prefixInLine(blocks) {
     let prefix = '';
     for (let i = blocks.length-1; i >= 0; i--) {
         if (blocks[i] === 'Item' || blocks[i] === 'ListBlockDefinition') {
-            if (stack.first) {
-                break;
-            } else {
-                prefix = '   ' + prefix;
-            }
+            break;
         } else if (blocks[i] === 'BlockQuote') {
             prefix = '> ' + prefix;
         }
     }
-    if (stack.first) {
-        result = prefix;
-    } else {
-        result = ('\n' + prefix).repeat(nb);
+    return prefix;
+}
+
+/**
+ * Create a new line
+ * @param {Array<string>} blocks - the ancestor blocks
+ * @return {string} the prefixed new line
+ */
+function newLine(blocks) {
+    let prefix = '';
+    for (let i = blocks.length-1; i >= 0; i--) {
+        if (blocks[i] === 'Item' || blocks[i] === 'ListBlockDefinition') {
+            prefix = '   ' + prefix;
+        } else if (blocks[i] === 'BlockQuote') {
+            prefix = '> ' + prefix;
+        }
     }
-    //console.log('PREFIX ' + JSON.stringify(result));
-    return result;
+    return '\n' + prefix;
 }
 
 /**
@@ -122,13 +126,29 @@ function mkParameters(ast, parametersOut, init, setFirst) {
 }
 
 /**
- * Create a new line with the proper prefix
+ * Create a line prefix
  * @param {*} parameters - the parameters
  * @param {*} nb - number of newlines
  * @return {string} the prefix
  */
 function mkPrefix(parameters, nb) {
-    return blocksNewLines(parameters.stack,nb);
+    const stack = parameters.stack;
+    if (stack.first) {
+        return prefixInLine(stack.blocks);
+    } else {
+        const nl = newLine(stack.blocks);
+        return nl.repeat(nb);
+    }
+}
+
+/**
+ * Create a single new line
+ * @param {*} parameters - the parameters
+ * @return {string} the prefix
+ */
+function mkNewLine(parameters) {
+    const stack = parameters.stack;
+    return newLine(stack.blocks);
 }
 
 /**
@@ -307,11 +327,10 @@ function trimEndline(text) {
 }
 
 module.exports.blocksInit = blocksInit;
-module.exports.blocksNextNode = blocksNextNode;
-module.exports.blocksNewLines = blocksNewLines;
 
 module.exports.nextNode = nextNode;
 module.exports.mkParameters = mkParameters;
+module.exports.mkNewLine = mkNewLine;
 module.exports.mkPrefix = mkPrefix;
 module.exports.mkSetextHeading = mkSetextHeading;
 module.exports.mkATXHeading = mkATXHeading;
