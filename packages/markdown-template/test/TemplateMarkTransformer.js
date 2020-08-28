@@ -75,6 +75,7 @@ const successes = [
     {name:'testMd2',kind:'contract'},
     {name:'testMd3',kind:'contract'},
     {name:'testMd4',kind:'clause'},
+    {name:'testMd5',kind:'clause'},
     {name:'testHeading',kind:'clause'},
     {name:'testUList',kind:'contract'},
     {name:'testOList',kind:'contract'},

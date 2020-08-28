@@ -452,6 +452,82 @@ test
 }
 `;
 
+exports[`markdown converts codeinblock.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.BlockQuote",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.CodeBlock",
+          "text": "a
+b
+c
+",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts codeinblock2.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.BlockQuote",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.CodeBlock",
+                  "text": "a
+b
+c
+",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.BlockQuote",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.BlockQuote",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.CodeBlock",
+                      "text": "a
+b
+c
+",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts copyright.tem.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -3706,6 +3782,25 @@ more
 
    xxx
 test"
+`;
+
+exports[`to plain text codeinblock.md 1`] = `
+"a
+b
+c"
+`;
+
+exports[`to plain text codeinblock2.md 1`] = `
+"-  > \`\`\` 
+   > a
+   > b
+   > c
+   > \`\`\`
+-  > > \`\`\` 
+   > > a
+   > > b
+   > > c
+   > > \`\`\`"
 `;
 
 exports[`to plain text copyright.tem.md 1`] = `
