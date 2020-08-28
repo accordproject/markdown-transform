@@ -172,7 +172,7 @@ class ToPdfMakeVisitor {
         case 'BlockQuote':
         case 'Item':
         case 'Clause': {
-            result.text = this.processChildNodes(thing,parameters);
+            result.stack = this.processChildNodes(thing,parameters);
         }
             break;
         case 'Link':
@@ -208,7 +208,7 @@ class ToPdfMakeVisitor {
         case 'Optional':
         case 'Conditional': {
             const child = this.processChildNodes(thing,parameters);
-            result.text = child;
+            result.stack = child;
         }
             break;
         case 'HtmlInline':
