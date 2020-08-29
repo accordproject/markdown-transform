@@ -46,6 +46,49 @@ function getPdfFiles() {
 }
 
 /**
+ * Saves a cicero mark dom as a PDF to the output folder
+ * @param {object} ciceroMarkDom the dom
+ * @param {string} fileName the filename to use
+ * @return {Promise} a promise that resolves when the file has been written
+ */
+function saveCiceroMarkAsPdf(ciceroMarkDom, fileName) {
+    fs.mkdirSync('./output', { recursive: true });
+
+    const promise = new Promise( (resolve) => {
+        const outputStream = fs.createWriteStream(`./output/${fileName}.pdf`);
+        outputStream.on('finish', () => {
+            resolve(true);
+        });
+
+        const options = {
+            info: {
+                title: 'Smart Legal Contract',
+                author: 'Dan',
+                subject: 'Test PDF rendering',
+                keywords: 'accord project, markdown transform, pdf',
+            },
+            defaultStyle : {
+                font: 'LiberationSerif'
+            },
+            tocHeading : 'Table of Contents',
+            headerText : 'Contract ABCDEF',
+            footerText : 'Copyright Acme Inc.',
+            footerPageNumber: true,
+            styles : {
+                Link : {
+                    color : 'red',
+                    fontSize : 16
+                }
+            }
+        };
+
+        pdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
+    });
+
+    return promise;
+}
+
+/**
  * Get the name and contents of all markdown test files
  * @returns {*} an array of name/contents tuples
  */
@@ -86,8 +129,11 @@ describe('pdf import', () => {
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
             const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
-            //console.log(JSON.stringify(ciceroMarkDom, null, 4));
+            // if(file.startsWith('Land')) {
+            //     console.log(JSON.stringify(ciceroMarkDom, null, 4));
+            // }
             expect(ciceroMarkDom).toMatchSnapshot(); // (1)
+            return saveCiceroMarkAsPdf(ciceroMarkDom, file + '-import'); // roundtrip for debug
         });
     });
 });
@@ -96,41 +142,8 @@ describe('pdf generation', () => {
     getMarkdownFiles().forEach(([file, markdownContent], i) => {
         it(`converts ${file} to pdf`, async () => {
             const ciceroMarkTransformer = new CiceroMarkTransformer();
-            const ciceroMarkDom = ciceroMarkTransformer.fromMarkdown(markdownContent, 'json');
-            fs.mkdirSync('./output', { recursive: true });
-
-            const promise = new Promise( (resolve) => {
-                const outputStream = fs.createWriteStream(`./output/${file}.pdf`);
-                outputStream.on('finish', () => {
-                    resolve(true);
-                });
-
-                const options = {
-                    info: {
-                        title: 'Smart Legal Contract',
-                        author: 'Dan',
-                        subject: 'Test PDF rendering',
-                        keywords: 'accord project, markdown transform, pdf',
-                    },
-                    defaultStyle : {
-                        font: 'LiberationSerif'
-                    },
-                    tocHeading : 'Table of Contents',
-                    headerText : 'Contract ABCDEF',
-                    footerText : 'Copyright Acme Inc.',
-                    footerPageNumber: true,
-                    styles : {
-                        Link : {
-                            color : 'red',
-                            fontSize : 16
-                        }
-                    }
-                };
-
-                pdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
-            });
-
-            return promise;
+            const ciceroMarkDom = ciceroMarkTransformer.fromMarkdownCicero(markdownContent, 'json');
+            return saveCiceroMarkAsPdf(ciceroMarkDom, file);
         });
     });
 
