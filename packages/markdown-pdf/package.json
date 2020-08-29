@@ -26,8 +26,8 @@
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check",
-    "test": "jest --timeOut=10000",
-    "test:cov": "jest --timeOut=10000 --coverage",
+    "test": "jest --timeOut=20000",
+    "test:cov": "jest --timeOut=20000 --coverage",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
     "pkgcheck": "node ./scripts/pkgcheck.js",
@@ -82,7 +82,7 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.12.6",
     "@accordproject/markdown-common": "0.12.6",
-    "easy-pdf-parser": "0.0.4",
+    "pdf2json": "1.2.0",
     "jsdom": "^15.2.1",
     "type-of": "^2.0.1",
     "pdfmake": "0.1.66"
