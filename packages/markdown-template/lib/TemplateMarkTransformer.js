@@ -27,6 +27,7 @@ const ParserManager = require('./parsermanager');
 const normalizeToMarkdownCicero = require('./normalize').normalizeToMarkdownCicero;
 const normalizeFromMarkdownCicero = require('./normalize').normalizeFromMarkdownCicero;
 
+const ToMarkdownTemplateVisitor = require('./ToMarkdownTemplateVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
 /**
@@ -93,6 +94,16 @@ class TemplateMarkTransformer {
             console.log(JSON.stringify(tokenStream,null,2));
         }
         return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
+    }
+
+    /**
+     * Converts a TemplateMark DOM to a template markdown string
+     * @param {object} input TemplateMark DOM
+     * @returns {string} the template markdown text
+     */
+    toMarkdownTemplate(input) {
+        const visitor = new ToMarkdownTemplateVisitor();
+        return visitor.toMarkdownTemplate(templateMarkManager.serializer,input);
     }
 
     /**
