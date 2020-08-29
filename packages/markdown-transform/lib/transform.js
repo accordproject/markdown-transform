@@ -63,8 +63,8 @@ const transformationGraph = {
         docs: 'Markdown (string)',
         fileFormat: 'utf8',
         commonmark_tokens: (input,parameters,options) => {
-            const t = new TemplateMarkTransformer();
-            return t.toTokens({ fileName:parameters.inputFileName, content:input }, options);
+            const t = new CommonMarkTransformer();
+            return t.toTokens(input, options);
         },
     },
     commonmark_tokens: {
