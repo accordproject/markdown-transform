@@ -40,7 +40,7 @@ function normalizeNLs(input) {
 
 // Acceptance test
 const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
-const acceptanceGrammar = fs.readFileSync(acceptanceGrammarFile, 'utf8');
+const acceptanceGrammar = normalizeNLs(fs.readFileSync(acceptanceGrammarFile, 'utf8'));
 const acceptanceGrammarTokens = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar_tokens.json'), 'utf8'));
 const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
 const acceptanceTemplateMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar.json'), 'utf8'));
@@ -77,6 +77,11 @@ describe('#acceptance', () => {
         it('markdown_template -> templatemark', async () => {
             const result = await transform(acceptanceGrammar, 'markdown_template', ['templatemark'], parameters);
             result.should.deep.equal(acceptanceTemplateMark);
+        });
+
+        it('templatemark -> markdown_template', async () => {
+            const result = await transform(acceptanceTemplateMark, 'templatemark', ['markdown_template'], parameters);
+            result.should.deep.equal(acceptanceGrammar);
         });
     });
 
