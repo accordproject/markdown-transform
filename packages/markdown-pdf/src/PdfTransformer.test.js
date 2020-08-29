@@ -126,7 +126,7 @@ function getJsonFiles() {
 
 
 describe('pdf import', () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(20000);
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
             const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
