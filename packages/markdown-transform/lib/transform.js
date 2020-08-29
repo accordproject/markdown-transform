@@ -57,7 +57,11 @@ const transformationGraph = {
     },
     templatemark: {
         docs: 'TemplateMark DOM (JSON)',
-        fileFormat: 'json'
+        fileFormat: 'json',
+        markdown_template: (input,parameters,options) => {
+            const t = new TemplateMarkTransformer();
+            return t.toMarkdownTemplate(input);
+        },
     },
     markdown: {
         docs: 'Markdown (string)',

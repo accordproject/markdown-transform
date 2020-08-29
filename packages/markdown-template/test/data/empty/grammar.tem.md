@@ -1,1 +1,2 @@
-# Write your clause template here
+Write your clause template here
+====

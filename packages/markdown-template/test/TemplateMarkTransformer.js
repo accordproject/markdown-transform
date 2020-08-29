@@ -28,10 +28,11 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
 
+const normalizeNLs = require('../lib/normalize').normalizeNLs;
 const normalizeToMarkdownCicero = require('../lib/normalize').normalizeToMarkdownCicero;
 const normalizeFromMarkdownCicero = require('../lib/normalize').normalizeFromMarkdownCicero;
 
-const loadFile = (x) => { return { fileName: x, content: fs.readFileSync(x, 'utf8') }; };
+const loadFile = (x) => { return { fileName: x, content: normalizeNLs(fs.readFileSync(x, 'utf8')) }; };
 const loadPlugin = (x) => {
     return fs.existsSync(x) ? require(path.join('..',x)) : {};
 };
@@ -42,8 +43,8 @@ const currentTime = datetimeutil.setCurrentTime('2000-07-22T10:45:05+04:00');
 
 // Workloads
 const successes = [
-    {name:'testSpec',kind:'clause'},
-    {name:'testSpecChanged',kind:'clause'},
+    {name:'testSpec',kind:'clause',skipGrammar:true}, // Full spec roundtrip
+    {name:'testSpecChanged',kind:'clause',skipGrammar:true}, // Full spec roundtrip
     {name:'test1',kind:'clause'},
     {name:'test2',kind:'contract'},
     {name:'test3',kind:'contract'},
@@ -69,19 +70,19 @@ const successes = [
     {name:'testMonetaryAmount2',kind:'clause'},
     {name:'testMonetaryAmount3',kind:'clause'},
     {name:'testMonetaryAmount4',kind:'clause'},
-    {name:'testLarge',kind:'contract'},
+    {name:'testLarge',kind:'contract',skipGrammar:true}, // Just to be double checked
     {name:'testRepeat',kind:'clause'},
-    {name:'testMd1',kind:'clause'},
-    {name:'testMd2',kind:'contract'},
-    {name:'testMd3',kind:'contract'},
-    {name:'testMd4',kind:'clause'},
-    {name:'testMd5',kind:'clause'},
-    {name:'testHeading',kind:'clause'},
+    {name:'testMd1',kind:'clause',skipGrammar:true},  // Need alternative versions of md.
+    {name:'testMd2',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
+    {name:'testMd3',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
+    {name:'testMd4',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
+    {name:'testMd5',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
+    {name:'testHeading',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
     {name:'testUList',kind:'contract'},
     {name:'testOList',kind:'contract'},
     {name:'testOList2',kind:'contract'},
-    {name:'testQuoteOList',kind:'contract'},
-    {name:'testOListOList2',kind:'contract'},
+    {name:'testQuoteOList',kind:'contract',skipGrammar:true}, // Issue with prefixes on the content of the list
+    {name:'testOListOList2',kind:'contract',skipGrammar:true}, // Issue with prefixes on the content of the list
     {name:'testUListThis',kind:'contract'},
     {name:'testJoin',kind:'contract'},
     {name:'testWith',kind:'contract'},
@@ -102,11 +103,11 @@ const successes = [
     {name:'helloworld',kind:'clause'},
     {name:'installment-sale',kind:'contract'},
     {name:'interest-rate-swap',kind:'contract'},
-    {name:'ip-payment',kind:'clause'},
+    {name:'ip-payment',kind:'clause',skipGrammar:true}, // Issue #??? -- should be filed about ordered lists with a custom starting number (even on plain commonmark)
     {name:'latedeliveryandpenalty',kind:'contract'},
     {name:'rental-deposit-with',kind:'contract'},
     {name:'signature-name-date',kind:'clause'},
-    {name:'volumediscountulist',kind:'contract'},
+    {name:'volumediscountulist',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
 ];
 
 const templateFailures = [
@@ -171,6 +172,14 @@ function runSuccesses(tests) {
                 const result = templateMarkTransformer.fromMarkdownTemplate(grammar,modelManager,kind);
                 result.should.deep.equal(grammarJson);
             });
+
+            if (!test.skipGrammar) {
+                it('should draft template grammar back', async () => {
+                    const grammarJson = templateMarkTransformer.fromMarkdownTemplate(grammar,modelManager,kind);
+                    const result = templateMarkTransformer.toMarkdownTemplate(grammarJson);
+                    result.should.equal(grammar.content);
+                });
+            }
 
             it('should parse sample', async () => {
                 const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind,currentTime);

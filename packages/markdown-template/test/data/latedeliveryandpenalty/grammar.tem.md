@@ -1,4 +1,5 @@
-## Late Delivery and Penalty.
+Late Delivery and Penalty.
+----
 
 In case of delayed delivery{{#if forceMajeure}} except for Force Majeure cases,{{/if}}
 {{seller}} (the Seller) shall pay to {{buyer}} (the Buyer) for every {{penaltyDuration}}
