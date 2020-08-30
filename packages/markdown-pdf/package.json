@@ -83,7 +83,6 @@
     "@accordproject/markdown-cicero": "0.12.6",
     "@accordproject/markdown-common": "0.12.6",
     "pdf2json": "1.2.0",
-    "jsdom": "^15.2.1",
     "type-of": "^2.0.1",
     "pdfmake": "0.1.66"
   },
