@@ -43,8 +43,8 @@ const currentTime = datetimeutil.setCurrentTime('2000-07-22T10:45:05+04:00');
 
 // Workloads
 const successes = [
-    {name:'testSpec',kind:'clause',skipGrammar:true}, // Full spec roundtrip
-    {name:'testSpecChanged',kind:'clause',skipGrammar:true}, // Full spec roundtrip
+    {name:'testSpec',kind:'clause',skipGrammar:true}, // Issue https://github.com/accordproject/markdown-transform/issues/2
+    {name:'testSpecChanged',kind:'clause',skipGrammar:true}, // Issue https://github.com/accordproject/markdown-transform
     {name:'test1',kind:'clause'},
     {name:'test2',kind:'contract'},
     {name:'test3',kind:'contract'},
@@ -70,14 +70,14 @@ const successes = [
     {name:'testMonetaryAmount2',kind:'clause'},
     {name:'testMonetaryAmount3',kind:'clause'},
     {name:'testMonetaryAmount4',kind:'clause'},
-    {name:'testLarge',kind:'contract',skipGrammar:true}, // Just to be double checked
+    {name:'testLarge',kind:'contract'}, // Just to be double checked
     {name:'testRepeat',kind:'clause'},
-    {name:'testMd1',kind:'clause',skipGrammar:true},  // Need alternative versions of md.
-    {name:'testMd2',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
-    {name:'testMd3',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
-    {name:'testMd4',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
-    {name:'testMd5',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
-    {name:'testHeading',kind:'clause',skipGrammar:true}, // Need alternative versions of md.
+    {name:'testMd1',kind:'clause'},
+    {name:'testMd2',kind:'contract'},
+    {name:'testMd3',kind:'contract'},
+    {name:'testMd4',kind:'clause'},
+    {name:'testMd5',kind:'clause'},
+    {name:'testHeading',kind:'clause'},
     {name:'testUList',kind:'contract'},
     {name:'testOList',kind:'contract'},
     {name:'testOList2',kind:'contract'},
@@ -103,11 +103,11 @@ const successes = [
     {name:'helloworld',kind:'clause'},
     {name:'installment-sale',kind:'contract'},
     {name:'interest-rate-swap',kind:'contract'},
-    {name:'ip-payment',kind:'clause',skipGrammar:true}, // Issue #??? -- should be filed about ordered lists with a custom starting number (even on plain commonmark)
+    {name:'ip-payment',kind:'clause',skipGrammar:true}, // Issue https://github.com/accordproject/markdown-transform/issues/313
     {name:'latedeliveryandpenalty',kind:'contract'},
     {name:'rental-deposit-with',kind:'contract'},
     {name:'signature-name-date',kind:'clause'},
-    {name:'volumediscountulist',kind:'contract',skipGrammar:true}, // Need alternative versions of md.
+    {name:'volumediscountulist',kind:'contract'},
 ];
 
 const templateFailures = [
@@ -174,10 +174,11 @@ function runSuccesses(tests) {
             });
 
             if (!test.skipGrammar) {
-                it('should draft template grammar back', async () => {
-                    const grammarJson = templateMarkTransformer.fromMarkdownTemplate(grammar,modelManager,kind);
-                    const result = templateMarkTransformer.toMarkdownTemplate(grammarJson);
-                    result.should.equal(grammar.content);
+                it('should roundtrip template grammar', async () => {
+                    const grammarJson1 = templateMarkTransformer.fromMarkdownTemplate(grammar,modelManager,kind);
+                    const grammar1 = { fileName: grammar.fileName, content: templateMarkTransformer.toMarkdownTemplate(grammarJson1) };
+                    const result = templateMarkTransformer.fromMarkdownTemplate(grammar1,modelManager,kind);
+                    result.should.deep.equal(grammarJson1);
                 });
             }
 
