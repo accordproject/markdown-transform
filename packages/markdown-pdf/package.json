@@ -82,7 +82,7 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.12.7",
     "@accordproject/markdown-common": "0.12.7",
-    "pdf2json": "1.2.0",
+    "pdfjs-dist": "^2.4.456",
     "type-of": "^2.0.1",
     "pdfmake": "0.1.66"
   },
@@ -97,7 +97,8 @@
       "!./out/**/*",
       "!./lib/**/*",
       "!./umd/**/*",
-      "!./bin/index.js"
+      "!./bin/index.js",
+      "!./src/domstubs.js"
     ],
     "path": "header.txt",
     "blocking": true,
