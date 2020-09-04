@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-it-template",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "description": "Plugin to introduce template blocks and inlines for the markdown-it markdown parser",
   "engines": {
     "node": ">=8",

@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-pdf",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "description": "Transform PDF to/from CiceroMark DOM",
   "engines": {
     "node": ">=8",
@@ -80,8 +80,8 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.12.7",
-    "@accordproject/markdown-common": "0.12.7",
+    "@accordproject/markdown-cicero": "0.12.8",
+    "@accordproject/markdown-common": "0.12.8",
     "pdfjs-dist": "^2.4.456",
     "type-of": "^2.0.1",
     "pdfmake": "0.1.66"
