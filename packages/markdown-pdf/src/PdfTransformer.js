@@ -92,7 +92,7 @@ class PdfTransformer {
      * @param {boolean} [options.preservePages] - whether to preserve PDF page breaks (defaults to true)
      * @returns {promise} a Promise to the CiceroMark DOM
      */
-    async toCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: true }) {
+    async toCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: false }) {
 
         let loadingTask = pdfjsLib.getDocument(input.buffer);
 

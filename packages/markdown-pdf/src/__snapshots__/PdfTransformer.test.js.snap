@@ -1031,9 +1031,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -1802,9 +1799,6 @@ Object {
         },
       ],
     },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
   ],
   "xmlns": "Unknown",
 }
@@ -2007,9 +2001,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -2478,9 +2469,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -2916,9 +2904,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -3068,9 +3053,6 @@ Object {
           "text": "INSPETION REPORT",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -3445,9 +3427,6 @@ Object {
           "text": " understanding between ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -3880,9 +3859,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -4252,9 +4228,6 @@ Object {
           "text": "Project Manager) of this Agreement. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -4641,9 +4614,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -5001,9 +4971,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -5368,9 +5335,6 @@ Object {
           "text": "(Consolidation of Duties). ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -5748,9 +5712,6 @@ Object {
           "text": "Contractor) of this Agreement. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -6149,9 +6110,6 @@ Object {
           "text": "nia.  All Contractor ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -6578,9 +6536,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -6969,9 +6924,6 @@ Object {
           "text": "he Initial Term, or any Option Term, as the ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -7419,9 +7371,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -7817,9 +7766,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -8172,9 +8118,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -8564,9 +8507,6 @@ Object {
           "text": "Exhibit J (Performance Requirements Summary) of this Agreement or Paragraph ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -8967,9 +8907,6 @@ Object {
           "text": "the  opportunity  to  receive  advice  from  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -9394,9 +9331,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -9437,9 +9371,6 @@ Object {
           "text": "[Intentionally Left Blank] ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -9801,9 +9732,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -9968,9 +9896,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -10451,9 +10376,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -10904,9 +10826,6 @@ Object {
           "text": "IES ............................................................................ 33 ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -11364,9 +11283,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -11765,9 +11681,6 @@ Object {
           "text": "shall not be unreasonably withheld; and ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -12174,9 +12087,6 @@ Object {
           "text": "subcontractors or their officers, employees, and agents. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -12598,9 +12508,6 @@ Object {
           "text": "(5)  Business  Days  from  the  date  of  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -13064,9 +12971,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -13527,9 +13431,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -13978,9 +13879,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -14404,9 +14302,6 @@ Object {
           "text": "ee for Contractor; or ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -14861,9 +14756,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -15308,9 +15200,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -15717,9 +15606,6 @@ Object {
           "text": "services, and shall invoice County for ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -16223,9 +16109,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -16668,9 +16551,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -17057,9 +16937,6 @@ Object {
           "text": "   Additional Insured Status and Scope of Coverage ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -17546,9 +17423,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -18053,9 +17927,6 @@ Object {
           "text": "nation or cancellation. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -18586,9 +18457,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -19065,9 +18933,6 @@ Object {
           "text": "ermination,  until  it  is  determined  by  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -19558,9 +19423,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -20022,9 +19884,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -20460,9 +20319,6 @@ Object {
           "text": "reference.   ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -20986,9 +20842,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -21444,9 +21297,6 @@ Object {
           "text": "  violations  made  pursuant  to  this  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -21962,9 +21812,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -22412,9 +22259,6 @@ Object {
           "text": "accordance with applicable County policies. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -22892,9 +22736,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -23362,9 +23203,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -23793,9 +23631,6 @@ Object {
           "text": "pliance  with  Jury  Service  Program)  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -24239,9 +24074,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -24661,9 +24493,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -25132,9 +24961,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -25598,9 +25424,6 @@ Object {
           "text": "and  shall  be  made  available  to  County  ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -26088,9 +25911,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -26560,9 +26380,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -27038,9 +26855,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -27501,9 +27315,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -27944,9 +27755,6 @@ Object {
           "text": "r the County of Los Angeles, California. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -28407,9 +28215,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -28835,9 +28640,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -29116,9 +28918,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -29245,9 +29044,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -29356,9 +29152,6 @@ Object {
           "text": "THE IFB) ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -29543,9 +29336,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -30041,9 +29831,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -30272,9 +30059,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -30650,9 +30434,6 @@ Object {
           "text": "agreement and have taken due time to consider it prior to signing. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -31089,9 +30870,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -31370,9 +31148,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -31765,9 +31540,6 @@ Object {
           "text": "Assignment Agreement and have taken due time to consider it prior to signing. ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -32200,9 +31972,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -32483,9 +32252,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -32620,9 +32386,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -32730,9 +32493,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
   ],
   "xmlns": "Unknown",
@@ -33770,9 +33530,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -34541,9 +34298,6 @@ Object {
         },
       ],
     },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
   ],
   "xmlns": "Unknown",
 }
@@ -34873,9 +34627,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -35211,9 +34962,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
     Object {
       "$class": "org.accordproject.commonmark.Paragraph",
@@ -35578,9 +35326,6 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
-    },
-    Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
@@ -35772,9 +35517,6 @@ Object {
           "text": " ",
         },
       ],
-    },
-    Object {
-      "$class": "org.accordproject.commonmark.ThematicBreak",
     },
   ],
   "xmlns": "Unknown",
