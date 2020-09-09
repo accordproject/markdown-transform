@@ -36,13 +36,13 @@ class SlateTransformer {
      * @returns {*} Slate JSON
      */
     fromCiceroMark(input) {
-
         if(!input.getType) {
             input = this.serializer.fromJSON(input);
         }
 
         const CLAUSE = 'clause';
         const parameters = {};
+        parameters.serializer = this.serializer;
         parameters.result = {};
         const visitor = new ToSlateVisitor();
         input.accept( visitor, parameters );

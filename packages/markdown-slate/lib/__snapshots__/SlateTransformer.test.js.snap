@@ -2256,6 +2256,1152 @@ Object {
 }
 `;
 
+exports[`ciceromark <-> slate converts signature_slate.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Signature: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "SignHere",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "signature",
+          "value": "\\"{{sn}}|alice@example.com\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "org.accordproject.cicero.contract.AccordParty",
+          "identifiedBy": "partyId",
+          "name": "party",
+          "value": "\\"{{partyId}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Title: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "Title",
+                },
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "optional",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "title",
+          "value": "\\"{{title}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Full name: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "FullName",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "name",
+          "value": "\\"{{fullName}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Date signed: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "DateSigned",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "date",
+          "value": "\\"{{dateSigned}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Favorite Color: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "Text",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "favoriteColor",
+          "value": "\\"{{favoriteColor}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Test: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorBoolean",
+                  "value": true,
+                },
+              ],
+              "name": "BoolAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "foo",
+                },
+              ],
+              "name": "StringAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3.14,
+                },
+              ],
+              "name": "NumberAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorIdentifier",
+                  "identifier": Object {
+                    "$class": "concerto.metamodel.TypeIdentifier",
+                    "fullyQualifiedName": "identifier",
+                  },
+                  "isArray": false,
+                },
+              ],
+              "name": "IdentAnnot",
+            },
+          ],
+          "elementType": "Boolean",
+          "name": "bool",
+          "value": "true",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " Numbers: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "1.1",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "2.2",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "3.3",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "4.4",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts signature_slate.json to and from CiceroMark 2`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Signature: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "SignHere",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "signature",
+          "value": "\\"{{sn}}|alice@example.com\\"",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "org.accordproject.cicero.contract.AccordParty",
+          "identifiedBy": "partyId",
+          "name": "party",
+          "value": "\\"{{partyId}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Title: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "Title",
+                },
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "optional",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "title",
+          "value": "\\"{{title}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Full name: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "FullName",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "name",
+          "value": "\\"{{fullName}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Date signed: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "DateSigned",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "date",
+          "value": "\\"{{dateSigned}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Favorite Color: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "Text",
+                },
+              ],
+              "name": "DocuSignTab",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [],
+              "name": "SignatureVariable",
+            },
+          ],
+          "elementType": "String",
+          "name": "favoriteColor",
+          "value": "\\"{{favoriteColor}}|alice@example.com\\"",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Test: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorBoolean",
+                  "value": true,
+                },
+              ],
+              "name": "BoolAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorString",
+                  "value": "foo",
+                },
+              ],
+              "name": "StringAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3.14,
+                },
+              ],
+              "name": "NumberAnnot",
+            },
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorIdentifier",
+                  "identifier": Object {
+                    "$class": "concerto.metamodel.TypeIdentifier",
+                    "fullyQualifiedName": "identifier",
+                  },
+                  "isArray": false,
+                },
+              ],
+              "name": "IdentAnnot",
+            },
+          ],
+          "elementType": "Boolean",
+          "name": "bool",
+          "value": "true",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " Numbers: ",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "1.1",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "2.2",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "3.3",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ",",
+        },
+        Object {
+          "$class": "org.accordproject.ciceromark.Variable",
+          "decorators": Array [
+            Object {
+              "$class": "concerto.metamodel.Decorator",
+              "arguments": Array [
+                Object {
+                  "$class": "concerto.metamodel.DecoratorNumber",
+                  "value": 3,
+                },
+              ],
+              "name": "ArrayAnnot",
+            },
+          ],
+          "elementType": "Double",
+          "name": "this",
+          "value": "4.4",
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts signature_slate.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Signature: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{sn}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "SignHere",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "String",
+              "name": "signature",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": " ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{partyId}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "party",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Title: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{title}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "Title",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "optional",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "String",
+              "name": "title",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Full name: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{fullName}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "FullName",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "String",
+              "name": "name",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Date signed: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{dateSigned}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "DateSigned",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "String",
+              "name": "date",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Favorite Color: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "{{favoriteColor}}|alice@example.com",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "Text",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [],
+                  "name": "SignatureVariable",
+                },
+              ],
+              "elementType": "String",
+              "name": "favoriteColor",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Test: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "true",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                  ],
+                  "name": "BoolAnnot",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "foo",
+                    },
+                  ],
+                  "name": "StringAnnot",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 3.14,
+                    },
+                  ],
+                  "name": "NumberAnnot",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorIdentifier",
+                      "identifier": Object {
+                        "$class": "concerto.metamodel.TypeIdentifier",
+                        "fullyQualifiedName": "identifier",
+                      },
+                      "isArray": false,
+                    },
+                  ],
+                  "name": "IdentAnnot",
+                },
+              ],
+              "elementType": "Boolean",
+              "name": "bool",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": " Numbers: ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "1.1",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 3,
+                    },
+                  ],
+                  "name": "ArrayAnnot",
+                },
+              ],
+              "elementType": "Double",
+              "name": "this",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ",",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "2.2",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 3,
+                    },
+                  ],
+                  "name": "ArrayAnnot",
+                },
+              ],
+              "elementType": "Double",
+              "name": "this",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ",",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "3.3",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 3,
+                    },
+                  ],
+                  "name": "ArrayAnnot",
+                },
+              ],
+              "elementType": "Double",
+              "name": "this",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": ",",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "4.4",
+              },
+            ],
+            "data": Object {
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 3,
+                    },
+                  ],
+                  "name": "ArrayAnnot",
+                },
+              ],
+              "elementType": "Double",
+              "name": "this",
+            },
+            "object": "inline",
+            "type": "variable",
+          },
+          Object {
+            "object": "text",
+            "text": "",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
 exports[`markdown <-> slate converts bold.json to and from Markdown 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

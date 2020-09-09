@@ -1,13 +1,11 @@
-{{signatureAnchorTag}}
+Signature: {{signature}} {{party}}
 
-..............................
+Title: {{title}}
 
-Signature
+Full name: {{name}}
 
-{{nameAnchorTag}}
+Date signed: {{date}}
 
-..............................
+Favorite Color: {{favoriteColor}}
 
-Name
-
-Date: {{dateAnchorTag}}
+{{#with test}}Test: {{bool}} Numbers: {{#join doubles}}{{this}}{{/join}}{{/with}}

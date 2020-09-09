@@ -195,6 +195,7 @@ class ToSlateVisitor {
         nodes.forEach(node => {
             //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const newParameters = {
+                serializer: parameters.serializer,
                 strong: parameters.strong,
                 emph: parameters.emph,
             };
@@ -238,6 +239,9 @@ class ToSlateVisitor {
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+            }
             result = {
                 object: 'block',
                 type: 'clause',
@@ -251,6 +255,9 @@ class ToSlateVisitor {
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+            }
             if (thing.identifiedBy) {
                 data.identifiedBy = thing.identifiedBy;
             }
@@ -262,6 +269,9 @@ class ToSlateVisitor {
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+            }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
             break;
@@ -269,6 +279,9 @@ class ToSlateVisitor {
             const data = { name: thing.name, enumValues: thing.enumValues };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
+            }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
             }
             result = ToSlateVisitor.handleVariable('variable', data, thing.value, parameters);
         }
@@ -284,6 +297,9 @@ class ToSlateVisitor {
             if (thing.elementType) {
                 data.elementType = thing.elementType;
             }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+            }
             result = ToSlateVisitor.handleConditionalVariable(data, nodes, localParameters);
         }
             break;
@@ -297,6 +313,9 @@ class ToSlateVisitor {
             const data = { name: thing.name, hasSome: thing.hasSome, whenSome: whenSome, whenNone: whenNone };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
+            }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
             }
             result = ToSlateVisitor.handleOptionalVariable(data, nodes, localParameters);
         }
@@ -476,6 +495,9 @@ class ToSlateVisitor {
             const data = { name: thing.name, tight: thing.tight, start: thing.start, delimiter: thing.delimiter, type: 'variable' };
             if (thing.elementType) {
                 data.elementType = thing.elementType;
+            }
+            if (thing.decorators) {
+                data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
             }
             result = {
                 object: 'block',

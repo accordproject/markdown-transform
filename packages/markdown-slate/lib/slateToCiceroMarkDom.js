@@ -118,6 +118,9 @@ function _recursive_nodes(target, nodes) {
                 if (node.data.elementType) {
                     result.elementType = node.data.elementType;
                 }
+                if (node.data.decorators) {
+                    result.decorators = node.data.decorators;
+                }
                 if (node.data.src) {
                     result.src = node.data.src;
                 }
@@ -196,6 +199,9 @@ function _recursive_nodes(target, nodes) {
                     result = {$class : `${NS_CICERO}.ListBlock`, name: node.data.name, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
                     if (node.data.elementType) {
                         result.elementType = node.data.elementType;
+                    }
+                    if (node.data.decorators) {
+                        result.decorators = node.data.decorators;
                     }
                 } else {
                     result = {$class : `${NS}.List`, type: node.type === 'ol_list' ? 'ordered' : 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
@@ -318,6 +324,9 @@ function handleVariable(node) {
             result.value = quoteString(result.value);
         }
     }
+    if (Object.prototype.hasOwnProperty.call(data,'decorators')) {
+        result.decorators = data.decorators;
+    }
 
     return handleMarks(node,result);
 }
@@ -345,6 +354,9 @@ function handleConditional(node, isTrue, whenTrue, whenFalse) {
 
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'decorators')) {
+        result.decorators = data.decorators;
     }
 
     return handleMarks(node,result);
@@ -374,6 +386,9 @@ function handleOptional(node, hasSome, whenSome, whenNone) {
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;
     }
+    if (Object.prototype.hasOwnProperty.call(data,'decorators')) {
+        result.decorators = data.decorators;
+    }
 
     return handleMarks(node,result);
 }
@@ -399,6 +414,9 @@ function handleFormula(node) {
     const data = node.data;
     if (Object.prototype.hasOwnProperty.call(data,'elementType')) {
         result.elementType = data.elementType;
+    }
+    if (Object.prototype.hasOwnProperty.call(data,'decorators')) {
+        result.decorators = data.decorators;
     }
     if (Object.prototype.hasOwnProperty.call(data,'dependencies')) {
         result.dependencies = data.dependencies;

@@ -21,10 +21,72 @@ const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel'
 const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
 
 /**
+ * @param {*} serializer - the serializer
+ * @param {object} decorated - the property
+ * @return {object} the array of decorators compliant with the Concerto metamodel (JSON)
+ */
+function processDecorators(serializer,decorated) {
+    const result = [];
+    const decorators = decorated.getDecorators();
+
+    decorators.forEach((decorator) => {
+        const metaDecorator = {
+            '$class': 'concerto.metamodel.Decorator',
+        };
+
+        // The decorator's name
+        const name = decorator.getName();
+        metaDecorator.name = name;
+        metaDecorator.arguments = [];
+
+        // The decorator's arguments
+        const args = decorator.getArguments();
+        args.forEach((arg) => {
+            let metaArgument;
+            if (typeof arg === 'string') {
+                metaArgument = {
+                    '$class': 'concerto.metamodel.DecoratorString',
+                    'value': arg
+                };
+            } else if (typeof arg === 'number') {
+                metaArgument = {
+                    '$class': 'concerto.metamodel.DecoratorNumber',
+                    'value': arg
+                };
+            } else if (typeof arg === 'boolean') {
+                metaArgument = {
+                    '$class': 'concerto.metamodel.DecoratorBoolean',
+                    'value': arg
+                };
+            } else {
+                metaArgument = {
+                    '$class': 'concerto.metamodel.DecoratorIdentifier',
+                    'identifier': {
+                        '$class': 'concerto.metamodel.TypeIdentifier',
+                        'fullyQualifiedName': arg.name
+                    },
+                    'isArray': arg.array
+                };
+            }
+            metaDecorator.arguments.push(metaArgument);
+        });
+
+        // Validate individual arguments here
+        //console.log('DECORATE ' + JSON.stringify(metaDecorator));
+        result.push(serializer.fromJSON(metaDecorator));
+    });
+
+    if (result.length === 0) {
+        return null;
+    } else {
+        return result;
+    }
+}
+
+/**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
 class TypeVisitor {
-
     /**
      * Visits a sub-tree and return CiceroMark DOM
      * @param {*} visitor the visitor to use
@@ -66,6 +128,8 @@ class TypeVisitor {
             if (thing.name === 'this') {
                 const property = currentModel;
                 if (property) {
+                    const serializer = parameters.templateMarkModelManager.getSerializer();
+                    thing.decorators = processDecorators(serializer,property);
                     if (property.isTypeEnum()) {
                         const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
                         const enumType = property.getParent().getModelFile().getType(property.getType());
@@ -91,6 +155,8 @@ class TypeVisitor {
                 }
                 const property = currentModel.getProperty(thing.name);
                 if (property) {
+                    const serializer = parameters.templateMarkModelManager.getSerializer();
+                    thing.decorators = processDecorators(serializer,property);
                     if (property.isTypeEnum()) {
                         const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
                         const enumType = property.getParent().getModelFile().getType(property.getType());
@@ -131,6 +197,8 @@ class TypeVisitor {
                     thing.elementType = property.getFullyQualifiedTypeName();
                     nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
                 }
+                const serializer = parameters.templateMarkModelManager.getSerializer();
+                thing.decorators = processDecorators(serializer,nextModel);
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager:parameters.templateMarkModelManager,
                     introspector:parameters.introspector,
@@ -141,6 +209,8 @@ class TypeVisitor {
                 if (!currentModel) {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
+                const serializer = parameters.templateMarkModelManager.getSerializer();
+                thing.decorators = processDecorators(serializer,currentModel);
                 thing.elementType = currentModel.getFullyQualifiedName();
                 TypeVisitor.visitChildren(this, thing, parameters);
             }
@@ -158,6 +228,8 @@ class TypeVisitor {
                 thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
+            const serializer = parameters.templateMarkModelManager.getSerializer();
+            thing.decorators = processDecorators(serializer,nextModel);
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
@@ -175,6 +247,8 @@ class TypeVisitor {
             if (!property.isArray()) {
                 _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name, thing);
             }
+            const serializer = parameters.templateMarkModelManager.getSerializer();
+            thing.decorators = processDecorators(serializer,property);
             if (property.isPrimitive()) {
                 nextModel = property;
             } else {
@@ -198,6 +272,8 @@ class TypeVisitor {
             if (!property.isArray()) {
                 _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
             }
+            const serializer = parameters.templateMarkModelManager.getSerializer();
+            thing.decorators = processDecorators(serializer,property);
             if (property.isPrimitive()) {
                 nextModel = property;
             } else {
@@ -221,6 +297,8 @@ class TypeVisitor {
             if (property.getType() !== 'Boolean') {
                 _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
             }
+            const serializer = parameters.templateMarkModelManager.getSerializer();
+            thing.decorators = processDecorators(serializer,property);
             nextModel = property;
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
@@ -245,6 +323,8 @@ class TypeVisitor {
             if (!property.isOptional()) {
                 _throwTemplateExceptionForElement('Optional template not on an optional property: ' + thing.name, thing);
             }
+            const serializer = parameters.templateMarkModelManager.getSerializer();
+            thing.decorators = processDecorators(serializer,property);
             if (property.isPrimitive()) {
                 thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = property;
