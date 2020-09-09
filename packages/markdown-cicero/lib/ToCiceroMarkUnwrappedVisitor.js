@@ -68,6 +68,7 @@ class ToCiceroMarkUnwrappedVisitor {
 
             delete thing.name;
             delete thing.elementType;
+            delete thing.decorators;
         }
             break;
         case 'Variable':
@@ -78,6 +79,7 @@ class ToCiceroMarkUnwrappedVisitor {
             thing.text = decodeURIComponent(thing.value);
 
             delete thing.elementType;
+            delete thing.decorators;
             delete thing.name;
             delete thing.value;
             delete thing.format;

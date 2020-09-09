@@ -19,6 +19,7 @@ const moment = require('moment-mini');
 const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const { ConcertoMetaModel } = require('@accordproject/markdown-cicero').ConcertoMetaModel;
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
 
 const normalizeNLs = require('./normalize').normalizeNLs;
@@ -37,6 +38,7 @@ function mkTemplateMarkManager() {
     const result = {};
     result.modelManager = new ModelManager();
     result.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+    result.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
     result.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
     result.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
     result.factory = new Factory(result.modelManager);

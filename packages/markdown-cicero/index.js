@@ -19,6 +19,7 @@
  * @module markdown-transform
  */
 
+module.exports.ConcertoMetaModel = require('./lib/externalModels/ConcertoMetaModel');
 module.exports.CiceroMarkModel = require('./lib/externalModels/CiceroMarkModel');
 
 module.exports.CiceroMarkTransformer = require('./lib/CiceroMarkTransformer');

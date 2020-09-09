@@ -29,6 +29,7 @@ const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMark
 const FromCiceroEditVisitor = require('./FromCiceroEditVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
 const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
+const { ConcertoMetaModel } = require('./externalModels/ConcertoMetaModel');
 const unquoteVariables = require('./UnquoteVariables');
 
 /**
@@ -47,6 +48,7 @@ class CiceroMarkTransformer {
 
         // Setup for validation
         this.modelManager = new ModelManager();
+        this.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
         this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
         this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
         const factory = new Factory(this.modelManager);

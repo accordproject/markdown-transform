@@ -229,6 +229,7 @@ class ToCiceroMarkVisitor {
             const itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,thing);
             itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
             delete itemNode.elementType;
+            delete itemNode.decorators;
             delete itemNode.name;
             delete itemNode.type;
             delete itemNode.start;
@@ -263,6 +264,7 @@ class ToCiceroMarkVisitor {
             const itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer,thing);
             itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
             delete itemNode.elementType;
+            delete itemNode.decorators;
             delete itemNode.name;
             delete itemNode.separator;
             const dataItems = parameters.data[thing.name];
