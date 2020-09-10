@@ -221,6 +221,20 @@ describe('#template1', () => {
         });
     });
 
+    describe('#markdown', () => {
+        it('markdown -> data (offline)', async () => {
+            const model2 = './test/data/template1/contract.cto';
+            const model3 = './test/data/template1/money.cto';
+            parameters.model.push(model2);
+            parameters.model.push(model3);
+            const sample1File = './test/data/template1/sample.md';
+            const sample1 = fs.readFileSync(sample1File, 'utf8');
+            const result = await transform(sample1, 'markdown', ['data'], parameters, {offline:true});
+            result.$class.should.equal('org.test.MyClause');
+            result.seller.should.equal('Steve');
+        });
+    });
+
     describe('#data', () => {
         it('data -> commonmark', async () => {
             const sample1File = './test/data/template1/sample.md';
@@ -255,6 +269,13 @@ describe('#sample', () => {
         it('pdf -> ciceromark (verbose)', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
             result.$class.should.equal('org.accordproject.commonmark.Document');
+        });
+
+        it('ciceromark -> pdf', async () => {
+            const ciceroMark = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {});
+            const result = await transform(ciceroMark, 'ciceromark', ['pdf'], {}, {});
+            //console.log('RESULT ' + result);
+            result.should.exist;
         });
     });
 
