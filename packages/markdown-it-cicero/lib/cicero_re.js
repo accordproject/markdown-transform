@@ -16,6 +16,8 @@
 
 'use strict';
 
+const names = require('./names.json');
+
 const string = '"([^"]*)"';
 const identifier = '([a-zA-Z_][a-zA-Z0-9_]*)';
 const name = '(?:\\s+([A-Za-z0-9_\-]+))';
@@ -61,7 +63,7 @@ function matchOpenBlock(text,stack) {
     var match = text.match(OPEN_BLOCK_RE);
     if (!match) { return null; }
     var block_open = match[1];
-    if (block_open !== 'clause') { return null; }
+    if (!names.blocks.includes(block_open)) { return null; }
     stack.unshift(block_open);
     return { tag: block_open, attrs: getBlockAttributes(match), matched: match };
 }

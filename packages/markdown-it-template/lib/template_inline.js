@@ -16,6 +16,8 @@
 
 // Regexps to match template elements
 
+const names = require('./names.json');
+
 const VARIABLE_RE = require('./template_re').VARIABLE_RE;
 const OPEN_BLOCK_RE = require('./template_re').OPEN_BLOCK_RE;
 const CLOSE_BLOCK_RE = require('./template_re').CLOSE_BLOCK_RE;
@@ -50,7 +52,7 @@ function template_inline(state, silent) {
         attrs = getBlockAttributes(match);
 
         const block = match[1];
-        if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
+        if (!names.inlines.includes(block)) {
             return false;
         }
         token         = state.push('inline_block_' + block + '_open', 'span', 1);
@@ -67,7 +69,7 @@ function template_inline(state, silent) {
         if (!match) { return false; }
 
         const block = match[1];
-        if (block !== 'if' && block !== 'optional' && block !== 'with' && block !== 'join') {
+        if (!names.inlines.includes(block)) {
             return false;
         }
 
