@@ -38,6 +38,8 @@ const tests = [
     { 'name' : 'notclause1' },
     { 'name' : 'notclause2' },
     { 'name' : 'notclause3' },
+    { 'name' : 'notclause4' },
+    { 'name' : 'notclause5' },
     { 'name' : 'autoclose1' },
     { 'name' : 'autoclose2' },
     { 'name' : 'autoclose3' },
