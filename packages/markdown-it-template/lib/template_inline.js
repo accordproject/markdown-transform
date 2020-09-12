@@ -74,7 +74,7 @@ function template_inline(state, silent) {
         }
 
         token         = state.push('inline_block_' + block + '_close', 'span', -1);
-        token.content = match[1];
+        token.content = match[0];
         state.pos += match[0].length;
 
         return true;
