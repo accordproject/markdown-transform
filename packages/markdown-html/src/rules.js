@@ -83,6 +83,20 @@ const LIST_RULE = {
 };
 
 /**
+ * A rule to deserialize linebreak nodes.
+ * @type {Object}
+ */
+const LINEBREAK_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'br') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}Linebreak`
+            };
+        }
+    }
+};
+
+/**
  * A rule to deserialize paragraph nodes.
  * @type {Object}
  */
@@ -499,6 +513,7 @@ const rules = [
     LINK_RULE,
     HEADING_RULE,
     THEMATIC_BREAK_RULE,
+    LINEBREAK_RULE,
     CODE_BLOCK_RULE,
     INLINE_CODE_RULE,
     BLOCK_QUOTE_RULE,
