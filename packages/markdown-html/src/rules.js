@@ -24,11 +24,6 @@ const { isIgnorable } = require('./helpers');
  */
 const TEXT_RULE = {
     deserialize(el, next, ignoreSpace) {
-        if (el.tagName && el.tagName.toLowerCase() === 'br') {
-            // add Linebreak node in ciceromark
-            return;
-        }
-
         // text nodes will be of type 3
         if (el.nodeType === 3 && !isIgnorable(el, ignoreSpace)) {
             const textArray = el.nodeValue.split('\n');
