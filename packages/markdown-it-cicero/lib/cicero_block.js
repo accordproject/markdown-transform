@@ -14,9 +14,8 @@
 
 'use strict';
 
-const OPEN_BLOCK_RE = require('./cicero_re').OPEN_BLOCK_RE;
-const CLOSE_BLOCK_RE = require('./cicero_re').CLOSE_BLOCK_RE;
-const getBlockAttributes = require('./cicero_re').getBlockAttributes;
+const matchOpenBlock = require('./cicero_re').matchOpenBlock;
+const matchCloseBlock = require('./cicero_re').matchCloseBlock;
 
 function cicero_block(state, startLine, endLine, silent) {
     let block_name,
@@ -38,14 +37,17 @@ function cicero_block(state, startLine, endLine, silent) {
     if (0x7B/* { */ !== state.src.charCodeAt(start+1)) { return false; }
     if (0x23/* # */ !== state.src.charCodeAt(start+2)) { return false; }
 
-    match = state.src.slice(start).match(OPEN_BLOCK_RE);
+    match = matchOpenBlock(state.src.slice(start),stack);
     if (!match) { return false; }
 
-    block_open = match[1];
+    // make sure tail has spaces only
+    pos = start + match.matched[0].length;
+    pos = state.skipSpaces(pos);
 
-    attrs = getBlockAttributes(match);
+    if (pos < max) { return false; }
 
-    if (block_open !== 'clause') { return false; }
+    block_open = match.tag;
+    attrs = match.attrs;
 
     block_name = block_open;
     markup = '';
@@ -70,7 +72,7 @@ function cicero_block(state, startLine, endLine, silent) {
         max = state.eMarks[nextLine];
 
         if (start < max && state.sCount[nextLine] < state.blkIndent) {
-            // non-empty line with negative indent should stop the list:
+            // non-empty line with negative indent should stop the block:
             // - ```
             //  test
             break;
@@ -81,21 +83,24 @@ function cicero_block(state, startLine, endLine, silent) {
         //
         if (0x7B/* { */ !== state.src.charCodeAt(start)) { continue; }
         if (0x7B/* { */ !== state.src.charCodeAt(start+1)) { continue; }
-        if (0x2F/* / */ !== state.src.charCodeAt(start+2)) { continue; }
+        if (0x2F/* / */ !== state.src.charCodeAt(start+2) && 0x23/* # */ !== state.src.charCodeAt(start+2)) { continue; }
+
+        // Handles nested blocks
+        if (0x23/* # */ === state.src.charCodeAt(start+2)) {
+            match = matchOpenBlock(state.src.slice(start),stack);
+            continue;
+        }
 
         if (state.sCount[nextLine] - state.blkIndent >= 4) {
             // closing fence should be indented less than 4 spaces
             continue;
         }
 
-        match = state.src.slice(start).match(CLOSE_BLOCK_RE);
+        match = matchCloseBlock(state.src.slice(start),block_open,stack);
         if (!match) { continue; }
 
-        const block_close = match[1];
-        if (block_close !== block_open) { continue; }
-
         // make sure tail has spaces only
-        pos = start + match[0].length;
+        pos = start + match.matched[0].length;
         pos = state.skipSpaces(pos);
 
         if (pos < max) { continue; }

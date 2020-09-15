@@ -7,3 +7,4 @@ test/data
 src/grammars
 .travis
 scripts
+src/domstubs.js

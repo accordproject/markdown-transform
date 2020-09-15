@@ -47,38 +47,19 @@ require('yargs')
             array: true,
             default: []
         });
-        yargs.option('output', {
-            describe: 'path to the output file',
-            type: 'string'
-        });
-        yargs.option('verbose', {
-            describe: 'verbose output',
-            type: 'boolean',
-            default: false
-        });
-        yargs.option('sourcePos', {
-            describe: 'enable source position',
-            type: 'boolean',
-            default: false
-        });
         yargs.option('roundtrip', {
             describe: 'roundtrip transform',
             type: 'boolean',
             default: false
         });
-        yargs.option('model', {
-            describe: 'array of Concerto model files',
-            type: 'string',
-            array: true
-        });
-        yargs.option('plugin', {
-            describe: 'path to the parser plugin',
+        yargs.option('output', {
+            describe: 'path to the output file',
             type: 'string'
         });
-        yargs.option('currentTime', {
-            describe: 'set current time',
+        yargs.option('model', {
+            describe: 'array of concerto model files',
             type: 'string',
-            default: null
+            array: true
         });
         yargs.option('template', {
             describe: 'template grammar',
@@ -86,6 +67,30 @@ require('yargs')
         });
         yargs.option('contract', {
             describe: 'contract template',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('currentTime', {
+            describe: 'set current time',
+            type: 'string',
+            default: null
+        });
+        yargs.option('plugin', {
+            describe: 'path to a parser plugin',
+            type: 'string'
+        });
+        yargs.option('sourcePos', {
+            describe: 'enable source position',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('verbose', {
+            describe: 'verbose output',
+            type: 'boolean',
+            default: false
+        });
+        yargs.option('offline', {
+            describe: 'do not resolve external models',
             type: 'boolean',
             default: false
         });
@@ -112,6 +117,7 @@ require('yargs')
             options.verbose = argv.verbose;
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
+            options.offline = argv.offline;
             return commands.transform(argv.input, argv.from, argv.via, argv.to, argv.output, parameters, options)
                 .then((result) => {
                     const destinationFormat = formatDescriptor(argv.to);

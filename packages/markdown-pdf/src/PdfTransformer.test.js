@@ -17,6 +17,8 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
+
 const PdfTransformer = require('./PdfTransformer');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
@@ -134,8 +136,18 @@ describe('pdf import', () => {
             //     console.log(JSON.stringify(ciceroMarkDom, null, 4));
             // }
             expect(ciceroMarkDom).toMatchSnapshot(); // (1)
-            return saveCiceroMarkAsPdf(ciceroMarkDom, file + '-import'); // roundtrip for debug
+            return saveCiceroMarkAsPdf(ciceroMarkDom, file + '-roundtrip'); // roundtrip for debug
         });
+    });
+});
+
+describe('pdf import 2', () => {
+    it('converts Land_Sale_Contract to cicero mark', async () => {
+        const pdfContent = fs.readFileSync( path.join(__dirname, '/../test/data', 'Land_Sale_Contract.pdf'), null );
+        const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
+        // console.log(JSON.stringify(ciceroMarkDom, null, 4));
+        expect(ciceroMarkDom).toMatchSnapshot(); // (1)
+        return saveCiceroMarkAsPdf(ciceroMarkDom, 'Land_Sale_Contract-debug'); // roundtrip for debug
     });
 });
 

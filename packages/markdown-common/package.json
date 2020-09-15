@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-common",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
@@ -52,7 +52,7 @@
     "nyc": "14.1.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.8",
+    "@accordproject/concerto-core": "^0.82.9",
     "markdown-it": "^11.0.0",
     "winston": "3.2.1",
     "xmldom": "^0.1.27"

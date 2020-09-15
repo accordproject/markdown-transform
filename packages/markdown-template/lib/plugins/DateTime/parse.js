@@ -66,10 +66,20 @@ function mkDateTime(value,utcOffset) {
         return nb.padStart(digits,'0');
     };
     const valueObj = mkCompoundVariable('DateTime',value);
+    let preHour = '';
+    if (valueObj.hour) {
+        if (valueObj.halfDay === 'am') {
+            preHour = valueObj.hour === 12 ? 0 : valueObj.hour;
+        } else if (valueObj.halfDay === 'pm') {
+            preHour = valueObj.hour === 12 ? 12 : valueObj.hour + 12;
+        } else {
+            preHour = valueObj.hour;
+        }
+    }
     const year = fillNumber(valueObj.year,4,0);
     const month = fillNumber(valueObj.month,2,1);
     const day = fillNumber(valueObj.day,2,1);
-    const hour = fillNumber(valueObj.hour,2,0);
+    const hour = fillNumber(preHour,2,0);
     const minute = fillNumber(valueObj.minute,2,0);
     const second = fillNumber(valueObj.second,2,0);
     const fracsecond = fillNumber(valueObj.fracsecond,3,0);
@@ -185,6 +195,16 @@ function parserHH() {
  * Creates a parser for hh format
  * @returns {object} the parser
  */
+function parserh() {
+    return P.regexp(/1[0-2]|[1-9]/).map(function(x) {
+        return mkField('hour',Number(x));
+    });
+}
+
+/**
+ * Creates a parser for hh format
+ * @returns {object} the parser
+ */
 function parserhh() {
     return P.regexp(/1[0-2]|0[1-9]/).map(function(x) {
         return mkField('hour',Number(x));
@@ -232,6 +252,26 @@ function parserZ() {
 }
 
 /**
+ * Creates a parser for a format
+ * @returns {object} the parser
+ */
+function parsera() {
+    return P.alt(P.string('am'),P.string('pm')).map(function(x) {
+        return mkField('halfDay',x);
+    });
+}
+
+/**
+ * Creates a parser for a format
+ * @returns {object} the parser
+ */
+function parserA() {
+    return P.alt(P.string('AM'),P.string('PM')).map(function(x) {
+        return mkField('halfDay',x.toLowerCase());
+    });
+}
+
+/**
  * Parsing table for variables
  * This maps types to their parser
  */
@@ -245,11 +285,14 @@ const parsingTable = {
     'YYYY' : parserYYYY,
     'H' : parserH,
     'HH' : parserHH,
+    'h' : parserh,
     'hh' : parserhh,
     'mm' : parsermm,
     'ss' : parserss,
     'SSS' : parserSSS,
     'Z' : parserZ,
+    'a' : parsera,
+    'A' : parserA,
 };
 
 /**
@@ -287,7 +330,7 @@ function dateTimeParser(format,parserManager) {
         format = format.substr(0,format.length-1);
     }
 
-    const fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|hh|mm|ss|SSS)+/);
+    const fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|hh|h|mm|ss|SSS|a|A)+/);
     if(hasTimeZone) {
         fields.push('Z');
     }

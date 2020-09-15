@@ -34,8 +34,15 @@ const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
  */
 const templateToTemplateMark = async (input,parameters,options) => {
     const t = new TemplateMarkTransformer();
-    const modelManager = await ModelLoader.loadModelManager(null, parameters.model);
-    return t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options);
+    const modelOptions = { offline: false };
+    if (options && options.offline) {
+        modelOptions.offline = true;
+    }
+    const modelManager = await ModelLoader.loadModelManager(null, parameters.model, options);
+    return {
+        modelManager: modelManager,
+        templateMark: t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options)
+    };
 };
 const transformationGraph = {
     markdown_template: {
@@ -51,7 +58,7 @@ const transformationGraph = {
         fileFormat: 'json',
         templatemark: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.model);
+            const modelManager = await ModelLoader.loadModelManager(null, parameters.model, options);
             return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options);
         },
     },
@@ -128,10 +135,9 @@ const transformationGraph = {
         },
         data: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer(parameters.plugin);
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.model);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.templateFileName;
-            const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
+            const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
             const result = await t.fromCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, parameters.currentTime, options);
             return result;
         },
@@ -183,10 +189,9 @@ const transformationGraph = {
         fileFormat: 'json',
         ciceromark_parsed: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer(parameters.plugin);
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.model);
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.templateFileName;
-            const templateMark = await templateToTemplateMark(parameters.template,templateParameters,options);
+            const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
             return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, parameters.currentTime, options);
         },
     },
