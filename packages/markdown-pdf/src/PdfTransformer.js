@@ -18,48 +18,49 @@ const PDFParser = require('pdf2json');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const PdfPrinter = require('pdfmake');
 const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
+const axios = require('axios');
 const fonts = {
     Courier: {
         normal: 'Courier',
         bold: 'Courier-Bold',
         italics: 'Courier-Oblique',
-        bolditalics: 'Courier-BoldOblique'
+        bolditalics: 'Courier-BoldOblique',
     },
     Helvetica: {
         normal: 'Helvetica',
         bold: 'Helvetica-Bold',
         italics: 'Helvetica-Oblique',
-        bolditalics: 'Helvetica-BoldOblique'
+        bolditalics: 'Helvetica-BoldOblique',
     },
     Times: {
         normal: 'Times-Roman',
         bold: 'Times-Bold',
         italics: 'Times-Italic',
-        bolditalics: 'Times-BoldItalic'
+        bolditalics: 'Times-BoldItalic',
     },
     Symbol: {
-        normal: 'Symbol'
+        normal: 'Symbol',
     },
     ZapfDingbats: {
-        normal: 'ZapfDingbats'
+        normal: 'ZapfDingbats',
     },
     LiberationSerif: {
         normal: `${__dirname}/fonts/LiberationSerif-Regular.ttf`,
         bold: `${__dirname}/fonts/LiberationSerif-Bold.ttf`,
         italics: `${__dirname}/fonts/LiberationSerif-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationSerif-BoldItalic.ttf`
+        bolditalics: `${__dirname}/fonts/LiberationSerif-BoldItalic.ttf`,
     },
     LiberationSans: {
         normal: `${__dirname}/fonts/LiberationSans-Regular.ttf`,
         bold: `${__dirname}/fonts/LiberationSans-Bold.ttf`,
         italics: `${__dirname}/fonts/LiberationSans-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationSans-BoldItalic.ttf`
+        bolditalics: `${__dirname}/fonts/LiberationSans-BoldItalic.ttf`,
     },
     LiberationMono: {
         normal: `${__dirname}/fonts/LiberationMono-Regular.ttf`,
         bold: `${__dirname}/fonts/LiberationMono-Bold.ttf`,
         italics: `${__dirname}/fonts/LiberationMono-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationMono-BoldItalic.ttf`
+        bolditalics: `${__dirname}/fonts/LiberationMono-BoldItalic.ttf`,
     },
 };
 
@@ -67,7 +68,6 @@ const fonts = {
  * Converts a PDF to CiceroMark DOM
  */
 class PdfTransformer {
-
     /**
      * Construct the parser.
      * @param {object} [options] configuration options
@@ -88,71 +88,69 @@ class PdfTransformer {
      * @returns {promise} a Promise to the CiceroMark DOM
      */
     async toCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 1, preservePages: true }) {
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const pdfParser = new PDFParser(null, false);
             const errorCallback = (errData) => reject(`PDF parsing failed with error ${errData.parserError}`);
             const conversionCallback = (pdfData) => {
-
                 const document = {
-                    $class : 'org.accordproject.commonmark.Document',
-                    xmlns : pdfData.formImage.Id.Name,
-                    nodes : []
+                    $class: 'org.accordproject.commonmark.Document',
+                    xmlns: pdfData.formImage.Id.Name,
+                    nodes: [],
                 };
 
                 // pdfData = pdfParser.getMergedTextBlocksIfNeeded();
 
                 let currentPara = null;
-                pdfData.formImage.Pages.forEach(page => {
+                pdfData.formImage.Pages.forEach((page) => {
                     let lastY = 0;
-                    page.Texts.forEach( text => {
-                        if(!currentPara || Math.abs(lastY - text.y) > options.paragraphVerticalOffset) {
+                    page.Texts.forEach((text) => {
+                        if (!currentPara || Math.abs(lastY - text.y) > options.paragraphVerticalOffset) {
                             currentPara = {
-                                $class : 'org.accordproject.commonmark.Paragraph',
-                                nodes : []
+                                $class: 'org.accordproject.commonmark.Paragraph',
+                                nodes: [],
                             };
                             document.nodes.push(currentPara);
                         }
 
-                        text.R.forEach( run => {
-                            let [/*fontFaceId*/, /*fontSize*/, bold, italic] = run.TS;
+                        text.R.forEach((run) => {
+                            let [, , /*fontFaceId*/ /*fontSize*/ bold, italic] = run.TS;
                             const textNode = {
-                                $class : 'org.accordproject.commonmark.Text',
-                                text : run.T ? decodeURIComponent(run.T) : ''
+                                $class: 'org.accordproject.commonmark.Text',
+                                text: run.T ? decodeURIComponent(run.T) : '',
                             };
-                            if(bold && !italic) {
+                            if (bold && !italic) {
                                 const bold = {
-                                    $class : 'org.accordproject.commonmark.Strong',
-                                    nodes : [textNode]
+                                    $class: 'org.accordproject.commonmark.Strong',
+                                    nodes: [textNode],
                                 };
                                 PdfTransformer.pushNode(currentPara, bold, lastY, text.y);
-                            }
-                            else if(italic && !bold) {
+                            } else if (italic && !bold) {
                                 const italic = {
-                                    $class : 'org.accordproject.commonmark.Emph',
-                                    nodes : [textNode]
+                                    $class: 'org.accordproject.commonmark.Emph',
+                                    nodes: [textNode],
                                 };
                                 PdfTransformer.pushNode(currentPara, italic, lastY, text.y);
-                            }
-                            else if(italic && bold) {
+                            } else if (italic && bold) {
                                 const boldItalic = {
-                                    $class : 'org.accordproject.commonmark.Strong',
-                                    nodes : [{
-                                        $class : 'org.accordproject.commonmark.Emph',
-                                        nodes : [textNode]
-                                    }]
+                                    $class: 'org.accordproject.commonmark.Strong',
+                                    nodes: [
+                                        {
+                                            $class: 'org.accordproject.commonmark.Emph',
+                                            nodes: [textNode],
+                                        },
+                                    ],
                                 };
                                 PdfTransformer.pushNode(currentPara, boldItalic, lastY, text.y);
-                            }
-                            else {
+                            } else {
                                 PdfTransformer.pushNode(currentPara, textNode, lastY, text.y);
                             }
                         });
                         lastY = text.y;
                     });
 
-                    if(options.preservePages) {
-                        document.nodes.push( {
-                            $class : 'org.accordproject.commonmark.ThematicBreak'
+                    if (options.preservePages) {
+                        document.nodes.push({
+                            $class: 'org.accordproject.commonmark.ThematicBreak',
                         });
                     }
                 });
@@ -173,10 +171,40 @@ class PdfTransformer {
      * @param {*} outputStream - the output stream
      */
     async toPdf(input, options, outputStream) {
-
         const printer = new PdfPrinter(fonts);
 
-        if(!input.getType) {
+        // Asynchronously retrieve image as Base64 encoded data from URL.
+        const getRemoteImageData = async (url) => {
+            try {
+                const buffer = await axios.get(url, { responseType: 'arraybuffer' });
+                return ("data:image/png;base64," + buffer.data.toString('base64'));
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        // Walk a JSON object and find any image key starting with 'http' and 
+        // substitute the URL with the Base64 encoded image data. 
+        const findReplaceImageUrls = async (object) => {
+            await Promise.all(
+                Object.keys(object).map(async (key) => {
+                    if (Array.isArray(object[key])) {
+                        object[key] = await Promise.all(
+                            object[key].map(async (obj) => await findReplaceImageUrls(obj))
+                        );
+                    } else if (typeof object[key] === 'object') {
+                        object[key] = await findReplaceImageUrls(object[key]);
+                    } else {
+                        if (key === 'image' && typeof object[key] === 'string' && object[key].startsWith('http')) {
+                            object[key] = await getRemoteImageData(object[key]);
+                        }
+                    }
+                })
+            );
+            return object;
+        };
+
+        if (!input.getType) {
             input = this.ciceroMarkTransformer.getSerializer().fromJSON(input);
         }
 
@@ -187,47 +215,49 @@ class PdfTransformer {
         const visitor = new ToPdfMakeVisitor(this.options);
         input.accept(visitor, parameters);
 
-        const dd = parameters.result;
-        // console.log(JSON.stringify(dd, null, 2));
+        let dd = parameters.result;
+        await findReplaceImageUrls(dd);
 
         dd.defaultStyle = {
             fontSize: 12,
             font: 'LiberationSerif',
-            lineHeight: 1.5
+            lineHeight: 1.5,
         };
 
         dd.pageSize = 'LETTER';
-        dd.pageOrientation = 'portrait',
-        dd.pageMargins = [ 80, 80, 80, 80 ];
+        (dd.pageOrientation = 'portrait'), (dd.pageMargins = [80, 80, 80, 80]);
 
         // allow overrding top-level options
         Object.assign(dd, options);
 
-        if(options.tocHeading) {
-            dd.content = [{
-                toc: {
-                    title: {text: options.tocHeading, style: 'toc'}
-                }
-            }].concat( [{text: '', pageBreak: 'after'}].concat(dd.content ));
+        if (options.tocHeading) {
+            dd.content = [
+                {
+                    toc: {
+                        title: { text: options.tocHeading, style: 'toc' },
+                    },
+                },
+            ].concat([{ text: '', pageBreak: 'after' }].concat(dd.content));
         }
-        if(options.headerText) {
+        if (options.headerText) {
             dd.header = {
-                text : options.headerText,
-                style : 'Header'
+                text: options.headerText,
+                style: 'Header',
             };
         }
-        if(options.footerText || options.footerPageNumber) {
-            dd.footer = function(currentPage, pageCount) {
-                const footer = [{
-                    text : options.footerText ? options.footerText : '',
-                    style : 'Footer',
-                }];
-                if(options.footerPageNumber) {
-                    footer.push(
-                        {
-                            text: currentPage.toString() + ' / ' + pageCount,
-                            style: 'PageNumber'
-                        });
+        if (options.footerText || options.footerPageNumber) {
+            dd.footer = function (currentPage, pageCount) {
+                const footer = [
+                    {
+                        text: options.footerText ? options.footerText : '',
+                        style: 'Footer',
+                    },
+                ];
+                if (options.footerPageNumber) {
+                    footer.push({
+                        text: currentPage.toString() + ' / ' + pageCount,
+                        style: 'PageNumber',
+                    });
                 }
                 return footer;
             };
@@ -235,72 +265,72 @@ class PdfTransformer {
         const defaultStyles = {
             Footer: {
                 alignment: 'left',
-                margin : [10, 10, 0, 0]
+                margin: [10, 10, 0, 0],
             },
             PageNumber: {
                 alignment: 'center',
-                margin : [0, 0, 0, 0]
+                margin: [0, 0, 0, 0],
             },
             Header: {
                 alignment: 'right',
-                margin : [0, 10, 10, 0]
+                margin: [0, 10, 10, 0],
             },
             heading_one: {
                 fontSize: 30,
                 bold: true,
-                alignment: 'center'
+                alignment: 'center',
             },
             heading_two: {
                 fontSize: 28,
-                bold: true
+                bold: true,
             },
             heading_three: {
                 fontSize: 26,
-                bold: true
+                bold: true,
             },
             heading_four: {
                 fontSize: 24,
-                bold: true
+                bold: true,
             },
             heading_five: {
                 fontSize: 22,
-                bold: true
+                bold: true,
             },
             heading_six: {
                 fontSize: 20,
-                bold: true
+                bold: true,
             },
             Code: {
-                font: 'LiberationMono'
+                font: 'LiberationMono',
             },
             CodeBlock: {
                 font: 'LiberationMono',
             },
             HtmlInline: {
-                font: 'LiberationMono'
+                font: 'LiberationMono',
             },
             HtmlBlock: {
                 font: 'LiberationMono',
             },
             Paragraph: {
-                alignment: 'justify'
+                alignment: 'justify',
             },
             toc: {
                 fontSize: 30,
                 bold: true,
-                alignment: 'center'
+                alignment: 'center',
             },
             Link: {
-                color: 'blue'
+                color: 'blue',
             },
             BlockQuote: {
-                margin: [20, 0]
+                margin: [20, 0],
             },
         };
 
         // allow the caller to override default styles
         dd.styles = defaultStyles;
-        if(options.styles) {
+        if (options.styles) {
             Object.assign(dd.styles, options.styles);
         }
 
@@ -315,7 +345,7 @@ class PdfTransformer {
      * @returns {object} the last child node, or null
      */
     static getLastChildNode(node) {
-        return node.nodes.length > 0 ? node.nodes[node.nodes.length-1] : null;
+        return node.nodes.length > 0 ? node.nodes[node.nodes.length - 1] : null;
     }
 
     /**
@@ -326,13 +356,12 @@ class PdfTransformer {
      * @returns {object} the modified destination node, or null
      */
     static mergeTextNode(srcNode, destNode) {
-        if(srcNode && destNode ) {
-            if( srcNode.$class === destNode.$class ) {
-                if(srcNode.$class === 'org.accordproject.commonmark.Text') {
+        if (srcNode && destNode) {
+            if (srcNode.$class === destNode.$class) {
+                if (srcNode.$class === 'org.accordproject.commonmark.Text') {
                     destNode.text = destNode.text + srcNode.text;
                     return destNode;
-                }
-                else {
+                } else {
                     const srcChild = PdfTransformer.getLastChildNode(srcNode);
                     const destChild = PdfTransformer.getLastChildNode(destNode);
                     return PdfTransformer.mergeTextNode(srcChild, destChild);
@@ -351,17 +380,16 @@ class PdfTransformer {
      * @param {*} textY the current Y offset position from PDF
      */
     static pushNode(currentPara, node, lastY, textY) {
-        if(lastY !== textY) {
-            currentPara.nodes.push( {
-                $class : 'org.accordproject.commonmark.Softbreak'
+        if (lastY !== textY) {
+            currentPara.nodes.push({
+                $class: 'org.accordproject.commonmark.Softbreak',
             });
             currentPara.nodes.push(node);
-        }
-        else {
+        } else {
             const lastNode = PdfTransformer.getLastChildNode(currentPara);
             const merged = PdfTransformer.mergeTextNode(node, lastNode);
 
-            if(!merged) {
+            if (!merged) {
                 currentPara.nodes.push(node);
             }
         }

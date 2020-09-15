@@ -80,13 +80,19 @@ obligations under this agreement, detailed in "Attachment X", attached
 to this agreement.
 {{/clause}}
 
-## Image (Heading Two)
+## Image URL (Heading Two)
+
+This is an image link using a http url.
+
+![Accord](https://avatars0.githubusercontent.com/u/29445438?s=200&v=4)
+
+### Image Data URI (Heading Three)
 
 This is an image link using a data uri.
 
 ![accord project](data:image/png;base64,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)
 
-### Ordered List (Heading Three)
+#### Ordered List (Heading Four)
 
 This is is an ordered list:
 
@@ -94,7 +100,7 @@ This is is an ordered list:
 2. two
 3. three
 
-#### Unordered List (Heading Four)
+##### Unordered List (Heading Five)
 
 This is an unordered list:
 
@@ -102,7 +108,7 @@ This is an unordered list:
 - pears
 - peaches
 
-##### Bold Italic (Heading Five)
+###### Bold Italic (Heading Six)
 
 This is ***bold italic*** text. More text.
 
