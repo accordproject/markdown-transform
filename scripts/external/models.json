@@ -11,11 +11,11 @@
           "js": "packages/markdown-cicero/lib/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
-          "from": "https://deploy-preview-113--accordproject-models.netlify.app/markdown/ciceromark@0.3.1.cto",
+          "from": "https://models.accordproject.org/markdown/ciceromark@0.3.1.cto",
           "js": "packages/markdown-cicero/lib/externalModels" },
         { "name": "TemplateMarkModel",
           "namespace" : "org.accordproject.templatemark",
-          "from": "https://deploy-preview-113--accordproject-models.netlify.app/markdown/templatemark@0.1.1.cto",
+          "from": "https://models.accordproject.org/markdown/templatemark@0.1.1.cto",
           "js": "packages/markdown-template/lib/externalModels" }
     ]
 }
