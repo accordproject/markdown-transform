@@ -22,17 +22,7 @@ const path = require('path');
 const PdfTransformer = require('./PdfTransformer');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
-const templatemarkutil = require('@accordproject/markdown-template').templatemarkutil;
-
-const AP_SYSTEM_MODEL = `namespace org.accordproject.base
- abstract asset Asset {  }
- abstract participant Participant {  }
- abstract transaction Transaction identified by transactionId {
-   o String transactionId
- }
- abstract event Event identified by eventId {
-   o String eventId
- }`;
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
 let pdfTransformer = null;
 
@@ -168,12 +158,8 @@ describe('pdf generation with decorators', () => {
         const templateTransformer = new TemplateMarkTransformer();
         const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
 
-        const modelManager = templatemarkutil.templateMarkManager.modelManager;
-        modelManager.addModelFile(AP_SYSTEM_MODEL, 'org.accordproject.base.cto', false, true);
-
-        const modelFile = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'model.cto'), 'utf-8' );
-        modelManager.addModelFile(modelFile, 'model.cto', true );
-        await modelManager.updateExternalModels();
+        const modelFilePath = path.join(__dirname, '/../test/data/signature/model.cto');
+        const modelManager = await ModelLoader.loadModelManager(null,[modelFilePath]);
 
         const templateMarkDom = templateTransformer.fromMarkdownTemplate( { content: templateMarkContent }, modelManager, 'clause');
         expect(templateMarkDom).toMatchSnapshot(); // (1)
