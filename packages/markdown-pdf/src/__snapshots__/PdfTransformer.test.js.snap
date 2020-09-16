@@ -1,5 +1,320 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`pdf generation with decorators converts signature-block.md 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.templatemark.ClauseDefinition",
+      "elementType": "org.accordproject.signature.tnd.TitleNameDateSignatureBlock",
+      "name": "top",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "signatory",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Signature: ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "signatory",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "SignHere",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                  ],
+                  "name": "ContractEditor",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "String",
+              "name": "signature",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Title: ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "signatory",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "Title",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "optional",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                  ],
+                  "name": "ContractEditor",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "String",
+              "name": "title",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Full name: ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "signatory",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "FullName",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                  ],
+                  "name": "ContractEditor",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "String",
+              "name": "fullName",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Paragraph",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "Date signed: ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "org.accordproject.cicero.contract.AccordParty",
+              "identifiedBy": "partyId",
+              "name": "signatory",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " ",
+            },
+            Object {
+              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "decorators": Array [
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "DateSigned",
+                    },
+                  ],
+                  "name": "DocuSignTab",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                  ],
+                  "name": "ContractEditor",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
+                    },
+                  ],
+                  "name": "PdfStyle",
+                },
+              ],
+              "elementType": "String",
+              "name": "dateSigned",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`pdf import 2 converts Land_Sale_Contract to cicero mark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

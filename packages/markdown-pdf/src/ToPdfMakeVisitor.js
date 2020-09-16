@@ -152,8 +152,21 @@ class ToPdfMakeVisitor {
      */
     visit(thing, parameters) {
 
+        // the style defaults to the name of the type
+        let style = thing.getType();
+
+        // if the type has an explicit PdfStyle decorator, then we use it
+        if( thing.decorators ) {
+            const pdfStyle = thing.decorators.filter( d => d.name === 'PdfStyle');
+            if( pdfStyle.length > 0 ) {
+                if(pdfStyle[0].arguments && pdfStyle[0].arguments.length === 1) {
+                    style = pdfStyle[0].arguments[0].value;
+                }
+            }
+        }
+
         let result = {
-            style: thing.getType()
+            style
         };
 
         switch(thing.getType()) {

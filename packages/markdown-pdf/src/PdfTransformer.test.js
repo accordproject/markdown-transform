@@ -21,6 +21,8 @@ const path = require('path');
 
 const PdfTransformer = require('./PdfTransformer');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
+const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
 let pdfTransformer = null;
 
@@ -150,6 +152,37 @@ describe('pdf import 2', () => {
         return saveCiceroMarkAsPdf(ciceroMarkDom, 'Land_Sale_Contract-debug'); // roundtrip for debug
     });
 });
+
+describe('pdf generation with decorators', () => {
+    it('converts signature-block.md', async () => {
+        const templateTransformer = new TemplateMarkTransformer();
+        const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
+
+        const modelFilePath = path.join(__dirname, '/../test/data/signature/model.cto');
+        const modelManager = await ModelLoader.loadModelManager(null,[modelFilePath]);
+
+        const templateMarkDom = templateTransformer.fromMarkdownTemplate( { content: templateMarkContent }, modelManager, 'clause');
+        expect(templateMarkDom).toMatchSnapshot(); // (1)
+
+        const markdownContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'signature-block.md'), 'utf-8' );
+        const ciceroMarkTransformer = new CiceroMarkTransformer();
+        const ciceroMarkDom = ciceroMarkTransformer.fromMarkdownCicero(markdownContent, 'json');
+
+        const signatureBlocks = ciceroMarkDom.nodes.filter( n => n.$class === 'org.accordproject.ciceromark.Clause');
+
+        const promises = [];
+        signatureBlocks.forEach( signatureBlock => {
+            // console.log(JSON.stringify(signatureBlock, null, 4));
+            const parseResult = templateTransformer.fromCiceroMark( {content: { $class: 'org.accordproject.commonmark.Document', xmlns: '', nodes: signatureBlock.nodes} }, templateMarkDom, modelManager, 'clause', null );
+            // console.log(JSON.stringify(parseResult, null, 4));
+            const typedDom = templateTransformer.instantiateCiceroMark(parseResult, templateMarkDom, modelManager, 'clause', null);
+            // console.log(JSON.stringify(typedDom, null, 4));
+            promises.push( saveCiceroMarkAsPdf(typedDom, `signature-block-${signatureBlock.name}` ) );
+        });
+        return Promise.all(promises);
+    });
+});
+
 
 describe('pdf generation', () => {
     getMarkdownFiles().forEach(([file, markdownContent], i) => {
