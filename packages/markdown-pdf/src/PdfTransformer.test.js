@@ -154,7 +154,7 @@ describe('pdf import 2', () => {
 });
 
 describe('pdf generation with decorators', () => {
-    it.only('converts signature-block.md', async () => {
+    it('converts signature-block.md', async () => {
         const templateTransformer = new TemplateMarkTransformer();
         const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
 
@@ -179,9 +179,8 @@ describe('pdf generation with decorators', () => {
             // console.log(JSON.stringify(typedDom, null, 4));
             promises.push( saveCiceroMarkAsPdf(typedDom, `signature-block-${signatureBlock.name}` ) );
         });
+        return Promise.all(promises);
     });
-
-    return Promise.all(promises);
 });
 
 
