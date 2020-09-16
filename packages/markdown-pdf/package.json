@@ -53,6 +53,7 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform#readme",
   "devDependencies": {
+    "@accordproject/markdown-template": "0.12.9",
     "@babel/cli": "7.4.4",
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",

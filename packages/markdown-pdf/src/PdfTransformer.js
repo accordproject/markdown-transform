@@ -301,6 +301,9 @@ class PdfTransformer {
             BlockQuote: {
                 margin: [20, 0]
             },
+            background: {
+                color: 'white'
+            }
         };
 
         // allow the caller to override default styles
