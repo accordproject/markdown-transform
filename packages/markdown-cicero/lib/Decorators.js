@@ -20,7 +20,7 @@
 class Decorators {
     /**
      * Construct an instance, based on a CiceroMark node
-     * Note that decorator arguments must be specified as an 
+     * Note that decorator arguments must be specified as an
      * array of [name (string),value] pairs, even though this is
      * not enforced by the Concerto grammar.
      * @param {object} node the CiceroMark node
@@ -36,7 +36,7 @@ class Decorators {
                 for( let n=0; n < d.arguments.length-1; n=n+2) {
                     const arg = d.arguments[n];
                     if(arg.$class && arg.$class !== 'concerto.metamodel.DecoratorString') {
-                        throw new Error(`Argument names must be strings. Found ${nameClass}`);
+                        throw new Error(`Argument names must be strings. Found ${arg.$class}`);
                     }
                     const argValue = d.arguments[n+1];
                     args[arg.value] = argValue.$class === 'concerto.metamodel.DecoratorIdentifier' ? argValue.identifier : argValue.value;
@@ -68,7 +68,7 @@ class Decorators {
      * Get the arguments for a named decorator
      * @param {string} decoratorName the name of the decorator
      * @param {string} argumentName the name of the decorator argument
-     * @returns {object} the value of the argument or null if the decorator 
+     * @returns {object} the value of the argument or null if the decorator
      * is missing or undefined if the argument is missing
      */
     getDecoratorValue(decoratorName, argumentName) {
