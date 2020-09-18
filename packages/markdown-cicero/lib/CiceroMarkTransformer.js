@@ -244,7 +244,6 @@ class CiceroMarkTransformer {
         const validJson = this.serializer.fromJSON(json);
         return this.serializer.toJSON(validJson);
     }
-
 }
 
 module.exports = CiceroMarkTransformer;

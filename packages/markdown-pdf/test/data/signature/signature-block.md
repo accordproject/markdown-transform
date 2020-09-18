@@ -4,9 +4,7 @@ Fancy Contract
 Buyer
 ----
 
-{{#clause buyerSignature src="https://deploy-preview-363--templates-accordproject.netlify.app/archives/signature-block-title-name-date@0.4.0.cta"}}
-"buyer@example.com"
-
+{{#clause buyerSignature src="ap://signature-block-title-name-date@0.7.0.cta"}}
 Signature: "buyer@example.com" "{{on signature, signature inserted here}}"
 
 Title: "buyer@example.com" "{{on signature, title inserted here}}"
@@ -19,9 +17,7 @@ Date signed: "buyer@example.com" "{{on signature, date signed inserted here}}"
 Seller
 ----
 
-{{#clause sellerSignature src="https://deploy-preview-363--templates-accordproject.netlify.app/archives/signature-block-title-name-date@0.4.0.cta"}}
-"seller@example.com"
-
+{{#clause sellerSignature src="ap://signature-block-title-name-date@0.7.0.cta"}}
 Signature: "seller@example.com" "{{on signature, signature inserted here}}"
 
 Title: "seller@example.com" "{{on signature, title inserted here}}"
