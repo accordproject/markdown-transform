@@ -14,6 +14,8 @@
 
 'use strict';
 
+const { Decorators } = require('@accordproject/markdown-cicero');
+
 /**
  * Unquote strings
  * @param {string} value - the string
@@ -153,20 +155,18 @@ class ToPdfMakeVisitor {
     visit(thing, parameters) {
 
         // the style defaults to the name of the type
-        let style = thing.getType();
+        let decoratorStyle = null;
 
-        // if the type has an explicit PdfStyle decorator, then we use it
-        if( thing.decorators ) {
-            const pdfStyle = thing.decorators.filter( d => d.name === 'PdfStyle');
-            if( pdfStyle.length > 0 ) {
-                if(pdfStyle[0].arguments && pdfStyle[0].arguments.length === 1) {
-                    style = pdfStyle[0].arguments[0].value;
-                }
-            }
+        // if the type has an explicit Pdf style decorator, then we use it
+        try {
+            const decorators = new Decorators(thing);
+            decoratorStyle = decorators.getDecoratorValue( 'Pdf', 'style');
         }
-
+        catch(error) {
+            console.log(error);
+        }
         let result = {
-            style
+            style : decoratorStyle ? decoratorStyle : thing.getType()
         };
 
         switch(thing.getType()) {

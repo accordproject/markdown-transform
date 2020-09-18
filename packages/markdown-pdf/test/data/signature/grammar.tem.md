@@ -1,5 +1,3 @@
-{{signatory}}
-
 Signature: {{signatory}} {{signature}}
 
 Title: {{signatory}} {{title}}

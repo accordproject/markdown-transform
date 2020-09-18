@@ -13,29 +13,6 @@ Object {
           "$class": "org.accordproject.commonmark.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.templatemark.VariableDefinition",
-              "decorators": Array [
-                Object {
-                  "$class": "concerto.metamodel.Decorator",
-                  "arguments": Array [
-                    Object {
-                      "$class": "concerto.metamodel.DecoratorString",
-                      "value": "background",
-                    },
-                  ],
-                  "name": "PdfStyle",
-                },
-              ],
-              "elementType": "org.accordproject.cicero.contract.AccordParty",
-              "identifiedBy": "partyId",
-              "name": "signatory",
-            },
-          ],
-        },
-        Object {
-          "$class": "org.accordproject.commonmark.Paragraph",
-          "nodes": Array [
-            Object {
               "$class": "org.accordproject.commonmark.Text",
               "text": "Signature: ",
             },
@@ -47,10 +24,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "background",
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "Pdf",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
+                    },
+                  ],
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "org.accordproject.cicero.contract.AccordParty",
@@ -69,6 +72,10 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "type",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "SignHere",
                     },
                   ],
@@ -79,20 +86,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "readOnly",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
                     },
                   ],
-                  "name": "ContractEditor",
+                  "name": "Pdf",
                 },
                 Object {
                   "$class": "concerto.metamodel.Decorator",
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "background",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "String",
@@ -115,10 +138,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "background",
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "Pdf",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
+                    },
+                  ],
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "org.accordproject.cicero.contract.AccordParty",
@@ -137,11 +186,19 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "type",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "Title",
                     },
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
                       "value": "optional",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
                     },
                   ],
                   "name": "DocuSignTab",
@@ -151,20 +208,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "readOnly",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
                     },
                   ],
-                  "name": "ContractEditor",
+                  "name": "Pdf",
                 },
                 Object {
                   "$class": "concerto.metamodel.Decorator",
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "background",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "String",
@@ -187,10 +260,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "background",
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "Pdf",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
+                    },
+                  ],
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "org.accordproject.cicero.contract.AccordParty",
@@ -209,6 +308,10 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "type",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "FullName",
                     },
                   ],
@@ -219,20 +322,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "readOnly",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
                     },
                   ],
-                  "name": "ContractEditor",
+                  "name": "Pdf",
                 },
                 Object {
                   "$class": "concerto.metamodel.Decorator",
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "background",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "String",
@@ -255,10 +374,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "background",
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "Pdf",
+                },
+                Object {
+                  "$class": "concerto.metamodel.Decorator",
+                  "arguments": Array [
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
+                    },
+                  ],
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "org.accordproject.cicero.contract.AccordParty",
@@ -277,6 +422,10 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
+                      "value": "type",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
                       "value": "DateSigned",
                     },
                   ],
@@ -287,20 +436,36 @@ Object {
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "readOnly",
+                      "value": "style",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "background",
                     },
                   ],
-                  "name": "ContractEditor",
+                  "name": "Pdf",
                 },
                 Object {
                   "$class": "concerto.metamodel.Decorator",
                   "arguments": Array [
                     Object {
                       "$class": "concerto.metamodel.DecoratorString",
-                      "value": "background",
+                      "value": "readOnly",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorBoolean",
+                      "value": true,
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorString",
+                      "value": "opacity",
+                    },
+                    Object {
+                      "$class": "concerto.metamodel.DecoratorNumber",
+                      "value": 0,
                     },
                   ],
-                  "name": "PdfStyle",
+                  "name": "ContractEditor",
                 },
               ],
               "elementType": "String",
