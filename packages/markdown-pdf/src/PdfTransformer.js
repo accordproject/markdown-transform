@@ -175,7 +175,7 @@ class PdfTransformer {
 
         const printer = new PdfPrinter(fonts);
 
-        const placeholderImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA8CAIAAAB+RarbAAADfUlEQVRo3u2b127DMAxF+///1uy9JzKRvWcvYEBQNGxJkXfvQ5Fh1zoiRZEC8/NOmX5SCjwejzOZzG9CBTQAfgAnmJYwfwD/pkAewJiS6XQa37W6XC7z+bw38Gq1yuVy5G2j0bjdbvFCvVwuGLaqhfH6er3WajXyCeZps9nEAvX1ek0mk2w2SwZfLBa9gZ07Edbo6RkMBvgwyrSHw6FcLtNLcjQaPZ9PJWBH+/2+UCiQryqVyvl8jiDq4/GAPWjzVKvV0+kkRHMDhu73e7vdJt/CWxaLRaRo1+s1bRWMcDab0RfoATsCJL0wMAWYiNBREWtarRZtWLzFh8xlJsAQnBkuTS7DpMLhQ6SFGWkbYDwwtfBKQ2AnkjFLBYEt+EiGxYklSg+j3+9jGcuuNwd2hC2K3tCxgfFe5JMQchF46SwYYRnB2f2ub4EhpCL0zo5EBemKyo1YF5iv+XwO18BfvMYnwFC5d7vdlkolOjhhy1XxLwvAjpB40pONuXexDBI9xg9pdTodsosIxSQFmG6kU4rjtAYMHY9HMuuYclmiR+cDLkKMlWGQ+ITVhLnTGqRNYMd6iBkYECk4GR9mMnh3IRMUbnj453hEt9s12A4tA7tHdRc3lqler9uN/MEBI13heWCoZrMJiw2HQ7wQMgudJQbAsBXvsUxw2u12dDVKtrr4AWPr4k0nTM4Q7XkvsOjVAQHDdAwG1rMsJeanxn2XiiIwNg+GAWmp7GL+CBFpRsyAsSGtPyWrpYXOb7HwDi5oKQoZIn9+GL81rL7UeX9GJhPLbUnlsIKuaYl57ZZfUQFm6gEiWR0fY2Csz16vJ0zC/DgPDh8YhaSwbEDt5cfjQgZGRsHTor7171QwZGAcvimWhAkBRk2rkmAnB5gpCXEY4vcTQwZmjgSwehMOjFPVLSWfInOkc+l/4GQB5zipZM7OqSWKCsVTe3+BsYtis5Gd1MoeT6QCTGoMHIPrLnvLwHTviOws/ntgOhvV7baxBsz3jvhnYci428YCsLB3RPEUyhj4bdpt8y2wrHdE18EMgN9G3TbmwO69I0FKq9vGENizdyRgqXfbaAMr9o6EIpVuGz1g9d6RsOTZbaMKrNs7EqLcu228gc16R0KXrNvGA9i4dyQKEnbbqPZL6/aOREdMt40SsEHvSKREd9toWDjJPwFI3Y88UvcznvQodcB/LBIdvQmJEjwAAAAASUVORK5CYII=";
+        const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA8CAIAAAB+RarbAAADfUlEQVRo3u2b127DMAxF+///1uy9JzKRvWcvYEBQNGxJkXfvQ5Fh1zoiRZEC8/NOmX5SCjwejzOZzG9CBTQAfgAnmJYwfwD/pkAewJiS6XQa37W6XC7z+bw38Gq1yuVy5G2j0bjdbvFCvVwuGLaqhfH6er3WajXyCeZps9nEAvX1ek0mk2w2SwZfLBa9gZ07Edbo6RkMBvgwyrSHw6FcLtNLcjQaPZ9PJWBH+/2+UCiQryqVyvl8jiDq4/GAPWjzVKvV0+kkRHMDhu73e7vdJt/CWxaLRaRo1+s1bRWMcDab0RfoATsCJL0wMAWYiNBREWtarRZtWLzFh8xlJsAQnBkuTS7DpMLhQ6SFGWkbYDwwtfBKQ2AnkjFLBYEt+EiGxYklSg+j3+9jGcuuNwd2hC2K3tCxgfFe5JMQchF46SwYYRnB2f2ub4EhpCL0zo5EBemKyo1YF5iv+XwO18BfvMYnwFC5d7vdlkolOjhhy1XxLwvAjpB40pONuXexDBI9xg9pdTodsosIxSQFmG6kU4rjtAYMHY9HMuuYclmiR+cDLkKMlWGQ+ITVhLnTGqRNYMd6iBkYECk4GR9mMnh3IRMUbnj453hEt9s12A4tA7tHdRc3lqler9uN/MEBI13heWCoZrMJiw2HQ7wQMgudJQbAsBXvsUxw2u12dDVKtrr4AWPr4k0nTM4Q7XkvsOjVAQHDdAwG1rMsJeanxn2XiiIwNg+GAWmp7GL+CBFpRsyAsSGtPyWrpYXOb7HwDi5oKQoZIn9+GL81rL7UeX9GJhPLbUnlsIKuaYl57ZZfUQFm6gEiWR0fY2Csz16vJ0zC/DgPDh8YhaSwbEDt5cfjQgZGRsHTor7171QwZGAcvimWhAkBRk2rkmAnB5gpCXEY4vcTQwZmjgSwehMOjFPVLSWfInOkc+l/4GQB5zipZM7OqSWKCsVTe3+BsYtis5Gd1MoeT6QCTGoMHIPrLnvLwHTviOws/ntgOhvV7baxBsz3jvhnYci428YCsLB3RPEUyhj4bdpt8y2wrHdE18EMgN9G3TbmwO69I0FKq9vGENizdyRgqXfbaAMr9o6EIpVuGz1g9d6RsOTZbaMKrNs7EqLcu228gc16R0KXrNvGA9i4dyQKEnbbqPZL6/aOREdMt40SsEHvSKREd9toWDjJPwFI3Y88UvcznvQodcB/LBIdvQmJEjwAAAAASUVORK5CYII=';
 
         // Asynchronously retrieve image as buffer data from URL.
         const getRemoteImageData = async (url) => {
@@ -192,25 +192,29 @@ class PdfTransformer {
             }
         };
 
-        // Walk a JSON object and find any image key starting with 'http' and 
-        // substitute the URL with the image buffer data. 
+        // Walk a JSON object and find any image key starting with 'http' and
+        // substitute the URL with the image buffer data.
         const findReplaceImageUrls = async (object) => {
+            const updates = [];
             await Promise.all(
                 Object.keys(object).map(async (key) => {
                     if (Array.isArray(object[key])) {
-                        object[key] = await Promise.all(
+                        await Promise.all(
                             object[key].map(async (obj) => await findReplaceImageUrls(obj))
                         );
                     } else if (typeof object[key] === 'object') {
-                        object[key] = await findReplaceImageUrls(object[key]);
+                        await findReplaceImageUrls(object[key]);
                     } else {
                         if (key === 'image' && typeof object[key] === 'string' && object[key].startsWith('http')) {
-                            object[key] = await getRemoteImageData(object[key]);
+                            updates.push({ key: key, content: await getRemoteImageData(object[key]) });
                         }
                     }
                 })
-            );
-            return object;
+            ).then(() => {
+                updates.forEach((update) => {
+                    object[update.key] = update.content;
+                });
+            });
         };
 
         if(!input.getType) {
