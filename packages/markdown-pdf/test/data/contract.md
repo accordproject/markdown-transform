@@ -1,5 +1,10 @@
 # Title (Heading One)
 
+Title2
+*(Heading Two)*
+**on several lines**
+----
+
 This is normal text.
 
 This is *italic* text.
