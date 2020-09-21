@@ -19,7 +19,7 @@
     "postlint": "npm run licchk",
     "licchk": "license-check",
     "test": "jest --timeOut=10000",
-    "test:cov": "jest --timeOut=10000 --coverage",
+    "test:cov": "npm run lint && jest --timeOut=10000 --coverage",
     "jsdoc": "jsdoc -c jsdoc.json package.json"
   },
   "repository": {

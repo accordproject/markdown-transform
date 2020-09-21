@@ -22,7 +22,7 @@
     "postlint": "npm run licchk",
     "licchk": "license-check",
     "test": "mocha",
-    "test:cov": "nyc mocha"
+    "test:cov": "npm run lint && nyc mocha"
   },
   "repository": {
     "type": "git",
