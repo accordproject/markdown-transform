@@ -67,6 +67,10 @@ const transformationGraph = {
         pdfmake: (input, parameters, options) => {
             return PdfTransformer.templateMarkToPdfMake(input, options);
         },
+        slate: (input,parameters,options) => {
+            const t = new SlateTransformer();
+            return t.fromTemplateMark(input);
+        },
     },
     markdown: {
         docs: 'Markdown (string)',
@@ -232,6 +236,10 @@ const transformationGraph = {
         ciceromark_parsed: (input, parameters, options) => {
             const t = new SlateTransformer();
             return t.toCiceroMark(input, options);
+        },
+        templatemark: (input,parameters,options) => {
+            const t = new SlateTransformer();
+            return t.toTemplateMark(input, options);
         },
     },
 };

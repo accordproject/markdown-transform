@@ -19,6 +19,8 @@
  * @module markdown-template
  */
 
+module.exports.TemplateMarkModel = require('./lib/externalModels/TemplateMarkModel');
+
 module.exports.util = require('./lib/util');
 module.exports.templatemarkutil = require('./lib/templatemarkutil');
 module.exports.datetimeutil = require('./lib/datetimeutil');
