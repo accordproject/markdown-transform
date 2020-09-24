@@ -232,10 +232,8 @@ class TemplateMarkTransformer {
     }
 
     /**
-     * Retrieve the serializer used by the parser
-     *
-     * @returns {*} a serializer capable of dealing with the Concerto
-     * object returns by parse
+     * Get TemplateMark serializer
+     * @return {*} templatemark serializer
      */
     getSerializer() {
         return templateMarkManager.serializer;
