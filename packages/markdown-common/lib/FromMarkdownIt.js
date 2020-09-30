@@ -35,13 +35,38 @@ class FromMarkdownIt {
     }
 
     /**
+     * Takes the stack of constructed inline nodes
+     * properly closing them (if the close token is missing in the markdown)
+     * returns the final root node for the inline
+     *
+     * @param {*[]} rules - the rules for each kind of markdown-it tokens
+     * @param {*[]} stack - the stack of constructed nodes
+     * @returns {*} the final inline node
+     */
+    static closeInlines(rules,stack) {
+        let currentNode = stack.pop();
+        while(stack.peek()) {
+            const rule = Object.values(rules.inlines).find((x) => x.tag === currentNode.$class && x.exit);
+            if (rule && rule.exit) {
+                rule.exit(currentNode,null,FromMarkdownIt.inlineCallback(rules));
+            }
+            currentNode = stack.pop();
+        }
+        return mergeAdjacentHtmlNodes(currentNode.nodes,true);
+    }
+
+    /**
      * Create a callback for inlines
      *
      * @param {*[]} rules - the rules for each kind of markdown-it tokens
      * @returns {*} the callback
      */
     static inlineCallback(rules) {
-        return (tokens) => FromMarkdownIt.inlineToCommonMark(rules,tokens);
+        return (tokens) => {
+            const stack = new Stack();
+            FromMarkdownIt.inlineToCommonMark(rules,tokens,stack); // Updates the stack
+            return FromMarkdownIt.closeInlines(rules,stack);
+        };
     }
 
     /**
@@ -49,10 +74,9 @@ class FromMarkdownIt {
      *
      * @param {*[]} rules - the rules for each kind of markdown-it tokens
      * @param {*} tokens - the content of the inline node
-     * @returns {*} the CommonMark nodes
+     * @param {*[]} stack - the stack of constructed nodes
      */
-    static inlineToCommonMark(rules,tokens) {
-        let stack = new Stack();
+    static inlineToCommonMark(rules,tokens,stack) {
         const rootNode = {
             '$class': 'org.accordproject.commonmark.Inline',
             'nodes': [],
@@ -87,8 +111,6 @@ class FromMarkdownIt {
                 if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
             }
         }
-
-        return mergeAdjacentHtmlNodes(rootNode.nodes,true);
     }
 
     /**
