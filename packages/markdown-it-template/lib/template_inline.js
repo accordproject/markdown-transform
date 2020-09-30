@@ -25,6 +25,11 @@ const FORMULA_RE = require('./template_re').FORMULA_RE;
 const getBlockAttributes = require('./template_re').getBlockAttributes;
 
 function template_inline(state, silent) {
+    // Maintain a stack for template block open/close
+    if (!state.templates) {
+        state.templates = [];
+    }
+
     let ch, match, max, token, attrs,
         pos = state.pos;
 
@@ -55,6 +60,9 @@ function template_inline(state, silent) {
         if (!names.inlines.includes(block)) {
             return false;
         }
+        // Push open block to template stack
+        state.templates.push(block);
+
         token         = state.push('inline_block_' + block + '_open', 'span', 1);
         token.content = match[0];
         token.attrs   = attrs;
@@ -72,11 +80,18 @@ function template_inline(state, silent) {
         if (!names.inlines.includes(block)) {
             return false;
         }
+        // Check if template close block matches open in stack
+        const top = state.templates.pop();
+        if (top !== block) {
+            state.templates.push(top);
+            return false;
+        }
 
         token         = state.push('inline_block_' + block + '_close', 'span', -1);
         token.content = match[0];
         state.pos += match[0].length;
 
+        //state.templates.push(block);
         return true;
     } else if (ch === 0x25/* % */) {
         match = state.src.slice(pos).match(FORMULA_RE);
