@@ -29,6 +29,7 @@ const MarkdownItTemplate = require('../lib');
 const mdit = new MarkdownIt({html:true}).use(MarkdownItTemplate);
 
 const tests = [
+    { 'name' : 'inline1' },
     { 'name' : 'clause1' },
     { 'name' : 'clause2' },
     { 'name' : 'clause3' },
