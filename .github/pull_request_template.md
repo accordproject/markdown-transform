@@ -1,4 +1,4 @@
-# Issue #<NUMBER HERE>
+# Closes #<NUMBER HERE>
 <OVERALL SUMMARY OF PULL REQUEST>
 
 ### Changes
