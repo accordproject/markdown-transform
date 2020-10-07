@@ -47,7 +47,7 @@ function parseIntegerFormat(format) {
     const match = format.match(/0(.)0/);
     sep1 = escapeRegex(match[1]);
     let amount = '';
-    amount += '[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
+    amount += '-?[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
     const AMOUNT_RE = new RegExp(amount);
     return P.regexp(AMOUNT_RE)
         .desc('An amount with format "' + format + '"')
