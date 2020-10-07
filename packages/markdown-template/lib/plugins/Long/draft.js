@@ -14,13 +14,21 @@
 
 'use strict';
 
+const draftLong = require('../Integer/format').draftInteger;
+const draftLongFormat = require('../Integer/format').draftIntegerFormat;
+
 /**
- * Creates a drafter for Long
- * @param {object} value the Long
+ * Creates a drafter for a long
+ * @param {number} value - the Long
+ * @param {string} format - the format
  * @returns {string} the text
  */
-function longDrafter(value) {
-    return '' + value;
+function longDrafter(value,format) {
+    if (format) {
+        return draftLongFormat(value,format);
+    } else {
+        return draftLong(value);
+    }
 }
 
 module.exports = longDrafter;

@@ -1,0 +1,15 @@
+namespace org.test
+
+import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+import org.accordproject.money.CurrencyCode from https://models.accordproject.org/money@0.2.0.cto
+
+/**
+ * The template model
+ */
+asset MyClause extends AccordClause {
+  o String seller
+  o String buyer
+	o Integer amount
+	o CurrencyCode currency
+	o Boolean forceMajeure
+}

@@ -14,17 +14,41 @@
 
 'use strict';
 
-const P = require('parsimmon');
+const parseLong = require('../Integer/format').parseInteger;
+const parseLongFormat = require('../Integer/format').parseIntegerFormat;
+const textParser = require('../../combinators').textParser;
+const seqParser = require('../../combinators').seqParser;
+
+/**
+ * Given a format field (like '0,0') this method returns
+ * a logical name for the field. Note the logical names
+ * have been picked to align with the moment constructor that takes an object.
+ * @param {string} field - the input format field
+ * @returns {string} the field designator
+ */
+function parserOfField(field) {
+    if (/0.0/.test(field)) {
+        return parseLongFormat(field);
+    } else {
+        return textParser(field);
+    }
+}
 
 /**
  * Creates a parser for Long
- * @param {object} variable the variable ast node
+ * @param {string} format the format
  * @returns {object} the parser
  */
-function longParser() {
-    return P.regexp(/-?[0-9]+/).map(function(x) {
-        return Number(x);
-    }).desc('An Long literal');
+function longParser(format) {
+    if (format) {
+        let fields = format.split(/(0.0)/);
+        // remove null or empty strings
+        fields = fields.filter(x => x !== '' && x !== null);
+        const parsers = fields.map(parserOfField);
+        return seqParser(parsers);
+    } else {
+        return parseLong();
+    }
 }
 
-module.exports = (format) => (r) => longParser();
+module.exports = (format) => (r) => longParser(format);
