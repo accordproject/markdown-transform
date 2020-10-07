@@ -99,6 +99,7 @@ const successes = [
     {name:'testIfEnd',kind:'clause'},
     {name:'alltypes',kind:'clause'},
     {name:'alltypes2',kind:'clause'},
+    {name:'alltypes3',kind:'clause'},
     {name:'acceptance-of-delivery',kind:'clause'},
     {name:'copyright-license',kind:'contract'},
     {name:'conga',kind:'clause'},

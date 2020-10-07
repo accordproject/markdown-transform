@@ -22,7 +22,7 @@ const P = require('parsimmon');
  * @returns {object} the parser
  */
 function longParser() {
-    return P.regexp(/[0-9]+/).map(function(x) {
+    return P.regexp(/-?[0-9]+/).map(function(x) {
         return Number(x);
     }).desc('An Long literal');
 }
