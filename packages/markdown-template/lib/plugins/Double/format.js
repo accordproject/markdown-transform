@@ -58,7 +58,7 @@ function parseDoubleFormat(format) {
         digits = match[4].length;
     }
     let amount = '';
-    amount += '[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
+    amount += '-?[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
     if (sep2) {
         amount += sep2 + '[0-9]'.repeat(digits);
     }
