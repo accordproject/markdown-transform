@@ -27,7 +27,7 @@ const seqParser = require('../../combinators').seqParser;
  * @returns {string} the field designator
  */
 function parserOfField(field) {
-    if (/0.0(?:.0+)?/.test(field)) {
+    if (/-?0.0(?:.0+)?/.test(field)) {
         return parseDoubleFormat(field);
     } else {
         return textParser(field);
