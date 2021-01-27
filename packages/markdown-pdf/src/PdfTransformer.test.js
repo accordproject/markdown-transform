@@ -193,7 +193,8 @@ describe('pdf roudtrip', () => {
         const ciceroMarkDom = ciceroMarkTransformer.fromMarkdownCicero(contents, 'json');
 
         // create a PDF, embedding templates and the source CiceroMark into the PDF info (metadata)
-        const templates = ['this is a test'];
+        let acceptanceOfDelivery = fs.readFileSync(__dirname + '/../test/data/acceptance-of-delivery@0.14.0.cta');
+        const templates = [acceptanceOfDelivery];
         await saveCiceroMarkAsPdf(ciceroMarkDom, 'roundtrip.md', {templates, saveCiceroMark: true});
 
         // because we embedded the source CiceroMark in the PDF, it should
@@ -204,7 +205,7 @@ describe('pdf roudtrip', () => {
 
         // if we load templates from the PDF, they should be returned
         const ciceroMarkDom3 = await pdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: true } );
-        expect(Object.assign(ciceroMarkDom, {templates})).toEqual(ciceroMarkDom3);
+        expect(Object.assign(ciceroMarkDom, {templates: [acceptanceOfDelivery.toString('base64')]})).toEqual(ciceroMarkDom3);
     });
 });
 
