@@ -90,16 +90,37 @@ class PdfTransformer {
      * @param {object} [options] - the PDF parsing options
      * @param {number} [options.paragraphVerticalOffset] - the vertical offset used to detect
      * pararaphs as a multiple of the line height (defaults to 2)
-     * @param {boolean} [options.preservePages] - whether to preserve PDF page breaks (defaults to true)
+     * @param {boolean} [options.preservePages] - whether to preserve PDF page breaks (defaults to false)
+     * @param {boolean} [options.loadCiceroMark] - whether to load embedded CiceroMark (defaults to true)
+     * @param {boolean} [options.loadTemplates] - whether to load embedded templates (defaults to false)
      * @returns {promise} a Promise to the CiceroMark DOM
      */
-    async toCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: false }) {
+    async toCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: false, loadCiceroMark: true }) {
 
         let loadingTask = pdfjsLib.getDocument(input.buffer);
 
         const doc = await loadingTask.promise;
         let numPages = doc.numPages;
         const metadata = await doc.getMetadata();
+        const templates = [];
+
+        if(metadata.info && metadata.info.Custom) {
+            if(options.loadTemplates) {
+                Object.keys(metadata.info.Custom).forEach( key => {
+                    if(key.startsWith('template-')) {
+                        templates.push(metadata.info.Custom[key]);
+                    }
+                });
+            }
+
+            if(options.loadCiceroMark && metadata.info.Custom.ciceromark) {
+                const result = JSON.parse(metadata.info.Custom.ciceromark);
+                if(templates.length > 0) {
+                    result.templates = templates; // add optional attribute `templates` to org.accordproject.commonmark.Document?
+                }
+                return result;
+            }
+        }
 
         const pages = [];
         for( let n=1; n <= numPages; n++) {
@@ -162,6 +183,10 @@ class PdfTransformer {
             nodes : merged
         };
 
+        if(templates.length > 0) {
+            document.templates = templates; // add optional attribute `templates` to org.accordproject.commonmark.Document?
+        }
+
         return document;
     }
 
@@ -169,9 +194,11 @@ class PdfTransformer {
      * Converts a CiceroMark DOM to a PDF Buffer
      * @param {*} input - CiceroMark DOM
      * @param {*} options - the PDF generation options
+     * @param {boolean} [options.saveCiceroMark] - whether to save source CiceroMark as a custom property (defaults to true)
+     * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
      * @param {*} outputStream - the output stream
      */
-    async toPdf(input, options, outputStream) {
+    async toPdf(input, options = { saveCiceroMark: true }, outputStream) {
 
         const printer = new PdfPrinter(fonts);
 
@@ -228,7 +255,7 @@ class PdfTransformer {
         const visitor = new ToPdfMakeVisitor(this.options);
         input.accept(visitor, parameters);
 
-        const dd = parameters.result;
+        let dd = parameters.result;
         // console.log(JSON.stringify(dd, null, 2));
         await findReplaceImageUrls(dd);
 
@@ -244,7 +271,25 @@ class PdfTransformer {
         dd.pageMargins = [ 81, 72, 81, 72 ]; // units are points (72 per inch)
 
         // allow overrding top-level options
-        Object.assign(dd, options);
+        dd = Object.assign(dd, options);
+
+        // save source CiceroMark
+        if(options.saveCiceroMark) {
+            dd = Object.assign(dd, {
+                info : {
+                    ciceromark : JSON.stringify(this.ciceroMarkTransformer.getSerializer().toJSON(input))
+                }
+            });
+        }
+
+        // save templates
+        if(options.templates) {
+            const templates = {};
+            options.templates.forEach( (template, index) => {
+                templates['template-' + index] = template.toString('base64');
+            });
+            dd.info = Object.assign(dd.info, templates);
+        }
 
         if(options.tocHeading) {
             dd.content = [{
