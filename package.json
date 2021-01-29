@@ -78,7 +78,6 @@
       "HEADER",
       "docs/",
       "scripts/",
-      ".travis",
       "coverage",
       ".gitignore",
       ".DS_Store",

@@ -4,5 +4,4 @@ out
 umd
 test/data
 src/grammars
-.travis
 scripts

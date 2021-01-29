@@ -5,7 +5,6 @@
 </h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/accordproject/markdown-transform"><img src="https://travis-ci.org/accordproject/markdown-transform.svg?branch=master" alt="Build Status"></a>
   <a href="https://coveralls.io/github/accordproject/markdown-transform?branch=master"><img src="https://coveralls.io/repos/github/accordproject/markdown-transform/badge.svg?branch=master" alt="Coverage Status"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/accordproject/markdown-transform?color=bright-green" alt="GitHub license"></a>
   <a href="https://www.npmjs.com/package/@accordproject/markdown-cli"><img src="https://img.shields.io/npm/dm/@accordproject/markdown-cli" alt="downloads"></a>
