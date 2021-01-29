@@ -3,6 +3,5 @@ node_modules
 out
 umd
 test/data
-.travis
 scripts
 test.js
