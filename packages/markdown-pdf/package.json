@@ -91,7 +91,6 @@
     "src": [
       "**/*.js",
       "!./scripts/**/*",
-      "!./.travis/**/*",
       "!./test/**/*",
       "!./coverage/**/*",
       "!./node_modules/**/*",

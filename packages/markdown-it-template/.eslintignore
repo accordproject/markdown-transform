@@ -4,6 +4,5 @@ out
 umd
 lib
 test/data
-.travis
 scripts
 test.js
