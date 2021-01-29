@@ -4,6 +4,7 @@
     "colors": "1.3.3",
     "concurrently": "4.1.1",
     "coveralls": "3.0.4",
+    "dayjs": "1.10.2",
     "istanbul-combine": "0.3.0",
     "istanbul-merge": "1.1.1",
     "jsdoc": "3.6.3",
@@ -30,17 +31,11 @@
     "postinstall": "npm run models:get && lerna bootstrap",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
-    "publish": "./scripts/manualrelease.sh",
     "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-it-cicero/coverage/*.json packages/markdown-it-template/coverage/*.json packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-template/coverage/*.json packages/markdown-slate/coverage/*.json packages/markdown-html/coverage/*.json packages/markdown-pdf/coverage/*.json packages/markdown-docx/coverage/*.json packages/markdown-transform/coverage/*.json packages/markdown-cli/coverage/*.json && cat ./coverage/lcov.info",
     "pretest": "npm run licchk",
     "test": "lerna exec --ignore dingus -- npm run test:cov",
     "repoclean": "lerna clean",
-    "licchk": "license-check-and-add",
-    "pkgcheck": "node ./scripts/pkgcheck.js",
-    "pkgstamp": "node ./scripts/pkgstamp.js",
-    "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
-    "pkgset": "node ./scripts/pkgset.js",
-    "depcheck": "node ./scripts/depcheck.js"
+    "licchk": "license-check-and-add"
   },
   "repository": {
     "type": "git",
