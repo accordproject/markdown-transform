@@ -40,7 +40,7 @@
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "chai-string": "^1.5.0",
