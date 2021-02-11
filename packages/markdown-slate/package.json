@@ -24,7 +24,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/slate-markdown-transform.git"
+    "url": "https://github.com/accordproject/slate-markdown-transform.git",
+    "directory": "packages/markdown-slate"
   },
   "keywords": [
     "accord-project",

@@ -26,7 +26,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git"
+    "url": "https://github.com/accordproject/markdown-transform.git",
+    "directory": "packages/markdown-it-cicero"
   },
   "keywords": [
     "accord-project",
