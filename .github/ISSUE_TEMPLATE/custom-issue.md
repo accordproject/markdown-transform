@@ -1,3 +1,12 @@
+---
+name: Custom Issue
+about: For miscellaneous, such as questions, discussions, etc.
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 <!--- Provide a general summary of the issue in the Title above -->
 # Discussion 🗣
 <!--- Provide an expanded summary of the issue -->

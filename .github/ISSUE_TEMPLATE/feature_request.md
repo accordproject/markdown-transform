@@ -1,3 +1,12 @@
+---
+name: Feature Request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 <!--- Provide a general summary of the feature in the Title above -->
 # Feature Request 🛍️
 <!--- Provide an expanded summary of the feature -->

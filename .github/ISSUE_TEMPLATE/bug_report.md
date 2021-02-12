@@ -1,3 +1,12 @@
+---
+name: Bug Report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 <!--- Provide a general summary of the issue in the Title above -->
 # Bug Report 🐛
 <!--- Provide an expanded summary of the issue -->
