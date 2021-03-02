@@ -53,9 +53,11 @@ function getPdfFiles() {
  * Saves a cicero mark dom as a PDF to the output folder
  * @param {object} ciceroMarkDom the dom
  * @param {string} fileName the filename to use
+ * @param {*} customOptions - the PDF generation options
+ * @param {array} [customOptions.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
  * @return {Promise} a promise that resolves when the file has been written
  */
-function saveCiceroMarkAsPdf(ciceroMarkDom, fileName) {
+function saveCiceroMarkAsPdf(ciceroMarkDom, fileName, customOptions) {
     fs.mkdirSync('./output', { recursive: true });
 
     const promise = new Promise( (resolve) => {
@@ -64,7 +66,7 @@ function saveCiceroMarkAsPdf(ciceroMarkDom, fileName) {
             resolve(true);
         });
 
-        const options = {
+        let options = {
             info: {
                 title: 'Smart Legal Contract',
                 author: 'Dan',
@@ -86,6 +88,7 @@ function saveCiceroMarkAsPdf(ciceroMarkDom, fileName) {
             }
         };
 
+        options = Object.assign( options, customOptions );
         pdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
     });
 
@@ -180,6 +183,29 @@ describe('pdf generation with decorators', () => {
             promises.push( saveCiceroMarkAsPdf(typedDom, `signature-block-${signatureBlock.name}` ) );
         });
         return Promise.all(promises);
+    });
+});
+
+describe('pdf roudtrip', () => {
+    it('generate and load ciceromark and templates embedded in PDF', async () => {
+        const ciceroMarkTransformer = new CiceroMarkTransformer();
+        let contents = fs.readFileSync(__dirname + '/../test/data/contract.md', 'utf8');
+        const ciceroMarkDom = ciceroMarkTransformer.fromMarkdownCicero(contents, 'json');
+
+        // create a PDF, embedding templates and the source CiceroMark into the PDF info (metadata)
+        let acceptanceOfDelivery = fs.readFileSync(__dirname + '/../test/data/acceptance-of-delivery@0.14.0.cta');
+        const templates = [acceptanceOfDelivery];
+        await saveCiceroMarkAsPdf(ciceroMarkDom, 'roundtrip.md', {templates, saveCiceroMark: true});
+
+        // because we embedded the source CiceroMark in the PDF, it should
+        // be detected and be returned identical
+        let pdfContent = fs.readFileSync(__dirname + '/../output/roundtrip.md.pdf');
+        const ciceroMarkDom2 = await pdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: false } );
+        expect(ciceroMarkDom).toEqual(ciceroMarkDom2);
+
+        // if we load templates from the PDF, they should be returned
+        const ciceroMarkDom3 = await pdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: true } );
+        expect(Object.assign(ciceroMarkDom, {templates: [acceptanceOfDelivery.toString('base64')]})).toEqual(ciceroMarkDom3);
     });
 });
 
