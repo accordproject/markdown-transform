@@ -104,7 +104,22 @@ Invokes _lerna_ to run the test suite.
   </a>
 </p>
 
+<p align="center">
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/github/license/accordproject/cicero?color=bright-green" alt="GitHub license">
+  </a>
+  <a href="https://accord-project-slack-signup.herokuapp.com/">
+    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue" alt="Join the Accord Project Slack"/>
+  </a>
+</p>
+
 Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
+
+## Learn More About Accord Project
+
+### [Overview][apmain]
+
+### [Documentation][apdoc]
 
 ## Contributing
 
@@ -132,22 +147,11 @@ Accord Project documentation files are made available under the [Creative Common
 Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respective owners. See [LF Projects Trademark Policy](https://lfprojects.org/policies/trademark-policy/).
 
 [linuxfound]: https://www.linuxfoundation.org
-[charter]: https://github.com/accordproject/markdown-transform/blob/master/CHARTER.md
+[charter]: https://github.com/accordproject/governance/blob/master/accord-project-technical-charter.md
 [apmain]: https://accordproject.org/ 
-[apworkgroup]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjZvYzIzZHVrYnI1aDVzbjZnMHJqYmtwaGlfMjAxNzExMTVUMjEwMDAwWiBkYW5AY2xhdXNlLmlv&tmsrc=dan%40clause.io
 [apblog]: https://medium.com/@accordhq
-[apnews]: https://www.accordproject.org/news/
-[apgit]:  https://github.com/accordproject/
 [apdoc]: https://docs.accordproject.org/
 [apslack]: https://accord-project-slack-signup.herokuapp.com
-
-[docspec]: https://docs.accordproject.org/docs/spec-overview.html
-[docwelcome]: https://docs.accordproject.org/docs/accordproject.html
-[dochighlevel]: https://docs.accordproject.org/docs/spec-concepts.html
-[docergo]: https://docs.accordproject.org/docs/logic-ergo.html
-[docstart]: https://docs.accordproject.org/docs/accordproject.html
-[doccicero]: https://docs.accordproject.org/docs/basic-use.html
-[docstudio]: https://docs.accordproject.org/docs/advanced-latedelivery.html
 
 [contributing]: https://github.com/accordproject/markdown-transform/blob/master/CONTRIBUTING.md
 [developers]: https://github.com/accordproject/markdown-transform/blob/master/DEVELOPERS.md
