@@ -162,7 +162,7 @@ describe('pdf generation with decorators', () => {
         const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
 
         const modelFilePath = path.join(__dirname, '/../test/data/signature/model.cto');
-        const modelManager = await ModelLoader.loadModelManager(null,[modelFilePath]);
+        const modelManager = await ModelLoader.loadModelManager([modelFilePath]);
 
         const templateMarkDom = templateTransformer.fromMarkdownTemplate( { content: templateMarkContent }, modelManager, 'clause');
         expect(templateMarkDom).toMatchSnapshot(); // (1)

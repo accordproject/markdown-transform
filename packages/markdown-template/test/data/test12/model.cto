@@ -1,6 +1,6 @@
 namespace org.test
 
-import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
 import org.accordproject.money.CurrencyCode from https://models.accordproject.org/money@0.2.0.cto
 
 /**
@@ -10,7 +10,7 @@ concept Person {
 	o String firstName
 	o String lastName
 }
-asset MyClause extends AccordClause {
+asset MyClause extends Clause {
   o String seller
   o String buyer
 	o Double amount

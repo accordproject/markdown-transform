@@ -1,1 +1,1 @@
-{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"currency":"EUR","forceMajeure":true,"effectiveDate":"2020-01-01T00:00:00.000+04:00","clauseId":"1fbd3dd2-2c9d-46f4-b234-32cc4c3e4ecd"}
+{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"currency":"EUR","forceMajeure":true,"effectiveDate":"2020-01-01T00:00:00.000Z","clauseId":"1fbd3dd2-2c9d-46f4-b234-32cc4c3e4ecd"}

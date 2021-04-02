@@ -14,29 +14,26 @@
 
 'use strict';
 
-// Moment serialization function to preserves utcOffset. See https://momentjs.com/docs/#/displaying/as-json/
-const momentToJson = function() { return this.format(); };
-
-const Moment = require('moment-mini');
-Moment.fn.toJSON = momentToJson;
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 
 /**
  * Ensures there is a proper current time
  *
  * @param {string} currentTime - the definition of 'now'
- * @returns {object} if valid, the moment object for the current time
+ * @returns {object} if valid, the dayjs object for the current time
  */
 function setCurrentTime(currentTime) {
     if (!currentTime) {
         // Defaults to current local time
-        return Moment();
+        return dayjs.utc();
     }
-    const now = Moment.parseZone(currentTime, 'YYYY-MM-DDTHH:mm:ssZ', true);
-    if (now.isValid()) {
-        return now;
-    } else {
-        throw new Error(`${currentTime} is not a valid moment with the format 'YYYY-MM-DDTHH:mm:ssZ'`);
+    try {
+        return dayjs.utc(currentTime);
+    } catch (err) {
+        throw new Error(`${currentTime} is not a valid date and time: ${err.message}`);
     }
 }
 
-module.exports = { momentToJson, setCurrentTime };
+module.exports = { setCurrentTime };

@@ -14,7 +14,9 @@
 
 'use strict';
 
-const moment = require('moment-mini');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 
 const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
 const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
@@ -81,10 +83,10 @@ function instanceOf(classDeclaration, fqt) {
  * @returns {ClassDeclaration} the template model for the template
  */
 function findTemplateModel(introspector, templateKind) {
-    let modelType = 'org.accordproject.cicero.contract.AccordContract';
+    let modelType = 'org.accordproject.contract.Contract';
 
     if (templateKind !== 'contract') {
-        modelType = 'org.accordproject.cicero.contract.AccordClause';
+        modelType = 'org.accordproject.contract.Clause';
     }
 
     const templateModels = introspector.getClassDeclarations().filter((item) => {
@@ -263,7 +265,7 @@ function generateJSON(modelManager,type) {
 
     switch(type) {
     case 'DateTime':
-        return new moment();
+        return dayjs.utc();
     case 'Integer':
         return 0;
     case 'Long':
@@ -291,13 +293,14 @@ function generateJSON(modelManager,type) {
         };
 
         if (classDeclaration.isConcept()) {
-            const concept = factory.newConcept(ns, name, factoryOptions);
+            const concept = factory.newConcept(ns, name, null, factoryOptions);
             return serializer.toJSON(concept);
         }
         const resource = factory.newResource(
             ns,
             name,
             'resource1',
+            null,
             factoryOptions
         );
         return serializer.toJSON(resource);

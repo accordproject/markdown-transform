@@ -55,7 +55,7 @@
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^0.82.11",
+    "@accordproject/concerto-core": "1.0.0-alpha.5",
     "@accordproject/markdown-cicero": "0.12.12",
     "@accordproject/markdown-common": "0.12.12",
     "@accordproject/markdown-docx": "0.12.12",
@@ -63,7 +63,6 @@
     "@accordproject/markdown-pdf": "0.12.12",
     "@accordproject/markdown-slate": "0.12.12",
     "@accordproject/markdown-template": "0.12.12",
-    "moment-mini": "2.22.1",
     "dijkstrajs": "^1.0.1"
   },
   "license-check-config": {
