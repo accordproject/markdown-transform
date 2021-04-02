@@ -38,7 +38,7 @@ const templateToTemplateMark = async (input,parameters,options) => {
     if (options && options.offline) {
         modelOptions.offline = true;
     }
-    const modelManager = await ModelLoader.loadModelManager(null, parameters.model, options);
+    const modelManager = await ModelLoader.loadModelManager(parameters.model, options);
     return {
         modelManager: modelManager,
         templateMark: t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options)
@@ -58,7 +58,7 @@ const transformationGraph = {
         fileFormat: 'json',
         templatemark: async (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
-            const modelManager = await ModelLoader.loadModelManager(null, parameters.model, options);
+            const modelManager = await ModelLoader.loadModelManager(parameters.model, options);
             return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options);
         },
     },

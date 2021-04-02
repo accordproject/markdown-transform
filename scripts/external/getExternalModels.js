@@ -34,7 +34,7 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
  * @param {string} output the output directory
  */
 async function get(ctoFiles, output) {
-    const modelManager = await ModelLoader.loadModelManager(null, ctoFiles);
+    const modelManager = await ModelLoader.loadModelManager(ctoFiles);
     mkdirp.sync(output);
     modelManager.writeModelsToFileSystem(output);
     return `Loaded external models in '${output}'.`;

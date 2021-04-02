@@ -14,7 +14,9 @@
 
 'use strict';
 
-const moment = require('moment-mini');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 
 /**
  * Creates a drafter for DateTime
@@ -24,7 +26,7 @@ const moment = require('moment-mini');
  */
 function dateTimeDrafter(value,format) {
     const f = format ? format : 'MM/DD/YYYY';
-    return moment.parseZone(value).format(f);
+    return dayjs.utc(value).format(f);
 }
 
 module.exports = dateTimeDrafter;

@@ -117,9 +117,9 @@ const successes = [
 ];
 
 const templateFailures = [
-    {name:'templateErr1',desc:'duplicate contract',kind:'contract','error':'Found multiple instances of org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
-    {name:'templateErr2',desc:'duplicate clause',kind:'clause','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordClause. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordClause.'},
-    {name:'templateErr2',desc:'duplicate contract',kind:'contract','error':'Failed to find an asset that extends org.accordproject.cicero.contract.AccordContract. The model for the template must contain a single asset that extends org.accordproject.cicero.contract.AccordContract.'},
+    {name:'templateErr1',desc:'duplicate contract',kind:'contract','error':'Found multiple instances of org.accordproject.contract.Contract. The model for the template must contain a single asset that extends org.accordproject.contract.Contract.'},
+    {name:'templateErr2',desc:'duplicate clause',kind:'clause','error':'Failed to find an asset that extends org.accordproject.contract.Clause. The model for the template must contain a single asset that extends org.accordproject.contract.Clause.'},
+    {name:'templateErr2',desc:'duplicate contract',kind:'contract','error':'Failed to find an asset that extends org.accordproject.contract.Contract. The model for the template must contain a single asset that extends org.accordproject.contract.Contract.'},
     {name:'templateErr3',desc:'missing clause property',kind:'clause','error':'Unknown property: seller'},
     {name:'templateErr4',desc:'missing contract property',kind:'contract','error':'Unknown property: agreement'},
     {name:'templateErr5',desc:'missing with property',kind:'contract','error':'Unknown property: sellerAddress'},
@@ -171,7 +171,7 @@ function runSuccesses(tests) {
         describe('#'+name, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager(null,[model]);
+                modelManager = await ModelLoader.loadModelManager([model]);
             });
 
             it('should create template mark', async () => {
@@ -192,15 +192,21 @@ function runSuccesses(tests) {
                 const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind,currentTime);
                 if (kind === 'clause') {
                     delete data.clauseId;
+                    delete data.$identifier;
                     delete result.clauseId;
+                    delete result.$identifier;
                 } else {
                     delete data.contractId;
+                    delete data.$identifier;
                     delete result.contractId;
+                    delete result.$identifier;
                     for(const key in data) {
                         delete data[key].clauseId;
+                        delete data[key].$identifier;
                     }
                     for(const key in result) {
                         delete result[key].clauseId;
+                        delete result[key].$identifier;
                     }
                 }
                 result.should.deep.equal(data);
@@ -235,7 +241,7 @@ function runParseFailures(tests) {
         describe(`#${name} [${desc}]`, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager(null,[model]);
+                modelManager = await ModelLoader.loadModelManager([model]);
             });
 
             it('should fail to parse sample', async () => {
@@ -262,7 +268,7 @@ function runTemplateFailures(tests) {
         describe(`#${name} [${desc}]`, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager(null,[model]);
+                modelManager = await ModelLoader.loadModelManager([model]);
             });
 
             it('should fail to parse template', async () => {

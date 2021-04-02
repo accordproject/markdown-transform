@@ -21,8 +21,7 @@ const seqParser = require('../../combinators').seqParser;
 
 /**
  * Given a format field (like '0,0.00') this method returns
- * a logical name for the field. Note the logical names
- * have been picked to align with the moment constructor that takes an object.
+ * a logical name for the field.
  * @param {string} field - the input format field
  * @returns {string} the field designator
  */

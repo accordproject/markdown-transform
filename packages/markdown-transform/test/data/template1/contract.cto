@@ -12,30 +12,27 @@
  * limitations under the License.
  */
 
-namespace org.accordproject.cicero.contract
+// requires: concerto-core:>= 1.0.0-alpha.3
+
+namespace org.accordproject.contract
 
 /**
  * Contract Data
  * -- Describes the structure of contracts and clauses
  */
 
-/* A contract state is an asset -- The runtime state of the contract */
-asset AccordContractState identified by stateId {
-  o String stateId
-}
-
 /* A party to a contract */
-participant AccordParty identified by partyId {
+participant Party identified by partyId {
   o String partyId
 }
 
 /* A contract is a asset -- This contains the contract data */
-abstract asset AccordContract identified by contractId {
+abstract asset Contract identified by contractId {
   o String contractId
-  --> AccordParty[] parties optional
+  --> Party[] parties optional
 }
 
 /* A clause is an asset -- This contains the clause data */
-abstract asset AccordClause identified by clauseId {
+abstract asset Clause identified by clauseId {
   o String clauseId
 }

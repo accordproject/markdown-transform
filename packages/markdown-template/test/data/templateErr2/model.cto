@@ -1,6 +1,6 @@
 namespace org.test
 
-import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
 import org.accordproject.money.CurrencyCode from https://models.accordproject.org/money@0.2.0.cto
 
 /**

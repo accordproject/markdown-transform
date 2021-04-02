@@ -30,7 +30,7 @@ const ParserManager = require('../lib/parsermanager');
 describe('#constructor', () => {
     it('create a parser manager', async () => {
         const model = './test/data/helloworld/model.cto';
-        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const modelManager = await ModelLoader.loadModelManager([model]);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         should.exist(parserManager);
         should.exist(parserManager.getModelManager());
@@ -40,7 +40,7 @@ describe('#constructor', () => {
     it('build a parser', async () => {
         const model = './test/data/helloworld/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/helloworld/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const modelManager = await ModelLoader.loadModelManager([model]);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal('Name of the person to greet: {{name}}.\nThank you!');
@@ -53,7 +53,7 @@ describe('#constructor', () => {
     it('rebuild a parser', async () => {
         const model = './test/data/helloworld/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/helloworld/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const modelManager = await ModelLoader.loadModelManager([model]);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal('Name of the person to greet: {{name}}.\nThank you!');
@@ -67,7 +67,7 @@ describe('#constructor', () => {
     it('handle formulas', async () => {
         const model = './test/data/fixed-interests/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/fixed-interests/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const modelManager = await ModelLoader.loadModelManager([model]);
         const parserManager = new ParserManager(modelManager,null,'clause',null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal(`## Fixed rate loan
@@ -87,7 +87,7 @@ and monthly payments of {{% monthlyPaymentFormula(loanAmount,rate,loanDuration) 
     it('handle multiple formulas', async () => {
         const model = './test/data/testFormula/model.cto';
         const template = normalizeNLs(fs.readFileSync('./test/data/testFormula/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager(null,[model]);
+        const modelManager = await ModelLoader.loadModelManager([model]);
         const parserManager = new ParserManager(modelManager,null,'clause',null);
         parserManager.setTemplateKind('contract');
         parserManager.setTemplate(template);

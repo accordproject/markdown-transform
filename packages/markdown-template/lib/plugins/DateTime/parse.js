@@ -298,7 +298,7 @@ const parsingTable = {
 /**
  * Given a format field (like HH or D) this method returns
  * a logical name for the field. Note the logical names
- * have been picked to align with the moment constructor that takes an object.
+ * have been picked to align with the dayjs format.
  * @param {string} field - the input format field
  * @returns {string} the field designator
  */

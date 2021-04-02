@@ -1,7 +1,7 @@
 namespace io.clause.signature.namedate
 
-import org.accordproject.cicero.contract.* from https://models.accordproject.org/cicero/contract.cto
-import org.accordproject.cicero.runtime.* from https://models.accordproject.org/cicero/runtime.cto
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
+import org.accordproject.runtime.* from https://models.accordproject.org/accordproject/runtime.cto
 
 @TestAnnot("foo",3,true,false,bar)
 concept Test {
@@ -19,10 +19,10 @@ concept Test {
  * A Signature block
  */
 @ClauseAnnot("bar",-3,false,true,foo)
-asset SignatureClause extends AccordClause {
+asset SignatureClause extends Clause {
 
   @SignatureVariable()
-  --> AccordParty party
+  --> Party party
 
   @DocuSignTab("Text")
   @SignatureVariable()
