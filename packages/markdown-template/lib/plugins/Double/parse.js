@@ -45,7 +45,8 @@ function doubleParser(format) {
         // remove null or empty strings
         fields = fields.filter(x => x !== '' && x !== null);
         const parsers = fields.map(parserOfField);
-        return seqParser(parsers);
+        return seqParser(parsers)
+            .map((value) => value[0]);
     } else {
         return parseDoubleIEEE();
     }
