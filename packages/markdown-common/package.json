@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-common",
-  "version": "0.12.12",
+  "version": "0.13.0-alpha.1",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=8",
