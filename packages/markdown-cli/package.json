@@ -54,7 +54,7 @@
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.0.0-alpha.5",
+    "@accordproject/concerto-core": "1.0.0-alpha.6",
     "@accordproject/markdown-transform": "0.13.0-alpha.1",
     "jsome": "2.5.0",
     "winston": "3.2.1",
