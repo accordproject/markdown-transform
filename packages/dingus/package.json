@@ -1,6 +1,6 @@
 {
   "name": "dingus",
-  "version": "0.13.0-alpha.1",
+  "version": "0.13.0-alpha.2",
   "description": "Markdown Transform Dingus",
   "keywords": [
     "accord-project",
@@ -19,11 +19,11 @@
   },
   "files": [],
   "devDependencies": {
-    "@accordproject/markdown-cicero": "0.13.0-alpha.1",
-    "@accordproject/markdown-common": "0.13.0-alpha.1",
-    "@accordproject/markdown-it-cicero": "0.13.0-alpha.1",
-    "@accordproject/markdown-it-template": "0.13.0-alpha.1",
-    "@accordproject/markdown-template": "0.13.0-alpha.1",
+    "@accordproject/markdown-cicero": "0.13.0-alpha.2",
+    "@accordproject/markdown-common": "0.13.0-alpha.2",
+    "@accordproject/markdown-it-cicero": "0.13.0-alpha.2",
+    "@accordproject/markdown-it-template": "0.13.0-alpha.2",
+    "@accordproject/markdown-template": "0.13.0-alpha.2",
     "autoprefixer-stylus": "^0.14.0",
     "browserify": "^16.3.0",
     "highlight.js": "^10.0.3",
