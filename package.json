@@ -11,11 +11,11 @@
     "jsdoc-sphinx": "0.0.6",
     "lerna": "3.20.2",
     "license-check": "1.1.5",
+    "license-check-and-add": "2.3.6",
+    "licensecheck": "1.3.0",
     "semver": "6.2.0",
     "sleep-promise": "8.0.1",
-    "source-map-support": "0.5.12",
-    "licensecheck": "1.3.0",
-    "license-check-and-add": "2.3.6"
+    "source-map-support": "0.5.12"
   },
   "engines": {
     "node": ">=8",
@@ -28,7 +28,7 @@
   "scripts": {
     "dingus": "lerna exec --scope dingus -- npm run dingus",
     "build": "lerna run build",
-    "postinstall": "npm run models:get && lerna bootstrap",
+    "postinstall": "npm run models:get && lerna bootstrap && cd packages/dingus && npm install",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
     "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-it-cicero/coverage/*.json packages/markdown-it-template/coverage/*.json packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-template/coverage/*.json packages/markdown-slate/coverage/*.json packages/markdown-html/coverage/*.json packages/markdown-pdf/coverage/*.json packages/markdown-docx/coverage/*.json packages/markdown-transform/coverage/*.json packages/markdown-cli/coverage/*.json && cat ./coverage/lcov.info",
@@ -126,5 +126,8 @@
       }
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "moment-mini": "^2.24.0",
+    "winston": "^3.3.3"
+  }
 }

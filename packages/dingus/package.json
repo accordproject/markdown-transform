@@ -15,7 +15,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dingus": "node scripts/build_dingus.js"
+    "dingus": "node ./scripts/build_dingus.js"
   },
   "files": [],
   "devDependencies": {
@@ -31,7 +31,7 @@
     "ndoc": "^5.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.4",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.8",
     "terser": "^4.1.2"
   },
   "mocha": {
