@@ -62,7 +62,7 @@
     "@accordproject/markdown-it-template": "0.13.0-alpha.2",
     "dayjs": "1.10.2",
     "markdown-it": "^11.0.0",
-    "parsimmon": "^1.13.0",
+    "parsimmon": "1.16.0",
     "uuid": "3.3.2"
   },
   "license-check-config": {
