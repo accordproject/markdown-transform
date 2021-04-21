@@ -499,11 +499,24 @@ class ToSlateVisitor {
             if (thing.decorators) {
                 data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
             }
+
+            const calculatingChildren = this.processChildNodes(thing, parameters);
+            // This changes the variable names if they are inside a list so that they are not linked.
+            for(let i = 0; i < calculatingChildren.length; i++){
+                const listElements = calculatingChildren[i].children[0].children;
+                for(let j = 0; j < listElements.length; j++){
+                    if(listElements[j].type === 'variable'){
+                        const listVariables = `${listElements[j].data.name}${i}`;
+                        listElements[j].data.name = listVariables;
+                    }
+                }
+            }
+
             result = {
                 object: 'block',
                 data: data,
                 type: thing.type === 'ordered' ? 'ol_list' : 'ul_list',
-                children: this.processChildNodes(thing,parameters)
+                children: calculatingChildren
             };
         }
             break;
