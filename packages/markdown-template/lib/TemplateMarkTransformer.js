@@ -130,7 +130,9 @@ class TemplateMarkTransformer {
             _throwParseException(markdown,err.message,markdownFileName);
         }
         if (result.status) {
-            return serializer.toJSON(serializer.fromJSON(result.value));
+            const utcOffset = parserManager.getUtcOffset();
+            const output = serializer.toJSON(serializer.fromJSON(result.value, { utcOffset }), { utcOffset });
+            return output;
         } else {
             _throwParseException(markdown,result,markdownFileName);
         }
@@ -143,14 +145,15 @@ class TemplateMarkTransformer {
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {string} currentTime - the definition of 'now'
+     * @param {number} utcOffset - the UTC offset
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromCiceroMark(input, templateMark, modelManager, templateKind, currentTime, options) {
+    fromCiceroMark(input, templateMark, modelManager, templateKind, currentTime, utcOffset, options) {
         // Construct the template parser
-        const parserManager = new ParserManager(modelManager,this.parsingTable,templateKind);
-        parserManager.setCurrentTime(currentTime);
+        const parserManager = new ParserManager(modelManager,this.parsingTable,templateKind,options);
+        parserManager.setCurrentTime(currentTime, utcOffset);
         parserManager.setTemplateMark(templateMark);
         parserManager.buildParser();
 
@@ -163,18 +166,20 @@ class TemplateMarkTransformer {
      * @param {{fileName:string,content:string}} templateInput the template template
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
+     * @param {string} currentTime - the definition of 'now'
+     * @param {number} utcOffset - the UTC offset
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result of parsing
      */
-    fromMarkdownCicero(markdownInput, templateInput, modelManager, templateKind, options) {
+    fromMarkdownCicero(markdownInput, templateInput, modelManager, templateKind, currentTime, utcOffset, options) {
         // Translate template to TemplateMark
         const typedTemplate = this.fromMarkdownTemplate(templateInput, modelManager, templateKind, options);
 
         // Load the markdown input
         const ciceroMark = {fileName:markdownInput.fileName,content:normalizeFromMarkdownCicero(markdownInput.content)};
 
-        return this.fromCiceroMark(ciceroMark, typedTemplate, modelManager, templateKind, options);
+        return this.fromCiceroMark(ciceroMark, typedTemplate, modelManager, templateKind, currentTime, utcOffset, options);
     }
 
     /**
@@ -213,14 +218,15 @@ class TemplateMarkTransformer {
      * @param {object} modelManager - the model manager for this template
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {string} currentTime - the definition of 'now'
+     * @param {number} utcOffset - the UTC offset
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
      * @returns {object} the result
      */
-    instantiateCiceroMark(data, templateMark, modelManager, templateKind, currentTime, options) {
+    instantiateCiceroMark(data, templateMark, modelManager, templateKind, currentTime, utcOffset, options) {
         // Construct the template parser
         const parserManager = new ParserManager(modelManager, this.parsingTable, templateKind);
-        parserManager.setCurrentTime(currentTime);
+        parserManager.setCurrentTime(currentTime, utcOffset);
         parserManager.setTemplateMark(templateMark);
         return this.draftCiceroMark(data, parserManager, templateKind, options);
     }

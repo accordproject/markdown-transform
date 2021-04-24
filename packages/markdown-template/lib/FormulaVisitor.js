@@ -76,32 +76,36 @@ class FormulaVisitor {
      * Calculate dependencies
      * @param {*} serializer - the template mark serializer
      * @param {object} ast - the template AST
+     * @param {object} options - options
+     * @param {number} [options.utcOffset] - UTC Offset for this execution
      * @returns {*} the formulas
      */
-    calculateDependencies(serializer,ast) {
+    calculateDependencies(serializer,ast,options) {
         const parameters = {
             calculateDependencies: true,
             variables: [],
             result: [],
         };
-        const input = serializer.fromJSON(ast);
+        const input = serializer.fromJSON(ast,options);
         input.accept(this, parameters);
-        return serializer.toJSON(input);
+        return serializer.toJSON(input,options);
     }
 
     /**
      * Process formulas and returns the list of those formulas from a TemplateMark DOM
      * @param {*} serializer - the template mark serializer
      * @param {object} ast - the template AST
+     * @param {object} options - options
+     * @param {number} [options.utcOffset] - UTC Offset for this execution
      * @returns {*} the formulas
      */
-    processFormulas(serializer,ast) {
+    processFormulas(serializer,ast,options) {
         const parameters = {
             calculateDependencies: false,
             variables: [],
             result: [],
         };
-        const input = serializer.fromJSON(ast);
+        const input = serializer.fromJSON(ast,options);
         input.accept(this, parameters);
         return parameters.result;
     }

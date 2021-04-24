@@ -14,9 +14,7 @@
 
 'use strict';
 
-const datetimeutil = require('./datetimeutil');
-
-const { Factory, Serializer } = require('@accordproject/concerto-core');
+const { Factory, Serializer, DateTimeUtil } = require('@accordproject/concerto-core');
 
 const ParsingTable = require('./parsingtable');
 const draftVisitNodes = require('./ToCiceroMarkVisitor').visitNodes;
@@ -35,7 +33,7 @@ const {
  */
 
 const defaultFormulaEval = (name) => {
-    return (code,data,currentTime) => {
+    return (code,data,currentTime,utcOffset) => {
         const variables = Object.keys(data).filter((x) => !((x === '$class' || x === 'clauseId' || x === 'contractId')));
         return ` calculate(${code})(${variables}) @ ${currentTime.format()} `;
     };
@@ -61,7 +59,10 @@ class ParserManager {
         this.templateMark = null;
         this.parser = null;
         this.templateKind = templateKind ? templateKind : 'clause';
-        this.currentTime = datetimeutil.setCurrentTime(null); // Default setting to now
+        // Default setting to now
+        const { currentTime, utcOffset } = DateTimeUtil.setCurrentTime();
+        this.currentTime = currentTime;
+        this.utcOffset = utcOffset;
         this.userParsingTable = parsingTable;
         this.formulaEval = formulaEval ? formulaEval : defaultFormulaEval;
 
@@ -244,10 +245,16 @@ class ParserManager {
 
     /**
      * Sets the current time
-     * @param {string} currentTime the current time
+     * @param {string} [currentTime] - the definition of 'now'
+     * @param {number} [utcOffset] - UTC Offset for this execution
      */
-    setCurrentTime(currentTime) {
-        this.currentTime = datetimeutil.setCurrentTime(currentTime);
+    setCurrentTime(currentTime, utcOffset) {
+        const {
+            currentTime: setCurrentTime,
+            utcOffset: setUtcOffset
+        } = DateTimeUtil.setCurrentTime(currentTime, utcOffset);
+        this.currentTime = setCurrentTime;
+        this.utcOffset = setUtcOffset;
     }
 
     /**
@@ -256,6 +263,14 @@ class ParserManager {
      */
     getCurrentTime() {
         return this.currentTime;
+    }
+
+    /**
+     * Returns the UTC offset
+     * @return {number} the UTC offset
+     */
+    getUtcOffset() {
+        return this.utcOffset;
     }
 }
 

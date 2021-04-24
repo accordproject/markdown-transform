@@ -138,7 +138,7 @@ const transformationGraph = {
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.templateFileName;
             const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
-            const result = await t.fromCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, parameters.currentTime, options);
+            const result = await t.fromCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, parameters.currentTime, parameters.utcOffset, options);
             return result;
         },
     },
@@ -192,7 +192,7 @@ const transformationGraph = {
             const templateParameters = Object.assign({},parameters);
             templateParameters.inputFileName = parameters.templateFileName;
             const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
-            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, parameters.currentTime, options);
+            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, parameters.currentTime, parameters.utcOffset, options);
         },
     },
     plaintext: {
