@@ -23,7 +23,7 @@
   },
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.13.0-alpha.3",
+  "version": "0.13.0-alpha.4",
   "private": true,
   "scripts": {
     "dingus": "lerna exec --scope dingus -- npm run dingus",
