@@ -171,7 +171,7 @@ function runSuccesses(tests) {
         describe('#'+name, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager([model]);
+                modelManager = await ModelLoader.loadModelManager([model],['model.cto'],{ utcOffset: 0 });
             });
 
             it('should create template mark', async () => {
@@ -189,7 +189,7 @@ function runSuccesses(tests) {
             }
 
             it('should parse sample', async () => {
-                const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind,currentTime);
+                const result = templateMarkTransformer.fromMarkdownCicero(sample,grammar,modelManager,kind,currentTime,0);
                 if (kind === 'clause') {
                     delete data.clauseId;
                     delete data.$identifier;
@@ -213,7 +213,7 @@ function runSuccesses(tests) {
             });
 
             it('should draft sample back (roundtrip)', async () => {
-                const cm = templateMarkTransformer.instantiateCiceroMark(data,grammarJson,modelManager,kind,currentTime);
+                const cm = templateMarkTransformer.instantiateCiceroMark(data,grammarJson,modelManager,kind,currentTime, 0);
                 const cmUnwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(cm);
                 const result = ciceroMarkTransformer.toMarkdownCicero(cmUnwrapped);
                 const expected = normalizeToMarkdownCicero(normalizeFromMarkdownCicero(sample.content));

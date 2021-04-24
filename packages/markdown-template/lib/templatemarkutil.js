@@ -34,17 +34,19 @@ const templaterules = require('./templaterules');
 
 /**
  * Model manager for TemplateMark
+ * @param {object} options - optional parameters
+ * @param {number} [options.utcOffset] - UTC Offset for this execution
  * @returns {object} model manager and utilities for TemplateMark
  */
-function mkTemplateMarkManager() {
+function mkTemplateMarkManager(options) {
     const result = {};
-    result.modelManager = new ModelManager();
+    result.modelManager = new ModelManager(options);
     result.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
     result.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
     result.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
     result.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
     result.factory = new Factory(result.modelManager);
-    result.serializer = new Serializer(result.factory, result.modelManager);
+    result.serializer = new Serializer(result.factory, result.modelManager, { utcOffset: 0 });
     return result;
 }
 
@@ -119,10 +121,12 @@ function findElementModel(introspector, elementType) {
  * @param {object} introspector - the introspector for this template
  * @param {string} model - the model
  * @param {string} templateKind - either 'clause' or 'contract'
+ * @param {object} options - optional parameters
+ * @param {number} [options.utcOffset] - UTC Offset for this execution
  * @returns {object} the typed TemplateMark DOM
  */
-function templateMarkTypingGen(template,introspector,model,templateKind) {
-    const input = templateMarkManager.serializer.fromJSON(template);
+function templateMarkTypingGen(template,introspector,model,templateKind,options) {
+    const input = templateMarkManager.serializer.fromJSON(template,options);
 
     const parameters = {
         templateMarkModelManager: templateMarkManager.modelManager,
@@ -132,11 +136,11 @@ function templateMarkTypingGen(template,introspector,model,templateKind) {
     };
     const visitor = new TypeVisitor();
     input.accept(visitor, parameters);
-    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
+    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
 
     // Calculates formula dependencies
     const fvisitor = new FormulaVisitor();
-    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,true);
+    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
 
     return result;
 }
