@@ -6,6 +6,9 @@
 const markdownit = require('markdown-it');
 
 // For PDF
+const pdfMake = require('pdfmake/build/pdfmake.js');
+const pdfFonts = require('pdfmake/build/vfs_fonts.js');
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 const ToPdfMake = require('@accordproject/markdown-pdf/lib/ToPdfMake');
 
 // For CommonMark AST
@@ -201,6 +204,13 @@ function setHighlightedlContent(selector, content, lang) {
     $(selector).text(content);
   }
 }
+function setPdfContent(selector, content) {
+  const pdfDocGenerator = pdfMake.createPdf(content);
+  pdfDocGenerator.getDataUrl((dataUrl) => {
+    const el = document.getElementById(selector);
+    el.src = dataUrl;
+  });
+}
 
 async function updateResult() {
   var source = $('.source').val();
@@ -247,6 +257,7 @@ async function updateResult() {
       JSON.stringify(result, null, 2),
       'json'
     );
+    setPdfContent('pdfV', result);
 
   } else { /*defaults._view === 'html'*/
     $('.result-html').html(mdHtml.render(source));
