@@ -22,51 +22,11 @@ let pdfjsLib = require('pdfjs-dist/es5/build/pdf.js');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const PdfPrinter = require('pdfmake');
 const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
-const axios = require('axios');
-const fonts = {
-    Courier: {
-        normal: 'Courier',
-        bold: 'Courier-Bold',
-        italics: 'Courier-Oblique',
-        bolditalics: 'Courier-BoldOblique'
-    },
-    Helvetica: {
-        normal: 'Helvetica',
-        bold: 'Helvetica-Bold',
-        italics: 'Helvetica-Oblique',
-        bolditalics: 'Helvetica-BoldOblique'
-    },
-    Times: {
-        normal: 'Times-Roman',
-        bold: 'Times-Bold',
-        italics: 'Times-Italic',
-        bolditalics: 'Times-BoldItalic'
-    },
-    Symbol: {
-        normal: 'Symbol'
-    },
-    ZapfDingbats: {
-        normal: 'ZapfDingbats'
-    },
-    LiberationSerif: {
-        normal: `${__dirname}/fonts/LiberationSerif-Regular.ttf`,
-        bold: `${__dirname}/fonts/LiberationSerif-Bold.ttf`,
-        italics: `${__dirname}/fonts/LiberationSerif-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationSerif-BoldItalic.ttf`
-    },
-    LiberationSans: {
-        normal: `${__dirname}/fonts/LiberationSans-Regular.ttf`,
-        bold: `${__dirname}/fonts/LiberationSans-Bold.ttf`,
-        italics: `${__dirname}/fonts/LiberationSans-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationSans-BoldItalic.ttf`
-    },
-    LiberationMono: {
-        normal: `${__dirname}/fonts/LiberationMono-Regular.ttf`,
-        bold: `${__dirname}/fonts/LiberationMono-Bold.ttf`,
-        italics: `${__dirname}/fonts/LiberationMono-Italic.ttf`,
-        bolditalics: `${__dirname}/fonts/LiberationMono-BoldItalic.ttf`
-    },
-};
+const {
+    defaultFonts,
+    defaultStyles,
+    findReplaceImageUrls,
+} = require('./util');
 
 /**
  * Converts a PDF to CiceroMark DOM
@@ -199,51 +159,6 @@ class PdfTransformer {
      * @param {*} outputStream - the output stream
      */
     async toPdf(input, options = { saveCiceroMark: true }, outputStream) {
-
-        const printer = new PdfPrinter(fonts);
-
-        const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA8CAIAAAB+RarbAAADfUlEQVRo3u2b127DMAxF+///1uy9JzKRvWcvYEBQNGxJkXfvQ5Fh1zoiRZEC8/NOmX5SCjwejzOZzG9CBTQAfgAnmJYwfwD/pkAewJiS6XQa37W6XC7z+bw38Gq1yuVy5G2j0bjdbvFCvVwuGLaqhfH6er3WajXyCeZps9nEAvX1ek0mk2w2SwZfLBa9gZ07Edbo6RkMBvgwyrSHw6FcLtNLcjQaPZ9PJWBH+/2+UCiQryqVyvl8jiDq4/GAPWjzVKvV0+kkRHMDhu73e7vdJt/CWxaLRaRo1+s1bRWMcDab0RfoATsCJL0wMAWYiNBREWtarRZtWLzFh8xlJsAQnBkuTS7DpMLhQ6SFGWkbYDwwtfBKQ2AnkjFLBYEt+EiGxYklSg+j3+9jGcuuNwd2hC2K3tCxgfFe5JMQchF46SwYYRnB2f2ub4EhpCL0zo5EBemKyo1YF5iv+XwO18BfvMYnwFC5d7vdlkolOjhhy1XxLwvAjpB40pONuXexDBI9xg9pdTodsosIxSQFmG6kU4rjtAYMHY9HMuuYclmiR+cDLkKMlWGQ+ITVhLnTGqRNYMd6iBkYECk4GR9mMnh3IRMUbnj453hEt9s12A4tA7tHdRc3lqler9uN/MEBI13heWCoZrMJiw2HQ7wQMgudJQbAsBXvsUxw2u12dDVKtrr4AWPr4k0nTM4Q7XkvsOjVAQHDdAwG1rMsJeanxn2XiiIwNg+GAWmp7GL+CBFpRsyAsSGtPyWrpYXOb7HwDi5oKQoZIn9+GL81rL7UeX9GJhPLbUnlsIKuaYl57ZZfUQFm6gEiWR0fY2Csz16vJ0zC/DgPDh8YhaSwbEDt5cfjQgZGRsHTor7171QwZGAcvimWhAkBRk2rkmAnB5gpCXEY4vcTQwZmjgSwehMOjFPVLSWfInOkc+l/4GQB5zipZM7OqSWKCsVTe3+BsYtis5Gd1MoeT6QCTGoMHIPrLnvLwHTviOws/ntgOhvV7baxBsz3jvhnYci428YCsLB3RPEUyhj4bdpt8y2wrHdE18EMgN9G3TbmwO69I0FKq9vGENizdyRgqXfbaAMr9o6EIpVuGz1g9d6RsOTZbaMKrNs7EqLcu228gc16R0KXrNvGA9i4dyQKEnbbqPZL6/aOREdMt40SsEHvSKREd9toWDjJPwFI3Y88UvcznvQodcB/LBIdvQmJEjwAAAAASUVORK5CYII=';
-
-        // Asynchronously retrieve image as buffer data from URL.
-        const getRemoteImageData = async (url) => {
-            try {
-                if (options.offline) {
-                    return placeholderImage;
-                } else {
-                    const buffer = await axios.get(url, { responseType: 'arraybuffer' });
-                    return Buffer.from(buffer.data);
-                }
-            } catch (err) {
-                // Failed to retrieve image buffer data from URL - use placeholder instead.
-                return placeholderImage;
-            }
-        };
-
-        // Walk a JSON object and find any image key starting with 'http' and
-        // substitute the URL with the image buffer data.
-        const findReplaceImageUrls = async (object) => {
-            const updates = [];
-            await Promise.all(
-                Object.keys(object).map(async (key) => {
-                    if (Array.isArray(object[key])) {
-                        await Promise.all(
-                            object[key].map(async (obj) => await findReplaceImageUrls(obj))
-                        );
-                    } else if (typeof object[key] === 'object') {
-                        await findReplaceImageUrls(object[key]);
-                    } else {
-                        if (key === 'image' && typeof object[key] === 'string' && object[key].startsWith('http')) {
-                            updates.push({ key: key, content: await getRemoteImageData(object[key]) });
-                        }
-                    }
-                })
-            ).then(() => {
-                updates.forEach((update) => {
-                    object[update.key] = update.content;
-                });
-            });
-        };
-
         if(!input.getType) {
             input = this.ciceroMarkTransformer.getSerializer().fromJSON(input);
         }
@@ -320,86 +235,14 @@ class PdfTransformer {
                 return footer;
             };
         }
-        const defaultStyles = {
-            Footer: {
-                alignment: 'left',
-                fontSize: 10,
-                // left, top, right, bottom
-                margin : [81, 36, 0, 0]
-            },
-            PageNumber: {
-                alignment: 'center',
-                fontSize: 10,
-                // left, top, right, bottom
-                margin : [0, -11, 0, 0]
-            },
-            Header: {
-                alignment: 'right',
-                fontSize: 10,
-                // left, top, right, bottom
-                margin : [0, 36, 81, 0]
-            },
-            heading_one: {
-                fontSize: 25,
-                bold: true,
-                alignment: 'center'
-            },
-            heading_two: {
-                fontSize: 20,
-                bold: true
-            },
-            heading_three: {
-                fontSize: 16,
-                bold: true
-            },
-            heading_four: {
-                fontSize: 15,
-                bold: true
-            },
-            heading_five: {
-                fontSize: 14,
-                bold: true
-            },
-            heading_six: {
-                fontSize: 13,
-                bold: true
-            },
-            Code: {
-                font: 'LiberationMono'
-            },
-            CodeBlock: {
-                font: 'LiberationMono',
-            },
-            HtmlInline: {
-                font: 'LiberationMono'
-            },
-            HtmlBlock: {
-                font: 'LiberationMono',
-            },
-            Paragraph: {
-                alignment: 'justify'
-            },
-            toc: {
-                fontSize: 25,
-                bold: true,
-                alignment: 'center'
-            },
-            Link: {
-                color: 'blue'
-            },
-            BlockQuote: {
-                margin: [20, 0]
-            },
-            background: {
-                color: 'white'
-            }
-        };
 
         // allow the caller to override default styles
         dd.styles = defaultStyles;
         if(options.styles) {
             Object.assign(dd.styles, options.styles);
         }
+
+        const printer = new PdfPrinter(defaultFonts);
 
         const pdfDoc = printer.createPdfKitDocument(dd);
         pdfDoc.pipe(outputStream);

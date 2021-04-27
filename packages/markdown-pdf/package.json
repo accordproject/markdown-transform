@@ -84,8 +84,9 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.13.0",
     "@accordproject/markdown-common": "0.13.0",
-    "pdfjs-dist": "^2.4.456",
-    "pdfmake": "0.1.66",
+    "axios": "^0.21.1",
+    "pdfjs-dist": "^2.7.570",
+    "pdfmake": "^0.1.71",
     "type-of": "^2.0.1"
   },
   "license-check-config": {
