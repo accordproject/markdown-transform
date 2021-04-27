@@ -30,6 +30,7 @@
     "highlight.js": "^10.0.3",
     "markdown-it": "^11.0.0",
     "ndoc": "^5.0.0",
+    "pdfmake": "^0.1.71",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.4",
     "stylus": "^0.54.5",

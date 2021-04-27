@@ -45,11 +45,12 @@ async function ToPdfMake(inputJson, options = { saveCiceroMark: true }) {
     // console.log(JSON.stringify(dd, null, 2));
     await findReplaceImageUrls(dd);
 
-    dd.defaultStyle = {
-        fontSize: 12,
-        font: 'LiberationSerif',
-        lineHeight: 1.5
-    };
+    // XXX fonts should be better defined at rendering time
+    // dd.defaultStyle = {
+    //     fontSize: 12,
+    //     font: 'LiberationSerif',
+    //     lineHeight: 1.5
+    // };
 
     dd.pageSize = 'LETTER';
     dd.pageOrientation = 'portrait',
