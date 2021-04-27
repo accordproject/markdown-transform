@@ -33,10 +33,8 @@ class ToPdfMakeVisitor {
 
     /**
      * Construct the visitor
-     * @param {*} [options] configuration options
      */
-    constructor(options) {
-        this.options = options;
+    constructor() {
     }
 
     /**

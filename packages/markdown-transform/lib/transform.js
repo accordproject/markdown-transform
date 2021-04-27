@@ -162,7 +162,6 @@ const transformationGraph = {
             return t.fromCiceroMark(input);
         },
         pdf: (input, parameters, options) => {
-            const t = new PdfTransformer();
             const outputStream = new Stream.Writable();
 
             let arrayBuffer = new ArrayBuffer(8);
@@ -180,7 +179,7 @@ const transformationGraph = {
                 outputStream.on('finish', () => {
                     resolve(memStore);
                 });
-                t.toPdf(input, options, outputStream );
+                PdfTransformer.toPdf(input, options, outputStream );
             });
         },
     },
@@ -221,8 +220,7 @@ const transformationGraph = {
         docs: 'PDF (buffer)',
         fileFormat: 'binary',
         ciceromark_parsed: (input,parameters,options) => {
-            const t = new PdfTransformer();
-            return t.toCiceroMark(input, options);
+            return PdfTransformer.toCiceroMark(input, options);
         },
     },
     docx: {
