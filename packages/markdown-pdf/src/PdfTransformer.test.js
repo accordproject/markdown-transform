@@ -24,13 +24,6 @@ const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMa
 const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
-let pdfTransformer = null;
-
-// @ts-ignore
-beforeAll(() => {
-    pdfTransformer = new PdfTransformer();
-});
-
 /**
  * Get the name and contents of all pdf test files
  * @returns {*} an array of name/contents tuples
@@ -89,7 +82,7 @@ function saveCiceroMarkAsPdf(ciceroMarkDom, fileName, customOptions) {
         };
 
         options = Object.assign( options, customOptions );
-        pdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
+        PdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
     });
 
     return promise;
@@ -136,7 +129,7 @@ describe('pdf import', () => {
     jest.setTimeout(20000);
     getPdfFiles().forEach(([file, pdfContent], i) => {
         it(`converts ${file} to cicero mark`, async () => {
-            const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
+            const ciceroMarkDom = await PdfTransformer.toCiceroMark(pdfContent, 'json');
             // if(file.startsWith('Land')) {
             //     console.log(JSON.stringify(ciceroMarkDom, null, 4));
             // }
@@ -149,7 +142,7 @@ describe('pdf import', () => {
 describe('pdf import 2', () => {
     it('converts Land_Sale_Contract to cicero mark', async () => {
         const pdfContent = fs.readFileSync( path.join(__dirname, '/../test/data', 'Land_Sale_Contract.pdf'), null );
-        const ciceroMarkDom = await pdfTransformer.toCiceroMark(pdfContent, 'json');
+        const ciceroMarkDom = await PdfTransformer.toCiceroMark(pdfContent, 'json');
         // console.log(JSON.stringify(ciceroMarkDom, null, 4));
         expect(ciceroMarkDom).toMatchSnapshot(); // (1)
         return saveCiceroMarkAsPdf(ciceroMarkDom, 'Land_Sale_Contract-debug'); // roundtrip for debug
@@ -200,11 +193,11 @@ describe('pdf roudtrip', () => {
         // because we embedded the source CiceroMark in the PDF, it should
         // be detected and be returned identical
         let pdfContent = fs.readFileSync(__dirname + '/../output/roundtrip.md.pdf');
-        const ciceroMarkDom2 = await pdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: false } );
+        const ciceroMarkDom2 = await PdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: false } );
         expect(ciceroMarkDom).toEqual(ciceroMarkDom2);
 
         // if we load templates from the PDF, they should be returned
-        const ciceroMarkDom3 = await pdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: true } );
+        const ciceroMarkDom3 = await PdfTransformer.toCiceroMark(pdfContent, 'json', {loadCiceroMark: true, loadTemplates: true } );
         expect(Object.assign(ciceroMarkDom, {templates: [acceptanceOfDelivery.toString('base64')]})).toEqual(ciceroMarkDom3);
     });
 });
@@ -251,7 +244,7 @@ describe('pdf generation', () => {
                     }
                 };
 
-                pdfTransformer.toPdf(JSON.parse(jsonContent), options, outputStream );
+                PdfTransformer.toPdf(JSON.parse(jsonContent), options, outputStream );
             });
 
             return promise;
