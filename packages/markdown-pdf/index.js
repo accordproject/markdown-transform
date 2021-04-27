@@ -20,4 +20,4 @@
  */
 
 module.exports.PdfTransformer = require('./lib/PdfTransformer');
-
+module.exports.ToPdfMake = require('./lib/ToPdfMake');

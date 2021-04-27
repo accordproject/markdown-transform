@@ -23,6 +23,7 @@
     "@accordproject/markdown-common": "0.13.0",
     "@accordproject/markdown-it-cicero": "0.13.0",
     "@accordproject/markdown-it-template": "0.13.0",
+    "@accordproject/markdown-pdf": "0.13.0",
     "@accordproject/markdown-template": "0.13.0",
     "autoprefixer-stylus": "^0.14.0",
     "browserify": "^16.3.0",

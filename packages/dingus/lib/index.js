@@ -5,6 +5,9 @@
 
 const markdownit = require('markdown-it');
 
+// For PDF
+const ToPdfMake = require('@accordproject/markdown-pdf/lib/ToPdfMake');
+
 // For CommonMark AST
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const tokensToCommonMark = (tokens) => {
@@ -96,7 +99,7 @@ var defaults = {
   // options below are for demo only
   _highlight: true,
   _strict: false,
-  _view: 'html'               // html / src / debug / ast
+  _view: 'html'               // html / src / debug / ast / pdf
 };
 
 defaults.highlight = function (str, lang) {
@@ -142,6 +145,7 @@ function setResultView(val) {
   $('body').removeClass('result-as-src');
   $('body').removeClass('result-as-debug');
   $('body').removeClass('result-as-ast');
+  $('body').removeClass('result-as-pdf');
   $('body').addClass('result-as-' + val);
   defaults._view = val;
 }
@@ -198,7 +202,7 @@ function setHighlightedlContent(selector, content, lang) {
   }
 }
 
-function updateResult() {
+async function updateResult() {
   var source = $('.source').val();
 
   // Update only active view to avoid slowdowns
@@ -225,6 +229,22 @@ function updateResult() {
     setHighlightedlContent(
       '.result-ast-content',
       JSON.stringify(fromTokens(mdSrc.parse(source, { references: {} })), null, 2),
+      'json'
+    );
+
+  } else if (defaults._view === 'pdf') {
+    let fromTokens;
+    if (defaults._strict) {
+      fromTokens = (x) => ToPdfMake(tokensToCommonMark(x));
+    } else if (defaults.ciceroMark) {
+      fromTokens = (x) => ToPdfMake(tokensToCiceroMark(x));
+    } else {
+      fromTokens = (x) => ToPdfMake(tokensToTemplateMark(x));
+    }
+    const result = await fromTokens(mdSrc.parse(source, { references: {} }));
+    setHighlightedlContent(
+      '.result-pdf-content',
+      JSON.stringify(result, null, 2),
       'json'
     );
 
