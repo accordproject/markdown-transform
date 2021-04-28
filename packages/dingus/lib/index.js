@@ -204,13 +204,16 @@ function setHighlightedlContent(selector, content, lang) {
     $(selector).text(content);
   }
 }
+  
+// Calling throttle() method with its parameter
 function setPdfContent(selector, content) {
   const pdfDocGenerator = pdfMake.createPdf(content);
   pdfDocGenerator.getDataUrl((dataUrl) => {
     const el = document.getElementById(selector);
-    el.src = dataUrl;
+    el.src = `${dataUrl}#toolbar=0`;
   });
 }
+const _setPdfContent = _.debounce(setPdfContent, 2000);
 
 async function updateResult() {
   var source = $('.source').val();
@@ -257,7 +260,7 @@ async function updateResult() {
       JSON.stringify(result, null, 2),
       'json'
     );
-    setPdfContent('pdfV', result);
+    _setPdfContent('pdfV', result);
 
   } else { /*defaults._view === 'html'*/
     $('.result-html').html(mdHtml.render(source));

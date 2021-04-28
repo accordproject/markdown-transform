@@ -59,6 +59,12 @@ class PdfTransformer {
     static async toPdf(input, options = { saveCiceroMark: true }, outputStream) {
         // The JSON document in pdfmake format
         const dd = await ToPdfMake(input, options);
+        // Default fonts are better defined at rendering time
+        dd.defaultStyle = {
+             fontSize: 12,
+             font: 'LiberationSerif',
+             lineHeight: 1.5
+        };
 
         // The Pdf printer
         const printer = new PdfPrinter(defaultFonts);
