@@ -19,7 +19,7 @@ const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
 const {
     defaultStyles,
     findReplaceImageUrls,
-} = require('./pdfmarkutil');
+} = require('./pdfmakeutil');
 
 const ciceroMarkSerializer = (new CiceroMarkTransformer()).getSerializer();
 

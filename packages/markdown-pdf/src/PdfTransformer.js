@@ -18,7 +18,7 @@ const ToPdfMake = require('./ToPdfMake');
 const ToCiceroMark = require('./ToCiceroMark');
 
 const PdfPrinter = require('pdfmake');
-const { defaultFonts } = require('./pdfmarkutil');
+const { defaultFonts } = require('./pdfmakeutil');
 
 /**
  * Converts a PDF to CiceroMark DOM
@@ -61,9 +61,9 @@ class PdfTransformer {
         const dd = await ToPdfMake(input, options);
         // Default fonts are better defined at rendering time
         dd.defaultStyle = {
-             fontSize: 12,
-             font: 'LiberationSerif',
-             lineHeight: 1.5
+            fontSize: 12,
+            font: 'LiberationSerif',
+            lineHeight: 1.5
         };
 
         // The Pdf printer
