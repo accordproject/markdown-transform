@@ -118,7 +118,7 @@ class TemplateMarkToPdfMakeVisitor {
         const nodes = thing[fieldName] ? thing[fieldName] : [];
 
         nodes.forEach(node => {
-            //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
+            // console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const newParameters = {
                 strong: parameters.strong,
                 emph: parameters.emph,
@@ -213,27 +213,38 @@ class TemplateMarkToPdfMakeVisitor {
         case 'VariableDefinition': {
             const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.name) : thing.name;
             result.text = fixedText;
+            result.color = '#A4BBE7';
         }
             break;
-        case 'FormulaDefinition':
-        case 'VariableDefinition': {
+        case 'FormulaDefinition': {
             const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.code) : thing.code;
             result.text = fixedText;
+            result.color = '#AF54C4';
         }
             break;
-        case 'OptionalDefinition':
-        case 'ConditionalDefinition':
         case 'ClauseDefinition':
         case 'ContractDefinition':
         case 'WithDefinition':
         case 'JoinDefinition':
         case 'ListBlockDefinition':
         case 'ForeachDefinition':
-        case 'WithBlockDefinition':
-        case 'ConditionalBlockDefinition':
-        case 'OptionalBlockDefinition': {
+        case 'WithBlockDefinition': {
             const child = this.processChildNodes(thing,parameters);
             result.stack = child;
+        }
+            break;
+        case 'OptionalDefinition':
+        case 'OptionalBlockDefinition': {
+            const childWhenSome = this.processChildren(thing,'whenSome',parameters);
+            // const childWhenNone = this.processChildren(thing,'whenNone',parameters);
+            result.stack = childWhenSome;
+        }
+            break;
+        case 'ConditionalDefinition':
+        case 'ConditionalBlockDefinition': {
+            const childWhenTrue = this.processChildren(thing,'whenTrue',parameters);
+            // const childWhenFalse = this.processChildren(thing,'whenFalse',parameters);
+            result.stack = childWhenTrue;
         }
             break;
         case 'HtmlInline':
