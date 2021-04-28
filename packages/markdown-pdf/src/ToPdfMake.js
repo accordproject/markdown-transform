@@ -43,7 +43,7 @@ async function ToPdfMake(inputJson, options = { saveMarkdown: true }, serializer
 
     let dd = parameters.result;
     // console.log(JSON.stringify(dd, null, 2));
-    await findReplaceImageUrls(dd);
+    await findReplaceImageUrls(dd, options);
 
     dd.pageSize = 'LETTER';
     dd.pageOrientation = 'portrait',

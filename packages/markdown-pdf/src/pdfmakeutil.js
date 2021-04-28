@@ -158,7 +158,7 @@ const getRemoteImageData = async (url, options) => {
 
 // Walk a JSON object and find any image key starting with 'http' and
 // substitute the URL with the image buffer data.
-const findReplaceImageUrls = async (object, options) => {
+const findReplaceImageUrls = async (object, options = {}) => {
     const updates = [];
     await Promise.all(
         Object.keys(object).map(async (key) => {
