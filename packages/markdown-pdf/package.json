@@ -55,7 +55,6 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform#readme",
   "devDependencies": {
-    "@accordproject/markdown-template": "0.13.0",
     "@babel/cli": "7.4.4",
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
@@ -85,6 +84,7 @@
   "dependencies": {
     "@accordproject/markdown-cicero": "0.13.0",
     "@accordproject/markdown-common": "0.13.0",
+    "@accordproject/markdown-template": "0.13.0",
     "axios": "^0.21.1",
     "pdfjs-dist": "^2.7.570",
     "pdfmake": "^0.1.71",

@@ -15,25 +15,25 @@
 'use strict';
 
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
-const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
+const CiceroMarkToPdfMakeVisitor = require('./CiceroMarkToPdfMakeVisitor');
+const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
+const TemplateMarkToPdfMakeVisitor = require('./TemplateMarkToPdfMakeVisitor');
 const {
     defaultStyles,
     findReplaceImageUrls,
 } = require('./pdfmakeutil');
 
-const ciceroMarkSerializer = (new CiceroMarkTransformer()).getSerializer();
-
 /**
- * Converts a CiceroMark DOM to a PDF Buffer
- * @param {*} inputJson - CiceroMark DOM (JSON)
+ * Converts a DOM to a pdfmake JSON
+ * @param {*} inputJson - DOM (JSON)
  * @param {*} options - the PDF generation options
- * @param {boolean} [options.saveCiceroMark] - whether to save source CiceroMark as a custom property (defaults to true)
+ * @param {boolean} [options.saveMarkdown] - whether to save source CiceroMark as a custom property (defaults to true)
  * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
+ * @param {*} serializer - the DOM serializer
+ * @param {*} visitor - the DOM visitor
  */
-async function ToPdfMake(inputJson, options = { saveCiceroMark: true }) {
-    const input = ciceroMarkSerializer.fromJSON(inputJson);
-
-    const visitor = new ToPdfMakeVisitor();
+async function ToPdfMake(inputJson, options = { saveMarkdown: true }, serializer, visitor) {
+    const input = serializer.fromJSON(inputJson);
 
     const parameters = {};
     parameters.result = '';
@@ -54,10 +54,10 @@ async function ToPdfMake(inputJson, options = { saveCiceroMark: true }) {
     dd = Object.assign(dd, options);
 
     // save source CiceroMark
-    if(options.saveCiceroMark) {
+    if(options.saveMarkdown) {
         dd = Object.assign(dd, {
             info : {
-                ciceromark : JSON.stringify(inputJson)
+                markdown : JSON.stringify(inputJson)
             }
         });
     }
@@ -110,4 +110,33 @@ async function ToPdfMake(inputJson, options = { saveCiceroMark: true }) {
     return dd;
 }
 
-module.exports = ToPdfMake;
+/**
+ * Converts a CiceroMark DOM to a PDF Buffer
+ * @param {*} inputJson - CiceroMark DOM (JSON)
+ * @param {*} options - the PDF generation options
+ * @param {boolean} [options.saveMarkdown] - whether to save source CiceroMark as a custom property (defaults to true)
+ * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
+ */
+async function CiceroMarkToPdfMake(inputJson, options = { saveMarkdown: true }) {
+    const serializer = (new CiceroMarkTransformer()).getSerializer();
+    const visitor = new CiceroMarkToPdfMakeVisitor();
+    return ToPdfMake(inputJson, options, serializer, visitor);
+}
+
+/**
+ * Converts a TemplateMark DOM to a PDF Buffer
+ * @param {*} inputJson - TemplateMark DOM (JSON)
+ * @param {*} options - the PDF generation options
+ * @param {boolean} [options.saveMarkdown] - whether to save source TemplateMark as a custom property (defaults to true)
+ * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
+ */
+async function TemplateMarkToPdfMake(inputJson, options = { saveMarkdown: true }) {
+    const serializer = (new TemplateMarkTransformer()).getSerializer();
+    const visitor = new TemplateMarkToPdfMakeVisitor();
+    return ToPdfMake(inputJson, options, serializer, visitor);
+}
+
+module.exports = {
+    CiceroMarkToPdfMake,
+    TemplateMarkToPdfMake,
+};

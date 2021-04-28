@@ -28,11 +28,11 @@ let pdfjsLib = require('pdfjs-dist/es5/build/pdf.js');
  * @param {number} [options.paragraphVerticalOffset] - the vertical offset used to detect
  * pararaphs as a multiple of the line height (defaults to 2)
  * @param {boolean} [options.preservePages] - whether to preserve PDF page breaks (defaults to false)
- * @param {boolean} [options.loadCiceroMark] - whether to load embedded CiceroMark (defaults to true)
+ * @param {boolean} [options.loadMarkdown] - whether to load embedded CiceroMark (defaults to true)
  * @param {boolean} [options.loadTemplates] - whether to load embedded templates (defaults to false)
  * @returns {promise} a Promise to the CiceroMark DOM
  */
-async function ToCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: false, loadCiceroMark: true }) {
+async function ToCiceroMark(input, format = 'concerto', options = { paragraphVerticalOffset: 2, preservePages: false, loadMarkdown: true }) {
 
     let loadingTask = pdfjsLib.getDocument(input.buffer);
 
@@ -50,8 +50,8 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
             });
         }
 
-        if(options.loadCiceroMark && metadata.info.Custom.ciceromark) {
-            const result = JSON.parse(metadata.info.Custom.ciceromark);
+        if(options.loadMarkdown && metadata.info.Custom.markdown) {
+            const result = JSON.parse(metadata.info.Custom.markdown);
             if(templates.length > 0) {
                 result.templates = templates; // add optional attribute `templates` to org.accordproject.commonmark.Document?
             }

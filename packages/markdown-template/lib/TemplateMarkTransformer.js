@@ -231,6 +231,15 @@ class TemplateMarkTransformer {
         return this.draftCiceroMark(data, parserManager, templateKind, options);
     }
 
+    /**
+     * Retrieve the serializer used by the parser
+     *
+     * @returns {*} a serializer capable of dealing with the Concerto
+     * object returns by parse
+     */
+    getSerializer() {
+        return templateMarkManager.serializer;
+    }
 }
 
 module.exports = TemplateMarkTransformer;

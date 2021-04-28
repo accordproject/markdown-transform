@@ -50,7 +50,7 @@ class PdfTransformer {
 
     /**
      * Converts a CiceroMark DOM to a PDF Buffer
-     * @param {*} input - CiceroMark DOM
+     * @param {*} input - CiceroMark DOM (JSON)
      * @param {*} options - the PDF generation options
      * @param {boolean} [options.saveCiceroMark] - whether to save source CiceroMark as a custom property (defaults to true)
      * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
@@ -58,7 +58,34 @@ class PdfTransformer {
      */
     static async toPdf(input, options = { saveCiceroMark: true }, outputStream) {
         // The JSON document in pdfmake format
-        const dd = await ToPdfMake(input, options);
+        const dd = await ToPdfMake.CiceroMarkToPdfMake(input, options);
+        // Default fonts are better defined at rendering time
+        dd.defaultStyle = {
+            fontSize: 12,
+            font: 'LiberationSerif',
+            lineHeight: 1.5
+        };
+
+        // The Pdf printer
+        const printer = new PdfPrinter(defaultFonts);
+
+        // Printing to stream
+        const pdfDoc = printer.createPdfKitDocument(dd);
+        pdfDoc.pipe(outputStream);
+        pdfDoc.end();
+    }
+
+    /**
+     * Converts a TemplateMark DOM to a PDF Buffer
+     * @param {*} input - TemplateMark DOM (JSON)
+     * @param {*} options - the PDF generation options
+     * @param {boolean} [options.saveCiceroMark] - whether to save source CiceroMark as a custom property (defaults to true)
+     * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
+     * @param {*} outputStream - the output stream
+     */
+    static async templateMarktoPdf(input, options = { saveTemplateMark: true }, outputStream) {
+        // The JSON document in pdfmake format
+        const dd = await ToPdfMake.TemplateMarkToPdfMake(input, options);
         // Default fonts are better defined at rendering time
         dd.defaultStyle = {
             fontSize: 12,

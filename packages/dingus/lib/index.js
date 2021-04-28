@@ -249,11 +249,11 @@ async function updateResult() {
   } else if (defaults._view === 'pdfmake') {
     let fromTokens;
     if (defaults._strict) {
-      fromTokens = (x) => ToPdfMake(tokensToCommonMark(x));
+      fromTokens = (x) => ToPdfMake.CiceroMarkToPdfMake(tokensToCommonMark(x));
     } else if (defaults.ciceroMark) {
-      fromTokens = (x) => ToPdfMake(tokensToCiceroMark(x));
+      fromTokens = (x) => ToPdfMake.CiceroMarkToPdfMake(tokensToCiceroMark(x));
     } else {
-      fromTokens = (x) => ToPdfMake(tokensToTemplateMark(x));
+      fromTokens = (x) => ToPdfMake.TemplateMarkToPdfMake(tokensToTemplateMark(x));
     }
     const result = await fromTokens(mdSrc.parse(source, { references: {} }));
     setHighlightedlContent(
@@ -265,11 +265,11 @@ async function updateResult() {
   } else if (defaults._view === 'pdf') {
     let fromTokens;
     if (defaults._strict) {
-      fromTokens = (x) => ToPdfMake(tokensToCommonMark(x));
+      fromTokens = (x) => ToPdfMake.CiceroMarkToPdfMake(tokensToCommonMark(x));
     } else if (defaults.ciceroMark) {
-      fromTokens = (x) => ToPdfMake(tokensToCiceroMark(x));
+      fromTokens = (x) => ToPdfMake.CiceroMarkToPdfMake(tokensToCiceroMark(x));
     } else {
-      fromTokens = (x) => ToPdfMake(tokensToTemplateMark(x));
+      fromTokens = (x) => ToPdfMake.TemplateMarkToPdfMake(tokensToTemplateMark(x));
     }
     const result = await fromTokens(mdSrc.parse(source, { references: {} }));
     _setPdfContent('pdfV', result);

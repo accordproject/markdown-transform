@@ -26,10 +26,10 @@ function unquoteString(value) {
 }
 
 /**
- * Converts a CiceroMark DOM to a PDF Make JSON.
+ * Converts a TemplateMark DOM to a PDF Make JSON.
  * http://pdfmake.org/playground.html
  */
-class ToPdfMakeVisitor {
+class TemplateMarkToPdfMakeVisitor {
 
     /**
      * Construct the visitor
@@ -64,7 +64,7 @@ class ToPdfMakeVisitor {
      */
     static handleFormattedText(thing, parameters) {
         const textNode = {
-            text: ToPdfMakeVisitor.getText(thing)};
+            text: TemplateMarkToPdfMakeVisitor.getText(thing)};
 
         this.applyMarks(textNode, parameters);
         return textNode;
@@ -81,7 +81,7 @@ class ToPdfMakeVisitor {
         }
         else {
             if(thing.nodes && thing.nodes.length > 0) {
-                return ToPdfMakeVisitor.getText(thing.nodes[0]);
+                return TemplateMarkToPdfMakeVisitor.getText(thing.nodes[0]);
             }
             else {
                 return '';
@@ -208,16 +208,30 @@ class ToPdfMakeVisitor {
             }
         }
             break;
-        case 'EnumVariable':
-        case 'FormattedVariable':
-        case 'Formula':
-        case 'Variable': {
-            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.value) : thing.value;
+        case 'EnumVariableDefinition':
+        case 'FormattedVariableDefinition':
+        case 'VariableDefinition': {
+            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.name) : thing.name;
             result.text = fixedText;
         }
             break;
-        case 'Optional':
-        case 'Conditional': {
+        case 'FormulaDefinition':
+        case 'VariableDefinition': {
+            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.code) : thing.code;
+            result.text = fixedText;
+        }
+            break;
+        case 'OptionalDefinition':
+        case 'ConditionalDefinition':
+        case 'ClauseDefinition':
+        case 'ContractDefinition':
+        case 'WithDefinition':
+        case 'JoinDefinition':
+        case 'ListBlockDefinition':
+        case 'ForeachDefinition':
+        case 'WithBlockDefinition':
+        case 'ConditionalBlockDefinition':
+        case 'OptionalBlockDefinition': {
             const child = this.processChildNodes(thing,parameters);
             result.stack = child;
         }
@@ -230,11 +244,11 @@ class ToPdfMakeVisitor {
         }
             break;
         case 'Text': {
-            result = ToPdfMakeVisitor.handleFormattedText(thing, parameters);
+            result = TemplateMarkToPdfMakeVisitor.handleFormattedText(thing, parameters);
         }
             break;
         case 'Heading': {
-            result.style = ToPdfMakeVisitor.getHeadingType(thing);
+            result.style = TemplateMarkToPdfMakeVisitor.getHeadingType(thing);
             result.text = this.processChildNodes(thing,parameters);
             result.tocItem = thing.nodes && thing.nodes.length > 0 ? true : false;
         }
@@ -269,4 +283,4 @@ class ToPdfMakeVisitor {
     }
 }
 
-module.exports = ToPdfMakeVisitor;
+module.exports = TemplateMarkToPdfMakeVisitor;
