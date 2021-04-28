@@ -9,7 +9,7 @@ const markdownit = require('markdown-it');
 const pdfMake = require('pdfmake/build/pdfmake.js');
 const pdfFonts = require('pdfmake/build/vfs_fonts.js');
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-const ToPdfMake = require('@accordproject/markdown-pdf/lib/ToPdfMake');
+const ToPdfMake = require('@accordproject/markdown-pdf').ToPdfMake;
 
 // For CommonMark AST
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
@@ -102,7 +102,7 @@ var defaults = {
   // options below are for demo only
   _highlight: true,
   _strict: false,
-  _view: 'html'               // html / src / debug / ast / pdf
+  _view: 'html'               // html / src / debug / ast / pdfmake / pdf
 };
 
 defaults.highlight = function (str, lang) {
@@ -148,6 +148,7 @@ function setResultView(val) {
   $('body').removeClass('result-as-src');
   $('body').removeClass('result-as-debug');
   $('body').removeClass('result-as-ast');
+  $('body').removeClass('result-as-pdfmake');
   $('body').removeClass('result-as-pdf');
   $('body').addClass('result-as-' + val);
   defaults._view = val;
@@ -245,7 +246,7 @@ async function updateResult() {
       'json'
     );
 
-  } else if (defaults._view === 'pdf') {
+  } else if (defaults._view === 'pdfmake') {
     let fromTokens;
     if (defaults._strict) {
       fromTokens = (x) => ToPdfMake(tokensToCommonMark(x));
@@ -256,10 +257,21 @@ async function updateResult() {
     }
     const result = await fromTokens(mdSrc.parse(source, { references: {} }));
     setHighlightedlContent(
-      '.result-pdf-content',
+      '.result-pdfmake-content',
       JSON.stringify(result, null, 2),
       'json'
     );
+
+  } else if (defaults._view === 'pdf') {
+    let fromTokens;
+    if (defaults._strict) {
+      fromTokens = (x) => ToPdfMake(tokensToCommonMark(x));
+    } else if (defaults.ciceroMark) {
+      fromTokens = (x) => ToPdfMake(tokensToCiceroMark(x));
+    } else {
+      fromTokens = (x) => ToPdfMake(tokensToTemplateMark(x));
+    }
+    const result = await fromTokens(mdSrc.parse(source, { references: {} }));
     _setPdfContent('pdfV', result);
 
   } else { /*defaults._view === 'html'*/

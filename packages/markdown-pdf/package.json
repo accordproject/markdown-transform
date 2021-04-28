@@ -15,6 +15,7 @@
     "umd"
   ],
   "main": "index.js",
+  "browser": "index.dist.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
