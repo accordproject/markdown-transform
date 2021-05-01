@@ -29,6 +29,30 @@ const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 
+const transformToStream = (input, parameters, options, t) => {
+    const outputStream = new Stream.Writable();
+
+    let arrayBuffer = new ArrayBuffer(8);
+    let memStore = Buffer.from(arrayBuffer);
+    outputStream._write = (chunk, encoding, next) => {
+        let buffer = (Buffer.isBuffer(chunk))
+            ? chunk  // already is Buffer use it
+            : new Buffer(chunk, encoding);  // string, convert
+
+        // concat to the buffer already there
+        memStore = Buffer.concat([memStore, buffer]);
+        next();
+    };
+
+    return new Promise( (resolve) => {
+        outputStream.on('finish', () => {
+            resolve(memStore);
+        });
+        // Call the transform, passing the stream
+        return t(input, options, outputStream );
+    });
+};
+
 /**
  * The graph of transformation supported
  */
@@ -68,6 +92,9 @@ const transformationGraph = {
         markdown_template: (input,parameters,options) => {
             const t = new TemplateMarkTransformer();
             return t.toMarkdownTemplate(input);
+        },
+        pdf: (input, parameters, options) => {
+            return transformToStream(input, parameters, options, PdfTransformer.templateMarktoPdf);
         },
     },
     markdown: {
@@ -162,25 +189,7 @@ const transformationGraph = {
             return t.fromCiceroMark(input);
         },
         pdf: (input, parameters, options) => {
-            const outputStream = new Stream.Writable();
-
-            let arrayBuffer = new ArrayBuffer(8);
-            let memStore = Buffer.from(arrayBuffer);
-            outputStream._write = (chunk, encoding, next) => {
-                let buffer = (Buffer.isBuffer(chunk))
-                    ? chunk  // already is Buffer use it
-                    : new Buffer(chunk, encoding);  // string, convert
-
-                // concat to the buffer already there
-                memStore = Buffer.concat([memStore, buffer]);
-                next();
-            };
-            return new Promise( (resolve) => {
-                outputStream.on('finish', () => {
-                    resolve(memStore);
-                });
-                PdfTransformer.toPdf(input, options, outputStream );
-            });
+            return transformToStream(input, parameters, options, PdfTransformer.toPdf);
         },
     },
     data: {

@@ -17,15 +17,6 @@
 const { Decorators } = require('@accordproject/markdown-cicero');
 
 /**
- * Unquote strings
- * @param {string} value - the string
- * @return {string} the unquoted string
- */
-function unquoteString(value) {
-    return value.substring(1,value.length-1);
-}
-
-/**
  * Converts a TemplateMark DOM to a PDF Make JSON.
  * http://pdfmake.org/playground.html
  */
@@ -211,13 +202,13 @@ class TemplateMarkToPdfMakeVisitor {
         case 'EnumVariableDefinition':
         case 'FormattedVariableDefinition':
         case 'VariableDefinition': {
-            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.name) : thing.name;
+            const fixedText = thing.name;
             result.text = fixedText;
             result.color = '#A4BBE7';
         }
             break;
         case 'FormulaDefinition': {
-            const fixedText = thing.elementType === 'String' || thing.identifiedBy ? unquoteString(thing.code) : thing.code;
+            const fixedText = thing.code;
             result.text = fixedText;
             result.color = '#AF54C4';
         }
