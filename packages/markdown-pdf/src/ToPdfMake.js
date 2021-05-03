@@ -42,7 +42,6 @@ async function ToPdfMake(inputJson, options = { saveMarkdown: true }, serializer
     input.accept(visitor, parameters);
 
     let dd = parameters.result;
-    // console.log(JSON.stringify(dd, null, 2));
     await findReplaceImageUrls(dd, options);
 
     dd.pageSize = 'LETTER';

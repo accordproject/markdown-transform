@@ -53,7 +53,7 @@ function getPdfFiles() {
 function saveCiceroMarkAsPdf(ciceroMarkDom, fileName, customOptions) {
     fs.mkdirSync('./output', { recursive: true });
 
-    const promise = new Promise( (resolve) => {
+    const promise = new Promise((resolve) => {
         const outputStream = fs.createWriteStream(`./output/${fileName}.pdf`);
         outputStream.on('finish', () => {
             resolve(true);
@@ -82,7 +82,7 @@ function saveCiceroMarkAsPdf(ciceroMarkDom, fileName, customOptions) {
         };
 
         options = Object.assign( options, customOptions );
-        PdfTransformer.toPdf(ciceroMarkDom, options, outputStream );
+        PdfTransformer.ciceroMarkToPdfMake(ciceroMarkDom, options).then((dd) => PdfTransformer.pdfMakeToPdf(dd, outputStream));
     });
 
     return promise;
@@ -216,7 +216,7 @@ describe('pdf generation', () => {
         it(`converts ${file} to pdf`, async () => {
             fs.mkdirSync('./output', { recursive: true });
 
-            const promise = new Promise( (resolve) => {
+            const promise = new Promise((resolve) => {
                 const outputStream = fs.createWriteStream(`./output/${file}.pdf`);
                 outputStream.on('finish', () => {
                     resolve(true);
@@ -244,7 +244,7 @@ describe('pdf generation', () => {
                     }
                 };
 
-                PdfTransformer.toPdf(JSON.parse(jsonContent), options, outputStream );
+                PdfTransformer.ciceroMarkToPdfMake(JSON.parse(jsonContent), options).then((dd) => PdfTransformer.pdfMakeToPdf(dd, outputStream));
             });
 
             return promise;
