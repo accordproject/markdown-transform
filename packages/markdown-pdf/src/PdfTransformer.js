@@ -14,6 +14,8 @@
 
 'use strict';
 
+const Stream = require('stream');
+
 const ToPdfMake = require('./ToPdfMake');
 const ToCiceroMark = require('./ToCiceroMark');
 
@@ -24,6 +26,36 @@ const { defaultFonts } = require('./pdfmakeutil');
  * Converts a PDF to CiceroMark DOM
  */
 class PdfTransformer {
+    /**
+     * Generates a buffer for a pdf document
+     * @param {object} input - the pdfmake DOM
+     * @param {*} t - the transform
+     * @return {*} a promise to a buffer
+     */
+    static toBuffer(input, t) {
+        const outputStream = new Stream.Writable();
+
+        let arrayBuffer = new ArrayBuffer(8);
+        let memStore = Buffer.from(arrayBuffer);
+        outputStream._write = (chunk, encoding, next) => {
+            let buffer = (Buffer.isBuffer(chunk))
+                ? chunk  // already is Buffer use it
+                : new Buffer(chunk, encoding);  // string, convert
+
+            // concat to the buffer already there
+            memStore = Buffer.concat([memStore, buffer]);
+            next();
+        };
+
+        return new Promise((resolve) => {
+            outputStream.on('finish', () => {
+                resolve(memStore);
+            });
+            // Call the transform, passing the stream
+            return t(input, outputStream );
+        });
+    }
+
     /**
      * Converts an pdf buffer to a CiceroMark DOM
      * @param {Buffer} input - pdf buffer
@@ -63,7 +95,7 @@ class PdfTransformer {
      * @param {array} [options.templates] - an array of buffers to be saved into the PDF as custom base64 encoded properties (defaults to null)
      * @return {*} the pdfmake DOM
      */
-    static async templateMarktoPdfMake(input, options = { saveTemplateMark: true }) {
+    static async templateMarkToPdfMake(input, options = { saveTemplateMark: true }) {
         // The JSON document in pdfmake format
         const dd = await ToPdfMake.TemplateMarkToPdfMake(input, options);
         return dd;
@@ -74,7 +106,7 @@ class PdfTransformer {
      * @param {*} input - pdfmake DOM (JSON)
      * @param {*} outputStream - the output stream
      */
-    static async pdfMakeToPdf(input, outputStream) {
+    static async pdfMakeToPdfStream(input, outputStream) {
         // Default fonts are better defined at rendering time
         input.defaultStyle = {
             fontSize: 12,
@@ -91,6 +123,14 @@ class PdfTransformer {
         pdfDoc.end();
     }
 
+    /**
+     * Converts a pdfmake DOM to a PDF Buffer
+     * @param {*} input - pdfmake DOM (JSON)
+     * @param {*} outputStream - the output stream
+     */
+    static async pdfMakeToPdfBuffer(input) {
+        return PdfTransformer.toBuffer(input, PdfTransformer.pdfMakeToPdfStream);
+    }
 }
 
 module.exports = PdfTransformer;

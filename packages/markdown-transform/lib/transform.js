@@ -14,8 +14,6 @@
 
 'use strict';
 
-const Stream = require('stream');
-
 const dijkstra = require('dijkstrajs');
 const find_path = dijkstra.find_path;
 
@@ -28,30 +26,6 @@ const SlateTransformer = require('@accordproject/markdown-slate').SlateTransform
 const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
-
-const toPdfStream = (input) => {
-    const outputStream = new Stream.Writable();
-
-    let arrayBuffer = new ArrayBuffer(8);
-    let memStore = Buffer.from(arrayBuffer);
-    outputStream._write = (chunk, encoding, next) => {
-        let buffer = (Buffer.isBuffer(chunk))
-            ? chunk  // already is Buffer use it
-            : new Buffer(chunk, encoding);  // string, convert
-
-        // concat to the buffer already there
-        memStore = Buffer.concat([memStore, buffer]);
-        next();
-    };
-
-    return new Promise( (resolve) => {
-        outputStream.on('finish', () => {
-            resolve(memStore);
-        });
-        // Call the transform, passing the stream
-        return PdfTransformer.pdfMakeToPdf(input, outputStream );
-    });
-};
 
 /**
  * The graph of transformation supported
@@ -229,7 +203,7 @@ const transformationGraph = {
         docs: 'pdfmake DOM (JSON)',
         fileFormat: 'json',
         pdf: (input, parameters, options) => {
-            return toPdfStream(input);
+            return PdfTransformer.pdfMakeToPdfBuffer(input);
         },
     },
     pdf: {
