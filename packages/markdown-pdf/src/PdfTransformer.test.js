@@ -82,7 +82,7 @@ function saveCiceroMarkAsPdf(ciceroMarkDom, fileName, customOptions) {
         };
 
         options = Object.assign( options, customOptions );
-        PdfTransformer.ciceroMarkToPdfMake(ciceroMarkDom, options).then((dd) => PdfTransformer.pdfMakeToPdf(dd, outputStream));
+        PdfTransformer.ciceroMarkToPdfMake(ciceroMarkDom, options).then((dd) => PdfTransformer.pdfMakeToPdfStream(dd, outputStream));
     });
 
     return promise;
@@ -244,7 +244,7 @@ describe('pdf generation', () => {
                     }
                 };
 
-                PdfTransformer.ciceroMarkToPdfMake(JSON.parse(jsonContent), options).then((dd) => PdfTransformer.pdfMakeToPdf(dd, outputStream));
+                PdfTransformer.ciceroMarkToPdfMake(JSON.parse(jsonContent), options).then((dd) => PdfTransformer.pdfMakeToPdfStream(dd, outputStream));
             });
 
             return promise;
