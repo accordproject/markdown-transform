@@ -15,15 +15,11 @@
 'use strict';
 
 const { Decorators } = require('@accordproject/markdown-cicero');
-
-/**
- * Unquote strings
- * @param {string} value - the string
- * @return {string} the unquoted string
- */
-function unquoteString(value) {
-    return value.substring(1,value.length-1);
-}
+const {
+    handleFormattedText,
+    getHeadingType,
+    unquoteString,
+} = require('./pdfmakeutil');
 
 /**
  * Converts a CiceroMark DOM to a PDF Make JSON.
@@ -38,75 +34,6 @@ class CiceroMarkToPdfMakeVisitor {
     }
 
     /**
-     * Apply marks to a leaf node
-     * @param {*} leafNode the leaf node
-     * @param {*} parameters the parameters
-     */
-    static applyMarks(leafNode, parameters) {
-        if (parameters.emph) {
-            leafNode.style = 'Emph';
-            leafNode.italics = true;
-        }
-        if (parameters.strong) {
-            leafNode.style = 'Strong';
-            leafNode.bold = true;
-        }
-        if (parameters.code) {
-            leafNode.style = 'Code';
-        }
-    }
-
-    /**
-     * Converts a formatted text node to a slate text node with marks
-     * @param {*} thing a concerto Strong, Emph or Text node
-     * @param {*} parameters the parameters
-     * @returns {*} the slate text node with marks
-     */
-    static handleFormattedText(thing, parameters) {
-        const textNode = {
-            text: CiceroMarkToPdfMakeVisitor.getText(thing)};
-
-        this.applyMarks(textNode, parameters);
-        return textNode;
-    }
-
-    /**
-     * Gets the text value from a formatted sub-tree
-     * @param {*} thing a concerto Strong, Emph or Text node
-     * @returns {string} the 'text' property of the formatted sub-tree
-     */
-    static getText(thing) {
-        if(thing.getType() === 'Text') {
-            return thing.text;
-        }
-        else {
-            if(thing.nodes && thing.nodes.length > 0) {
-                return CiceroMarkToPdfMakeVisitor.getText(thing.nodes[0]);
-            }
-            else {
-                return '';
-            }
-        }
-    }
-
-    /**
-     * Converts a heading level to a heading style name
-     * @param {*} thing concert heading node
-     * @returns {string} the heading type
-     */
-    static getHeadingType(thing) {
-        switch(thing.level) {
-        case '1': return 'heading_one';
-        case '2': return 'heading_two';
-        case '3': return 'heading_three';
-        case '4': return 'heading_four';
-        case '5': return 'heading_five';
-        case '6': return 'heading_six';
-        default: return 'heading_one';
-        }
-    }
-
-    /**
      * Returns the processed children
      * @param {*} thing a concerto ast node
      * @param {string} fieldName name of the field containing the children
@@ -118,7 +45,7 @@ class CiceroMarkToPdfMakeVisitor {
         const nodes = thing[fieldName] ? thing[fieldName] : [];
 
         nodes.forEach(node => {
-            //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
+            // console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const newParameters = {
                 strong: parameters.strong,
                 emph: parameters.emph,
@@ -230,11 +157,11 @@ class CiceroMarkToPdfMakeVisitor {
         }
             break;
         case 'Text': {
-            result = CiceroMarkToPdfMakeVisitor.handleFormattedText(thing, parameters);
+            result = handleFormattedText(thing, parameters);
         }
             break;
         case 'Heading': {
-            result.style = CiceroMarkToPdfMakeVisitor.getHeadingType(thing);
+            result.style = getHeadingType(thing.level);
             result.text = this.processChildNodes(thing,parameters);
             result.tocItem = thing.nodes && thing.nodes.length > 0 ? true : false;
         }
