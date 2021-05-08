@@ -14,209 +14,21 @@
 
 'use strict';
 
-const { Decorators } = require('@accordproject/markdown-cicero');
-const {
-    handleFormattedText,
-    getHeadingType,
-} = require('./pdfmakeutil');
+const ToPdfMakeVisitor = require('./ToPdfMakeVisitor');
+const templatemarkrules = require('./templatemarkrules');
 
 /**
  * Converts a TemplateMark DOM to a PDF Make JSON.
- * http://pdfmake.org/playground.html
  */
-class TemplateMarkToPdfMakeVisitor {
+class TemplateMarkToPdfMakeVisitor extends ToPdfMakeVisitor {
 
     /**
      * Construct the visitor
+     * @param {object} rules how to process each node type
      */
     constructor() {
-    }
-
-    /**
-     * Returns the processed children
-     * @param {*} thing a concerto ast node
-     * @param {string} fieldName name of the field containing the children
-     * @param {*} parameters the parameters
-     * @returns {*} an array of slate nodes
-     */
-    processChildren(thing,fieldName,parameters) {
-        const result = [];
-        const nodes = thing[fieldName] ? thing[fieldName] : [];
-
-        nodes.forEach(node => {
-            // console.log(`Processing ${thing.getType()} > ${node.getType()}`);
-            const newParameters = {
-                strong: parameters.strong,
-                emph: parameters.emph,
-                code: parameters.code,
-            };
-            node.accept(this, newParameters);
-            if (Array.isArray(newParameters.result)) {
-                Array.prototype.push.apply(result,newParameters.result);
-            } else {
-                result.push(newParameters.result);
-            }
-        });
-
-        return result;
-    }
-
-    /**
-     * Returns the processed child nodes
-     * @param {*} thing a concerto ast node
-     * @param {*} parameters the parameters
-     * @returns {*} an array of slate nodes
-     */
-    processChildNodes(thing,parameters) {
-        return this.processChildren(thing,'nodes',parameters);
-    }
-
-    /**
-     * Visit a concerto ast node and return the corresponding slate node
-     * @param {*} thing the object being visited
-     * @param {*} parameters the parameters
-     */
-    visit(thing, parameters) {
-
-        // the style defaults to the name of the type
-        let decoratorStyle = null;
-
-        // if the type has an explicit Pdf style decorator, then we use it
-        try {
-            const decorators = new Decorators(thing);
-            decoratorStyle = decorators.getDecoratorValue( 'Pdf', 'style');
-        }
-        catch(error) {
-            console.log(error);
-        }
-        let result = {
-            style : decoratorStyle ? decoratorStyle : thing.getType()
-        };
-
-        switch(thing.getType()) {
-        case 'Emph': {
-            parameters.emph = true;
-            result.text = this.processChildNodes(thing,parameters);
-            result.italics = true;
-        }
-            break;
-        case 'Strong': {
-            parameters.strong = true;
-            result.text = this.processChildNodes(thing,parameters);
-            result.bold = true;
-        }
-            break;
-        case 'BlockQuote':
-        case 'Item':
-        case 'Clause': {
-            result.stack = this.processChildNodes(thing,parameters);
-        }
-            break;
-        case 'Link':
-            {
-                result.text = thing.nodes[0].text;
-                result.link = thing.destination;
-            }
-            break;
-        case 'Image':
-            {
-                result.image = thing.destination;
-            }
-            break;
-        case 'Paragraph': {
-            const child = this.processChildNodes(thing,parameters);
-            if(child[0] && child[0].style === 'Image') { // PDFMake can't render images inline
-                result.stack = child;
-            }
-            else {
-                result.text = child;
-                result.margin = [0,5];
-            }
-        }
-            break;
-        case 'EnumVariableDefinition':
-        case 'FormattedVariableDefinition':
-        case 'VariableDefinition': {
-            const fixedText = thing.name;
-            result.text = fixedText;
-            result.color = '#A4BBE7';
-        }
-            break;
-        case 'FormulaDefinition': {
-            const fixedText = thing.code;
-            result.text = fixedText;
-            result.color = '#AF54C4';
-        }
-            break;
-        case 'ClauseDefinition':
-        case 'ContractDefinition':
-        case 'WithDefinition':
-        case 'JoinDefinition':
-        case 'ListBlockDefinition':
-        case 'ForeachDefinition':
-        case 'WithBlockDefinition': {
-            const child = this.processChildNodes(thing,parameters);
-            result.stack = child;
-        }
-            break;
-        case 'OptionalDefinition':
-        case 'OptionalBlockDefinition': {
-            const childWhenSome = this.processChildren(thing,'whenSome',parameters);
-            // const childWhenNone = this.processChildren(thing,'whenNone',parameters);
-            result.stack = childWhenSome;
-        }
-            break;
-        case 'ConditionalDefinition':
-        case 'ConditionalBlockDefinition': {
-            const childWhenTrue = this.processChildren(thing,'whenTrue',parameters);
-            // const childWhenFalse = this.processChildren(thing,'whenFalse',parameters);
-            result.stack = childWhenTrue;
-        }
-            break;
-        case 'HtmlInline':
-        case 'HtmlBlock':
-        case 'CodeBlock':
-        case 'Code': {
-            result.text = thing.text;
-        }
-            break;
-        case 'Text': {
-            result = handleFormattedText(thing, parameters);
-        }
-            break;
-        case 'Heading': {
-            result.style = getHeadingType(thing.level);
-            result.text = this.processChildNodes(thing,parameters);
-            result.tocItem = thing.nodes && thing.nodes.length > 0 ? true : false;
-        }
-            break;
-        case 'ThematicBreak': {
-            result.text = '';
-            result.pageBreak = 'after';
-        }
-            break;
-        case 'Linebreak': {
-            result.text = '\n';
-        }
-            break;
-        case 'Softbreak': {
-            result.text = ' ';
-        }
-            break;
-        case 'ListBlock':
-        case 'List': {
-            result[thing.type === 'ordered' ? 'ol' : 'ul'] = this.processChildNodes(thing,parameters);
-        }
-            break;
-        case 'Document': {
-            result.content = this.processChildNodes(thing,parameters);
-        }
-            break;
-        default:
-            throw new Error(`Unhandled type ${thing.getType()}`);
-        }
-
-        parameters.result = result;
+        super();
+        this.rules = Object.assign(this.rules, templatemarkrules);
     }
 }
 
