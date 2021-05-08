@@ -17,6 +17,9 @@
 const rules = {};
 
 // Inlines
+const defaultInlineRule = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
 rules.EnumVariableDefinition = (visitor, thing, children, parameters) => {
     const fixedText = thing.name;
     parameters.result.text = fixedText;
@@ -32,37 +35,61 @@ rules.FormulaDefinition = (visitor, thing, children, parameters) => {
     parameters.result.text = fixedText;
     parameters.result.color = '#AF54C4';
 };
-
-// Blocks
-const defaultStackRule = (visitor, thing, children, parameters) => {
-    parameters.result.stack = children;
-};
-rules.ClauseDefinition = defaultStackRule;
-rules.ContractDefinition = defaultStackRule;
-rules.WithDefinition = defaultStackRule;
-rules.JoinDefinition = defaultStackRule;
-rules.ListBlockDefinition = defaultStackRule;
-rules.ForeachDefinition = defaultStackRule;
-rules.WithBlockDefinition = defaultStackRule;
+rules.WithDefinition = defaultInlineRule;
+rules.JoinDefinition = defaultInlineRule;
+rules.ForeachDefinition = defaultInlineRule;
+rules.WithBlockDefinition = defaultInlineRule;
 rules.OptionalDefinition = (visitor, thing, children, parameters) => {
     const whenSomeChildren = visitor.visitChildren(visitor, thing, parameters, 'whenSome');
-    // const whenNoneParser = visitor.visitChildren(visitor, thing, parameters, 'whenNone');
-    parameters.result.stack = whenSomeChildren;
+    const whenNoneChildren = visitor.visitChildren(visitor, thing, parameters, 'whenNone');
+    const allChildren = whenSomeChildren.concat(whenNoneChildren);
+    allChildren.forEach((x) => {
+        if (!x.color) {
+            x.color = '#A4BBE7';
+        }
+    });
+    parameters.result = allChildren;
 };
 rules.OptionalBlockDefinition = (visitor, thing, children, parameters) => {
     const whenSomeChildren = visitor.visitChildren(visitor, thing, parameters, 'whenSome');
-    // const whenNoneParser = visitor.visitChildren(visitor, thing, parameters, 'whenNone');
-    parameters.result.stack = whenSomeChildren;
+    const whenNoneChildren = visitor.visitChildren(visitor, thing, parameters, 'whenNone');
+    const allChildren = whenSomeChildren.concat(whenNoneChildren);
+    allChildren.forEach((x) => {
+        if (!x.color) {
+            x.color = '#A4BBE7';
+        }
+    });
+    parameters.result = allChildren;
 };
 rules.ConditionalDefinition = (visitor, thing, children, parameters) => {
     const whenTrueChildren = visitor.visitChildren(visitor, thing, parameters, 'whenTrue');
-    // const whenFalseParser = visitor.visitChildren(visitor, thing, parameters, 'whenFalse');
-    parameters.result.stack = whenTrueChildren;
+    const whenFalseChildren = visitor.visitChildren(visitor, thing, parameters, 'whenFalse');
+    const allChildren = whenTrueChildren.concat(whenFalseChildren);
+    allChildren.forEach((x) => {
+        if (!x.color) {
+            x.color = '#A4BBE7';
+        }
+    });
+    parameters.result = allChildren;
 };
 rules.ConditionalBlockDefinition = (visitor, thing, children, parameters) => {
     const whenTrueChildren = visitor.visitChildren(visitor, thing, parameters, 'whenTrue');
-    // const whenFalseParser = visitor.visitChildren(visitor, thing, parameters, 'whenFalse');
-    parameters.result.stack = whenTrueChildren;
+    const whenFalseChildren = visitor.visitChildren(visitor, thing, parameters, 'whenFalse');
+    const allChildren = whenTrueChildren.concat(whenFalseChildren);
+    allChildren.forEach((x) => {
+        if (!x.color) {
+            x.color = '#A4BBE7';
+        }
+    });
+    parameters.result = allChildren;
 };
+
+// Blocks
+const defaultBlockRule = (visitor, thing, children, parameters) => {
+    parameters.result.stack = children;
+};
+rules.ClauseDefinition = defaultBlockRule;
+rules.ContractDefinition = defaultBlockRule;
+rules.ListBlockDefinition = defaultBlockRule;
 
 module.exports = rules;

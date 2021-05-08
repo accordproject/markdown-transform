@@ -38,10 +38,12 @@ rules.Formula = (visitor, thing, children, parameters) => {
     parameters.result.text = fixedText;
 };
 rules.Optional = (visitor, thing, children, parameters) => {
-    parameters.result.stack = children;
+    // Result all children as an array
+    parameters.result = children;
 };
 rules.Conditional = (visitor, thing, children, parameters) => {
-    parameters.result.stack = children;
+    // Result all children as an array
+    parameters.result = children;
 };
 
 // Blocks
