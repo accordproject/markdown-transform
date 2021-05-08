@@ -181,8 +181,90 @@ const findReplaceImageUrls = async (object, options = {}) => {
     });
 };
 
+/**
+ * Apply marks to a leaf node
+ * @param {*} leafNode the leaf node
+ * @param {*} parameters the parameters
+ */
+function applyMarks(leafNode, parameters) {
+    if (parameters.emph) {
+        leafNode.style = 'Emph';
+        leafNode.italics = true;
+    }
+    if (parameters.strong) {
+        leafNode.style = 'Strong';
+        leafNode.bold = true;
+    }
+    if (parameters.code) {
+        leafNode.style = 'Code';
+    }
+}
+
+/**
+ * Gets the text value from a formatted sub-tree
+ * @param {*} thing a concerto Strong, Emph or Text node
+ * @returns {string} the 'text' property of the formatted sub-tree
+ */
+function getText(thing) {
+    if(thing.getType() === 'Text') {
+        return thing.text;
+    }
+    else {
+        if(thing.nodes && thing.nodes.length > 0) {
+            return getText(thing.nodes[0]);
+        }
+        else {
+            return '';
+        }
+    }
+}
+
+/**
+ * Converts a formatted text node to a slate text node with marks
+ * @param {*} thing a concerto Strong, Emph or Text node
+ * @param {*} parameters the parameters
+ * @returns {*} the slate text node with marks
+ */
+function handleFormattedText(thing, parameters) {
+    const textNode = {
+        text: getText(thing)
+    };
+
+    applyMarks(textNode, parameters);
+    return textNode;
+}
+
+/**
+ * Converts a heading level to a heading style name
+ * @param {string} level - the heading level
+ * @returns {string} the heading type
+ */
+function getHeadingType(level) {
+    switch(level) {
+    case '1': return 'heading_one';
+    case '2': return 'heading_two';
+    case '3': return 'heading_three';
+    case '4': return 'heading_four';
+    case '5': return 'heading_five';
+    case '6': return 'heading_six';
+    default: return 'heading_one';
+    }
+}
+
+/**
+ * Unquote strings
+ * @param {string} value - the string
+ * @return {string} the unquoted string
+ */
+function unquoteString(value) {
+    return value.substring(1,value.length-1);
+}
+
 module.exports = {
     defaultFonts,
     defaultStyles,
     findReplaceImageUrls,
+    handleFormattedText,
+    getHeadingType,
+    unquoteString,
 };
