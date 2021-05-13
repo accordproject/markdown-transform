@@ -17,23 +17,34 @@
 const rules = {};
 
 // Inlines
-const defaultInlineRule = (visitor, thing, children, parameters) => {
-    parameters.result = children;
+const addDecorator = (decorator, parameters) => {
+    parameters.result[decorator.name] = {};
+    decorator.arguments.forEach((a, i) => {
+        if (i % 2 === 0) {
+            const argKey = a.value;
+            const argValue = decorator.arguments[i + 1].value;
+            parameters.result[decorator.name][argKey] = argValue;
+        }
+    });
 };
-rules.EnumVariableDefinition = (visitor, thing, children, parameters) => {
+const defaultVariableRule = (visitor, thing, children, parameters) => {
     const fixedText = thing.name;
     parameters.result.text = fixedText;
     parameters.result.color = '#A4BBE7';
+    if (thing.decorators) {
+        thing.decorators.forEach((d) => addDecorator(d, parameters));
+    }
 };
-rules.VariableDefinition = (visitor, thing, children, parameters) => {
-    const fixedText = thing.name;
-    parameters.result.text = fixedText;
-    parameters.result.color = '#A4BBE7';
-};
+rules.EnumVariableDefinition = defaultVariableRule;
+rules.VariableDefinition = defaultVariableRule;
+rules.FormattedVariableDefinition = defaultVariableRule;
 rules.FormulaDefinition = (visitor, thing, children, parameters) => {
     const fixedText = thing.code;
     parameters.result.text = fixedText;
     parameters.result.color = '#AF54C4';
+};
+const defaultInlineRule = (visitor, thing, children, parameters) => {
+    parameters.result = children;
 };
 rules.WithDefinition = defaultInlineRule;
 rules.JoinDefinition = defaultInlineRule;
