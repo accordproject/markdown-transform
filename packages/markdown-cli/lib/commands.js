@@ -138,7 +138,10 @@ class Commands {
             finalFormat = from;
         }
 
-        if (outputPath) { Commands.printFormatToFile(result,finalFormat,outputPath); }
+        if (outputPath) {
+            Commands.printFormatToFile(result,finalFormat,outputPath);
+            return;
+        }
         return Promise.resolve(Commands.printFormatToString(result,finalFormat));
     }
 }
