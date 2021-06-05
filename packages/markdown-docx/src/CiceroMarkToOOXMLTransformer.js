@@ -19,23 +19,18 @@
  */
 class CiceroMarkToOOXMLTransfomer {
 
-    /**
-     * Defines the different types of nodes for CiceroMark JSON
-     */
-    constructor() {
-        this.definedNodes = {
-            computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
-            heading: 'org.accordproject.commonmark.Heading',
-            item: 'org.accordproject.commonmark.Item',
-            list: 'org.accordproject.commonmark.List',
-            listBlock: 'org.accordproject.ciceromark.ListBlock',
-            paragraph: 'org.accordproject.commonmark.Paragraph',
-            softbreak: 'org.accordproject.commonmark.Softbreak',
-            text: 'org.accordproject.commonmark.Text',
-            variable: 'org.accordproject.ciceromark.Variable',
-            emphasize: 'org.accordproject.commonmark.Emph',
-        };
-    }
+    definedNodes = {
+        computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
+        heading: 'org.accordproject.commonmark.Heading',
+        item: 'org.accordproject.commonmark.Item',
+        list: 'org.accordproject.commonmark.List',
+        listBlock: 'org.accordproject.ciceromark.ListBlock',
+        paragraph: 'org.accordproject.commonmark.Paragraph',
+        softbreak: 'org.accordproject.commonmark.Softbreak',
+        text: 'org.accordproject.commonmark.Text',
+        variable: 'org.accordproject.ciceromark.Variable',
+        emphasize: 'org.accordproject.commonmark.Emph',
+    };
 
     /**
      * Transforms the given CiceroMark JSON to OOXML
