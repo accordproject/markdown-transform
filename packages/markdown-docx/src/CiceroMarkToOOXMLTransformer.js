@@ -16,8 +16,6 @@
 
 const { TEXT_RULE } = require('./rules');
 
-// const OoxmlTransformer = require('./OoxmlTransformer');
-
 /**
  * Transforms the ciceromark to OOXML
  */
