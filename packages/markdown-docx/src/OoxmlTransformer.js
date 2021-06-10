@@ -151,6 +151,17 @@ class OoxmlTransformer {
                 $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         case 'w:r':
+            if(element.elements[0].name==='w:rPr'){
+                let emphFound = element.elements[0].elements.some(subElement=>{
+                    return subElement.name==='w:i' && subElement.attributes['w:val'] === 'true';
+                });
+                if(emphFound){
+                    return {
+                        $class: `${NS_PREFIX_CommonMarkModel}Emph`,
+                        nodes:[...this.deserializeElements(element.elements)]
+                    };
+                }
+            }
             return [...this.deserializeElements(element.elements)];
         case 'w:color':
             return element.attributes['w:color'];

@@ -14,23 +14,73 @@
 
 'use strict';
 
+const { TEXT_RULE } = require('./rules');
+const {wrapOOXML} = require('./helpers');
+
+const definedNodes = {
+    computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
+    heading: 'org.accordproject.commonmark.Heading',
+    item: 'org.accordproject.commonmark.Item',
+    list: 'org.accordproject.commonmark.List',
+    listBlock: 'org.accordproject.ciceromark.ListBlock',
+    paragraph: 'org.accordproject.commonmark.Paragraph',
+    softbreak: 'org.accordproject.commonmark.Softbreak',
+    text: 'org.accordproject.commonmark.Text',
+    variable: 'org.accordproject.ciceromark.Variable',
+    emphasize: 'org.accordproject.commonmark.Emph',
+};
+
+let globalOOXML='';
+
 /**
  * Transforms the ciceromark to OOXML
  */
 class CiceroMarkToOOXMLTransfomer {
 
-    definedNodes = {
-        computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
-        heading: 'org.accordproject.commonmark.Heading',
-        item: 'org.accordproject.commonmark.Item',
-        list: 'org.accordproject.commonmark.List',
-        listBlock: 'org.accordproject.ciceromark.ListBlock',
-        paragraph: 'org.accordproject.commonmark.Paragraph',
-        softbreak: 'org.accordproject.commonmark.Softbreak',
-        text: 'org.accordproject.commonmark.Text',
-        variable: 'org.accordproject.ciceromark.Variable',
-        emphasize: 'org.accordproject.commonmark.Emph',
-    };
+    /**
+     * Gets the class of a given CiceroMark Node.
+     *
+     * @param {object} node CiceroMark node entity
+     * @returns {string} Class of given node
+     */
+    getClass(node) {
+        return node.$class;
+    }
+
+    /**
+     * Gets the OOXML for the given node.
+     *
+     * @param {object} node    Description of node type
+     * @param {object} counter Counter for different variables based on node name
+     * @param {object} parent  Parent object for a node
+     * @returns {string} OOXML for the given node
+     */
+    getNodes(node, counter, parent = null) {
+        if (this.getClass(node) === definedNodes.text) {
+            if (parent !== null && parent.class === definedNodes.emphasize) {
+                return TEXT_RULE(node.text, true);
+            } else {
+                return TEXT_RULE(node.text);
+            }
+        }
+
+        if (this.getClass(node) === definedNodes.emphasize) {
+            let ooxml = '';
+            node.nodes.forEach(subNode => {
+                ooxml += this.getNodes(subNode, counter, { class: node.$class });
+            });
+            return ooxml;
+        }
+
+        if (this.getClass(node) === definedNodes.paragraph) {
+            let ooxml = '';
+            node.nodes.forEach(subNode => {
+                ooxml += this.getNodes(subNode, counter, );
+            });
+            globalOOXML = `${globalOOXML}<w:p>${ooxml}</w:p>`;
+        }
+        return '';
+    }
 
     /**
      * Transforms the given CiceroMark JSON to OOXML
@@ -40,8 +90,12 @@ class CiceroMarkToOOXMLTransfomer {
      * @param {string} ooxml      Initial OOXML string
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
-    toOOXML(ciceromark, counter, ooxml) {
-        let globalOOXML = ooxml;
+    toOOXML(ciceromark, counter, ooxml = '') {
+        globalOOXML = ooxml;
+        ciceromark.nodes.forEach(node => {
+            this.getNodes(node, counter);
+        });
+        globalOOXML = wrapOOXML(globalOOXML);
         return globalOOXML;
     }
 }
