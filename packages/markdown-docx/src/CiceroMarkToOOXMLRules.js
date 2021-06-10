@@ -14,20 +14,26 @@
 
 'use strict';
 
-const { sanitizeHtmlChars } = require('./helpers');
+const { sanitizeHtmlChars } = require('./CiceroMarkToOOXMLHelpers');
 
 /**
  * Inserts text.
  *
  * @param {string}  value     Text to be rendered
- * @param {boolean} emphasize true=emphasized text, false=normal text
  * @returns {string} OOXML for the text
  */
-const TEXT_RULE = (value, emphasize = false) => {
-    if (emphasize) {
-        return `<w:r><w:rPr><w:i w:val="true" /></w:rPr><w:t>${sanitizeHtmlChars(value)}</w:t></w:r>`;
-    }
+const TEXT_RULE = (value) => {
     return `<w:r><w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t></w:r>`;
 };
 
-module.exports = { TEXT_RULE };
+/**
+ * Inserts emphsaised text.
+ *
+ * @param {string}  value     Text to be rendered
+ * @returns {string} OOXML for the emphasised text
+ */
+const EMPHASIS_RULE = (value) => {
+    return `<w:r><w:rPr><w:i w:val="true" /></w:rPr><w:t>${sanitizeHtmlChars(value)}</w:t></w:r>`;
+};
+
+module.exports = { TEXT_RULE, EMPHASIS_RULE };

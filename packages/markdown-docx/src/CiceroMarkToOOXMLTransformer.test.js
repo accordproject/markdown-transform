@@ -16,22 +16,24 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const fs = require('fs');
 const chai = require('chai');
 
 const expect = chai.expect;
 
 const OoxmlTransformer = require('./OoxmlTransformer');
 const CiceroMarkToOOXMLTransfomer = require('./CiceroMarkToOOXMLTransformer');
-const { paraAndEmphasisJSON } = require('../test/data/ciceroMark/ciceroMark');
 
 describe('Perform roundtripping between CiceroMark and OOXML', () => {
 
     it('should parse paragraphs and emphasis nodes.', async () => {
+        const paraAndEmphasisCiceroMark = await fs.readFileSync('test/data/ciceroMark/text-and-emphasis.json', 'utf-8');
+
         const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
-        const ooxml = ciceroMarkTransformer.toOOXML(paraAndEmphasisJSON);
+        const ooxml = ciceroMarkTransformer.toOOXML(JSON.parse(paraAndEmphasisCiceroMark));
 
         const ooxmlTransformer = new OoxmlTransformer();
         const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
-        expect(convertedObject).to.deep.equal(paraAndEmphasisJSON);
+        expect(convertedObject).to.deep.equal(JSON.parse(paraAndEmphasisCiceroMark));
     });
 });

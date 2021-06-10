@@ -14,8 +14,8 @@
 
 'use strict';
 
-const { TEXT_RULE } = require('./rules');
-const {wrapOOXML} = require('./helpers');
+const { TEXT_RULE, EMPHASIS_RULE } = require('./CiceroMarkToOOXMLRules');
+const { wrapAroundDefaultDocxTags } = require('./CiceroMarkToOOXMLHelpers');
 
 const definedNodes = {
     computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
@@ -30,7 +30,7 @@ const definedNodes = {
     emphasize: 'org.accordproject.commonmark.Emph',
 };
 
-let globalOOXML='';
+let globalOOXML = '';
 
 /**
  * Transforms the ciceromark to OOXML
@@ -38,7 +38,7 @@ let globalOOXML='';
 class CiceroMarkToOOXMLTransfomer {
 
     /**
-     * Gets the class of a given CiceroMark Node.
+     * Gets the class of a given CiceroMark node.
      *
      * @param {object} node CiceroMark node entity
      * @returns {string} Class of given node
@@ -58,7 +58,7 @@ class CiceroMarkToOOXMLTransfomer {
     getNodes(node, counter, parent = null) {
         if (this.getClass(node) === definedNodes.text) {
             if (parent !== null && parent.class === definedNodes.emphasize) {
-                return TEXT_RULE(node.text, true);
+                return EMPHASIS_RULE(node.text, true);
             } else {
                 return TEXT_RULE(node.text);
             }
@@ -75,7 +75,7 @@ class CiceroMarkToOOXMLTransfomer {
         if (this.getClass(node) === definedNodes.paragraph) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, counter, );
+                ooxml += this.getNodes(subNode, counter,);
             });
             globalOOXML = `${globalOOXML}<w:p>${ooxml}</w:p>`;
         }
@@ -95,7 +95,7 @@ class CiceroMarkToOOXMLTransfomer {
         ciceromark.nodes.forEach(node => {
             this.getNodes(node, counter);
         });
-        globalOOXML = wrapOOXML(globalOOXML);
+        globalOOXML = wrapAroundDefaultDocxTags(globalOOXML);
         return globalOOXML;
     }
 }

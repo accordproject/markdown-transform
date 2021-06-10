@@ -30,7 +30,7 @@ function sanitizeHtmlChars(node) {
  * @param {string} ooxml OOXML to be wrapped
  * @returns {string} OOXML wraped in docx headers
  */
-function wrapOOXML(ooxml){
+function wrapAroundDefaultDocxTags(ooxml) {
     ooxml = `<pkg:package
     xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
     <pkg:part pkg:name="/_rels/.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
@@ -85,4 +85,4 @@ function wrapOOXML(ooxml){
     return ooxml;
 }
 
-module.exports = { sanitizeHtmlChars, wrapOOXML };
+module.exports = { sanitizeHtmlChars, wrapAroundDefaultDocxTags };
