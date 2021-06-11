@@ -14,8 +14,8 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE } = require('./CiceroMarkToOOXMLRules');
-const { wrapAroundDefaultDocxTags } = require('./CiceroMarkToOOXMLHelpers');
+const { TEXT_RULE, EMPHASIS_RULE } = require('./rules');
+const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
     computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
