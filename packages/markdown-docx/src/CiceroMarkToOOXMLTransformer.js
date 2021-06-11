@@ -30,12 +30,18 @@ const definedNodes = {
     emphasize: 'org.accordproject.commonmark.Emph',
 };
 
-let globalOOXML = '';
-
 /**
  * Transforms the ciceromark to OOXML
  */
 class CiceroMarkToOOXMLTransfomer {
+
+
+    /**
+     * Declares the OOXML variable
+     */
+    constructor() {
+        this.globalOOXML = '';
+    }
 
     /**
      * Gets the class of a given CiceroMark node.
@@ -77,7 +83,7 @@ class CiceroMarkToOOXMLTransfomer {
             node.nodes.forEach(subNode => {
                 ooxml += this.getNodes(subNode, counter,);
             });
-            globalOOXML = `${globalOOXML}<w:p>${ooxml}</w:p>`;
+            this.globalOOXML = `${this.globalOOXML}<w:p>${ooxml}</w:p>`;
         }
         return '';
     }
@@ -91,12 +97,12 @@ class CiceroMarkToOOXMLTransfomer {
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
     toOOXML(ciceromark, counter, ooxml = '') {
-        globalOOXML = ooxml;
+        this.globalOOXML = ooxml;
         ciceromark.nodes.forEach(node => {
             this.getNodes(node, counter);
         });
-        globalOOXML = wrapAroundDefaultDocxTags(globalOOXML);
-        return globalOOXML;
+        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
+        return this.globalOOXML;
     }
 }
 
