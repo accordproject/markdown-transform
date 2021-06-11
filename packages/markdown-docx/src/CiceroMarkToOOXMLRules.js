@@ -19,18 +19,18 @@ const { sanitizeHtmlChars } = require('./CiceroMarkToOOXMLHelpers');
 /**
  * Inserts text.
  *
- * @param {string}  value     Text to be rendered
- * @returns {string} OOXML for the text
+ * @param {string}  value Enclosing value of the OOXML tag
+ * @returns {string} OOXML tag for the text
  */
 const TEXT_RULE = (value) => {
     return `<w:r><w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t></w:r>`;
 };
 
 /**
- * Inserts emphsaised text.
+ * Inserts emphasised text.
  *
- * @param {string}  value     Text to be rendered
- * @returns {string} OOXML for the emphasised text
+ * @param {string}  value  Enclosing value of the OOXML tag
+ * @returns {string} OOXML tag for the emphasised text
  */
 const EMPHASIS_RULE = (value) => {
     return `<w:r><w:rPr><w:i w:val="true" /></w:rPr><w:t>${sanitizeHtmlChars(value)}</w:t></w:r>`;
