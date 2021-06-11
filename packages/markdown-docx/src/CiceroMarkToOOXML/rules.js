@@ -23,9 +23,11 @@ const { sanitizeHtmlChars } = require('./helpers');
  * @returns {string} OOXML tag for the text
  */
 const TEXT_RULE = (value) => {
-    return `<w:r>
-        <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
-    </w:r>`;
+    return `
+        <w:r>
+            <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
+        </w:r>
+    `;
 };
 
 /**
@@ -35,12 +37,14 @@ const TEXT_RULE = (value) => {
  * @returns {string} OOXML tag for the emphasised text
  */
 const EMPHASIS_RULE = (value) => {
-    return `<w:r>
-        <w:rPr>
-            <w:i />
-        </w:rPr>
-        <w:t>${sanitizeHtmlChars(value)}</w:t>
-    </w:r>`;
+    return `
+        <w:r>
+            <w:rPr>
+                <w:i />
+            </w:rPr>
+            <w:t>${sanitizeHtmlChars(value)}</w:t>
+        </w:r>
+    `;
 };
 
 module.exports = { TEXT_RULE, EMPHASIS_RULE };
