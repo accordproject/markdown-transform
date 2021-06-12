@@ -40,4 +40,20 @@ describe('Perform roundtripping between CiceroMark and OOXML', () => {
         const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
         expect(convertedObject).to.deep.equal(textAndEmphasisCiceroMark);
     });
+
+    it('should parse text and heading nodes.', async () => {
+        let textandHeadingCiceroMark = await fs.readFileSync(
+            'test/data/ciceroMark/text-and-heading.json',
+            'utf-8'
+        );
+        // converts from string to JSON object
+        textandHeadingCiceroMark = JSON.parse(textandHeadingCiceroMark);
+
+        const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
+        const ooxml = ciceroMarkTransformer.toOOXML(textandHeadingCiceroMark);
+
+        const ooxmlTransformer = new OoxmlTransformer();
+        const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
+        expect(convertedObject).to.deep.equal(textandHeadingCiceroMark);
+    });
 });
