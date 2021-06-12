@@ -17,12 +17,12 @@
 'use strict';
 
 const fs = require('fs');
-const DocxTransformer = require('./DocxTransformer');
+const DocxTransformer = require('../src/DocxTransformer');
 
 let docxTransformer = null;
 
 // @ts-ignore
-beforeAll(() => {
+beforeEach(() => {
     docxTransformer = new DocxTransformer();
 });
 
@@ -44,7 +44,7 @@ function getDocxFiles() {
     return result;
 }
 
-describe('import docx', () => {
+describe.skip('import docx', () => {
     getDocxFiles().forEach(([file, docx], i) => {
         it(`converts ${file} to ciceromark`, async () => {
             const json = await docxTransformer.toCiceroMark(docx, 'json');
