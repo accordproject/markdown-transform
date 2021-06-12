@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE } = require('./rules');
+const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -34,8 +34,6 @@ const definedNodes = {
  * Transforms the ciceromark to OOXML
  */
 class CiceroMarkToOOXMLTransfomer {
-
-
     /**
      * Declares the OOXML variable
      */
@@ -63,6 +61,9 @@ class CiceroMarkToOOXMLTransfomer {
      */
     getNodes(node, counter, parent = null) {
         if (this.getClass(node) === definedNodes.text) {
+            if (parent !== null && parent.class === definedNodes.heading) {
+                return HEADING_RULE(node.text, parent.level);
+            }
             if (parent !== null && parent.class === definedNodes.emphasize) {
                 return EMPHASIS_RULE(node.text, true);
             } else {
@@ -78,10 +79,23 @@ class CiceroMarkToOOXMLTransfomer {
             return ooxml;
         }
 
+        if (this.getClass(node) === definedNodes.heading) {
+            let ooxml = '';
+            node.nodes.forEach(subNode => {
+                ooxml += this.getNodes(subNode, counter, { class: node.$class, level: node.level });
+            });
+            this.globalOOXML = `
+                ${this.globalOOXML}
+                <w:p>
+                    ${ooxml}
+                </w:p>
+            `;
+        }
+
         if (this.getClass(node) === definedNodes.paragraph) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, counter,);
+                ooxml += this.getNodes(subNode, counter);
             });
             this.globalOOXML = `${this.globalOOXML}<w:p>${ooxml}</w:p>`;
         }
