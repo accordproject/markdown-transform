@@ -21,8 +21,8 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-const OoxmlTransformer = require('../OOXMLTransformer');
-const CiceroMarkToOOXMLTransfomer = require('.');
+const OoxmlTransformer = require('../src/OOXMLTransformer');
+const CiceroMarkToOOXMLTransfomer = require('../src/CiceroMarkToOOXML');
 
 describe('Perform roundtripping between CiceroMark and OOXML', () => {
     it('should parse textgraphs and emphasis nodes.', async () => {
