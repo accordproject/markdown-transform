@@ -16,14 +16,21 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const fs = require('fs');
+
+const directoryName = 'test/data/ciceroMark';
+
 const { checkRoundTripEquality } = require('./helper');
 
 describe('Perform roundtripping between CiceroMark and OOXML', () => {
-    it('should parse textgraphs and emphasis nodes.', async () => {
-        await checkRoundTripEquality('test/data/ciceroMark/text-and-emphasis.json');
-    });
+    const fileNames = fs.readdirSync(directoryName);
 
-    it('should parse text and heading nodes.', async () => {
-        await checkRoundTripEquality('test/data/ciceroMark/text-and-heading.json');
-    });
+    for (const file of fileNames) {
+        // acceptance-of-delivery requires advance transformer. Skip for now.
+        if (!file.startsWith('acceptance')) {
+            it(`should parse ${file.replace('.json', '')}.`, async () => {
+                await checkRoundTripEquality(`${directoryName}/${file}`);
+            });
+        }
+    }
 });
