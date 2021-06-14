@@ -17,43 +17,20 @@
 'use strict';
 
 const fs = require('fs');
-const chai = require('chai');
 
-const expect = chai.expect;
+const directoryName = 'test/data/ciceroMark';
 
-const OoxmlTransformer = require('../src/OOXMLTransformer');
-const CiceroMarkToOOXMLTransfomer = require('../src/CiceroMarkToOOXML');
+const { checkRoundTripEquality } = require('./helper');
 
 describe('Perform roundtripping between CiceroMark and OOXML', () => {
-    it('should parse textgraphs and emphasis nodes.', async () => {
-        let textAndEmphasisCiceroMark = await fs.readFileSync(
-            'test/data/ciceroMark/text-and-emphasis.json',
-            'utf-8'
-        );
-        // converts from string to JSON object
-        textAndEmphasisCiceroMark = JSON.parse(textAndEmphasisCiceroMark);
+    const fileNames = fs.readdirSync(directoryName);
 
-        const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
-        const ooxml = ciceroMarkTransformer.toOOXML(textAndEmphasisCiceroMark);
-
-        const ooxmlTransformer = new OoxmlTransformer();
-        const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
-        expect(convertedObject).to.deep.equal(textAndEmphasisCiceroMark);
-    });
-
-    it('should parse text and heading nodes.', async () => {
-        let textandHeadingCiceroMark = await fs.readFileSync(
-            'test/data/ciceroMark/text-and-heading.json',
-            'utf-8'
-        );
-        // converts from string to JSON object
-        textandHeadingCiceroMark = JSON.parse(textandHeadingCiceroMark);
-
-        const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
-        const ooxml = ciceroMarkTransformer.toOOXML(textandHeadingCiceroMark);
-
-        const ooxmlTransformer = new OoxmlTransformer();
-        const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
-        expect(convertedObject).to.deep.equal(textandHeadingCiceroMark);
-    });
+    for (const file of fileNames) {
+        // acceptance-of-delivery requires advance transformer. Skip for now.
+        if (file !== 'acceptance-of-delivery.json') {
+            it(`should parse ${file.replace('.json', '')}.`, async () => {
+                await checkRoundTripEquality(`${directoryName}/${file}`);
+            });
+        }
+    }
 });
