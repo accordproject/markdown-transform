@@ -27,7 +27,7 @@ describe('Perform roundtripping between CiceroMark and OOXML', () => {
 
     for (const file of fileNames) {
         // acceptance-of-delivery requires advance transformer. Skip for now.
-        if (!file.startsWith('acceptance')) {
+        if (file !== 'acceptance-of-delivery.json') {
             it(`should parse ${file.replace('.json', '')}.`, async () => {
                 await checkRoundTripEquality(`${directoryName}/${file}`);
             });
