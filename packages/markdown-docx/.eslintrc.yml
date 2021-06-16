@@ -6,7 +6,7 @@ globals:
     expect: 'readonly'
 extends: 'eslint:recommended'
 parserOptions:
-    ecmaVersion: 8
+    ecmaVersion: 2018
     sourceType: 'script'
 rules:
     indent:
