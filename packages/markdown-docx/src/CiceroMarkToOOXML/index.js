@@ -35,7 +35,7 @@ const definedNodes = {
  */
 class CiceroMarkToOOXMLTransfomer {
     /**
-     * Declares the OOXML variable
+     * Declares the OOXML and counter variable.
      */
     constructor() {
         this.globalOOXML = '';
@@ -53,9 +53,9 @@ class CiceroMarkToOOXMLTransfomer {
     }
 
     /**
-     * Returns the counter holding variable counts for a CiceroMark.
+     * Returns the counter holding variable count for a CiceroMark(JSON).
      *
-     * @returns {object} Counter for variables in CiceroMark
+     * @returns {object} Counter for variables in CiceroMark(JSON)
      */
     getCounter() {
         return this.counter;
@@ -65,30 +65,29 @@ class CiceroMarkToOOXMLTransfomer {
      * Gets the OOXML for the given node.
      *
      * @param {object} node    Description of node type
-     * @param {object} counter Counter for different variables based on node name
      * @param {object} parent  Parent object for a node
      * @returns {string} OOXML for the given node
      */
-    getNodes(node, counter, parent = null) {
+    getNodes(node, parent = null) {
         if (this.getClass(node) === definedNodes.variable) {
             const tag = node.name;
             const type = node.elementType;
-            if (Object.prototype.hasOwnProperty.call(counter, tag)) {
-                counter = {
-                    ...counter,
+            if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
+                this.counter = {
+                    ...this.counter,
                     [tag]: {
-                        ...counter[tag],
-                        count: ++counter[tag].count,
+                        ...this.counter[tag],
+                        count: ++this.counter[tag].count,
                     },
                 };
             } else {
-                counter[tag] = {
+                this.counter[tag] = {
                     count: 1,
                     type,
                 };
             }
             const value = node.value;
-            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${counter[tag].count}`;
+            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
             return VARIABLE_RULE(title, tag, value, type);
         }
 
@@ -106,7 +105,7 @@ class CiceroMarkToOOXMLTransfomer {
         if (this.getClass(node) === definedNodes.emphasize) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, counter, { class: node.$class });
+                ooxml += this.getNodes(subNode, { class: node.$class });
             });
             return ooxml;
         }
@@ -114,7 +113,7 @@ class CiceroMarkToOOXMLTransfomer {
         if (this.getClass(node) === definedNodes.heading) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, counter, { class: node.$class, level: node.level });
+                ooxml += this.getNodes(subNode, { class: node.$class, level: node.level });
             });
             this.globalOOXML = `
                 ${this.globalOOXML}
@@ -127,7 +126,7 @@ class CiceroMarkToOOXMLTransfomer {
         if (this.getClass(node) === definedNodes.paragraph) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, counter);
+                ooxml += this.getNodes(subNode);
             });
             this.globalOOXML = `${this.globalOOXML}<w:p>${ooxml}</w:p>`;
         }
@@ -138,17 +137,15 @@ class CiceroMarkToOOXMLTransfomer {
      * Transforms the given CiceroMark JSON to OOXML
      *
      * @param {Object} ciceromark CiceroMark JSON to be converted
-     * @param {Object} counter    Counter for different variables based on node name
      * @param {string} ooxml      Initial OOXML string
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
-    toOOXML(ciceromark, counter = {}, ooxml = '') {
+    toOOXML(ciceromark, ooxml = '') {
         this.globalOOXML = ooxml;
         ciceromark.nodes.forEach(node => {
-            this.getNodes(node, counter);
+            this.getNodes(node);
         });
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
-        this.counter = counter;
         return this.globalOOXML;
     }
 }
