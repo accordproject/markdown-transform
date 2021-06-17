@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE } = require('./rules');
+const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -60,6 +60,28 @@ class CiceroMarkToOOXMLTransfomer {
      * @returns {string} OOXML for the given node
      */
     getNodes(node, counter, parent = null) {
+        if (this.getClass(node) === definedNodes.variable) {
+            const tag = node.name;
+            const type = node.elementType;
+            if (Object.prototype.hasOwnProperty.call(counter, tag)) {
+                counter = {
+                    ...counter,
+                    [tag]: {
+                        ...counter[tag],
+                        count: ++counter[tag].count,
+                    },
+                };
+            } else {
+                counter[tag] = {
+                    count: 1,
+                    type,
+                };
+            }
+            const value = node.value;
+            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${counter[tag].count}`;
+            return VARIABLE_RULE(title, tag, value, type);
+        }
+
         if (this.getClass(node) === definedNodes.text) {
             if (parent !== null && parent.class === definedNodes.heading) {
                 return HEADING_RULE(node.text, parent.level);
@@ -110,7 +132,7 @@ class CiceroMarkToOOXMLTransfomer {
      * @param {string} ooxml      Initial OOXML string
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
-    toOOXML(ciceromark, counter, ooxml = '') {
+    toOOXML(ciceromark, counter = {}, ooxml = '') {
         this.globalOOXML = ooxml;
         ciceromark.nodes.forEach(node => {
             this.getNodes(node, counter);

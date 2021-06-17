@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { sanitizeHtmlChars } = require('./helpers');
+const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
 /**
  * Inserts text.
@@ -78,4 +78,35 @@ const HEADING_RULE = (value, level) => {
     `;
 };
 
-module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE };
+/**
+ * Inserts a variable.
+ *
+ * @param {string} title Title of the variable. Eg. receiver-1, shipper-1
+ * @param {string} tag   Name of the variable. Eg. receiver, shipper
+ * @param {string} value Value of the variable
+ * @param {string} type  Type of the variable - Long, Double, etc.
+ * @returns {string} OOXML string for the variable
+ */
+const VARIABLE_RULE = (title, tag, value, type) => {
+    return `
+      <w:sdt>
+        <w:sdtPr>
+          <w:rPr>
+            <w:sz w:val="24"/>
+          </w:rPr>
+          <w:alias w:val="${titleGenerator(title, type)}"/>
+          <w:tag w:val="${tag}"/>
+        </w:sdtPr>
+        <w:sdtContent>
+          <w:r>
+            <w:rPr>
+              <w:sz w:val="24"/>
+            </w:rPr>
+            <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
+          </w:r>
+        </w:sdtContent>
+      </w:sdt>
+    `;
+};
+
+module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE };
