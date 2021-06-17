@@ -39,6 +39,7 @@ class CiceroMarkToOOXMLTransfomer {
      */
     constructor() {
         this.globalOOXML = '';
+        this.counter = {};
     }
 
     /**
@@ -49,6 +50,15 @@ class CiceroMarkToOOXMLTransfomer {
      */
     getClass(node) {
         return node.$class;
+    }
+
+    /**
+     * Returns the counter holding variable counts for a CiceroMark.
+     *
+     * @returns {object} Counter for variables in CiceroMark
+     */
+    getCounter() {
+        return this.counter;
     }
 
     /**
@@ -138,6 +148,7 @@ class CiceroMarkToOOXMLTransfomer {
             this.getNodes(node, counter);
         });
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
+        this.counter = counter;
         return this.globalOOXML;
     }
 }
