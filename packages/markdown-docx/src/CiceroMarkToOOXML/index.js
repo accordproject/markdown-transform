@@ -137,11 +137,9 @@ class CiceroMarkToOOXMLTransfomer {
      * Transforms the given CiceroMark JSON to OOXML
      *
      * @param {Object} ciceromark CiceroMark JSON to be converted
-     * @param {string} ooxml      Initial OOXML string
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
-    toOOXML(ciceromark, ooxml = '') {
-        this.globalOOXML = ooxml;
+    toOOXML(ciceromark) {
         ciceromark.nodes.forEach(node => {
             this.getNodes(node);
         });
