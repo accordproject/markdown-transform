@@ -92,9 +92,7 @@ const VARIABLE_RULE = (title, tag, value, type) => {
       <w:sdt>
         <w:sdtPr>
           <w:rPr>
-            <w:color w:val="000000"/>
             <w:sz w:val="24"/>
-            <w:highlight w:val="green"/>
           </w:rPr>
           <w:alias w:val="${titleGenerator(title, type)}"/>
           <w:tag w:val="${tag}"/>
@@ -102,9 +100,7 @@ const VARIABLE_RULE = (title, tag, value, type) => {
         <w:sdtContent>
           <w:r>
             <w:rPr>
-              <w:color w:val="000000"/>
               <w:sz w:val="24"/>
-              <w:highlight w:val="green"/>
             </w:rPr>
             <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
           </w:r>
