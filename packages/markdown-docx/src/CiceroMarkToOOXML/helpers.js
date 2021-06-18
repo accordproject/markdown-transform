@@ -96,4 +96,14 @@ function wrapAroundDefaultDocxTags(ooxml) {
     return ooxml;
 }
 
-module.exports = { sanitizeHtmlChars, titleGenerator, wrapAroundDefaultDocxTags };
+/**
+ * Gets the class of a given CiceroMark node.
+ *
+ * @param {object} node CiceroMark node entity
+ * @returns {string} Class of given node
+ */
+function getClass(node) {
+    return node.$class;
+}
+
+module.exports = { sanitizeHtmlChars, titleGenerator, wrapAroundDefaultDocxTags, getClass };

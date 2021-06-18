@@ -15,7 +15,7 @@
 'use strict';
 
 const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE } = require('./rules');
-const { wrapAroundDefaultDocxTags } = require('./helpers');
+const { wrapAroundDefaultDocxTags, getClass } = require('./helpers');
 
 const definedNodes = {
     computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
@@ -43,16 +43,6 @@ class CiceroMarkToOOXMLTransfomer {
     }
 
     /**
-     * Gets the class of a given CiceroMark node.
-     *
-     * @param {object} node CiceroMark node entity
-     * @returns {string} Class of given node
-     */
-    getClass(node) {
-        return node.$class;
-    }
-
-    /**
      * Returns the counter holding variable count for a CiceroMark(JSON).
      *
      * @returns {object} Counter for variables in CiceroMark(JSON)
@@ -69,7 +59,7 @@ class CiceroMarkToOOXMLTransfomer {
      * @returns {string} OOXML for the given node
      */
     getNodes(node, parent = null) {
-        if (this.getClass(node) === definedNodes.variable) {
+        if (getClass(node) === definedNodes.variable) {
             const tag = node.name;
             const type = node.elementType;
             if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
@@ -91,7 +81,7 @@ class CiceroMarkToOOXMLTransfomer {
             return VARIABLE_RULE(title, tag, value, type);
         }
 
-        if (this.getClass(node) === definedNodes.text) {
+        if (getClass(node) === definedNodes.text) {
             if (parent !== null && parent.class === definedNodes.heading) {
                 return HEADING_RULE(node.text, parent.level);
             }
@@ -102,11 +92,11 @@ class CiceroMarkToOOXMLTransfomer {
             }
         }
 
-        if (this.getClass(node) === definedNodes.softbreak) {
+        if (getClass(node) === definedNodes.softbreak) {
             return SOFTBREAK_RULE();
         }
 
-        if (this.getClass(node) === definedNodes.emphasize) {
+        if (getClass(node) === definedNodes.emphasize) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
                 ooxml += this.getNodes(subNode, { class: node.$class });
@@ -114,7 +104,7 @@ class CiceroMarkToOOXMLTransfomer {
             return ooxml;
         }
 
-        if (this.getClass(node) === definedNodes.heading) {
+        if (getClass(node) === definedNodes.heading) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
                 ooxml += this.getNodes(subNode, { class: node.$class, level: node.level });
@@ -127,7 +117,7 @@ class CiceroMarkToOOXMLTransfomer {
             `;
         }
 
-        if (this.getClass(node) === definedNodes.paragraph) {
+        if (getClass(node) === definedNodes.paragraph) {
             let ooxml = '';
             node.nodes.forEach(subNode => {
                 ooxml += this.getNodes(subNode);
