@@ -109,4 +109,17 @@ const VARIABLE_RULE = (title, tag, value, type) => {
     `;
 };
 
-module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE };
+/**
+ * Inserts a soft break.
+ *
+ * @returns {string} OOXML for softbreak
+ */
+const SOFTBREAK_RULE = () => {
+    return `
+      <w:r>
+        <w:sym w:font="Calibri" w:char="2009" />
+      </w:r>
+    `;
+};
+
+module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE };

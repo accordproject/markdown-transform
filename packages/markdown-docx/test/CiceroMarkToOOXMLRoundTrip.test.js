@@ -24,13 +24,9 @@ const { checkRoundTripEquality } = require('./helper');
 
 describe('Perform roundtripping between CiceroMark and OOXML', () => {
     const fileNames = fs.readdirSync(directoryName);
-
     for (const file of fileNames) {
-        // acceptance-of-delivery requires advance transformer. Skip for now.
-        if (file !== 'acceptance-of-delivery.json') {
-            it(`should parse ${file.replace('.json', '')}.`, async () => {
-                await checkRoundTripEquality(`${directoryName}/${file}`);
-            });
-        }
+        it(`should parse ${file.replace('.json', '')}.`, async () => {
+            await checkRoundTripEquality(`${directoryName}/${file}`);
+        });
     }
 });
