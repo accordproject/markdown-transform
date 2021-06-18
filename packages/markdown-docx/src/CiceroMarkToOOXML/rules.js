@@ -121,4 +121,5 @@ const SOFTBREAK_RULE = () => {
       </w:r>
     `;
 };
+
 module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE };
