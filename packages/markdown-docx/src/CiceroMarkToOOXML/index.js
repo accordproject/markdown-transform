@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE } = require('./rules');
+const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -100,6 +100,10 @@ class CiceroMarkToOOXMLTransfomer {
             } else {
                 return TEXT_RULE(node.text);
             }
+        }
+
+        if (this.getClass(node) === definedNodes.softbreak) {
+            return SOFTBREAK_RULE();
         }
 
         if (this.getClass(node) === definedNodes.emphasize) {
