@@ -48,6 +48,24 @@ const EMPHASIS_RULE = (value) => {
 };
 
 /**
+ * Inserts strong text.
+ *
+ * @param {string}  value  Enclosing value of the OOXML tag
+ * @returns {string} OOXML tag for the strong text
+ */
+const STRONG_RULE = value => {
+    return `
+      <w:r>
+        <w:rPr>
+          <w:b />
+          <w:bCs />
+        </w:rPr>
+        <w:t>${sanitizeHtmlChars(value)}</w:t>
+      </w:r>
+`;
+};
+
+/**
  * Transforms the given heading node into OOXML heading.
  *
  * @param {string} value Text to be rendered as heading
@@ -122,4 +140,4 @@ const SOFTBREAK_RULE = () => {
     `;
 };
 
-module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE };
+module.exports = { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE, STRONG_RULE };

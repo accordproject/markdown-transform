@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE } = require('./rules');
+const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE, STRONG_RULE } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -28,6 +28,7 @@ const definedNodes = {
     text: 'org.accordproject.commonmark.Text',
     variable: 'org.accordproject.ciceromark.Variable',
     emphasize: 'org.accordproject.commonmark.Emph',
+    strong: 'org.accordproject.commonmark.Strong',
 };
 
 /**
@@ -96,7 +97,10 @@ class CiceroMarkToOOXMLTransfomer {
                 return HEADING_RULE(node.text, parent.level);
             }
             if (parent !== null && parent.class === definedNodes.emphasize) {
-                return EMPHASIS_RULE(node.text, true);
+                return EMPHASIS_RULE(node.text);
+            }
+            if (parent !== null && parent.class === definedNodes.strong) {
+                return STRONG_RULE(node.text);
             } else {
                 return TEXT_RULE(node.text);
             }
@@ -104,6 +108,14 @@ class CiceroMarkToOOXMLTransfomer {
 
         if (this.getClass(node) === definedNodes.softbreak) {
             return SOFTBREAK_RULE();
+        }
+
+        if (this.getClass(node) === definedNodes.strong) {
+            let ooxml = '';
+            node.nodes.forEach(subNode => {
+                ooxml += this.getNodes(subNode, { class: node.$class });
+            });
+            return ooxml;
         }
 
         if (this.getClass(node) === definedNodes.emphasize) {
