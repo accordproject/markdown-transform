@@ -157,6 +157,22 @@ class OoxmlTransformer {
                         return subElement.name === 'w:i';
                     }
                 );
+
+                let strongTextFound = element.elements[0].elements.some(
+                    subElement => {
+                        return subElement.name === 'w:b';
+                    }
+                );
+
+                if(strongTextFound){
+                    return {
+                        $class: `${NS_PREFIX_CommonMarkModel}Strong`,
+                        nodes: [
+                            ...this.deserializeElements(element.elements),
+                        ],
+                    };
+                }
+
                 if (emphasisedTextFound) {
                     return {
                         $class: `${NS_PREFIX_CommonMarkModel}Emph`,
