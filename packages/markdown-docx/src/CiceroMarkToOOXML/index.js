@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE, HEADING_RULE, VARIABLE_RULE, SOFTBREAK_RULE, STRONG_RULE } = require('./rules');
+const { TEXT_RULE, EMPHASIS_RULE, PARAGRAPH_RULE, TEXT_STYLES_RULE, TEXT_WRAPPER_RULE } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -36,11 +36,15 @@ const definedNodes = {
  */
 class CiceroMarkToOOXMLTransfomer {
     /**
-     * Declares the OOXML and counter variable.
+     * Declares the OOXML, counter and tags variable.
      */
     constructor() {
+        // OOXML for given CiceroMark JSON
         this.globalOOXML = '';
+        // Frequency of different variables in CiceroMark JSON
         this.counter = {};
+        // OOXML tags for a given block node(heading, pargraph, etc.)
+        this.tags = [];
     }
 
     /**
@@ -63,90 +67,52 @@ class CiceroMarkToOOXMLTransfomer {
     }
 
     /**
-     * Gets the OOXML for the given node.
+     * Traverses CiceroMark nodes in a DFS approach
      *
-     * @param {object} node    Description of node type
-     * @param {object} parent  Parent object for a node
-     * @returns {string} OOXML for the given node
+     * @param {object} node       CiceroMark Node
+     * @param {array}  properties Properties to be applied on curent node
      */
-    getNodes(node, parent = null) {
-        if (this.getClass(node) === definedNodes.variable) {
-            const tag = node.name;
-            const type = node.elementType;
-            if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
-                this.counter = {
-                    ...this.counter,
-                    [tag]: {
-                        ...this.counter[tag],
-                        count: ++this.counter[tag].count,
-                    },
-                };
-            } else {
-                this.counter[tag] = {
-                    count: 1,
-                    type,
-                };
+    travserseNodes(node, properties = []) {
+        if (node.$class === 'org.accordproject.commonmark.Document') {
+            this.travserseNodes(node.nodes, properties);
+        } else {
+            for (let subNode of node) {
+                if (subNode.$class === definedNodes.text) {
+                    let propertyTag = '';
+                    for (let property of properties) {
+                        if (property === definedNodes.emphasize) {
+                            propertyTag += EMPHASIS_RULE();
+                        }
+                    }
+                    if (propertyTag) {
+                        propertyTag = TEXT_STYLES_RULE(propertyTag);
+                    }
+
+                    let textValueTag = TEXT_RULE(subNode.text);
+
+                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+                    this.tags.push(tag);
+                } else {
+                    if (subNode.nodes) {
+                        if (subNode.$class === definedNodes.paragraph) {
+                            this.travserseNodes(subNode.nodes, properties);
+                            let ooxml = '';
+                            for (let xmlTag of this.tags) {
+                                ooxml += xmlTag;
+                            }
+                            ooxml = PARAGRAPH_RULE(ooxml);
+
+                            this.globalOOXML += ooxml;
+                            // Clear all the tags as all nodes of paragraph have been traversed.
+                            this.tags = [];
+                        } else {
+                            let newProperties = [...properties, subNode.$class];
+                            this.travserseNodes(subNode.nodes, newProperties);
+                        }
+                    }
+                }
             }
-            const value = node.value;
-            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
-            return VARIABLE_RULE(title, tag, value, type);
         }
-
-        if (this.getClass(node) === definedNodes.text) {
-            if (parent !== null && parent.class === definedNodes.heading) {
-                return HEADING_RULE(node.text, parent.level);
-            }
-            if (parent !== null && parent.class === definedNodes.emphasize) {
-                return EMPHASIS_RULE(node.text);
-            }
-            if (parent !== null && parent.class === definedNodes.strong) {
-                return STRONG_RULE(node.text);
-            } else {
-                return TEXT_RULE(node.text);
-            }
-        }
-
-        if (this.getClass(node) === definedNodes.softbreak) {
-            return SOFTBREAK_RULE();
-        }
-
-        if (this.getClass(node) === definedNodes.strong) {
-            let ooxml = '';
-            node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, { class: node.$class });
-            });
-            return ooxml;
-        }
-
-        if (this.getClass(node) === definedNodes.emphasize) {
-            let ooxml = '';
-            node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, { class: node.$class });
-            });
-            return ooxml;
-        }
-
-        if (this.getClass(node) === definedNodes.heading) {
-            let ooxml = '';
-            node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode, { class: node.$class, level: node.level });
-            });
-            this.globalOOXML = `
-                ${this.globalOOXML}
-                <w:p>
-                    ${ooxml}
-                </w:p>
-            `;
-        }
-
-        if (this.getClass(node) === definedNodes.paragraph) {
-            let ooxml = '';
-            node.nodes.forEach(subNode => {
-                ooxml += this.getNodes(subNode);
-            });
-            this.globalOOXML = `${this.globalOOXML}<w:p>${ooxml}</w:p>`;
-        }
-        return '';
     }
 
     /**
@@ -156,10 +122,9 @@ class CiceroMarkToOOXMLTransfomer {
      * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
      */
     toOOXML(ciceromark) {
-        ciceromark.nodes.forEach(node => {
-            this.getNodes(node);
-        });
+        this.travserseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
+
         return this.globalOOXML;
     }
 }
