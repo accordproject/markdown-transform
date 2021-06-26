@@ -22,6 +22,7 @@ const {
     TEXT_WRAPPER_RULE,
     PARAGRAPH_PROPERTIES_RULE,
     VARIABLE_RULE,
+    SOFTBREAK_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
@@ -121,6 +122,8 @@ class CiceroMarkToOOXMLTransfomer {
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
                     this.tags.push(VARIABLE_RULE(title, tag, value, type));
+                } else if (this.getClass(subNode) === definedNodes.softbreak) {
+                    this.tags.push(SOFTBREAK_RULE());
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === definedNodes.paragraph) {
