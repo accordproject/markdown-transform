@@ -21,6 +21,7 @@ const {
     TEXT_STYLES_RULE,
     TEXT_WRAPPER_RULE,
     PARAGRAPH_PROPERTIES_RULE,
+    VARIABLE_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
@@ -99,6 +100,27 @@ class CiceroMarkToOOXMLTransfomer {
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
                     this.tags.push(tag);
+                } else if (this.getClass(subNode) === definedNodes.variable) {
+                    const tag = subNode.name;
+                    const type = subNode.elementType;
+                    if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
+                        this.counter = {
+                            ...this.counter,
+                            [tag]: {
+                                ...this.counter[tag],
+                                count: ++this.counter[tag].count,
+                            },
+                        };
+                    } else {
+                        this.counter[tag] = {
+                            count: 1,
+                            type,
+                        };
+                    }
+                    const value = subNode.value;
+                    const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+
+                    this.tags.push(VARIABLE_RULE(title, tag, value, type));
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === definedNodes.paragraph) {
