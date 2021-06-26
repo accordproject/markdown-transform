@@ -14,7 +14,14 @@
 
 'use strict';
 
-const { TEXT_RULE, EMPHASIS_RULE, PARAGRAPH_RULE, TEXT_STYLES_RULE, TEXT_WRAPPER_RULE } = require('./rules');
+const {
+    TEXT_RULE,
+    EMPHASIS_RULE,
+    PARAGRAPH_RULE,
+    TEXT_STYLES_RULE,
+    TEXT_WRAPPER_RULE,
+    PARAGRAPH_PROPERTIES_RULE,
+} = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
 const definedNodes = {
@@ -73,11 +80,11 @@ class CiceroMarkToOOXMLTransfomer {
      * @param {array}  properties Properties to be applied on curent node
      */
     travserseNodes(node, properties = []) {
-        if (node.$class === 'org.accordproject.commonmark.Document') {
+        if (this.getClass(node) === 'org.accordproject.commonmark.Document') {
             this.travserseNodes(node.nodes, properties);
         } else {
             for (let subNode of node) {
-                if (subNode.$class === definedNodes.text) {
+                if (this.getClass(subNode) === definedNodes.text) {
                     let propertyTag = '';
                     for (let property of properties) {
                         if (property === definedNodes.emphasize) {
@@ -94,7 +101,7 @@ class CiceroMarkToOOXMLTransfomer {
                     this.tags.push(tag);
                 } else {
                     if (subNode.nodes) {
-                        if (subNode.$class === definedNodes.paragraph) {
+                        if (this.getClass(subNode) === definedNodes.paragraph) {
                             this.travserseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
@@ -104,6 +111,27 @@ class CiceroMarkToOOXMLTransfomer {
 
                             this.globalOOXML += ooxml;
                             // Clear all the tags as all nodes of paragraph have been traversed.
+                            this.tags = [];
+                        } else if (this.getClass(subNode) === definedNodes.heading) {
+                            this.travserseNodes(subNode.nodes, properties);
+                            let ooxml = '';
+                            for (let xmlTag of this.tags) {
+                                let paragraphPropertiesTag = '';
+                                if (xmlTag.includes(EMPHASIS_RULE())) {
+                                    paragraphPropertiesTag += EMPHASIS_RULE();
+                                }
+                                paragraphPropertiesTag = PARAGRAPH_PROPERTIES_RULE(
+                                    paragraphPropertiesTag,
+                                    subNode.level
+                                );
+                                ooxml += paragraphPropertiesTag;
+                                ooxml += xmlTag;
+                            }
+
+                            // in DOCX heading is a paragraph with some styling tags present
+                            ooxml = PARAGRAPH_RULE(ooxml);
+
+                            this.globalOOXML += ooxml;
                             this.tags = [];
                         } else {
                             let newProperties = [...properties, subNode.$class];

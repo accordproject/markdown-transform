@@ -16,6 +16,15 @@
 
 const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
+const headingLevels = {
+    1: { style: 'Heading1', size: 25 },
+    2: { style: 'Heading2', size: 20 },
+    3: { style: 'Heading3', size: 16 },
+    4: { style: 'Heading4', size: 16 },
+    5: { style: 'Heading5', size: 16 },
+    6: { style: 'Heading6', size: 16 },
+};
+
 /**
  * Wraps given value in OOXML text(<w:t>) tag.
  *
@@ -37,6 +46,22 @@ const EMPHASIS_RULE = () => {
     return `
       <w:i/>
       <w:iCs/>
+    `;
+};
+
+/**
+ * Generates OOXML for paragraph properties.
+ *
+ * @param {string} value OOXML properties to be wrapped
+ * @param {string} level Level of heading
+ * @returns {string} OOXML tag for paragraph properties
+ */
+const PARAGRAPH_PROPERTIES_RULE = (value, level = '') => {
+    return `
+      <w:pPr>
+        ${level ? `<w:pStyle w:val="${headingLevels[level].style}"/>` : ''}
+        ${value}
+      </w:pPr>
     `;
 };
 
@@ -102,37 +127,6 @@ const STRONG_RULE = value => {
 };
 
 /**
- * Transforms the given heading node into OOXML heading.
- *
- * @param {string} value Text to be rendered as heading
- * @param {number} level Level of heading - ranges from 1 to 6
- * @returns {string} OOXMl for heading
- *
- */
-const HEADING_RULE = (value, level) => {
-    const definedLevels = {
-        1: { style: 'Heading1', size: 25 },
-        2: { style: 'Heading2', size: 20 },
-        3: { style: 'Heading3', size: 16 },
-        4: { style: 'Heading4', size: 16 },
-        5: { style: 'Heading5', size: 16 },
-        6: { style: 'Heading6', size: 16 },
-    };
-
-    return `
-      <w:pPr>
-        <w:pStyle w:val="${definedLevels[level].style}"/>
-      </w:pPr>
-      <w:r>
-        <w:rPr>
-          <w:sz w:val="${definedLevels[level].size * 2}"/>
-        </w:rPr>
-        <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
-      </w:r>
-    `;
-};
-
-/**
  * Inserts a variable.
  *
  * @param {string} title Title of the variable. Eg. receiver-1, shipper-1
@@ -181,8 +175,8 @@ module.exports = {
     EMPHASIS_RULE,
     TEXT_STYLES_RULE,
     TEXT_WRAPPER_RULE,
+    PARAGRAPH_PROPERTIES_RULE,
     PARAGRAPH_RULE,
-    HEADING_RULE,
     VARIABLE_RULE,
     SOFTBREAK_RULE,
     STRONG_RULE,
