@@ -23,6 +23,7 @@ const {
     PARAGRAPH_PROPERTIES_RULE,
     VARIABLE_RULE,
     SOFTBREAK_RULE,
+    STRONG_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
@@ -91,6 +92,8 @@ class CiceroMarkToOOXMLTransfomer {
                     for (let property of properties) {
                         if (property === definedNodes.emphasize) {
                             propertyTag += EMPHASIS_RULE();
+                        } else if (property === definedNodes.strong) {
+                            propertyTag += STRONG_RULE();
                         }
                     }
                     if (propertyTag) {
@@ -144,6 +147,9 @@ class CiceroMarkToOOXMLTransfomer {
                                 let paragraphPropertiesTag = '';
                                 if (xmlTag.includes(EMPHASIS_RULE())) {
                                     paragraphPropertiesTag += EMPHASIS_RULE();
+                                }
+                                if (xmlTag.includes(STRONG_RULE)) {
+                                    paragraphPropertiesTag += STRONG_RULE();
                                 }
                                 paragraphPropertiesTag = PARAGRAPH_PROPERTIES_RULE(
                                     paragraphPropertiesTag,

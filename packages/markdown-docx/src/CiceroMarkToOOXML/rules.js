@@ -109,21 +109,15 @@ const TEXT_WRAPPER_RULE = (properties, value) => {
 };
 
 /**
- * Inserts strong text.
+ * Provides OOXML for strong.
  *
- * @param {string}  value  Enclosing value of the OOXML tag
- * @returns {string} OOXML tag for the strong text
+ * @returns {string} OOXML tag for the strong property
  */
-const STRONG_RULE = value => {
+const STRONG_RULE = () => {
     return `
-      <w:r>
-        <w:rPr>
-          <w:b />
-          <w:bCs />
-        </w:rPr>
-        <w:t>${sanitizeHtmlChars(value)}</w:t>
-      </w:r>
-`;
+      <w:b />
+      <w:bCs />
+    `;
 };
 
 /**
