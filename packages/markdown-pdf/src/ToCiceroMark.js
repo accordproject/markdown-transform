@@ -17,7 +17,7 @@
 // HACK few hacks to let PDF.js be loaded not as a module in global space.
 require('./domstubs.js').setStubs(global);
 
-let pdfjsLib = require('pdfjs-dist/es5/build/pdf.js');
+let pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
 
 /**
  * Converts an pdf buffer to a CiceroMark DOM
