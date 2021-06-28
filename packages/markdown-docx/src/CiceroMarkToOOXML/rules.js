@@ -43,11 +43,10 @@ const EMPHASIS_RULE = () => {
 /**
  * Generates OOXML for paragraph properties.
  *
- * @param {string} value OOXML properties to be wrapped
  * @param {string} level Level of heading
  * @returns {string} OOXML tag for paragraph properties
  */
-const HEADING_PROPERTIES_RULE = (value, level = '') => {
+const HEADING_PROPERTIES_RULE = (level = '') => {
     const headingLevels = {
         1: { style: 'Heading1', size: 25 },
         2: { style: 'Heading2', size: 20 },
@@ -60,7 +59,6 @@ const HEADING_PROPERTIES_RULE = (value, level = '') => {
     return `
       <w:pPr>
         ${level ? `<w:pStyle w:val="${headingLevels[level].style}"/>` : ''}
-        ${value}
       </w:pPr>
     `;
 };

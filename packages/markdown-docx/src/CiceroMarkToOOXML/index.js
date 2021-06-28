@@ -145,17 +145,7 @@ class CiceroMarkToOOXMLTransfomer {
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 let headingPropertiesTag = '';
-                                // Needs discussion
-                                // if (xmlTag.includes('<w:i />')) {
-                                //     headingPropertiesTag += EMPHASIS_RULE();
-                                // }
-                                // if (xmlTag.includes('<w:b />')) {
-                                //     headingPropertiesTag += STRONG_RULE();
-                                // }
-                                headingPropertiesTag = HEADING_PROPERTIES_RULE(
-                                    headingPropertiesTag,
-                                    subNode.level
-                                );
+                                headingPropertiesTag = HEADING_PROPERTIES_RULE(subNode.level);
                                 ooxml += headingPropertiesTag;
                                 ooxml += xmlTag;
                             }
