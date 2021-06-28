@@ -20,7 +20,7 @@ const {
     PARAGRAPH_RULE,
     TEXT_STYLES_RULE,
     TEXT_WRAPPER_RULE,
-    PARAGRAPH_PROPERTIES_RULE,
+    HEADING_PROPERTIES_RULE,
     VARIABLE_RULE,
     SOFTBREAK_RULE,
     STRONG_RULE,
@@ -46,7 +46,7 @@ const definedNodes = {
  */
 class CiceroMarkToOOXMLTransfomer {
     /**
-     * Declares the OOXML, counter and tags variable.
+     * Declares the OOXML, counter, and tags variable.
      */
     constructor() {
         // OOXML for given CiceroMark JSON
@@ -103,7 +103,7 @@ class CiceroMarkToOOXMLTransfomer {
                     let textValueTag = TEXT_RULE(subNode.text);
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
-                    this.tags.push(tag);
+                    this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === definedNodes.variable) {
                     const tag = subNode.name;
                     const type = subNode.elementType;
@@ -124,9 +124,9 @@ class CiceroMarkToOOXMLTransfomer {
                     const value = subNode.value;
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
-                    this.tags.push(VARIABLE_RULE(title, tag, value, type));
+                    this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
                 } else if (this.getClass(subNode) === definedNodes.softbreak) {
-                    this.tags.push(SOFTBREAK_RULE());
+                    this.tags = [...this.tags, SOFTBREAK_RULE()];
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === definedNodes.paragraph) {
@@ -144,18 +144,19 @@ class CiceroMarkToOOXMLTransfomer {
                             this.travserseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
-                                let paragraphPropertiesTag = '';
-                                if (xmlTag.includes(EMPHASIS_RULE())) {
-                                    paragraphPropertiesTag += EMPHASIS_RULE();
-                                }
-                                if (xmlTag.includes(STRONG_RULE)) {
-                                    paragraphPropertiesTag += STRONG_RULE();
-                                }
-                                paragraphPropertiesTag = PARAGRAPH_PROPERTIES_RULE(
-                                    paragraphPropertiesTag,
+                                let headingPropertiesTag = '';
+                                // Needs discussion
+                                // if (xmlTag.includes('<w:i />')) {
+                                //     headingPropertiesTag += EMPHASIS_RULE();
+                                // }
+                                // if (xmlTag.includes('<w:b />')) {
+                                //     headingPropertiesTag += STRONG_RULE();
+                                // }
+                                headingPropertiesTag = HEADING_PROPERTIES_RULE(
+                                    headingPropertiesTag,
                                     subNode.level
                                 );
-                                ooxml += paragraphPropertiesTag;
+                                ooxml += headingPropertiesTag;
                                 ooxml += xmlTag;
                             }
 

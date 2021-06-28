@@ -16,15 +16,6 @@
 
 const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
-const headingLevels = {
-    1: { style: 'Heading1', size: 25 },
-    2: { style: 'Heading2', size: 20 },
-    3: { style: 'Heading3', size: 16 },
-    4: { style: 'Heading4', size: 16 },
-    5: { style: 'Heading5', size: 16 },
-    6: { style: 'Heading6', size: 16 },
-};
-
 /**
  * Wraps given value in OOXML text(<w:t>) tag.
  *
@@ -56,7 +47,16 @@ const EMPHASIS_RULE = () => {
  * @param {string} level Level of heading
  * @returns {string} OOXML tag for paragraph properties
  */
-const PARAGRAPH_PROPERTIES_RULE = (value, level = '') => {
+const HEADING_PROPERTIES_RULE = (value, level = '') => {
+    const headingLevels = {
+        1: { style: 'Heading1', size: 25 },
+        2: { style: 'Heading2', size: 20 },
+        3: { style: 'Heading3', size: 16 },
+        4: { style: 'Heading4', size: 16 },
+        5: { style: 'Heading5', size: 16 },
+        6: { style: 'Heading6', size: 16 },
+    };
+
     return `
       <w:pPr>
         ${level ? `<w:pStyle w:val="${headingLevels[level].style}"/>` : ''}
@@ -169,7 +169,7 @@ module.exports = {
     EMPHASIS_RULE,
     TEXT_STYLES_RULE,
     TEXT_WRAPPER_RULE,
-    PARAGRAPH_PROPERTIES_RULE,
+    HEADING_PROPERTIES_RULE,
     PARAGRAPH_RULE,
     VARIABLE_RULE,
     SOFTBREAK_RULE,

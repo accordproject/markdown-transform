@@ -43,7 +43,7 @@ function titleGenerator(title, type) {
  */
 function wrapAroundDefaultDocxTags(ooxml) {
 
-    const headingStyleSpec = `
+    const HEADING_STYLE_SPEC = `
   <pkg:part pkg:name="/word/styles.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml">
   <pkg:xmlData>
     <w:styles xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex" mc:Ignorable="w14 w15 w16se w16cid">
@@ -197,7 +197,7 @@ function wrapAroundDefaultDocxTags(ooxml) {
   </pkg:part>
     `;
 
-    const RelationshipSpec = `
+    const RELATIONSHIP_SPEC = `
     <pkg:part pkg:name="/word/_rels/document.xml.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="256">
       <pkg:xmlData>
         <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
@@ -257,8 +257,8 @@ function wrapAroundDefaultDocxTags(ooxml) {
             </w:document>
         </pkg:xmlData>
     </pkg:part>
-    ${RelationshipSpec}
-    ${headingStyleSpec}
+    ${RELATIONSHIP_SPEC}
+    ${HEADING_STYLE_SPEC}
     </pkg:package>`;
 
     return ooxml;
