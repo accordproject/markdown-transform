@@ -86,7 +86,7 @@
     "@accordproject/markdown-common": "0.14.0",
     "@accordproject/markdown-template": "0.14.0",
     "axios": "^0.21.1",
-    "pdfjs-dist": "^2.7.570",
+    "pdfjs-dist": "^2.8.335",
     "pdfmake": "^0.1.71",
     "type-of": "^2.0.1"
   },
