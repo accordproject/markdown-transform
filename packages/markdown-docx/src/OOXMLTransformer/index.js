@@ -34,6 +34,25 @@ class OoxmlTransformer {
     }
 
     /**
+     * @param {object} headingElement the element to be checked
+     * @returns {object} object of `isHeading` and its level
+     */
+    getHeading(headingElement) {
+        if (headingElement.attributes !== undefined) {
+            const headingLevel = headingElement.attributes['w:val'];
+            if (headingElement.name === 'w:pStyle' && headingLevel.includes('Heading')) {
+                return {
+                    isHeading: true,
+                    level: headingLevel[headingLevel.length - 1],
+                };
+            }
+        }
+        return {
+            isHeading: false,
+        };
+    }
+
+    /**
      * Constructs a ciceroMark Node JSON from the information
      *
      * @param {object} nodeInformation Contains properties and value of a node
@@ -55,6 +74,51 @@ class OoxmlTransformer {
     }
 
     /**
+     * Creates a pargraph, heading or block CiceroMark Node
+     *
+     * @param {object} rootNode Pargraph, heading or any other node
+     */
+    constructNodes(rootNode) {
+        if (this.JSONXML.length > 0) {
+            let constructedNode;
+            constructedNode = this.construtCiceroMarkNodeJSON(this.JSONXML[0]);
+            rootNode.nodes = [...rootNode.nodes, constructedNode];
+
+            let rootNodesLength = 1;
+            for (let i = 1; i < this.JSONXML.length; i++) {
+                let propertiesPrevious = this.JSONXML[i - 1].properties;
+                let propertiesCurrent = this.JSONXML[i].properties;
+
+                let commonLength = 0;
+                for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length) - 1; j++) {
+                    if (propertiesCurrent[j] === propertiesPrevious[j]) {
+                        commonLength++;
+                    } else {
+                        break;
+                    }
+                }
+                let updatedProperties = {
+                    properties: [...this.JSONXML[i].properties.slice(commonLength)],
+                    value: this.JSONXML[i].value,
+                };
+                constructedNode = this.construtCiceroMarkNodeJSON(updatedProperties);
+
+                if (commonLength === 0) {
+                    rootNode.nodes = [...rootNode.nodes, constructedNode];
+                    rootNodesLength++;
+                } else {
+                    rootNode.nodes[rootNodesLength - 1].$class.nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].$class.nodes,
+                        constructedNode,
+                    ];
+                }
+            }
+            this.JSONXML = [];
+            this.nodes = [...this.nodes, rootNode];
+        }
+    }
+
+    /**
      * Traverses the JSON object of XML elememts in DFS approach.
      *
      * @param {object} node Node object to be traversed
@@ -62,51 +126,25 @@ class OoxmlTransformer {
     traverseElements(node) {
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
+                const { isHeading, level } = this.getHeading(subNode.elements[0].elements[0]);
+
                 if (subNode.elements) {
                     this.traverseElements(subNode.elements);
                 }
 
-                let paragraphNode = {
-                    $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
-                    nodes: [],
-                };
-
-                if (this.JSONXML.length > 0) {
-                    let constructedNode;
-                    constructedNode = this.construtCiceroMarkNodeJSON(this.JSONXML[0]);
-                    paragraphNode.nodes = [...paragraphNode.nodes, constructedNode];
-
-                    let paragraphNodesLength = 1;
-                    for (let i = 1; i < this.JSONXML.length; i++) {
-                        let propertiesPrevious = this.JSONXML[i - 1].properties;
-                        let propertiesCurrent = this.JSONXML[i].properties;
-
-                        let commonLength = 0;
-                        for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length) - 1; j++) {
-                            if (propertiesCurrent[j] === propertiesPrevious[j]) {
-                                commonLength++;
-                            } else {
-                                break;
-                            }
-                        }
-                        let updatedProperties = {
-                            properties: [...this.JSONXML[i].properties.slice(commonLength)],
-                            value: this.JSONXML[i].value,
-                        };
-                        constructedNode = this.construtCiceroMarkNodeJSON(updatedProperties);
-
-                        if (commonLength === 0) {
-                            paragraphNode.nodes = [...paragraphNode.nodes, constructedNode];
-                            paragraphNodesLength++;
-                        } else {
-                            paragraphNode.nodes[paragraphNodesLength - 1].$class.nodes = [
-                                ...paragraphNode.nodes[paragraphNodesLength - 1].$class.nodes,
-                                constructedNode,
-                            ];
-                        }
-                    }
-                    this.JSONXML = [];
-                    this.nodes = [...this.nodes, paragraphNode];
+                if (isHeading) {
+                    let headingNode = {
+                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                        level,
+                        nodes: [],
+                    };
+                    this.constructNodes(headingNode);
+                } else {
+                    let paragraphNode = {
+                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                        nodes: [],
+                    };
+                    this.constructNodes(paragraphNode);
                 }
             } else if (subNode.name === 'w:r') {
                 let nodeInformation = { properties: [], value: '' };
@@ -144,6 +182,7 @@ class OoxmlTransformer {
         });
         const rootNode = convertedJSObject.elements[0].elements;
         let documentNode;
+
         for (const node of rootNode) {
             if (node.attributes['pkg:name'] === pkgName) {
                 // Gets the document node
@@ -151,8 +190,8 @@ class OoxmlTransformer {
                 break;
             }
         }
+
         this.traverseElements(documentNode.elements[0].elements);
-        // const nodes = this.deserializeElements(documentNode.elements);
         return {
             $class: `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             xmlns: 'http://commonmark.org/xml/1.0',
