@@ -39,7 +39,7 @@ class OoxmlTransformer {
      * @returns {object} object of `isHeading` and its level
      */
     getHeading(headingElement) {
-        if (headingElement.attributes !== undefined) {
+        if (headingElement && headingElement.attributes !== undefined) {
             const headingLevel = headingElement.attributes['w:val'];
             if (headingElement.name === 'w:pStyle' && headingLevel.includes('Heading')) {
                 return {
@@ -188,7 +188,7 @@ class OoxmlTransformer {
                     }
                 }
             } else if (runTimeNodes.name === 'w:t') {
-                nodeInformation.value = runTimeNodes.elements[0].text;
+                nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             } else if (runTimeNodes.name === 'w:sym') {
                 nodeInformation.nodeType = 'softbreak';
@@ -206,7 +206,9 @@ class OoxmlTransformer {
     traverseElements(node, parent = '') {
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
-                const { isHeading, level } = this.getHeading(subNode.elements[0].elements[0]);
+                const { isHeading, level } = this.getHeading(
+                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
+                );
 
                 if (subNode.elements) {
                     this.traverseElements(subNode.elements);
