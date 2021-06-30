@@ -137,7 +137,7 @@ class OoxmlTransformer {
                 let propertiesCurrent = this.JSONXML[i].properties;
 
                 let commonLength = 0;
-                for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length) - 1; j++) {
+                for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length); j++) {
                     if (propertiesCurrent[j] === propertiesPrevious[j]) {
                         commonLength++;
                     } else {
@@ -153,9 +153,9 @@ class OoxmlTransformer {
                 if (commonLength === 0) {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
                     rootNodesLength++;
-                } else {
-                    rootNode.nodes[rootNodesLength - 1].$class.nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].$class.nodes,
+                } else if (commonLength === 1) {
+                    rootNode.nodes[rootNodesLength - 1].nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].nodes,
                         constructedNode,
                     ];
                 }
