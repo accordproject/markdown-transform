@@ -94,7 +94,11 @@ class OoxmlTransformer {
      */
     construtCiceroMarkNodeJSON(nodeInformation) {
         let obj = {};
-        if (nodeInformation.nodeType === 'variable') {
+        if (nodeInformation.nodeType === 'softbreak') {
+            obj = {
+                $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
+            };
+        } else if (nodeInformation.nodeType === 'variable') {
             obj = {
                 $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
                 value: nodeInformation.value || 'Not provided',
@@ -181,6 +185,9 @@ class OoxmlTransformer {
             } else if (runTimeNodes.name === 'w:t') {
                 nodeInformation.value = runTimeNodes.elements[0].text;
                 this.JSONXML = [...this.JSONXML, nodeInformation];
+            } else if (runTimeNodes.name === 'w:sym') {
+                nodeInformation.nodeType = 'softbreak';
+                this.JSONXML = [...this.JSONXML, nodeInformation];
             }
         }
     }
@@ -233,7 +240,7 @@ class OoxmlTransformer {
                         }
                         if (variableSubNodes.name === 'w:sdtContent') {
                             for (const variableContentNodes of variableSubNodes.elements) {
-                                if(variableContentNodes.name === 'w:r'){
+                                if (variableContentNodes.name === 'w:r') {
                                     this.findAndTraverseRunTimeNodes(variableContentNodes, nodeInformation);
                                 }
                             }
