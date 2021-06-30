@@ -162,6 +162,30 @@ class OoxmlTransformer {
     }
 
     /**
+     * Traverses for properties and value.
+     *
+     * @param {Array}  node            Node to be traversed
+     * @param {object} nodeInformation Information for the current node
+     */
+    findAndTraverseRunTimeNodes(node, nodeInformation) {
+        for (const runTimeNodes of node.elements) {
+            if (runTimeNodes.name === 'w:rPr') {
+                for (let runTimeProperties of runTimeNodes.elements) {
+                    if (runTimeProperties.name === 'w:i') {
+                        nodeInformation.properties = [
+                            ...nodeInformation.properties,
+                            `${NS_PREFIX_CommonMarkModel}Emph`,
+                        ];
+                    }
+                }
+            } else if (runTimeNodes.name === 'w:t') {
+                nodeInformation.value = runTimeNodes.elements[0].text;
+                this.JSONXML = [...this.JSONXML, nodeInformation];
+            }
+        }
+    }
+
+    /**
      * Traverses the JSON object of XML elememts in DFS approach.
      *
      * @param {object} node Node object to be traversed
@@ -209,20 +233,8 @@ class OoxmlTransformer {
                         }
                         if (variableSubNodes.name === 'w:sdtContent') {
                             for (const variableContentNodes of variableSubNodes.elements) {
-                                for (const runTimeNodes of variableContentNodes.elements) {
-                                    if (runTimeNodes.name === 'w:rPr') {
-                                        for (let runTimeProperties of runTimeNodes.elements) {
-                                            if (runTimeProperties.name === 'w:i') {
-                                                nodeInformation.properties = [
-                                                    ...nodeInformation.properties,
-                                                    `${NS_PREFIX_CommonMarkModel}Emph`,
-                                                ];
-                                            }
-                                        }
-                                    } else if (runTimeNodes.name === 'w:t') {
-                                        nodeInformation.value = runTimeNodes.elements[0].text;
-                                        this.JSONXML = [...this.JSONXML, nodeInformation];
-                                    }
+                                if(variableContentNodes.name === 'w:r'){
+                                    this.findAndTraverseRunTimeNodes(variableContentNodes, nodeInformation);
                                 }
                             }
                         }
@@ -230,21 +242,7 @@ class OoxmlTransformer {
                 }
             } else if (subNode.name === 'w:r') {
                 let nodeInformation = { properties: [], value: '' };
-                for (const runTimeNodes of subNode.elements) {
-                    if (runTimeNodes.name === 'w:rPr') {
-                        for (let runTimeProperties of runTimeNodes.elements) {
-                            if (runTimeProperties.name === 'w:i') {
-                                nodeInformation.properties = [
-                                    ...nodeInformation.properties,
-                                    `${NS_PREFIX_CommonMarkModel}Emph`,
-                                ];
-                            }
-                        }
-                    } else if (runTimeNodes.name === 'w:t') {
-                        nodeInformation.value = runTimeNodes.elements[0].text;
-                        this.JSONXML = [...this.JSONXML, nodeInformation];
-                    }
-                }
+                this.findAndTraverseRunTimeNodes(subNode, nodeInformation);
             }
         }
     }
