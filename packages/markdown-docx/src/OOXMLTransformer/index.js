@@ -180,6 +180,11 @@ class OoxmlTransformer {
                             ...nodeInformation.properties,
                             `${NS_PREFIX_CommonMarkModel}Emph`,
                         ];
+                    } else if (runTimeProperties.name === 'w:b') {
+                        nodeInformation.properties = [
+                            ...nodeInformation.properties,
+                            `${NS_PREFIX_CommonMarkModel}Strong`,
+                        ];
                     }
                 }
             } else if (runTimeNodes.name === 'w:t') {
