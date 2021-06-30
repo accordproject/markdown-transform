@@ -17,6 +17,7 @@
 const xmljs = require('xml-js');
 
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 
 /**
  * Transforms OOXML to CiceroMark
@@ -53,6 +54,39 @@ class OoxmlTransformer {
     }
 
     /**
+     * Gets the id of the variable
+     *
+     * @param {Array} variableProperties the variable elements
+     * @returns {string} the name of the variable
+     */
+    getName(variableProperties) {
+        for (const property of variableProperties) {
+            if (property.name === 'w:tag') {
+                return property.attributes['w:val'];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get the type of the element
+     *
+     * @param {Array} variableProperties the variable elements
+     * @returns {string} the type of the element
+     */
+    getElementType(variableProperties) {
+        for (const property of variableProperties) {
+            if (property.name === 'w:alias') {
+                // eg. "Shipper1 | org.accordproject.organization.Organization"
+                const combinedTitle = property.attributes['w:val'];
+                // Index 1 will return the type
+                return combinedTitle.split(' | ')[1];
+            }
+        }
+        return null;
+    }
+
+    /**
      * Constructs a ciceroMark Node JSON from the information
      *
      * @param {object} nodeInformation Contains properties and value of a node
@@ -60,10 +94,19 @@ class OoxmlTransformer {
      */
     construtCiceroMarkNodeJSON(nodeInformation) {
         let obj = {};
-        obj = {
-            $class: `${NS_PREFIX_CommonMarkModel}Text`,
-            text: nodeInformation.value,
-        };
+        if (nodeInformation.nodeType === 'variable') {
+            obj = {
+                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                value: nodeInformation.value || 'Not provided',
+                elementType: nodeInformation.elementType || 'Not a template variable',
+                name: nodeInformation.name || 'No name available',
+            };
+        } else {
+            obj = {
+                $class: `${NS_PREFIX_CommonMarkModel}Text`,
+                text: nodeInformation.value,
+            };
+        }
         for (let i = nodeInformation.properties.length - 1; i >= 0; i--) {
             obj = {
                 $class: nodeInformation.properties[i],
@@ -98,8 +141,8 @@ class OoxmlTransformer {
                     }
                 }
                 let updatedProperties = {
+                    ...this.JSONXML[i],
                     properties: [...this.JSONXML[i].properties.slice(commonLength)],
-                    value: this.JSONXML[i].value,
                 };
                 constructedNode = this.construtCiceroMarkNodeJSON(updatedProperties);
 
@@ -122,8 +165,9 @@ class OoxmlTransformer {
      * Traverses the JSON object of XML elememts in DFS approach.
      *
      * @param {object} node Node object to be traversed
+     * @param {object} parent Parent node name
      */
-    traverseElements(node) {
+    traverseElements(node, parent = '') {
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
                 const { isHeading, level } = this.getHeading(subNode.elements[0].elements[0]);
@@ -145,6 +189,44 @@ class OoxmlTransformer {
                         nodes: [],
                     };
                     this.constructNodes(paragraphNode);
+                }
+            } else if (subNode.name === 'w:sdt') {
+                // denotes the whole template if parent is body
+                if (parent === 'body') {
+                    this.traverseElements(subNode.elements[1].elements);
+                } else {
+                    let nodeInformation = {
+                        properties: [],
+                        value: '',
+                        nodeType: 'variable',
+                        name: null,
+                        elementType: null,
+                    };
+                    for (const variableSubNodes of subNode.elements) {
+                        if (variableSubNodes.name === 'w:sdtPr') {
+                            nodeInformation.name = this.getName(variableSubNodes.elements);
+                            nodeInformation.elementType = this.getElementType(variableSubNodes.elements);
+                        }
+                        if (variableSubNodes.name === 'w:sdtContent') {
+                            for (const variableContentNodes of variableSubNodes.elements) {
+                                for (const runTimeNodes of variableContentNodes.elements) {
+                                    if (runTimeNodes.name === 'w:rPr') {
+                                        for (let runTimeProperties of runTimeNodes.elements) {
+                                            if (runTimeProperties.name === 'w:i') {
+                                                nodeInformation.properties = [
+                                                    ...nodeInformation.properties,
+                                                    `${NS_PREFIX_CommonMarkModel}Emph`,
+                                                ];
+                                            }
+                                        }
+                                    } else if (runTimeNodes.name === 'w:t') {
+                                        nodeInformation.value = runTimeNodes.elements[0].text;
+                                        this.JSONXML = [...this.JSONXML, nodeInformation];
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             } else if (subNode.name === 'w:r') {
                 let nodeInformation = { properties: [], value: '' };
@@ -191,7 +273,8 @@ class OoxmlTransformer {
             }
         }
 
-        this.traverseElements(documentNode.elements[0].elements);
+        this.traverseElements(documentNode.elements[0].elements, 'body');
+
         return {
             $class: `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             xmlns: 'http://commonmark.org/xml/1.0',
