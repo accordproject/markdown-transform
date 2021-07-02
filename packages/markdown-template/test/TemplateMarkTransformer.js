@@ -171,7 +171,7 @@ function runSuccesses(tests) {
         describe('#'+name, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager([model],['model.cto'],{ utcOffset: 0 });
+                modelManager = await ModelLoader.loadModelManager([model],['model.cto'],{ utcOffset: 0, offline: true });
             });
 
             it('should create template mark', async () => {
