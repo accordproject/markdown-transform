@@ -54,7 +54,7 @@ class OoxmlTransformer {
     }
 
     /**
-     * Gets the id of the variable
+     * Gets the id of the variable.
      *
      * @param {Array} variableProperties the variable elements
      * @returns {string} the name of the variable
@@ -69,7 +69,7 @@ class OoxmlTransformer {
     }
 
     /**
-     * Get the type of the element
+     * Get the type of the element.
      *
      * @param {Array} variableProperties the variable elements
      * @returns {string} the type of the element
@@ -87,24 +87,28 @@ class OoxmlTransformer {
     }
 
     /**
-     * Constructs a ciceroMark Node JSON from the information
+     * Constructs a ciceroMark Node for inline element from the information.
      *
      * @param {object} nodeInformation Contains properties and value of a node
      * @return {object} CiceroMark Node
      */
-    construtCiceroMarkNodeJSON(nodeInformation) {
+    constructCiceroMarkNode(nodeInformation) {
         let obj = {};
         if (nodeInformation.nodeType === 'softbreak') {
             obj = {
                 $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         } else if (nodeInformation.nodeType === 'variable') {
-            obj = {
-                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
-                value: nodeInformation.value || 'Not provided',
-                elementType: nodeInformation.elementType || 'Not a template variable',
-                name: nodeInformation.name || 'No name available',
-            };
+            if (nodeInformation.elementType && nodeInformation.name && nodeInformation.value) {
+                obj = {
+                    $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                    value: nodeInformation.value,
+                    elementType: nodeInformation.elementType,
+                    name: nodeInformation.name,
+                };
+            } else {
+                return {};
+            }
         } else {
             obj = {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
@@ -121,39 +125,39 @@ class OoxmlTransformer {
     }
 
     /**
-     * Creates a pargraph, heading or block CiceroMark Node
+     * Generates all nodes present in a block element( paragraph, heading ).
      *
-     * @param {object} rootNode Pargraph, heading or any other node
+     * @param {object} rootNode Block node like paragraph, heading, etc.
      */
-    constructNodes(rootNode) {
+    generateNodes(rootNode) {
         if (this.JSONXML.length > 0) {
             let constructedNode;
-            constructedNode = this.construtCiceroMarkNodeJSON(this.JSONXML[0]);
+            constructedNode = this.constructCiceroMarkNode(this.JSONXML[0]);
             rootNode.nodes = [...rootNode.nodes, constructedNode];
 
             let rootNodesLength = 1;
-            for (let i = 1; i < this.JSONXML.length; i++) {
-                let propertiesPrevious = this.JSONXML[i - 1].properties;
-                let propertiesCurrent = this.JSONXML[i].properties;
+            for (let nodePropertyIndex = 1; nodePropertyIndex < this.JSONXML.length; nodePropertyIndex++) {
+                let propertiesPrevious = this.JSONXML[nodePropertyIndex - 1].properties;
+                let propertiesCurrent = this.JSONXML[nodePropertyIndex].properties;
 
-                let commonLength = 0;
+                let commonPropertiesLength = 0;
                 for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length); j++) {
                     if (propertiesCurrent[j] === propertiesPrevious[j]) {
-                        commonLength++;
+                        commonPropertiesLength++;
                     } else {
                         break;
                     }
                 }
                 let updatedProperties = {
-                    ...this.JSONXML[i],
-                    properties: [...this.JSONXML[i].properties.slice(commonLength)],
+                    ...this.JSONXML[nodePropertyIndex],
+                    properties: [...this.JSONXML[nodePropertyIndex].properties.slice(commonPropertiesLength)],
                 };
-                constructedNode = this.construtCiceroMarkNodeJSON(updatedProperties);
+                constructedNode = this.constructCiceroMarkNode(updatedProperties);
 
-                if (commonLength === 0) {
+                if (commonPropertiesLength === 0) {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
                     rootNodesLength++;
-                } else if (commonLength === 1) {
+                } else if (commonPropertiesLength === 1) {
                     rootNode.nodes[rootNodesLength - 1].nodes = [
                         ...rootNode.nodes[rootNodesLength - 1].nodes,
                         constructedNode,
@@ -171,7 +175,7 @@ class OoxmlTransformer {
      * @param {Array}  node            Node to be traversed
      * @param {object} nodeInformation Information for the current node
      */
-    findAndTraverseRunTimeNodes(node, nodeInformation) {
+    fetchFormattingProperties(node, nodeInformation) {
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
                 for (let runTimeProperties of runTimeNodes.elements) {
@@ -220,13 +224,13 @@ class OoxmlTransformer {
                         level,
                         nodes: [],
                     };
-                    this.constructNodes(headingNode);
+                    this.generateNodes(headingNode);
                 } else {
                     let paragraphNode = {
                         $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
                         nodes: [],
                     };
-                    this.constructNodes(paragraphNode);
+                    this.generateNodes(paragraphNode);
                 }
             } else if (subNode.name === 'w:sdt') {
                 // denotes the whole template if parent is body
@@ -248,7 +252,7 @@ class OoxmlTransformer {
                         if (variableSubNodes.name === 'w:sdtContent') {
                             for (const variableContentNodes of variableSubNodes.elements) {
                                 if (variableContentNodes.name === 'w:r') {
-                                    this.findAndTraverseRunTimeNodes(variableContentNodes, nodeInformation);
+                                    this.fetchFormattingProperties(variableContentNodes, nodeInformation);
                                 }
                             }
                         }
@@ -256,13 +260,13 @@ class OoxmlTransformer {
                 }
             } else if (subNode.name === 'w:r') {
                 let nodeInformation = { properties: [], value: '' };
-                this.findAndTraverseRunTimeNodes(subNode, nodeInformation);
+                this.fetchFormattingProperties(subNode, nodeInformation);
             }
         }
     }
 
     /**
-     * Transform OOXML -> CiceroMark
+     * Transform OOXML -> CiceroMark.
      *
      * @param {string} input the ooxml string
      * @param {string} pkgName the package name of the xml to be converted
