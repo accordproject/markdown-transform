@@ -27,10 +27,10 @@ class OoxmlTransformer {
      * Defines the JSON XML array for blocks
      */
     constructor() {
-        // for storing the xml tags present in a node containing its properties in array form
+        // Stores the properties of each node which lies within a block node ( heading, paragraph, etc. )
         this.JSONXML = [];
 
-        // nodes of a paragraph or heading element
+        // All the nodes generated from given OOXML
         this.nodes = [];
     }
 
@@ -92,15 +92,15 @@ class OoxmlTransformer {
      * @param {object} nodeInformation Contains properties and value of a node
      * @return {object} CiceroMark Node
      */
-    constructCiceroMarkNode(nodeInformation) {
-        let obj = {};
+    constructCiceroMarkNodeJSON(nodeInformation) {
+        let ciceroMarkNode = {};
         if (nodeInformation.nodeType === 'softbreak') {
-            obj = {
+            ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         } else if (nodeInformation.nodeType === 'variable') {
             if (nodeInformation.elementType && nodeInformation.name && nodeInformation.value) {
-                obj = {
+                ciceroMarkNode = {
                     $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
                     value: nodeInformation.value,
                     elementType: nodeInformation.elementType,
@@ -110,18 +110,22 @@ class OoxmlTransformer {
                 return {};
             }
         } else {
-            obj = {
+            ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
                 text: nodeInformation.value,
             };
         }
-        for (let i = nodeInformation.properties.length - 1; i >= 0; i--) {
-            obj = {
-                $class: nodeInformation.properties[i],
-                nodes: [obj],
+        for (
+            let nodePropertyIndex = nodeInformation.properties.length - 1;
+            nodePropertyIndex >= 0;
+            nodePropertyIndex--
+        ) {
+            ciceroMarkNode = {
+                $class: nodeInformation.properties[nodePropertyIndex],
+                nodes: [ciceroMarkNode],
             };
         }
-        return obj;
+        return ciceroMarkNode;
     }
 
     /**
@@ -132,27 +136,31 @@ class OoxmlTransformer {
     generateNodes(rootNode) {
         if (this.JSONXML.length > 0) {
             let constructedNode;
-            constructedNode = this.constructCiceroMarkNode(this.JSONXML[0]);
+            constructedNode = this.constructCiceroMarkNodeJSON(this.JSONXML[0]);
             rootNode.nodes = [...rootNode.nodes, constructedNode];
 
             let rootNodesLength = 1;
-            for (let nodePropertyIndex = 1; nodePropertyIndex < this.JSONXML.length; nodePropertyIndex++) {
-                let propertiesPrevious = this.JSONXML[nodePropertyIndex - 1].properties;
-                let propertiesCurrent = this.JSONXML[nodePropertyIndex].properties;
+            for (let nodeIndex = 1; nodeIndex < this.JSONXML.length; nodeIndex++) {
+                let propertiesPrevious = this.JSONXML[nodeIndex - 1].properties;
+                let propertiesCurrent = this.JSONXML[nodeIndex].properties;
 
                 let commonPropertiesLength = 0;
-                for (let j = 0; j < Math.min(propertiesPrevious.length, propertiesCurrent.length); j++) {
-                    if (propertiesCurrent[j] === propertiesPrevious[j]) {
+                for (
+                    let propertyIndex = 0;
+                    propertyIndex < Math.min(propertiesPrevious.length, propertiesCurrent.length);
+                    propertyIndex++
+                ) {
+                    if (propertiesCurrent[propertyIndex] === propertiesPrevious[propertyIndex]) {
                         commonPropertiesLength++;
                     } else {
                         break;
                     }
                 }
                 let updatedProperties = {
-                    ...this.JSONXML[nodePropertyIndex],
-                    properties: [...this.JSONXML[nodePropertyIndex].properties.slice(commonPropertiesLength)],
+                    ...this.JSONXML[nodeIndex],
+                    properties: [...this.JSONXML[nodeIndex].properties.slice(commonPropertiesLength)],
                 };
-                constructedNode = this.constructCiceroMarkNode(updatedProperties);
+                constructedNode = this.constructCiceroMarkNodeJSON(updatedProperties);
 
                 if (commonPropertiesLength === 0) {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
@@ -202,7 +210,7 @@ class OoxmlTransformer {
     }
 
     /**
-     * Traverses the JSON object of XML elememts in DFS approach.
+     * Traverses the JSON object of XML elements in DFS approach.
      *
      * @param {object} node Node object to be traversed
      * @param {object} parent Parent node name
