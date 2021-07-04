@@ -65,7 +65,6 @@ class OoxmlTransformer {
                 return property.attributes['w:val'];
             }
         }
-        return null;
     }
 
     /**
@@ -83,7 +82,6 @@ class OoxmlTransformer {
                 return combinedTitle.split(' | ')[1];
             }
         }
-        return null;
     }
 
     /**
@@ -99,16 +97,12 @@ class OoxmlTransformer {
                 $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
         } else if (nodeInformation.nodeType === 'variable') {
-            if (nodeInformation.elementType && nodeInformation.name && nodeInformation.value) {
-                ciceroMarkNode = {
-                    $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
-                    value: nodeInformation.value,
-                    elementType: nodeInformation.elementType,
-                    name: nodeInformation.name,
-                };
-            } else {
-                return {};
-            }
+            ciceroMarkNode = {
+                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                value: nodeInformation.value,
+                elementType: nodeInformation.elementType,
+                name: nodeInformation.name,
+            };
         } else {
             ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
