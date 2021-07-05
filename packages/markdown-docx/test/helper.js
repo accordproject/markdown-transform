@@ -19,8 +19,7 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-const CiceroMarkToOOXMLTransfomer = require('../src/CiceroMarkToOOXML');
-const OoxmlTransformer = require('../src/OOXMLTransformer');
+const OOXMLTransformer = require('../src/OOXMLTransformer');
 
 /**
  * Loads a ciceroMark file, converts ciceroMark(loaded) -> OOXML ->ciceroMark(generated) and checks the equality of ciceroMark(s).
@@ -31,10 +30,9 @@ const checkRoundTripEquality = async filePath => {
     let ciceroMark = await fs.readFileSync(filePath, 'utf-8');
     ciceroMark = JSON.parse(ciceroMark);
 
-    const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
-    const ooxml = ciceroMarkTransformer.toOOXML(ciceroMark);
+    const ooxmlTransformer = new OOXMLTransformer();
+    const { ooxml } = ooxmlTransformer.toOOXML(ciceroMark);
 
-    const ooxmlTransformer = new OoxmlTransformer();
     const convertedCiceroMark = ooxmlTransformer.toCiceroMark(ooxml);
     expect(convertedCiceroMark).to.deep.equal(ciceroMark);
 };

@@ -19,10 +19,12 @@ const xmljs = require('xml-js');
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 
+const CiceroMarkToOOXMLTransfomer = require('../CiceroMarkToOOXML/index');
+
 /**
- * Transforms OOXML to CiceroMark
+ * Transforms OOXML to/from CiceroMark
  */
-class OoxmlTransformer {
+class OOXMLTransformer {
     /**
      * Defines the JSON XML array for blocks
      */
@@ -299,6 +301,17 @@ class OoxmlTransformer {
             nodes: this.nodes,
         };
     }
+
+    /**
+     * Transforms the given CiceroMark JSON to OOXML
+     *
+     * @param {Object} ciceromark CiceroMark JSON to be converted
+     * @returns {object} { Converted OOXML string i.e. CiceroMark->OOXML, Frequency of variables }
+     */
+    toOOXML(ciceromark) {
+        const ciceroMarkTransformer = new CiceroMarkToOOXMLTransfomer();
+        return ciceroMarkTransformer.toOOXML(ciceromark);
+    }
 }
 
-module.exports = OoxmlTransformer;
+module.exports = OOXMLTransformer;
