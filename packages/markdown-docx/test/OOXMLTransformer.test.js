@@ -26,7 +26,7 @@ describe('OOXML -> CiceroMark', () => {
     it('converts ooxml to json', async () => {
         const ooxmlTransformer = new OoxmlTransformer();
         const ooxml = await fs.readFileSync('test/data/ooxml/acceptance-of-delivery.xml', 'utf-8');
-        const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/acceptance-of-delivery.json', 'utf-8');
+        const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/acceptance-of-delivery-template.json', 'utf-8');
         const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
         expect(convertedObject).to.deep.equal(JSON.parse(testCiceroMark));
     });
