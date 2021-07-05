@@ -15,83 +15,31 @@
 'use strict';
 
 const xmljs = require('xml-js');
-const typeOf = require('type-of');
+
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 
 /**
  * Transforms OOXML to CiceroMark
  */
 class OoxmlTransformer {
     /**
-     * Gets the id of the variable
-     *
-     * @param {Array} elements the variable elements
-     * @returns {string} the name of the variable
+     * Defines the JSON XML array for blocks
      */
-    getName(elements) {
-        const variableProperties = elements[0];
-        for (const property of variableProperties.elements) {
-            if (property.name === 'w:tag') {
-                return property.attributes['w:val'];
-            }
-        }
-        return null;
+    constructor() {
+        // Stores the properties of each node which lies within a block node ( heading, paragraph, etc. )
+        this.JSONXML = [];
+
+        // All the nodes generated from given OOXML
+        this.nodes = [];
     }
 
     /**
-     * Get the type of the element
-     *
-     * @param {Array} elements the variable elements
-     * @returns {string} the type of the element
-     */
-    getElementType(elements) {
-        const variableProperties = elements[0];
-        for (const property of variableProperties.elements) {
-            if (property.name === 'w:alias') {
-                // eg. "Shipper1 | org.accordproject.organization.Organization"
-                const combinedTitle = property.attributes['w:val'];
-                // Index 1 will return the type
-                return combinedTitle.split(' | ')[1];
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Gets the value of the variable
-     *
-     * @param {Array} elements the variable elements
-     * @returns {string} the value of the variable
-     */
-    getValue(elements) {
-        const variableContents = elements[1];
-        for (const property of variableContents.elements[0].elements) {
-            if (property.name === 'w:t') {
-                return property.elements[0].text;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Checks if the element is a line break or not
-     *
-     * @param {object} element the element to be checked
-     * @returns {boolean} whether the element is a line break
-     */
-    isLineBreak(element) {
-        return element.name === 'w:p' && element.elements === undefined;
-    }
-
-    /**
-     * Returns if the element is a heading or not and if it is, an attribute
-     * level is also passed to determine the style of the heading.
-     *
      * @param {object} headingElement the element to be checked
      * @returns {object} object of `isHeading` and its level
      */
     getHeading(headingElement) {
-        if (headingElement.attributes !== undefined) {
+        if (headingElement && headingElement.attributes !== undefined) {
             const headingLevel = headingElement.attributes['w:val'];
             if (headingElement.name === 'w:pStyle' && headingLevel.includes('Heading')) {
                 return {
@@ -106,133 +54,227 @@ class OoxmlTransformer {
     }
 
     /**
-     * Return the node after parsing each element
+     * Gets the id of the variable.
      *
-     * @param {object} element the element of the document node
-     * @returns {Array|object} the nodes
+     * @param {Array} variableProperties the variable elements
+     * @returns {string} the name of the variable
      */
-    deserializeElement(element) {
-        switch (element.name) {
-        case 'w:p':
-            if (element.elements !== undefined) {
-                const headingElement = this.getHeading(element.elements[0].elements[0]);
-                const lineBreak = this.isLineBreak(element.elements[0].elements[0]);
-                if (headingElement.isHeading) {
-                    return {
-                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
-                        level: headingElement.level,
-                        nodes: [this.deserializeElements(element.elements)[0]],
-                    };
-                }
-                if (!lineBreak) {
-                    return {
-                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
-                        nodes: this.deserializeElements(element.elements)
-                    };
-                }
+    getName(variableProperties) {
+        for (const property of variableProperties) {
+            if (property.name === 'w:tag') {
+                return property.attributes['w:val'];
             }
-            return;
-        case 'w:sdt': {
-            const name = this.getName(element.elements);
-            const value = this.getValue(element.elements);
-            const elementType = this.getElementType(element.elements);
-            if (name && value && elementType) {
-                return {
-                    $class: 'org.accordproject.ciceromark.Variable',
-                    value,
-                    name,
-                    elementType,
-                };
-            }
-            return this.deserializeElements(element.elements);
         }
-        case 'w:sym':
-            return {
+    }
+
+    /**
+     * Get the type of the element.
+     *
+     * @param {Array} variableProperties the variable elements
+     * @returns {string} the type of the element
+     */
+    getElementType(variableProperties) {
+        for (const property of variableProperties) {
+            if (property.name === 'w:alias') {
+                // eg. "Shipper1 | org.accordproject.organization.Organization"
+                const combinedTitle = property.attributes['w:val'];
+                // Index 1 will return the type
+                return combinedTitle.split(' | ')[1];
+            }
+        }
+    }
+
+    /**
+     * Constructs a ciceroMark Node for inline element from the information.
+     *
+     * @param {object} nodeInformation Contains properties and value of a node
+     * @return {object} CiceroMark Node
+     */
+    constructCiceroMarkNodeJSON(nodeInformation) {
+        let ciceroMarkNode = {};
+        if (nodeInformation.nodeType === 'softbreak') {
+            ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
             };
-        case 'w:r':
-            if (element.elements[0].name === 'w:rPr') {
-                let emphasisedTextFound = element.elements[0].elements.some(
-                    subElement => {
-                        return subElement.name === 'w:i';
-                    }
-                );
-
-                let strongTextFound = element.elements[0].elements.some(
-                    subElement => {
-                        return subElement.name === 'w:b';
-                    }
-                );
-
-                if(strongTextFound){
-                    return {
-                        $class: `${NS_PREFIX_CommonMarkModel}Strong`,
-                        nodes: [
-                            ...this.deserializeElements(element.elements),
-                        ],
-                    };
-                }
-
-                if (emphasisedTextFound) {
-                    return {
-                        $class: `${NS_PREFIX_CommonMarkModel}Emph`,
-                        nodes: [
-                            ...this.deserializeElements(element.elements),
-                        ],
-                    };
-                }
-            }
-            return [...this.deserializeElements(element.elements)];
-        case 'w:color':
-            return element.attributes['w:color'];
-        case 'w:t':
-            return {
-                $class: `${NS_PREFIX_CommonMarkModel}Text`,
-                text: element.elements[0].text
+        } else if (nodeInformation.nodeType === 'variable') {
+            ciceroMarkNode = {
+                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                value: nodeInformation.value,
+                elementType: nodeInformation.elementType,
+                name: nodeInformation.name,
             };
-        default:
-            return this.deserializeElements(element.elements);
+        } else {
+            ciceroMarkNode = {
+                $class: `${NS_PREFIX_CommonMarkModel}Text`,
+                text: nodeInformation.value,
+            };
         }
+        for (
+            let nodePropertyIndex = nodeInformation.properties.length - 1;
+            nodePropertyIndex >= 0;
+            nodePropertyIndex--
+        ) {
+            ciceroMarkNode = {
+                $class: nodeInformation.properties[nodePropertyIndex],
+                nodes: [ciceroMarkNode],
+            };
+        }
+        return ciceroMarkNode;
     }
 
     /**
-     * Gets the CiceroMark JSON object
+     * Generates all nodes present in a block element( paragraph, heading ).
      *
-     * @param {Array} elements the root node
-     * @returns {object} the CiceroMark object
+     * @param {object} rootNode Block node like paragraph, heading, etc.
      */
-    deserializeElements(elements) {
-        let nodes = [];
-        if (elements === undefined) {
-            return;
-        }
+    generateNodes(rootNode) {
+        if (this.JSONXML.length > 0) {
+            let constructedNode;
+            constructedNode = this.constructCiceroMarkNodeJSON(this.JSONXML[0]);
+            rootNode.nodes = [...rootNode.nodes, constructedNode];
 
-        for (const element of elements) {
-            if (element.name === 'w:pPr') {
-                continue;
-            }
-            const node = this.deserializeElement(element);
-            switch (typeOf(node)) {
-            case 'array':
-                nodes = [...nodes, ...node];
-                break;
-            case 'object':
-                nodes = [...nodes, node];
-                break;
-            }
-        }
+            let rootNodesLength = 1;
+            for (let nodeIndex = 1; nodeIndex < this.JSONXML.length; nodeIndex++) {
+                let propertiesPrevious = this.JSONXML[nodeIndex - 1].properties;
+                let propertiesCurrent = this.JSONXML[nodeIndex].properties;
 
-        return nodes;
+                let commonPropertiesLength = 0;
+                for (
+                    let propertyIndex = 0;
+                    propertyIndex < Math.min(propertiesPrevious.length, propertiesCurrent.length);
+                    propertyIndex++
+                ) {
+                    if (propertiesCurrent[propertyIndex] === propertiesPrevious[propertyIndex]) {
+                        commonPropertiesLength++;
+                    } else {
+                        break;
+                    }
+                }
+                let updatedProperties = {
+                    ...this.JSONXML[nodeIndex],
+                    properties: [...this.JSONXML[nodeIndex].properties.slice(commonPropertiesLength)],
+                };
+                constructedNode = this.constructCiceroMarkNodeJSON(updatedProperties);
+
+                if (commonPropertiesLength === 0) {
+                    rootNode.nodes = [...rootNode.nodes, constructedNode];
+                    rootNodesLength++;
+                } else if (commonPropertiesLength === 1) {
+                    rootNode.nodes[rootNodesLength - 1].nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].nodes,
+                        constructedNode,
+                    ];
+                }
+            }
+            this.JSONXML = [];
+            this.nodes = [...this.nodes, rootNode];
+        }
     }
 
     /**
-     * Transform OOXML -> CiceroMark
+     * Traverses for properties and value.
+     *
+     * @param {Array}  node            Node to be traversed
+     * @param {object} nodeInformation Information for the current node
+     */
+    fetchFormattingProperties(node, nodeInformation) {
+        for (const runTimeNodes of node.elements) {
+            if (runTimeNodes.name === 'w:rPr') {
+                for (let runTimeProperties of runTimeNodes.elements) {
+                    if (runTimeProperties.name === 'w:i') {
+                        nodeInformation.properties = [
+                            ...nodeInformation.properties,
+                            `${NS_PREFIX_CommonMarkModel}Emph`,
+                        ];
+                    } else if (runTimeProperties.name === 'w:b') {
+                        nodeInformation.properties = [
+                            ...nodeInformation.properties,
+                            `${NS_PREFIX_CommonMarkModel}Strong`,
+                        ];
+                    }
+                }
+            } else if (runTimeNodes.name === 'w:t') {
+                nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
+                this.JSONXML = [...this.JSONXML, nodeInformation];
+            } else if (runTimeNodes.name === 'w:sym') {
+                nodeInformation.nodeType = 'softbreak';
+                this.JSONXML = [...this.JSONXML, nodeInformation];
+            }
+        }
+    }
+
+    /**
+     * Traverses the JSON object of XML elements in DFS approach.
+     *
+     * @param {object} node Node object to be traversed
+     * @param {object} parent Parent node name
+     */
+    traverseElements(node, parent = '') {
+        for (const subNode of node) {
+            if (subNode.name === 'w:p') {
+                const { isHeading, level } = this.getHeading(
+                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
+                );
+
+                if (subNode.elements) {
+                    this.traverseElements(subNode.elements);
+                }
+
+                if (isHeading) {
+                    let headingNode = {
+                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                        level,
+                        nodes: [],
+                    };
+                    this.generateNodes(headingNode);
+                } else {
+                    let paragraphNode = {
+                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                        nodes: [],
+                    };
+                    this.generateNodes(paragraphNode);
+                }
+            } else if (subNode.name === 'w:sdt') {
+                // denotes the whole template if parent is body
+                if (parent === 'body') {
+                    this.traverseElements(subNode.elements[1].elements);
+                } else {
+                    let nodeInformation = {
+                        properties: [],
+                        value: '',
+                        nodeType: 'variable',
+                        name: null,
+                        elementType: null,
+                    };
+                    for (const variableSubNodes of subNode.elements) {
+                        if (variableSubNodes.name === 'w:sdtPr') {
+                            nodeInformation.name = this.getName(variableSubNodes.elements);
+                            nodeInformation.elementType = this.getElementType(variableSubNodes.elements);
+                        }
+                        if (variableSubNodes.name === 'w:sdtContent') {
+                            for (const variableContentNodes of variableSubNodes.elements) {
+                                if (variableContentNodes.name === 'w:r') {
+                                    this.fetchFormattingProperties(variableContentNodes, nodeInformation);
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if (subNode.name === 'w:r') {
+                let nodeInformation = { properties: [], value: '' };
+                this.fetchFormattingProperties(subNode, nodeInformation);
+            }
+        }
+    }
+
+    /**
+     * Transform OOXML -> CiceroMark.
      *
      * @param {string} input the ooxml string
      * @param {string} pkgName the package name of the xml to be converted
      * @returns {object} CiceroMark object
      */
-    toCiceroMark(input, pkgName='/word/document.xml') {
+    toCiceroMark(input, pkgName = '/word/document.xml') {
         // Parses the OOXML 'test/data/ooxml/document.xml' to JSON
         const convertedJSObject = xmljs.xml2js(input, {
             ignoreDeclaration: true,
@@ -240,6 +282,7 @@ class OoxmlTransformer {
         });
         const rootNode = convertedJSObject.elements[0].elements;
         let documentNode;
+
         for (const node of rootNode) {
             if (node.attributes['pkg:name'] === pkgName) {
                 // Gets the document node
@@ -247,11 +290,13 @@ class OoxmlTransformer {
                 break;
             }
         }
-        const nodes = this.deserializeElements(documentNode.elements);
+
+        this.traverseElements(documentNode.elements[0].elements, 'body');
+
         return {
-            '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
+            $class: `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             xmlns: 'http://commonmark.org/xml/1.0',
-            nodes,
+            nodes: this.nodes,
         };
     }
 }
