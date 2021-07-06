@@ -44,7 +44,7 @@ const definedNodes = {
 /**
  * Transforms the ciceromark to OOXML
  */
-class CiceroMarkToOOXMLTransformer {
+class ToOOXMLVisitor {
     /**
      * Declares the OOXML, counter, and tags variable.
      */
@@ -170,4 +170,4 @@ class CiceroMarkToOOXMLTransformer {
     }
 }
 
-module.exports = CiceroMarkToOOXMLTransformer;
+module.exports = ToOOXMLVisitor;
