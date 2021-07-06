@@ -27,7 +27,7 @@ class OOXMLTransformer {
      * @param {string} input OOXML string to be converted
      * @returns {object} CiceroMark JSON
      */
-    static toCiceroMark(input) {
+    toCiceroMark(input) {
         const visitor = new ToCiceroMarkVisitor();
         return visitor.toCiceroMark(input);
     }
@@ -38,7 +38,7 @@ class OOXMLTransformer {
      * @param {object} input CiceroMark object
      * @returns {string} OOXML string
      */
-    static toOOXML(input) {
+    toOOXML(input) {
         const visitor = new ToOOXMLVisitor();
         return visitor.toOOXML(input);
     }
