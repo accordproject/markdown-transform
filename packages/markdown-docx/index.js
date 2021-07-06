@@ -20,5 +20,4 @@
  */
 
 module.exports.DocxTransformer = require('./lib/DocxTransformer');
-module.exports.OoxmlTransformer = require('./lib/OOXMLTransformer');
-module.exports.CiceroMarkToOOXMLTransfomer = require('./lib/CiceroMarkToOOXML');
+module.exports.OOXMLTransformer = require('./lib/OOXMLTransformer');

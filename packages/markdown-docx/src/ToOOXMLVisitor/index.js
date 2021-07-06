@@ -44,7 +44,7 @@ const definedNodes = {
 /**
  * Transforms the ciceromark to OOXML
  */
-class CiceroMarkToOOXMLTransfomer {
+class ToOOXMLVisitor {
     /**
      * Declares the OOXML, counter, and tags variable.
      */
@@ -53,7 +53,7 @@ class CiceroMarkToOOXMLTransfomer {
         this.globalOOXML = '';
         // Frequency of different variables in CiceroMark JSON
         this.counter = {};
-        // OOXML tags for a given block node(heading, pargraph, etc.)
+        // OOXML tags for a given block node(heading, paragraph, etc.)
         this.tags = [];
     }
 
@@ -68,23 +68,14 @@ class CiceroMarkToOOXMLTransfomer {
     }
 
     /**
-     * Returns the counter holding variable count for a CiceroMark(JSON).
-     *
-     * @returns {object} Counter for variables in CiceroMark(JSON)
-     */
-    getCounter() {
-        return this.counter;
-    }
-
-    /**
      * Traverses CiceroMark nodes in a DFS approach
      *
      * @param {object} node       CiceroMark Node
-     * @param {array}  properties Properties to be applied on curent node
+     * @param {array}  properties Properties to be applied on current node
      */
-    travserseNodes(node, properties = []) {
+    traverseNodes(node, properties = []) {
         if (this.getClass(node) === 'org.accordproject.commonmark.Document') {
-            this.travserseNodes(node.nodes, properties);
+            this.traverseNodes(node.nodes, properties);
         } else {
             for (let subNode of node) {
                 if (this.getClass(subNode) === definedNodes.text) {
@@ -130,7 +121,7 @@ class CiceroMarkToOOXMLTransfomer {
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === definedNodes.paragraph) {
-                            this.travserseNodes(subNode.nodes, properties);
+                            this.traverseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 ooxml += xmlTag;
@@ -141,7 +132,7 @@ class CiceroMarkToOOXMLTransfomer {
                             // Clear all the tags as all nodes of paragraph have been traversed.
                             this.tags = [];
                         } else if (this.getClass(subNode) === definedNodes.heading) {
-                            this.travserseNodes(subNode.nodes, properties);
+                            this.traverseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 let headingPropertiesTag = '';
@@ -157,7 +148,7 @@ class CiceroMarkToOOXMLTransfomer {
                             this.tags = [];
                         } else {
                             let newProperties = [...properties, subNode.$class];
-                            this.travserseNodes(subNode.nodes, newProperties);
+                            this.traverseNodes(subNode.nodes, newProperties);
                         }
                     }
                 }
@@ -169,14 +160,14 @@ class CiceroMarkToOOXMLTransfomer {
      * Transforms the given CiceroMark JSON to OOXML
      *
      * @param {Object} ciceromark CiceroMark JSON to be converted
-     * @returns {string} Converted OOXML string i.e. CicecoMark->OOXML
+     * @returns {object} { Converted OOXML string i.e. CiceroMark->OOXML, Frequency of variables }
      */
     toOOXML(ciceromark) {
-        this.travserseNodes(ciceromark, []);
+        this.traverseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
 
-        return this.globalOOXML;
+        return { ooxml: this.globalOOXML, counter: this.counter };
     }
 }
 
-module.exports = CiceroMarkToOOXMLTransfomer;
+module.exports = ToOOXMLVisitor;

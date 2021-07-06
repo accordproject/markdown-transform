@@ -19,12 +19,12 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-const OoxmlTransformer = require('../src/OOXMLTransformer');
+const OOXMLTransformer = require('../src/OOXMLTransformer');
 
 describe('OOXML -> CiceroMark', () => {
 
     it('converts ooxml to json', async () => {
-        const ooxmlTransformer = new OoxmlTransformer();
+        const ooxmlTransformer = new OOXMLTransformer();
         const ooxml = await fs.readFileSync('test/data/ooxml/acceptance-of-delivery.xml', 'utf-8');
         const testCiceroMark = await fs.readFileSync('test/data/ciceroMark/acceptance-of-delivery-template.json', 'utf-8');
         const convertedObject = ooxmlTransformer.toCiceroMark(ooxml);
