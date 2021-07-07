@@ -103,6 +103,11 @@ class ToCiceroMarkVisitor {
                 elementType: nodeInformation.elementType,
                 name: nodeInformation.name,
             };
+        } else if (nodeInformation.nodeType === 'Code') {
+            ciceroMarkNode = {
+                $class: `${NS_PREFIX_CommonMarkModel}Code`,
+                text: nodeInformation.value,
+            };
         } else {
             ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
@@ -164,6 +169,12 @@ class ToCiceroMarkVisitor {
                         ...rootNode.nodes[rootNodesLength - 1].nodes,
                         constructedNode,
                     ];
+                } else if (commonPropertiesLength === 2) {
+                    const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
+                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
+                        constructedNode,
+                    ];
                 }
             }
             this.JSONXML = [];
@@ -180,6 +191,8 @@ class ToCiceroMarkVisitor {
     fetchFormattingProperties(node, nodeInformation) {
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
+                let colorCodePresent = false,
+                    highlightCodePresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
                         nodeInformation.properties = [
@@ -191,7 +204,18 @@ class ToCiceroMarkVisitor {
                             ...nodeInformation.properties,
                             `${NS_PREFIX_CommonMarkModel}Strong`,
                         ];
+                    } else if (runTimeProperties.name === 'w:color') {
+                        if (runTimeProperties.attributes['w:val'] === 'C45911') {
+                            colorCodePresent = true;
+                        }
+                    } else if (runTimeProperties.name === 'w:highlight') {
+                        if (runTimeProperties.attributes['w:val'] === 'lightGray') {
+                            highlightCodePresent = true;
+                        }
                     }
+                }
+                if (colorCodePresent && highlightCodePresent) {
+                    nodeInformation.nodeType = 'Code';
                 }
             } else if (runTimeNodes.name === 'w:t') {
                 nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
