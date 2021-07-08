@@ -103,6 +103,11 @@ class ToCiceroMarkVisitor {
                 elementType: nodeInformation.elementType,
                 name: nodeInformation.name,
             };
+        } else if (nodeInformation.nodeType === 'Code') {
+            ciceroMarkNode = {
+                $class: `${NS_PREFIX_CommonMarkModel}Code`,
+                text: nodeInformation.value,
+            };
         } else {
             ciceroMarkNode = {
                 $class: `${NS_PREFIX_CommonMarkModel}Text`,
@@ -164,6 +169,12 @@ class ToCiceroMarkVisitor {
                         ...rootNode.nodes[rootNodesLength - 1].nodes,
                         constructedNode,
                     ];
+                } else if (commonPropertiesLength === 2) {
+                    const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
+                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
+                        constructedNode,
+                    ];
                 }
             }
             this.JSONXML = [];
@@ -180,6 +191,8 @@ class ToCiceroMarkVisitor {
     fetchFormattingProperties(node, nodeInformation) {
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
+                let colorCodePresent = false;
+                let shadeCodePresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
                         nodeInformation.properties = [
@@ -191,7 +204,23 @@ class ToCiceroMarkVisitor {
                             ...nodeInformation.properties,
                             `${NS_PREFIX_CommonMarkModel}Strong`,
                         ];
+                    } else if (runTimeProperties.name === 'w:color') {
+                        if (runTimeProperties.attributes['w:val'] === 'C7254E') {
+                            colorCodePresent = true;
+                        }
+                    } else if (runTimeProperties.name === 'w:shd') {
+                        // `w:shd` tag is used to detect the highlight colour of
+                        // the text. Semantically, w:highlight should have been
+                        // used but the latter can render fixed colors only
+                        // unlike what is needed here.
+                        // Reference: http://officeopenxml.com/WPtextShading.php.
+                        if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
+                            shadeCodePresent = true;
+                        }
                     }
+                }
+                if (colorCodePresent && shadeCodePresent) {
+                    nodeInformation.nodeType = 'Code';
                 }
             } else if (runTimeNodes.name === 'w:t') {
                 nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';

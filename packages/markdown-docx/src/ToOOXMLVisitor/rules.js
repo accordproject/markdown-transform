@@ -162,6 +162,13 @@ const SOFTBREAK_RULE = () => {
     `;
 };
 
+const CODE_PROPERTIES_RULE = () => {
+    return `
+      <w:color w:val="C7254E" />
+      <w:shd w:fill="F9F2F4"/>
+    `;
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -172,4 +179,5 @@ module.exports = {
     VARIABLE_RULE,
     SOFTBREAK_RULE,
     STRONG_RULE,
+    CODE_PROPERTIES_RULE
 };

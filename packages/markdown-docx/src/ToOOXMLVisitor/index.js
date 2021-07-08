@@ -24,6 +24,7 @@ const {
     VARIABLE_RULE,
     SOFTBREAK_RULE,
     STRONG_RULE,
+    CODE_PROPERTIES_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 
@@ -39,6 +40,7 @@ const definedNodes = {
     variable: 'org.accordproject.ciceromark.Variable',
     emphasize: 'org.accordproject.commonmark.Emph',
     strong: 'org.accordproject.commonmark.Strong',
+    code: 'org.accordproject.commonmark.Code'
 };
 
 /**
@@ -90,6 +92,21 @@ class ToOOXMLVisitor {
                     if (propertyTag) {
                         propertyTag = TEXT_STYLES_RULE(propertyTag);
                     }
+
+                    let textValueTag = TEXT_RULE(subNode.text);
+
+                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+                    this.tags = [...this.tags, tag];
+                } else if (this.getClass(subNode) === definedNodes.code) {
+                    let propertyTag = CODE_PROPERTIES_RULE();
+                    for (let property of properties) {
+                        if (property === definedNodes.emphasize) {
+                            propertyTag += EMPHASIS_RULE();
+                        } else if (property === definedNodes.strong) {
+                            propertyTag += STRONG_RULE();
+                        }
+                    }
+                    propertyTag = TEXT_STYLES_RULE(propertyTag);
 
                     let textValueTag = TEXT_RULE(subNode.text);
 
