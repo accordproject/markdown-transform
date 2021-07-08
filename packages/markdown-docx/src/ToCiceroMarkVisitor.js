@@ -209,6 +209,8 @@ class ToCiceroMarkVisitor {
                             colorCodePresent = true;
                         }
                     } else if (runTimeProperties.name === 'w:shd') {
+                        // w:highlight can render only fixed colors
+                        // w:shd can detect the highlight color of text which can vary
                         if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
                             shadeCodePresent = true;
                         }
