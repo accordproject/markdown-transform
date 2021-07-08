@@ -209,8 +209,11 @@ class ToCiceroMarkVisitor {
                             colorCodePresent = true;
                         }
                     } else if (runTimeProperties.name === 'w:shd') {
-                        // w:highlight can render only fixed colors
-                        // w:shd can detect the highlight color of text which can vary
+                        // `w:shd` tag is used to detect the highlight colour of
+                        // the text. Semantically, w:highlight should have been
+                        // used but the latter can render fixed colors only
+                        // unlike what is needed here.
+                        // Reference: http://officeopenxml.com/WPtextShading.php.
                         if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
                             shadeCodePresent = true;
                         }
