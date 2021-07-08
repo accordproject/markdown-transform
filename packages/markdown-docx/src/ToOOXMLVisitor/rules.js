@@ -164,8 +164,8 @@ const SOFTBREAK_RULE = () => {
 
 const CODE_PROPERTIES_RULE = () => {
     return `
-      <w:color w:val="C45911"/>
-      <w:highlight w:val="lightGray"/>
+      <w:color w:val="C7254E" />
+      <w:shd w:fill="F9F2F4"/>
     `;
 };
 

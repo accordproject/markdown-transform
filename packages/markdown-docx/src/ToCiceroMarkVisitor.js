@@ -191,8 +191,8 @@ class ToCiceroMarkVisitor {
     fetchFormattingProperties(node, nodeInformation) {
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
-                let colorCodePresent = false,
-                    highlightCodePresent = false;
+                let colorCodePresent = false;
+                let shadeCodePresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
                         nodeInformation.properties = [
@@ -205,16 +205,16 @@ class ToCiceroMarkVisitor {
                             `${NS_PREFIX_CommonMarkModel}Strong`,
                         ];
                     } else if (runTimeProperties.name === 'w:color') {
-                        if (runTimeProperties.attributes['w:val'] === 'C45911') {
+                        if (runTimeProperties.attributes['w:val'] === 'C7254E') {
                             colorCodePresent = true;
                         }
-                    } else if (runTimeProperties.name === 'w:highlight') {
-                        if (runTimeProperties.attributes['w:val'] === 'lightGray') {
-                            highlightCodePresent = true;
+                    } else if (runTimeProperties.name === 'w:shd') {
+                        if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
+                            shadeCodePresent = true;
                         }
                     }
                 }
-                if (colorCodePresent && highlightCodePresent) {
+                if (colorCodePresent && shadeCodePresent) {
                     nodeInformation.nodeType = 'Code';
                 }
             } else if (runTimeNodes.name === 'w:t') {
