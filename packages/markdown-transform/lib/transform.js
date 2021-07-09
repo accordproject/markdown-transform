@@ -26,9 +26,7 @@ const SlateTransformer = require('@accordproject/markdown-slate').SlateTransform
 const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
-const OoxmlTransformer = require('@accordproject/markdown-docx').OoxmlTransformer;
-const CiceroMarkToOOXMLTransfomer = require('@accordproject/markdown-docx').CiceroMarkToOOXMLTransfomer;
-
+const OOXMLTransformer = require('@accordproject/markdown-docx').OOXMLTransformer;
 
 /**
  * The graph of transformation supported
@@ -169,8 +167,8 @@ const transformationGraph = {
             return PdfTransformer.ciceroMarkToPdfMake(input, options);
         },
         ooxml: (input) => {
-            const t = new CiceroMarkToOOXMLTransfomer();
-            return t.toOOXML(input);
+            const t = new OOXMLTransformer();
+            return t.toOOXML(input).ooxml;
         }
     },
     data: {
@@ -230,9 +228,10 @@ const transformationGraph = {
     },
     ooxml: {
         docs: 'OOXML',
-        fileFormat: 'binary',
+        fileFormat: 'utf8',
         ciceromark_parsed: async(input) => {
-            return OoxmlTransformer.toCiceroMark(input);
+            const t = new OOXMLTransformer();
+            return t.toCiceroMark(input);
         }
     },
     html: {
