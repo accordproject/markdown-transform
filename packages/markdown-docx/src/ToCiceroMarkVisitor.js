@@ -16,8 +16,7 @@
 
 const xmljs = require('xml-js');
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const { TRANSFORMED_NODES } = require('./constants');
 
 /**
  * Transforms OOXML to CiceroMark
@@ -92,25 +91,25 @@ class ToCiceroMarkVisitor {
      */
     constructCiceroMarkNodeJSON(nodeInformation) {
         let ciceroMarkNode = {};
-        if (nodeInformation.nodeType === 'softbreak') {
+        if (nodeInformation.nodeType === TRANSFORMED_NODES.softbreak) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
+                $class: TRANSFORMED_NODES.softbreak,
             };
-        } else if (nodeInformation.nodeType === 'variable') {
+        } else if (nodeInformation.nodeType === TRANSFORMED_NODES.variable) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                $class: TRANSFORMED_NODES.variable,
                 value: nodeInformation.value,
                 elementType: nodeInformation.elementType,
                 name: nodeInformation.name,
             };
-        } else if (nodeInformation.nodeType === 'Code') {
+        } else if (nodeInformation.nodeType === TRANSFORMED_NODES.code) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Code`,
+                $class: TRANSFORMED_NODES.code,
                 text: nodeInformation.value,
             };
         } else {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Text`,
+                $class: TRANSFORMED_NODES.text,
                 text: nodeInformation.value,
             };
         }
@@ -195,15 +194,9 @@ class ToCiceroMarkVisitor {
                 let shadeCodePresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
-                        nodeInformation.properties = [
-                            ...nodeInformation.properties,
-                            `${NS_PREFIX_CommonMarkModel}Emph`,
-                        ];
+                        nodeInformation.properties = [...nodeInformation.properties, TRANSFORMED_NODES.emphasize];
                     } else if (runTimeProperties.name === 'w:b') {
-                        nodeInformation.properties = [
-                            ...nodeInformation.properties,
-                            `${NS_PREFIX_CommonMarkModel}Strong`,
-                        ];
+                        nodeInformation.properties = [...nodeInformation.properties, TRANSFORMED_NODES.strong];
                     } else if (runTimeProperties.name === 'w:color') {
                         if (runTimeProperties.attributes['w:val'] === 'C7254E') {
                             colorCodePresent = true;
@@ -220,13 +213,13 @@ class ToCiceroMarkVisitor {
                     }
                 }
                 if (colorCodePresent && shadeCodePresent) {
-                    nodeInformation.nodeType = 'Code';
+                    nodeInformation.nodeType = TRANSFORMED_NODES.code;
                 }
             } else if (runTimeNodes.name === 'w:t') {
                 nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             } else if (runTimeNodes.name === 'w:sym') {
-                nodeInformation.nodeType = 'softbreak';
+                nodeInformation.nodeType = TRANSFORMED_NODES.softbreak;
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             }
         }
@@ -251,14 +244,14 @@ class ToCiceroMarkVisitor {
 
                 if (isHeading) {
                     let headingNode = {
-                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                        $class: TRANSFORMED_NODES.heading,
                         level,
                         nodes: [],
                     };
                     this.generateNodes(headingNode);
                 } else {
                     let paragraphNode = {
-                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                        $class: TRANSFORMED_NODES.paragraph,
                         nodes: [],
                     };
                     this.generateNodes(paragraphNode);
@@ -271,7 +264,7 @@ class ToCiceroMarkVisitor {
                     let nodeInformation = {
                         properties: [],
                         value: '',
-                        nodeType: 'variable',
+                        nodeType: TRANSFORMED_NODES.variable,
                         name: null,
                         elementType: null,
                     };
@@ -323,7 +316,7 @@ class ToCiceroMarkVisitor {
         this.traverseElements(documentNode.elements[0].elements, 'body');
 
         return {
-            $class: `${NS_PREFIX_CommonMarkModel}${'Document'}`,
+            $class: TRANSFORMED_NODES.document,
             xmlns: 'http://commonmark.org/xml/1.0',
             nodes: this.nodes,
         };
