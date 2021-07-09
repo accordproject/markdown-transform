@@ -14,19 +14,21 @@
 
 'use strict';
 
-const DEFINED_NODES = {
-    computedVariable: 'org.accordproject.ciceromark.ComputedVariable',
-    heading: 'org.accordproject.commonmark.Heading',
-    item: 'org.accordproject.commonmark.Item',
-    list: 'org.accordproject.commonmark.List',
-    listBlock: 'org.accordproject.ciceromark.ListBlock',
-    paragraph: 'org.accordproject.commonmark.Paragraph',
-    softbreak: 'org.accordproject.commonmark.Softbreak',
-    text: 'org.accordproject.commonmark.Text',
-    variable: 'org.accordproject.ciceromark.Variable',
-    emphasize: 'org.accordproject.commonmark.Emph',
-    strong: 'org.accordproject.commonmark.Strong',
-    code: 'org.accordproject.commonmark.Code',
+const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+
+const TRANSFORMED_NODES = {
+    code: `${NS_PREFIX_CommonMarkModel}Code`,
+    computedVariable: `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
+    document: `${NS_PREFIX_CommonMarkModel}Document`,
+    emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
+    heading: `${NS_PREFIX_CommonMarkModel}Heading`,
+    item: `${NS_PREFIX_CommonMarkModel}Item`,
+    paragraph: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+    softbreak: `${NS_PREFIX_CommonMarkModel}Softbreak`,
+    strong: `${NS_PREFIX_CommonMarkModel}Strong`,
+    text: `${NS_PREFIX_CommonMarkModel}Text`,
+    variable: `${NS_PREFIX_CiceroMarkModel}Variable`,
 };
 
-module.exports = { DEFINED_NODES };
+module.exports = { TRANSFORMED_NODES };

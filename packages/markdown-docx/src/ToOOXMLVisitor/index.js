@@ -27,7 +27,7 @@ const {
     CODE_PROPERTIES_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
-const { DEFINED_NODES } = require('../constants');
+const { TRANSFORMED_NODES } = require('../constants');
 
 /**
  * Transforms the ciceromark to OOXML
@@ -66,12 +66,12 @@ class ToOOXMLVisitor {
             this.traverseNodes(node.nodes, properties);
         } else {
             for (let subNode of node) {
-                if (this.getClass(subNode) === DEFINED_NODES.text) {
+                if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
                     let propertyTag = '';
                     for (let property of properties) {
-                        if (property === DEFINED_NODES.emphasize) {
+                        if (property === TRANSFORMED_NODES.emphasize) {
                             propertyTag += EMPHASIS_RULE();
-                        } else if (property === DEFINED_NODES.strong) {
+                        } else if (property === TRANSFORMED_NODES.strong) {
                             propertyTag += STRONG_RULE();
                         }
                     }
@@ -83,12 +83,12 @@ class ToOOXMLVisitor {
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
                     this.tags = [...this.tags, tag];
-                } else if (this.getClass(subNode) === DEFINED_NODES.code) {
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
                     let propertyTag = CODE_PROPERTIES_RULE();
                     for (let property of properties) {
-                        if (property === DEFINED_NODES.emphasize) {
+                        if (property === TRANSFORMED_NODES.emphasize) {
                             propertyTag += EMPHASIS_RULE();
-                        } else if (property === DEFINED_NODES.strong) {
+                        } else if (property === TRANSFORMED_NODES.strong) {
                             propertyTag += STRONG_RULE();
                         }
                     }
@@ -98,7 +98,7 @@ class ToOOXMLVisitor {
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
                     this.tags = [...this.tags, tag];
-                } else if (this.getClass(subNode) === DEFINED_NODES.variable) {
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.variable) {
                     const tag = subNode.name;
                     const type = subNode.elementType;
                     if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
@@ -119,11 +119,11 @@ class ToOOXMLVisitor {
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
                     this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
-                } else if (this.getClass(subNode) === DEFINED_NODES.softbreak) {
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
                     this.tags = [...this.tags, SOFTBREAK_RULE()];
                 } else {
                     if (subNode.nodes) {
-                        if (this.getClass(subNode) === DEFINED_NODES.paragraph) {
+                        if (this.getClass(subNode) === TRANSFORMED_NODES.paragraph) {
                             this.traverseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
@@ -134,7 +134,7 @@ class ToOOXMLVisitor {
                             this.globalOOXML += ooxml;
                             // Clear all the tags as all nodes of paragraph have been traversed.
                             this.tags = [];
-                        } else if (this.getClass(subNode) === DEFINED_NODES.heading) {
+                        } else if (this.getClass(subNode) === TRANSFORMED_NODES.heading) {
                             this.traverseNodes(subNode.nodes, properties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
