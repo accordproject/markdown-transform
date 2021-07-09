@@ -17,7 +17,8 @@
 const xmljs = require('xml-js');
 
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+
+const { DEFINED_NODES } = require('./constants');
 
 /**
  * Transforms OOXML to CiceroMark
@@ -92,25 +93,25 @@ class ToCiceroMarkVisitor {
      */
     constructCiceroMarkNodeJSON(nodeInformation) {
         let ciceroMarkNode = {};
-        if (nodeInformation.nodeType === 'softbreak') {
+        if (nodeInformation.nodeType === DEFINED_NODES.softbreak) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Softbreak`,
+                $class: DEFINED_NODES.softbreak,
             };
-        } else if (nodeInformation.nodeType === 'variable') {
+        } else if (nodeInformation.nodeType === DEFINED_NODES.variable) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CiceroMarkModel}Variable`,
+                $class: DEFINED_NODES.variable,
                 value: nodeInformation.value,
                 elementType: nodeInformation.elementType,
                 name: nodeInformation.name,
             };
-        } else if (nodeInformation.nodeType === 'Code') {
+        } else if (nodeInformation.nodeType === DEFINED_NODES.code) {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Code`,
+                $class: DEFINED_NODES.code,
                 text: nodeInformation.value,
             };
         } else {
             ciceroMarkNode = {
-                $class: `${NS_PREFIX_CommonMarkModel}Text`,
+                $class: DEFINED_NODES.text,
                 text: nodeInformation.value,
             };
         }
@@ -195,38 +196,29 @@ class ToCiceroMarkVisitor {
                 let shadeCodePresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
-                        nodeInformation.properties = [
-                            ...nodeInformation.properties,
-                            `${NS_PREFIX_CommonMarkModel}Emph`,
-                        ];
+                        nodeInformation.properties = [...nodeInformation.properties, DEFINED_NODES.emphasize];
                     } else if (runTimeProperties.name === 'w:b') {
-                        nodeInformation.properties = [
-                            ...nodeInformation.properties,
-                            `${NS_PREFIX_CommonMarkModel}Strong`,
-                        ];
+                        nodeInformation.properties = [...nodeInformation.properties, DEFINED_NODES.strong];
                     } else if (runTimeProperties.name === 'w:color') {
                         if (runTimeProperties.attributes['w:val'] === 'C7254E') {
                             colorCodePresent = true;
                         }
                     } else if (runTimeProperties.name === 'w:shd') {
-                        // `w:shd` tag is used to detect the highlight colour of
-                        // the text. Semantically, w:highlight should have been
-                        // used but the latter can render fixed colors only
-                        // unlike what is needed here.
-                        // Reference: http://officeopenxml.com/WPtextShading.php.
+                        // w:highlight can render only fixed colors
+                        // w:shd can detect the highlight color of text which can vary
                         if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
                             shadeCodePresent = true;
                         }
                     }
                 }
                 if (colorCodePresent && shadeCodePresent) {
-                    nodeInformation.nodeType = 'Code';
+                    nodeInformation.nodeType = DEFINED_NODES.code;
                 }
             } else if (runTimeNodes.name === 'w:t') {
                 nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             } else if (runTimeNodes.name === 'w:sym') {
-                nodeInformation.nodeType = 'softbreak';
+                nodeInformation.nodeType = DEFINED_NODES.softbreak;
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             }
         }
@@ -251,14 +243,14 @@ class ToCiceroMarkVisitor {
 
                 if (isHeading) {
                     let headingNode = {
-                        $class: `${NS_PREFIX_CommonMarkModel}Heading`,
+                        $class: DEFINED_NODES.heading,
                         level,
                         nodes: [],
                     };
                     this.generateNodes(headingNode);
                 } else {
                     let paragraphNode = {
-                        $class: `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                        $class: DEFINED_NODES.paragraph,
                         nodes: [],
                     };
                     this.generateNodes(paragraphNode);
@@ -271,7 +263,7 @@ class ToCiceroMarkVisitor {
                     let nodeInformation = {
                         properties: [],
                         value: '',
-                        nodeType: 'variable',
+                        nodeType: DEFINED_NODES.variable,
                         name: null,
                         elementType: null,
                     };
