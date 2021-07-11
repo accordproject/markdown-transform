@@ -169,6 +169,18 @@ const CODE_PROPERTIES_RULE = () => {
     `;
 };
 
+const THEMATICBREAK_RULE = () => {
+    return `
+      <w:p>
+        <w:pPr>
+          <w:pBdr>
+            <w:bottom w:val="single" w:sz="12" w:space="1" w:color="auto"/>
+          </w:pBdr>
+        </w:pPr>
+      </w:p>
+    `;
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -179,5 +191,6 @@ module.exports = {
     VARIABLE_RULE,
     SOFTBREAK_RULE,
     STRONG_RULE,
-    CODE_PROPERTIES_RULE
+    CODE_PROPERTIES_RULE,
+    THEMATICBREAK_RULE
 };

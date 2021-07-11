@@ -84,6 +84,31 @@ class ToCiceroMarkVisitor {
     }
 
     /**
+     * Checks if the node is a thematic break or not
+     *
+     * @param {Array} paragraphProperty paragraph styling properties
+     * @returns {boolean} Node === thematic break
+     */
+    checkThematicBreakProperties(paragraphProperty) {
+        if (!paragraphProperty) {
+            return false;
+        }
+
+        if (paragraphProperty.name === 'w:pBdr') {
+            for (const property of paragraphProperty.elements) {
+                if (property.name === 'w:bottom') {
+                    const attributes = property.attributes;
+                    if (attributes['w:val'] === 'single' && attributes['w:sz'] === '12') {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Constructs a ciceroMark Node for inline element from the information.
      *
      * @param {object} nodeInformation Contains properties and value of a node
@@ -237,6 +262,18 @@ class ToCiceroMarkVisitor {
                 const { isHeading, level } = this.getHeading(
                     subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
                 );
+
+                const isThematicBreak = this.checkThematicBreakProperties(
+                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
+                );
+
+                if (isThematicBreak) {
+                    const thematicBreakNode = {
+                        $class: TRANSFORMED_NODES.thematicBreak,
+                    };
+                    this.nodes = [...this.nodes, thematicBreakNode];
+                    continue;
+                }
 
                 if (subNode.elements) {
                     this.traverseElements(subNode.elements);
