@@ -98,7 +98,7 @@ class ToCiceroMarkVisitor {
             for (const property of paragraphProperty.elements) {
                 if (property.name === 'w:bottom') {
                     const attributes = property.attributes;
-                    if (attributes['w:val'] === 'single' && attributes['w:sz'] === '12') {
+                    if (attributes['w:val'] === 'single' && attributes['w:sz'] === '6') {
                         return true;
                     }
                 }

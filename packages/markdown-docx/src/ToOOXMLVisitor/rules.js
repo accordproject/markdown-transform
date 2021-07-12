@@ -169,12 +169,7 @@ const CODE_PROPERTIES_RULE = () => {
     `;
 };
 
-const LINEBREAK_RULE = () => {
-    return '<w:p/>';
-};
-
 const THEMATICBREAK_RULE = () => {
-    // add linebreak to provide bottom offset.
     return `
       <w:p>
         <w:pPr>
@@ -183,7 +178,6 @@ const THEMATICBREAK_RULE = () => {
           </w:pBdr>
         </w:pPr>
       </w:p>
-      ${LINEBREAK_RULE()}
     `;
 };
 
