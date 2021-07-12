@@ -87,7 +87,7 @@ class ToCiceroMarkVisitor {
      * Checks if the node is a thematic break or not
      *
      * @param {Array} paragraphProperty paragraph styling properties
-     * @returns {boolean} Node === thematic break
+     * @returns {boolean} true if the node is of type thematic break or else, false
      */
     checkThematicBreakProperties(paragraphProperty) {
         if (!paragraphProperty) {
