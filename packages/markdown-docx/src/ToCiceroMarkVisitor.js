@@ -86,26 +86,34 @@ class ToCiceroMarkVisitor {
     /**
      * Checks if the node is a thematic break or not
      *
-     * @param {Array} paragraphProperty paragraph styling properties
+     * @param {Array} paragraphProperties paragraph styling properties
      * @returns {boolean} true if the node is of type thematic break or else, false
      */
-    checkThematicBreakProperties(paragraphProperty) {
-        if (!paragraphProperty) {
+    checkThematicBreakProperties(paragraphProperties) {
+        if (!paragraphProperties) {
             return false;
         }
 
-        if (paragraphProperty.name === 'w:pBdr') {
-            for (const property of paragraphProperty.elements) {
-                if (property.name === 'w:bottom') {
-                    const attributes = property.attributes;
-                    if (attributes['w:val'] === 'single' && attributes['w:sz'] === '6') {
-                        return true;
+        let isBorderPresent = false;
+        let isSpacingPresent = false;
+
+        for (const property of paragraphProperties) {
+            if (property.name === 'w:pBdr') {
+                for (const subProperty of property.elements) {
+                    if (subProperty.name === 'w:bottom') {
+                        const attributes = subProperty.attributes;
+                        if (attributes['w:val'] === 'single' && attributes['w:sz'] === '6') {
+                            isBorderPresent = true;
+                        }
                     }
                 }
             }
+            if (property.name === 'w:spacing' && property.attributes['w:after'] === '480') {
+                isSpacingPresent = true;
+            }
         }
 
-        return false;
+        return isBorderPresent && isSpacingPresent;
     }
 
     /**
@@ -259,13 +267,15 @@ class ToCiceroMarkVisitor {
     traverseElements(node, parent = '') {
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
+                if (!subNode.elements) {
+                    continue;
+                }
+
                 const { isHeading, level } = this.getHeading(
-                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
+                    subNode.elements[0].elements && subNode.elements[0].elements[0]
                 );
 
-                const isThematicBreak = this.checkThematicBreakProperties(
-                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
-                );
+                const isThematicBreak = this.checkThematicBreakProperties(subNode.elements[0].elements);
 
                 if (isThematicBreak) {
                     const thematicBreakNode = {
@@ -275,9 +285,7 @@ class ToCiceroMarkVisitor {
                     continue;
                 }
 
-                if (subNode.elements) {
-                    this.traverseElements(subNode.elements);
-                }
+                this.traverseElements(subNode.elements);
 
                 if (isHeading) {
                     let headingNode = {
