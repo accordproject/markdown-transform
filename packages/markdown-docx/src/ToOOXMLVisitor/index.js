@@ -25,6 +25,7 @@ const {
     SOFTBREAK_RULE,
     STRONG_RULE,
     CODE_PROPERTIES_RULE,
+    THEMATICBREAK_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 const { TRANSFORMED_NODES } = require('../constants');
@@ -121,6 +122,8 @@ class ToOOXMLVisitor {
                     this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
                     this.tags = [...this.tags, SOFTBREAK_RULE()];
+                } else if(this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak){
+                    this.globalOOXML += THEMATICBREAK_RULE();
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === TRANSFORMED_NODES.paragraph) {

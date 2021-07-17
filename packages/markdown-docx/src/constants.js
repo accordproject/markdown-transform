@@ -28,6 +28,7 @@ const TRANSFORMED_NODES = {
     softbreak: `${NS_PREFIX_CommonMarkModel}Softbreak`,
     strong: `${NS_PREFIX_CommonMarkModel}Strong`,
     text: `${NS_PREFIX_CommonMarkModel}Text`,
+    thematicBreak: `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
     variable: `${NS_PREFIX_CiceroMarkModel}Variable`,
 };
 
