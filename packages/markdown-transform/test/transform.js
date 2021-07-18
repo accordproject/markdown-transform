@@ -321,7 +321,7 @@ describe('#formatDescriptor', () => {
 });
 
 describe('#ooxml', () => {
-    it('ooxml->ciceromark_parsed', async () => {
+    it('ooxml -> ciceromark_parsed', async () => {
         const result = await transform(partialAcceptanceXML, 'ooxml' , ['ciceromark_parsed'], {}, {});
         chai.expect(result).to.deep.equal(partialAcceptanceCiceroMarkParsed);
     });
