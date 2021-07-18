@@ -84,6 +84,35 @@ class ToCiceroMarkVisitor {
     }
 
     /**
+     * Checks if the node is a thematic break or not
+     *
+     * @param {Array} paragraphProperties paragraph styling properties
+     * @returns {boolean} true if the node is of type thematic break or else, false
+     */
+    checkThematicBreakProperties(paragraphProperties) {
+        if (!paragraphProperties) {
+            return false;
+        }
+
+        let isBorderPresent = false;
+
+        for (const property of paragraphProperties) {
+            if (property.name === 'w:pBdr') {
+                for (const subProperty of property.elements) {
+                    if (subProperty.name === 'w:bottom') {
+                        const attributes = subProperty.attributes;
+                        if (attributes['w:val'] === 'single' && attributes['w:sz'] === '6') {
+                            isBorderPresent = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return isBorderPresent;
+    }
+
+    /**
      * Constructs a ciceroMark Node for inline element from the information.
      *
      * @param {object} nodeInformation Contains properties and value of a node
@@ -234,13 +263,25 @@ class ToCiceroMarkVisitor {
     traverseElements(node, parent = '') {
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
+                if (!subNode.elements) {
+                    continue;
+                }
+
                 const { isHeading, level } = this.getHeading(
-                    subNode.elements && subNode.elements[0].elements && subNode.elements[0].elements[0]
+                    subNode.elements[0].elements && subNode.elements[0].elements[0]
                 );
 
-                if (subNode.elements) {
-                    this.traverseElements(subNode.elements);
+                const isThematicBreak = this.checkThematicBreakProperties(subNode.elements[0].elements);
+
+                if (isThematicBreak) {
+                    const thematicBreakNode = {
+                        $class: TRANSFORMED_NODES.thematicBreak,
+                    };
+                    this.nodes = [...this.nodes, thematicBreakNode];
+                    continue;
                 }
+
+                this.traverseElements(subNode.elements);
 
                 if (isHeading) {
                     let headingNode = {
