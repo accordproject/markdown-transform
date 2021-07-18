@@ -169,6 +169,10 @@ const CODE_PROPERTIES_RULE = () => {
     `;
 };
 
+const LINEBREAK_RULE = () => {
+    return '<w:p/>';
+};
+
 const THEMATICBREAK_RULE = () => {
     return `
       <w:p>
@@ -176,9 +180,9 @@ const THEMATICBREAK_RULE = () => {
           <w:pBdr>
             <w:bottom w:val="single" w:sz="6" w:space="1" w:color="auto"/>
           </w:pBdr>
-          <w:spacing w:after="480"/>
         </w:pPr>
       </w:p>
+      ${LINEBREAK_RULE()}
     `;
 };
 

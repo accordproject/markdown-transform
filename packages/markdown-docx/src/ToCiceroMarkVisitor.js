@@ -95,7 +95,6 @@ class ToCiceroMarkVisitor {
         }
 
         let isBorderPresent = false;
-        let isSpacingPresent = false;
 
         for (const property of paragraphProperties) {
             if (property.name === 'w:pBdr') {
@@ -108,12 +107,9 @@ class ToCiceroMarkVisitor {
                     }
                 }
             }
-            if (property.name === 'w:spacing' && property.attributes['w:after'] === '480') {
-                isSpacingPresent = true;
-            }
         }
 
-        return isBorderPresent && isSpacingPresent;
+        return isBorderPresent;
     }
 
     /**
