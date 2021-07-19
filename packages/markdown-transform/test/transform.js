@@ -55,8 +55,8 @@ const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__d
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
 const acceptanceHtml = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8'));
-const partialAcceptanceXML = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'partial_acceptance.xml'), 'utf8');
-const partialAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'partial_acceptance.json'), 'utf8'));
+const partialAcceptanceXML = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml'), 'utf8');
+const partialAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json'), 'utf8'));
 
 // Sample test
 const samplePdf = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.pdf'));

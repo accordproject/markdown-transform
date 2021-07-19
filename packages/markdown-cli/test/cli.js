@@ -151,7 +151,7 @@ describe('markdown-cli (docx)', () => {
 
 describe('markdown-cli (ooxml)', () => {
     // Partial Acceptance test
-    const inputOOXMLFile = path.resolve(__dirname, 'data/acceptance', 'partial_acceptance.xml');
+    const inputOOXMLFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml');
 
     describe('#parse', () => {
         it('should roundtrip ciceromark_parsed <-> ooxml', async () => {
