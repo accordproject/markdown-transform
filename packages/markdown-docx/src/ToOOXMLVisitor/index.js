@@ -166,13 +166,13 @@ class ToOOXMLVisitor {
      * Transforms the given CiceroMark JSON to OOXML
      *
      * @param {Object} ciceromark CiceroMark JSON to be converted
-     * @returns {object} { Converted OOXML string i.e. CiceroMark->OOXML, Frequency of variables }
+     * @returns {string} OOXML string
      */
     toOOXML(ciceromark) {
         this.traverseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
 
-        return { ooxml: this.globalOOXML, counter: this.counter };
+        return this.globalOOXML;
     }
 }
 

@@ -31,7 +31,7 @@ const checkRoundTripEquality = async filePath => {
     ciceroMark = JSON.parse(ciceroMark);
 
     const ooxmlTransformer = new OOXMLTransformer();
-    const { ooxml } = ooxmlTransformer.toOOXML(ciceroMark);
+    const ooxml = ooxmlTransformer.toOOXML(ciceroMark);
 
     const convertedCiceroMark = ooxmlTransformer.toCiceroMark(ooxml);
     expect(convertedCiceroMark).to.deep.equal(ciceroMark);
