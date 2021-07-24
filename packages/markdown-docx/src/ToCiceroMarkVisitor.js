@@ -113,6 +113,50 @@ class ToCiceroMarkVisitor {
     }
 
     /**
+     * Checks if the node is a thematic break or not
+     *
+     * @param {Array} paragraphProperties paragraph styling properties
+     * @returns {boolean} true if the node is of type thematic break or else, false
+     */
+    checkCodeBlockProperties(paragraphProperties) {
+        let isDesiredTopBorderPresent = false;
+        let isDesiredBottomBorderPresent = false;
+        let isDesiredLeftBorderPresent = false;
+        let isDesiredRightBorderPresent = false;
+        let isDesiredShadePresent = false;
+
+        for (const property of paragraphProperties) {
+            if (property.name === 'w:pBdr') {
+                // do something
+                for (const borderProperty of property.elements) {
+                    if (borderProperty.attributes['w:color'] === 'CCCCCC') {
+                        if (borderProperty.name === 'w:top') {
+                            isDesiredTopBorderPresent = true;
+                        } else if (borderProperty.name === 'w:bottom') {
+                            isDesiredBottomBorderPresent = true;
+                        } else if (borderProperty.name === 'w:left') {
+                            isDesiredLeftBorderPresent = true;
+                        } else if (borderProperty.name === 'w:right') {
+                            isDesiredRightBorderPresent = true;
+                        }
+                    }
+                }
+            } else if (property.name === 'w:shd') {
+                if (property.attributes['w:fill'] === 'F8F8F8') {
+                    isDesiredShadePresent = true;
+                }
+            }
+        }
+        return (
+            isDesiredTopBorderPresent &&
+            isDesiredBottomBorderPresent &&
+            isDesiredLeftBorderPresent &&
+            isDesiredRightBorderPresent &&
+            isDesiredShadePresent
+        );
+    }
+
+    /**
      * Constructs a ciceroMark Node for inline element from the information.
      *
      * @param {object} nodeInformation Contains properties and value of a node
@@ -213,10 +257,13 @@ class ToCiceroMarkVisitor {
     /**
      * Traverses for properties and value.
      *
-     * @param {Array}  node            Node to be traversed
-     * @param {object} nodeInformation Information for the current node
+     * @param {Array}   node              Node to be traversed
+     * @param {object}  nodeInformation   Information for the current node
+     * @param {Boolean} calledByCodeBlock Is function called by codeblock checker
+     * @returns {string} Value in <w:t> tags
      */
-    fetchFormattingProperties(node, nodeInformation) {
+    fetchFormattingProperties(node, nodeInformation, calledByCodeBlock = false) {
+        let ooxmlTagTextValue = '';
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
                 let colorCodePresent = false;
@@ -245,13 +292,21 @@ class ToCiceroMarkVisitor {
                     nodeInformation.nodeType = TRANSFORMED_NODES.code;
                 }
             } else if (runTimeNodes.name === 'w:t') {
-                nodeInformation.value = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
-                this.JSONXML = [...this.JSONXML, nodeInformation];
+                if (calledByCodeBlock) {
+                    ooxmlTagTextValue += runTimeNodes.elements ? runTimeNodes.elements[0].text : '';
+                } else {
+                    ooxmlTagTextValue = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
+                    nodeInformation.value = ooxmlTagTextValue;
+                    this.JSONXML = [...this.JSONXML, nodeInformation];
+                }
+            } else if (runTimeNodes.name === 'w:br') {
+                ooxmlTagTextValue += '\n';
             } else if (runTimeNodes.name === 'w:sym') {
                 nodeInformation.nodeType = TRANSFORMED_NODES.softbreak;
                 this.JSONXML = [...this.JSONXML, nodeInformation];
             }
         }
+        return ooxmlTagTextValue;
     }
 
     /**
@@ -272,6 +327,23 @@ class ToCiceroMarkVisitor {
                 );
 
                 const isThematicBreak = this.checkThematicBreakProperties(subNode.elements[0].elements);
+
+                const isCodeBlock = this.checkCodeBlockProperties(subNode.elements[0].elements);
+
+                if (isCodeBlock) {
+                    let text = '';
+                    for (const codeBlockSubNode of subNode.elements) {
+                        if (codeBlockSubNode.name === 'w:r') {
+                            text = this.fetchFormattingProperties(codeBlockSubNode, undefined, true);
+                        }
+                    }
+                    const codeBlockNode = {
+                        $class: TRANSFORMED_NODES.codeBlock,
+                        text,
+                    };
+                    this.nodes = [...this.nodes, codeBlockNode];
+                    continue;
+                }
 
                 if (isThematicBreak) {
                     const thematicBreakNode = {

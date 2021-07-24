@@ -19,6 +19,7 @@ const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').
 
 const TRANSFORMED_NODES = {
     code: `${NS_PREFIX_CommonMarkModel}Code`,
+    codeBlock: `${NS_PREFIX_CommonMarkModel}CodeBlock`,
     computedVariable: `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
     document: `${NS_PREFIX_CommonMarkModel}Document`,
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,

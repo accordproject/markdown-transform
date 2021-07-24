@@ -26,6 +26,8 @@ const {
     STRONG_RULE,
     CODE_PROPERTIES_RULE,
     THEMATICBREAK_RULE,
+    CODEBLOCK_PROPERTIES_RULE,
+    CODEBLOCK_FONTPROPERTIES_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags } = require('./helpers');
 const { TRANSFORMED_NODES } = require('../constants');
@@ -99,6 +101,20 @@ class ToOOXMLVisitor {
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
                     this.tags = [...this.tags, tag];
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
+                    let ooxml = CODEBLOCK_PROPERTIES_RULE();
+                    let textValues = subNode.text.split('\n');
+                    let textValueTag = '';
+                    for (let textValueIndex = 0; textValueIndex < textValues.length; textValueIndex++) {
+                        textValueTag += TEXT_RULE(textValues[textValueIndex]);
+                        if (textValueIndex !== textValues.length - 1) {
+                            textValueTag += '<w:br />';
+                        }
+                    }
+                    let textPropertyTag = TEXT_STYLES_RULE(CODEBLOCK_FONTPROPERTIES_RULE());
+                    ooxml += TEXT_WRAPPER_RULE(textPropertyTag, textValueTag);
+
+                    this.globalOOXML += PARAGRAPH_RULE(ooxml);
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.variable) {
                     const tag = subNode.name;
                     const type = subNode.elementType;
@@ -122,7 +138,7 @@ class ToOOXMLVisitor {
                     this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
                     this.tags = [...this.tags, SOFTBREAK_RULE()];
-                } else if(this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak){
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak) {
                     this.globalOOXML += THEMATICBREAK_RULE();
                 } else {
                     if (subNode.nodes) {

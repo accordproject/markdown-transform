@@ -169,6 +169,24 @@ const CODE_PROPERTIES_RULE = () => {
     `;
 };
 
+const CODEBLOCK_FONTPROPERTIES_RULE = () => {
+    return '<w:rFonts w:ascii="Courier New" w:h-ansi="Courier New" w:cs="Courier New"/>';
+};
+
+const CODEBLOCK_PROPERTIES_RULE = () => {
+    return `
+    <w:pPr>
+      <w:pBdr>
+        <w:top w:val="single" w:sz="4" w:space="1" w:color="CCCCCC" />
+        <w:left w:val="single" w:sz="4" w:space="4" w:color="CCCCCC" />
+        <w:bottom w:val="single" w:sz="4" w:space="1" w:color="CCCCCC" />
+        <w:right w:val="single" w:sz="4" w:space="4" w:color="CCCCCC" />
+      </w:pBdr>
+      <w:shd w:val="clear" w:color="auto" w:fill="F8F8F8"/>
+    </w:pPr>
+    `;
+};
+
 const LINEBREAK_RULE = () => {
     return '<w:p/>';
 };
@@ -197,5 +215,7 @@ module.exports = {
     SOFTBREAK_RULE,
     STRONG_RULE,
     CODE_PROPERTIES_RULE,
+    CODEBLOCK_PROPERTIES_RULE,
+    CODEBLOCK_FONTPROPERTIES_RULE,
     THEMATICBREAK_RULE,
 };
