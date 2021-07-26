@@ -168,7 +168,7 @@ const transformationGraph = {
         },
         ooxml: (input) => {
             const t = new OOXMLTransformer();
-            return t.toOOXML(input).ooxml;
+            return t.toOOXML(input);
         }
     },
     data: {
