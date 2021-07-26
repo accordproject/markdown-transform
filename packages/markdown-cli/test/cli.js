@@ -150,7 +150,7 @@ describe('markdown-cli (docx)', () => {
 });
 
 describe('markdown-cli (ooxml)', () => {
-    // Partial Acceptance test
+    // Omitted Acceptance test
     const inputOOXMLFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml');
     const inputCiceroMarkFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json');
 

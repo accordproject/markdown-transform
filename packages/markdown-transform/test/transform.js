@@ -55,8 +55,8 @@ const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__d
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
 const acceptanceHtml = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8'));
-const partialAcceptanceXML = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml'), 'utf8');
-const partialAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json'), 'utf8'));
+const omittedAcceptanceXML = fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml'), 'utf8');
+const omittedAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json'), 'utf8'));
 
 // Sample test
 const samplePdf = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.pdf'));
@@ -170,8 +170,8 @@ describe('#acceptance', () => {
         });
 
         it('ciceromark_parsed -> ooxml', async () => {
-            const result = await transform(partialAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['ooxml'], {}, {});
-            result.should.equal(partialAcceptanceXML);
+            const result = await transform(omittedAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['ooxml'], {}, {});
+            result.should.equal(omittedAcceptanceXML);
         });
     });
 
@@ -322,7 +322,7 @@ describe('#formatDescriptor', () => {
 
 describe('#ooxml', () => {
     it('ooxml -> ciceromark_parsed', async () => {
-        const result = await transform(partialAcceptanceXML, 'ooxml' , ['ciceromark_parsed'], {}, {});
-        chai.expect(result).to.deep.equal(partialAcceptanceCiceroMarkParsed);
+        const result = await transform(omittedAcceptanceXML, 'ooxml' , ['ciceromark_parsed'], {}, {});
+        chai.expect(result).to.deep.equal(omittedAcceptanceCiceroMarkParsed);
     });
 });
