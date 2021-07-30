@@ -148,3 +148,21 @@ describe('markdown-cli (docx)', () => {
         });
     });
 });
+
+describe('markdown-cli (ooxml)', () => {
+    // Omitted Acceptance test
+    const inputOOXMLFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml');
+    const inputCiceroMarkFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json');
+
+    describe('#parse', () => {
+        it('should roundtrip ooxml <-> ciceromark_parsed ', async () => {
+            const result = await Commands.transform(inputOOXMLFile, 'ooxml', [], 'ciceromark_parsed', null, {}, { roundtrip: true });
+            result.should.equal(fs.readFileSync(inputOOXMLFile, 'utf-8'));
+        });
+        it('should roundtrip ciceromark_parsed <-> ooxml', async () => {
+            const result = await Commands.transform(inputCiceroMarkFile, 'ciceromark_parsed', [], 'ooxml', null, {}, { roundtrip: true });
+            JSON.parse(result).should.deep.eql(JSON.parse(fs.readFileSync(inputCiceroMarkFile, 'utf-8')));
+        });
+    });
+});
+
