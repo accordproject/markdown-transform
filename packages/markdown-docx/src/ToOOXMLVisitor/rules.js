@@ -204,6 +204,31 @@ const THEMATICBREAK_RULE = () => {
     `;
 };
 
+/**
+ * Inserts a clause object in OOXML syntax
+ *
+ * @param {string} title Title of the clause
+ * @param {string} tag Tag of the clause
+ * @param {string} type Type of the clause
+ * @param {string} content Content of the clause
+ * @returns {string} OOXML for the clause
+ */
+const CLAUSE_RULE = (title, tag, type, content) => {
+    return `
+      <w:sdt>
+        <w:sdtPr>
+          <w:lock w:val="contentLocked"/>
+          <w15:color w:val="99CCFF"/>
+          <w:alias w:val="${titleGenerator(title, type)}"/>
+          <w:tag w:val="${tag}"/>
+        </w:sdtPr>
+        <w:sdtContent>
+          ${content}
+        </w:sdtContent>
+      </w:sdt>
+    `;
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -218,4 +243,5 @@ module.exports = {
     CODEBLOCK_PROPERTIES_RULE,
     CODEBLOCK_FONTPROPERTIES_RULE,
     THEMATICBREAK_RULE,
+    CLAUSE_RULE,
 };

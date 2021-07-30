@@ -36,13 +36,45 @@ function titleGenerator(title, type) {
 }
 
 /**
+ * Generates a radom string
+ *
+ * @returns {string} ID generated
+ */
+function generateRandomId() {
+    let id = '';
+    for (let i = 0; i < 25; i++) {
+        id += Math.floor(Math.random() * 10);
+    }
+    return id;
+}
+
+/**
+ * Wraps the OOXML in locked content controls
+ *
+ * @param {string} ooxml      OOXML string to be wrapped
+ * @returns {string} OOXML wrapped in locked content controls
+ */
+function wrapAroundLockedContentControls(ooxml) {
+    return `
+    <w:sdt>
+      <w:sdtPr>
+        <w:lock w:val="contentLocked" />
+        <w:alias w:val="${generateRandomId()}"/>
+      </w:sdtPr>
+      <w:sdtContent>
+      ${ooxml}
+      </w:sdtContent>
+    </w:sdt>
+    `;
+}
+
+/**
  * Wraps OOXML in docx headers.
  *
  * @param {string} ooxml OOXML to be wrapped
  * @returns {string} OOXML wraped in docx headers
  */
 function wrapAroundDefaultDocxTags(ooxml) {
-
     const HEADING_STYLE_SPEC = `
   <pkg:part pkg:name="/word/styles.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml">
   <pkg:xmlData>
@@ -264,4 +296,4 @@ function wrapAroundDefaultDocxTags(ooxml) {
     return ooxml;
 }
 
-module.exports = { sanitizeHtmlChars, titleGenerator, wrapAroundDefaultDocxTags };
+module.exports = { sanitizeHtmlChars, titleGenerator, wrapAroundDefaultDocxTags, wrapAroundLockedContentControls };

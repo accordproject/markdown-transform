@@ -84,6 +84,25 @@ class ToCiceroMarkVisitor {
     }
 
     /**
+     * Gets the node type based on the color property.
+     *
+     * @param {Array} properties the variable elements
+     * @returns {string} the type of the node
+     */
+    getNodeType(properties) {
+        let nodeType = TRANSFORMED_NODES.variable;
+        for (const property of properties) {
+            if (property.name === 'w15:color') {
+                // eg. "Shipper1 | org.accordproject.organization.Organization"
+                if (property.attributes['w:val'] === '99CCFF') {
+                    nodeType = TRANSFORMED_NODES.clause;
+                }
+            }
+        }
+        return nodeType;
+    }
+
+    /**
      * Checks if the node is a thematic break or not
      *
      * @param {Array} paragraphProperties paragraph styling properties
@@ -202,9 +221,11 @@ class ToCiceroMarkVisitor {
     /**
      * Generates all nodes present in a block element( paragraph, heading ).
      *
-     * @param {object} rootNode Block node like paragraph, heading, etc.
+     * @param {object}  rootNode              Block node like paragraph, heading, etc.
+     * @param {boolean} returnConstructedNode return the constructed node if true else appends it to nodes array
+     * @returns {*} Node if returnConstructedNode else None
      */
-    generateNodes(rootNode) {
+    generateNodes(rootNode, returnConstructedNode = false) {
         if (this.JSONXML.length > 0) {
             let constructedNode;
             constructedNode = this.constructCiceroMarkNodeJSON(this.JSONXML[0]);
@@ -250,7 +271,11 @@ class ToCiceroMarkVisitor {
                 }
             }
             this.JSONXML = [];
-            this.nodes = [...this.nodes, rootNode];
+            if (returnConstructedNode) {
+                return rootNode;
+            } else {
+                this.nodes = [...this.nodes, rootNode];
+            }
         }
     }
 
@@ -313,9 +338,12 @@ class ToCiceroMarkVisitor {
      * Traverses the JSON object of XML elements in DFS approach.
      *
      * @param {object} node Node object to be traversed
-     * @param {object} parent Parent node name
+     * @param {string} parent Parent node name
+     * @returns {*} GeneratedNode if parent is of type clause else none
      */
     traverseElements(node, parent = '') {
+        // Contains node present in a codeblock or blockquote, etc.
+        let blockNodes = [];
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
                 if (!subNode.elements) {
@@ -349,8 +377,12 @@ class ToCiceroMarkVisitor {
                     const thematicBreakNode = {
                         $class: TRANSFORMED_NODES.thematicBreak,
                     };
-                    this.nodes = [...this.nodes, thematicBreakNode];
-                    continue;
+                    if (parent === TRANSFORMED_NODES.clause) {
+                        blockNodes = [...blockNodes, thematicBreakNode];
+                    } else {
+                        this.nodes = [...this.nodes, thematicBreakNode];
+                        continue;
+                    }
                 }
 
                 this.traverseElements(subNode.elements);
@@ -361,13 +393,21 @@ class ToCiceroMarkVisitor {
                         level,
                         nodes: [],
                     };
-                    this.generateNodes(headingNode);
+                    if (parent === TRANSFORMED_NODES.clause) {
+                        blockNodes = [...blockNodes, this.generateNodes(headingNode, true)];
+                    } else {
+                        this.generateNodes(headingNode);
+                    }
                 } else {
                     let paragraphNode = {
                         $class: TRANSFORMED_NODES.paragraph,
                         nodes: [],
                     };
-                    this.generateNodes(paragraphNode);
+                    if (parent === TRANSFORMED_NODES.clause) {
+                        blockNodes = [...blockNodes, this.generateNodes(paragraphNode, true)];
+                    } else {
+                        this.generateNodes(paragraphNode);
+                    }
                 }
             } else if (subNode.name === 'w:sdt') {
                 // denotes the whole template if parent is body
@@ -376,7 +416,6 @@ class ToCiceroMarkVisitor {
                 } else {
                     let nodeInformation = {
                         properties: [],
-                        value: '',
                         nodeType: TRANSFORMED_NODES.variable,
                         name: null,
                         elementType: null,
@@ -385,11 +424,23 @@ class ToCiceroMarkVisitor {
                         if (variableSubNodes.name === 'w:sdtPr') {
                             nodeInformation.name = this.getName(variableSubNodes.elements);
                             nodeInformation.elementType = this.getElementType(variableSubNodes.elements);
+                            nodeInformation.nodeType = this.getNodeType(variableSubNodes.elements);
                         }
                         if (variableSubNodes.name === 'w:sdtContent') {
-                            for (const variableContentNodes of variableSubNodes.elements) {
-                                if (variableContentNodes.name === 'w:r') {
-                                    this.fetchFormattingProperties(variableContentNodes, nodeInformation);
+                            if (nodeInformation.nodeType === TRANSFORMED_NODES.clause) {
+                                const nodes = this.traverseElements(variableSubNodes.elements, TRANSFORMED_NODES.clause);
+                                const clauseNode = {
+                                    $class: TRANSFORMED_NODES.clause,
+                                    elementType: nodeInformation.elementType,
+                                    name: nodeInformation.name,
+                                    nodes,
+                                };
+                                this.nodes = [...this.nodes, clauseNode];
+                            } else {
+                                for (const variableContentNodes of variableSubNodes.elements) {
+                                    if (variableContentNodes.name === 'w:r') {
+                                        this.fetchFormattingProperties(variableContentNodes, nodeInformation);
+                                    }
                                 }
                             }
                         }
@@ -400,6 +451,7 @@ class ToCiceroMarkVisitor {
                 this.fetchFormattingProperties(subNode, nodeInformation);
             }
         }
+        return blockNodes;
     }
 
     /**
