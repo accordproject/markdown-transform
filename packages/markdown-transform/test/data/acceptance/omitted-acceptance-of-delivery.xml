@@ -42,6 +42,13 @@
                 xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se w16cid wp14">
                 <w:body>
                     
+    <w:sdt>
+      <w:sdtPr>
+        <w:lock w:val="contentLocked" />
+        <w:alias w:val="Template"/>
+      </w:sdtPr>
+      <w:sdtContent>
+      
       <w:p>
         
       <w:pPr>
@@ -509,6 +516,9 @@
     
       </w:r>
       </w:p>
+    
+      </w:sdtContent>
+    </w:sdt>
     
                     <w:p/>
                 </w:body>

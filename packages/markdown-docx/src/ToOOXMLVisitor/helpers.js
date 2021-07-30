@@ -36,19 +36,6 @@ function titleGenerator(title, type) {
 }
 
 /**
- * Generates a radom string
- *
- * @returns {string} ID generated
- */
-function generateRandomId() {
-    let id = '';
-    for (let i = 0; i < 25; i++) {
-        id += Math.floor(Math.random() * 10);
-    }
-    return id;
-}
-
-/**
  * Wraps the OOXML in locked content controls
  *
  * @param {string} ooxml      OOXML string to be wrapped
@@ -59,7 +46,7 @@ function wrapAroundLockedContentControls(ooxml) {
     <w:sdt>
       <w:sdtPr>
         <w:lock w:val="contentLocked" />
-        <w:alias w:val="${generateRandomId()}"/>
+        <w:alias w:val="Template"/>
       </w:sdtPr>
       <w:sdtContent>
       ${ooxml}
