@@ -113,10 +113,10 @@ class ToCiceroMarkVisitor {
     }
 
     /**
-     * Checks if the node is a thematic break or not
+     * Checks if the node is a codeblock or not
      *
      * @param {Array} paragraphProperties paragraph styling properties
-     * @returns {boolean} true if the node is of type thematic break or else, false
+     * @returns {boolean} true if the node is of type codeblock or else, false
      */
     checkCodeBlockProperties(paragraphProperties) {
         let isDesiredTopBorderPresent = false;
