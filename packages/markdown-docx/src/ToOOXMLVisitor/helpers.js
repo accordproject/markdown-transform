@@ -36,7 +36,7 @@ function titleGenerator(title, type) {
 }
 
 /**
- * Wraps the OOXML in locked content controls
+ * Wraps the OOXML in locked w:sdt tags to prevent content editing.
  *
  * @param {string} ooxml      OOXML string to be wrapped
  * @returns {string} OOXML wrapped in locked content controls
