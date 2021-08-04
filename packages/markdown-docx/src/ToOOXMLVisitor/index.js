@@ -28,8 +28,9 @@ const {
     THEMATICBREAK_RULE,
     CODEBLOCK_PROPERTIES_RULE,
     CODEBLOCK_FONTPROPERTIES_RULE,
+    CLAUSE_RULE,
 } = require('./rules');
-const { wrapAroundDefaultDocxTags } = require('./helpers');
+const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
 const { TRANSFORMED_NODES } = require('../constants');
 
 /**
@@ -140,6 +141,60 @@ class ToOOXMLVisitor {
                     this.tags = [...this.tags, SOFTBREAK_RULE()];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak) {
                     this.globalOOXML += THEMATICBREAK_RULE();
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.clause) {
+                    let clauseOOXML = '';
+                    if (subNode.nodes) {
+                        for (const deepNode of subNode.nodes) {
+                            if (this.getClass(deepNode) === TRANSFORMED_NODES.paragraph) {
+                                this.traverseNodes(deepNode.nodes, properties);
+                                let ooxml = '';
+                                for (let xmlTag of this.tags) {
+                                    ooxml += xmlTag;
+                                }
+                                ooxml = PARAGRAPH_RULE(ooxml);
+                                clauseOOXML += ooxml;
+
+                                // Clear all the tags as all nodes of paragraph have been traversed.
+                                this.tags = [];
+                            } else if (this.getClass(deepNode) === TRANSFORMED_NODES.heading) {
+                                this.traverseNodes(deepNode.nodes, properties);
+                                let ooxml = '';
+                                for (let xmlTag of this.tags) {
+                                    let headingPropertiesTag = '';
+                                    headingPropertiesTag = HEADING_PROPERTIES_RULE(deepNode.level);
+                                    ooxml += headingPropertiesTag;
+                                    ooxml += xmlTag;
+                                }
+
+                                // in DOCX heading is a paragraph with some styling tags present
+                                ooxml = PARAGRAPH_RULE(ooxml);
+                                clauseOOXML += ooxml;
+
+                                this.tags = [];
+                            } else {
+                                let newProperties = [...properties, deepNode.$class];
+                                this.traverseNodes(deepNode.nodes, newProperties);
+                            }
+                        }
+                        const tag = subNode.name;
+                        const type = subNode.elementType;
+                        if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
+                            this.counter = {
+                                ...this.counter,
+                                [tag]: {
+                                    ...this.counter[tag],
+                                    count: ++this.counter[tag].count,
+                                },
+                            };
+                        } else {
+                            this.counter[tag] = {
+                                count: 1,
+                                type,
+                            };
+                        }
+                        const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+                        this.globalOOXML += CLAUSE_RULE(title, tag, type, clauseOOXML);
+                    }
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === TRANSFORMED_NODES.paragraph) {
@@ -186,6 +241,7 @@ class ToOOXMLVisitor {
      */
     toOOXML(ciceromark) {
         this.traverseNodes(ciceromark, []);
+        this.globalOOXML = wrapAroundLockedContentControls(this.globalOOXML);
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
 
         return this.globalOOXML;
