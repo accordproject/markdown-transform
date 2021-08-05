@@ -531,6 +531,7 @@
         <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
           <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/>
           <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+          
         </Relationships>
       </pkg:xmlData>
     </pkg:part>
@@ -684,6 +685,19 @@
           <w:color w:val="1F4D78" w:themeColor="accent1" w:themeShade="7F" />
         </w:rPr>
       </w:style>
+      
+    <w:style w:type="character" w:styleId="Hyperlink">
+      <w:name w:val="Hyperlink"/>
+      <w:basedOn w:val="DefaultParagraphFont"/>
+      <w:uiPriority w:val="99"/>
+      <w:unhideWhenUsed/>
+      <w:rsid w:val="003C09C6"/>
+      <w:rPr>
+        <w:color w:val="0563C1" w:themeColor="hyperlink"/>
+        <w:u w:val="single"/>
+      </w:rPr>
+    </w:style>
+    
     </w:styles>
   </pkg:xmlData>
   </pkg:part>
