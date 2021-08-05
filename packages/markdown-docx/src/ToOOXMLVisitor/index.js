@@ -29,6 +29,8 @@ const {
     CODEBLOCK_PROPERTIES_RULE,
     CODEBLOCK_FONTPROPERTIES_RULE,
     CLAUSE_RULE,
+    LINK_RULE,
+    LINK_PROPERTY_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
 const { TRANSFORMED_NODES } = require('../constants');
@@ -47,6 +49,8 @@ class ToOOXMLVisitor {
         this.counter = {};
         // OOXML tags for a given block node(heading, paragraph, etc.)
         this.tags = [];
+        // Relationship tags for links in a document
+        this.relationShips = [];
     }
 
     /**
@@ -72,11 +76,15 @@ class ToOOXMLVisitor {
             for (let subNode of node) {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
                     let propertyTag = '';
+                    let isLinkPropertyPresent = false;
                     for (let property of properties) {
                         if (property === TRANSFORMED_NODES.emphasize) {
                             propertyTag += EMPHASIS_RULE();
                         } else if (property === TRANSFORMED_NODES.strong) {
                             propertyTag += STRONG_RULE();
+                        } else if (property === TRANSFORMED_NODES.link) {
+                            isLinkPropertyPresent = true;
+                            propertyTag+= LINK_PROPERTY_RULE();
                         }
                     }
                     if (propertyTag) {
@@ -86,14 +94,26 @@ class ToOOXMLVisitor {
                     let textValueTag = TEXT_RULE(subNode.text);
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+
+                    if (isLinkPropertyPresent) {
+                        // some rels are already present
+                        // To avoid overwrite ids start our
+                        // rels from 10
+                        let relationShipId = 'rId' + (this.relationShips.length + 10).toString();
+                        tag = LINK_RULE(tag, relationShipId);
+                    }
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
                     let propertyTag = CODE_PROPERTIES_RULE();
+                    let isLinkPropertyPresent = false;
                     for (let property of properties) {
                         if (property === TRANSFORMED_NODES.emphasize) {
                             propertyTag += EMPHASIS_RULE();
                         } else if (property === TRANSFORMED_NODES.strong) {
                             propertyTag += STRONG_RULE();
+                        } else if (property === TRANSFORMED_NODES.link) {
+                            isLinkPropertyPresent = true;
+                            propertyTag+= LINK_PROPERTY_RULE();
                         }
                     }
                     propertyTag = TEXT_STYLES_RULE(propertyTag);
@@ -101,6 +121,13 @@ class ToOOXMLVisitor {
                     let textValueTag = TEXT_RULE(subNode.text);
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+                    if (isLinkPropertyPresent) {
+                        // some rels are already present
+                        // To avoid overwrite ids start our
+                        // rels from 10
+                        let relationShipId = 'rId' + (this.relationShips.length + 10).toString();
+                        tag = LINK_RULE(tag, relationShipId);
+                    }
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
                     let ooxml = CODEBLOCK_PROPERTIES_RULE();
@@ -224,6 +251,14 @@ class ToOOXMLVisitor {
                             this.globalOOXML += ooxml;
                             this.tags = [];
                         } else {
+                            if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
+                                const relationshipTag = `<Relationship Id="rId${
+                                    this.relationShips.length + 11
+                                }" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${
+                                    subNode.destination
+                                }" TargetMode="External"/>`;
+                                this.relationShips = [...this.relationShips, relationshipTag];
+                            }
                             let newProperties = [...properties, subNode.$class];
                             this.traverseNodes(subNode.nodes, newProperties);
                         }
@@ -242,7 +277,7 @@ class ToOOXMLVisitor {
     toOOXML(ciceromark) {
         this.traverseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundLockedContentControls(this.globalOOXML);
-        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
+        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML, this.relationShips);
 
         return this.globalOOXML;
     }

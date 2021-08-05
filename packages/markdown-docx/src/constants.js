@@ -25,6 +25,7 @@ const TRANSFORMED_NODES = {
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
     heading: `${NS_PREFIX_CommonMarkModel}Heading`,
     item: `${NS_PREFIX_CommonMarkModel}Item`,
+    link: `${NS_PREFIX_CommonMarkModel}Link`,
     paragraph: `${NS_PREFIX_CommonMarkModel}Paragraph`,
     softbreak: `${NS_PREFIX_CommonMarkModel}Softbreak`,
     strong: `${NS_PREFIX_CommonMarkModel}Strong`,

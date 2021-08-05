@@ -229,6 +229,25 @@ const CLAUSE_RULE = (title, tag, type, content) => {
     `;
 };
 
+const LINK_PROPERTY_RULE = () => {
+    return '<w:rStyle w:val="Hyperlink"/>';
+};
+
+/**
+ * Inserts a link node in OOXML syntax.
+ *
+ * @param {string} value          Value to be rendered in the link
+ * @param {string} relationShipId Specifies the ID of the relationship in the relationships part for an external link rId5
+ * @returns {string} Link OOXML
+ */
+const LINK_RULE = (value, relationShipId) => {
+    return `
+    <w:hyperlink r:id="${relationShipId}" w:history="0">
+      ${value}
+    </w:hyperlink>
+  `;
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -244,4 +263,6 @@ module.exports = {
     CODEBLOCK_FONTPROPERTIES_RULE,
     THEMATICBREAK_RULE,
     CLAUSE_RULE,
+    LINK_PROPERTY_RULE,
+    LINK_RULE,
 };

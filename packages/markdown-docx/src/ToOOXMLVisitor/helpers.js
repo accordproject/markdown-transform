@@ -58,10 +58,26 @@ function wrapAroundLockedContentControls(ooxml) {
 /**
  * Wraps OOXML in docx headers.
  *
- * @param {string} ooxml OOXML to be wrapped
+ * @param {string} ooxml         OOXML to be wrapped
+ * @param {Array}  relationships Relationship tags
  * @returns {string} OOXML wraped in docx headers
  */
-function wrapAroundDefaultDocxTags(ooxml) {
+function wrapAroundDefaultDocxTags(ooxml, relationships) {
+
+    const LINK_STYLE_SPEC = `
+    <w:style w:type="character" w:styleId="Hyperlink">
+      <w:name w:val="Hyperlink"/>
+      <w:basedOn w:val="DefaultParagraphFont"/>
+      <w:uiPriority w:val="99"/>
+      <w:unhideWhenUsed/>
+      <w:rsid w:val="003C09C6"/>
+      <w:rPr>
+        <w:color w:val="0563C1" w:themeColor="hyperlink"/>
+        <w:u w:val="single"/>
+      </w:rPr>
+    </w:style>
+    `;
+
     const HEADING_STYLE_SPEC = `
   <pkg:part pkg:name="/word/styles.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml">
   <pkg:xmlData>
@@ -211,10 +227,14 @@ function wrapAroundDefaultDocxTags(ooxml) {
           <w:color w:val="1F4D78" w:themeColor="accent1" w:themeShade="7F" />
         </w:rPr>
       </w:style>
+      ${LINK_STYLE_SPEC}
     </w:styles>
   </pkg:xmlData>
   </pkg:part>
     `;
+
+    let relationshipOOXML = '';
+    relationships.forEach(relationship => (relationshipOOXML += relationship));
 
     const RELATIONSHIP_SPEC = `
     <pkg:part pkg:name="/word/_rels/document.xml.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="256">
@@ -222,6 +242,7 @@ function wrapAroundDefaultDocxTags(ooxml) {
         <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
           <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/>
           <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+          ${relationshipOOXML}
         </Relationships>
       </pkg:xmlData>
     </pkg:part>

@@ -31,6 +31,9 @@ class ToCiceroMarkVisitor {
 
         // All the nodes generated from given OOXML
         this.nodes = [];
+
+        // contains the realtionship part of a given OOXML
+        this.relationshipXML = [];
     }
 
     /**
@@ -214,6 +217,15 @@ class ToCiceroMarkVisitor {
                 $class: nodeInformation.properties[nodePropertyIndex],
                 nodes: [ciceroMarkNode],
             };
+            if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.link) {
+                ciceroMarkNode.title = '';
+                for (const relationshipElement of this.relationshipXML) {
+                    if (relationshipElement.attributes.Id === nodeInformation.linkId) {
+                        ciceroMarkNode.destination = relationshipElement.attributes.Target;
+                        break;
+                    }
+                }
+            }
         }
         return ciceroMarkNode;
     }
@@ -268,6 +280,14 @@ class ToCiceroMarkVisitor {
                         ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
                         constructedNode,
                     ];
+                } else if (commonPropertiesLength === 3) {
+                    const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
+                    const deepSubNodeLength = rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes.length;
+                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1].nodes = [
+                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1]
+                            .nodes,
+                        constructedNode,
+                    ];
                 }
             }
             this.JSONXML = [];
@@ -284,11 +304,14 @@ class ToCiceroMarkVisitor {
      *
      * @param {Array}   node              Node to be traversed
      * @param {object}  nodeInformation   Information for the current node
-     * @param {Boolean} calledByCodeBlock Is function called by codeblock checker
+     * @param {string}  calledBy          Parent node class that called the function
      * @returns {string} Value in <w:t> tags
      */
-    fetchFormattingProperties(node, nodeInformation, calledByCodeBlock = false) {
+    fetchFormattingProperties(node, nodeInformation, calledBy = TRANSFORMED_NODES.paragraph) {
         let ooxmlTagTextValue = '';
+        if (calledBy === TRANSFORMED_NODES.link) {
+            nodeInformation.properties = [...nodeInformation.properties, calledBy];
+        }
         for (const runTimeNodes of node.elements) {
             if (runTimeNodes.name === 'w:rPr') {
                 let colorCodePresent = false;
@@ -317,7 +340,7 @@ class ToCiceroMarkVisitor {
                     nodeInformation.nodeType = TRANSFORMED_NODES.code;
                 }
             } else if (runTimeNodes.name === 'w:t') {
-                if (calledByCodeBlock) {
+                if (calledBy === TRANSFORMED_NODES.codeBlock) {
                     ooxmlTagTextValue += runTimeNodes.elements ? runTimeNodes.elements[0].text : '';
                 } else {
                     ooxmlTagTextValue = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
@@ -337,11 +360,12 @@ class ToCiceroMarkVisitor {
     /**
      * Traverses the JSON object of XML elements in DFS approach.
      *
-     * @param {object} node Node object to be traversed
+     * @param {object} node   Node object to be traversed
      * @param {string} parent Parent node name
+     * @param {syring} id     Relation Id for link in OOXML
      * @returns {*} GeneratedNode if parent is of type clause else none
      */
-    traverseElements(node, parent = '') {
+    traverseElements(node, parent = '', id = undefined) {
         // Contains node present in a codeblock or blockquote, etc.
         let blockNodes = [];
         for (const subNode of node) {
@@ -362,7 +386,11 @@ class ToCiceroMarkVisitor {
                     let text = '';
                     for (const codeBlockSubNode of subNode.elements) {
                         if (codeBlockSubNode.name === 'w:r') {
-                            text = this.fetchFormattingProperties(codeBlockSubNode, undefined, true);
+                            text = this.fetchFormattingProperties(
+                                codeBlockSubNode,
+                                undefined,
+                                TRANSFORMED_NODES.codeBlock
+                            );
                         }
                     }
                     const codeBlockNode = {
@@ -428,7 +456,10 @@ class ToCiceroMarkVisitor {
                         }
                         if (variableSubNodes.name === 'w:sdtContent') {
                             if (nodeInformation.nodeType === TRANSFORMED_NODES.clause) {
-                                const nodes = this.traverseElements(variableSubNodes.elements, TRANSFORMED_NODES.clause);
+                                const nodes = this.traverseElements(
+                                    variableSubNodes.elements,
+                                    TRANSFORMED_NODES.clause
+                                );
                                 const clauseNode = {
                                     $class: TRANSFORMED_NODES.clause,
                                     elementType: nodeInformation.elementType,
@@ -446,9 +477,18 @@ class ToCiceroMarkVisitor {
                         }
                     }
                 }
+            } else if (subNode.name === 'w:hyperlink') {
+                this.traverseElements(subNode.elements, TRANSFORMED_NODES.link, subNode.attributes['r:id']);
             } else if (subNode.name === 'w:r') {
                 let nodeInformation = { properties: [], value: '' };
-                this.fetchFormattingProperties(subNode, nodeInformation);
+                if (parent === TRANSFORMED_NODES.link) {
+                    nodeInformation.linkId = id;
+                }
+                this.fetchFormattingProperties(
+                    subNode,
+                    nodeInformation,
+                    parent === TRANSFORMED_NODES.link ? TRANSFORMED_NODES.link : TRANSFORMED_NODES.paragraph
+                );
             }
         }
         return blockNodes;
@@ -475,6 +515,12 @@ class ToCiceroMarkVisitor {
                 // Gets the document node
                 documentNode = node.elements[0].elements[0];
                 break;
+            }
+        }
+
+        for (const node of rootNode) {
+            if (node.attributes['pkg:name'] === '/word/_rels/document.xml.rels') {
+                this.relationshipXML = node.elements[0].elements[0].elements;
             }
         }
 
