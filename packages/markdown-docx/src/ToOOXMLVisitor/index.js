@@ -50,7 +50,7 @@ class ToOOXMLVisitor {
         // OOXML tags for a given block node(heading, paragraph, etc.)
         this.tags = [];
         // Relationship tags for links in a document
-        this.relationShips = [];
+        this.relationships = [];
     }
 
     /**
@@ -84,7 +84,7 @@ class ToOOXMLVisitor {
                             propertyTag += STRONG_RULE();
                         } else if (property === TRANSFORMED_NODES.link) {
                             isLinkPropertyPresent = true;
-                            propertyTag+= LINK_PROPERTY_RULE();
+                            propertyTag += LINK_PROPERTY_RULE();
                         }
                     }
                     if (propertyTag) {
@@ -99,7 +99,7 @@ class ToOOXMLVisitor {
                         // some rels are already present
                         // To avoid overwrite ids start our
                         // rels from 10
-                        let relationShipId = 'rId' + (this.relationShips.length + 10).toString();
+                        let relationShipId = 'rId' + (this.relationships.length + 10).toString();
                         tag = LINK_RULE(tag, relationShipId);
                     }
                     this.tags = [...this.tags, tag];
@@ -113,7 +113,7 @@ class ToOOXMLVisitor {
                             propertyTag += STRONG_RULE();
                         } else if (property === TRANSFORMED_NODES.link) {
                             isLinkPropertyPresent = true;
-                            propertyTag+= LINK_PROPERTY_RULE();
+                            propertyTag += LINK_PROPERTY_RULE();
                         }
                     }
                     propertyTag = TEXT_STYLES_RULE(propertyTag);
@@ -122,10 +122,10 @@ class ToOOXMLVisitor {
 
                     let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
                     if (isLinkPropertyPresent) {
-                        // some rels are already present
-                        // To avoid overwrite ids start our
-                        // rels from 10
-                        let relationShipId = 'rId' + (this.relationShips.length + 10).toString();
+                        // some inbuilt rels are already present for settings, theme, etc.
+                        // To avoid overwrite ids or conflicts start our
+                        // rels from 11
+                        let relationShipId = 'rId' + (this.relationships.length + 10).toString();
                         tag = LINK_RULE(tag, relationShipId);
                     }
                     this.tags = [...this.tags, tag];
@@ -253,11 +253,11 @@ class ToOOXMLVisitor {
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
                                 const relationshipTag = `<Relationship Id="rId${
-                                    this.relationShips.length + 11
+                                    this.relationships.length + 11
                                 }" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${
                                     subNode.destination
                                 }" TargetMode="External"/>`;
-                                this.relationShips = [...this.relationShips, relationshipTag];
+                                this.relationships = [...this.relationships, relationshipTag];
                             }
                             let newProperties = [...properties, subNode.$class];
                             this.traverseNodes(subNode.nodes, newProperties);
@@ -277,7 +277,7 @@ class ToOOXMLVisitor {
     toOOXML(ciceromark) {
         this.traverseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundLockedContentControls(this.globalOOXML);
-        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML, this.relationShips);
+        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML, this.relationships);
 
         return this.globalOOXML;
     }

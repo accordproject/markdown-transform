@@ -365,7 +365,12 @@ class ToCiceroMarkVisitor {
      * @param {syring} id     Relation Id for link in OOXML
      * @returns {*} GeneratedNode if parent is of type clause else none
      */
-    traverseElements(node, parent = '', id = undefined) {
+    traverseElements(node, parent = TRANSFORMED_NODES.paragraph, id = undefined) {
+        /**
+         * The parent argument is useful in cases where parent is a clause or link.
+         * In other cases, it won't matter much in transformation so give it default value of paragraph class.
+         */
+
         // Contains node present in a codeblock or blockquote, etc.
         let blockNodes = [];
         for (const subNode of node) {
@@ -484,11 +489,7 @@ class ToCiceroMarkVisitor {
                 if (parent === TRANSFORMED_NODES.link) {
                     nodeInformation.linkId = id;
                 }
-                this.fetchFormattingProperties(
-                    subNode,
-                    nodeInformation,
-                    parent === TRANSFORMED_NODES.link ? TRANSFORMED_NODES.link : TRANSFORMED_NODES.paragraph
-                );
+                this.fetchFormattingProperties(subNode, nodeInformation, parent);
             }
         }
         return blockNodes;
