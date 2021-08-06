@@ -237,12 +237,12 @@ const LINK_PROPERTY_RULE = () => {
  * Inserts a link node in OOXML syntax.
  *
  * @param {string} value          Value to be rendered in the link
- * @param {string} relationShipId Specifies the ID of the relationship in the relationships part for an external link rId5
+ * @param {string} relationshipId Specifies the ID of the relationship in the relationships part for an external link rId5
  * @returns {string} Link OOXML
  */
-const LINK_RULE = (value, relationShipId) => {
+const LINK_RULE = (value, relationshipId) => {
     return `
-    <w:hyperlink r:id="${relationShipId}" w:history="0">
+    <w:hyperlink r:id="${relationshipId}" w:history="0">
       ${value}
     </w:hyperlink>
   `;

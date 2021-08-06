@@ -64,6 +64,46 @@ class ToOOXMLVisitor {
     }
 
     /**
+     * Generates the OOXML for text and code ciceromark nodes.
+     *
+     * @param {string} value           Text value of the node
+     * @param {Array}  nodeProperties  Properties of the node
+     * @param {string} defaultProperty Default property of the node
+     * @returns {striing} Generated OOXML
+     */
+    generateTextOrCodeOOXML(value, nodeProperties, defaultProperty = '') {
+        let propertyTag = defaultProperty;
+        let isLinkPropertyPresent = false;
+        for (const property of nodeProperties) {
+            if (property === TRANSFORMED_NODES.emphasize) {
+                propertyTag += EMPHASIS_RULE();
+            } else if (property === TRANSFORMED_NODES.strong) {
+                propertyTag += STRONG_RULE();
+            } else if (property === TRANSFORMED_NODES.link) {
+                isLinkPropertyPresent = true;
+                propertyTag += LINK_PROPERTY_RULE();
+            }
+        }
+        if (propertyTag) {
+            propertyTag = TEXT_STYLES_RULE(propertyTag);
+        }
+
+        let textValueTag = TEXT_RULE(value);
+
+        let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+
+        if (isLinkPropertyPresent) {
+            // Two relationships for numbering and style are already present
+            // and since we need to accommodate for link styles as well, we need a unique ID
+            // to represent them. Hence, 2 is added to offset the enumeration of `rId`.
+
+            let relationshipId = 'rId' + (this.relationships.length + 2).toString();
+            tag = LINK_RULE(tag, relationshipId);
+        }
+        return tag;
+    }
+
+    /**
      * Traverses CiceroMark nodes in a DFS approach
      *
      * @param {object} node       CiceroMark Node
@@ -75,59 +115,10 @@ class ToOOXMLVisitor {
         } else {
             for (let subNode of node) {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
-                    let propertyTag = '';
-                    let isLinkPropertyPresent = false;
-                    for (let property of properties) {
-                        if (property === TRANSFORMED_NODES.emphasize) {
-                            propertyTag += EMPHASIS_RULE();
-                        } else if (property === TRANSFORMED_NODES.strong) {
-                            propertyTag += STRONG_RULE();
-                        } else if (property === TRANSFORMED_NODES.link) {
-                            isLinkPropertyPresent = true;
-                            propertyTag += LINK_PROPERTY_RULE();
-                        }
-                    }
-                    if (propertyTag) {
-                        propertyTag = TEXT_STYLES_RULE(propertyTag);
-                    }
-
-                    let textValueTag = TEXT_RULE(subNode.text);
-
-                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
-
-                    if (isLinkPropertyPresent) {
-                        // some rels are already present
-                        // To avoid overwrite ids start our
-                        // rels from 10
-                        let relationShipId = 'rId' + (this.relationships.length + 10).toString();
-                        tag = LINK_RULE(tag, relationShipId);
-                    }
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties);
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
-                    let propertyTag = CODE_PROPERTIES_RULE();
-                    let isLinkPropertyPresent = false;
-                    for (let property of properties) {
-                        if (property === TRANSFORMED_NODES.emphasize) {
-                            propertyTag += EMPHASIS_RULE();
-                        } else if (property === TRANSFORMED_NODES.strong) {
-                            propertyTag += STRONG_RULE();
-                        } else if (property === TRANSFORMED_NODES.link) {
-                            isLinkPropertyPresent = true;
-                            propertyTag += LINK_PROPERTY_RULE();
-                        }
-                    }
-                    propertyTag = TEXT_STYLES_RULE(propertyTag);
-
-                    let textValueTag = TEXT_RULE(subNode.text);
-
-                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
-                    if (isLinkPropertyPresent) {
-                        // some inbuilt rels are already present for settings, theme, etc.
-                        // To avoid overwrite ids or conflicts start our
-                        // rels from 11
-                        let relationShipId = 'rId' + (this.relationships.length + 10).toString();
-                        tag = LINK_RULE(tag, relationShipId);
-                    }
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, CODE_PROPERTIES_RULE());
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
                     let ooxml = CODEBLOCK_PROPERTIES_RULE();
@@ -253,7 +244,7 @@ class ToOOXMLVisitor {
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
                                 const relationshipTag = `<Relationship Id="rId${
-                                    this.relationships.length + 11
+                                    this.relationships.length + 3
                                 }" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${
                                     subNode.destination
                                 }" TargetMode="External"/>`;

@@ -368,7 +368,8 @@ class ToCiceroMarkVisitor {
     traverseElements(node, parent = TRANSFORMED_NODES.paragraph, id = undefined) {
         /**
          * The parent argument is useful in cases where parent is a clause or link.
-         * In other cases, it won't matter much in transformation so give it default value of paragraph class.
+         * If parent argument is not present, then everything would have been treated
+         * as pargraphs and transformation would be faulty.
          */
 
         // Contains node present in a codeblock or blockquote, etc.
