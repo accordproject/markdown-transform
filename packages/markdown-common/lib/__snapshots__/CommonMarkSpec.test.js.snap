@@ -6237,12 +6237,12 @@ Object {
       "$class": "org.accordproject.commonmark.HtmlBlock",
       "tag": Object {
         "$class": "org.accordproject.commonmark.TagInfo",
-        "attributeString": "href = \\"&ouml;&ouml;.html\\" ",
+        "attributeString": "href = \\"öö.html\\" ",
         "attributes": Array [
           Object {
             "$class": "org.accordproject.commonmark.Attribute",
             "name": "href",
-            "value": "&ouml;&ouml;.html",
+            "value": "öö.html",
           },
         ],
         "closed": false,
@@ -17401,12 +17401,12 @@ Object {
           "$class": "org.accordproject.commonmark.HtmlInline",
           "tag": Object {
             "$class": "org.accordproject.commonmark.TagInfo",
-            "attributeString": "href = \\"&ouml;\\" ",
+            "attributeString": "href = \\"ö\\" ",
             "attributes": Array [
               Object {
                 "$class": "org.accordproject.commonmark.Attribute",
                 "name": "href",
-                "value": "&ouml;",
+                "value": "ö",
               },
             ],
             "closed": false,
