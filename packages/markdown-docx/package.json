@@ -70,7 +70,7 @@
     "eslint": "6.0.1",
     "jest": "^24.8.0",
     "jest-diff": "^24.8.0",
-    "jsdoc": "3.6.3",
+    "jsdoc": "^3.6.7",
     "jsome": "2.5.0",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
