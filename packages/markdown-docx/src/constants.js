@@ -32,7 +32,9 @@ const TRANSFORMED_NODES = {
     text: `${NS_PREFIX_CommonMarkModel}Text`,
     thematicBreak: `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
     variable: `${NS_PREFIX_CiceroMarkModel}Variable`,
-    clause:`${NS_PREFIX_CiceroMarkModel}Clause`
+    clause: `${NS_PREFIX_CiceroMarkModel}Clause`,
 };
 
-module.exports = { TRANSFORMED_NODES };
+const RELATIONSHIP_OFFSET = 2;
+
+module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET };

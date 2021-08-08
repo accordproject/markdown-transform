@@ -33,7 +33,7 @@ const {
     LINK_PROPERTY_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
-const { TRANSFORMED_NODES } = require('../constants');
+const { TRANSFORMED_NODES, RELATIONSHIP_OFFSET } = require('../constants');
 
 /**
  * Transforms the ciceromark to OOXML
@@ -66,13 +66,16 @@ class ToOOXMLVisitor {
     /**
      * Generates the OOXML for text and code ciceromark nodes.
      *
-     * @param {string} value           Text value of the node
-     * @param {Array}  nodeProperties  Properties of the node
-     * @param {string} defaultProperty Default property of the node
-     * @returns {striing} Generated OOXML
+     * @param {string}  value           Text value of the node
+     * @param {Array}   nodeProperties  Properties of the node
+     * @param {boolean} calledByCode    Is function called by code node or not
+     * @returns {string} Generated OOXML
      */
-    generateTextOrCodeOOXML(value, nodeProperties, defaultProperty = '') {
-        let propertyTag = defaultProperty;
+    generateTextOrCodeOOXML(value, nodeProperties, calledByCode = false) {
+        let propertyTag = '';
+        if (calledByCode) {
+            propertyTag = CODE_PROPERTIES_RULE();
+        }
         let isLinkPropertyPresent = false;
         for (const property of nodeProperties) {
             if (property === TRANSFORMED_NODES.emphasize) {
@@ -97,7 +100,7 @@ class ToOOXMLVisitor {
             // and since we need to accommodate for link styles as well, we need a unique ID
             // to represent them. Hence, 2 is added to offset the enumeration of `rId`.
 
-            let relationshipId = 'rId' + (this.relationships.length + 2).toString();
+            let relationshipId = 'rId' + (this.relationships.length + RELATIONSHIP_OFFSET).toString();
             tag = LINK_RULE(tag, relationshipId);
         }
         return tag;
@@ -118,7 +121,7 @@ class ToOOXMLVisitor {
                     const tag = this.generateTextOrCodeOOXML(subNode.text, properties);
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
-                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, CODE_PROPERTIES_RULE());
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true);
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
                     let ooxml = CODEBLOCK_PROPERTIES_RULE();
@@ -243,12 +246,13 @@ class ToOOXMLVisitor {
                             this.tags = [];
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
-                                const relationshipTag = `<Relationship Id="rId${
-                                    this.relationships.length + 3
-                                }" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${
-                                    subNode.destination
-                                }" TargetMode="External"/>`;
-                                this.relationships = [...this.relationships, relationshipTag];
+                                this.relationships = [
+                                    ...this.relationships,
+                                    {
+                                        id: this.relationships.length + RELATIONSHIP_OFFSET + 1,
+                                        destination: subNode.destination,
+                                    },
+                                ];
                             }
                             let newProperties = [...properties, subNode.$class];
                             this.traverseNodes(subNode.nodes, newProperties);

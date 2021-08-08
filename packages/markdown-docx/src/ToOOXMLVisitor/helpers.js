@@ -234,7 +234,10 @@ function wrapAroundDefaultDocxTags(ooxml, relationships) {
     `;
 
     let relationshipOOXML = '';
-    relationships.forEach(relationship => (relationshipOOXML += relationship));
+    relationships.forEach(
+        ({ id, destination }) =>
+            (relationshipOOXML += `<Relationship Id="rId${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${destination}" TargetMode="External"/>`)
+    );
 
     const RELATIONSHIP_SPEC = `
     <pkg:part pkg:name="/word/_rels/document.xml.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="256">

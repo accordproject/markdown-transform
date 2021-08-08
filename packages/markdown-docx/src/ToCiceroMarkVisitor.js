@@ -516,11 +516,7 @@ class ToCiceroMarkVisitor {
             if (node.attributes['pkg:name'] === pkgName) {
                 // Gets the document node
                 documentNode = node.elements[0].elements[0];
-                break;
             }
-        }
-
-        for (const node of rootNode) {
             if (node.attributes['pkg:name'] === '/word/_rels/document.xml.rels') {
                 this.relationshipXML = node.elements[0].elements[0].elements;
             }
