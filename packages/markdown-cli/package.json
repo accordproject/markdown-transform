@@ -47,14 +47,14 @@
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
     "eslint": "6.0.1",
-    "jsdoc": "3.6.3",
+    "jsdoc": "^3.6.7",
     "license-check": "1.1.5",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.0.2",
+    "@accordproject/concerto-core": "1.1.0",
     "@accordproject/markdown-transform": "0.14.0",
     "jsome": "2.5.0",
     "winston": "3.2.1",

@@ -1,21 +1,17 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "1.0.2",
+    "@accordproject/concerto-core": "1.1.0",
     "colors": "1.3.3",
-    "concurrently": "4.1.1",
     "coveralls": "3.0.4",
     "dayjs": "1.10.2",
     "istanbul-combine": "0.3.0",
     "istanbul-merge": "1.1.1",
-    "jsdoc": "3.6.3",
-    "jsdoc-sphinx": "0.0.6",
-    "lerna": "3.20.2",
-    "license-check": "1.1.5",
+    "jsdoc": "^3.6.7",
+    "lerna": "^4.0.0",
+    "license-check-and-add": "2.3.6",
     "semver": "6.2.0",
     "sleep-promise": "8.0.1",
-    "source-map-support": "0.5.12",
-    "licensecheck": "1.3.0",
-    "license-check-and-add": "2.3.6"
+    "source-map-support": "0.5.12"
   },
   "engines": {
     "node": ">=8",
