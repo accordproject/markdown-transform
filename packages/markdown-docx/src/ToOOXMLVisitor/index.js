@@ -96,10 +96,6 @@ class ToOOXMLVisitor {
         let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
 
         if (isLinkPropertyPresent) {
-            // Two relationships for numbering and style are already present
-            // and since we need to accommodate for link styles as well, we need a unique ID
-            // to represent them. Hence, 2 is added to offset the enumeration of `rId`.
-
             let relationshipId = 'rId' + (this.relationships.length + RELATIONSHIP_OFFSET).toString();
             tag = LINK_RULE(tag, relationshipId);
         }

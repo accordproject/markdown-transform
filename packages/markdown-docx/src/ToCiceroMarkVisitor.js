@@ -303,11 +303,11 @@ class ToCiceroMarkVisitor {
      * Traverses for properties and value.
      *
      * @param {Array}   node              Node to be traversed
-     * @param {object}  nodeInformation   Information for the current node
      * @param {string}  calledBy          Parent node class that called the function
+     * @param {object}  nodeInformation   Information for the current node
      * @returns {string} Value in <w:t> tags
      */
-    fetchFormattingProperties(node, nodeInformation, calledBy = TRANSFORMED_NODES.paragraph) {
+    fetchFormattingProperties(node, calledBy = TRANSFORMED_NODES.paragraph, nodeInformation = null) {
         let ooxmlTagTextValue = '';
         if (calledBy === TRANSFORMED_NODES.link) {
             nodeInformation.properties = [...nodeInformation.properties, calledBy];
@@ -392,11 +392,7 @@ class ToCiceroMarkVisitor {
                     let text = '';
                     for (const codeBlockSubNode of subNode.elements) {
                         if (codeBlockSubNode.name === 'w:r') {
-                            text = this.fetchFormattingProperties(
-                                codeBlockSubNode,
-                                undefined,
-                                TRANSFORMED_NODES.codeBlock
-                            );
+                            text = this.fetchFormattingProperties(codeBlockSubNode, TRANSFORMED_NODES.codeBlock);
                         }
                     }
                     const codeBlockNode = {
@@ -476,7 +472,11 @@ class ToCiceroMarkVisitor {
                             } else {
                                 for (const variableContentNodes of variableSubNodes.elements) {
                                     if (variableContentNodes.name === 'w:r') {
-                                        this.fetchFormattingProperties(variableContentNodes, nodeInformation);
+                                        this.fetchFormattingProperties(
+                                            variableContentNodes,
+                                            TRANSFORMED_NODES.paragraph,
+                                            nodeInformation
+                                        );
                                     }
                                 }
                             }
@@ -490,7 +490,7 @@ class ToCiceroMarkVisitor {
                 if (parent === TRANSFORMED_NODES.link) {
                     nodeInformation.linkId = id;
                 }
-                this.fetchFormattingProperties(subNode, nodeInformation, parent);
+                this.fetchFormattingProperties(subNode, parent, nodeInformation);
             }
         }
         return blockNodes;

@@ -35,6 +35,10 @@ const TRANSFORMED_NODES = {
     clause: `${NS_PREFIX_CiceroMarkModel}Clause`,
 };
 
+// Two relationships for numbering and style are already present
+// and since we need to accommodate for link styles as well, we need a unique ID
+// to represent them. Hence, 2 is added to offset the enumeration of `rId`.
+// Used in './ToOOXMLVisitor/index.js'
 const RELATIONSHIP_OFFSET = 2;
 
 module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET };
