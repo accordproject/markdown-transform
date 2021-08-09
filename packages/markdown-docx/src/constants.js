@@ -25,13 +25,20 @@ const TRANSFORMED_NODES = {
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
     heading: `${NS_PREFIX_CommonMarkModel}Heading`,
     item: `${NS_PREFIX_CommonMarkModel}Item`,
+    link: `${NS_PREFIX_CommonMarkModel}Link`,
     paragraph: `${NS_PREFIX_CommonMarkModel}Paragraph`,
     softbreak: `${NS_PREFIX_CommonMarkModel}Softbreak`,
     strong: `${NS_PREFIX_CommonMarkModel}Strong`,
     text: `${NS_PREFIX_CommonMarkModel}Text`,
     thematicBreak: `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
     variable: `${NS_PREFIX_CiceroMarkModel}Variable`,
-    clause:`${NS_PREFIX_CiceroMarkModel}Clause`
+    clause: `${NS_PREFIX_CiceroMarkModel}Clause`,
 };
 
-module.exports = { TRANSFORMED_NODES };
+// Two relationships for numbering and style are already present
+// and since we need to accommodate for link styles as well, we need a unique ID
+// to represent them. Hence, 2 is added to offset the enumeration of `rId`.
+// Used in './ToOOXMLVisitor/index.js'
+const RELATIONSHIP_OFFSET = 2;
+
+module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET };

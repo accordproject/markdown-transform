@@ -29,9 +29,11 @@ const {
     CODEBLOCK_PROPERTIES_RULE,
     CODEBLOCK_FONTPROPERTIES_RULE,
     CLAUSE_RULE,
+    LINK_RULE,
+    LINK_PROPERTY_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
-const { TRANSFORMED_NODES } = require('../constants');
+const { TRANSFORMED_NODES, RELATIONSHIP_OFFSET } = require('../constants');
 
 /**
  * Transforms the ciceromark to OOXML
@@ -47,6 +49,8 @@ class ToOOXMLVisitor {
         this.counter = {};
         // OOXML tags for a given block node(heading, paragraph, etc.)
         this.tags = [];
+        // Relationship tags for links in a document
+        this.relationships = [];
     }
 
     /**
@@ -57,6 +61,45 @@ class ToOOXMLVisitor {
      */
     getClass(node) {
         return node.$class;
+    }
+
+    /**
+     * Generates the OOXML for text and code ciceromark nodes.
+     *
+     * @param {string}  value           Text value of the node
+     * @param {Array}   nodeProperties  Properties of the node
+     * @param {boolean} calledByCode    Is function called by code node or not
+     * @returns {string} Generated OOXML
+     */
+    generateTextOrCodeOOXML(value, nodeProperties, calledByCode = false) {
+        let propertyTag = '';
+        if (calledByCode) {
+            propertyTag = CODE_PROPERTIES_RULE();
+        }
+        let isLinkPropertyPresent = false;
+        for (const property of nodeProperties) {
+            if (property === TRANSFORMED_NODES.emphasize) {
+                propertyTag += EMPHASIS_RULE();
+            } else if (property === TRANSFORMED_NODES.strong) {
+                propertyTag += STRONG_RULE();
+            } else if (property === TRANSFORMED_NODES.link) {
+                isLinkPropertyPresent = true;
+                propertyTag += LINK_PROPERTY_RULE();
+            }
+        }
+        if (propertyTag) {
+            propertyTag = TEXT_STYLES_RULE(propertyTag);
+        }
+
+        let textValueTag = TEXT_RULE(value);
+
+        let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+
+        if (isLinkPropertyPresent) {
+            let relationshipId = 'rId' + (this.relationships.length + RELATIONSHIP_OFFSET).toString();
+            tag = LINK_RULE(tag, relationshipId);
+        }
+        return tag;
     }
 
     /**
@@ -71,36 +114,10 @@ class ToOOXMLVisitor {
         } else {
             for (let subNode of node) {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
-                    let propertyTag = '';
-                    for (let property of properties) {
-                        if (property === TRANSFORMED_NODES.emphasize) {
-                            propertyTag += EMPHASIS_RULE();
-                        } else if (property === TRANSFORMED_NODES.strong) {
-                            propertyTag += STRONG_RULE();
-                        }
-                    }
-                    if (propertyTag) {
-                        propertyTag = TEXT_STYLES_RULE(propertyTag);
-                    }
-
-                    let textValueTag = TEXT_RULE(subNode.text);
-
-                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties);
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
-                    let propertyTag = CODE_PROPERTIES_RULE();
-                    for (let property of properties) {
-                        if (property === TRANSFORMED_NODES.emphasize) {
-                            propertyTag += EMPHASIS_RULE();
-                        } else if (property === TRANSFORMED_NODES.strong) {
-                            propertyTag += STRONG_RULE();
-                        }
-                    }
-                    propertyTag = TEXT_STYLES_RULE(propertyTag);
-
-                    let textValueTag = TEXT_RULE(subNode.text);
-
-                    let tag = TEXT_WRAPPER_RULE(propertyTag, textValueTag);
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true);
                     this.tags = [...this.tags, tag];
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
                     let ooxml = CODEBLOCK_PROPERTIES_RULE();
@@ -224,6 +241,15 @@ class ToOOXMLVisitor {
                             this.globalOOXML += ooxml;
                             this.tags = [];
                         } else {
+                            if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
+                                this.relationships = [
+                                    ...this.relationships,
+                                    {
+                                        id: this.relationships.length + RELATIONSHIP_OFFSET + 1,
+                                        destination: subNode.destination,
+                                    },
+                                ];
+                            }
                             let newProperties = [...properties, subNode.$class];
                             this.traverseNodes(subNode.nodes, newProperties);
                         }
@@ -242,7 +268,7 @@ class ToOOXMLVisitor {
     toOOXML(ciceromark) {
         this.traverseNodes(ciceromark, []);
         this.globalOOXML = wrapAroundLockedContentControls(this.globalOOXML);
-        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML);
+        this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML, this.relationships);
 
         return this.globalOOXML;
     }
