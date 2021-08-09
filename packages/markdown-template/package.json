@@ -61,7 +61,7 @@
     "@accordproject/markdown-common": "0.14.0",
     "@accordproject/markdown-it-template": "0.14.0",
     "dayjs": "1.10.2",
-    "markdown-it": "^11.0.0",
+    "markdown-it": "^12.2.0",
     "parsimmon": "1.16.0",
     "uuid": "3.3.2"
   },

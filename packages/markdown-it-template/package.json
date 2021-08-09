@@ -54,7 +54,7 @@
     "nyc": "14.1.1"
   },
   "dependencies": {
-    "markdown-it": "^11.0.0"
+    "markdown-it": "^12.2.0"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
