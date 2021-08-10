@@ -14,6 +14,7 @@
 
 'use strict';
 
+const { TRANSFORMED_NODES } = require('../constants');
 const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
 /**
@@ -135,7 +136,7 @@ const VARIABLE_RULE = (title, tag, value, type) => {
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.variable}----${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
@@ -220,7 +221,7 @@ const CLAUSE_RULE = (title, tag, type, content) => {
           <w:lock w:val="contentLocked"/>
           <w15:color w:val="99CCFF"/>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.clause}----${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           ${content}
@@ -248,6 +249,30 @@ const LINK_RULE = (value, relationshipId) => {
   `;
 };
 
+/**
+ * Inserts optional node in OOXML form.
+ *
+ * @param {string} title Title of the optional node. Eg. receiver-1, shipper-1
+ * @param {string} tag   Name of the optional node. Eg. receiver, shipper
+ * @param {string} value Value of the optional node
+ * @param {string} type  Type of the optional node - Long, Double, etc.
+ * @returns {string} OOXML string for the variable
+ */
+const OPTIONAL_RULE = (title, tag, value, type) => {
+    return `
+      <w:sdt>
+        <w:sdtPr>
+          <w:alias w:val="${titleGenerator(title, type)}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.optional}----${tag}"/>
+          <w:lock w:val="contentLocked"/>
+        </w:sdtPr>
+        <w:sdtContent>
+          ${value}
+        </w:sdtContent>
+      </w:sdt>
+    `;
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -265,4 +290,5 @@ module.exports = {
     CLAUSE_RULE,
     LINK_PROPERTY_RULE,
     LINK_RULE,
+    OPTIONAL_RULE,
 };

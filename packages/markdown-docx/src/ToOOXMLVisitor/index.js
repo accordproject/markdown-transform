@@ -31,6 +31,7 @@ const {
     CLAUSE_RULE,
     LINK_RULE,
     LINK_PROPERTY_RULE,
+    OPTIONAL_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
 const { TRANSFORMED_NODES, RELATIONSHIP_OFFSET } = require('../constants');
@@ -51,6 +52,11 @@ class ToOOXMLVisitor {
         this.tags = [];
         // Relationship tags for links in a document
         this.relationships = [];
+        // Contains the tags for optional or conditional nodes.
+        // Optional/conditional themselves can act contain multiple inline nodes.
+        // However, they are not block elements and are present inside
+        // paragraph or clause nodes so an extra array is needed to store their info.
+        this.conditionalOrOptionalTags = [];
     }
 
     /**
@@ -103,22 +109,54 @@ class ToOOXMLVisitor {
     }
 
     /**
+     * Checks if an object contains the property and updates counter for it.
+     *
+     * @param {string} tag  Tag of the property
+     * @param {string} type Type of the property
+     */
+    generateCounter(tag, type) {
+        if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
+            this.counter = {
+                ...this.counter,
+                [tag]: {
+                    ...this.counter[tag],
+                    count: ++this.counter[tag].count,
+                },
+            };
+        } else {
+            this.counter[tag] = {
+                count: 1,
+                type,
+            };
+        }
+    }
+
+    /**
      * Traverses CiceroMark nodes in a DFS approach
      *
-     * @param {object} node       CiceroMark Node
-     * @param {array}  properties Properties to be applied on current node
+     * @param {object}  node                           CiceroMark Node
+     * @param {array}   properties                     Properties to be applied on current node
+     * @param {boolean} isConditionalOrOptionalPresent True if the dfs traversal contains conditional or optional else false
      */
-    traverseNodes(node, properties = []) {
+    traverseNodes(node, properties = [], isConditionalOrOptionalPresent = '') {
         if (this.getClass(node) === 'org.accordproject.commonmark.Document') {
-            this.traverseNodes(node.nodes, properties);
+            this.traverseNodes(node.nodes, properties, isConditionalOrOptionalPresent);
         } else {
             for (let subNode of node) {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
                     const tag = this.generateTextOrCodeOOXML(subNode.text, properties);
-                    this.tags = [...this.tags, tag];
+                    if (isConditionalOrOptionalPresent) {
+                        this.conditionalOrOptionalTags = [...this.conditionalOrOptionalTags, tag];
+                    } else {
+                        this.tags = [...this.tags, tag];
+                    }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
                     const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true);
-                    this.tags = [...this.tags, tag];
+                    if (isConditionalOrOptionalPresent) {
+                        this.conditionalOrOptionalTags = [...this.conditionalOrOptionalTags, tag];
+                    } else {
+                        this.tags = [...this.tags, tag];
+                    }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
                     let ooxml = CODEBLOCK_PROPERTIES_RULE();
                     let textValues = subNode.text.split('\n');
@@ -136,26 +174,24 @@ class ToOOXMLVisitor {
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.variable) {
                     const tag = subNode.name;
                     const type = subNode.elementType;
-                    if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
-                        this.counter = {
-                            ...this.counter,
-                            [tag]: {
-                                ...this.counter[tag],
-                                count: ++this.counter[tag].count,
-                            },
-                        };
-                    } else {
-                        this.counter[tag] = {
-                            count: 1,
-                            type,
-                        };
-                    }
+                    this.generateCounter(tag, type);
                     const value = subNode.value;
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
-                    this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
+                    if (isConditionalOrOptionalPresent) {
+                        this.conditionalOrOptionalTags = [
+                            ...this.conditionalOrOptionalTags,
+                            VARIABLE_RULE(title, tag, value, type),
+                        ];
+                    } else {
+                        this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
+                    }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
-                    this.tags = [...this.tags, SOFTBREAK_RULE()];
+                    if (isConditionalOrOptionalPresent) {
+                        this.conditionalOrOptionalTags = [...this.conditionalOrOptionalTags, SOFTBREAK_RULE()];
+                    } else {
+                        this.tags = [...this.tags, SOFTBREAK_RULE()];
+                    }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak) {
                     this.globalOOXML += THEMATICBREAK_RULE();
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.clause) {
@@ -163,7 +199,7 @@ class ToOOXMLVisitor {
                     if (subNode.nodes) {
                         for (const deepNode of subNode.nodes) {
                             if (this.getClass(deepNode) === TRANSFORMED_NODES.paragraph) {
-                                this.traverseNodes(deepNode.nodes, properties);
+                                this.traverseNodes(deepNode.nodes, properties, isConditionalOrOptionalPresent);
                                 let ooxml = '';
                                 for (let xmlTag of this.tags) {
                                     ooxml += xmlTag;
@@ -174,7 +210,7 @@ class ToOOXMLVisitor {
                                 // Clear all the tags as all nodes of paragraph have been traversed.
                                 this.tags = [];
                             } else if (this.getClass(deepNode) === TRANSFORMED_NODES.heading) {
-                                this.traverseNodes(deepNode.nodes, properties);
+                                this.traverseNodes(deepNode.nodes, properties, isConditionalOrOptionalPresent);
                                 let ooxml = '';
                                 for (let xmlTag of this.tags) {
                                     let headingPropertiesTag = '';
@@ -190,7 +226,7 @@ class ToOOXMLVisitor {
                                 this.tags = [];
                             } else {
                                 let newProperties = [...properties, deepNode.$class];
-                                this.traverseNodes(deepNode.nodes, newProperties);
+                                this.traverseNodes(deepNode.nodes, newProperties, isConditionalOrOptionalPresent);
                             }
                         }
                         const tag = subNode.name;
@@ -215,7 +251,7 @@ class ToOOXMLVisitor {
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === TRANSFORMED_NODES.paragraph) {
-                            this.traverseNodes(subNode.nodes, properties);
+                            this.traverseNodes(subNode.nodes, properties, isConditionalOrOptionalPresent);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 ooxml += xmlTag;
@@ -226,7 +262,7 @@ class ToOOXMLVisitor {
                             // Clear all the tags as all nodes of paragraph have been traversed.
                             this.tags = [];
                         } else if (this.getClass(subNode) === TRANSFORMED_NODES.heading) {
-                            this.traverseNodes(subNode.nodes, properties);
+                            this.traverseNodes(subNode.nodes, properties, isConditionalOrOptionalPresent);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 let headingPropertiesTag = '';
@@ -240,6 +276,18 @@ class ToOOXMLVisitor {
 
                             this.globalOOXML += ooxml;
                             this.tags = [];
+                        } else if (this.getClass(subNode) === TRANSFORMED_NODES.optional) {
+                            this.traverseNodes(subNode.nodes, properties, true);
+                            const tag = subNode.name;
+                            const type = subNode.elementType;
+                            this.generateCounter(tag, type);
+                            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+                            let ooxml = '';
+                            for (let tag of this.conditionalOrOptionalTags) {
+                                ooxml += tag;
+                            }
+                            let optionalTag = OPTIONAL_RULE(title, tag, ooxml, type);
+                            this.tags = [...this.tags, optionalTag];
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
                                 this.relationships = [
@@ -251,7 +299,7 @@ class ToOOXMLVisitor {
                                 ];
                             }
                             let newProperties = [...properties, subNode.$class];
-                            this.traverseNodes(subNode.nodes, newProperties);
+                            this.traverseNodes(subNode.nodes, newProperties, isConditionalOrOptionalPresent);
                         }
                     }
                 }
