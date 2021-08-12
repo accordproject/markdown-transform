@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { TRANSFORMED_NODES } = require('../constants');
+const { TRANSFORMED_NODES, SEPARATOR } = require('../constants');
 const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
 /**
@@ -122,13 +122,14 @@ const STRONG_RULE = () => {
 /**
  * Inserts a variable.
  *
- * @param {string} title Title of the variable. Eg. receiver-1, shipper-1
- * @param {string} tag   Name of the variable. Eg. receiver, shipper
- * @param {string} value Value of the variable
- * @param {string} type  Type of the variable - Long, Double, etc.
+ * @param {string}  title  Title of the variable. Eg. receiver-1, shipper-1
+ * @param {string}  tag    Name of the variable. Eg. receiver, shipper
+ * @param {string}  value  Value of the variable
+ * @param {string}  type   Type of the variable - Long, Double, etc.
+ * @param {boolean} vanish Should vanish property be present
  * @returns {string} OOXML string for the variable
  */
-const VARIABLE_RULE = (title, tag, value, type) => {
+const VARIABLE_RULE = (title, tag, value, type, vanish = false) => {
     return `
       <w:sdt>
         <w:sdtPr>
@@ -136,12 +137,13 @@ const VARIABLE_RULE = (title, tag, value, type) => {
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${TRANSFORMED_NODES.variable}----${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.variable}${SEPARATOR}${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              ${vanish ? '<w:vanish/>' : ''}
             </w:rPr>
             <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
           </w:r>
@@ -221,7 +223,7 @@ const CLAUSE_RULE = (title, tag, type, content) => {
           <w:lock w:val="contentLocked"/>
           <w15:color w:val="99CCFF"/>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${TRANSFORMED_NODES.clause}----${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.clause}${SEPARATOR}${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           ${content}
@@ -263,7 +265,7 @@ const OPTIONAL_RULE = (title, tag, value, type) => {
       <w:sdt>
         <w:sdtPr>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${TRANSFORMED_NODES.optional}----${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.optional}${SEPARATOR}${tag}"/>
           <w:lock w:val="contentLocked"/>
         </w:sdtPr>
         <w:sdtContent>

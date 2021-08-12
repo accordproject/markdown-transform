@@ -16,7 +16,7 @@
 
 const xmljs = require('xml-js');
 
-const { TRANSFORMED_NODES } = require('./constants');
+const { TRANSFORMED_NODES, SEPARATOR } = require('./constants');
 
 /**
  * Transforms OOXML to CiceroMark
@@ -67,7 +67,7 @@ class ToCiceroMarkVisitor {
     getName(variableProperties) {
         for (const property of variableProperties) {
             if (property.name === 'w:tag') {
-                return property.attributes['w:val'].split('----')[1];
+                return property.attributes['w:val'].split(SEPARATOR)[1];
             }
         }
     }
@@ -84,7 +84,7 @@ class ToCiceroMarkVisitor {
                 // eg. "Shipper1 | org.accordproject.organization.Organization"
                 const combinedTitle = property.attributes['w:val'];
                 // Index 1 will return the type
-                return combinedTitle.split(' | ')[1];
+                return combinedTitle.split(SEPARATOR)[1];
             }
         }
     }
@@ -99,7 +99,7 @@ class ToCiceroMarkVisitor {
         let nodeType = TRANSFORMED_NODES.variable;
         for (const property of properties) {
             if (property.name === 'w:tag') {
-                return property.attributes['w:val'].split('----')[0];
+                return property.attributes['w:val'].split(SEPARATOR)[0];
             }
         }
         return nodeType;
@@ -222,11 +222,16 @@ class ToCiceroMarkVisitor {
                 ciceroMarkNode = {
                     $class: TRANSFORMED_NODES.optional,
                     ...nodeInformation.optionalProperties,
-                    whenSome: currentNodes,
-                    whenNone: [],
-                    hasSome: true,
+                    hasSome: nodeInformation.hasSome,
                     nodes: currentNodes,
                 };
+                if (nodeInformation.whenSomeType) {
+                    ciceroMarkNode.whenSome = currentNodes;
+                    ciceroMarkNode.whenNone = [];
+                } else {
+                    ciceroMarkNode.whenNone = currentNodes;
+                    ciceroMarkNode.whenSome = [];
+                }
             }
             if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.link) {
                 ciceroMarkNode.title = '';
@@ -281,31 +286,106 @@ class ToCiceroMarkVisitor {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
                     rootNodesLength++;
                 } else if (commonPropertiesLength === 1) {
-                    rootNode.nodes[rootNodesLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes,
-                        constructedNode,
-                    ];
                     if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
-                        rootNode.nodes[rootNodesLength - 1].whenSome = rootNode.nodes[rootNodesLength - 1].nodes;
+                        if (this.JSONXML[nodeIndex].whenSomeType) {
+                            rootNode.nodes[rootNodesLength - 1].whenSome = [
+                                ...rootNode.nodes[rootNodesLength - 1].whenSome,
+                                constructedNode,
+                            ];
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].whenNone = [
+                                ...rootNode.nodes[rootNodesLength - 1].whenNone,
+                                constructedNode,
+                            ];
+                        }
+                        if (rootNode.nodes[rootNodesLength - 1].hasSome) {
+                            rootNode.nodes[rootNodesLength - 1].nodes = rootNode.nodes[rootNodesLength - 1].whenSome;
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].nodes = rootNode.nodes[rootNodesLength - 1].whenNone;
+                        }
+                    } else {
+                        rootNode.nodes[rootNodesLength - 1].nodes = [
+                            ...rootNode.nodes[rootNodesLength - 1].nodes,
+                            constructedNode,
+                        ];
                     }
                 } else if (commonPropertiesLength === 2) {
                     const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
-                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
-                        constructedNode,
-                    ];
                     if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
-                        rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenSome =
-                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes;
+                        if (this.JSONXML[nodeIndex].whenSomeType) {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenSome = [
+                                ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenSome,
+                                constructedNode,
+                            ];
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenNone = [
+                                ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenNone,
+                                constructedNode,
+                            ];
+                        }
+                        if (rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].hasSome) {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes =
+                                rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenSome;
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes =
+                                rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].whenNone;
+                        }
+                    } else {
+                        rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes = [
+                            ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
+                            constructedNode,
+                        ];
                     }
                 } else if (commonPropertiesLength === 3) {
                     const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
                     const deepSubNodeLength = rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes.length;
-                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1]
-                            .nodes,
-                        constructedNode,
-                    ];
+                    if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
+                        if (this.JSONXML[nodeIndex].whenSomeType) {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                deepSubNodeLength - 1
+                            ].whenSome = [
+                                ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                    deepSubNodeLength - 1
+                                ].whenSome,
+                                constructedNode,
+                            ];
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                deepSubNodeLength - 1
+                            ].whenNone = [
+                                ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                    deepSubNodeLength - 1
+                                ].whenNone,
+                                constructedNode,
+                            ];
+                        }
+                        if (
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1]
+                                .hasSome
+                        ) {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                deepSubNodeLength - 1
+                            ].nodes =
+                                rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                    deepSubNodeLength - 1
+                                ].whenSome;
+                        } else {
+                            rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                deepSubNodeLength - 1
+                            ].nodes =
+                                rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                                    deepSubNodeLength - 1
+                                ].whenNone;
+                        }
+                    } else {
+                        rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
+                            deepSubNodeLength - 1
+                        ].nodes = [
+                            ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1]
+                                .nodes,
+                            constructedNode,
+                        ];
+                    }
                     if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
                         rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[
                             deepSubNodeLength - 1
@@ -342,6 +422,8 @@ class ToCiceroMarkVisitor {
             if (runTimeNodes.name === 'w:rPr') {
                 let colorCodePresent = false;
                 let shadeCodePresent = false;
+                let vanishPropertyPresent = false;
+                let fontFamilyPresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
                         nodeInformation.properties = [...nodeInformation.properties, TRANSFORMED_NODES.emphasize];
@@ -360,10 +442,33 @@ class ToCiceroMarkVisitor {
                         if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
                             shadeCodePresent = true;
                         }
+                    } else if (runTimeProperties.name === 'w:vanish') {
+                        vanishPropertyPresent = true;
+                    } else if (runTimeProperties.name === 'w:rFonts') {
+                        if (runTimeProperties.attributes['w:ascii'] === 'Baskerville Old Face') {
+                            fontFamilyPresent = true;
+                        }
                     }
                 }
                 if (colorCodePresent && shadeCodePresent) {
                     nodeInformation.nodeType = TRANSFORMED_NODES.code;
+                }
+                if (vanishPropertyPresent) {
+                    if (fontFamilyPresent) {
+                        nodeInformation.whenSomeType = false;
+                        nodeInformation.hasSome = true;
+                    } else {
+                        nodeInformation.whenSomeType = true;
+                        nodeInformation.hasSome = false;
+                    }
+                } else {
+                    if (fontFamilyPresent) {
+                        nodeInformation.whenSomeType = false;
+                        nodeInformation.hasSome = false;
+                    } else {
+                        nodeInformation.whenSomeType = true;
+                        nodeInformation.hasSome = true;
+                    }
                 }
             } else if (runTimeNodes.name === 'w:t') {
                 if (calledBy === TRANSFORMED_NODES.codeBlock) {
@@ -387,6 +492,12 @@ class ToCiceroMarkVisitor {
                     this.JSONXML = [...this.JSONXML, nodeInformation];
                 }
             }
+        }
+        // if no w:rPr is present then it is still possible that
+        // node is of optional type with no formatting properties
+        if (typeof nodeInformation.hasSome === 'undefined') {
+            nodeInformation.whenSomeType = true;
+            nodeInformation.hasSome = true;
         }
         return ooxmlTagTextValue;
     }
@@ -426,7 +537,7 @@ class ToCiceroMarkVisitor {
                     let text = '';
                     for (const codeBlockSubNode of subNode.elements) {
                         if (codeBlockSubNode.name === 'w:r') {
-                            text = this.fetchFormattingProperties(codeBlockSubNode, TRANSFORMED_NODES.codeBlock);
+                            text = this.fetchFormattingProperties(codeBlockSubNode, TRANSFORMED_NODES.codeBlock, {});
                         }
                     }
                     const codeBlockNode = {
@@ -504,16 +615,21 @@ class ToCiceroMarkVisitor {
                                 };
                                 this.nodes = [...this.nodes, clauseNode];
                             } else if (nodeInformation.nodeType === TRANSFORMED_NODES.optional) {
-                                this.traverseElements(variableSubNodes.elements, TRANSFORMED_NODES.optional);
-
-                                for (let optionalNode of this.conditionalOrOptionalNodes) {
-                                    optionalNode.properties = [TRANSFORMED_NODES.optional, ...optionalNode.properties];
-                                    optionalNode.optionalProperties = {
-                                        elementType: nodeInformation.elementType,
-                                        name: nodeInformation.name,
-                                    };
-                                    this.JSONXML = [...this.JSONXML, { ...optionalNode }];
+                                if (variableSubNodes.elements) {
+                                    this.traverseElements(variableSubNodes.elements, TRANSFORMED_NODES.optional);
+                                    for (let optionalNode of this.conditionalOrOptionalNodes) {
+                                        optionalNode.properties = [
+                                            TRANSFORMED_NODES.optional,
+                                            ...optionalNode.properties,
+                                        ];
+                                        optionalNode.optionalProperties = {
+                                            elementType: nodeInformation.elementType,
+                                            name: nodeInformation.name,
+                                        };
+                                        this.JSONXML = [...this.JSONXML, { ...optionalNode }];
+                                    }
                                 }
+
                                 this.conditionalOrOptionalNodes = [];
                             } else {
                                 for (const variableContentNodes of variableSubNodes.elements) {

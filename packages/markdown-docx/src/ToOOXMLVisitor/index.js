@@ -57,6 +57,18 @@ class ToOOXMLVisitor {
         // However, they are not block elements and are present inside
         // paragraph or clause nodes so an extra array is needed to store their info.
         this.conditionalOrOptionalTags = [];
+
+        // Whether the nodes traversed in conditional or optional are of false condition
+        // in optional this means if hasSome is true then whenNone are these nodes
+        // if hasSome is false then whenSome nodes are the corresponding required nodes
+        // this is done to add vanish property
+        this.isTraversingFalseCondition = false;
+
+        // Whether the nodes traversed are present in else condition
+        // done to add specific font property
+        // font property+ vanish = whenNone, else nodes when converting from
+        // ooxml->ciceromark. simple vanish means whenNone, if nodes
+        this.isTraversingElseCondition = false;
     }
 
     /**
@@ -93,6 +105,12 @@ class ToOOXMLVisitor {
                 propertyTag += LINK_PROPERTY_RULE();
             }
         }
+        if (this.isTraversingFalseCondition) {
+            propertyTag += '<w:vanish/>';
+        }
+        if (this.isTraversingElseCondition) {
+            propertyTag += '<w:rFonts w:ascii="Baskerville Old Face" w:hAnsi="Baskerville Old Face"/>';
+        }
         if (propertyTag) {
             propertyTag = TEXT_STYLES_RULE(propertyTag);
         }
@@ -114,7 +132,7 @@ class ToOOXMLVisitor {
      * @param {string} tag  Tag of the property
      * @param {string} type Type of the property
      */
-    generateCounter(tag, type) {
+    createOrUpdateCounter(tag, type) {
         if (Object.prototype.hasOwnProperty.call(this.counter, tag)) {
             this.counter = {
                 ...this.counter,
@@ -174,14 +192,14 @@ class ToOOXMLVisitor {
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.variable) {
                     const tag = subNode.name;
                     const type = subNode.elementType;
-                    this.generateCounter(tag, type);
+                    this.createOrUpdateCounter(tag, type);
                     const value = subNode.value;
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
                     if (isConditionalOrOptionalPresent) {
                         this.conditionalOrOptionalTags = [
                             ...this.conditionalOrOptionalTags,
-                            VARIABLE_RULE(title, tag, value, type),
+                            VARIABLE_RULE(title, tag, value, type, this.isTraversingFalseCondition),
                         ];
                     } else {
                         this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
@@ -277,15 +295,32 @@ class ToOOXMLVisitor {
                             this.globalOOXML += ooxml;
                             this.tags = [];
                         } else if (this.getClass(subNode) === TRANSFORMED_NODES.optional) {
-                            this.traverseNodes(subNode.nodes, properties, true);
-                            const tag = subNode.name;
-                            const type = subNode.elementType;
-                            this.generateCounter(tag, type);
-                            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+                            if (!subNode.hasSome) {
+                                this.isTraversingFalseCondition = true;
+                            }
+                            // traverse the whenSome properties now
+                            this.traverseNodes(subNode.whenSome, properties, true);
+
+                            if (!subNode.hasSome) {
+                                this.isTraversingFalseCondition = false;
+                            } else {
+                                this.isTraversingFalseCondition = true;
+                            }
+                            this.isTraversingElseCondition = true;
+                            // traverse whenNone properties now
+                            this.traverseNodes(subNode.whenNone, properties, true);
                             let ooxml = '';
                             for (let tag of this.conditionalOrOptionalTags) {
                                 ooxml += tag;
                             }
+                            this.isTraversingFalseCondition = false;
+                            this.isTraversingElseCondition = false;
+                            this.conditionalOrOptionalTags = [];
+
+                            const tag = subNode.name;
+                            const type = subNode.elementType;
+                            this.createOrUpdateCounter(tag, type);
+                            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
                             let optionalTag = OPTIONAL_RULE(title, tag, ooxml, type);
                             this.tags = [...this.tags, optionalTag];
                         } else {

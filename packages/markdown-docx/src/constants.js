@@ -42,4 +42,10 @@ const TRANSFORMED_NODES = {
 // Used in './ToOOXMLVisitor/index.js'
 const RELATIONSHIP_OFFSET = 2;
 
-module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET };
+// Used to separate entities in w:tag and w:alias
+// example <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
+// Then use the separator to extract those entities while transforming
+// from ooxml to ciceromark.
+const SEPARATOR = ' | ';
+
+module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET, SEPARATOR };
