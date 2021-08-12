@@ -2486,12 +2486,12 @@ Object {
               "$class": "concerto.metamodel.Decorator",
               "arguments": Array [
                 Object {
-                  "$class": "concerto.metamodel.DecoratorIdentifier",
-                  "identifier": Object {
-                    "$class": "concerto.metamodel.TypeIdentifier",
-                    "fullyQualifiedName": "identifier",
-                  },
+                  "$class": "concerto.metamodel.DecoratorTypeReference",
                   "isArray": false,
+                  "type": Object {
+                    "$class": "concerto.metamodel.TypeIdentifier",
+                    "name": "identifier",
+                  },
                 },
               ],
               "name": "IdentAnnot",
@@ -2826,12 +2826,12 @@ Object {
               "$class": "concerto.metamodel.Decorator",
               "arguments": Array [
                 Object {
-                  "$class": "concerto.metamodel.DecoratorIdentifier",
-                  "identifier": Object {
-                    "$class": "concerto.metamodel.TypeIdentifier",
-                    "fullyQualifiedName": "identifier",
-                  },
+                  "$class": "concerto.metamodel.DecoratorTypeReference",
                   "isArray": false,
+                  "type": Object {
+                    "$class": "concerto.metamodel.TypeIdentifier",
+                    "name": "identifier",
+                  },
                 },
               ],
               "name": "IdentAnnot",
@@ -3249,12 +3249,12 @@ Object {
                   "$class": "concerto.metamodel.Decorator",
                   "arguments": Array [
                     Object {
-                      "$class": "concerto.metamodel.DecoratorIdentifier",
-                      "identifier": Object {
-                        "$class": "concerto.metamodel.TypeIdentifier",
-                        "fullyQualifiedName": "identifier",
-                      },
+                      "$class": "concerto.metamodel.DecoratorTypeReference",
                       "isArray": false,
+                      "type": Object {
+                        "$class": "concerto.metamodel.TypeIdentifier",
+                        "name": "identifier",
+                      },
                     },
                   ],
                   "name": "IdentAnnot",

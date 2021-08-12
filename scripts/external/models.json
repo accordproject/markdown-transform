@@ -7,15 +7,15 @@
           "js": "packages/markdown-common/lib/externalModels" },
         { "name": "ConcertoMetaModel",
           "namespace" : "concerto.metamodel",
-          "from": "https://models.accordproject.org/concerto/metamodel.cto",
+          "from": "https://models.accordproject.org/concerto/metamodel@0.2.0.cto",
           "js": "packages/markdown-cicero/lib/externalModels" },
         { "name": "CiceroMarkModel",
           "namespace" : "org.accordproject.ciceromark",
-          "from": "https://models.accordproject.org/markdown/ciceromark@0.3.1.cto",
+          "from": "https://models.accordproject.org/markdown/ciceromark@0.3.2.cto",
           "js": "packages/markdown-cicero/lib/externalModels" },
         { "name": "TemplateMarkModel",
           "namespace" : "org.accordproject.templatemark",
-          "from": "https://models.accordproject.org/markdown/templatemark@0.1.1.cto",
+          "from": "https://models.accordproject.org/markdown/templatemark@0.1.2.cto",
           "js": "packages/markdown-template/lib/externalModels" }
     ]
 }
