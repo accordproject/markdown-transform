@@ -60,10 +60,10 @@ function processDecorators(serializer,decorated) {
                 };
             } else {
                 metaArgument = {
-                    '$class': 'concerto.metamodel.DecoratorIdentifier',
-                    'identifier': {
+                    '$class': 'concerto.metamodel.DecoratorTypeReference',
+                    'type': {
                         '$class': 'concerto.metamodel.TypeIdentifier',
-                        'fullyQualifiedName': arg.name
+                        'name': arg.name
                     },
                     'isArray': arg.array
                 };

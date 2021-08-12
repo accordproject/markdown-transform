@@ -66,7 +66,12 @@ function buildExternalModels() {
     const source = fs.readFileSync(buildModelsTemplate,'utf8');
     const template = handlebars.compile(source);
 
-    const contextArray = modelsJson.models.map(m => { return { ...m, model: fs.readFileSync(path.join(scriptDir,targetDir,mapName(m.from)), 'utf8') } });
+    const contextArray = modelsJson.models.map(m => {
+        const modelText = fs.readFileSync(path.join(scriptDir,targetDir,mapName(m.from)), 'utf-8');
+        // XXX Escape so it can be embedded in a string
+        const model = modelText.replace(/\\/g, '\\\\');
+        return { ...m, model };
+    });
     //console.log('contextArray --- ' + JSON.stringify(contextArray));
 
     contextArray.forEach(function(context) {
