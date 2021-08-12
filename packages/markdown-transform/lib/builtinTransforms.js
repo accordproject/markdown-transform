@@ -206,6 +206,9 @@ const transformationGraph = {
         pdf: (input, parameters, options) => {
             return PdfTransformer.pdfMakeToPdfBuffer(input);
         },
+        docusign: (input, parameters, options) => {
+            return PdfTransformer.pdfMakeToDsTemplate(input, parameters.templateName, parameters.roles);
+        },
     },
     pdf: {
         docs: 'PDF (buffer)',
@@ -213,6 +216,10 @@ const transformationGraph = {
         ciceromark_parsed: (input, parameters, options) => {
             return PdfTransformer.toCiceroMark(input, options);
         },
+    },
+    docusign: {
+        docs: 'DocuSign Template',
+        fileFormat: 'json',
     },
     docx: {
         docs: 'DOCX (buffer)',

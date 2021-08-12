@@ -17,6 +17,8 @@
 const ToCiceroMark = require('./ToCiceroMark');
 const PdfTransformerBase = require('./PdfTransformerBase');
 
+const dsutil = require('./dsutil');
+
 /**
  * Converts a PDF to CiceroMark DOM
  */
@@ -46,6 +48,38 @@ class PdfTransformer extends PdfTransformerBase {
      */
     static async pdfMakeToPdfBuffer(input, progressCallback) {
         return PdfTransformerBase.toBuffer(input, PdfTransformerBase.pdfMakeToPdfStreamWithCallback(progressCallback));
+    }
+
+    /**
+     * Converts a pdfmake DOM to a DocuSign template
+     * @param {*} input - pdfmake DOM (JSON)
+     * @param {string} name - the template name
+     * @param {string[]} roles - an array of participants roles
+     * @param {*} outputStream - the output stream
+     */
+    static async pdfMakeToDsTemplate(input, name, roles) {
+        // Progress data
+        const variables = [];
+        const progressCallback = (item, x, y, options, pageNb) => {
+            if (item.style === 'VariableDefinition' ||
+                item.style === 'EnumVariableDefinition' ||
+                item.style === 'FormattedVariableDefinition') {
+                variables.push({
+                    name: item.text,
+                    x,
+                    y,
+                    options,
+                    pageNb,
+                    role: item.Participant ? item.Participant.role : 'Customer',
+                });
+            }
+        };
+
+        return PdfTransformer.toBase64(input, PdfTransformer.pdfMakeToPdfStreamWithCallback(progressCallback)).then((pdfBase64) => {
+            const totalPages = 3; // XXX Should be calculated
+            const dsTemplate = dsutil.createDocuSignTemplate(name, roles, pdfBase64, totalPages, variables);
+            return dsTemplate;
+        });
     }
 }
 

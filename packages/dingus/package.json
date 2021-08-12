@@ -39,7 +39,7 @@
     "markdown-it-bracketed-spans": "^1.0.1",
     "markdown-it-container": "^3.0.0",
     "ndoc": "^5.0.0",
-    "pdfmake": "^0.2.4",
+    "pdfmake": "jeromesimeon/pdfmake#0.2-callback",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.4",
     "stylus": "^0.54.5",

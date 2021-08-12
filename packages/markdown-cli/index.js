@@ -64,6 +64,15 @@ require('yargs')
             describe: 'template grammar',
             type: 'string'
         });
+        yargs.option('templateName', {
+            describe: 'template name',
+            type: 'string'
+        });
+        yargs.option('participants', {
+            describe: 'participants',
+            type: 'array',
+            default: ['customer']
+        });
         yargs.option('contract', {
             describe: 'contract template',
             type: 'boolean',
@@ -127,6 +136,8 @@ require('yargs')
             parameters.plugin = plugin;
             parameters.template = argv.template;
             parameters.templateKind = argv.contract ? 'contract' : 'clause';
+            parameters.templateName = argv.templateName;
+            parameters.roles = argv.participants;
             parameters.currentTime = argv.currentTime;
             const options = {};
             options.verbose = argv.verbose;
