@@ -309,6 +309,6 @@ describe('#formatDescriptor', () => {
     });
 
     it('Lookup invalid format', () => {
-        (() => formatDescriptor('foobar')).should.throw('Unknown format foobar');
+        (() => formatDescriptor('foobar')).should.throw('Unknown format: foobar');
     });
 });
