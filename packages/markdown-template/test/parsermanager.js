@@ -15,6 +15,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 
 const chai = require('chai');
 chai.use(require('chai-string'));
@@ -27,10 +28,23 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const normalizeNLs = require('../lib/normalize').normalizeNLs;
 const ParserManager = require('../lib/parsermanager');
 
+/**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the model manager
+ */
+async function loadModelManager(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    const modelManager = await ModelLoader.loadModelManager(ctoPaths, { utcOffset: 0, offline: true });
+    return modelManager;
+}
+
 describe('#constructor', () => {
     it('create a parser manager', async () => {
-        const model = './test/data/helloworld/model.cto';
-        const modelManager = await ModelLoader.loadModelManager([model]);
+        const modelDir = './test/data/helloworld';
+        const modelManager = await loadModelManager(modelDir);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         should.exist(parserManager);
         should.exist(parserManager.getModelManager());
@@ -38,9 +52,9 @@ describe('#constructor', () => {
     });
 
     it('build a parser', async () => {
-        const model = './test/data/helloworld/model.cto';
+        const modelDir = './test/data/helloworld';
         const template = normalizeNLs(fs.readFileSync('./test/data/helloworld/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager([model]);
+        const modelManager = await loadModelManager(modelDir);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal('Name of the person to greet: {{name}}.\nThank you!');
@@ -51,9 +65,9 @@ describe('#constructor', () => {
     });
 
     it('rebuild a parser', async () => {
-        const model = './test/data/helloworld/model.cto';
+        const modelDir = './test/data/helloworld';
         const template = normalizeNLs(fs.readFileSync('./test/data/helloworld/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager([model]);
+        const modelManager = await loadModelManager(modelDir);
         const parserManager = new ParserManager(modelManager,'clause',null,null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal('Name of the person to greet: {{name}}.\nThank you!');
@@ -65,9 +79,9 @@ describe('#constructor', () => {
     });
 
     it('handle formulas', async () => {
-        const model = './test/data/fixed-interests/model.cto';
+        const modelDir = './test/data/fixed-interests';
         const template = normalizeNLs(fs.readFileSync('./test/data/fixed-interests/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager([model]);
+        const modelManager = await loadModelManager(modelDir);
         const parserManager = new ParserManager(modelManager,null,'clause',null);
         parserManager.setTemplate(template);
         parserManager.getTemplate().should.equal(`## Fixed rate loan
@@ -85,9 +99,9 @@ and monthly payments of {{% monthlyPaymentFormula(loanAmount,rate,loanDuration) 
     });
 
     it('handle multiple formulas', async () => {
-        const model = './test/data/testFormula/model.cto';
+        const modelDir = './test/data/testFormula';
         const template = normalizeNLs(fs.readFileSync('./test/data/testFormula/grammar.tem.md', 'utf8'));
-        const modelManager = await ModelLoader.loadModelManager([model]);
+        const modelManager = await loadModelManager(modelDir);
         const parserManager = new ParserManager(modelManager,null,'clause',null);
         parserManager.setTemplateKind('contract');
         parserManager.setTemplate(template);

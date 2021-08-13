@@ -150,6 +150,19 @@ const parseFailures = [
 ];
 
 /**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the model manager
+ */
+async function loadModelManager(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    const modelManager = await ModelLoader.loadModelManager(ctoPaths, { utcOffset: 0, offline: true });
+    return modelManager;
+}
+
+/**
  * Run positive tests workload
  * @param {*} tests - the tests to run
  */
@@ -164,14 +177,14 @@ function runSuccesses(tests) {
         const templateMarkTransformer = new TemplateMarkTransformer(customTable);
         const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
         const grammarJson = JSON.parse(loadFile(`./test/data/${name}/grammar.json`).content);
-        const model = `./test/data/${name}/model.cto`;
+        const modelDir = `./test/data/${name}`;
         const sample =  loadFile(`./test/data/${name}/sample.md`);
         const data =  JSON.parse(loadFile(`./test/data/${name}/data.json`).content);
 
         describe('#'+name, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager([model],['model.cto'],{ utcOffset: 0, offline: true });
+                modelManager = await loadModelManager(modelDir);
             });
 
             it('should create template mark', async () => {
@@ -235,13 +248,13 @@ function runParseFailures(tests) {
         const error = test.error;
 
         const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
-        const model = `./test/data/${name}/model.cto`;
+        const modelDir = `./test/data/${name}`;
         const sample =  loadFile(`./test/data/${name}/sample.md`);
 
         describe(`#${name} [${desc}]`, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager([model]);
+                modelManager = await loadModelManager(modelDir);
             });
 
             it('should fail to parse sample', async () => {
@@ -263,12 +276,12 @@ function runTemplateFailures(tests) {
         const error = test.error;
 
         const grammar = loadFile(`./test/data/${name}/grammar.tem.md`);
-        const model = `./test/data/${name}/model.cto`;
+        const modelDir = `./test/data/${name}`;
 
         describe(`#${name} [${desc}]`, function () {
             let modelManager;
             before(async () => {
-                modelManager = await ModelLoader.loadModelManager([model]);
+                modelManager = await loadModelManager(modelDir);
             });
 
             it('should fail to parse template', async () => {
