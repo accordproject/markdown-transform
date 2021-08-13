@@ -38,11 +38,23 @@ function normalizeNLs(input) {
     return text;
 }
 
+/**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the list of model files
+ */
+function loadModels(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    return ctoPaths;
+}
+
 // Acceptance test
 const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
 const acceptanceGrammar = normalizeNLs(fs.readFileSync(acceptanceGrammarFile, 'utf8'));
 const acceptanceGrammarTokens = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar_tokens.json'), 'utf8'));
-const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
+const acceptanceModelDir =  path.resolve(__dirname, 'data/acceptance');
 const acceptanceTemplateMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar.json'), 'utf8'));
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8'));
 const acceptanceMarkdownCicero = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample_cicero.md'), 'utf8'));
@@ -64,7 +76,8 @@ const sampleHtml = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sampl
 describe('#acceptance', () => {
     let parameters;
     before(async () => {
-        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, model: [acceptanceModelFile], templateKind: 'contract' };
+        const models = loadModels(acceptanceModelDir);
+        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, model: models, templateKind: 'contract' };
     });
 
     describe('#template', () => {
@@ -207,26 +220,13 @@ describe('#template1', () => {
     before(async () => {
         const grammarFile = './test/data/template1/grammar.tem.md';
         const grammar = fs.readFileSync(grammarFile, 'utf8');
-        const model = './test/data/template1/model.cto';
-        parameters = { inputFileName: grammarFile, template: grammar, model: [model], templateKind: 'clause' };
-    });
-
-    describe('#markdown', () => {
-        it('markdown -> data', async () => {
-            const sample1File = './test/data/template1/sample.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const result = await transform(sample1, 'markdown', ['data'], parameters, {});
-            result.$class.should.equal('org.test.MyClause');
-            result.seller.should.equal('Steve');
-        });
+        const modelDir = './test/data/template1';
+        const models = loadModels(modelDir);
+        parameters = { inputFileName: grammarFile, template: grammar, model: models, templateKind: 'clause' };
     });
 
     describe('#markdown', () => {
         it('markdown -> data (offline)', async () => {
-            const model2 = './test/data/template1/contract.cto';
-            const model3 = './test/data/template1/money.cto';
-            parameters.model.push(model2);
-            parameters.model.push(model3);
             const sample1File = './test/data/template1/sample.md';
             const sample1 = fs.readFileSync(sample1File, 'utf8');
             const result = await transform(sample1, 'markdown', ['data'], parameters, {offline:true});
