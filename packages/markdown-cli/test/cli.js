@@ -35,9 +35,21 @@ function normalizeNLs(input) {
     return text;
 }
 
+/**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the list of model files
+ */
+function loadModels(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    return ctoPaths;
+}
+
 // Acceptance test
 const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
-const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
+const acceptanceModelDir =  path.resolve(__dirname, 'data/acceptance');
 const acceptanceMarkdownFile = path.resolve(__dirname, 'data/acceptance', 'sample.md');
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(acceptanceMarkdownFile, 'utf8'));
 const acceptanceMarkdownCiceroFile = path.resolve(__dirname, 'data/acceptance', 'sample_cicero.md');
@@ -86,7 +98,8 @@ describe('#validateTransformArgs', () => {
 describe('markdown-cli (acceptance)', () => {
     let parameters;
     beforeEach(async () => {
-        parameters = { template: acceptanceGrammarFile, model: [acceptanceModelFile], templateKind: 'contract' };
+        const models = loadModels(acceptanceModelDir);
+        parameters = { template: acceptanceGrammarFile, model: models, templateKind: 'contract' };
     });
 
     describe('#parse', () => {

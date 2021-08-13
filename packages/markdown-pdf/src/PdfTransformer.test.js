@@ -25,6 +25,19 @@ const TemplateMarkTransformer = require('@accordproject/markdown-template').Temp
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 
 /**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the model manager
+ */
+async function loadModelManager(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    const modelManager = await ModelLoader.loadModelManager(ctoPaths, { utcOffset: 0, offline: true });
+    return modelManager;
+}
+
+/**
  * Get the name and contents of all pdf test files
  * @returns {*} an array of name/contents tuples
  */
@@ -154,8 +167,8 @@ describe('pdf generation with decorators', () => {
         const templateTransformer = new TemplateMarkTransformer();
         const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
 
-        const modelFilePath = path.join(__dirname, '/../test/data/signature/model.cto');
-        const modelManager = await ModelLoader.loadModelManager([modelFilePath]);
+        const modelDir = path.join(__dirname, '/../test/data/signature');
+        const modelManager = await loadModelManager(modelDir);
 
         const templateMarkDom = templateTransformer.fromMarkdownTemplate( { content: templateMarkContent }, modelManager, 'clause');
         expect(templateMarkDom).toMatchSnapshot(); // (1)
