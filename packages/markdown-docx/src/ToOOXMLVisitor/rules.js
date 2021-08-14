@@ -143,7 +143,7 @@ const VARIABLE_RULE = (title, tag, value, type, vanish = false) => {
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
-              ${vanish ? '<w:vanish/>' : ''}
+              ${vanish ? VANISH_PROPERTY_RULE() : ''}
             </w:rPr>
             <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
           </w:r>
@@ -275,6 +275,22 @@ const OPTIONAL_RULE = (title, tag, value, type) => {
     `;
 };
 
+/**
+ * Inserts a vanish(http://officeopenxml.com/WPtextFormatting.php) OOXML tag.
+ *
+ * @returns {string} OOXML tag for vanish
+ */
+const VANISH_PROPERTY_RULE = () => '<w:vanish/>';
+
+/**
+ * Inserts Baskerville Old Face font family OOXML tag.
+ *
+ * @returns {string} OOXML tag for Baskerville Old Face font family
+ */
+const CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE = () => {
+    return '<w:rFonts w:ascii="Baskerville Old Face" w:hAnsi="Baskerville Old Face"/>';
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -293,4 +309,6 @@ module.exports = {
     LINK_PROPERTY_RULE,
     LINK_RULE,
     OPTIONAL_RULE,
+    VANISH_PROPERTY_RULE,
+    CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
 };
