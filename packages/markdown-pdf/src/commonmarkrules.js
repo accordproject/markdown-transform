@@ -24,13 +24,17 @@ const rules = {};
 // Inlines
 rules.Emph = (visitor, thing, children, parameters) => {
     parameters.emph = true;
-    parameters.result.text = children;
-    parameters.result.italics = true;
+    parameters.result = children;
+    parameters.result.forEach((child) => {
+        child.italics = true;
+    });
 };
 rules.Strong = (visitor, thing, children, parameters) => {
     parameters.strong = true;
-    parameters.result.text = children;
-    parameters.result.bold = true;
+    parameters.result = children;
+    parameters.result.forEach((child) => {
+        child.bold = true;
+    });
 };
 rules.BlockQuote = (visitor, thing, children, parameters) => {
     parameters.result.stack = children;
