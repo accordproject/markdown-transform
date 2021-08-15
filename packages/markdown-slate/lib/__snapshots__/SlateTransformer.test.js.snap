@@ -6881,10 +6881,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Emph",
+          "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Strong",
+              "$class": "org.accordproject.commonmark.Emph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -6935,10 +6935,10 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark.Emph",
+          "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Strong",
+              "$class": "org.accordproject.commonmark.Emph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -10127,6 +10127,193 @@ Object {
 }
 `;
 
+exports[`markdown <-> slate converts strikethrough.json to and from Markdown 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "foo",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and this is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Strikethrough",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bar",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and maybe ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Strikethrough",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foobar",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> slate converts strikethrough.json to and from Markdown 2`] = `"This is **foo** and this is ~~bar~~ and maybe **this is ~~foobar~~**"`;
+
+exports[`markdown <-> slate converts strikethrough.json to and from Markdown 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is ",
+          },
+          Object {
+            "bold": true,
+            "object": "text",
+            "text": "foo",
+          },
+          Object {
+            "object": "text",
+            "text": " and this is ",
+          },
+          Object {
+            "lineThrough": true,
+            "object": "text",
+            "text": "bar",
+          },
+          Object {
+            "object": "text",
+            "text": " and maybe ",
+          },
+          Object {
+            "bold": true,
+            "object": "text",
+            "text": "this is ",
+          },
+          Object {
+            "bold": true,
+            "lineThrough": true,
+            "object": "text",
+            "text": "foobar",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`markdown <-> slate converts strikethrough.json to and from Markdown 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "foo",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and this is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Strikethrough",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bar",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and maybe ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Strikethrough",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foobar",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown <-> slate converts text.json to and from Markdown 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -10165,10 +10352,10 @@ Object {
           "text": " ",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Emph",
+          "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Strong",
+              "$class": "org.accordproject.commonmark.Emph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -10288,10 +10475,10 @@ Object {
           "text": " ",
         },
         Object {
-          "$class": "org.accordproject.commonmark.Emph",
+          "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark.Strong",
+              "$class": "org.accordproject.commonmark.Emph",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",

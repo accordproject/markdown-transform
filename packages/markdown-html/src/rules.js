@@ -137,6 +137,21 @@ const EMPH_RULE = {
 };
 
 /**
+ * A rule to deserialize s (strikethrough) nodes.
+ * @type {Object}
+ */
+const STRIKETHROUGH_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 's') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}Strikethrough`,
+                nodes: next(el.childNodes, ignoreSpace)
+            };
+        }
+    }
+};
+
+/**
  * A rule to deserialize link nodes.
  * @type {Object}
  */
@@ -505,6 +520,7 @@ const rules = [
     PARAGRAPH_RULE,
     STRONG_RULE,
     EMPH_RULE,
+    STRIKETHROUGH_RULE,
     LINK_RULE,
     HEADING_RULE,
     THEMATIC_BREAK_RULE,

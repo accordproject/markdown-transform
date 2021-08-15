@@ -17,11 +17,13 @@
 const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 
 const rules = {};
+
 // Inlines
 rules.Formula = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [resultString('{{%'),resultString(thing.value),resultString('%}}')];
     resultSeq(parameters,result);
 };
+
 // Container blocks
 rules.Clause = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,2);

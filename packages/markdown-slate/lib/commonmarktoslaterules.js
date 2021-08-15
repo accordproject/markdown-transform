@@ -49,6 +49,10 @@ rules.Strong = (thing,processChildren,parameters) => {
     parameters.strong = true;
     return processChildren(thing,'nodes',parameters);
 };
+rules.Strikethrough = (thing,processChildren,parameters) => {
+    parameters.strikethrough = true;
+    return processChildren(thing,'nodes',parameters);
+};
 rules.Text = (thing,processChildren,parameters) => {
     return toslateutil.handleFormattedText(thing, parameters);
 };

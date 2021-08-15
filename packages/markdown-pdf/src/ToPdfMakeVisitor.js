@@ -47,7 +47,8 @@ class ToPdfMakeVisitor {
             const newParameters = {
                 strong: parameters.strong,
                 emph: parameters.emph,
-                code: parameters.code,
+                strikethrough: parameters.strikethrough,
+                code: parameters.code
             };
             node.accept(visitor, newParameters);
             if (Array.isArray(newParameters.result)) {
