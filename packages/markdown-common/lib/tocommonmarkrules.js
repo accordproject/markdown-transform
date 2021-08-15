@@ -87,6 +87,21 @@ const emphCloseRule = {
     close: true,
     skipEmpty: false,
 };
+const strikethroughOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Strikethrough',
+    leaf: false,
+    open: true,
+    close: false,
+    skipEmpty: false,
+};
+const strikethroughCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Strikethrough',
+    leaf: false,
+    open: false,
+    close: true,
+    skipEmpty: false,
+};
+
 const linkOpenRule = {
     tag: NS_PREFIX_CommonMarkModel + 'Link',
     leaf: false,
@@ -253,6 +268,8 @@ rules.inlines.strong_open = strongOpenRule;
 rules.inlines.strong_close = strongCloseRule;
 rules.inlines.em_open = emphOpenRule;
 rules.inlines.em_close = emphCloseRule;
+rules.inlines.s_open = strikethroughOpenRule;
+rules.inlines.s_close = strikethroughCloseRule;
 rules.inlines.link_open = linkOpenRule;
 rules.inlines.link_close = linkCloseRule;
 rules.inlines.image = imageRule;

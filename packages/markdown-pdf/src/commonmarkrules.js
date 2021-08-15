@@ -36,6 +36,13 @@ rules.Strong = (visitor, thing, children, parameters) => {
         child.bold = true;
     });
 };
+rules.Strikethrough = (visitor, thing, children, parameters) => {
+    parameters.strikethrough = true;
+    parameters.result = children;
+    parameters.result.forEach((child) => {
+        child.decoration = 'lineThrough';
+    });
+};
 rules.BlockQuote = (visitor, thing, children, parameters) => {
     parameters.result.stack = children;
 };

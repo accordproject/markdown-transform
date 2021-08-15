@@ -39,6 +39,9 @@ function applyMarks(leafNode, parameters) {
     if (parameters.strong) {
         leafNode.bold = true;
     }
+    if (parameters.strikethrough) {
+        leafNode.lineThrough = true;
+    }
 }
 
 /**

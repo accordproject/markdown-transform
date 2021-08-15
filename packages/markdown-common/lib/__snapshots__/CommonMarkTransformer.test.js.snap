@@ -3161,6 +3161,68 @@ Object {
 }
 `;
 
+exports[`markdown converts strikethrough.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "foo",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and this is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strikethrough",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bar",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and maybe ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Strikethrough",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foobar",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts strong.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -4162,6 +4224,8 @@ exports[`to plain text paragraphs.md 1`] = `
 
 This is second paragraph."
 `;
+
+exports[`to plain text strikethrough.md 1`] = `"This is foo and this is ~~bar~~ and maybe this is ~~foobar~~"`;
 
 exports[`to plain text strong.md 1`] = `"This is some text."`;
 

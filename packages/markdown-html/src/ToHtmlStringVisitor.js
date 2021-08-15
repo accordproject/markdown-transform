@@ -145,6 +145,9 @@ class ToHtmlStringVisitor {
         case 'Strong':
             parameters.result += `<strong>${ToHtmlStringVisitor.visitChildren(this, thing)}</strong>`;
             break;
+        case 'Strikethrough':
+            parameters.result += `<s>${ToHtmlStringVisitor.visitChildren(this, thing)}</s>`;
+            break;
         case 'BlockQuote': {
             parameters.result += `<blockquote>${ToHtmlStringVisitor.visitChildren(this, thing)}</blockquote>\n`;
         }

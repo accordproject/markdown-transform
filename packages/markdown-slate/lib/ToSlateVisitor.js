@@ -49,6 +49,7 @@ class ToSlateVisitor {
                 serializer: parameters.serializer,
                 strong: parameters.strong,
                 emph: parameters.emph,
+                strikethrough: parameters.strikethrough,
             };
             node.accept(this, newParameters);
             if (Array.isArray(newParameters.result)) {

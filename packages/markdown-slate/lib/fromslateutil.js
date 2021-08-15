@@ -79,26 +79,34 @@ function quoteString(value) {
 function handleMarks(slateNode,newNode) {
     let strong = null;
     let emph = null;
+    let strikethrough = null;
     let result = newNode;
 
     const isBold = slateNode.bold;
     const isItalic = slateNode.italic;
+    const isLineThrough = slateNode.lineThrough;
 
     if (isBold) {
         strong = {$class : `${NS_PREFIX_CommonMarkModel}Strong`, nodes: []};
     }
-
     if (isItalic) {
         emph  = {$class : `${NS_PREFIX_CommonMarkModel}Emph`, nodes: []};
     }
+    if (isLineThrough) {
+        strikethrough  = {$class : `${NS_PREFIX_CommonMarkModel}.Strikethrough`, nodes: []};
+    }
 
-    if(strong) {
-        strong.nodes.push(result);
-        result = strong;
+    if(strikethrough) {
+        strikethrough.nodes.push(result);
+        result = strikethrough;
     }
     if(emph) {
         emph.nodes.push(result);
         result = emph;
+    }
+    if(strong) {
+        strong.nodes.push(result);
+        result = strong;
     }
 
     return result;

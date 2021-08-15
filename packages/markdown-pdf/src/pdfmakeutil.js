@@ -195,6 +195,10 @@ function applyMarks(leafNode, parameters) {
         leafNode.style = 'Strong';
         leafNode.bold = true;
     }
+    if (parameters.strikethrough) {
+        leafNode.style = 'Strikethrough';
+        leafNode.bold = true;
+    }
     if (parameters.code) {
         leafNode.style = 'Code';
     }
