@@ -3254,6 +3254,290 @@ Object {
 }
 `;
 
+exports[`markdown converts table.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "body": Object {
+        "$class": "org.accordproject.commonmark.TableBody",
+        "nodes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "Content Cell",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "Content Cell",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "Content Cell",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "Content Cell",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      "head": Object {
+        "$class": "org.accordproject.commonmark.TableRow",
+        "nodes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.TableHeader",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Text",
+                "text": "First Header",
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableHeader",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Text",
+                "text": "Second Header",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown converts tableinlist.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.List",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "This is a list containing a table:",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Table",
+              "body": Object {
+                "$class": "org.accordproject.commonmark.TableBody",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableRow",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableRow",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              "head": Object {
+                "$class": "org.accordproject.commonmark.TableRow",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableHeader",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.Text",
+                        "text": "First Header",
+                      },
+                    ],
+                  },
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableHeader",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.Text",
+                        "text": "Second Header",
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Item",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Paragraph",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "And another table:",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Table",
+              "body": Object {
+                "$class": "org.accordproject.commonmark.TableBody",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableRow",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableRow",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                      Object {
+                        "$class": "org.accordproject.commonmark.TableData",
+                        "nodes": Array [
+                          Object {
+                            "$class": "org.accordproject.commonmark.Text",
+                            "text": "Content Cell",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              "head": Object {
+                "$class": "org.accordproject.commonmark.TableRow",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableHeader",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.Text",
+                        "text": "Third Header",
+                      },
+                    ],
+                  },
+                  Object {
+                    "$class": "org.accordproject.commonmark.TableHeader",
+                    "nodes": Array [
+                      Object {
+                        "$class": "org.accordproject.commonmark.Text",
+                        "text": "Fourth Header",
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+      "tight": "true",
+      "type": "bullet",
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts text.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -4228,6 +4512,26 @@ This is second paragraph."
 exports[`to plain text strikethrough.md 1`] = `"This is foo and this is ~~bar~~ and maybe this is ~~foobar~~"`;
 
 exports[`to plain text strong.md 1`] = `"This is some text."`;
+
+exports[`to plain text table.md 1`] = `
+"| First Header | Second Header | 
+| --- | --- |
+| Content Cell | Content Cell | 
+| Content Cell | Content Cell |"
+`;
+
+exports[`to plain text tableinlist.md 1`] = `
+"-  This is a list containing a table:
+   | First Header | Second Header | 
+   | --- | --- |
+   | Content Cell | Content Cell | 
+   | Content Cell | Content Cell | 
+-  And another table:
+   | Third Header | Fourth Header | 
+   | --- | --- |
+   | Content Cell | Content Cell | 
+   | Content Cell | Content Cell |"
+`;
 
 exports[`to plain text text.md 1`] = `"This is some text."`;
 

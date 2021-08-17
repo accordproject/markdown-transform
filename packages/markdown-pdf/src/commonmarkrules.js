@@ -109,6 +109,26 @@ rules.ListBlock = (visitor, thing, children, parameters) => {
 rules.List = (visitor, thing, children, parameters) => {
     parameters.result[thing.type === 'ordered' ? 'ol' : 'ul'] = children;
 };
+rules.TableHeader = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
+rules.TableData = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
+rules.TableRow = (visitor, thing, children, parameters) => {
+    parameters.result = [children];
+};
+rules.Table = (visitor, thing, children, parameters) => {
+    const headChildren = visitor.visitChildren(visitor, thing.head, parameters);
+    const bodyChildren = visitor.visitChildren(visitor, thing.body, parameters);
+    headChildren.forEach((head) => {
+        head.style = 'TableHeader';
+    });
+    parameters.result.table = {
+        headerRows: 1,
+        body: [headChildren].concat(bodyChildren)
+    };
+};
 rules.Document = (visitor, thing, children, parameters) => {
     parameters.result.content = children;
 };

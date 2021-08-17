@@ -169,7 +169,7 @@ class ToCiceroMarkVisitor {
         const children = Array.from(fragment.childNodes);
         // console.log('children -- ', children);
         const nodes = this.deserializeElements(children, true);
-        // console.log('nodes', nodes);
+        // console.log('nodes', JSON.stringify(nodes));
         return {
             '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
             nodes,

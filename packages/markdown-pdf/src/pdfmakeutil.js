@@ -133,6 +133,9 @@ const defaultStyles = {
     BlockQuote: {
         margin: [20, 0]
     },
+    TableHeader: {
+        bold: true
+    },
     background: {
         color: 'white'
     }
