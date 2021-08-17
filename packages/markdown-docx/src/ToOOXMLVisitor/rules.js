@@ -283,7 +283,8 @@ const OPTIONAL_RULE = (title, tag, value, type) => {
 const VANISH_PROPERTY_RULE = () => '<w:vanish/>';
 
 /**
- * Inserts Baskerville Old Face font family OOXML tag.
+ * Inserts Baskerville Old Face font family OOXML tag to distinguish nodes of whenNone/whenFalse
+ * from whenSome/whenTrue in optional or conditional nodes of ciceromarkJSON.
  *
  * @returns {string} OOXML tag for Baskerville Old Face font family
  */

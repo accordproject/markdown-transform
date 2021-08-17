@@ -54,11 +54,6 @@ class ToOOXMLVisitor {
         this.tags = [];
         // Relationship tags for links in a document
         this.relationships = [];
-        // Contains the tags for optional or conditional nodes.
-        // Optional/conditional themselves can act contain multiple inline nodes.
-        // However, they are not block elements and are present inside
-        // paragraph or clause nodes so an extra array is needed to store their info.
-        this.conditionalOrOptionalTags = [];
     }
 
     /**
@@ -74,13 +69,13 @@ class ToOOXMLVisitor {
     /**
      * Generates the OOXML for text and code ciceromark nodes.
      *
-     * @param {string}  value           Text value of the node
-     * @param {Array}   nodeProperties  Properties of the node
-     * @param {boolean} calledByCode    Is function called by code node or not
-     * @param {object}  conditions      else and false conditions of optional and conditional nodes
+     * @param {string}  value            Text value of the node
+     * @param {Array}   nodeProperties   Properties of the node
+     * @param {boolean} calledByCode     Is function called by code node or not
+     * @param {object}  parentProperties Properties of parent on which children depend for certain styles(e.g. vanish property for hidden nodes)
      * @returns {string} Generated OOXML
      */
-    generateTextOrCodeOOXML(value, nodeProperties, calledByCode = false, conditions) {
+    generateTextOrCodeOOXML(value, nodeProperties, calledByCode = false, parentProperties) {
         let propertyTag = '';
         if (calledByCode) {
             propertyTag = CODE_PROPERTIES_RULE();
@@ -96,10 +91,10 @@ class ToOOXMLVisitor {
                 propertyTag += LINK_PROPERTY_RULE();
             }
         }
-        if (conditions.isTraversingFalseCondition) {
+        if (parentProperties.traversingNodeHiddenInConditional) {
             propertyTag += VANISH_PROPERTY_RULE();
         }
-        if (conditions.isTraversingElseCondition) {
+        if (parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion) {
             propertyTag += CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE();
         }
         if (propertyTag) {
@@ -143,26 +138,26 @@ class ToOOXMLVisitor {
     /**
      * Traverses CiceroMark nodes in a DFS approach
      *
-     * @param {object} node       CiceroMark Node
-     * @param {array}  properties Properties to be applied on current node
-     * @param {string} parent     Parent element of the node(paragraph, clause, heading, and optional)
-     * @param {object} conditions else and false conditions of optional and conditional nodes
+     * @param {object} node             CiceroMark Node
+     * @param {array}  properties       Properties to be applied on current node
+     * @param {string} parent           Parent element of the node(paragraph, clause, heading, and optional)
+     * @param {object} parentProperties Properties of parent on which children depend for certain styles(vanish property for hidden nodes)
      * @returns {string} OOXML for the inline nodes of the current parent
      */
-    traverseNodes(node, properties = [], parent, conditions) {
+    traverseNodes(node, properties = [], parent, parentProperties = {}) {
         if (this.getClass(node) === 'org.accordproject.commonmark.Document') {
-            this.traverseNodes(node.nodes, properties, parent, conditions);
+            this.traverseNodes(node.nodes, properties, parent, parentProperties);
         } else {
             let inlineOOXML = '';
             for (let subNode of node) {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
-                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, false, conditions);
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, false, parentProperties);
                     inlineOOXML += tag;
                     if (parent !== TRANSFORMED_NODES.optional) {
                         this.tags = [...this.tags, tag];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
-                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true, conditions);
+                    const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true, parentProperties);
                     inlineOOXML += tag;
                     if (parent !== TRANSFORMED_NODES.optional) {
                         this.tags = [...this.tags, tag];
@@ -188,7 +183,13 @@ class ToOOXMLVisitor {
                     const value = subNode.value;
                     const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
 
-                    inlineOOXML += VARIABLE_RULE(title, tag, value, type, conditions.isTraversingFalseCondition);
+                    inlineOOXML += VARIABLE_RULE(
+                        title,
+                        tag,
+                        value,
+                        type,
+                        parentProperties.traversingNodeHiddenInConditional
+                    );
                     if (parent !== TRANSFORMED_NODES.optional) {
                         this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
                     }
@@ -204,7 +205,12 @@ class ToOOXMLVisitor {
                     if (subNode.nodes) {
                         for (const deepNode of subNode.nodes) {
                             if (this.getClass(deepNode) === TRANSFORMED_NODES.paragraph) {
-                                this.traverseNodes(deepNode.nodes, properties, TRANSFORMED_NODES.paragraph, conditions);
+                                this.traverseNodes(
+                                    deepNode.nodes,
+                                    properties,
+                                    TRANSFORMED_NODES.paragraph,
+                                    parentProperties
+                                );
                                 let ooxml = '';
                                 for (let xmlTag of this.tags) {
                                     ooxml += xmlTag;
@@ -215,7 +221,12 @@ class ToOOXMLVisitor {
                                 // Clear all the tags as all nodes of paragraph have been traversed.
                                 this.tags = [];
                             } else if (this.getClass(deepNode) === TRANSFORMED_NODES.heading) {
-                                this.traverseNodes(deepNode.nodes, properties, TRANSFORMED_NODES.heading, conditions);
+                                this.traverseNodes(
+                                    deepNode.nodes,
+                                    properties,
+                                    TRANSFORMED_NODES.heading,
+                                    parentProperties
+                                );
                                 let ooxml = '';
                                 for (let xmlTag of this.tags) {
                                     let headingPropertiesTag = '';
@@ -231,7 +242,7 @@ class ToOOXMLVisitor {
                                 this.tags = [];
                             } else {
                                 let newProperties = [...properties, deepNode.$class];
-                                this.traverseNodes(deepNode.nodes, newProperties, parent, conditions);
+                                this.traverseNodes(deepNode.nodes, newProperties, parent, parentProperties);
                             }
                         }
                         const tag = subNode.name;
@@ -256,7 +267,12 @@ class ToOOXMLVisitor {
                 } else {
                     if (subNode.nodes) {
                         if (this.getClass(subNode) === TRANSFORMED_NODES.paragraph) {
-                            this.traverseNodes(subNode.nodes, properties, TRANSFORMED_NODES.paragraph, conditions);
+                            this.traverseNodes(
+                                subNode.nodes,
+                                properties,
+                                TRANSFORMED_NODES.paragraph,
+                                parentProperties
+                            );
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 ooxml += xmlTag;
@@ -267,7 +283,7 @@ class ToOOXMLVisitor {
                             // Clear all the tags as all nodes of paragraph have been traversed.
                             this.tags = [];
                         } else if (this.getClass(subNode) === TRANSFORMED_NODES.heading) {
-                            this.traverseNodes(subNode.nodes, properties, TRANSFORMED_NODES.heading, conditions);
+                            this.traverseNodes(subNode.nodes, properties, TRANSFORMED_NODES.heading, parentProperties);
                             let ooxml = '';
                             for (let xmlTag of this.tags) {
                                 let headingPropertiesTag = '';
@@ -282,33 +298,33 @@ class ToOOXMLVisitor {
                             this.globalOOXML += ooxml;
                             this.tags = [];
                         } else if (this.getClass(subNode) === TRANSFORMED_NODES.optional) {
-                            conditions.isTraversingFalseCondition = !subNode.hasSome;
+                            parentProperties.traversingNodeHiddenInConditional = !subNode.hasSome;
                             // traverse the whenSome properties now
                             const whenSomeOOXML = this.traverseNodes(
                                 subNode.whenSome,
                                 properties,
                                 TRANSFORMED_NODES.optional,
-                                conditions
+                                parentProperties
                             );
-                            conditions.isTraversingElseCondition = true;
+                            parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion = true;
                             // traverse whenNone properties now
                             const whenNoneOOXML = this.traverseNodes(
                                 subNode.whenNone,
                                 properties,
                                 TRANSFORMED_NODES.optional,
-                                conditions
+                                parentProperties
                             );
 
-                            const ooxml = whenSomeOOXML + whenNoneOOXML;
+                            const ooxml = `${whenSomeOOXML}  ${whenNoneOOXML}`;
                             const tag = subNode.name;
                             const type = subNode.elementType;
                             this.createOrUpdateCounter(tag, type);
                             const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
                             const optionalTag = OPTIONAL_RULE(title, tag, ooxml, type);
                             this.tags = [...this.tags, optionalTag];
-                            // make the conditions false as traversal is done
-                            conditions.isTraversingFalseCondition = false;
-                            conditions.isTraversingElseCondition = false;
+                            // make the parentProperties false as traversal is done
+                            parentProperties.traversingNodeHiddenInConditional = false;
+                            parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion = false;
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
                                 this.relationships = [
@@ -320,7 +336,7 @@ class ToOOXMLVisitor {
                                 ];
                             }
                             let newProperties = [...properties, subNode.$class];
-                            this.traverseNodes(subNode.nodes, newProperties, parent, conditions);
+                            this.traverseNodes(subNode.nodes, newProperties, parent, parentProperties);
                         }
                     }
                 }
@@ -336,10 +352,7 @@ class ToOOXMLVisitor {
      * @returns {string} OOXML string
      */
     toOOXML(ciceromark) {
-        this.traverseNodes(ciceromark, [], TRANSFORMED_NODES.document, {
-            isTraversingElseCondition: false,
-            isTraversingFalseCondition: false,
-        });
+        this.traverseNodes(ciceromark, [], TRANSFORMED_NODES.document);
         this.globalOOXML = wrapAroundLockedContentControls(this.globalOOXML);
         this.globalOOXML = wrapAroundDefaultDocxTags(this.globalOOXML, this.relationships);
 

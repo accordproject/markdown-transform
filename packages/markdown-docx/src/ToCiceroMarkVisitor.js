@@ -332,9 +332,9 @@ class ToCiceroMarkVisitor {
      * @param {Array}   node              Node to be traversed
      * @param {string}  calledBy          Parent node class that called the function
      * @param {object}  nodeInformation   Information for the current node
-     * @returns {string} NodeInformation array if optional else Value in <w:t> tags
+     * @returns {(object | string)} nodeInformation object(properties, value, type, etc.) if optional else value in <w:t> tags
      */
-    fetchFormattingProperties(node, calledBy = TRANSFORMED_NODES.paragraph, nodeInformation = null) {
+    fetchFormattingProperties(node, calledBy = TRANSFORMED_NODES.paragraph, nodeInformation = {}) {
         let ooxmlTagTextValue = '';
         // let currentNode;
         if (calledBy === TRANSFORMED_NODES.link) {
@@ -463,7 +463,7 @@ class ToCiceroMarkVisitor {
                     let text = '';
                     for (const codeBlockSubNode of subNode.elements) {
                         if (codeBlockSubNode.name === 'w:r') {
-                            text = this.fetchFormattingProperties(codeBlockSubNode, TRANSFORMED_NODES.codeBlock, {});
+                            text = this.fetchFormattingProperties(codeBlockSubNode, TRANSFORMED_NODES.codeBlock);
                         }
                     }
                     const codeBlockNode = {
@@ -547,10 +547,7 @@ class ToCiceroMarkVisitor {
                                         TRANSFORMED_NODES.optional
                                     );
                                     for (const node of optionalNodes) {
-                                        node.properties = [
-                                            TRANSFORMED_NODES.optional,
-                                            ...node.properties,
-                                        ];
+                                        node.properties = [TRANSFORMED_NODES.optional, ...node.properties];
                                         node.optionalProperties = {
                                             elementType: nodeInformation.elementType,
                                             name: nodeInformation.name,
