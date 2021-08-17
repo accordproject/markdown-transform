@@ -208,6 +208,21 @@ class ToHtmlStringVisitor {
         case 'Item':
             parameters.result += `<li>${ToHtmlStringVisitor.visitChildren(this, thing)}</li>\n`;
             break;
+        case 'TableHeader':
+            parameters.result += `<th>${ToHtmlStringVisitor.visitChildren(this, thing)}</th>`;
+            break;
+        case 'TableData':
+            parameters.result += `<td>${ToHtmlStringVisitor.visitChildren(this, thing)}</td>`;
+            break;
+        case 'TableRow':
+            parameters.result += `<tr>${ToHtmlStringVisitor.visitChildren(this, thing)}</tr>`;
+            break;
+        case 'Table': {
+            const head = ToHtmlStringVisitor.visitChildren(this, thing.head);
+            const body = ToHtmlStringVisitor.visitChildren(this, thing.body);
+            parameters.result += `<table class="table"><thead><tr>${head}<tr></thead><tbody>${body}</tbody></table>`;
+        }
+            break;
         case 'Document':
             parameters.result += `<html>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
             break;

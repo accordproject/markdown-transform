@@ -37,6 +37,8 @@ expect.extend({
           `Expected: ${this.utils.printExpected(json1)}\n` +
           `Received: ${this.utils.printReceived(json2)}`
             : () => {
+                console.log(`JSON1 ${JSON.stringify(json1)}`);
+                console.log(`JSON1 ${JSON.stringify(json2)}`);
                 const diffString = diff(json1, json2, {
                     expand: true,
                 });
@@ -85,6 +87,7 @@ describe('markdown', () => {
         });
 
         it(`roundtrips ${file}`, () => {
+            markdownText = JSON.parse(JSON.stringify(markdownText));
             expect(markdownText).toMarkdownRoundtrip();
         });
     });

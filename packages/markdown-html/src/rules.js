@@ -515,8 +515,58 @@ const HTML_BLOCK_RULE = {
     }
 };
 
+/**
+ * A rule to deserialize table nodes.
+ * @type {Object}
+ */
+const TABLE_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'table') {
+            const children = next(el.childNodes, ignoreSpace);
+            console.log(`CHILDREN: ${JSON.stringify(children)}`);
+            const [head, body] = children;
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}Table`,
+                head: head.nodes[0],
+                body: body,
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'thead') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableHead`,
+                nodes: next(el.childNodes)
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tbody') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableBody`,
+                nodes: next(el.childNodes)
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tr') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableRow`,
+                nodes: next(el.childNodes)
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'th') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableHeader`,
+                nodes: next(el.childNodes)
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'td') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableData`,
+                nodes: next(el.childNodes)
+            };
+        }
+    }
+};
+
 const rules = [
     LIST_RULE,
+    TABLE_RULE,
     PARAGRAPH_RULE,
     STRONG_RULE,
     EMPH_RULE,
