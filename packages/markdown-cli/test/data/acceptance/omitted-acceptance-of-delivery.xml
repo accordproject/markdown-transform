@@ -71,12 +71,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Shipper1 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="shipper"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party A"</w:t>
           </w:r>
@@ -105,12 +106,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Receiver1 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="receiver"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | receiver"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party B"</w:t>
           </w:r>
@@ -129,12 +131,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Deliverable1 | String"/>
-          <w:tag w:val="deliverable"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | deliverable"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Widgets"</w:t>
           </w:r>
@@ -163,12 +166,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Receiver2 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="receiver"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | receiver"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party B"</w:t>
           </w:r>
@@ -187,12 +191,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Shipper2 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="shipper"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party A"</w:t>
           </w:r>
@@ -221,12 +226,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Deliverable2 | String"/>
-          <w:tag w:val="deliverable"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | deliverable"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Widgets"</w:t>
           </w:r>
@@ -263,12 +269,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Receiver3 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="receiver"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | receiver"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party B"</w:t>
           </w:r>
@@ -287,12 +294,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="BusinessDays1 | Long"/>
-          <w:tag w:val="businessDays"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | businessDays"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">10</w:t>
           </w:r>
@@ -321,12 +329,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Deliverable3 | String"/>
-          <w:tag w:val="deliverable"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | deliverable"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Widgets"</w:t>
           </w:r>
@@ -349,12 +358,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Shipper3 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="shipper"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party A"</w:t>
           </w:r>
@@ -377,12 +387,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Deliverable4 | String"/>
-          <w:tag w:val="deliverable"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | deliverable"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Widgets"</w:t>
           </w:r>
@@ -425,12 +436,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Deliverable5 | String"/>
-          <w:tag w:val="deliverable"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | deliverable"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Widgets"</w:t>
           </w:r>
@@ -453,12 +465,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Shipper4 | org.accordproject.organization.Organization"/>
-          <w:tag w:val="shipper"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Party A"</w:t>
           </w:r>
@@ -487,12 +500,13 @@
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="Attachment1 | String"/>
-          <w:tag w:val="attachment"/>
+          <w:tag w:val="org.accordproject.ciceromark.Variable | attachment"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              
             </w:rPr>
             <w:t xml:space="preserve">"Attachment X"</w:t>
           </w:r>

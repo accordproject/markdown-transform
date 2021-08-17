@@ -21,6 +21,7 @@ const TRANSFORMED_NODES = {
     code: `${NS_PREFIX_CommonMarkModel}Code`,
     codeBlock: `${NS_PREFIX_CommonMarkModel}CodeBlock`,
     computedVariable: `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
+    optional: `${NS_PREFIX_CiceroMarkModel}Optional`,
     document: `${NS_PREFIX_CommonMarkModel}Document`,
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
     heading: `${NS_PREFIX_CommonMarkModel}Heading`,
@@ -41,4 +42,10 @@ const TRANSFORMED_NODES = {
 // Used in './ToOOXMLVisitor/index.js'
 const RELATIONSHIP_OFFSET = 2;
 
-module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET };
+// Used to separate entities in w:tag and w:alias
+// example <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
+// Then use the separator to extract those entities while transforming
+// from ooxml to ciceromark.
+const SEPARATOR = ' | ';
+
+module.exports = { TRANSFORMED_NODES, RELATIONSHIP_OFFSET, SEPARATOR };

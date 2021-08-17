@@ -14,6 +14,7 @@
 
 'use strict';
 
+const { TRANSFORMED_NODES, SEPARATOR } = require('../constants');
 const { sanitizeHtmlChars, titleGenerator } = require('./helpers');
 
 /**
@@ -121,13 +122,14 @@ const STRONG_RULE = () => {
 /**
  * Inserts a variable.
  *
- * @param {string} title Title of the variable. Eg. receiver-1, shipper-1
- * @param {string} tag   Name of the variable. Eg. receiver, shipper
- * @param {string} value Value of the variable
- * @param {string} type  Type of the variable - Long, Double, etc.
+ * @param {string}  title  Title of the variable. Eg. receiver-1, shipper-1
+ * @param {string}  tag    Name of the variable. Eg. receiver, shipper
+ * @param {string}  value  Value of the variable
+ * @param {string}  type   Type of the variable - Long, Double, etc.
+ * @param {boolean} vanish Should vanish property be present
  * @returns {string} OOXML string for the variable
  */
-const VARIABLE_RULE = (title, tag, value, type) => {
+const VARIABLE_RULE = (title, tag, value, type, vanish = false) => {
     return `
       <w:sdt>
         <w:sdtPr>
@@ -135,12 +137,13 @@ const VARIABLE_RULE = (title, tag, value, type) => {
             <w:sz w:val="24"/>
           </w:rPr>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.variable}${SEPARATOR}${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           <w:r>
             <w:rPr>
               <w:sz w:val="24"/>
+              ${vanish ? VANISH_PROPERTY_RULE() : ''}
             </w:rPr>
             <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
           </w:r>
@@ -220,7 +223,7 @@ const CLAUSE_RULE = (title, tag, type, content) => {
           <w:lock w:val="contentLocked"/>
           <w15:color w:val="99CCFF"/>
           <w:alias w:val="${titleGenerator(title, type)}"/>
-          <w:tag w:val="${tag}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.clause}${SEPARATOR}${tag}"/>
         </w:sdtPr>
         <w:sdtContent>
           ${content}
@@ -248,6 +251,46 @@ const LINK_RULE = (value, relationshipId) => {
   `;
 };
 
+/**
+ * Inserts optional node in OOXML form.
+ *
+ * @param {string} title Title of the optional node. Eg. receiver-1, shipper-1
+ * @param {string} tag   Name of the optional node. Eg. receiver, shipper
+ * @param {string} value Value of the optional node
+ * @param {string} type  Type of the optional node - Long, Double, etc.
+ * @returns {string} OOXML string for the variable
+ */
+const OPTIONAL_RULE = (title, tag, value, type) => {
+    return `
+      <w:sdt>
+        <w:sdtPr>
+          <w:alias w:val="${titleGenerator(title, type)}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.optional}${SEPARATOR}${tag}"/>
+          <w:lock w:val="contentLocked"/>
+        </w:sdtPr>
+        <w:sdtContent>
+          ${value}
+        </w:sdtContent>
+      </w:sdt>
+    `;
+};
+
+/**
+ * Inserts a vanish(http://officeopenxml.com/WPtextFormatting.php) OOXML tag.
+ *
+ * @returns {string} OOXML tag for vanish
+ */
+const VANISH_PROPERTY_RULE = () => '<w:vanish/>';
+
+/**
+ * Inserts a different font family so that the `whenNone` nodes for optional content can be distinguished from `whenSome` nodes.
+ *
+ * @returns {string} OOXML tag for Baskerville Old Face font family
+ */
+const CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE = () => {
+    return '<w:rFonts w:ascii="Baskerville Old Face" w:hAnsi="Baskerville Old Face"/>';
+};
+
 module.exports = {
     TEXT_RULE,
     EMPHASIS_RULE,
@@ -265,4 +308,7 @@ module.exports = {
     CLAUSE_RULE,
     LINK_PROPERTY_RULE,
     LINK_RULE,
+    OPTIONAL_RULE,
+    VANISH_PROPERTY_RULE,
+    CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
 };

@@ -16,7 +16,7 @@
 
 const xmljs = require('xml-js');
 
-const { TRANSFORMED_NODES } = require('./constants');
+const { TRANSFORMED_NODES, SEPARATOR } = require('./constants');
 
 /**
  * Transforms OOXML to CiceroMark
@@ -32,7 +32,7 @@ class ToCiceroMarkVisitor {
         // All the nodes generated from given OOXML
         this.nodes = [];
 
-        // contains the realtionship part of a given OOXML
+        // contains the relationship part of a given OOXML
         this.relationshipXML = [];
     }
 
@@ -64,7 +64,7 @@ class ToCiceroMarkVisitor {
     getName(variableProperties) {
         for (const property of variableProperties) {
             if (property.name === 'w:tag') {
-                return property.attributes['w:val'];
+                return property.attributes['w:val'].split(SEPARATOR)[1];
             }
         }
     }
@@ -81,13 +81,13 @@ class ToCiceroMarkVisitor {
                 // eg. "Shipper1 | org.accordproject.organization.Organization"
                 const combinedTitle = property.attributes['w:val'];
                 // Index 1 will return the type
-                return combinedTitle.split(' | ')[1];
+                return combinedTitle.split(SEPARATOR)[1];
             }
         }
     }
 
     /**
-     * Gets the node type based on the color property.
+     * Gets the node type based on the tag value.
      *
      * @param {Array} properties the variable elements
      * @returns {string} the type of the node
@@ -95,11 +95,8 @@ class ToCiceroMarkVisitor {
     getNodeType(properties) {
         let nodeType = TRANSFORMED_NODES.variable;
         for (const property of properties) {
-            if (property.name === 'w15:color') {
-                // eg. "Shipper1 | org.accordproject.organization.Organization"
-                if (property.attributes['w:val'] === '99CCFF') {
-                    nodeType = TRANSFORMED_NODES.clause;
-                }
+            if (property.name === 'w:tag') {
+                return property.attributes['w:val'].split(SEPARATOR)[0];
             }
         }
         return nodeType;
@@ -217,6 +214,22 @@ class ToCiceroMarkVisitor {
                 $class: nodeInformation.properties[nodePropertyIndex],
                 nodes: [ciceroMarkNode],
             };
+            if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.optional) {
+                let currentNodes = [...ciceroMarkNode.nodes];
+                ciceroMarkNode = {
+                    $class: TRANSFORMED_NODES.optional,
+                    ...nodeInformation.optionalProperties,
+                    hasSome: nodeInformation.hasSome,
+                    nodes: currentNodes,
+                };
+                if (nodeInformation.whenSomeType) {
+                    ciceroMarkNode.whenSome = currentNodes;
+                    ciceroMarkNode.whenNone = [];
+                } else {
+                    ciceroMarkNode.whenNone = currentNodes;
+                    ciceroMarkNode.whenSome = [];
+                }
+            }
             if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.link) {
                 ciceroMarkNode.title = '';
                 for (const relationshipElement of this.relationshipXML) {
@@ -228,6 +241,21 @@ class ToCiceroMarkVisitor {
             }
         }
         return ciceroMarkNode;
+    }
+
+    /**
+     * Generates a nesting for the nodes with common level.
+     *
+     * @param {number} commonLevel Common level of nesting
+     * @returns {string} Expression for the nesting
+     */
+    generateNesting(commonLevel) {
+        let expression = 'rootNode.nodes[rootNodesLength - 1].';
+        for (let currLevel = 2; currLevel <= commonLevel; currLevel++) {
+            const lengthExpression = expression + 'nodes.length-1';
+            expression = expression + `nodes[${lengthExpression}].`;
+        }
+        return expression;
     }
 
     /**
@@ -243,6 +271,8 @@ class ToCiceroMarkVisitor {
             constructedNode = this.constructCiceroMarkNodeJSON(this.JSONXML[0]);
             rootNode.nodes = [...rootNode.nodes, constructedNode];
 
+            // not used explicitly but used via eval function
+            //eslint-disable-next-line
             let rootNodesLength = 1;
             for (let nodeIndex = 1; nodeIndex < this.JSONXML.length; nodeIndex++) {
                 let propertiesPrevious = this.JSONXML[nodeIndex - 1].properties;
@@ -266,28 +296,25 @@ class ToCiceroMarkVisitor {
                 };
                 constructedNode = this.constructCiceroMarkNodeJSON(updatedProperties);
 
+                const nestedExpression = this.generateNesting(commonPropertiesLength);
                 if (commonPropertiesLength === 0) {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
                     rootNodesLength++;
-                } else if (commonPropertiesLength === 1) {
-                    rootNode.nodes[rootNodesLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes,
-                        constructedNode,
-                    ];
-                } else if (commonPropertiesLength === 2) {
-                    const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
-                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes,
-                        constructedNode,
-                    ];
-                } else if (commonPropertiesLength === 3) {
-                    const subNodeLength = rootNode.nodes[rootNodesLength - 1].nodes.length;
-                    const deepSubNodeLength = rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes.length;
-                    rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1].nodes = [
-                        ...rootNode.nodes[rootNodesLength - 1].nodes[subNodeLength - 1].nodes[deepSubNodeLength - 1]
-                            .nodes,
-                        constructedNode,
-                    ];
+                } else {
+                    if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
+                        if (this.JSONXML[nodeIndex].whenSomeType) {
+                            eval(`${nestedExpression}whenSome=[...${nestedExpression}whenSome, constructedNode]`);
+                        } else {
+                            eval(`${nestedExpression}whenNone=[...${nestedExpression}whenNone, constructedNode]`);
+                        }
+                        if (eval(`${nestedExpression}hasSome`)) {
+                            eval(`${nestedExpression}nodes=${nestedExpression}whenSome`);
+                        } else {
+                            eval(`${nestedExpression}nodes=${nestedExpression}whenNone`);
+                        }
+                    } else {
+                        eval(`${nestedExpression}nodes=[...${nestedExpression}nodes, constructedNode]`);
+                    }
                 }
             }
             this.JSONXML = [];
@@ -305,10 +332,11 @@ class ToCiceroMarkVisitor {
      * @param {Array}   node              Node to be traversed
      * @param {string}  calledBy          Parent node class that called the function
      * @param {object}  nodeInformation   Information for the current node
-     * @returns {string} Value in <w:t> tags
+     * @returns {(object | string)} nodeInformation object(properties, value, type, etc.) if optional else value in <w:t> tags
      */
-    fetchFormattingProperties(node, calledBy = TRANSFORMED_NODES.paragraph, nodeInformation = null) {
+    fetchFormattingProperties(node, calledBy = TRANSFORMED_NODES.paragraph, nodeInformation = {}) {
         let ooxmlTagTextValue = '';
+        // let currentNode;
         if (calledBy === TRANSFORMED_NODES.link) {
             nodeInformation.properties = [...nodeInformation.properties, calledBy];
         }
@@ -316,6 +344,8 @@ class ToCiceroMarkVisitor {
             if (runTimeNodes.name === 'w:rPr') {
                 let colorCodePresent = false;
                 let shadeCodePresent = false;
+                let vanishPropertyPresent = false;
+                let fontFamilyPresent = false;
                 for (let runTimeProperties of runTimeNodes.elements) {
                     if (runTimeProperties.name === 'w:i') {
                         nodeInformation.properties = [...nodeInformation.properties, TRANSFORMED_NODES.emphasize];
@@ -334,14 +364,40 @@ class ToCiceroMarkVisitor {
                         if (runTimeProperties.attributes['w:fill'] === 'F9F2F4') {
                             shadeCodePresent = true;
                         }
+                    } else if (runTimeProperties.name === 'w:vanish') {
+                        vanishPropertyPresent = true;
+                    } else if (runTimeProperties.name === 'w:rFonts') {
+                        if (runTimeProperties.attributes['w:ascii'] === 'Baskerville Old Face') {
+                            fontFamilyPresent = true;
+                        }
                     }
                 }
                 if (colorCodePresent && shadeCodePresent) {
                     nodeInformation.nodeType = TRANSFORMED_NODES.code;
                 }
+                if (vanishPropertyPresent) {
+                    if (fontFamilyPresent) {
+                        nodeInformation.whenSomeType = false;
+                        nodeInformation.hasSome = true;
+                    } else {
+                        nodeInformation.whenSomeType = true;
+                        nodeInformation.hasSome = false;
+                    }
+                } else {
+                    if (fontFamilyPresent) {
+                        nodeInformation.whenSomeType = false;
+                        nodeInformation.hasSome = false;
+                    } else {
+                        nodeInformation.whenSomeType = true;
+                        nodeInformation.hasSome = true;
+                    }
+                }
             } else if (runTimeNodes.name === 'w:t') {
                 if (calledBy === TRANSFORMED_NODES.codeBlock) {
                     ooxmlTagTextValue += runTimeNodes.elements ? runTimeNodes.elements[0].text : '';
+                } else if (calledBy === TRANSFORMED_NODES.optional) {
+                    ooxmlTagTextValue = runTimeNodes.elements && runTimeNodes.elements[0].text;
+                    nodeInformation.value = ooxmlTagTextValue;
                 } else {
                     ooxmlTagTextValue = runTimeNodes.elements ? runTimeNodes.elements[0].text : ' ';
                     nodeInformation.value = ooxmlTagTextValue;
@@ -351,8 +407,20 @@ class ToCiceroMarkVisitor {
                 ooxmlTagTextValue += '\n';
             } else if (runTimeNodes.name === 'w:sym') {
                 nodeInformation.nodeType = TRANSFORMED_NODES.softbreak;
-                this.JSONXML = [...this.JSONXML, nodeInformation];
+                if (calledBy !== TRANSFORMED_NODES.optional) {
+                    this.JSONXML = [...this.JSONXML, nodeInformation];
+                }
             }
+        }
+        // if no w:rPr is present then it is still possible that
+        // node is of optional type with no formatting properties
+        if (typeof nodeInformation.hasSome === 'undefined') {
+            nodeInformation.whenSomeType = true;
+            nodeInformation.hasSome = true;
+        }
+
+        if (calledBy === TRANSFORMED_NODES.optional) {
+            return nodeInformation;
         }
         return ooxmlTagTextValue;
     }
@@ -374,6 +442,9 @@ class ToCiceroMarkVisitor {
 
         // Contains node present in a codeblock or blockquote, etc.
         let blockNodes = [];
+
+        // Generated inline nodes using w:r tag
+        let inlineNodes = [];
         for (const subNode of node) {
             if (subNode.name === 'w:p') {
                 if (!subNode.elements) {
@@ -469,14 +540,32 @@ class ToCiceroMarkVisitor {
                                     nodes,
                                 };
                                 this.nodes = [...this.nodes, clauseNode];
+                            } else if (nodeInformation.nodeType === TRANSFORMED_NODES.optional) {
+                                if (variableSubNodes.elements) {
+                                    const optionalNodes = this.traverseElements(
+                                        variableSubNodes.elements,
+                                        TRANSFORMED_NODES.optional
+                                    );
+                                    for (const node of optionalNodes) {
+                                        node.properties = [TRANSFORMED_NODES.optional, ...node.properties];
+                                        node.optionalProperties = {
+                                            elementType: nodeInformation.elementType,
+                                            name: nodeInformation.name,
+                                        };
+                                        this.JSONXML = [...this.JSONXML, { ...node }];
+                                    }
+                                }
                             } else {
                                 for (const variableContentNodes of variableSubNodes.elements) {
                                     if (variableContentNodes.name === 'w:r') {
-                                        this.fetchFormattingProperties(
-                                            variableContentNodes,
-                                            TRANSFORMED_NODES.paragraph,
-                                            nodeInformation
-                                        );
+                                        inlineNodes = [
+                                            ...inlineNodes,
+                                            this.fetchFormattingProperties(
+                                                variableContentNodes,
+                                                parent,
+                                                nodeInformation
+                                            ),
+                                        ];
                                     }
                                 }
                             }
@@ -490,8 +579,11 @@ class ToCiceroMarkVisitor {
                 if (parent === TRANSFORMED_NODES.link) {
                     nodeInformation.linkId = id;
                 }
-                this.fetchFormattingProperties(subNode, parent, nodeInformation);
+                inlineNodes = [...inlineNodes, this.fetchFormattingProperties(subNode, parent, nodeInformation)];
             }
+        }
+        if (parent === TRANSFORMED_NODES.optional) {
+            return inlineNodes;
         }
         return blockNodes;
     }
