@@ -34,6 +34,7 @@ const {
     OPTIONAL_RULE,
     VANISH_PROPERTY_RULE,
     CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
+    CONDITIONAL_RULE,
 } = require('./rules');
 const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
 const { TRANSFORMED_NODES, RELATIONSHIP_OFFSET } = require('../constants');
@@ -153,13 +154,13 @@ class ToOOXMLVisitor {
                 if (this.getClass(subNode) === TRANSFORMED_NODES.text) {
                     const tag = this.generateTextOrCodeOOXML(subNode.text, properties, false, parentProperties);
                     inlineOOXML += tag;
-                    if (parent !== TRANSFORMED_NODES.optional) {
+                    if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
                         this.tags = [...this.tags, tag];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.code) {
                     const tag = this.generateTextOrCodeOOXML(subNode.text, properties, true, parentProperties);
                     inlineOOXML += tag;
-                    if (parent !== TRANSFORMED_NODES.optional) {
+                    if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
                         this.tags = [...this.tags, tag];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.codeBlock) {
@@ -190,12 +191,12 @@ class ToOOXMLVisitor {
                         type,
                         parentProperties.traversingNodeHiddenInConditional
                     );
-                    if (parent !== TRANSFORMED_NODES.optional) {
+                    if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
                         this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
                     inlineOOXML += SOFTBREAK_RULE();
-                    if (parent !== TRANSFORMED_NODES.optional) {
+                    if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
                         this.tags = [...this.tags, SOFTBREAK_RULE()];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.thematicBreak) {
@@ -325,6 +326,31 @@ class ToOOXMLVisitor {
                             // make the parentProperties false as traversal is done
                             parentProperties.traversingNodeHiddenInConditional = false;
                             parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion = false;
+                        } else if (this.getClass(subNode) === TRANSFORMED_NODES.conditional) {
+                            parentProperties.traversingNodeHiddenInConditional = !subNode.isTrue;
+                            // traverse true nodes
+                            const whenTrueOOXML = this.traverseNodes(
+                                subNode.whenTrue,
+                                properties,
+                                TRANSFORMED_NODES.conditional,
+                                parentProperties
+                            );
+                            parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion = true;
+                            // traverse false nodes
+                            const whenFalseOOXML = this.traverseNodes(
+                                subNode.whenFalse,
+                                properties,
+                                TRANSFORMED_NODES.conditional,
+                                parentProperties
+                            );
+                            const ooxml = `${whenTrueOOXML}  ${whenFalseOOXML}`;
+                            const tag = subNode.name;
+                            this.createOrUpdateCounter(tag);
+                            const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+                            const conditionalTag = CONDITIONAL_RULE(title, tag, ooxml);
+                            this.tags = [...this.tags, conditionalTag];
+                            parentProperties.traversingNodeHiddenInConditional = false;
+                            parentProperties.traversingNodePresentInWhenFalseOrWhenNoneCondtion = false;
                         } else {
                             if (this.getClass(subNode) === TRANSFORMED_NODES.link) {
                                 this.relationships = [
@@ -336,7 +362,7 @@ class ToOOXMLVisitor {
                                 ];
                             }
                             let newProperties = [...properties, subNode.$class];
-                            this.traverseNodes(subNode.nodes, newProperties, parent, parentProperties);
+                            inlineOOXML += this.traverseNodes(subNode.nodes, newProperties, parent, parentProperties);
                         }
                     }
                 }
