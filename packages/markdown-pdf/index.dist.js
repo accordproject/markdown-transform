@@ -19,4 +19,5 @@
  * @module markdown-transform
  */
 
+module.exports.PdfTransformer = require('./lib/PdfTransformerBrowser');
 module.exports.ToPdfMake = require('./lib/ToPdfMake');
