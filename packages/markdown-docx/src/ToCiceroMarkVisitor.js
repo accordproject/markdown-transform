@@ -230,6 +230,22 @@ class ToCiceroMarkVisitor {
                     ciceroMarkNode.whenSome = [];
                 }
             }
+            if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.conditional) {
+                let currentNodes = [...ciceroMarkNode.nodes];
+                ciceroMarkNode = {
+                    $class: TRANSFORMED_NODES.conditional,
+                    ...nodeInformation.optionalProperties,
+                    isTrue: nodeInformation.hasSome,
+                    nodes: currentNodes,
+                };
+                if (nodeInformation.whenSomeType) {
+                    ciceroMarkNode.whenTrue = currentNodes;
+                    ciceroMarkNode.whenFalse = [];
+                } else {
+                    ciceroMarkNode.whenFalse = currentNodes;
+                    ciceroMarkNode.whenTrue = [];
+                }
+            }
             if (nodeInformation.properties[nodePropertyIndex] === TRANSFORMED_NODES.link) {
                 ciceroMarkNode.title = '';
                 for (const relationshipElement of this.relationshipXML) {
@@ -312,6 +328,18 @@ class ToCiceroMarkVisitor {
                         } else {
                             eval(`${nestedExpression}nodes=${nestedExpression}whenNone`);
                         }
+                    } else if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.conditional) {
+                        // equivalent to whenTrue
+                        if (this.JSONXML[nodeIndex].whenSomeType) {
+                            eval(`${nestedExpression}whenTrue=[...${nestedExpression}whenTrue, constructedNode]`);
+                        } else {
+                            eval(`${nestedExpression}whenFalse=[...${nestedExpression}whenFalse, constructedNode]`);
+                        }
+                        if (eval(`${nestedExpression}isTrue`)) {
+                            eval(`${nestedExpression}nodes=${nestedExpression}whenTrue`);
+                        } else {
+                            eval(`${nestedExpression}nodes=${nestedExpression}whenFalse`);
+                        }
                     } else {
                         eval(`${nestedExpression}nodes=[...${nestedExpression}nodes, constructedNode]`);
                     }
@@ -375,6 +403,15 @@ class ToCiceroMarkVisitor {
                 if (colorCodePresent && shadeCodePresent) {
                     nodeInformation.nodeType = TRANSFORMED_NODES.code;
                 }
+                /**
+                 * for optional hasSome and whenSome stand for same as would be in the ciceromark.
+                 * for conditional, the following relations with optional can be made
+                 * optional    |     conditional
+                 * hasSome     |     isTrue
+                 * whenSome    |     whenTrue
+                 * whenFalse   |     whenFalse
+                 * The properties for conditional are not added therefore.
+                 */
                 if (vanishPropertyPresent) {
                     if (fontFamilyPresent) {
                         nodeInformation.whenSomeType = false;
@@ -395,7 +432,7 @@ class ToCiceroMarkVisitor {
             } else if (runTimeNodes.name === 'w:t') {
                 if (calledBy === TRANSFORMED_NODES.codeBlock) {
                     ooxmlTagTextValue += runTimeNodes.elements ? runTimeNodes.elements[0].text : '';
-                } else if (calledBy === TRANSFORMED_NODES.optional) {
+                } else if (calledBy === TRANSFORMED_NODES.optional || calledBy === TRANSFORMED_NODES.conditional) {
                     ooxmlTagTextValue = runTimeNodes.elements && runTimeNodes.elements[0].text;
                     nodeInformation.value = ooxmlTagTextValue;
                 } else {
@@ -407,7 +444,7 @@ class ToCiceroMarkVisitor {
                 ooxmlTagTextValue += '\n';
             } else if (runTimeNodes.name === 'w:sym') {
                 nodeInformation.nodeType = TRANSFORMED_NODES.softbreak;
-                if (calledBy !== TRANSFORMED_NODES.optional) {
+                if (!(calledBy === TRANSFORMED_NODES.optional || calledBy === TRANSFORMED_NODES.conditional)) {
                     this.JSONXML = [...this.JSONXML, nodeInformation];
                 }
             }
@@ -419,7 +456,7 @@ class ToCiceroMarkVisitor {
             nodeInformation.hasSome = true;
         }
 
-        if (calledBy === TRANSFORMED_NODES.optional) {
+        if (calledBy === TRANSFORMED_NODES.optional || calledBy === TRANSFORMED_NODES.conditional) {
             return nodeInformation;
         }
         return ooxmlTagTextValue;
@@ -555,6 +592,20 @@ class ToCiceroMarkVisitor {
                                         this.JSONXML = [...this.JSONXML, { ...node }];
                                     }
                                 }
+                            } else if (nodeInformation.nodeType === TRANSFORMED_NODES.conditional) {
+                                if (variableSubNodes.elements) {
+                                    const optionalNodes = this.traverseElements(
+                                        variableSubNodes.elements,
+                                        TRANSFORMED_NODES.conditional
+                                    );
+                                    for (const node of optionalNodes) {
+                                        node.properties = [TRANSFORMED_NODES.conditional, ...node.properties];
+                                        node.optionalProperties = {
+                                            name: nodeInformation.name,
+                                        };
+                                        this.JSONXML = [...this.JSONXML, { ...node }];
+                                    }
+                                }
                             } else {
                                 for (const variableContentNodes of variableSubNodes.elements) {
                                     if (variableContentNodes.name === 'w:r') {
@@ -582,7 +633,7 @@ class ToCiceroMarkVisitor {
                 inlineNodes = [...inlineNodes, this.fetchFormattingProperties(subNode, parent, nodeInformation)];
             }
         }
-        if (parent === TRANSFORMED_NODES.optional) {
+        if (parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional) {
             return inlineNodes;
         }
         return blockNodes;

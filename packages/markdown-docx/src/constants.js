@@ -21,6 +21,7 @@ const TRANSFORMED_NODES = {
     code: `${NS_PREFIX_CommonMarkModel}Code`,
     codeBlock: `${NS_PREFIX_CommonMarkModel}CodeBlock`,
     computedVariable: `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
+    conditional: `${NS_PREFIX_CiceroMarkModel}Conditional`,
     optional: `${NS_PREFIX_CiceroMarkModel}Optional`,
     document: `${NS_PREFIX_CommonMarkModel}Document`,
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,

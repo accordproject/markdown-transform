@@ -283,12 +283,36 @@ const OPTIONAL_RULE = (title, tag, value, type) => {
 const VANISH_PROPERTY_RULE = () => '<w:vanish/>';
 
 /**
- * Inserts a different font family so that the `whenNone` nodes for optional content can be distinguished from `whenSome` nodes.
- *
+ * Inserts a different font family so that the conditional/optional content(else condition) can be distinguished. They can be of following types:-
+ * 1) `whenNone` nodes for optional(to be distinguished from `whenSome`)
+ * 2) `whenFalse` nodes for conditional(to be distinguished from `whenTrue`)
  * @returns {string} OOXML tag for Baskerville Old Face font family
  */
 const CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE = () => {
     return '<w:rFonts w:ascii="Baskerville Old Face" w:hAnsi="Baskerville Old Face"/>';
+};
+
+/**
+ * Inserts optional node in OOXML form.
+ *
+ * @param {string} title Title of the optional node. Eg. receiver-1, shipper-1
+ * @param {string} tag   Name of the optional node. Eg. receiver, shipper
+ * @param {string} value Value of the optional node
+ * @returns {string} OOXML string for the variable
+ */
+const CONDITIONAL_RULE = (title, tag, value) => {
+    return `
+      <w:sdt>
+        <w:sdtPr>
+          <w:alias w:val="${titleGenerator(title)}"/>
+          <w:tag w:val="${TRANSFORMED_NODES.conditional}${SEPARATOR}${tag}"/>
+          <w:lock w:val="contentLocked"/>
+        </w:sdtPr>
+        <w:sdtContent>
+          ${value}
+        </w:sdtContent>
+      </w:sdt>
+    `;
 };
 
 module.exports = {
@@ -311,4 +335,5 @@ module.exports = {
     OPTIONAL_RULE,
     VANISH_PROPERTY_RULE,
     CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
+    CONDITIONAL_RULE,
 };
