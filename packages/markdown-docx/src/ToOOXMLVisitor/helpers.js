@@ -15,13 +15,19 @@
 'use strict';
 
 /**
- * Replaces the angular brackets with the respective codes.
+ * Escapes certain characters in OOXML with respective character encodings.
+ * (https://stackoverflow.com/questions/1091945/what-characters-do-i-need-to-escape-in-xml-documents)
  *
  * @param {string} node String to be replaced
  * @returns {string} String with replaced angular brackets
  */
 function sanitizeHtmlChars(node) {
-    return node.replace(/>/g, '&gt;').replace(/</g, '&lt;');
+    return node
+        .replace(/&/, '&amp;')
+        .replace(/>/g, '&gt;')
+        .replace(/</g, '&lt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/, '&apos;');
 }
 
 /**
@@ -63,7 +69,6 @@ function wrapAroundLockedContentControls(ooxml) {
  * @returns {string} OOXML wraped in docx headers
  */
 function wrapAroundDefaultDocxTags(ooxml, relationships) {
-
     const LINK_STYLE_SPEC = `
     <w:style w:type="character" w:styleId="Hyperlink">
       <w:name w:val="Hyperlink"/>

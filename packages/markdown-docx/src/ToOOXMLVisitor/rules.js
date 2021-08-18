@@ -314,6 +314,39 @@ const CONDITIONAL_RULE = (title, tag, value) => {
       </w:sdt>
     `;
 };
+/**
+ * Inserts a formula.
+ *
+ * @param {string}  title        Title of the formula. Eg. receiver-1, shipper-1
+ * @param {string}  tag          Name of the formula. Eg. receiver, shipper
+ * @param {string}  value        Value of the formula
+ * @param {string}  type         Type of the formula - Long, Double, etc.
+ * @param {string}  dependencies Dependencies of the formula
+ * @param {boolean} vanish       Should vanish property be present
+ * @returns {string} OOXML string for the formula
+ */
+const FORMULA_RULE = (title, tag, value, type, dependencies, vanish = false) => {
+    return `
+  <w:sdt>
+    <w:sdtPr>
+      <w:rPr>
+        <w:sz w:val="24"/>
+      </w:rPr>
+      <w:alias w:val="${titleGenerator(title, type)}"/>
+      <w:tag w:val="${TRANSFORMED_NODES.formula}${SEPARATOR}${tag}${SEPARATOR}${dependencies}"/>
+    </w:sdtPr>
+    <w:sdtContent>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="24"/>
+          ${vanish ? VANISH_PROPERTY_RULE() : ''}
+        </w:rPr>
+        <w:t xml:space="preserve">${sanitizeHtmlChars(value)}</w:t>
+      </w:r>
+    </w:sdtContent>
+  </w:sdt>
+`;
+};
 
 module.exports = {
     TEXT_RULE,
@@ -336,4 +369,5 @@ module.exports = {
     VANISH_PROPERTY_RULE,
     CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
     CONDITIONAL_RULE,
+    FORMULA_RULE,
 };

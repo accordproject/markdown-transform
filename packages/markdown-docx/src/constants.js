@@ -25,6 +25,7 @@ const TRANSFORMED_NODES = {
     optional: `${NS_PREFIX_CiceroMarkModel}Optional`,
     document: `${NS_PREFIX_CommonMarkModel}Document`,
     emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
+    formula: `${NS_PREFIX_CiceroMarkModel}Formula`,
     heading: `${NS_PREFIX_CommonMarkModel}Heading`,
     item: `${NS_PREFIX_CommonMarkModel}Item`,
     link: `${NS_PREFIX_CommonMarkModel}Link`,
