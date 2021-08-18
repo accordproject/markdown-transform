@@ -3340,6 +3340,241 @@ Object {
 }
 `;
 
+exports[`markdown converts tabledmn.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "body": Object {
+        "$class": "org.accordproject.commonmark.TableBody",
+        "nodes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Fall\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "<= 8",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Spareribs\\"",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Winter\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "<= 8",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Roastbeef\\"",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Spring\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "<= 4",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Dry Aged Gourmet Steak\\"",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Spring\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "[5..8]",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Steak\\"",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Fall\\",\\"Winter\\",\\"Summer\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "> 8",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Spareribs\\"",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableRow",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Summer\\"",
+                  },
+                ],
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+              },
+              Object {
+                "$class": "org.accordproject.commonmark.TableData",
+                "nodes": Array [
+                  Object {
+                    "$class": "org.accordproject.commonmark.Text",
+                    "text": "\\"Light Salad and a nice Steak\\"",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      "head": Object {
+        "$class": "org.accordproject.commonmark.TableRow",
+        "nodes": Array [
+          Object {
+            "$class": "org.accordproject.commonmark.TableHeader",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Text",
+                "text": "#dmn:input Season season string",
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableHeader",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Text",
+                "text": "#dmn:input \\"How many guests\\" guestCount integer",
+              },
+            ],
+          },
+          Object {
+            "$class": "org.accordproject.commonmark.TableHeader",
+            "nodes": Array [
+              Object {
+                "$class": "org.accordproject.commonmark.Text",
+                "text": "#dmn:output Dish desiredDish string",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts tableinlist.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -4518,6 +4753,17 @@ exports[`to plain text table.md 1`] = `
 | --- | --- |
 | Content Cell | Content Cell | 
 | Content Cell | Content Cell |"
+`;
+
+exports[`to plain text tabledmn.md 1`] = `
+"| #dmn:input Season season string | #dmn:input \\"How many guests\\" guestCount integer | #dmn:output Dish desiredDish string | 
+| --- | --- | --- |
+| \\"Fall\\" | <= 8 | \\"Spareribs\\" | 
+| \\"Winter\\" | <= 8 | \\"Roastbeef\\" | 
+| \\"Spring\\" | <= 4 | \\"Dry Aged Gourmet Steak\\" | 
+| \\"Spring\\" | [5..8] | \\"Steak\\" | 
+| \\"Fall\\",\\"Winter\\",\\"Summer\\" | \\\\> 8 | \\"Spareribs\\" | 
+| \\"Summer\\" |  | \\"Light Salad and a nice Steak\\" |"
 `;
 
 exports[`to plain text tableinlist.md 1`] = `

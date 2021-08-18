@@ -110,10 +110,20 @@ rules.List = (visitor, thing, children, parameters) => {
     parameters.result[thing.type === 'ordered' ? 'ol' : 'ul'] = children;
 };
 rules.TableHeader = (visitor, thing, children, parameters) => {
-    parameters.result = children;
+    // Cells cannot be left with empty children or they will break the row
+    if (children.length === 0) {
+        parameters.result = [{ text: '' }];
+    } else {
+        parameters.result = children;
+    }
 };
 rules.TableData = (visitor, thing, children, parameters) => {
-    parameters.result = children;
+    // Cells cannot be left with empty children or they will break the row
+    if (children.length === 0) {
+        parameters.result = [{ text: '' }];
+    } else {
+        parameters.result = children;
+    }
 };
 rules.TableRow = (visitor, thing, children, parameters) => {
     parameters.result = [children];
