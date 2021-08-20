@@ -89,7 +89,8 @@ function getHeadingType(thing) {
 function handleFormattedText(thing, parameters) {
     const textNode = {
         object: 'text',
-        text: getText(thing)};
+        text: getText(thing)
+    };
 
     applyMarks(textNode, parameters);
     return textNode;
@@ -172,6 +173,9 @@ function handleFormula(data, text, parameters) {
  */
 function cleanup(node) {
     const result = node;
+    if (result.data && result.data.style) {
+        return result;
+    }
     // Cleanup block node for Slate
     if (result.object === 'block' || result.object === 'inline') {
         const emptyText = () => { return { object: 'text', text: '' }; };
@@ -208,6 +212,40 @@ function cleanup(node) {
     return result;
 }
 
+/**
+ * Apply styling
+ * @param {*} node - the current ciceromark node
+ * @param {*} result - the current slate output
+ */
+function applyStyle(node, result) {
+    if (node.style) {
+        if (!result.data) {
+            result.data = {};
+        }
+        const style = node.style;
+        const outStyle = {};
+        if (style.align) {
+            outStyle.align = style.align;
+        }
+        if (style.width) {
+            outStyle.width = style.width;
+        }
+        if (style.lineHeight) {
+            outStyle.lineHeight = style.lineHeight;
+        }
+        if (style.fontSize) {
+            outStyle.fontSize = style.fontSize;
+        }
+        if (style.color) {
+            outStyle.color = style.color;
+        }
+        if (style.backgroundColor) {
+            outStyle.backgroundColor = style.backgroundColor;
+        }
+        result.data.style = outStyle;
+    }
+}
+
 module.exports = {
     unquoteString,
     applyMarks,
@@ -219,4 +257,5 @@ module.exports = {
     handleVariableDefinition,
     handleFormula,
     cleanup,
+    applyStyle,
 };

@@ -267,6 +267,44 @@ function unquoteString(value) {
     return value.substring(1,value.length-1);
 }
 
+/**
+ * Apply styling
+ * @param {*} node - the current ciceromark node
+ * @param {*} result - the current pdfmake output
+ */
+function applyStyle(node, result) {
+    // Only do something is some style is specified
+    if (!node.style) {
+        return;
+    }
+
+    // Make the pdfresult more uniform
+    if (!Array.isArray(result)) {
+        result = [result];
+    }
+    if (node.style.align) {
+        result.forEach((x) => {
+            x.alignment = node.style.align;
+        });
+    }
+
+    if (node.style.color) {
+        result.forEach((x) => {
+            x.color = node.style.color;
+        });
+    }
+    if (node.style.fontSize) {
+        result.forEach((x) => {
+            x.fontSize = node.style.fontSize;
+        });
+    }
+    if (node.style.lineHeight) {
+        result.forEach((x) => {
+            x.lineHeight = node.style.lineHeight;
+        });
+    }
+}
+
 module.exports = {
     defaultFonts,
     defaultStyles,
@@ -274,4 +312,5 @@ module.exports = {
     handleFormattedText,
     getHeadingType,
     unquoteString,
+    applyStyle,
 };

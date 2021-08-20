@@ -16,7 +16,7 @@
 
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
-const fromslateutil = require('./fromslateutil');
+const { removeEmptyParagraphs, handleText, applyStyle }  = require('./fromslateutil');
 const commonmarkfromslaterules = require('./commonmarkfromslaterules');
 
 /**
@@ -40,7 +40,6 @@ class FromSlateVisitor {
      * @returns {*} the Markdown DOM
      */
     fromSlate(value) {
-
         const result = {
             $class : `${NS_PREFIX_CommonMarkModel}Document`,
             xmlns : 'http://commonmark.org/xml/1.0',
@@ -48,7 +47,7 @@ class FromSlateVisitor {
         };
         // convert the value to a plain object
         this.processChildren(result, value.document.children);
-        return fromslateutil.removeEmptyParagraphs(result);
+        return removeEmptyParagraphs(result);
     }
 
     /**
@@ -74,12 +73,14 @@ class FromSlateVisitor {
             let handleChildren = !(node.type === 'variable'); // XXX Can't remember why
 
             if('text' in node && !node.type) {
-                result = fromslateutil.handleText(node);
+                result = handleText(node);
             } else {
                 const rule = this.rules[node.type];
                 if (rule) {
                     result = rule(node,this.processNodes);
                 }
+                // Add style information
+                applyStyle(node, result);
             }
 
             // process any children, attaching to first child if it exists (for list items)
