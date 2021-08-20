@@ -14,7 +14,7 @@
 
 'use strict';
 
-const toslateutil = require('./toslateutil');
+const { cleanup, applyStyle } = require('./toslateutil');
 const commonmarktoslaterules = require('./commonmarktoslaterules');
 
 /**
@@ -80,8 +80,10 @@ class ToSlateVisitor {
             throw new Error(`Unhandled type ${thing.getType()}`);
         }
         result = rule(thing,processChildren,parameters);
+        // Add style information
+        applyStyle(thing, result);
 
-        const cleanResult = toslateutil.cleanup(result);
+        const cleanResult = cleanup(result);
         parameters.result = cleanResult;
     }
 }

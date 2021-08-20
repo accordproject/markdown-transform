@@ -1131,6 +1131,376 @@ Object {
 }
 `;
 
+exports[`ciceromark <-> slate converts colors_slate.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor. You can edit this text!",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#ff0200",
+          },
+          "text": "This is in red.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#1300ff",
+          },
+          "text": "This is in blue.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#f1c231",
+          },
+          "text": "This",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#69a84f",
+          },
+          "text": "has",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#a64d7a",
+          },
+          "text": "many",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#0c5394",
+          },
+          "text": "colors",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts colors_slate.json to and from CiceroMark 2`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor. You can edit this text!",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#ff0200",
+          },
+          "text": "This is in red.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#1300ff",
+          },
+          "text": "This is in blue.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#f1c231",
+          },
+          "text": "This",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#69a84f",
+          },
+          "text": "has",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#a64d7a",
+          },
+          "text": "many",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#0c5394",
+          },
+          "text": "colors",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ".",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts colors_slate.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is the contract editor. You can edit this text!",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#ff0200",
+              },
+            },
+            "object": "text",
+            "text": "This is in red.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#1300ff",
+              },
+            },
+            "object": "text",
+            "text": "This is in blue.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#f1c231",
+              },
+            },
+            "object": "text",
+            "text": "This",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "",
+              },
+            ],
+            "data": Object {},
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#69a84f",
+              },
+            },
+            "object": "text",
+            "text": "has",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "",
+              },
+            ],
+            "data": Object {},
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#a64d7a",
+              },
+            },
+            "object": "text",
+            "text": "many",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "object": "text",
+                "text": "",
+              },
+            ],
+            "data": Object {},
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#0c5394",
+              },
+            },
+            "object": "text",
+            "text": "colors",
+          },
+          Object {
+            "object": "text",
+            "text": ".",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
 exports[`ciceromark <-> slate converts fixedinterest_slate.json to and from CiceroMark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -3392,6 +3762,1487 @@ Object {
           },
         ],
         "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`ciceromark <-> slate converts styles_slate.json to and from CiceroMark 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This illustrates styling options",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "center",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor. You can edit this text!",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is centered",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "center",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is right aligned",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "right",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 1",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 1.5",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 2",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has various colors",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#ff0200",
+              },
+              "text": "ipsum",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " dolor sit ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#674ea7",
+              },
+              "text": "amet",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", consectetur ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#69a84f",
+              },
+              "text": "adipiscing",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " elit. Cras ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#e59138",
+              },
+              "text": "venenatis",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " aliquam nisi, eu consectetur ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#cc0000",
+          },
+          "text": "nunc consequat sed. ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#0c5394",
+              },
+              "text": "Pellentesque",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#cc0000",
+          },
+          "text": " non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has various font sizes",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 8,
+          },
+          "text": "size8 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 9,
+          },
+          "text": "size9 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 10,
+          },
+          "text": "fon10 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 11,
+          },
+          "text": "size11 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 12,
+          },
+          "text": "size12(default) ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 14,
+          },
+          "text": "size14 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+          "text": "size16",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 18,
+          },
+          "text": "size18",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 24,
+          },
+          "text": "size24",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 30,
+          },
+          "text": "size30",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 36,
+          },
+          "text": "size36",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 48,
+          },
+          "text": "size48",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 60,
+          },
+          "text": "size60 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 72,
+          },
+          "text": "size72",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 60,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 96,
+          },
+          "text": "size96",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 12,
+          },
+          "text": "This is the end of the document",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts styles_slate.json to and from CiceroMark 2`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "1",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This illustrates styling options",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "center",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is the contract editor. You can edit this text!",
+        },
+      ],
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is centered",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "center",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is right aligned",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "right",
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 1",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 1.5",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has line spacing 2",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has various colors",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 2,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "Lorem ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#ff0200",
+              },
+              "text": "ipsum",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " dolor sit ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#674ea7",
+              },
+              "text": "amet",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": ", consectetur ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#69a84f",
+              },
+              "text": "adipiscing",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " elit. Cras ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#e59138",
+              },
+              "text": "venenatis",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " aliquam nisi, eu consectetur ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#cc0000",
+          },
+          "text": "nunc consequat sed. ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "style": Object {
+                "$class": "org.accordproject.commonmark.Style",
+                "color": "#0c5394",
+              },
+              "text": "Pellentesque",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "#cc0000",
+          },
+          "text": " non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Heading",
+      "level": "6",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This has various font sizes",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 8,
+          },
+          "text": "size8 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 9,
+          },
+          "text": "size9 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 10,
+          },
+          "text": "fon10 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 11,
+          },
+          "text": "size11 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 12,
+          },
+          "text": "size12(default) ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 14,
+          },
+          "text": "size14 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+          "text": "size16",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 18,
+          },
+          "text": "size18",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 24,
+          },
+          "text": "size24",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 30,
+          },
+          "text": "size30",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 36,
+          },
+          "text": "size36",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 48,
+          },
+          "text": "size48",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 16,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 60,
+          },
+          "text": "size60 ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 72,
+          },
+          "text": "size72",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Softbreak",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 60,
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 96,
+          },
+          "text": "size96",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "fontSize": 12,
+          },
+          "text": "This is the end of the document",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "align": "left",
+        "lineHeight": 1.5,
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`ciceromark <-> slate converts styles_slate.json to and from CiceroMark 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This illustrates styling options",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "center",
+          },
+        },
+        "object": "block",
+        "type": "heading_one",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is the contract editor. You can edit this text!",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is centered",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "center",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is right aligned",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "right",
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This has line spacing 1",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1,
+          },
+        },
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1,
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This has line spacing 1.5",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This has line spacing 2",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 2,
+          },
+        },
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis aliquam nisi, eu consectetur nunc consequat sed. Pellentesque non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 2,
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This has various colors",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 2,
+          },
+        },
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "Lorem ",
+          },
+          Object {
+            "bold": true,
+            "data": Object {
+              "style": Object {
+                "color": "#ff0200",
+              },
+            },
+            "object": "text",
+            "text": "ipsum",
+          },
+          Object {
+            "object": "text",
+            "text": " dolor sit ",
+          },
+          Object {
+            "bold": true,
+            "data": Object {
+              "style": Object {
+                "color": "#674ea7",
+              },
+            },
+            "object": "text",
+            "text": "amet",
+          },
+          Object {
+            "object": "text",
+            "text": ", consectetur ",
+          },
+          Object {
+            "bold": true,
+            "data": Object {
+              "style": Object {
+                "color": "#69a84f",
+              },
+            },
+            "object": "text",
+            "text": "adipiscing",
+          },
+          Object {
+            "object": "text",
+            "text": " elit. Cras ",
+          },
+          Object {
+            "bold": true,
+            "data": Object {
+              "style": Object {
+                "color": "#e59138",
+              },
+            },
+            "object": "text",
+            "text": "venenatis",
+          },
+          Object {
+            "object": "text",
+            "text": " aliquam nisi, eu consectetur ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#cc0000",
+              },
+            },
+            "object": "text",
+            "text": "nunc consequat sed. ",
+          },
+          Object {
+            "bold": true,
+            "data": Object {
+              "style": Object {
+                "color": "#0c5394",
+              },
+            },
+            "object": "text",
+            "text": "Pellentesque",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "color": "#cc0000",
+              },
+            },
+            "object": "text",
+            "text": " non felis dolor. Sed sit amet ipsum hendrerit, mollis sem ullamcorper, pulvinar mi. Vivamus non felis eu metus accumsan rutrum hendrerit vel justo. In facilisis risus eu sollicitudin semper. Vivamus tempus",
+          },
+          Object {
+            "object": "text",
+            "text": " rutrum orci sit amet iaculis. Fusce non consectetur urna, ut bibendum purus. Sed et arcu nec nibh sagittis pharetra.",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This has various font sizes",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
+        "object": "block",
+        "type": "heading_six",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 8,
+              },
+            },
+            "object": "text",
+            "text": "size8 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 9,
+              },
+            },
+            "object": "text",
+            "text": "size9 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 10,
+              },
+            },
+            "object": "text",
+            "text": "fon10 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 11,
+              },
+            },
+            "object": "text",
+            "text": "size11 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 12,
+              },
+            },
+            "object": "text",
+            "text": "size12(default) ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 14,
+              },
+            },
+            "object": "text",
+            "text": "size14 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "text",
+            "text": "size16",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 18,
+              },
+            },
+            "object": "text",
+            "text": "size18",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 24,
+              },
+            },
+            "object": "text",
+            "text": "size24",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 30,
+              },
+            },
+            "object": "text",
+            "text": "size30",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 36,
+              },
+            },
+            "object": "text",
+            "text": "size36",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 48,
+              },
+            },
+            "object": "text",
+            "text": "size48",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 16,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 60,
+              },
+            },
+            "object": "text",
+            "text": "size60 ",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 72,
+              },
+            },
+            "object": "text",
+            "text": "size72",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 60,
+              },
+            },
+            "object": "inline",
+            "type": "softbreak",
+          },
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 96,
+              },
+            },
+            "object": "text",
+            "text": "size96",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
+        "object": "block",
+        "type": "paragraph",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "data": Object {
+              "style": Object {
+                "fontSize": 12,
+              },
+            },
+            "object": "text",
+            "text": "This is the end of the document",
+          },
+        ],
+        "data": Object {
+          "style": Object {
+            "align": "left",
+            "lineHeight": 1.5,
+          },
+        },
         "object": "block",
         "type": "paragraph",
       },

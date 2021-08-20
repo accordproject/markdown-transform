@@ -16,6 +16,7 @@
 
 const { Decorators } = require('@accordproject/markdown-cicero');
 const commonmarkrules = require('./commonmarkrules');
+const { applyStyle } = require('./pdfmakeutil');
 
 /**
  * Converts a CommonMark DOM to a PDF Make JSON.
@@ -98,6 +99,8 @@ class ToPdfMakeVisitor {
         const rule = this.rules[thing.getType()];
         if (rule) {
             rule(this, thing, children, parameters);
+            // Add style information
+            applyStyle(thing, parameters.result);
         } else {
             throw new Error(`Unhandled type ${thing.getType()}`);
         }

@@ -19,6 +19,19 @@ const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').
 const { NS_PREFIX_TemplateMarkModel } = require('@accordproject/markdown-template').TemplateMarkModel;
 
 /**
+ * Apply styling
+ * @param {*} node - the current slate node
+ * @param {*} result - the current ciceromark output
+ */
+function applyStyle(node, result) {
+    if (node.data && node.data.style) {
+        // console.log(`APPLYING STYLE ${JSON.stringify(node.data.style)} TO $(JSON.stringify(result))`);
+        result.style = node.data.style;
+        result.style.$class = `${NS_PREFIX_CommonMarkModel}Style`;
+    }
+}
+
+/**
  * Removes nodes if they are an empty paragraph
  * @param {*} input - the current result of slateToCiceroMarkDom
  * @returns {*} the final result of slateToCiceroMarkDom
@@ -43,7 +56,7 @@ function removeEmptyParagraphs(input) {
  * @param {*} input - the current slate node
  * @returns {string} the text contained in the slate node
  */
-function getText (input) {
+function getText(input) {
     let result = '';
 
     if (input.type === 'paragraph') {
@@ -81,6 +94,7 @@ function handleMarks(slateNode,newNode) {
     let emph = null;
     let strikethrough = null;
     let result = newNode;
+    applyStyle(slateNode, newNode);
 
     const isBold = slateNode.bold;
     const isItalic = slateNode.italic;
@@ -420,4 +434,5 @@ module.exports = {
     handleOptionalDefinition,
     handleFormula,
     handleFormulaDefinition,
+    applyStyle,
 };
