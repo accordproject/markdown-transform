@@ -23,7 +23,7 @@
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check-and-add",
-    "test": "mocha",
+    "test": "mocha --exclude test/extension",
     "test:cov": "npm run lint && nyc mocha"
   },
   "repository": {

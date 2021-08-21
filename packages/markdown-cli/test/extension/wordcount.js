@@ -14,12 +14,23 @@
 
 'use strict';
 
-/**
- * Export the framework and plugins
- * @module markdown-transform
- */
-
-module.exports.formatDescriptor = require('./lib/transform').formatDescriptor;
-module.exports.transform = require('./lib/transform').transform;
-module.exports.TransformEngine = require('./lib/transformEngine');
-module.exports.builtinTransformationGraph = require('./lib/builtinTransforms');
+module.exports = {
+    format: {
+        name: 'wordcount',
+        docs: 'A number of words',
+        fileFormat: 'utf8'
+    },
+    transforms: {
+        // Transform a plain text into a word count
+        plaintext: {
+            wordcount: ((input, parameters, options) => {
+                const count = input.split(' ').length;
+                return '' + count;
+            }),
+        },
+        // Transform a word count back into plain text
+        wordcount: {
+            plaintext: ((input, parameteres, options) => input),
+        },
+    }
+};

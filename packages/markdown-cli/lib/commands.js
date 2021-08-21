@@ -16,8 +16,7 @@
 
 const fs = require('fs');
 const logger = require('@accordproject/concerto-core').Logger;
-const formatDescriptor = require('@accordproject/markdown-transform').formatDescriptor;
-const transform = require('@accordproject/markdown-transform').transform;
+const { TransformEngine, builtinTransformationGraph } = require('@accordproject/markdown-transform');
 
 /**
  * Utility class that implements the commands exposed by the CLI.
@@ -26,12 +25,13 @@ const transform = require('@accordproject/markdown-transform').transform;
 class Commands {
     /**
      * Load an input file
-     * @param {string} filePath the file name
-     * @param {string} format the format
-     * @returns {*} the content of the file
+     * @param {*} engine - the transformation engine
+     * @param {string} filePath - the file name
+     * @param {string} format - the format
+     * @returns {*} the content - of the file
      */
-    static loadFormatFromFile(filePath,format) {
-        const fileFormat = formatDescriptor(format).fileFormat;
+    static loadFormatFromFile(engine,filePath,format) {
+        const fileFormat = engine.formatDescriptor(format).fileFormat;
         if (fileFormat === 'json') {
             return JSON.parse(fs.readFileSync(filePath, 'utf8'));
         } else if (fileFormat === 'binary') {
@@ -43,12 +43,13 @@ class Commands {
 
     /**
      * Prints a format to string
-     * @param {*} input the input
-     * @param {string} format the format
+     * @param {*} engine - the transformation engine
+     * @param {*} input - the input
+     * @param {string} format - the format
      * @returns {string} the string representation
      */
-    static printFormatToString(input,format) {
-        const fileFormat = formatDescriptor(format).fileFormat;
+    static printFormatToString(engine,input,format) {
+        const fileFormat = engine.formatDescriptor(format).fileFormat;
         if (fileFormat === 'json') {
             return JSON.stringify(input);
         } else {
@@ -58,13 +59,14 @@ class Commands {
 
     /**
      * Prints a format to file
+     * @param {*} engine - the transformation engine
      * @param {*} input the input
      * @param {string} format the format
      * @param {string} filePath the file name
      */
-    static printFormatToFile(input,format,filePath) {
+    static printFormatToFile(engine,input,format,filePath) {
         logger.info('Creating file: ' + filePath);
-        fs.writeFileSync(filePath, Commands.printFormatToString(input,format));
+        fs.writeFileSync(filePath, Commands.printFormatToString(engine,input,format));
     }
 
     /**
@@ -123,26 +125,36 @@ class Commands {
      * @returns {object} Promise to the result of parsing
      */
     static async transform(inputPath, from, via, to, outputPath, parameters, options) {
-        const input = Commands.loadFormatFromFile(inputPath, from);
+        // Initialize the transform engine
+        const engine = new TransformEngine(builtinTransformationGraph);
+        // Get extensions
+        const { extension, ...otherOptions } = options;
+        if (extension) {
+            engine.registerExtension(extension);
+        }
+        const input = Commands.loadFormatFromFile(engine, inputPath, from);
         parameters.inputFileName = inputPath;
         if (parameters.template) {
             parameters.templateFileName = parameters.template;
-            parameters.template = Commands.loadFormatFromFile(parameters.template,'markdown_template');
+            parameters.template = Commands.loadFormatFromFile(engine, parameters.template, 'markdown_template');
         }
         const pathTo = via.concat([to]);
-        let result = await transform(input, from, pathTo, parameters, options);
+        let result = await engine.transform(input, from, pathTo, parameters, otherOptions);
         let finalFormat = to;
-        if (options && options.roundtrip) {
+        if (otherOptions && otherOptions.roundtrip) {
             const pathFrom = via.reverse().concat([from]);
-            result = await transform(result, to, pathFrom, parameters, options);
+            result = await engine.transform(result, to, pathFrom, parameters, otherOptions);
             finalFormat = from;
         }
 
         if (outputPath) {
-            Commands.printFormatToFile(result,finalFormat,outputPath);
-            return;
+            Commands.printFormatToFile(engine,result,finalFormat,outputPath);
         }
-        return Promise.resolve(Commands.printFormatToString(result,finalFormat));
+        return Promise.resolve(Commands.printFormatToString(engine,result,finalFormat))
+            .then((result) => {
+                const targetFormat = engine.formatDescriptor(finalFormat);
+                return { result, targetFormat };
+            });
     }
 }
 

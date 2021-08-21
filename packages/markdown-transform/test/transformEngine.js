@@ -23,8 +23,7 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
-const TransformEngine = require('../lib/transformEngine');
-const builtinTransformationGraph = require('../lib/builtinTransforms');
+const { TransformEngine, builtinTransformationGraph } = require('..');
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -37,20 +36,21 @@ function normalizeNLs(input) {
     return text;
 }
 
-const funnyTransform = {
+// A sample extension
+const wordcount = {
     format: {
         name: 'wordcount',
         docs: 'A number of words',
         fileFormat: 'utf8'
     },
     transforms: {
-        source: 'plaintext',
-        target: 'wordcount',
-        transform: (input, parameters, options) => {
-            const count = input.split(' ').length;
-            return '' + count;
-        },
-    },
+        plaintext: {
+            wordcount: ((input, parameters, options) => {
+                const count = input.split(' ').length;
+                return '' + count;
+            }),
+        }
+    }
 };
 
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8'));
@@ -90,22 +90,16 @@ describe('#transformationEngine', () => {
         });
     });
 
-    describe('#newTransform', () => {
+    describe('#extension', () => {
         it('should create new format and transform', async () => {
             const engine = new TransformEngine(builtinTransformationGraph);
-            const { name: sourceFormat, docs, fileFormat } = funnyTransform.format;
-            engine.registerFormat(sourceFormat, docs, fileFormat);
-            const { source, target, transform } = funnyTransform.transforms;
-            engine.registerTransformation(source, target, transform);
+            engine.registerExtension(wordcount);
             engine.getAllFormats().length.should.equal(20);
         });
 
         it('should transform between an existing and new format', async () => {
             const engine = new TransformEngine(builtinTransformationGraph);
-            const { name: sourceFormat, docs, fileFormat } = funnyTransform.format;
-            engine.registerFormat(sourceFormat, docs, fileFormat);
-            const { source, target, transform } = funnyTransform.transforms;
-            engine.registerTransformation(source, target, transform);
+            engine.registerExtension(wordcount);
             const result = await engine.transform(acceptanceMarkdown, 'markdown', ['wordcount']);
             result.should.equal('97');
         });

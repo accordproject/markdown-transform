@@ -224,7 +224,7 @@ hide empty description
         transformationGraph[sourceFormat] = {
             docs,
             fileFormat
-        }
+        };
     }
 
     /**
@@ -245,6 +245,26 @@ hide empty description
         transformationGraph[sourceFormat][targetFormat] = transform;
         // Rebuild the raw graph
         this.refreshRawGraph();
+    }
+
+    /**
+     * Register a transform extension
+     * @param {*} extension - the transform extension, including format and transforms
+     */
+    registerExtension(extension) {
+        if (extension.format) {
+            const { name: sourceFormat, docs, fileFormat } = extension.format;
+            this.registerFormat(sourceFormat, docs, fileFormat);
+        }
+        if (extension.transforms) {
+            for (let source in extension.transforms) {
+                const transforms = extension.transforms[source];
+                for (let target in transforms) {
+                    const transform = transforms[target];
+                    this.registerTransformation(source, target, transform);
+                }
+            }
+        }
     }
 
     /**
