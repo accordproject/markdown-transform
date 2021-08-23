@@ -116,6 +116,10 @@ require('yargs')
             let extension = {};
             if (argv.extension) {
                 extension = require(path.resolve(process.cwd(),argv.extension));
+                // To support ES6 "export default"
+                if (extension.default) {
+                    extension = extension.default;
+                }
             }
             parameters.plugin = plugin;
             parameters.template = argv.template;
