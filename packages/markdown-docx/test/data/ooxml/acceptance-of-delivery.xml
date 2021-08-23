@@ -79,7 +79,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party A"</w:t>
+            <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -114,7 +114,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party B"</w:t>
+            <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -122,7 +122,7 @@
       <w:r>
         
         
-      <w:t xml:space="preserve">'s opinion, the </w:t>
+      <w:t xml:space="preserve">&apos;s opinion, the </w:t>
     
       </w:r>
       <w:sdt>
@@ -139,7 +139,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Widgets"</w:t>
+            <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -174,7 +174,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party B"</w:t>
+            <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -199,7 +199,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party A"</w:t>
+            <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -234,7 +234,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Widgets"</w:t>
+            <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -277,7 +277,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party B"</w:t>
+            <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -337,7 +337,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Widgets"</w:t>
+            <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -366,7 +366,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party A"</w:t>
+            <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -395,7 +395,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Widgets"</w:t>
+            <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -427,7 +427,7 @@
       <w:r>
         
         
-      <w:t xml:space="preserve">The "Acceptance Criteria" are the specifications the </w:t>
+      <w:t xml:space="preserve">The &quot;Acceptance Criteria&quot; are the specifications the </w:t>
     
       </w:r>
       <w:sdt>
@@ -444,7 +444,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Widgets"</w:t>
+            <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -473,7 +473,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Party A"</w:t>
+            <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>
@@ -508,7 +508,7 @@
               <w:sz w:val="24"/>
               
             </w:rPr>
-            <w:t xml:space="preserve">"Attachment X"</w:t>
+            <w:t xml:space="preserve">&quot;Attachment X&quot;</w:t>
           </w:r>
         </w:sdtContent>
       </w:sdt>

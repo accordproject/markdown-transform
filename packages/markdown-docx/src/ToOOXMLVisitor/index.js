@@ -35,8 +35,9 @@ const {
     VANISH_PROPERTY_RULE,
     CONDITIONAL_OR_OPTIONAL_FONT_FAMILY_RULE,
     CONDITIONAL_RULE,
+    FORMULA_RULE,
 } = require('./rules');
-const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls } = require('./helpers');
+const { wrapAroundDefaultDocxTags, wrapAroundLockedContentControls, sanitizeHtmlChars } = require('./helpers');
 const { TRANSFORMED_NODES, RELATIONSHIP_OFFSET } = require('../constants');
 
 /**
@@ -193,6 +194,36 @@ class ToOOXMLVisitor {
                     );
                     if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
                         this.tags = [...this.tags, VARIABLE_RULE(title, tag, value, type)];
+                    }
+                } else if (this.getClass(subNode) === TRANSFORMED_NODES.formula) {
+                    // Dependencies are added for the reason to extract them
+                    // when converting from ooxml -> ciceromark
+                    const tag = subNode.name;
+                    const type = sanitizeHtmlChars(subNode.code);
+                    this.createOrUpdateCounter(tag, type);
+                    const value = subNode.value;
+                    const dependencies = subNode.dependencies.join(',');
+                    const title = `${tag.toUpperCase()[0]}${tag.substring(1)}${this.counter[tag].count}`;
+                    inlineOOXML += FORMULA_RULE(
+                        title,
+                        tag,
+                        value,
+                        type,
+                        dependencies,
+                        parentProperties.traversingNodeHiddenInConditional
+                    );
+                    if (!(parent === TRANSFORMED_NODES.optional || parent === TRANSFORMED_NODES.conditional)) {
+                        this.tags = [
+                            ...this.tags,
+                            FORMULA_RULE(
+                                title,
+                                tag,
+                                value,
+                                type,
+                                dependencies,
+                                parentProperties.traversingNodeHiddenInConditional
+                            ),
+                        ];
                     }
                 } else if (this.getClass(subNode) === TRANSFORMED_NODES.softbreak) {
                     inlineOOXML += SOFTBREAK_RULE();

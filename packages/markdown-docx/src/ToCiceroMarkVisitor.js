@@ -70,6 +70,20 @@ class ToCiceroMarkVisitor {
     }
 
     /**
+     * Gets the dependencies of a formula node
+     *
+     * @param {Array} variableProperties the variable elements
+     * @returns {string} the name of the variable
+     */
+    getDependencies(variableProperties) {
+        for (const property of variableProperties) {
+            if (property.name === 'w:tag') {
+                return property.attributes['w:val'].split(SEPARATOR)[2];
+            }
+        }
+    }
+
+    /**
      * Get the type of the element.
      *
      * @param {Array} variableProperties the variable elements
@@ -193,6 +207,14 @@ class ToCiceroMarkVisitor {
                 value: nodeInformation.value,
                 elementType: nodeInformation.elementType,
                 name: nodeInformation.name,
+            };
+        } else if (nodeInformation.nodeType === TRANSFORMED_NODES.formula) {
+            ciceroMarkNode = {
+                $class: TRANSFORMED_NODES.formula,
+                value: nodeInformation.value,
+                name: nodeInformation.name,
+                code: nodeInformation.code,
+                dependencies: nodeInformation.dependencies.split(','),
             };
         } else if (nodeInformation.nodeType === TRANSFORMED_NODES.code) {
             ciceroMarkNode = {
@@ -563,6 +585,11 @@ class ToCiceroMarkVisitor {
                             nodeInformation.name = this.getName(variableSubNodes.elements);
                             nodeInformation.elementType = this.getElementType(variableSubNodes.elements);
                             nodeInformation.nodeType = this.getNodeType(variableSubNodes.elements);
+                            if (nodeInformation.nodeType === TRANSFORMED_NODES.formula) {
+                                nodeInformation.code = nodeInformation.elementType;
+                                nodeInformation.dependencies = this.getDependencies(variableSubNodes.elements);
+                                delete nodeInformation.elementType;
+                            }
                         }
                         if (variableSubNodes.name === 'w:sdtContent') {
                             if (nodeInformation.nodeType === TRANSFORMED_NODES.clause) {
