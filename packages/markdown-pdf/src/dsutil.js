@@ -57,7 +57,7 @@ const findParticipantIndex = (role, roles) => {
     if (index < 0) { return 0; }
     return index;
 };
-const createDocuSignTemplate = (name, roles, pdfBase64, nbPages, variables) => {
+const createDocuSignTemplate = (name, roles = ['Recipient1'], pdfBase64, nbPages, variables) => {
     const newTemplate = createTemplate(name, roles, pdfBase64, nbPages);
     variables.forEach((variable) => {
         const index = findParticipantIndex(variable.role, roles);
