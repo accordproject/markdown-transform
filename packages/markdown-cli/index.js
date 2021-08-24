@@ -136,8 +136,7 @@ require('yargs')
                     if(result) {
                         if(targetFormat.fileFormat !== 'binary') {
                             logger.info('\n'+result);
-                        }
-                        else {
+                        } else {
                             logger.info(`\n<binary ${argv.to} data>`);
                         }
                     }
