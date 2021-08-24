@@ -149,6 +149,7 @@ class Commands {
 
         if (outputPath) {
             Commands.printFormatToFile(engine,result,finalFormat,outputPath);
+            return Promise.resolve({});
         }
         return Promise.resolve(Commands.printFormatToString(engine,result,finalFormat))
             .then((result) => {
