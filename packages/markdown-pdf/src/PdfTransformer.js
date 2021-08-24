@@ -75,7 +75,7 @@ class PdfTransformer extends PdfTransformerBase {
             }
         };
 
-        return PdfTransformer.toBase64(input, PdfTransformer.pdfMakeToPdfStreamWithCallback(progressCallback)).then((pdfBase64) => {
+        return PdfTransformerBase.toBase64(input, PdfTransformerBase.pdfMakeToPdfStreamWithCallback(progressCallback)).then((pdfBase64) => {
             const totalPages = 3; // XXX Should be calculated
             const dsTemplate = dsutil.createDocuSignTemplate(name, roles, pdfBase64, totalPages, variables);
             return dsTemplate;

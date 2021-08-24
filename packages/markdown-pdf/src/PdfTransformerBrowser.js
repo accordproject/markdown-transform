@@ -20,6 +20,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfTransformerBase = require('./PdfTransformerBase');
 
+const dsutil = require('./dsutil');
+
 /**
  * Converts to PDF
  */
@@ -38,6 +40,56 @@ class PdfTransformerBrowser extends PdfTransformerBase {
         });
         const result = await bufferPromise();
         return result;
+    }
+
+    /**
+     * Converts a pdfmake DOM to a base64 string
+     * @param {*} input - pdfmake DOM (JSON)
+     * @param {*} progressCallback - the pdfmake progressCallback function
+     * @param {*} callback - a callback function
+     * @return {*} a promise to a pdf buffer
+     */
+    static async pdfMakeToBase64(input, progressCallback, callback) {
+        const pdfDocGenerator = pdfMake.createPdf(input);
+        const base64Promise = () => new Promise(resolve => {
+            pdfDocGenerator.getBase64((data) => {
+                resolve(callback(data));
+            }, { progressCallback });
+        });
+        const result = await base64Promise();
+        return result;
+    }
+
+    /**
+     * Converts a pdfmake DOM to a DocuSign template
+     * @param {*} input - pdfmake DOM (JSON)
+     * @param {string} name - the template name
+     * @param {string[]} roles - an array of participants roles
+     * @param {*} outputStream - the output stream
+     */
+    static async pdfMakeToDsTemplate(input, name, roles) {
+        // Progress data
+        const variables = [];
+        const progressCallback = (item, x, y, options, pageNb) => {
+            if (item.style === 'VariableDefinition' ||
+                item.style === 'EnumVariableDefinition' ||
+                item.style === 'FormattedVariableDefinition') {
+                variables.push({
+                    name: item.text,
+                    x,
+                    y,
+                    options,
+                    pageNb,
+                    role: item.Participant ? item.Participant.role : 'Customer',
+                });
+            }
+        };
+
+        return PdfTransformerBrowser.pdfMakeToBase64(input, progressCallback, (pdfBase64) => {
+            const totalPages = 3; // XXX Should be calculated
+            const dsTemplate = dsutil.createDocuSignTemplate(name, roles, pdfBase64, totalPages, variables);
+            return dsTemplate;
+        });
     }
 }
 

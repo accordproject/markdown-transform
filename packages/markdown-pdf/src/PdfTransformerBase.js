@@ -131,6 +131,7 @@ class PdfTransformerBase {
     static async pdfMakeToPdfStream(input, outputStream) {
         return PdfTransformerBase.pdfMakeToPdfStreamWithCallback()(input, outputStream);
     }
+
 }
 
 module.exports = PdfTransformerBase;
