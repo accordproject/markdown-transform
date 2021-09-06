@@ -52,7 +52,7 @@
     "nyc": "14.1.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.1.2",
+    "@accordproject/concerto-core": "1.2.1",
     "@accordproject/markdown-common": "0.14.0",
     "@accordproject/markdown-it-cicero": "0.14.0",
     "markdown-it": "^12.2.0",
