@@ -49,6 +49,17 @@ rules.clause_definition = (node,processNodes) => {
     }
     return result;
 };
+rules.with_definition = (node,processNodes) => {
+    // console.log(JSON.stringify(node, null, 4));
+    const result = {$class : `${NS_PREFIX_TemplateMarkModel}WithDefinition`, name: node.data.name, nodes: []};
+    if (node.data.elementType) {
+        result.elementType = node.data.elementType;
+    }
+    if (node.data.decorators) {
+        result.decorators = node.data.decorators;
+    }
+    return result;
+};
 rules.variable_definition = (node,processNodes) => {
     return fromslateutil.handleVariableDefinition(node);
 };

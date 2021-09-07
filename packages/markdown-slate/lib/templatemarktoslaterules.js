@@ -56,6 +56,22 @@ rules.ClauseDefinition = (thing,processChildren,parameters) => {
         children: processChildren(thing,'nodes',parameters),
     };
 };
+rules.WithDefinition = (thing,processChildren,parameters) => {
+    const data = {};
+    data.name = thing.name;
+    if (thing.elementType) {
+        data.elementType = thing.elementType;
+    }
+    if (thing.decorators) {
+        data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+    }
+    return {
+        object: 'block',
+        type: 'with_definition',
+        data: data,
+        children: processChildren(thing,'nodes',parameters),
+    };
+};
 rules.VariableDefinition = (thing,processChildren,parameters) => {
     const data = { name: thing.name };
     if (thing.elementType) {
