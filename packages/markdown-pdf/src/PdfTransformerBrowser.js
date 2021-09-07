@@ -67,7 +67,7 @@ class PdfTransformerBrowser extends PdfTransformerBase {
      * @param {string[]} roles - an array of participants roles
      * @param {*} outputStream - the output stream
      */
-    static async pdfMakeToDsTemplate(input, name, roles) {
+    static async pdfMakeToDsTemplate(input, name = 'Test Template (Generated)', roles) {
         // Progress data
         const variables = [];
         const progressCallback = (item, x, y, options, pageNb) => {
