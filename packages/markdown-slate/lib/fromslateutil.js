@@ -233,6 +233,9 @@ function handleVariableDefinition(node) {
     if (Object.prototype.hasOwnProperty.call(data,'decorators')) {
         result.decorators = data.decorators;
     }
+    if (Object.prototype.hasOwnProperty.call(data,'path')) {
+        result.path = data.path;
+    }
 
     return handleMarks(node,result);
 }

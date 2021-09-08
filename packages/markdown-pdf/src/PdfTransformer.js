@@ -66,6 +66,7 @@ class PdfTransformer extends PdfTransformerBase {
                 item.style === 'FormattedVariableDefinition') {
                 variables.push({
                     name: item.text,
+                    path: item.path,
                     x,
                     y,
                     options,

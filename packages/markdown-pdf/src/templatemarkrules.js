@@ -31,6 +31,9 @@ const defaultVariableRule = (visitor, thing, children, parameters) => {
     const fixedText = thing.name;
     parameters.result.text = fixedText;
     parameters.result.color = '#FFFAFA';
+    if (thing.path) {
+        parameters.result.path = thing.path;
+    }
     if (thing.decorators) {
         thing.decorators.forEach((d) => addDecorator(d, parameters));
     }

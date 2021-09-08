@@ -44,7 +44,7 @@ class ToSlateVisitor {
         const nodes = thing[fieldName] ? thing[fieldName] : [];
 
         nodes.forEach(node => {
-            //console.log(`Processing ${thing.getType()} > ${node.getType()}`);
+            // console.log(`Processing ${thing.getType()} > ${node.getType()}`);
             const newParameters = {
                 serializer: parameters.serializer,
                 strong: parameters.strong,

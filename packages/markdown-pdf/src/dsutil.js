@@ -17,7 +17,7 @@
 const uuid = require('uuid');
 
 const createTemplate = require('./templateTemplate');
-const createTab = (pageNumber, w, x, y, tabLabel, recipientId) => {
+const createTab = (pageNumber, w, x, y, tabLabel, value, recipientId) => {
     // XXX Tabs are boxes so we have to adjust dimensions for centering
     const xPosition = Math.round(x - 3).toString(); // Start box a little to the left
     const yPosition = Math.round(y - 2).toString(); // Start box a little above the line
@@ -44,7 +44,7 @@ const createTab = (pageNumber, w, x, y, tabLabel, recipientId) => {
         locked: 'false',
         maxLength: '4000',
         required: 'true',
-        value: tabLabel, // XXX Maybe play with this, see what happens?
+        value,
         requireAll: 'false',
         requireInitialOnSharedChange: 'false',
         shared: 'false',
@@ -68,6 +68,7 @@ const createDocuSignTemplate = (name, roles = ['Recipient1'], pdfBase64, nbPages
             variable.options.textWidth,
             variable.x,
             variable.y,
+            variable.path ? variable.path.replace(/^\$/,'ADM') : variable.name,
             variable.name,
             recipientId,
         ));

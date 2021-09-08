@@ -83,6 +83,9 @@ rules.VariableDefinition = (thing,processChildren,parameters) => {
     if (thing.identifiedBy) {
         data.identifiedBy = thing.identifiedBy;
     }
+    if (thing.path) {
+        data.path = thing.path;
+    }
     return toslateutil.handleVariableDefinition('variable_definition', data, thing.name, parameters);
 };
 rules.FormattedVariableDefinition = (thing,processChildren,parameters) => {
@@ -93,6 +96,9 @@ rules.FormattedVariableDefinition = (thing,processChildren,parameters) => {
     if (thing.decorators) {
         data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
     }
+    if (thing.path) {
+        data.path = thing.path;
+    }
     return toslateutil.handleVariableDefinition('variable_definition', data, thing.name, parameters);
 };
 rules.EnumVariableDefinition = (thing,processChildren,parameters) => {
@@ -102,6 +108,9 @@ rules.EnumVariableDefinition = (thing,processChildren,parameters) => {
     }
     if (thing.decorators) {
         data.decorators = thing.decorators.map(x => parameters.serializer.toJSON(x));
+    }
+    if (thing.path) {
+        data.path = thing.path;
     }
     return toslateutil.handleVariableDefinition('variable_definition', data, thing.name, parameters);
 };

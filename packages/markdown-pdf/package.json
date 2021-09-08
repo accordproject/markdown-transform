@@ -86,7 +86,7 @@
     "@accordproject/markdown-template": "0.15.0-alpha.2",
     "axios": "0.23.0",
     "pdfjs-dist": "2.13.216",
-    "pdfmake": "^0.2.4",
+    "pdfmake": "jeromesimeon/pdfmake#0.2-callback",
     "type-of": "^2.0.1"
   },
   "license-check-and-add-config": {
