@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-slate",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "Transform markdown to/from CommonMark AST",
   "engines": {
     "node": ">=8",
@@ -52,9 +52,9 @@
     "nyc": "14.1.1"
   },
   "dependencies": {
-    "@accordproject/markdown-common": "0.14.0",
-    "@accordproject/markdown-cicero": "0.14.0",
-    "@accordproject/markdown-template": "0.14.0"
+    "@accordproject/markdown-cicero": "0.14.1",
+    "@accordproject/markdown-common": "0.14.1",
+    "@accordproject/markdown-template": "0.14.1"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
