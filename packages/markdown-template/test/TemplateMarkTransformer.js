@@ -97,6 +97,7 @@ const successes = [
     {name:'testOptionalElse',kind:'clause'},
     {name:'testOptionalThisSome',kind:'clause'},
     {name:'testOptionalThisNone',kind:'clause'},
+    {name:'testOptionalThisFormat',kind:'contract'},
     {name:'testUnderscore',kind:'clause'},
     {name:'testIfEnd',kind:'clause'},
     {name:'alltypes',kind:'clause'},

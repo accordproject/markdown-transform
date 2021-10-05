@@ -43,7 +43,7 @@ const thisRule = { // 'this' is a special variable for the current data in scope
     enter: (node,token,callback) => {
         const format = getAttr(token.attrs,'format',null);
         if (format) {
-            node.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
+            node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
             node.format = format;
         }
         node.name = 'this';
