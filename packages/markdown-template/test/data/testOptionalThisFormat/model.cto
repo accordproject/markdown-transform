@@ -1,0 +1,8 @@
+namespace org.test
+
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
+
+asset EmptyContract extends Contract {
+    o String name
+    o DateTime dueDate optional
+}
