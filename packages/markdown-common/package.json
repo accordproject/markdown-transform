@@ -55,6 +55,8 @@
     "@xmldom/xmldom": "^0.8.1",
     "markdown-it": "^12.3.2",
     "winston": "3.2.1"
+    "markdown-it-container": "^3.0.0",
+    "winston": "3.2.1"
   },
   "license-check-and-add-config": {
     "folder": "./lib",

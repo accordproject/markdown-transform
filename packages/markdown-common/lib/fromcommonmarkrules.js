@@ -168,19 +168,29 @@ rules.TableBody = (visitor,thing,children,parameters,resultString,resultSeq) => 
     resultSeq(parameters,result);
 };
 rules.Table = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const parametersIn = CommonMarkUtils.mkParameters(thing, parameters, resultString(''), (thingType) => false);
-    thing.head.accept(visitor, parametersIn);
-    const header = parametersIn.result;
-    const parametersIn2 = CommonMarkUtils.mkParameters(thing, parameters, resultString(''), (thingType) => false);
-    parametersIn2.stack.first = false;
-    thing.body.accept(visitor, parametersIn2);
-    const body = parametersIn2.result;
-    parameters.stack.first = false;
-    const next1 = `${CommonMarkUtils.mkPrefix(parameters,1)}`;
-    const headerRowLength = thing.head.nodes.length;
-    const headerRow = `|${' --- |'.repeat(headerRowLength)}`;
-    const result = [header, next1, headerRow, body];
-    resultSeq(parameters,result);
+    if (thing.compact) {
+        const result = [];
+
+        parameters.stack.first = false;
+        if (thing.head) {
+            const headerRowLength = thing.head[0].nodes.length;
+            const head = visitor.visitChildren(visitor,thing,parameters,'head');
+            result.push(head);
+
+            const next1 = `${CommonMarkUtils.mkPrefix(parameters,1)}`;
+            result.push(next1);
+
+            const headerRow = `|${' --- |'.repeat(headerRowLength)}`;
+            result.push(headerRow);
+        }
+
+        const body = visitor.visitChildren(visitor,thing,parameters,'body');
+        result.push(body);
+
+        resultSeq(parameters,result);
+    } else {
+        throw new Error('Only compact tables supported');
+    }
 };
 rules.Document = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [children];

@@ -35,9 +35,10 @@ class ToHtmlStringVisitor {
      * @param {*} visitor the visitor to use
      * @param {*} thing the node to visit
      * @param {*} [parameters] optional parameters
+     * @param {string} field - where to find the children nodes
      * @returns {string} the html for the sub tree
      */
-    static visitChildren(visitor, thing, parameters) {
+    static visitChildren(visitor, thing, parameters, field = 'nodes') {
         if(!parameters) {
             parameters = {};
             parameters.result = '';
@@ -45,8 +46,8 @@ class ToHtmlStringVisitor {
             parameters.indent = 0;
         }
 
-        if(thing.nodes) {
-            thing.nodes.forEach(node => {
+        if(thing[field]) {
+            thing[field].forEach(node => {
                 node.accept(visitor, parameters);
             });
         }
@@ -218,9 +219,14 @@ class ToHtmlStringVisitor {
             parameters.result += `<tr>${ToHtmlStringVisitor.visitChildren(this, thing)}</tr>`;
             break;
         case 'Table': {
-            const head = ToHtmlStringVisitor.visitChildren(this, thing.head);
-            const body = ToHtmlStringVisitor.visitChildren(this, thing.body);
-            parameters.result += `<table class="table"><thead><tr>${head}<tr></thead><tbody>${body}</tbody></table>`;
+            parameters.result += '<table class="table">';
+            if (thing.head) {
+                const head = ToHtmlStringVisitor.visitChildren(this, thing, undefined, 'head');
+                parameters.result += `<thead>${head}</thead>`;
+            }
+            const body = ToHtmlStringVisitor.visitChildren(this, thing, undefined, 'body');
+            parameters.result += `<tbody>${body}</tbody>`;
+            parameters.result += '</table>';
         }
             break;
         case 'Document':
