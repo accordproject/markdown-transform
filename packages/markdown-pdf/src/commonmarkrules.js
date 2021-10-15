@@ -116,6 +116,9 @@ rules.TableHeader = (visitor, thing, children, parameters) => {
     } else {
         parameters.result = children;
     }
+    parameters.result.forEach((head) => {
+        head.style = 'TableHeader';
+    });
 };
 rules.TableData = (visitor, thing, children, parameters) => {
     // Cells cannot be left with empty children or they will break the row
@@ -129,14 +132,16 @@ rules.TableRow = (visitor, thing, children, parameters) => {
     parameters.result = [children];
 };
 rules.Table = (visitor, thing, children, parameters) => {
-    const headChildren = visitor.visitChildren(visitor, thing.head, parameters);
-    const bodyChildren = visitor.visitChildren(visitor, thing.body, parameters);
-    headChildren.forEach((head) => {
-        head.style = 'TableHeader';
-    });
+    let headerRows = 0;
+    let headChildren = [];
+    if (thing.head) {
+        headChildren = visitor.visitChildren(visitor, thing, parameters, 'head');
+        headerRows = headChildren.length;
+    }
+    const bodyChildren = visitor.visitChildren(visitor, thing, parameters, 'body');
     parameters.result.table = {
-        headerRows: 1,
-        body: [headChildren].concat(bodyChildren)
+        headerRows,
+        body: headChildren.concat(bodyChildren)
     };
 };
 rules.Document = (visitor, thing, children, parameters) => {

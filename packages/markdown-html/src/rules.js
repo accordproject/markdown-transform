@@ -523,12 +523,28 @@ const TABLE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'table') {
             const children = next(el.childNodes, ignoreSpace);
-            console.log(`CHILDREN: ${JSON.stringify(children)}`);
-            const [head, body] = children;
+            const colGroup = children.find((node) => node.$class === `${NS_PREFIX_CommonMarkModel}TableColGroup`);
+            const head = children.find((node) => node.$class === `${NS_PREFIX_CommonMarkModel}TableHead`);
+            const body = children.find((node) => node.$class === `${NS_PREFIX_CommonMarkModel}TableBody`);
+            const compact = !colGroup && head && head.nodes.length === 1;
             return {
                 '$class': `${NS_PREFIX_CommonMarkModel}Table`,
-                head: head.nodes[0],
-                body: body,
+                colGroup: colGroup && colGroup.nodes,
+                head: head && head.nodes,
+                body: body.nodes,
+                compact,
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'colgroup') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableColGroup`,
+                nodes: next(el.childNodes)
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'col') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}TableColumn`,
+                nodes: next(el.childNodes)
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'thead') {

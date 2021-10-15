@@ -3260,80 +3260,80 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.Table",
-      "body": Object {
-        "$class": "org.accordproject.commonmark.TableBody",
-        "nodes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "Content Cell",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "Content Cell",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "Content Cell",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "Content Cell",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      "head": Object {
-        "$class": "org.accordproject.commonmark.TableRow",
-        "nodes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.TableHeader",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.Text",
-                "text": "First Header",
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableHeader",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.Text",
-                "text": "Second Header",
-              },
-            ],
-          },
-        ],
-      },
+      "body": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Content Cell",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Content Cell",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Content Cell",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Content Cell",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "compact": true,
+      "head": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableHeader",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "First Header",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableHeader",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "Second Header",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -3346,229 +3346,229 @@ Object {
   "nodes": Array [
     Object {
       "$class": "org.accordproject.commonmark.Table",
-      "body": Object {
-        "$class": "org.accordproject.commonmark.TableBody",
-        "nodes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Fall\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "<= 8",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Spareribs\\"",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Winter\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "<= 8",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Roastbeef\\"",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Spring\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "<= 4",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Dry Aged Gourmet Steak\\"",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Spring\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "[5..8]",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Steak\\"",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Fall\\",\\"Winter\\",\\"Summer\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "> 8",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Spareribs\\"",
-                  },
-                ],
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableRow",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Summer\\"",
-                  },
-                ],
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-              },
-              Object {
-                "$class": "org.accordproject.commonmark.TableData",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.Text",
-                    "text": "\\"Light Salad and a nice Steak\\"",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      "head": Object {
-        "$class": "org.accordproject.commonmark.TableRow",
-        "nodes": Array [
-          Object {
-            "$class": "org.accordproject.commonmark.TableHeader",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.Text",
-                "text": "#dmn:input Season season string",
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableHeader",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.Text",
-                "text": "#dmn:input \\"How many guests\\" guestCount integer",
-              },
-            ],
-          },
-          Object {
-            "$class": "org.accordproject.commonmark.TableHeader",
-            "nodes": Array [
-              Object {
-                "$class": "org.accordproject.commonmark.Text",
-                "text": "#dmn:output Dish desiredDish string",
-              },
-            ],
-          },
-        ],
-      },
+      "body": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Fall\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<= 8",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Spareribs\\"",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Winter\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<= 8",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Roastbeef\\"",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Spring\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "<= 4",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Dry Aged Gourmet Steak\\"",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Spring\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "[5..8]",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Steak\\"",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Fall\\",\\"Winter\\",\\"Summer\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "> 8",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Spareribs\\"",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Summer\\"",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableData",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "\\"Light Salad and a nice Steak\\"",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "compact": true,
+      "head": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableRow",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableHeader",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "#dmn:input Season season string",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableHeader",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "#dmn:input \\"How many guests\\" guestCount integer",
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableHeader",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "#dmn:output Dish desiredDish string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -3596,80 +3596,80 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Table",
-              "body": Object {
-                "$class": "org.accordproject.commonmark.TableBody",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableRow",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableRow",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-              "head": Object {
-                "$class": "org.accordproject.commonmark.TableRow",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableHeader",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.Text",
-                        "text": "First Header",
-                      },
-                    ],
-                  },
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableHeader",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.Text",
-                        "text": "Second Header",
-                      },
-                    ],
-                  },
-                ],
-              },
+              "body": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "compact": true,
+              "head": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableHeader",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "First Header",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableHeader",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Second Header",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -3687,80 +3687,80 @@ Object {
             },
             Object {
               "$class": "org.accordproject.commonmark.Table",
-              "body": Object {
-                "$class": "org.accordproject.commonmark.TableBody",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableRow",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableRow",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                      Object {
-                        "$class": "org.accordproject.commonmark.TableData",
-                        "nodes": Array [
-                          Object {
-                            "$class": "org.accordproject.commonmark.Text",
-                            "text": "Content Cell",
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-              "head": Object {
-                "$class": "org.accordproject.commonmark.TableRow",
-                "nodes": Array [
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableHeader",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.Text",
-                        "text": "Third Header",
-                      },
-                    ],
-                  },
-                  Object {
-                    "$class": "org.accordproject.commonmark.TableHeader",
-                    "nodes": Array [
-                      Object {
-                        "$class": "org.accordproject.commonmark.Text",
-                        "text": "Fourth Header",
-                      },
-                    ],
-                  },
-                ],
-              },
+              "body": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableData",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Content Cell",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "compact": true,
+              "head": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableRow",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableHeader",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Third Header",
+                        },
+                      ],
+                    },
+                    Object {
+                      "$class": "org.accordproject.commonmark.TableHeader",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Fourth Header",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

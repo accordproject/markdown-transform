@@ -271,12 +271,12 @@ const tableCloseRule = {
     open: false,
     close: true,
     exit: (node,token,callback) => {
-        node.head = node.nodes ? node.nodes[0].head : []; // Should only be in first node
-        node.body = {
-            $class: NS_PREFIX_CommonMarkModel + 'TableBody',
-            nodes: node.nodes ? node.nodes[1].body : [], // Should only be in second node
-        };
-        node.nodes = []; // Reset children (now in head/body)
+        const head = node.nodes ? [node.nodes[0].head] : []; // Should only be in first node
+        const body = node.nodes ? node.nodes[1].body : []; // Should only be in second node
+        node.head = head;
+        node.body = body;
+        node.nodes = [];
+        node.compact = true;
     }
 };
 const theadOpenRule = {
