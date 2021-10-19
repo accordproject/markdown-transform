@@ -50,12 +50,12 @@
     "jsdoc": "^3.6.7",
     "license-check-and-add": "2.3.6",
     "mocha": "6.1.4",
-    "nyc": "14.1.1",
+    "nyc": "15.1.0",
     "plantuml-encoder": "^1.4.0",
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.2.1",
+    "@accordproject/concerto-core": "1.2.2-20211019133821",
     "@accordproject/markdown-cicero": "0.14.1",
     "@accordproject/markdown-common": "0.14.1",
     "@accordproject/markdown-docx": "0.14.1",
