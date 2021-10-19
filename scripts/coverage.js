@@ -15,6 +15,8 @@
 
 'use strict';
 
+const globPattern = process.argv[2];
+
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
@@ -30,7 +32,7 @@ function copyFiles(files, destDir) {
     }));
 }
 
-const lcovs = glob.sync('packages/markdown-*').map((dir) => {
+const lcovs = glob.sync(globPattern).map((dir) => {
     const packageName = dir.split('/').pop();
     return {
         source: path.join(dir, 'coverage/coverage-final.json'),
