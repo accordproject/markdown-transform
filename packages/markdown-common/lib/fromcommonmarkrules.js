@@ -51,6 +51,10 @@ rules.Strikethrough = (visitor,thing,children,parameters,resultString,resultSeq)
     const result = [resultString('~~'),children,resultString('~~')];
     resultSeq(parameters,result);
 };
+rules.Underline = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const result = [resultString('++'),children,resultString('++')];
+    resultSeq(parameters,result);
+};
 rules.Link = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = '[';
     const next2 = `](${thing.destination} "${getText(thing,'title')}")`;

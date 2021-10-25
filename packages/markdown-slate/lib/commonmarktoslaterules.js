@@ -53,6 +53,10 @@ rules.Strikethrough = (thing,processChildren,parameters) => {
     parameters.strikethrough = true;
     return processChildren(thing,'nodes',parameters);
 };
+rules.Underline = (thing,processChildren,parameters) => {
+    parameters.underline = true;
+    return processChildren(thing,'nodes',parameters);
+};
 rules.Text = (thing,processChildren,parameters) => {
     return toslateutil.handleFormattedText(thing, parameters);
 };

@@ -15,6 +15,7 @@
 'use strict';
 
 const MarkdownIt = require('markdown-it');
+const MarkdownItUnderline = require('@accordproject/markdown-it-underline');
 const FromMarkdownIt = require('./FromMarkdownIt');
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
@@ -65,7 +66,7 @@ class CommonMarkTransformer {
      * @returns {*} a markdown-it token stream
      */
     toTokens(markdown) {
-        const parser = new MarkdownIt({html:true}); // XXX HTML inlines and code blocks true
+        const parser = new MarkdownIt({html:true}).use(MarkdownItUnderline); // XXX HTML inlines and code blocks true
         const tokenStream = parser.parse(markdown,{});
         return tokenStream;
     }

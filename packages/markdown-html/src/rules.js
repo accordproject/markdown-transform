@@ -152,6 +152,21 @@ const STRIKETHROUGH_RULE = {
 };
 
 /**
+ * A rule to deserialize s (underline) nodes.
+ * @type {Object}
+ */
+const UNDERLINE_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'u') {
+            return {
+                '$class': `${NS_PREFIX_CommonMarkModel}Underline`,
+                nodes: next(el.childNodes, ignoreSpace)
+            };
+        }
+    }
+};
+
+/**
  * A rule to deserialize link nodes.
  * @type {Object}
  */
@@ -587,6 +602,7 @@ const rules = [
     STRONG_RULE,
     EMPH_RULE,
     STRIKETHROUGH_RULE,
+    UNDERLINE_RULE,
     LINK_RULE,
     HEADING_RULE,
     THEMATIC_BREAK_RULE,

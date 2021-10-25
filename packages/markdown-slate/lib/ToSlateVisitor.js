@@ -50,6 +50,7 @@ class ToSlateVisitor {
                 strong: parameters.strong,
                 emph: parameters.emph,
                 strikethrough: parameters.strikethrough,
+                underline: parameters.underline,
             };
             node.accept(this, newParameters);
             if (Array.isArray(newParameters.result)) {

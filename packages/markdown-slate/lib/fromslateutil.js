@@ -93,12 +93,14 @@ function handleMarks(slateNode,newNode) {
     let strong = null;
     let emph = null;
     let strikethrough = null;
+    let underline = null;
     let result = newNode;
     applyStyle(slateNode, newNode);
 
     const isBold = slateNode.bold;
     const isItalic = slateNode.italic;
     const isLineThrough = slateNode.lineThrough;
+    const isUnderline = slateNode.underline;
 
     if (isBold) {
         strong = {$class : `${NS_PREFIX_CommonMarkModel}Strong`, nodes: []};
@@ -109,7 +111,14 @@ function handleMarks(slateNode,newNode) {
     if (isLineThrough) {
         strikethrough  = {$class : `${NS_PREFIX_CommonMarkModel}.Strikethrough`, nodes: []};
     }
+    if (isUnderline) {
+        underline  = {$class : `${NS_PREFIX_CommonMarkModel}.Underline`, nodes: []};
+    }
 
+    if(underline) {
+        underline.nodes.push(result);
+        result = underline;
+    }
     if(strikethrough) {
         strikethrough.nodes.push(result);
         result = strikethrough;

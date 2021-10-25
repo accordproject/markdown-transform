@@ -42,6 +42,9 @@ function applyMarks(leafNode, parameters) {
     if (parameters.strikethrough) {
         leafNode.lineThrough = true;
     }
+    if (parameters.underline) {
+        leafNode.underline = true;
+    }
 }
 
 /**

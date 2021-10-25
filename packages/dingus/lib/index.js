@@ -159,14 +159,14 @@ function mdInit() {
     mdHtml = markdownit('commonmark');
     mdSrc = markdownit('commonmark');
   } else if(defaults.ciceroMark) {
-    mdHtml = markdownit(defaults)
+    mdHtml = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-cicero'))
-    mdSrc = markdownit(defaults)
+    mdSrc = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-cicero'))
   } else {
-    mdHtml = markdownit(defaults)
+    mdHtml = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-template'))
-    mdSrc = markdownit(defaults)
+    mdSrc = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-template'))
   }
 

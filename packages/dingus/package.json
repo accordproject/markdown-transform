@@ -23,6 +23,7 @@
     "@accordproject/markdown-common": "0.15.0-alpha.2",
     "@accordproject/markdown-it-cicero": "0.15.0-alpha.2",
     "@accordproject/markdown-it-template": "0.15.0-alpha.2",
+    "@accordproject/markdown-it-underline": "0.15.0-alpha.2",
     "@accordproject/markdown-pdf": "0.15.0-alpha.2",
     "@accordproject/markdown-template": "0.15.0-alpha.2",
     "@babel/core": "7.17.5",
