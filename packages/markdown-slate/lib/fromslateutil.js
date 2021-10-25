@@ -109,10 +109,10 @@ function handleMarks(slateNode,newNode) {
         emph  = {$class : `${NS_PREFIX_CommonMarkModel}Emph`, nodes: []};
     }
     if (isLineThrough) {
-        strikethrough  = {$class : `${NS_PREFIX_CommonMarkModel}.Strikethrough`, nodes: []};
+        strikethrough  = {$class : `${NS_PREFIX_CommonMarkModel}Strikethrough`, nodes: []};
     }
     if (isUnderline) {
-        underline  = {$class : `${NS_PREFIX_CommonMarkModel}.Underline`, nodes: []};
+        underline  = {$class : `${NS_PREFIX_CommonMarkModel}Underline`, nodes: []};
     }
 
     if(underline) {

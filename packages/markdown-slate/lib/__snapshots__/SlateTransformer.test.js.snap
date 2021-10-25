@@ -12003,7 +12003,7 @@ Object {
           "text": " and this is ",
         },
         Object {
-          "$class": "org.accordproject.commonmark..Strikethrough",
+          "$class": "org.accordproject.commonmark.Strikethrough",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12028,7 +12028,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Strikethrough",
+              "$class": "org.accordproject.commonmark.Strikethrough",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12123,7 +12123,7 @@ Object {
           "text": " and this is ",
         },
         Object {
-          "$class": "org.accordproject.commonmark..Strikethrough",
+          "$class": "org.accordproject.commonmark.Strikethrough",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12148,7 +12148,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Strikethrough",
+              "$class": "org.accordproject.commonmark.Strikethrough",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12475,7 +12475,7 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12487,7 +12487,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12498,7 +12498,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12507,10 +12507,10 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Strikethrough",
+          "$class": "org.accordproject.commonmark.Strikethrough",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12521,7 +12521,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12533,7 +12533,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12547,10 +12547,10 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Strikethrough",
+              "$class": "org.accordproject.commonmark.Strikethrough",
               "nodes": Array [
                 Object {
-                  "$class": "org.accordproject.commonmark..Underline",
+                  "$class": "org.accordproject.commonmark.Underline",
                   "nodes": Array [
                     Object {
                       "$class": "org.accordproject.commonmark.Text",
@@ -12637,7 +12637,7 @@ Object {
       "$class": "org.accordproject.commonmark.Paragraph",
       "nodes": Array [
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12649,7 +12649,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12660,7 +12660,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12669,10 +12669,10 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Strikethrough",
+          "$class": "org.accordproject.commonmark.Strikethrough",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12683,7 +12683,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.commonmark..Underline",
+          "$class": "org.accordproject.commonmark.Underline",
           "nodes": Array [
             Object {
               "$class": "org.accordproject.commonmark.Text",
@@ -12695,7 +12695,7 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Underline",
+              "$class": "org.accordproject.commonmark.Underline",
               "nodes": Array [
                 Object {
                   "$class": "org.accordproject.commonmark.Text",
@@ -12709,10 +12709,10 @@ Object {
           "$class": "org.accordproject.commonmark.Strong",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.commonmark..Strikethrough",
+              "$class": "org.accordproject.commonmark.Strikethrough",
               "nodes": Array [
                 Object {
-                  "$class": "org.accordproject.commonmark..Underline",
+                  "$class": "org.accordproject.commonmark.Underline",
                   "nodes": Array [
                     Object {
                       "$class": "org.accordproject.commonmark.Text",
