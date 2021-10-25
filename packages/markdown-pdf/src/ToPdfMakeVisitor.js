@@ -49,7 +49,8 @@ class ToPdfMakeVisitor {
                 strong: parameters.strong,
                 emph: parameters.emph,
                 strikethrough: parameters.strikethrough,
-                code: parameters.code
+                underline: parameters.underline,
+                code: parameters.code,
             };
             node.accept(visitor, newParameters);
             if (Array.isArray(newParameters.result)) {

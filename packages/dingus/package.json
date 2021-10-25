@@ -23,6 +23,7 @@
     "@accordproject/markdown-common": "0.14.1",
     "@accordproject/markdown-it-cicero": "0.14.1",
     "@accordproject/markdown-it-template": "0.14.1",
+    "@accordproject/markdown-it-underline": "0.14.1",
     "@accordproject/markdown-pdf": "0.14.1",
     "@accordproject/markdown-template": "0.14.1",
     "autoprefixer-stylus": "^0.14.0",

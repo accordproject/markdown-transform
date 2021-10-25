@@ -101,6 +101,20 @@ const strikethroughCloseRule = {
     close: true,
     skipEmpty: false,
 };
+const underlineOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Underline',
+    leaf: false,
+    open: true,
+    close: false,
+    skipEmpty: false,
+};
+const underlineCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Underline',
+    leaf: false,
+    open: false,
+    close: true,
+    skipEmpty: false,
+};
 
 const linkOpenRule = {
     tag: NS_PREFIX_CommonMarkModel + 'Link',
@@ -370,6 +384,8 @@ rules.inlines.em_open = emphOpenRule;
 rules.inlines.em_close = emphCloseRule;
 rules.inlines.s_open = strikethroughOpenRule;
 rules.inlines.s_close = strikethroughCloseRule;
+rules.inlines.u_open = underlineOpenRule;
+rules.inlines.u_close = underlineCloseRule;
 rules.inlines.link_open = linkOpenRule;
 rules.inlines.link_close = linkCloseRule;
 rules.inlines.image = imageRule;

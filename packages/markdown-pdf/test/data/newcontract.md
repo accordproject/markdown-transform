@@ -137,6 +137,14 @@ Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristi
  
 Sometimes we write ~~garbage~~ non-sensical things
 
+###### Underline (Heading Six)
+ 
+Sometimes we write ++important things that should be underlined++
+
+###### Mix and match (Heading Six)
+ 
+Sometimes we write ++**important things** that should be underlined or less important ones that should be ~~struck~~++
+
 ###### Table (Heading Six)
  
 Sometimes data is better presented in a table:

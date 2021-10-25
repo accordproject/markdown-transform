@@ -12467,6 +12467,270 @@ Object {
 }
 `;
 
+exports[`markdown <-> slate converts underline.json to and from Markdown 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foo",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " and this is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Strikethrough",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bar",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " and maybe ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "this is ",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Strikethrough",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark..Underline",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "foobar",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> slate converts underline.json to and from Markdown 2`] = `"++This is **foo** and this is ~~bar~~ and maybe **this is ~~foobar~~**++"`;
+
+exports[`markdown <-> slate converts underline.json to and from Markdown 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "object": "text",
+            "text": "This is ",
+            "underline": true,
+          },
+          Object {
+            "bold": true,
+            "object": "text",
+            "text": "foo",
+            "underline": true,
+          },
+          Object {
+            "object": "text",
+            "text": " and this is ",
+            "underline": true,
+          },
+          Object {
+            "lineThrough": true,
+            "object": "text",
+            "text": "bar",
+            "underline": true,
+          },
+          Object {
+            "object": "text",
+            "text": " and maybe ",
+            "underline": true,
+          },
+          Object {
+            "bold": true,
+            "object": "text",
+            "text": "this is ",
+            "underline": true,
+          },
+          Object {
+            "bold": true,
+            "lineThrough": true,
+            "object": "text",
+            "text": "foobar",
+            "underline": true,
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`markdown <-> slate converts underline.json to and from Markdown 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "This is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foo",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " and this is ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Strikethrough",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "bar",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark..Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": " and maybe ",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "this is ",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark..Strikethrough",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark..Underline",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "foobar",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown <-> slate converts unordered.json to and from Markdown 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

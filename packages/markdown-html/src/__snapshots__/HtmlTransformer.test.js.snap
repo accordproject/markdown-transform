@@ -2323,6 +2323,78 @@ exports[`markdown <-> html converts ul-tight.md to html 2`] = `
 </html>"
 `;
 
+exports[`markdown <-> html converts underline.md to html 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "foo",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and this is ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Underline",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "bar",
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " and maybe ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Strong",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "this is ",
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.Underline",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.Text",
+                  "text": "foobar",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> html converts underline.md to html 2`] = `
+"<html>
+<body>
+<div class=\\"document\\">
+<p>This is <strong>foo</strong> and this is <u>bar</u> and maybe <strong>this is <u>foobar</u></strong></p>
+</div>
+</body>
+</html>"
+`;
+
 exports[`markdown <-> html converts unwrapped <li> to html 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

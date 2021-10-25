@@ -1,0 +1,1 @@
+This is **foo** and this is ++bar++ and maybe **this is ++foobar++**

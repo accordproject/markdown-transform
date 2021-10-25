@@ -40,7 +40,22 @@ rules.Strikethrough = (visitor, thing, children, parameters) => {
     parameters.strikethrough = true;
     parameters.result = children;
     parameters.result.forEach((child) => {
-        child.decoration = 'lineThrough';
+        if (child.decoration) {
+            child.decoration.push('lineThrough');
+        } else {
+            child.decoration = ['lineThrough'];
+        }
+    });
+};
+rules.Underline = (visitor, thing, children, parameters) => {
+    parameters.underline = true;
+    parameters.result = children;
+    parameters.result.forEach((child) => {
+        if (child.decoration) {
+            child.decoration.push('underline');
+        } else {
+            child.decoration = ['underline'];
+        }
     });
 };
 rules.BlockQuote = (visitor, thing, children, parameters) => {
