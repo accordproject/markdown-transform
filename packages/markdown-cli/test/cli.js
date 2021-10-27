@@ -23,6 +23,7 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
 const Commands = require('../lib/commands');
+const wordcountExt = require('./extension/wordcount');
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -166,12 +167,11 @@ describe('markdown-cli (docx)', () => {
 describe('extension (wordcount)', () => {
     // Acceptance test
     const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
-    const inputExpectedDocxText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'sample-service-level-agreement.md'),'utf8'));
 
     describe('#parse', () => {
         it('should generate a markdown file from docx', async () => {
-            const { result } = await Commands.transform(inputDocx, 'docx', [], 'markdown', null, {}, {});
-            result.should.eql(inputExpectedDocxText);
+            const { result } = await Commands.transform(inputDocx, 'docx', ['wordcount'], 'markdown', null, {}, { extensions: [wordcountExt] });
+            result.should.eql('1783');
         });
     });
 });
