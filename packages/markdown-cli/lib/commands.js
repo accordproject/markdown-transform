@@ -128,9 +128,11 @@ class Commands {
         // Initialize the transform engine
         const engine = new TransformEngine(builtinTransformationGraph);
         // Get extensions
-        const { extension, ...otherOptions } = options;
-        if (extension) {
-            engine.registerExtension(extension);
+        const { extensions, ...otherOptions } = options;
+        if (extensions) {
+            extensions.forEach((thisExtension) => {
+                engine.registerExtension(thisExtension);
+            });
         }
         const input = Commands.loadFormatFromFile(engine, inputPath, from);
         parameters.inputFileName = inputPath;

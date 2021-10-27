@@ -80,7 +80,8 @@ require('yargs')
         });
         yargs.option('extension', {
             describe: 'path to a transform extension',
-            type: 'string'
+            type: 'string',
+            array: true,
         });
         yargs.option('sourcePos', {
             describe: 'enable source position',
@@ -113,13 +114,15 @@ require('yargs')
                 plugin = require(path.resolve(process.cwd(),argv.plugin));
             }
             // Load a transform extension if given
-            let extension = {};
+            const extensions = [];
             if (argv.extension) {
-                extension = require(path.resolve(process.cwd(),argv.extension));
-                // To support ES6 "export default"
-                if (extension.default) {
-                    extension = extension.default;
-                }
+                argv.extension.forEach((thisExtension) => {
+                    let modExtension = require(path.resolve(process.cwd(),thisExtension));
+                    if (modExtension.default) {
+                        modExtension = modExtension.default;
+                    }
+                    extensions.push(modExtension);
+                });
             }
             parameters.plugin = plugin;
             parameters.template = argv.template;
@@ -130,7 +133,7 @@ require('yargs')
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
             options.offline = argv.offline;
-            options.extension = extension;
+            options.extensions = extensions;
             return commands.transform(argv.input, argv.from, argv.via, argv.to, argv.output, parameters, options)
                 .then(({ result, targetFormat }) => {
                     if(result) {
