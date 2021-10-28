@@ -14,12 +14,11 @@
 
 'use strict';
 
-const MarkdownIt = require('markdown-it');
-const MarkdownItUnderline = require('@accordproject/markdown-it-underline');
 const FromMarkdownIt = require('./FromMarkdownIt');
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
+const { containers, newMarkdownIt } = require('./markdownitutil');
 const ToMarkdownVisitor = require('./ToMarkdownVisitor');
 const removeFormatting = require('./removeFormatting');
 const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
@@ -66,7 +65,7 @@ class CommonMarkTransformer {
      * @returns {*} a markdown-it token stream
      */
     toTokens(markdown) {
-        const parser = new MarkdownIt({html:true}).use(MarkdownItUnderline); // XXX HTML inlines and code blocks true
+        const parser = newMarkdownIt(containers); // XXX HTML inlines and code blocks true
         const tokenStream = parser.parse(markdown,{});
         return tokenStream;
     }

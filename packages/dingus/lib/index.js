@@ -159,14 +159,30 @@ function mdInit() {
     mdHtml = markdownit('commonmark');
     mdSrc = markdownit('commonmark');
   } else if(defaults.ciceroMark) {
-    mdHtml = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
+    mdHtml = markdownit(defaults)
+      .use(require('markdown-it-attrs'))
+      .use(require('markdown-it-bracketed-spans'))
+      .use(require('markdown-it-container'), 'warning')
+      .use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-cicero'))
-    mdSrc = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
+    mdSrc = markdownit(defaults)
+      .use(require('markdown-it-attrs'))
+      .use(require('markdown-it-bracketed-spans'))
+      .use(require('markdown-it-container'), 'warning')
+      .use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-cicero'))
   } else {
-    mdHtml = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
+    mdHtml = markdownit(defaults)
+      .use(require('markdown-it-attrs'))
+      .use(require('markdown-it-bracketed-spans'))
+      .use(require('markdown-it-container'), 'warning')
+      .use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-template'))
-    mdSrc = markdownit(defaults).use(require('@accordproject/markdown-it-underline'))
+    mdSrc = markdownit(defaults)
+      .use(require('markdown-it-attrs'))
+      .use(require('markdown-it-bracketed-spans'))
+      .use(require('markdown-it-container'), 'warning')
+      .use(require('@accordproject/markdown-it-underline'))
       .use(require('@accordproject/markdown-it-template'))
   }
 

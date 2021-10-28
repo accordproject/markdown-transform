@@ -19,7 +19,11 @@ const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
-const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const {
+    markdownitutil: { containers, newMarkdownIt },
+    FromMarkdownIt,
+    CommonMarkModel: { CommonMarkModel }
+} = require('@accordproject/markdown-common');
 const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
 const { ConcertoMetaModel } = require('@accordproject/markdown-cicero').ConcertoMetaModel;
 const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
@@ -27,9 +31,7 @@ const TemplateMarkModel = require('./externalModels/TemplateMarkModel').Template
 const normalizeNLs = require('./normalize').normalizeNLs;
 const TypeVisitor = require('./TypeVisitor');
 const FormulaVisitor = require('./FormulaVisitor');
-const MarkdownIt = require('markdown-it');
 const MarkdownItTemplate = require('@accordproject/markdown-it-template');
-const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
 const templaterules = require('./templaterules');
 
 /**
@@ -191,7 +193,7 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
 function templateToTokens(input) {
     const norm = normalizeNLs(input);
 
-    const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
+    const parser = newMarkdownIt(containers, [MarkdownItTemplate]);
     return parser.parse(norm,{});
 }
 

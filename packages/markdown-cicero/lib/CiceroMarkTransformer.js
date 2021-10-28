@@ -16,9 +16,8 @@
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
 
-const MarkdownIt = require('markdown-it');
 const MarkdownItCicero = require('@accordproject/markdown-it-cicero');
-const FromMarkdownIt = require('@accordproject/markdown-common').FromMarkdownIt;
+const { markdownitutil: { containers, newMarkdownIt }, FromMarkdownIt } = require('@accordproject/markdown-common');
 const cicerorules = require('./cicerorules');
 const ToMarkdownCiceroVisitor = require('./ToMarkdownCiceroVisitor');
 const ToCiceroMarkUnwrappedVisitor = require('./ToCiceroMarkUnwrappedVisitor');
@@ -225,7 +224,7 @@ class CiceroMarkTransformer {
      * @returns {*} a markdown-it token stream
      */
     toTokens(input) {
-        const parser = new MarkdownIt({html:true}).use(MarkdownItCicero); // XXX HTML inlines and code blocks true
+        const parser = newMarkdownIt(containers,[MarkdownItCicero]);
         const tokenStream = parser.parse(input,{});
         return tokenStream;
     }
