@@ -115,6 +115,8 @@ const successes = [
     {name:'rental-deposit-with',kind:'contract'},
     {name:'signature-name-date',kind:'clause'},
     {name:'volumediscountulist',kind:'contract'},
+    {name:'testExtendedMd1',kind:'clause'},
+    {name:'testExtendedMd2',kind:'clause'},
 ];
 
 const templateFailures = [

@@ -244,7 +244,7 @@ function choiceStringsParser(values) {
 function seqParser(parsers) {
     return P.seqMap.apply(null, parsers.concat([function () {
         const args = Array.prototype.slice.call(arguments);
-        return args.filter(function(x) { return !(typeof x === 'string'); });
+        return args.filter(function (x) { return !(typeof x === 'string'); });
     }]));
 }
 
@@ -256,7 +256,7 @@ function seqParser(parsers) {
 function seqFunParser(parsers) {
     return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
         const args = Array.prototype.slice.call(arguments);
-        return args.filter(function(x) { return !(typeof x === 'string'); });
+        return args.filter(function (x) { return !(typeof x === 'string'); });
     }]));
 }
 
@@ -274,7 +274,7 @@ function computedParser() {
  * @returns {object} the parser
  */
 function enumParser(enums) {
-    return choiceStringsParser(enums).map(function(x) {
+    return choiceStringsParser(enums).map(function (x) {
         return x;
     });
 }
@@ -287,7 +287,7 @@ function enumParser(enums) {
  * @returns {object} the parser
  */
 function conditionalParser(condNode, whenTrue, whenFalse) {
-    return P.alt(whenTrue.map(x => true),whenFalse.map(x => false)).map(function(x) {
+    return P.alt(whenTrue.map(x => true),whenFalse.map(x => false)).map(function (x) {
         return mkCond(condNode,x);
     });
 }
@@ -302,7 +302,7 @@ function conditionalParser(condNode, whenTrue, whenFalse) {
  */
 function optionalParser(optNode, whenSome, whenNone) {
     return P.alt(
-        whenSome.map(function(x) {
+        whenSome.map(function (x) {
             return mkCompoundVariable(optNode.elementType,flatten(x));
         }),
         whenNone.map(x => null)).map(function(x) { return mkOpt(optNode,x); });
@@ -319,7 +319,7 @@ function listBlockParser(listNode,bullet,content) {
     // XXX optionally insert a new line for non-tight lists
     return P.seq(P.alt(bullet,P.seq(P.string('\n'),bullet)),content).map(function(x) {
         return x[1]; // XXX First element is bullet
-    }).many().map(function(x) {
+    }).many().map(function (x) {
         return mkList(listNode,x);
     });
 }

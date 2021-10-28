@@ -154,17 +154,17 @@ rules.List = (visitor,thing,children,parameters,resultString,resultSeq) => {
 };
 rules.TableHeader = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = `${CommonMarkUtils.mkPrefix(parameters,0)} | `;
-    const result = [children, next1];
+    const result = [children, resultString(next1)];
     resultSeq(parameters,result);
 };
 rules.TableData = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = `${CommonMarkUtils.mkPrefix(parameters,0)} | `;
-    const result = [children, next1];
+    const result = [children, resultString(next1)];
     resultSeq(parameters,result);
 };
 rules.TableRow = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = `${CommonMarkUtils.mkPrefix(parameters,1)}| `;
-    const result = [next1, children];
+    const result = [resultString(next1), children];
     resultSeq(parameters,result);
 };
 rules.TableBody = (visitor,thing,children,parameters,resultString,resultSeq) => {
@@ -182,10 +182,10 @@ rules.Table = (visitor,thing,children,parameters,resultString,resultSeq) => {
             result.push(head);
 
             const next1 = `${CommonMarkUtils.mkPrefix(parameters,1)}`;
-            result.push(next1);
+            result.push(resultString(next1));
 
             const headerRow = `|${' --- |'.repeat(headerRowLength)}`;
-            result.push(headerRow);
+            result.push(resultString(headerRow));
         }
 
         const body = visitor.visitChildren(visitor,thing,parameters,'body');
