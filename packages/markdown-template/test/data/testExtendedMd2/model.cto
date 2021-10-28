@@ -1,0 +1,6 @@
+namespace org.test
+
+import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
+
+asset MyClause extends Clause {
+}
