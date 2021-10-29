@@ -15,8 +15,17 @@
 'use strict';
 
 const Stack = require('./Stack');
-const { mergeAdjacentHtmlNodes } = require('./CommonMarkUtils');
+const { mergeAdjacentHtmlNodes, getAttr, } = require('./CommonMarkUtils');
 const tocommonmarkrules = require('./tocommonmarkrules');
+
+const { parseStyle } = require('./styleutil');
+const processStyle = (node, token) => {
+    const styleAttr = getAttr(token.attrs,'style','');
+    const styleNode = parseStyle(styleAttr);
+    if (styleNode) {
+        node.style = styleNode;
+    }
+};
 
 /**
  * Converts a markdown-it token stream to a CommonMark DOM
@@ -90,17 +99,26 @@ class FromMarkdownIt {
             }
             if (rule.leaf) {
                 const node = { $class: rule.tag };
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
                 if (!(rule.skipEmpty && node.text === '')) {
                     stack.append(node);
                 }
             } else if (rule.open && rule.close) {
                 const node = { $class: rule.tag };
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
                 stack.append(node);
             } else if (rule.open) {
                 const node = { $class: rule.tag };
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
                 node.nodes = [];
                 stack.push(node, true);
             } else if (rule.close) {
@@ -108,7 +126,10 @@ class FromMarkdownIt {
                 if (rule.exit) { rule.exit(node,token,FromMarkdownIt.inlineCallback(rules)); }
             } else {
                 const node = stack.peek();
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
             }
         }
     }
@@ -163,11 +184,17 @@ class FromMarkdownIt {
 
             if (rule.leaf) {
                 const node = { $class: rule.tag };
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
                 stack.append(node);
             } else if (rule.open) {
                 const node = { $class: rule.tag };
-                if (rule.enter) { rule.enter(node,token,FromMarkdownIt.inlineCallback(rules)); }
+                if (rule.enter) {
+                    processStyle(node, token);
+                    rule.enter(node,token,FromMarkdownIt.inlineCallback(rules));
+                }
                 node.nodes = [];
                 stack.push(node, true);
             } else if (rule.close) {

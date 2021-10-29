@@ -14,7 +14,13 @@
 
 'use strict';
 
-const { unescapeCodeBlock, parseHtmlBlock, headingLevel, getAttr, trimEndline } = require('./CommonMarkUtils');
+const {
+    unescapeCodeBlock,
+    parseHtmlBlock,
+    headingLevel,
+    getAttr,
+    trimEndline,
+} = require('./CommonMarkUtils');
 const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS_PREFIX_CommonMarkModel;
 
 // Inline rules
@@ -115,7 +121,6 @@ const underlineCloseRule = {
     close: true,
     skipEmpty: false,
 };
-
 const linkOpenRule = {
     tag: NS_PREFIX_CommonMarkModel + 'Link',
     leaf: false,
@@ -144,6 +149,22 @@ const imageRule = {
         node.title = getAttr(token.attrs,'title','');
         node.nodes = callback(token.children);
     },
+    skipEmpty: false,
+};
+const spanOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Span',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+    },
+    skipEmpty: false,
+};
+const spanCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Span',
+    leaf: false,
+    open: false,
+    close: true,
     skipEmpty: false,
 };
 
@@ -389,6 +410,8 @@ rules.inlines.u_close = underlineCloseRule;
 rules.inlines.link_open = linkOpenRule;
 rules.inlines.link_close = linkCloseRule;
 rules.inlines.image = imageRule;
+rules.inlines.span_open = spanOpenRule;
+rules.inlines.span_close = spanCloseRule;
 
 rules.blocks.code_block = codeBlockRule;
 rules.blocks.fence = fenceRule;

@@ -15,6 +15,7 @@
 'use strict';
 
 const CommonMarkUtils = require('./CommonMarkUtils');
+const { printStyle } = require('./styleutil');
 
 /**
  * get text from a thing
@@ -53,6 +54,16 @@ rules.Strikethrough = (visitor,thing,children,parameters,resultString,resultSeq)
 };
 rules.Underline = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const result = [resultString('++'),children,resultString('++')];
+    resultSeq(parameters,result);
+};
+rules.Span = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    let result;
+    if (thing.style) {
+        result = [resultString('['),children,resultString(']')];
+        result.push(resultString(printStyle(thing.style)));
+    } else {
+        result = [children];
+    }
     resultSeq(parameters,result);
 };
 rules.Link = (visitor,thing,children,parameters,resultString,resultSeq) => {
@@ -129,6 +140,9 @@ rules.HtmlBlock = (visitor,thing,children,parameters,resultString,resultSeq) => 
 rules.Paragraph = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const next1 = CommonMarkUtils.mkPrefix(parameters,parameters.first ? 1 : 2);
     const result = [resultString(next1),children];
+    if (thing.style) {
+        result.push(resultString(printStyle(thing.style)));
+    }
     resultSeq(parameters,result);
 };
 // Container blocks

@@ -58,6 +58,9 @@ rules.Underline = (visitor, thing, children, parameters) => {
         }
     });
 };
+rules.Span = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
 rules.BlockQuote = (visitor, thing, children, parameters) => {
     parameters.result.stack = children;
 };

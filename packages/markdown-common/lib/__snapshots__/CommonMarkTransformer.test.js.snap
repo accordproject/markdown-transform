@@ -3254,6 +3254,45 @@ Object {
 }
 `;
 
+exports[`markdown converts style1.md to concerto JSON 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Paragraph",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": "This is a ",
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Span",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.Text",
+              "text": "red text",
+            },
+          ],
+          "style": Object {
+            "$class": "org.accordproject.commonmark.Style",
+            "color": "red",
+          },
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.Text",
+          "text": " test within a green text.",
+        },
+      ],
+      "style": Object {
+        "$class": "org.accordproject.commonmark.Style",
+        "color": "green",
+      },
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown converts table.md to concerto JSON 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",
@@ -4747,6 +4786,8 @@ This is second paragraph."
 exports[`to plain text strikethrough.md 1`] = `"This is foo and this is ~~bar~~ and maybe this is ~~foobar~~"`;
 
 exports[`to plain text strong.md 1`] = `"This is some text."`;
+
+exports[`to plain text style1.md 1`] = `"This is a [red text]{style=\\"color:red;\\"} test within a green text."`;
 
 exports[`to plain text table.md 1`] = `
 "| First Header | Second Header | 

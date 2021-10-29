@@ -21,6 +21,7 @@ const MarkdownItContainer = require('markdown-it-container');
 const MarkdownItUnderline = require('@accordproject/markdown-it-underline');
 
 const containers = ['warning'];
+const allowedAttributes = ['style'];
 
 /**
  * Create a new markdown-it parser
@@ -34,7 +35,7 @@ function newMarkdownIt(containers, extensions = []) {
     // Add underline support
     markdownIt = markdownIt.use(MarkdownItUnderline);
     // Add styling support
-    markdownIt = markdownIt.use(MarkdownItAttrs);
+    markdownIt = markdownIt.use(MarkdownItAttrs,{allowedAttributes});
     markdownIt = markdownIt.use(MarkdownItBracketedSpans);
     // Add containers support
     containers.forEach((container) => {

@@ -1,0 +1,1 @@
+This is a [red text]{style="color:red;"} test within a green text.{style="color:green;"}

@@ -297,6 +297,11 @@ function applyStyle(node, result) {
             x.color = node.style.color;
         });
     }
+    if (node.style.backgroundColor) {
+        result.forEach((x) => {
+            x.background = node.style.backgroundColor;
+        });
+    }
     if (node.style.fontSize) {
         result.forEach((x) => {
             x.fontSize = node.style.fontSize;
