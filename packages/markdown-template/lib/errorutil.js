@@ -14,7 +14,7 @@
 
 'use strict';
 
-const ParseException = require('@accordproject/concerto-core').ParseException;
+const ParseException = require('@accordproject/concerto-cto').ParseException;
 const TemplateException = require('./templateexception');
 
 /**

@@ -15,7 +15,7 @@
 'use strict';
 
 const fs = require('fs');
-const logger = require('@accordproject/concerto-core').Logger;
+const logger = require('@accordproject/concerto-util').Logger;
 const { TransformEngine, builtinTransformationGraph } = require('@accordproject/markdown-transform');
 
 /**
