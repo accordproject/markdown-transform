@@ -28,15 +28,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: NPM Install
-        if: github.ref == 'refs/heads/master'
         run: npm install
 
       - name: NPM Build
         run: npm run build
-        if: github.ref == 'refs/heads/master'
+
+      - name: Build Dingus
+        run: |
+            cd packages/dingus
+            mkdir demo
+            scripts/demodata.js > lib/sample.json
+            node_modules/.bin/pug lib/index.pug --pretty --obj lib/sample.json --out demo
+            node_modules/.bin/stylus -u autoprefixer-stylus < lib/index.styl > demo/index.css
+            cp lib/templatemark.css demo/templatemark.css
+            rm -rf lib/sample.json
+            node_modules/.bin/browserify lib/index.js > demo/index.js
 
       - name: Set S3 
-        if: github.ref == 'refs/heads/master'
         run: |
             echo "AWS_S3_BUCKET=${{secrets.AWS_S3_BUCKET}}" >> $GITHUB_ENV
 
@@ -45,7 +53,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          SOURCE_DIR: 'packages/dingus'
+          SOURCE_DIR: 'packages/dingus/demo'
 
       - name: Invalidate Cloudfront
         uses: chetan/invalidate-cloudfront-action@master
