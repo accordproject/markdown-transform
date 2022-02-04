@@ -5,12 +5,14 @@
     "coveralls": "3.0.4",
     "dayjs": "1.10.2",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "glob": "^7.1.7",
     "jest": "^27.0.6",
     "jsdoc": "^3.6.7",
-    "glob": "^7.1.7",
     "lerna": "^4.0.0",
     "license-check-and-add": "2.3.6",
     "nyc": "15.1.0",
+    "prettier": "^2.5.1",
     "semver": "6.2.0",
     "sleep-promise": "8.0.1",
     "source-map-support": "0.5.12"
@@ -33,7 +35,8 @@
     "pretest": "npm run licchk",
     "test": "lerna exec --ignore dingus -- npm run test:cov",
     "repoclean": "lerna clean",
-    "licchk": "license-check-and-add"
+    "licchk": "license-check-and-add",
+    "format": "prettier --write \"scripts/**/*.{js,jsx}\""
   },
   "repository": {
     "type": "git",
@@ -123,6 +126,5 @@
         "file": "HEADER"
       }
     }
-  },
-  "dependencies": {}
+  }
 }

@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
-const semver = require('semver');
+const semver = require("semver");
 const targetVersion = process.argv[2];
 
 if (!semver.valid(targetVersion)) {
-    console.error(`Error: the version "${targetVersion}" is invalid!`);
-    process.exit(1);
+  console.error(`Error: the version "${targetVersion}" is invalid!`);
+  process.exit(1);
 }
 
 const prerelease = semver.prerelease(targetVersion);
-const tag = prerelease ? 'unstable' : 'latest';
+const tag = prerelease ? "unstable" : "latest";
 
 console.log(`::set-output name=tag::--tag=${tag}`);

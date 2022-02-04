@@ -13,19 +13,20 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
-const path = require('path');
-const semver = require('semver');
-const dayjs = require('dayjs');
-const utc = require('dayjs/plugin/utc');
+const path = require("path");
+const semver = require("semver");
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
 dayjs.extend(utc);
 
-const timestamp = dayjs.utc().format('YYYYMMDDHHmmss');
+const timestamp = dayjs.utc().format("YYYYMMDDHHmmss");
 
-const lernaDirectory = path.resolve('.');
-const lernaConfigFile = path.resolve(lernaDirectory, 'lerna.json');
+const lernaDirectory = path.resolve(".");
+const lernaConfigFile = path.resolve(lernaDirectory, "lerna.json");
 const lernaConfig = require(lernaConfigFile);
-lernaConfig.version.replace(/-.*/, '');
-const targetVersion = semver.inc(lernaConfig.version, 'patch') + '-' + timestamp;
+lernaConfig.version.replace(/-.*/, "");
+const targetVersion =
+  semver.inc(lernaConfig.version, "patch") + "-" + timestamp;
 console.log(`::set-output name=stamp::${targetVersion}`);

@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
-const path = require('path');
-const fs = require('fs')
-const mkdirp = require('mkdirp')
-const url = require('url');
-const handlebars = require('handlebars');
+const path = require("path");
+const fs = require("fs");
+const mkdirp = require("mkdirp");
+const url = require("url");
+const handlebars = require("handlebars");
 
-const scriptDir = path.join(__dirname,'..','..');
-const modelsJson = require('./models.json');
+const scriptDir = path.join(__dirname, "..", "..");
+const modelsJson = require("./models.json");
 const targetDir = modelsJson.target;
 
-const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
+const ModelLoader = require("@accordproject/concerto-core").ModelLoader;
 
 /**
  * Fetches all external for a set of models dependencies and
@@ -34,10 +34,10 @@ const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
  * @param {string} output the output directory
  */
 async function get(ctoFiles, output) {
-    const modelManager = await ModelLoader.loadModelManager(ctoFiles);
-    mkdirp.sync(output);
-    modelManager.writeModelsToFileSystem(output);
-    return `Loaded external models in '${output}'.`;
+  const modelManager = await ModelLoader.loadModelManager(ctoFiles);
+  mkdirp.sync(output);
+  modelManager.writeModelsToFileSystem(output);
+  return `Loaded external models in '${output}'.`;
 }
 
 /**
@@ -47,44 +47,54 @@ async function get(ctoFiles, output) {
  * @param {string} the file name
  */
 function mapName(requestUrl) {
-    let parsedUrl = url.parse(requestUrl);
-    // external ModelFiles have a name that starts with '@'
-    // (so that they are identified as external when an archive is read back in)
-    const name = (parsedUrl.host + parsedUrl.pathname).replace(/\//g, '.');
-    return '@' + name;
+  let parsedUrl = url.parse(requestUrl);
+  // external ModelFiles have a name that starts with '@'
+  // (so that they are identified as external when an archive is read back in)
+  const name = (parsedUrl.host + parsedUrl.pathname).replace(/\//g, ".");
+  return "@" + name;
 }
 
 async function fetchExternalModels() {
-    const downloadCtos = modelsJson.models.map(m => m.from);
-    const result = await get(downloadCtos, targetDir);
-    console.log(result);
+  const downloadCtos = modelsJson.models.map((m) => m.from);
+  const result = await get(downloadCtos, targetDir);
+  console.log(result);
 }
 
 function buildExternalModels() {
-    const buildModelsTemplate = path.join(__dirname,'Models.hbs');
+  const buildModelsTemplate = path.join(__dirname, "Models.hbs");
 
-    const source = fs.readFileSync(buildModelsTemplate,'utf8');
-    const template = handlebars.compile(source);
+  const source = fs.readFileSync(buildModelsTemplate, "utf8");
+  const template = handlebars.compile(source);
 
-    const contextArray = modelsJson.models.map(m => {
-        const modelText = fs.readFileSync(path.join(scriptDir,targetDir,mapName(m.from)), 'utf-8');
-        // XXX Escape so it can be embedded in a string
-        const model = modelText.replace(/\\/g, '\\\\');
-        return { ...m, model };
-    });
-    //console.log('contextArray --- ' + JSON.stringify(contextArray));
+  const contextArray = modelsJson.models.map((m) => {
+    const modelText = fs.readFileSync(
+      path.join(scriptDir, targetDir, mapName(m.from)),
+      "utf-8"
+    );
+    // XXX Escape so it can be embedded in a string
+    const model = modelText.replace(/\\/g, "\\\\");
+    return { ...m, model };
+  });
+  //console.log('contextArray --- ' + JSON.stringify(contextArray));
 
-    contextArray.forEach(function(context) {
-        // Only create a corresponding JS file if the js field exists
-        if (context.js) {
-            const result = template(context);
-            const buildModelsJs = path.join(scriptDir,context.js,context.name + '.js');
-            console.log('Creating: ' + buildModelsJs);
-            fs.writeFileSync(buildModelsJs,result);
-        }
-    });
+  contextArray.forEach(function (context) {
+    // Only create a corresponding JS file if the js field exists
+    if (context.js) {
+      const result = template(context);
+      const buildModelsJs = path.join(
+        scriptDir,
+        context.js,
+        context.name + ".js"
+      );
+      console.log("Creating: " + buildModelsJs);
+      fs.writeFileSync(buildModelsJs, result);
+    }
+  });
 }
 async function run() {
-    fetchExternalModels().then(() => { buildExternalModels(); console.log('DONE!'); });
+  fetchExternalModels().then(() => {
+    buildExternalModels();
+    console.log("DONE!");
+  });
 }
 run();

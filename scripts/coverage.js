@@ -13,36 +13,40 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 const globPattern = process.argv[2];
 
-const util = require('util');
-const fs = require('fs');
-const path = require('path');
+const util = require("util");
+const fs = require("fs");
+const path = require("path");
 const copyFilePromise = util.promisify(fs.copyFile);
-const glob = require('glob');
+const glob = require("glob");
 
 function copyFiles(files, destDir) {
-    if (!fs.existsSync('coverage')){
-        fs.mkdirSync('coverage');
-    }
-    return Promise.all(files.map(f => {
-       return copyFilePromise(f.source, path.join(destDir, f.destination));
-    }));
+  if (!fs.existsSync("coverage")) {
+    fs.mkdirSync("coverage");
+  }
+  return Promise.all(
+    files.map((f) => {
+      return copyFilePromise(f.source, path.join(destDir, f.destination));
+    })
+  );
 }
 
 const lcovs = glob.sync(globPattern).map((dir) => {
-    const packageName = dir.split('/').pop();
-    return {
-        source: path.join(dir, 'coverage/coverage-final.json'),
-        destination: `${packageName}.json`
-    };
+  const packageName = dir.split("/").pop();
+  return {
+    source: path.join(dir, "coverage/coverage-final.json"),
+    destination: `${packageName}.json`,
+  };
 });
 
 // usage
-copyFiles(lcovs, 'coverage').then(() => {
-   console.log("done");
-}).catch(err => {
-   console.log(err);
-});
+copyFiles(lcovs, "coverage")
+  .then(() => {
+    console.log("done");
+  })
+  .catch((err) => {
+    console.log(err);
+  });

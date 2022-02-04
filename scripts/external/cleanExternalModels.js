@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
-const path = require('path');
-const fs = require('fs')
-const url = require('url');
+const path = require("path");
+const fs = require("fs");
+const url = require("url");
 
-const scriptDir = path.join(__dirname,'..','..');
-const modelsJson = require('./models.json');
+const scriptDir = path.join(__dirname, "..", "..");
+const modelsJson = require("./models.json");
 const targetDir = modelsJson.target;
 
 /**
@@ -29,43 +29,43 @@ const targetDir = modelsJson.target;
  * @param {string} the file name
  */
 function mapName(requestUrl) {
-    let parsedUrl = url.parse(requestUrl);
-    // external ModelFiles have a name that starts with '@'
-    // (so that they are identified as external when an archive is read back in)
-    const name = (parsedUrl.host + parsedUrl.pathname).replace(/\//g, '.');
-    return '@' + name;
+  let parsedUrl = url.parse(requestUrl);
+  // external ModelFiles have a name that starts with '@'
+  // (so that they are identified as external when an archive is read back in)
+  const name = (parsedUrl.host + parsedUrl.pathname).replace(/\//g, ".");
+  return "@" + name;
 }
 
 function removeFetchedModels() {
-    const downloadCtos = modelsJson.models.map(m => m.from);
-    downloadCtos.forEach((context) => {
-        const ctoFile = path.join(scriptDir,targetDir,mapName(context));
-        try {
-            fs.unlinkSync(ctoFile);
-            console.log('Deleted: ' + ctoFile);
-        } catch (err) {
-            console.error('Delete failure: ' + ctoFile);
-        }
-    });
+  const downloadCtos = modelsJson.models.map((m) => m.from);
+  downloadCtos.forEach((context) => {
+    const ctoFile = path.join(scriptDir, targetDir, mapName(context));
+    try {
+      fs.unlinkSync(ctoFile);
+      console.log("Deleted: " + ctoFile);
+    } catch (err) {
+      console.error("Delete failure: " + ctoFile);
+    }
+  });
 }
 
 function removeBuiltModels() {
-    modelsJson.models.forEach(function(context) {
-        // Only remove a corresponding JS file if the js field exists
-        if (context.js) {
-            const jsFile = path.join(scriptDir,context.js,context.name + '.js');
-            try {
-                fs.unlinkSync(jsFile);
-                console.log('Deleted: ' + jsFile);
-            } catch (err) {
-                console.error('Delete failure: ' + jsFile);
-            }
-        }
-    });
+  modelsJson.models.forEach(function (context) {
+    // Only remove a corresponding JS file if the js field exists
+    if (context.js) {
+      const jsFile = path.join(scriptDir, context.js, context.name + ".js");
+      try {
+        fs.unlinkSync(jsFile);
+        console.log("Deleted: " + jsFile);
+      } catch (err) {
+        console.error("Delete failure: " + jsFile);
+      }
+    }
+  });
 }
 function run() {
-    removeFetchedModels();
-    removeBuiltModels();
-    console.log('DONE!');
+  removeFetchedModels();
+  removeBuiltModels();
+  console.log("DONE!");
 }
 run();
