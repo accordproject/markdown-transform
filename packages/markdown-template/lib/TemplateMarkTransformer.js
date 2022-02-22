@@ -20,6 +20,7 @@ const {
     templateToTokens,
     tokensToUntypedTemplateMark,
     templateMarkTyping,
+    tokensToTemplateMarkGen
 } = require('./templatemarkutil');
 
 const ParserManager = require('./parsermanager');
@@ -238,6 +239,17 @@ class TemplateMarkTransformer {
     getSerializer() {
         return templateMarkManager.serializer;
     }
+
+    /**
+     * Converts a markdown string into a TemplateMark DOM object.
+     * @param {string} markdown the string to parse
+     * @returns {object} a TemplateMark DOM (JSON) for the markdown content
+     */
+    fromMarkdown(markdown) {
+        const tokenStream = this.toTokens(markdown);
+        return tokensToTemplateMarkGen(tokenStream);
+    }
+
 }
 
 module.exports = TemplateMarkTransformer;
