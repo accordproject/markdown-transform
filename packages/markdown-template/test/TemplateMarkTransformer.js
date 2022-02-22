@@ -233,11 +233,6 @@ function runSuccesses(tests) {
                 const expected = normalizeToMarkdownCicero(normalizeFromMarkdownCicero(sample.content));
                 result.should.equal(expected);
             });
-
-            it('should parse markdown string',async () => {
-                const tm = templateMarkTransformer.fromMarkdown(sample);
-                tm.should.deep.be.a('object');
-            });
         });
     }
 }
