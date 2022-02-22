@@ -46,13 +46,13 @@
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "jest-diff": "^27.0.6",
-    "jsdoc": "^3.6.7",
+    "jsdoc": "^3.6.10",
     "license-check-and-add": "2.3.6",
     "mocha": "6.1.4",
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.2.2-20211217155508",
+    "@accordproject/concerto-core": "1.2.2-20220222214455",
     "@accordproject/markdown-common": "0.14.1",
     "@accordproject/markdown-it-cicero": "0.14.1",
     "markdown-it": "^12.2.0",

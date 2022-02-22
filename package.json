@@ -1,13 +1,13 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "1.2.2-20211217155508",
+    "@accordproject/concerto-core": "1.2.2-20220222214455",
     "colors": "1.3.3",
     "coveralls": "3.0.4",
     "dayjs": "1.10.2",
     "eslint": "^7.32.0",
-    "jest": "^27.0.6",
-    "jsdoc": "^3.6.7",
     "glob": "^7.1.7",
+    "jest": "^27.0.6",
+    "jsdoc": "^3.6.10",
     "lerna": "^4.0.0",
     "license-check-and-add": "2.3.6",
     "nyc": "15.1.0",
