@@ -20,6 +20,7 @@ const {
     templateToTokens,
     tokensToUntypedTemplateMark,
     templateMarkTyping,
+    tokensToTemplateMarkGen
 } = require('./templatemarkutil');
 
 const ParserManager = require('./parsermanager');
@@ -64,12 +65,12 @@ class TemplateMarkTransformer {
         const template = tokensToUntypedTemplateMark(tokenStream, templateKind);
         if (options && options.verbose) {
             console.log('===== Untyped TemplateMark ');
-            console.log(JSON.stringify(template,null,2));
+            console.log(JSON.stringify(template, null, 2));
         }
         const typedTemplate = templateMarkTyping(template, modelManager, templateKind);
         if (options && options.verbose) {
             console.log('===== TemplateMark ');
-            console.log(JSON.stringify(typedTemplate,null,2));
+            console.log(JSON.stringify(typedTemplate, null, 2));
         }
         return typedTemplate;
     }
@@ -91,7 +92,7 @@ class TemplateMarkTransformer {
         const tokenStream = this.toTokens(templateInput);
         if (options && options.verbose) {
             console.log('===== MarkdownIt Tokens ');
-            console.log(JSON.stringify(tokenStream,null,2));
+            console.log(JSON.stringify(tokenStream, null, 2));
         }
         return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
     }
@@ -103,7 +104,7 @@ class TemplateMarkTransformer {
      */
     toMarkdownTemplate(input) {
         const visitor = new ToMarkdownTemplateVisitor();
-        return visitor.toMarkdownTemplate(templateMarkManager.serializer,input);
+        return visitor.toMarkdownTemplate(templateMarkManager.serializer, input);
     }
 
     /**
@@ -238,6 +239,17 @@ class TemplateMarkTransformer {
     getSerializer() {
         return templateMarkManager.serializer;
     }
+
+    /**
+     * Converts a markdown string into a TemplateMark DOM object.
+     * @param {string} markdown the string to parse
+     * @returns {object} a TemplateMark DOM (JSON) for the markdown content
+     */
+    fromMarkdown(markdown) {
+        const tokenStream = this.toTokens(markdown);
+        return tokensToTemplateMarkGen(tokenStream);
+    }
+
 }
 
 module.exports = TemplateMarkTransformer;

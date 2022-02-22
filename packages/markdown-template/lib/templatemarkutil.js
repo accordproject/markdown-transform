@@ -196,14 +196,23 @@ function templateToTokens(input) {
 }
 
 /**
- * Converts a template token strean string to an untyped TemplateMark DOM
+ * Converts a template token stream string to a TemplateMark DOM
+ * @param {object} tokenStream the template token stream
+ * @returns {object} the TemplateMark DOM
+ */
+function tokensToTemplateMarkGen(tokenStream) {
+    const fromMarkdownIt = new FromMarkdownIt(templaterules);
+    const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+    return templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+}
+
+/**
+ * Converts a template token stream string to an untyped TemplateMark DOM
  * @param {object} tokenStream the template token stream
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-    const fromMarkdownIt = new FromMarkdownIt(templaterules);
-    const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-    const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+    const result = tokensToTemplateMarkGen(tokenStream);
     return result.nodes;
 }
 
@@ -321,3 +330,4 @@ module.exports.tokensToUntypedTemplateMark = tokensToUntypedTemplateMark;
 module.exports.templateMarkTyping = templateMarkTyping;
 module.exports.templateMarkTypingFromType = templateMarkTypingFromType;
 module.exports.generateJSON = generateJSON;
+module.exports.tokensToTemplateMarkGen = tokensToTemplateMarkGen;
