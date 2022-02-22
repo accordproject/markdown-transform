@@ -65,12 +65,12 @@ class TemplateMarkTransformer {
         const template = tokensToUntypedTemplateMark(tokenStream, templateKind);
         if (options && options.verbose) {
             console.log('===== Untyped TemplateMark ');
-            console.log(JSON.stringify(template, null, 2));
+            console.log(JSON.stringify(template,null,2));
         }
         const typedTemplate = templateMarkTyping(template, modelManager, templateKind);
         if (options && options.verbose) {
             console.log('===== TemplateMark ');
-            console.log(JSON.stringify(typedTemplate, null, 2));
+            console.log(JSON.stringify(typedTemplate,null,2));
         }
         return typedTemplate;
     }
@@ -92,7 +92,7 @@ class TemplateMarkTransformer {
         const tokenStream = this.toTokens(templateInput);
         if (options && options.verbose) {
             console.log('===== MarkdownIt Tokens ');
-            console.log(JSON.stringify(tokenStream, null, 2));
+            console.log(JSON.stringify(tokenStream,null,2));
         }
         return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
     }
@@ -104,7 +104,7 @@ class TemplateMarkTransformer {
      */
     toMarkdownTemplate(input) {
         const visitor = new ToMarkdownTemplateVisitor();
-        return visitor.toMarkdownTemplate(templateMarkManager.serializer, input);
+        return visitor.toMarkdownTemplate(templateMarkManager.serializer,input);
     }
 
     /**
