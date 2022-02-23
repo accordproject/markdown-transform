@@ -111,7 +111,7 @@ class PdfTransformerBase {
                     font: 'LiberationSerif',
                     lineHeight: 1.5
                 };
-            };
+            }
 
             // The Pdf printer
             const printer = new PdfPrinter(defaultFonts);
