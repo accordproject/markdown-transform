@@ -103,11 +103,14 @@ class PdfTransformerBase {
      */
     static pdfMakeToPdfStreamWithCallback(progressCallback) {
         return (input, outputStream) => {
-            // Default fonts are better defined at rendering time
-            input.defaultStyle = {
-                fontSize: 12,
-                font: 'LiberationSerif',
-                lineHeight: 1.5
+
+            if (!input.defaultStyle) {
+                // Default fonts are better defined at rendering time
+                input.defaultStyle = {
+                    fontSize: 12,
+                    font: 'LiberationSerif',
+                    lineHeight: 1.5
+                };
             };
 
             // The Pdf printer
