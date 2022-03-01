@@ -41,21 +41,21 @@
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
   "devDependencies": {
-    "axios": "^0.21.1",
-    "chai": "4.2.0",
+    "axios": "0.23.0",
+    "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-string": "^1.5.0",
     "chai-things": "0.2.0",
-    "eslint": "^7.32.0",
+    "eslint": "8.2.0",
     "jsdoc": "^3.6.10",
     "license-check-and-add": "2.3.6",
-    "mocha": "6.1.4",
+    "mocha": "8.3.2",
     "nyc": "15.1.0",
     "plantuml-encoder": "^1.4.0",
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "1.2.2-20220222214455",
+    "@accordproject/concerto-core": "1.2.2-20220301153534",
     "@accordproject/markdown-cicero": "0.14.1",
     "@accordproject/markdown-common": "0.14.1",
     "@accordproject/markdown-docx": "0.14.1",
@@ -63,7 +63,7 @@
     "@accordproject/markdown-pdf": "0.14.1",
     "@accordproject/markdown-slate": "0.14.1",
     "@accordproject/markdown-template": "0.14.1",
-    "dijkstrajs": "^1.0.1"
+    "dijkstrajs": "^1.0.2"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
