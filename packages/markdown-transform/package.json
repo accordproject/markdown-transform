@@ -21,8 +21,8 @@
     "generateDiagram": "node ./scripts/generateDiagram.js",
     "postlint": "npm run licchk",
     "licchk": "license-check-and-add",
-    "test": "mocha",
-    "test:cov": "npm run lint && nyc mocha"
+    "test": "mocha --timeout 30000",
+    "test:cov": "npm run lint && nyc mocha --timeout 30000"
   },
   "repository": {
     "type": "git",

@@ -48,7 +48,6 @@
     "jest-diff": "^27.0.6",
     "jsdoc": "^3.6.10",
     "license-check-and-add": "2.3.6",
-    "mocha": "8.3.2",
     "nyc": "15.1.0"
   },
   "dependencies": {

@@ -35,8 +35,5 @@
     "shelljs": "^0.8.4",
     "stylus": "^0.54.5",
     "terser": "^4.1.2"
-  },
-  "mocha": {
-    "inline-diffs": true
   }
 }
