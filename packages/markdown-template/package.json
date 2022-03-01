@@ -20,8 +20,8 @@
     "lint": "eslint .",
     "postlint": "npm run licchk",
     "licchk": "license-check-and-add",
-    "test": "mocha",
-    "test:cov": "npm run lint && nyc mocha",
+    "test": "mocha --timeout 40000",
+    "test:cov": "npm run lint && nyc mocha --timeout 40000",
     "jsdoc": "jsdoc -c jsdoc.json package.json"
   },
   "repository": {
