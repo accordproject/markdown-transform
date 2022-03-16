@@ -47,7 +47,7 @@ const expected = 'This is some text.';
 let serializer;
 beforeAll(() => {
     const modelManager = new ModelManager();
-    modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+    modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
     const factory = new Factory(modelManager);
     serializer = new Serializer(factory, modelManager);
 });

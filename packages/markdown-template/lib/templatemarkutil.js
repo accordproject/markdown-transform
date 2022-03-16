@@ -41,10 +41,10 @@ const templaterules = require('./templaterules');
 function mkTemplateMarkManager(options) {
     const result = {};
     result.modelManager = new ModelManager(options);
-    result.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
-    result.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
-    result.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
-    result.modelManager.addModelFile(TemplateMarkModel, 'templatemark.cto');
+    result.modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
+    result.modelManager.addCTOModel(ConcertoMetaModel, 'metamodel.cto');
+    result.modelManager.addCTOModel(CiceroMarkModel, 'ciceromark.cto');
+    result.modelManager.addCTOModel(TemplateMarkModel, 'templatemark.cto');
     result.factory = new Factory(result.modelManager);
     result.serializer = new Serializer(result.factory, result.modelManager, { utcOffset: 0 });
     return result;
