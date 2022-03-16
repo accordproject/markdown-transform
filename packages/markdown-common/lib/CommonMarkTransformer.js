@@ -34,7 +34,7 @@ class CommonMarkTransformer {
      */
     constructor() {
         const modelManager = new ModelManager();
-        modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
+        modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
     }

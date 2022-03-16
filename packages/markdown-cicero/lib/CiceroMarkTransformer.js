@@ -48,9 +48,9 @@ class CiceroMarkTransformer {
 
         // Setup for validation
         this.modelManager = new ModelManager();
-        this.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
-        this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
-        this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
+        this.modelManager.addCTOModel(ConcertoMetaModel, 'metamodel.cto');
+        this.modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
+        this.modelManager.addCTOModel(CiceroMarkModel, 'ciceromark.cto');
         const factory = new Factory(this.modelManager);
         this.serializer = new Serializer(factory, this.modelManager);
     }
