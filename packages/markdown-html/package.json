@@ -15,6 +15,7 @@
     "umd"
   ],
   "main": "index.js",
+  "browser": "umd/transform-html.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
@@ -62,10 +63,13 @@
     "archiver": "3.0.0",
     "babel-loader": "8.2.3",
     "babel-plugin-istanbul": "6.1.1",
+    "browserify-zlib": "0.2.0",
     "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
+    "crypto-browserify": "3.12.0",
     "eslint": "8.2.0",
+    "https-browserify": "1.0.0",
     "jest": "^27.0.6",
     "jest-diff": "^27.0.6",
     "jsdoc": "^3.6.10",
@@ -73,6 +77,8 @@
     "license-check-and-add": "2.3.6",
     "nyc": "15.1.0",
     "raw-loader": "^4.0.2",
+    "stream-browserify": "3.0.0",
+    "stream-http": "3.2.0",
     "tsd-jsdoc": "^2.3.0",
     "webpack": "5.64.2",
     "webpack-cli": "4.9.1"
