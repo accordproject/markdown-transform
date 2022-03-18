@@ -17,8 +17,8 @@
     "source-map-support": "0.5.12"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=3"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
