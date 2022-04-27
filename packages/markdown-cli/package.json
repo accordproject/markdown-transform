@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cli",
-  "version": "0.15.0-alpha.2",
+  "version": "0.15.0",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=14",
@@ -54,8 +54,8 @@
     "tsd-jsdoc": "^2.3.0"
   },
   "dependencies": {
-    "@accordproject/concerto-util": "2.0.0-alpha.2",
-    "@accordproject/markdown-transform": "0.15.0-alpha.2",
+    "@accordproject/concerto-util": "2.0.0",
+    "@accordproject/markdown-transform": "0.15.0",
     "jsome": "2.5.0",
     "winston": "3.2.1",
     "yargs": "17.3.1"

@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "2.0.0-alpha.2",
+    "@accordproject/concerto-core": "2.0.0",
     "colors": "1.4.0",
     "coveralls": "3.0.4",
     "dayjs": "1.10.8",
@@ -22,7 +22,7 @@
   },
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.15.0-alpha.2",
+  "version": "0.15.0",
   "private": true,
   "scripts": {
     "dingus": "lerna exec --scope dingus -- npm run dingus",
