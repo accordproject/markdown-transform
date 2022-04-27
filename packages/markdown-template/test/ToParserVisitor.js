@@ -150,13 +150,13 @@ describe('#invalidparsers', () => {
 
     describe('#templateErr1', () => {
         it('should throw for wrong $class', async () => {
-            (() => parserVisitor.toParser(parserManager,templateErr1,parsingTable)).should.throw('Namespace is not defined for type foo');
+            (() => parserVisitor.toParser(parserManager,templateErr1,parsingTable)).should.throw('Namespace is not defined for type "foo"');
         });
     });
 
     describe('#templateErr2', () => {
         it('should throw for wrong variable type', async () => {
-            (() => parserVisitor.toParser(parserManager,templateErr2,parsingTable)).should.throw('Namespace is not defined for type FOO');
+            (() => parserVisitor.toParser(parserManager,templateErr2,parsingTable)).should.throw('Namespace is not defined for type "FOO"');
         });
     });
 });

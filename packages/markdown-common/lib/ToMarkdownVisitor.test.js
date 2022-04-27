@@ -65,7 +65,7 @@ describe('ToMarkdownVisitor', () => {
 
     it('#toMarkdown (wrong commonmark)', () => {
         const toMarkdownVisitor = new ToMarkdownVisitor();
-        expect(() => toMarkdownVisitor.toMarkdown(serializer.fromJSON(commonmarkErr))).toThrow('Type FOO is not defined in namespace org.accordproject.commonmark');
+        expect(() => toMarkdownVisitor.toMarkdown(serializer.fromJSON(commonmarkErr))).toThrow('Type "FOO" is not defined in namespace "org.accordproject.commonmark".');
     });
 
     it('#toMarkdown (missing rule)', () => {
