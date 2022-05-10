@@ -64,7 +64,7 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
         const page = await doc.getPage(n);
         const content = await page.getTextContent({
             normalizeWhitespace: true,
-            disableCombineTextItems: true,
+            disableCombineTextItems: false
         });
 
         let currentPara = null;
