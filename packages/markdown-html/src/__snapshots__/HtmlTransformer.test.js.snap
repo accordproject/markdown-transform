@@ -2,6 +2,7 @@
 
 exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 1`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h1>Heading</h1>
@@ -31,6 +32,7 @@ to this agreement.</p>
 
 exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h1>Heading</h1>
@@ -364,6 +366,7 @@ Object {
 
 exports[`ciceromark <-> html converts fixedinterest.json to and from CiceroMark 1`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h2>Fixed rate loan</h2>
@@ -378,6 +381,7 @@ and monthly payments of <span class=\\"formula\\" name=\\"formula\\" code=\\"%20
 
 exports[`ciceromark <-> html converts fixedinterest.json to and from CiceroMark 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h2>Fixed rate loan</h2>
@@ -488,6 +492,7 @@ Object {
 
 exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 1`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h2>Late Delivery and Penalty.</h2>
@@ -504,6 +509,7 @@ If the delay is more than <span class=\\"variable\\" name=\\"amount\\" elementTy
 
 exports[`ciceromark <-> html converts latedelivery.json to and from CiceroMark 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h2>Late Delivery and Penalty.</h2>
@@ -757,6 +763,7 @@ Object {
 
 exports[`markdown <-> html converts blockquote.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is</p>
@@ -785,6 +792,7 @@ block.
 
 exports[`markdown <-> html converts codeblock.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <pre class=\\"code_block\\"><code>this is a multiline
@@ -832,6 +840,7 @@ Object {
 
 exports[`markdown <-> html converts codeblock-info.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <pre class=\\"code_block\\"><code data-ciceromark=\\"%3Cvideo%20src%3D%22https%3A%2F%2Fwww.youtube.com%2Fembed%2FdQw4w9WgXcQ%22%2F%3E\\">  this is a multiline
@@ -879,6 +888,7 @@ Object {
 
 exports[`markdown <-> html converts emph.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is <em>some</em> text.</p>
@@ -925,6 +935,7 @@ Object {
 
 exports[`markdown <-> html converts emph-strong.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is <em><strong>some</strong></em> text.</p>
@@ -954,6 +965,7 @@ Object {
 
 exports[`markdown <-> html converts h1.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h1>Heading One</h1>
@@ -983,6 +995,7 @@ Object {
 
 exports[`markdown <-> html converts h2.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h2>Heading Two</h2>
@@ -1012,6 +1025,7 @@ Object {
 
 exports[`markdown <-> html converts h3.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h3>Heading Three</h3>
@@ -1041,6 +1055,7 @@ Object {
 
 exports[`markdown <-> html converts h4.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h4>Heading Four</h4>
@@ -1070,6 +1085,7 @@ Object {
 
 exports[`markdown <-> html converts h5.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h5>Heading Five</h5>
@@ -1099,6 +1115,7 @@ Object {
 
 exports[`markdown <-> html converts h6.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h6>Heading Six</h6>
@@ -1149,6 +1166,7 @@ Object {
 
 exports[`markdown <-> html converts html-inline.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is a <span class=\\"html_inline\\"><custom src=\\"property\\"></custom></span> property.</p>
@@ -1210,6 +1228,7 @@ Object {
 
 exports[`markdown <-> html converts html-mixed.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <h1>Heading One</h1>
@@ -1248,6 +1267,7 @@ Object {
 
 exports[`markdown <-> html converts inline-code.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is <code>inline code</code>.</p>
@@ -1299,6 +1319,7 @@ Object {
 
 exports[`markdown <-> html converts linebreak.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>one<br>two<br>three</p>
@@ -1343,6 +1364,7 @@ Object {
 
 exports[`markdown <-> html converts link.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is <a href=\\"http://clause.io\\" title=>a link</a>.</p>
@@ -1402,6 +1424,7 @@ contents
 
 exports[`markdown <-> html converts multiline-html-block.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is a custom</p>
@@ -1494,6 +1517,7 @@ Object {
 
 exports[`markdown <-> html converts ol.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is an ordered list:</p>
@@ -1590,6 +1614,7 @@ Object {
 
 exports[`markdown <-> html converts ol-tight.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is an ordered list:</p>
@@ -1635,6 +1660,7 @@ Object {
 
 exports[`markdown <-> html converts paragraphs.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is first paragraph.</p>
@@ -1677,6 +1703,7 @@ Object {
 
 exports[`markdown <-> html converts strong.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is <strong>some</strong> text.</p>
@@ -1705,6 +1732,7 @@ Object {
 
 exports[`markdown <-> html converts text.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is some text.</p>
@@ -1745,6 +1773,7 @@ Object {
 
 exports[`markdown <-> html converts thematicbreak.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is</p>
@@ -1834,6 +1863,7 @@ Object {
 
 exports[`markdown <-> html converts ul.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is an unordered list:</p>
@@ -1928,6 +1958,7 @@ Object {
 
 exports[`markdown <-> html converts ul-tight.md to html 2`] = `
 "<html>
+<head><meta charset=\\"UTF-8\\"></head>
 <body>
 <div class=\\"document\\">
 <p>This is an unordered list:</p>
