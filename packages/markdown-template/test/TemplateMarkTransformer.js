@@ -67,6 +67,7 @@ const successes = [
     {name:'testDateTime5',kind:'clause'},
     {name:'testDateTime6',kind:'clause'},
     {name:'testDateTimePm',kind:'clause'},
+    {name:'testOptionalDateTime',kind:'clause'},
     {name:'testAmount',kind:'clause'},
     {name:'testAmount2',kind:'clause'},
     {name:'testAmount3',kind:'clause'},
