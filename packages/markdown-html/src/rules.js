@@ -500,6 +500,47 @@ const HTML_BLOCK_RULE = {
     }
 };
 
+const TABLE_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'table') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}Table`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'thead') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}TableHead`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tbody') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}TableBody`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tr') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}TableRow`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'th') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}HeaderCell`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'td') {
+            return {
+                $class: `${NS_PREFIX_CommonMarkModel}TableCell`,
+                nodes: next(el.childNodes),
+            };
+        }
+    },
+};
+
 const rules = [
     LIST_RULE,
     PARAGRAPH_RULE,
@@ -520,7 +561,8 @@ const rules = [
     TEXT_RULE,
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,
-    IMAGE_RULE
+    IMAGE_RULE,
+    TABLE_RULE
 ];
 
 
