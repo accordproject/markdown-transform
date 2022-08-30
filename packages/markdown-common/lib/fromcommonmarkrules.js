@@ -149,4 +149,43 @@ rules.Document = (visitor,thing,children,parameters,resultString,resultSeq) => {
     resultSeq(parameters,result);
 };
 
+rules.Table = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const result = [children];
+    resultSeq(parameters,result);
+};
+
+rules.TableBody = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const result = [children];
+    resultSeq(parameters,result);
+};
+
+rules.TableRow = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const next1 = '|';
+    const newLine = CommonMarkUtils.mkNewLine(parameters);
+    const result = [children, resultString(next1), newLine];
+    resultSeq(parameters,result);
+};
+
+rules.TableCell = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const next1 = '|';
+    const next2 = ' ';
+    const result = [resultString(next1),resultString(next2),children, resultString(next2)];
+    resultSeq(parameters,result);
+};
+
+rules.TableHead = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const col = thing.nodes[0].nodes.length;
+    const next1 = CommonMarkUtils.mkTableHeading(col);
+    const newLine = CommonMarkUtils.mkNewLine(parameters);
+    const result = [children, resultString(next1), resultString(newLine)];
+    resultSeq(parameters,result);
+};
+
+rules.HeaderCell = (visitor,thing,children,parameters,resultString,resultSeq) => {
+    const next1 = '|';
+    const next2 = ' ';
+    const result = [resultString(next1),resultString(next2),children, resultString(next2)];
+    resultSeq(parameters,result);
+};
+
 module.exports = rules;

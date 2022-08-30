@@ -174,5 +174,58 @@ rules.Document = (thing,processChildren,parameters) => {
         data : {}
     };
 };
+rules.Table = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'table',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
+
+rules.TableHead = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'table_head',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
+
+rules.TableBody = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'table_body',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
+
+rules.TableRow = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'table_row',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
+
+rules.TableCell = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'table_cell',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
+
+rules.HeaderCell = (thing, processChildren, parameters) => {
+    return {
+        object: 'block',
+        type: 'header_cell',
+        data: {},
+        children: processChildren(thing, 'nodes', parameters),
+    };
+};
 
 module.exports = rules;

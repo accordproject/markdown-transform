@@ -243,6 +243,96 @@ const listItemCloseRule = {
     close: true,
 };
 
+const tableOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Table',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const tableCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'Table',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
+const tableHeadOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableHead',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const tableHeadCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableHead',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
+const tableBodyOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableBody',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const tableBodyCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableBody',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
+const tableRowOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableRow',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const tableRowCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableRow',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
+const headerCellOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'HeaderCell',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const headerCellCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'HeaderCell',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
+const tableCellOpenRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableCell',
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node, token, callback) => {},
+};
+
+const tableCellCloseRule = {
+    tag: NS_PREFIX_CommonMarkModel + 'TableCell',
+    leaf: false,
+    open: false,
+    close: true,
+};
+
 const rules = { inlines: {}, blocks: {}};
 rules.inlines.text = textRule;
 rules.inlines.code_inline = codeInlineRule;
@@ -273,5 +363,17 @@ rules.blocks.ordered_list_open = orderedListOpenRule;
 rules.blocks.ordered_list_close = orderedListCloseRule;
 rules.blocks.list_item_open = listItemOpenRule;
 rules.blocks.list_item_close = listItemCloseRule;
+rules.blocks.table_open = tableOpenRule;
+rules.blocks.table_close = tableCloseRule;
+rules.blocks.thead_open = tableHeadOpenRule;
+rules.blocks.thead_close = tableHeadCloseRule;
+rules.blocks.tbody_open = tableBodyOpenRule;
+rules.blocks.tbody_close = tableBodyCloseRule;
+rules.blocks.tr_open = tableRowOpenRule;
+rules.blocks.tr_close = tableRowCloseRule;
+rules.blocks.th_open = headerCellOpenRule;
+rules.blocks.th_close = headerCellCloseRule;
+rules.blocks.td_open = tableCellOpenRule;
+rules.blocks.td_close = tableCellCloseRule;
 
 module.exports = rules;

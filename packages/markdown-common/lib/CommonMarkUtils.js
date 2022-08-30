@@ -174,6 +174,15 @@ function mkATXHeading(level) {
 }
 
 /**
+ * Create table heading
+ * @param {number} col - the number of columns
+ * @return {string} the markup for the table heading
+ */
+function mkTableHeading(col) {
+    return Array(col).fill('|---------').join('') + '|';
+}
+
+/**
  * Adding escapes for text nodes
  * @param {string} input - unescaped
  * @return {string} escaped
@@ -334,6 +343,7 @@ module.exports.mkNewLine = mkNewLine;
 module.exports.mkPrefix = mkPrefix;
 module.exports.mkSetextHeading = mkSetextHeading;
 module.exports.mkATXHeading = mkATXHeading;
+module.exports.mkTableHeading = mkTableHeading;
 
 module.exports.escapeText = escapeText;
 module.exports.escapeCodeBlock = escapeCodeBlock;

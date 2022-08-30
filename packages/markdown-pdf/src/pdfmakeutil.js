@@ -135,6 +135,11 @@ const defaultStyles = {
     },
     background: {
         color: 'white'
+    },
+    HeaderCell: {
+        fontSize: 13,
+        bold: true,
+        color: 'black'
     }
 };
 

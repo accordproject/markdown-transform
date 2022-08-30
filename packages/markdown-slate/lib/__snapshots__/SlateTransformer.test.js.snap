@@ -10127,6 +10127,785 @@ Object {
 }
 `;
 
+exports[`markdown <-> slate converts table.json to and from Markdown 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableHead",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 1",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 2",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableBody",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Simple",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Table",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Paragraph",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Text",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> slate converts table.json to and from Markdown 2`] = `
+"| Column 1    | Column 2    |
+| ----------- | ----------- |
+| Simple      | Table       | 
+| Paragraph   | Text        |"
+`;
+
+exports[`markdown <-> slate converts table.json to and from Markdown 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Column 1",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "header_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Column 2",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "header_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+            ],
+            "data": Object {},
+            "object": "block",
+            "type": "table_head",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Simple",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Table",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Paragraph",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Text",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+            ],
+            "data": Object {},
+            "object": "block",
+            "type": "table_body",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "table",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`markdown <-> slate converts table.json to and from Markdown 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableHead",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 1",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 2",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableBody",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Simple",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Table",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Paragraph",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Text",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> slate converts table_complex.json to and from Markdown 1`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableHead",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 1",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 2",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableBody",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Code",
+                      "text": "code block",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Image",
+                      "destination": "https://docs.accordproject.org/docs/assets/020/template.png",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "",
+                        },
+                      ],
+                      "title": "AP triangle",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Paragraph",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Strong",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Bold content",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Link",
+                      "destination": "http://clause.io",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "link",
+                        },
+                      ],
+                      "title": "",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Emph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Italics",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
+exports[`markdown <-> slate converts table_complex.json to and from Markdown 2`] = `
+"| Column 1    | Column 2    |
+| ----------- | ----------- |
+| \`code block\`      | ![](https://docs.accordproject.org/docs/assets/020/template.png \\"AP triangle\\")       | 
+| Paragraph   | **Bold content**     |
+| [link](http://clause.io) | *Italics* |"
+`;
+
+exports[`markdown <-> slate converts table_complex.json to and from Markdown 3`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Column 1",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "header_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Column 2",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "header_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+            ],
+            "data": Object {},
+            "object": "block",
+            "type": "table_head",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "code": true,
+                        "object": "text",
+                        "text": "code block",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "",
+                      },
+                      Object {
+                        "children": Array [
+                          Object {
+                            "object": "text",
+                            "text": "",
+                          },
+                        ],
+                        "data": Object {
+                          "href": "https://docs.accordproject.org/docs/assets/020/template.png",
+                          "title": "AP triangle",
+                        },
+                        "object": "inline",
+                        "type": "image",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "Paragraph",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "bold": true,
+                        "object": "text",
+                        "text": "Bold content",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "object": "text",
+                        "text": "",
+                      },
+                      Object {
+                        "children": Array [
+                          Object {
+                            "object": "text",
+                            "text": "link",
+                          },
+                        ],
+                        "data": Object {
+                          "href": "http://clause.io",
+                          "title": "",
+                        },
+                        "object": "inline",
+                        "type": "link",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "italic": true,
+                        "object": "text",
+                        "text": "Italics",
+                      },
+                    ],
+                    "data": Object {},
+                    "object": "block",
+                    "type": "table_cell",
+                  },
+                ],
+                "data": Object {},
+                "object": "block",
+                "type": "table_row",
+              },
+            ],
+            "data": Object {},
+            "object": "block",
+            "type": "table_body",
+          },
+        ],
+        "data": Object {},
+        "object": "block",
+        "type": "table",
+      },
+    ],
+    "data": Object {},
+    "object": "document",
+  },
+}
+`;
+
+exports[`markdown <-> slate converts table_complex.json to and from Markdown 4`] = `
+Object {
+  "$class": "org.accordproject.commonmark.Document",
+  "nodes": Array [
+    Object {
+      "$class": "org.accordproject.commonmark.Table",
+      "nodes": Array [
+        Object {
+          "$class": "org.accordproject.commonmark.TableHead",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 1",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.HeaderCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Column 2",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "$class": "org.accordproject.commonmark.TableBody",
+          "nodes": Array [
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Code",
+                      "text": "code block",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Image",
+                      "destination": "https://docs.accordproject.org/docs/assets/020/template.png",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "",
+                        },
+                      ],
+                      "title": "AP triangle",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Text",
+                      "text": "Paragraph",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Strong",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Bold content",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "$class": "org.accordproject.commonmark.TableRow",
+              "nodes": Array [
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Link",
+                      "destination": "http://clause.io",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "link",
+                        },
+                      ],
+                      "title": "",
+                    },
+                  ],
+                },
+                Object {
+                  "$class": "org.accordproject.commonmark.TableCell",
+                  "nodes": Array [
+                    Object {
+                      "$class": "org.accordproject.commonmark.Emph",
+                      "nodes": Array [
+                        Object {
+                          "$class": "org.accordproject.commonmark.Text",
+                          "text": "Italics",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "xmlns": "http://commonmark.org/xml/1.0",
+}
+`;
+
 exports[`markdown <-> slate converts text.json to and from Markdown 1`] = `
 Object {
   "$class": "org.accordproject.commonmark.Document",

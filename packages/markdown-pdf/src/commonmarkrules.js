@@ -102,6 +102,24 @@ rules.ListBlock = (visitor, thing, children, parameters) => {
 rules.List = (visitor, thing, children, parameters) => {
     parameters.result[thing.type === 'ordered' ? 'ol' : 'ul'] = children;
 };
+rules.Table = (visitor, thing, children, parameters) => {
+    parameters.result.table = {'body': children};
+};
+rules.TableHead = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
+rules.TableBody = (visitor, thing, children, parameters) => {
+    parameters.result = children;
+};
+rules.TableRow = (visitor, thing, children, parameters) => {
+    parameters.result = [children];
+};
+rules.HeaderCell = (visitor, thing, children, parameters) => {
+    parameters.result.stack = children;
+};
+rules.TableCell = (visitor, thing, children, parameters) => {
+    parameters.result.stack = children;
+};
 rules.Document = (visitor, thing, children, parameters) => {
     parameters.result.content = children;
 };

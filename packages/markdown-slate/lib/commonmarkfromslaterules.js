@@ -78,5 +78,23 @@ rules.ol_list = (node,processNodes) => {
 rules.ul_list = (node,processNodes) => {
     return {$class : `${NS_PREFIX_CommonMarkModel}List`, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
 };
+rules.table = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}Table`, nodes: [] };
+};
+rules.table_head = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}TableHead`, nodes: [] };
+};
+rules.table_body = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}TableBody`, nodes: [] };
+};
+rules.table_row = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}TableRow`, nodes: [] };
+};
+rules.table_cell = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}TableCell`, nodes: [] };
+};
+rules.header_cell = (node, processNodes) => {
+    return { $class: `${NS_PREFIX_CommonMarkModel}HeaderCell`, nodes: [] };
+};
 
 module.exports = rules;
