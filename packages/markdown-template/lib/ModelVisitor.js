@@ -14,11 +14,6 @@
 
 'use strict';
 
-const Field = require('@accordproject/concerto-core').Field;
-const RelationshipDeclaration = require('@accordproject/concerto-core').RelationshipDeclaration;
-const EnumDeclaration = require('@accordproject/concerto-core').EnumDeclaration;
-const EnumValueDeclaration = require('@accordproject/concerto-core').EnumValueDeclaration;
-const ClassDeclaration = require('@accordproject/concerto-core').ClassDeclaration;
 const util = require('util');
 
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
@@ -39,18 +34,21 @@ class ModelVisitor {
      * @private
      */
     visit(thing, parameters) {
-        if (thing instanceof EnumDeclaration) {
+        if (thing.isEnum?.()) {
             return this.visitEnumDeclaration(thing, parameters);
-        } else if (thing instanceof ClassDeclaration) {
+        } else if (thing.isClassDeclaration?.()) {
             return this.visitClassDeclaration(thing, parameters);
-        } else if (thing instanceof Field) {
+        } else if (thing.isField?.()) {
             return this.visitField(thing, parameters);
-        } else if (thing instanceof RelationshipDeclaration) {
-            return this.visitRelationshipDeclaration(thing, parameters);
-        } else if (thing instanceof EnumValueDeclaration) {
+        } else if (thing.isRelationship?.()) {
+            return this.visitRelationship(thing, parameters);
+        } else if (thing.isEnumValue?.()) {
             return this.visitEnumValueDeclaration(thing, parameters);
         } else {
-            throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, { showHidden: true, depth: 1 }));
+            throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, {
+                showHidden: true,
+                depth: 2
+            }));
         }
     }
 

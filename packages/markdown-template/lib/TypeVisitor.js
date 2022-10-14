@@ -14,8 +14,6 @@
 
 'use strict';
 
-const RelationshipDeclaration = require('@accordproject/concerto-core').RelationshipDeclaration;
-
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
@@ -138,7 +136,7 @@ class TypeVisitor {
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                     } else if (property.isPrimitive()) {
                         thing.elementType = property.getFullyQualifiedTypeName();
-                    } else if (property instanceof RelationshipDeclaration) {
+                    } else if (property.isRelationship?.()) {
                         const elementType = property.getFullyQualifiedTypeName();
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
@@ -165,7 +163,7 @@ class TypeVisitor {
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                     } else if (property.isPrimitive()) {
                         thing.elementType = property.getFullyQualifiedTypeName();
-                    } else if (property instanceof RelationshipDeclaration) {
+                    } else if (property.isRelationship?.()) {
                         const elementType = property.getFullyQualifiedTypeName();
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
