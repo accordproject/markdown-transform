@@ -138,7 +138,7 @@ class TypeVisitor {
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                     } else if (property.isPrimitive()) {
                         thing.elementType = property.getFullyQualifiedTypeName();
-                    } else if (property instanceof RelationshipDeclaration) {
+                    } else if (property.isRelationship?.()) {
                         const elementType = property.getFullyQualifiedTypeName();
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
@@ -165,7 +165,7 @@ class TypeVisitor {
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
                     } else if (property.isPrimitive()) {
                         thing.elementType = property.getFullyQualifiedTypeName();
-                    } else if (property instanceof RelationshipDeclaration) {
+                    } else if (property.isRelationship?.()) {
                         const elementType = property.getFullyQualifiedTypeName();
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
