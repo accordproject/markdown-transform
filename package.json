@@ -8,7 +8,7 @@
     "glob": "^7.1.7",
     "jest": "^27.0.6",
     "jsdoc": "^3.6.10",
-    "lerna": "^4.0.0",
+    "lerna": "^6.0.0",
     "license-check-and-add": "2.3.6",
     "mkdirp": "1.0.4",
     "nyc": "15.1.0",
