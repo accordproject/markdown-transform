@@ -14,8 +14,6 @@
 
 'use strict';
 
-const RelationshipDeclaration = require('@accordproject/concerto-core').RelationshipDeclaration;
-
 const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
