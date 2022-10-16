@@ -15,7 +15,7 @@
     "umd"
   ],
   "main": "index.js",
-  "browser": "umd/transform-html.js",
+  "browser": "umd/markdown-html.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
