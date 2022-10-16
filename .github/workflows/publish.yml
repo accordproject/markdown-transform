@@ -30,6 +30,7 @@ jobs:
 
       - name: build and publish
         run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm version --no-git-tag-version --yes --exact ${{ github.event.release.tag_name }}
           npx lerna version --no-git-tag-version --yes --exact ${{ github.event.release.tag_name }}
