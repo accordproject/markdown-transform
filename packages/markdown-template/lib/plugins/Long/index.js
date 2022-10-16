@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'Long': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'Long': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

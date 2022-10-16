@@ -14,10 +14,10 @@
 
 'use strict';
 
-const parseInteger = require('./format').parseInteger;
-const parseIntegerFormat = require('./format').parseIntegerFormat;
-const textParser = require('../../combinators').textParser;
-const seqParser = require('../../combinators').seqParser;
+var parseInteger = require('./format').parseInteger;
+var parseIntegerFormat = require('./format').parseIntegerFormat;
+var textParser = require('../../combinators').textParser;
+var seqParser = require('../../combinators').seqParser;
 
 /**
  * Given a format field (like '0,0') this method returns
@@ -26,11 +26,11 @@ const seqParser = require('../../combinators').seqParser;
  * @returns {string} the field designator
  */
 function parserOfField(field) {
-    if (/0.0/.test(field)) {
-        return parseIntegerFormat(field);
-    } else {
-        return textParser(field);
-    }
+  if (/0.0/.test(field)) {
+    return parseIntegerFormat(field);
+  } else {
+    return textParser(field);
+  }
 }
 
 /**
@@ -39,16 +39,14 @@ function parserOfField(field) {
  * @returns {object} the parser
  */
 function integerParser(format) {
-    if (format) {
-        let fields = format.split(/(0.0)/);
-        // remove null or empty strings
-        fields = fields.filter(x => x !== '' && x !== null);
-        const parsers = fields.map(parserOfField);
-        return seqParser(parsers)
-            .map((value) => value[0]);
-    } else {
-        return parseInteger();
-    }
+  if (format) {
+    var fields = format.split(/(0.0)/);
+    // remove null or empty strings
+    fields = fields.filter(x => x !== '' && x !== null);
+    var parsers = fields.map(parserOfField);
+    return seqParser(parsers).map(value => value[0]);
+  } else {
+    return parseInteger();
+  }
 }
-
-module.exports = (format) => (r) => integerParser(format);
+module.exports = format => r => integerParser(format);

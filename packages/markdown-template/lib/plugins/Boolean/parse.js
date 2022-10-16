@@ -14,7 +14,7 @@
 
 'use strict';
 
-const P = require('parsimmon');
+var P = require('parsimmon');
 
 /**
  * Creates a parser for a Boolean variable
@@ -22,13 +22,12 @@ const P = require('parsimmon');
  * @returns {object} the parser
  */
 function booleanParser() {
-    return P.alt(P.string('true'),P.string('false')).map(function(x) {
-        if (x === 'true') {
-            return true;
-        } else {
-            return false;
-        }
-    });
+  return P.alt(P.string('true'), P.string('false')).map(function (x) {
+    if (x === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  });
 }
-
-module.exports = (format) => (r) => booleanParser();
+module.exports = format => r => booleanParser();

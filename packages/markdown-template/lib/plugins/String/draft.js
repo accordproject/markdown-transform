@@ -20,7 +20,6 @@
  * @returns {string} the text
  */
 function stringDrafter(value) {
-    return '' + '"' + value + '"';
+  return '' + '"' + value + '"';
 }
-
 module.exports = stringDrafter;

@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'Double': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'Double': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

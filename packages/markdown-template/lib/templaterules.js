@@ -14,214 +14,225 @@
 
 'use strict';
 
-const formulaName = require('./util').formulaName;
-const { getAttr } = require('@accordproject/markdown-common').CommonMarkUtils;
-const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
+var formulaName = require('./util').formulaName;
+var {
+  getAttr
+} = require('@accordproject/markdown-common').CommonMarkUtils;
+var NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 // Inline rules
-const variableRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
-    leaf: true,
-    open: false,
-    close: false,
-    enter: (node,token,callback) => {
-        const format = getAttr(token.attrs,'format',null);
-        if (format) {
-            node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
-            node.format = format;
-        }
-        node.name = getAttr(token.attrs,'name',null);
-        node.format = getAttr(token.attrs,'format',null);
-    },
-    skipEmpty: false,
+var variableRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
+  leaf: true,
+  open: false,
+  close: false,
+  enter: (node, token, callback) => {
+    var format = getAttr(token.attrs, 'format', null);
+    if (format) {
+      node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
+      node.format = format;
+    }
+    node.name = getAttr(token.attrs, 'name', null);
+    node.format = getAttr(token.attrs, 'format', null);
+  },
+  skipEmpty: false
 };
-const thisRule = { // 'this' is a special variable for the current data in scope within the template
-    tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
-    leaf: true,
-    open: false,
-    close: false,
-    enter: (node,token,callback) => {
-        const format = getAttr(token.attrs,'format',null);
-        if (format) {
-            node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
-            node.format = format;
-        }
-        node.name = 'this';
-        node.format = getAttr(token.attrs,'format',null);
-    },
-    skipEmpty: false,
+var thisRule = {
+  // 'this' is a special variable for the current data in scope within the template
+  tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
+  leaf: true,
+  open: false,
+  close: false,
+  enter: (node, token, callback) => {
+    var format = getAttr(token.attrs, 'format', null);
+    if (format) {
+      node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
+      node.format = format;
+    }
+    node.name = 'this';
+    node.format = getAttr(token.attrs, 'format', null);
+  },
+  skipEmpty: false
 };
-const formulaRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'FormulaDefinition',
-    leaf: true,
-    open: false,
-    close: false,
-    enter: (node,token,callback) => {
-        const code = token.content;
-        node.name = formulaName(code);
-        node.code = code;
-        node.dependencies = [];
-    },
-    skipEmpty: false,
+var formulaRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'FormulaDefinition',
+  leaf: true,
+  open: false,
+  close: false,
+  enter: (node, token, callback) => {
+    var code = token.content;
+    node.name = formulaName(code);
+    node.code = code;
+    node.dependencies = [];
+  },
+  skipEmpty: false
 };
-const ifOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-        node.whenTrue = null;
-        node.whenFalse = null;
-    },
-    skipEmpty: false,
+var ifOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.whenTrue = null;
+    node.whenFalse = null;
+  },
+  skipEmpty: false
 };
-const ifCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
-    leaf: false,
-    open: false,
-    close: true,
-    exit: (node,token,callback) => {
-        if (node.whenTrue) {
-            node.whenFalse = node.nodes ? node.nodes : [];
-        } else {
-            node.whenTrue = node.nodes ? node.nodes : [];
-            node.whenFalse = [];
-        }
-        delete node.nodes; // Delete children (now in whenTrue or whenFalse)
-    },
-    skipEmpty: false,
+var ifCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  leaf: false,
+  open: false,
+  close: true,
+  exit: (node, token, callback) => {
+    if (node.whenTrue) {
+      node.whenFalse = node.nodes ? node.nodes : [];
+    } else {
+      node.whenTrue = node.nodes ? node.nodes : [];
+      node.whenFalse = [];
+    }
+    delete node.nodes; // Delete children (now in whenTrue or whenFalse)
+  },
+
+  skipEmpty: false
 };
-const elseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
-    leaf: false,
-    open: false,
-    close: false,
-    enter: (node,token,callback) => {
-        if (node.$class === 'org.accordproject.templatemark.ConditionalDefinition') {
-            node.whenTrue = node.nodes ? node.nodes : [];
-            node.nodes = []; // Reset children (now in whenTrue)
-        } else { // Optional definition
-            node.whenSome = node.nodes ? node.nodes : [];
-            node.nodes = []; // Reset children (now in whenSome)
-        }
-    },
-    skipEmpty: false,
+var elseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  leaf: false,
+  open: false,
+  close: false,
+  enter: (node, token, callback) => {
+    if (node.$class === 'org.accordproject.templatemark.ConditionalDefinition') {
+      node.whenTrue = node.nodes ? node.nodes : [];
+      node.nodes = []; // Reset children (now in whenTrue)
+    } else {
+      // Optional definition
+      node.whenSome = node.nodes ? node.nodes : [];
+      node.nodes = []; // Reset children (now in whenSome)
+    }
+  },
+
+  skipEmpty: false
 };
-const optionalOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-        node.whenSome = null;
-        node.whenNone = null;
-    },
-    skipEmpty: false,
+var optionalOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.whenSome = null;
+    node.whenNone = null;
+  },
+  skipEmpty: false
 };
-const optionalCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
-    leaf: false,
-    open: false,
-    close: true,
-    exit: (node,token,callback) => {
-        if (node.whenSome) {
-            node.whenNone = node.nodes ? node.nodes : [];
-        } else {
-            node.whenSome = node.nodes ? node.nodes : [];
-            node.whenNone = [];
-        }
-        delete node.nodes; // Delete children (now in whenSome or whenNone)
-    },
-    skipEmpty: false,
+var optionalCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+  leaf: false,
+  open: false,
+  close: true,
+  exit: (node, token, callback) => {
+    if (node.whenSome) {
+      node.whenNone = node.nodes ? node.nodes : [];
+    } else {
+      node.whenSome = node.nodes ? node.nodes : [];
+      node.whenNone = [];
+    }
+    delete node.nodes; // Delete children (now in whenSome or whenNone)
+  },
+
+  skipEmpty: false
 };
-const withOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => { node.name = getAttr(token.attrs,'name',null); },
-    skipEmpty: false,
+var withOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+  },
+  skipEmpty: false
 };
-const withCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
-    leaf: false,
-    open: false,
-    close: true,
+var withCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+  leaf: false,
+  open: false,
+  close: true
 };
-const joinOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-        node.separator = getAttr(token.attrs,'separator',',');
-    },
-    skipEmpty: false,
+var joinOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.separator = getAttr(token.attrs, 'separator', ',');
+  },
+  skipEmpty: false
 };
-const joinCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
-    leaf: false,
-    open: false,
-    close: true,
+var joinCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+  leaf: false,
+  open: false,
+  close: true
 };
 
 // Block rules
-const clauseOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-    },
+var clauseOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+  }
 };
-const clauseCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
-    leaf: false,
-    open: false,
-    close: true,
+var clauseCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+  leaf: false,
+  open: false,
+  close: true
 };
-const ulistOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-        node.type = 'bullet';
-        node.tight = 'true';
-    },
+var ulistOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.type = 'bullet';
+    node.tight = 'true';
+  }
 };
-const ulistCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
-    leaf: false,
-    open: false,
-    close: true,
+var ulistCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  leaf: false,
+  open: false,
+  close: true
 };
-const olistOpenRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
-    leaf: false,
-    open: true,
-    close: false,
-    enter: (node,token,callback) => {
-        node.name = getAttr(token.attrs,'name',null);
-        node.type = 'ordered';
-        node.tight = 'true';
-        node.start = '1';
-        node.delimiter = 'period';
-    },
+var olistOpenRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.type = 'ordered';
+    node.tight = 'true';
+    node.start = '1';
+    node.delimiter = 'period';
+  }
 };
-const olistCloseRule = {
-    tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
-    leaf: false,
-    open: false,
-    close: true,
+var olistCloseRule = {
+  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  leaf: false,
+  open: false,
+  close: true
 };
-
-const rules = { inlines: {}, blocks: {}};
+var rules = {
+  inlines: {},
+  blocks: {}
+};
 rules.inlines.variable = variableRule;
 rules.inlines.this = thisRule;
 rules.inlines.formula = formulaRule;
@@ -234,12 +245,10 @@ rules.inlines.inline_block_with_open = withOpenRule;
 rules.inlines.inline_block_with_close = withCloseRule;
 rules.inlines.inline_block_join_open = joinOpenRule;
 rules.inlines.inline_block_join_close = joinCloseRule;
-
 rules.blocks.block_clause_open = clauseOpenRule;
 rules.blocks.block_clause_close = clauseCloseRule;
 rules.blocks.block_ulist_open = ulistOpenRule;
 rules.blocks.block_ulist_close = ulistCloseRule;
 rules.blocks.block_olist_open = olistOpenRule;
 rules.blocks.block_olist_close = olistCloseRule;
-
 module.exports = rules;

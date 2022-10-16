@@ -14,7 +14,7 @@
 
 'use strict';
 
-const crypto = require('crypto');
+var crypto = require('crypto');
 
 /**
  * Flatten an array of array
@@ -22,7 +22,7 @@ const crypto = require('crypto');
  * @return {*[]} the flattened array
  */
 function flatten(arr) {
-    return arr.reduce((acc, val) => acc.concat(val), []);
+  return arr.reduce((acc, val) => acc.concat(val), []);
 }
 
 /**
@@ -31,10 +31,9 @@ function flatten(arr) {
  * @return {string} the unique name
  */
 function formulaName(code) {
-    const hasher = crypto.createHash('sha256');
-    hasher.update(code);
-    return 'formula_' + hasher.digest('hex');
+  var hasher = crypto.createHash('sha256');
+  hasher.update(code);
+  return 'formula_' + hasher.digest('hex');
 }
-
 module.exports.flatten = flatten;
 module.exports.formulaName = formulaName;

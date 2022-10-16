@@ -20,8 +20,7 @@
  * @returns {string} the text
  */
 function resourceDrafter(value) {
-    const match = value.match(/resource:[^#]*#([^]*)/);
-    return '' + '"' + decodeURIComponent(match[1]) + '"';
+  var match = value.match(/resource:[^#]*#([^]*)/);
+  return '' + '"' + decodeURIComponent(match[1]) + '"';
 }
-
 module.exports = resourceDrafter;

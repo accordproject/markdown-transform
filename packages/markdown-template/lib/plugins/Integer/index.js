@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'Integer': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'Integer': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

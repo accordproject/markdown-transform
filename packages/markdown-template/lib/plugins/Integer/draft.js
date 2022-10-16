@@ -14,8 +14,8 @@
 
 'use strict';
 
-const draftInteger = require('./format').draftInteger;
-const draftIntegerFormat = require('./format').draftIntegerFormat;
+var draftInteger = require('./format').draftInteger;
+var draftIntegerFormat = require('./format').draftIntegerFormat;
 
 /**
  * Creates a drafter for an Integer
@@ -23,12 +23,11 @@ const draftIntegerFormat = require('./format').draftIntegerFormat;
  * @param {string} format - the format
  * @returns {string} the text
  */
-function integerDrafter(value,format) {
-    if (format) {
-        return draftIntegerFormat(value,format);
-    } else {
-        return draftInteger(value);
-    }
+function integerDrafter(value, format) {
+  if (format) {
+    return draftIntegerFormat(value, format);
+  } else {
+    return draftInteger(value);
+  }
 }
-
 module.exports = integerDrafter;

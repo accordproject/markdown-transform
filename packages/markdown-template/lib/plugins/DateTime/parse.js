@@ -15,43 +15,42 @@
 'use strict';
 
 Error.stackTraceLimit = Infinity;
-
-const P = require('parsimmon');
-const textParser = require('../../combinators').textParser;
-const seqParser = require('../../combinators').seqParser;
-const choiceStringsParser = require('../../combinators').choiceStringsParser;
-const mkCompoundVariable = require('../../combinators').mkCompoundVariable;
+var P = require('parsimmon');
+var textParser = require('../../combinators').textParser;
+var seqParser = require('../../combinators').seqParser;
+var choiceStringsParser = require('../../combinators').choiceStringsParser;
+var mkCompoundVariable = require('../../combinators').mkCompoundVariable;
 
 /**
  * English-language months
  */
-const MMM = {
-    'Jan':1,
-    'Feb':2,
-    'Mar':3,
-    'Apr':4,
-    'May':5,
-    'Jun':6,
-    'Jul':7,
-    'Aug':8,
-    'Sep':9,
-    'Oct':10,
-    'Nov':11,
-    'Dec':12,
+var MMM = {
+  'Jan': 1,
+  'Feb': 2,
+  'Mar': 3,
+  'Apr': 4,
+  'May': 5,
+  'Jun': 6,
+  'Jul': 7,
+  'Aug': 8,
+  'Sep': 9,
+  'Oct': 10,
+  'Nov': 11,
+  'Dec': 12
 };
-const MMMM = {
-    'January':1,
-    'February':2,
-    'March':3,
-    'April':4,
-    'May':5,
-    'June':6,
-    'July':7,
-    'August':8,
-    'September':9,
-    'October':10,
-    'November':11,
-    'December':12,
+var MMMM = {
+  'January': 1,
+  'February': 2,
+  'March': 3,
+  'April': 4,
+  'May': 5,
+  'June': 6,
+  'July': 7,
+  'August': 8,
+  'September': 9,
+  'October': 10,
+  'November': 11,
+  'December': 12
 };
 
 /**
@@ -60,32 +59,32 @@ const MMMM = {
  * @param {string} utcOffset - the default UTC offset
  * @returns {object} the variable
  */
-function mkDateTime(value,utcOffset) {
-    const fillNumber = (x,digits,def) => {
-        const nb = x ? '' + x : '' + def;
-        return nb.padStart(digits,'0');
-    };
-    const valueObj = mkCompoundVariable('DateTime',value);
-    let preHour = '';
-    if (valueObj.hour) {
-        if (valueObj.halfDay === 'am') {
-            preHour = valueObj.hour === 12 ? 0 : valueObj.hour;
-        } else if (valueObj.halfDay === 'pm') {
-            preHour = valueObj.hour === 12 ? 12 : valueObj.hour + 12;
-        } else {
-            preHour = valueObj.hour;
-        }
+function mkDateTime(value, utcOffset) {
+  var fillNumber = (x, digits, def) => {
+    var nb = x ? '' + x : '' + def;
+    return nb.padStart(digits, '0');
+  };
+  var valueObj = mkCompoundVariable('DateTime', value);
+  var preHour = '';
+  if (valueObj.hour) {
+    if (valueObj.halfDay === 'am') {
+      preHour = valueObj.hour === 12 ? 0 : valueObj.hour;
+    } else if (valueObj.halfDay === 'pm') {
+      preHour = valueObj.hour === 12 ? 12 : valueObj.hour + 12;
+    } else {
+      preHour = valueObj.hour;
     }
-    const year = fillNumber(valueObj.year,4,0);
-    const month = fillNumber(valueObj.month,2,1);
-    const day = fillNumber(valueObj.day,2,1);
-    const hour = fillNumber(preHour,2,0);
-    const minute = fillNumber(valueObj.minute,2,0);
-    const second = fillNumber(valueObj.second,2,0);
-    const fracsecond = fillNumber(valueObj.fracsecond,3,0);
-    const timezone = valueObj.timezone ? '' + valueObj.timezone : utcOffset;
-    const result = `${year}-${month}-${day}T${hour}:${minute}:${second}.${fracsecond}${timezone}`;
-    return result;
+  }
+  var year = fillNumber(valueObj.year, 4, 0);
+  var month = fillNumber(valueObj.month, 2, 1);
+  var day = fillNumber(valueObj.day, 2, 1);
+  var hour = fillNumber(preHour, 2, 0);
+  var minute = fillNumber(valueObj.minute, 2, 0);
+  var second = fillNumber(valueObj.second, 2, 0);
+  var fracsecond = fillNumber(valueObj.fracsecond, 3, 0);
+  var timezone = valueObj.timezone ? '' + valueObj.timezone : utcOffset;
+  var result = "".concat(year, "-").concat(month, "-").concat(day, "T").concat(hour, ":").concat(minute, ":").concat(second, ".").concat(fracsecond).concat(timezone);
+  return result;
 }
 
 /**
@@ -94,11 +93,11 @@ function mkDateTime(value,utcOffset) {
  * @param {*} value the variable value
  * @returns {object} the field
  */
-function mkField(field,value) {
-    const result = {};
-    result.name = field;
-    result.value = value;
-    return result;
+function mkField(field, value) {
+  var result = {};
+  result.name = field;
+  result.value = value;
+  return result;
 }
 
 /**
@@ -106,9 +105,9 @@ function mkField(field,value) {
  * @returns {object} the parser
  */
 function parserD() {
-    return P.regexp(/([1-2][0-9])|(3[0-1])|[1-9]/).map(function(x) {
-        return mkField('day',Number(x));
-    });
+  return P.regexp(/([1-2][0-9])|(3[0-1])|[1-9]/).map(function (x) {
+    return mkField('day', Number(x));
+  });
 }
 
 /**
@@ -116,9 +115,9 @@ function parserD() {
  * @returns {object} the parser
  */
 function parserDD() {
-    return P.regexp(/([1-2][0-9])|(3[0-1])|0[1-9]/).map(function(x) {
-        return mkField('day',Number(x));
-    });
+  return P.regexp(/([1-2][0-9])|(3[0-1])|0[1-9]/).map(function (x) {
+    return mkField('day', Number(x));
+  });
 }
 
 /**
@@ -126,9 +125,9 @@ function parserDD() {
  * @returns {object} the parser
  */
 function parserM() {
-    return P.regexp(/(1[0-2])|[1-9]/).map(function(x) {
-        return mkField('month',Number(x));
-    });
+  return P.regexp(/(1[0-2])|[1-9]/).map(function (x) {
+    return mkField('month', Number(x));
+  });
 }
 
 /**
@@ -136,9 +135,9 @@ function parserM() {
  * @returns {object} the parser
  */
 function parserMM() {
-    return P.regexp(/(1[0-2])|0[1-9]/).map(function(x) {
-        return mkField('month',Number(x));
-    });
+  return P.regexp(/(1[0-2])|0[1-9]/).map(function (x) {
+    return mkField('month', Number(x));
+  });
 }
 
 /**
@@ -146,9 +145,9 @@ function parserMM() {
  * @returns {object} the parser
  */
 function parserMMM() {
-    return choiceStringsParser(Object.keys(MMM)).map(function(x) {
-        return mkField('month',MMM[x]);
-    });
+  return choiceStringsParser(Object.keys(MMM)).map(function (x) {
+    return mkField('month', MMM[x]);
+  });
 }
 
 /**
@@ -156,9 +155,9 @@ function parserMMM() {
  * @returns {object} the parser
  */
 function parserMMMM() {
-    return choiceStringsParser(Object.keys(MMMM)).map(function(x) {
-        return mkField('month',MMMM[x]);
-    });
+  return choiceStringsParser(Object.keys(MMMM)).map(function (x) {
+    return mkField('month', MMMM[x]);
+  });
 }
 
 /**
@@ -166,9 +165,9 @@ function parserMMMM() {
  * @returns {object} the parser
  */
 function parserYYYY() {
-    return P.regexp(/[0-9][0-9][0-9][0-9]/).map(function(x) {
-        return mkField('year',Number(x));
-    });
+  return P.regexp(/[0-9][0-9][0-9][0-9]/).map(function (x) {
+    return mkField('year', Number(x));
+  });
 }
 
 /**
@@ -176,9 +175,9 @@ function parserYYYY() {
  * @returns {object} the parser
  */
 function parserH() {
-    return P.regexp(/2[0-3]|1[0-9]|[0-9]/).map(function(x) {
-        return mkField('hour',Number(x));
-    });
+  return P.regexp(/2[0-3]|1[0-9]|[0-9]/).map(function (x) {
+    return mkField('hour', Number(x));
+  });
 }
 
 /**
@@ -186,9 +185,9 @@ function parserH() {
  * @returns {object} the parser
  */
 function parserHH() {
-    return P.regexp(/2[0-3]|[0-1][0-9]/).map(function(x) {
-        return mkField('hour',Number(x));
-    });
+  return P.regexp(/2[0-3]|[0-1][0-9]/).map(function (x) {
+    return mkField('hour', Number(x));
+  });
 }
 
 /**
@@ -196,9 +195,9 @@ function parserHH() {
  * @returns {object} the parser
  */
 function parserh() {
-    return P.regexp(/1[0-2]|[1-9]/).map(function(x) {
-        return mkField('hour',Number(x));
-    });
+  return P.regexp(/1[0-2]|[1-9]/).map(function (x) {
+    return mkField('hour', Number(x));
+  });
 }
 
 /**
@@ -206,9 +205,9 @@ function parserh() {
  * @returns {object} the parser
  */
 function parserhh() {
-    return P.regexp(/1[0-2]|0[1-9]/).map(function(x) {
-        return mkField('hour',Number(x));
-    });
+  return P.regexp(/1[0-2]|0[1-9]/).map(function (x) {
+    return mkField('hour', Number(x));
+  });
 }
 
 /**
@@ -216,9 +215,9 @@ function parserhh() {
  * @returns {object} the parser
  */
 function parsermm() {
-    return P.regexp(/[0-5][0-9]/).map(function(x) {
-        return mkField('minute',Number(x));
-    });
+  return P.regexp(/[0-5][0-9]/).map(function (x) {
+    return mkField('minute', Number(x));
+  });
 }
 
 /**
@@ -226,9 +225,9 @@ function parsermm() {
  * @returns {object} the parser
  */
 function parserss() {
-    return P.regexp(/[0-5][0-9]/).map(function(x) {
-        return mkField('second',Number(x));
-    });
+  return P.regexp(/[0-5][0-9]/).map(function (x) {
+    return mkField('second', Number(x));
+  });
 }
 
 /**
@@ -236,9 +235,9 @@ function parserss() {
  * @returns {object} the parser
  */
 function parserSSS() {
-    return P.regexp(/[0-9][0-9][0-9]/).map(function(x) {
-        return mkField('fracsecond',Number(x));
-    });
+  return P.regexp(/[0-9][0-9][0-9]/).map(function (x) {
+    return mkField('fracsecond', Number(x));
+  });
 }
 
 /**
@@ -246,9 +245,9 @@ function parserSSS() {
  * @returns {object} the parser
  */
 function parserZ() {
-    return P.regexp(/([-]|[+])[0-9][0-9]:[0-9][0-9]/).map(function(x) {
-        return mkField('timezone',x);
-    });
+  return P.regexp(/([-]|[+])[0-9][0-9]:[0-9][0-9]/).map(function (x) {
+    return mkField('timezone', x);
+  });
 }
 
 /**
@@ -256,9 +255,9 @@ function parserZ() {
  * @returns {object} the parser
  */
 function parsera() {
-    return P.alt(P.string('am'),P.string('pm')).map(function(x) {
-        return mkField('halfDay',x);
-    });
+  return P.alt(P.string('am'), P.string('pm')).map(function (x) {
+    return mkField('halfDay', x);
+  });
 }
 
 /**
@@ -266,33 +265,33 @@ function parsera() {
  * @returns {object} the parser
  */
 function parserA() {
-    return P.alt(P.string('AM'),P.string('PM')).map(function(x) {
-        return mkField('halfDay',x.toLowerCase());
-    });
+  return P.alt(P.string('AM'), P.string('PM')).map(function (x) {
+    return mkField('halfDay', x.toLowerCase());
+  });
 }
 
 /**
  * Parsing table for variables
  * This maps types to their parser
  */
-const parsingTable = {
-    'D' : parserD,
-    'DD' : parserDD,
-    'M' : parserM,
-    'MM' : parserMM,
-    'MMM' : parserMMM,
-    'MMMM' : parserMMMM,
-    'YYYY' : parserYYYY,
-    'H' : parserH,
-    'HH' : parserHH,
-    'h' : parserh,
-    'hh' : parserhh,
-    'mm' : parsermm,
-    'ss' : parserss,
-    'SSS' : parserSSS,
-    'Z' : parserZ,
-    'a' : parsera,
-    'A' : parserA,
+var parsingTable = {
+  'D': parserD,
+  'DD': parserDD,
+  'M': parserM,
+  'MM': parserMM,
+  'MMM': parserMMM,
+  'MMMM': parserMMMM,
+  'YYYY': parserYYYY,
+  'H': parserH,
+  'HH': parserHH,
+  'h': parserh,
+  'hh': parserhh,
+  'mm': parsermm,
+  'ss': parserss,
+  'SSS': parserSSS,
+  'Z': parserZ,
+  'a': parsera,
+  'A': parserA
 };
 
 /**
@@ -303,12 +302,12 @@ const parsingTable = {
  * @returns {string} the field designator
  */
 function parserOfField(field) {
-    const parserFun = parsingTable[field];
-    if (parserFun) {
-        return parserFun();
-    } else {
-        return textParser(field);
-    }
+  var parserFun = parsingTable[field];
+  if (parserFun) {
+    return parserFun();
+  } else {
+    return textParser(field);
+  }
 }
 
 /**
@@ -317,27 +316,26 @@ function parserOfField(field) {
  * @param {*} parserManager - the parser manager
  * @returns {object} the parser
  */
-function dateTimeParser(format,parserManager) {
-    // Default UTC offset is extracted from passed current time
-    const utcOffset = parserManager.getCurrentTime().format('Z');
+function dateTimeParser(format, parserManager) {
+  // Default UTC offset is extracted from passed current time
+  var utcOffset = parserManager.getCurrentTime().format('Z');
+  if (!format) {
+    format = 'MM/DD/YYYY';
+  }
 
-    if (!format) { format = 'MM/DD/YYYY'; }
-
-    // XXX the format could be parsed as well instead of this split which seems error-prone
-    let hasTimeZone = format.charAt(format.length-1) === 'Z';
-    if(hasTimeZone) {
-        // strip Z
-        format = format.substr(0,format.length-1);
-    }
-
-    const fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|hh|h|mm|ss|SSS|a|A)+/);
-    if(hasTimeZone) {
-        fields.push('Z');
-    }
-    const parsers = fields.map(parserOfField);
-    return seqParser(parsers).map(function(x) {
-        return mkDateTime(x,utcOffset);
-    });
+  // XXX the format could be parsed as well instead of this split which seems error-prone
+  var hasTimeZone = format.charAt(format.length - 1) === 'Z';
+  if (hasTimeZone) {
+    // strip Z
+    format = format.substr(0, format.length - 1);
+  }
+  var fields = format.split(/(DD|D|MMMM|MMM|MM|M|YYYY|HH|H|hh|h|mm|ss|SSS|a|A)+/);
+  if (hasTimeZone) {
+    fields.push('Z');
+  }
+  var parsers = fields.map(parserOfField);
+  return seqParser(parsers).map(function (x) {
+    return mkDateTime(x, utcOffset);
+  });
 }
-
-module.exports = (format,parserManager) => (r) => dateTimeParser(format,parserManager);
+module.exports = (format, parserManager) => r => dateTimeParser(format, parserManager);

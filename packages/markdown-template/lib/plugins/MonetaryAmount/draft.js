@@ -14,9 +14,9 @@
 
 'use strict';
 
-const draftDoubleIEEE = require('../Double/format').draftDoubleIEEE;
-const draftDoubleFormat = require('../Double/format').draftDoubleFormat;
-const symbols = require('./symbols.json');
+var draftDoubleIEEE = require('../Double/format').draftDoubleIEEE;
+var draftDoubleFormat = require('../Double/format').draftDoubleFormat;
+var symbols = require('./symbols.json');
 
 /**
  * Creates a drafter for monetary amount with no format
@@ -24,7 +24,7 @@ const symbols = require('./symbols.json');
  * @returns {string} the text
  */
 function monetaryAmountDefaultDrafter(value) {
-    return '' + draftDoubleIEEE(value.doubleValue) + ' ' + value.currencyCode;
+  return '' + draftDoubleIEEE(value.doubleValue) + ' ' + value.currencyCode;
 }
 
 /**
@@ -33,7 +33,7 @@ function monetaryAmountDefaultDrafter(value) {
  * @returns {string} the symbol
  */
 function codeSymbol(c) {
-    return symbols[c] ? symbols[c] : c;
+  return symbols[c] ? symbols[c] : c;
 }
 
 /**
@@ -42,11 +42,8 @@ function codeSymbol(c) {
  * @param {string} format the format
  * @returns {string} the text
  */
-function monetaryAmountFormatDrafter(value,format) {
-    return draftDoubleFormat(value.doubleValue,
-        format
-            .replace(/K/gi,codeSymbol(value.currencyCode))
-            .replace(/CCC/gi,value.currencyCode));
+function monetaryAmountFormatDrafter(value, format) {
+  return draftDoubleFormat(value.doubleValue, format.replace(/K/gi, codeSymbol(value.currencyCode)).replace(/CCC/gi, value.currencyCode));
 }
 
 /**
@@ -55,12 +52,11 @@ function monetaryAmountFormatDrafter(value,format) {
  * @param {string} format the format
  * @returns {string} the text
  */
-function monetaryAmountDrafter(value,format) {
-    if (format) {
-        return monetaryAmountFormatDrafter(value,format);
-    } else {
-        return monetaryAmountDefaultDrafter(value);
-    }
+function monetaryAmountDrafter(value, format) {
+  if (format) {
+    return monetaryAmountFormatDrafter(value, format);
+  } else {
+    return monetaryAmountDefaultDrafter(value);
+  }
 }
-
 module.exports = monetaryAmountDrafter;

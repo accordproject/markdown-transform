@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'org.accordproject.money.MonetaryAmount': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'org.accordproject.money.MonetaryAmount': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

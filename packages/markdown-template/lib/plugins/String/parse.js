@@ -14,7 +14,7 @@
 
 'use strict';
 
-const stringLiteralParser = require('../../combinators').stringLiteralParser;
+var stringLiteralParser = require('../../combinators').stringLiteralParser;
 
 /**
  * Creates a parser for a String variable
@@ -22,9 +22,8 @@ const stringLiteralParser = require('../../combinators').stringLiteralParser;
  * @returns {object} the parser
  */
 function stringParser() {
-    return stringLiteralParser().map(function(x) {
-        return x.substring(1, x.length-1);
-    });
+  return stringLiteralParser().map(function (x) {
+    return x.substring(1, x.length - 1);
+  });
 }
-
-module.exports = (format) => (r) => stringParser();
+module.exports = format => r => stringParser();

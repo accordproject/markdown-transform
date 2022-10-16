@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'Resource': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'Resource': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };
