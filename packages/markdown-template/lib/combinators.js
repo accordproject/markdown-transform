@@ -14,11 +14,10 @@
 
 'use strict';
 
-const P = require('parsimmon');
-const uuid = require('uuid');
-
-const flatten = require('./util').flatten;
-const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
+var P = require('parsimmon');
+var uuid = require('uuid');
+var flatten = require('./util').flatten;
+var CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
 
 /**
  * Creates a variable output
@@ -26,12 +25,12 @@ const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtil
  * @param {*} value the variable value
  * @returns {object} the variable
  */
-function mkVariable(variable,value) {
-    let result = {};
-    result.name = variable.name;
-    result.elementType = variable.elementType;
-    result.value = value;
-    return result;
+function mkVariable(variable, value) {
+  var result = {};
+  result.name = variable.name;
+  result.elementType = variable.elementType;
+  result.value = value;
+  return result;
 }
 
 /**
@@ -40,27 +39,27 @@ function mkVariable(variable,value) {
  * @param {object} value2 the second value
  * @returns {object} the compound variable
  */
-function variableEqual(value1,value2) {
-    const type1 = typeof value1;
-    const type2 = typeof value2;
-    if(type1 === 'object' && type2 === 'object') {
-        for(let key1 in value1) {
-            if(!value2[key1]) {
-                return false;
-            }
-            if(!variableEqual(value1[key1],value2[key1])) {
-                return false;
-            }
-        }
-        for(let key2 in value2) {
-            if(!value1[key2]) {
-                return false;
-            }
-        }
-    } else if(value1 !== value2) {
+function variableEqual(value1, value2) {
+  var type1 = typeof value1;
+  var type2 = typeof value2;
+  if (type1 === 'object' && type2 === 'object') {
+    for (var key1 in value1) {
+      if (!value2[key1]) {
         return false;
+      }
+      if (!variableEqual(value1[key1], value2[key1])) {
+        return false;
+      }
     }
-    return true;
+    for (var key2 in value2) {
+      if (!value1[key2]) {
+        return false;
+      }
+    }
+  } else if (value1 !== value2) {
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -69,24 +68,24 @@ function variableEqual(value1,value2) {
  * @param {*} value the variable components
  * @returns {object} the compound variable
  */
-function mkCompoundVariable(elementType,value) {
-    let result = {};
-    result.$class = elementType;
-    for(let i = 0; i < value.length; i++) {
-        const field = value[i];
-        if(result[field.name]) {
-            if (!variableEqual(result[field.name],field.value)) {
-                const message = `Inconsistent values for variable ${field.name}: ${result[field.name]} and ${field.value}`;
-                throw new Error(message);
-            }
-        } else {
-            result[field.name] = field.value;
-        }
+function mkCompoundVariable(elementType, value) {
+  var result = {};
+  result.$class = elementType;
+  for (var i = 0; i < value.length; i++) {
+    var field = value[i];
+    if (result[field.name]) {
+      if (!variableEqual(result[field.name], field.value)) {
+        var message = "Inconsistent values for variable ".concat(field.name, ": ").concat(result[field.name], " and ").concat(field.value);
+        throw new Error(message);
+      }
+    } else {
+      result[field.name] = field.value;
     }
-    if (result.this) {
-        result = result.this;
-    }
-    return result;
+  }
+  if (result.this) {
+    result = result.this;
+  }
+  return result;
 }
 
 /**
@@ -95,12 +94,12 @@ function mkCompoundVariable(elementType,value) {
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
-function mkCond(condNode,value) {
-    const result = {};
-    result.name = condNode.name;
-    result.elementType = 'Boolean';
-    result.value = value;
-    return result;
+function mkCond(condNode, value) {
+  var result = {};
+  result.name = condNode.name;
+  result.elementType = 'Boolean';
+  result.value = value;
+  return result;
 }
 
 /**
@@ -109,12 +108,12 @@ function mkCond(condNode,value) {
  * @param {*} value the variable value
  * @returns {object} the optional
  */
-function mkOpt(optNode,value) {
-    const result = {};
-    result.name = optNode.name;
-    result.elementType = optNode.elementType;
-    result.value = value;
-    return result;
+function mkOpt(optNode, value) {
+  var result = {};
+  result.name = optNode.name;
+  result.elementType = optNode.elementType;
+  result.value = value;
+  return result;
 }
 
 /**
@@ -123,16 +122,16 @@ function mkOpt(optNode,value) {
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
-function mkList(listNode,value) {
-    const result = {};
-    result.name = listNode.name;
-    result.elementType = 'List';
-    result.value = [];
-    for(let i = 0; i < value.length; i++) {
-        let item = mkCompoundVariable(listNode.elementType,value[i]);
-        result.value.push(item);
-    }
-    return result;
+function mkList(listNode, value) {
+  var result = {};
+  result.name = listNode.name;
+  result.elementType = 'List';
+  result.value = [];
+  for (var i = 0; i < value.length; i++) {
+    var item = mkCompoundVariable(listNode.elementType, value[i]);
+    result.value.push(item);
+  }
+  return result;
 }
 
 /**
@@ -141,15 +140,15 @@ function mkList(listNode,value) {
  * @param {*} value the variable value
  * @returns {object} the conditional
  */
-function mkJoin(joinNode,value) {
-    const result = {};
-    result.name = joinNode.name;
-    result.elementType = 'List';
-    result.value = [];
-    for(let i = 0; i < value.length; i++) {
-        result.value.push(mkCompoundVariable(joinNode.elementType,value[i]));
-    }
-    return result;
+function mkJoin(joinNode, value) {
+  var result = {};
+  result.name = joinNode.name;
+  result.elementType = 'List';
+  result.value = [];
+  for (var i = 0; i < value.length; i++) {
+    result.value.push(mkCompoundVariable(joinNode.elementType, value[i]));
+  }
+  return result;
 }
 
 /**
@@ -158,9 +157,12 @@ function mkJoin(joinNode,value) {
  * @param {*} value the clause value
  * @returns {object} the clause
  */
-function mkClause(clause,value) {
-    return mkCompoundVariable(clause.elementType,
-        value.concat({'name':'clauseId','elementType':'String','value':uuid.v4()}));
+function mkClause(clause, value) {
+  return mkCompoundVariable(clause.elementType, value.concat({
+    'name': 'clauseId',
+    'elementType': 'String',
+    'value': uuid.v4()
+  }));
 }
 
 /**
@@ -170,12 +172,16 @@ function mkClause(clause,value) {
  * @param {*} value the wrapped clause value
  * @returns {object} the clause
  */
-function mkWrappedClause(clause,src,value) {
-    const result = {'name':clause.name,'elementType':clause.elementType,'value':mkClause(clause,value)};
-    if(src) {
-        result.src = src;
-    }
-    return [result];
+function mkWrappedClause(clause, src, value) {
+  var result = {
+    'name': clause.name,
+    'elementType': clause.elementType,
+    'value': mkClause(clause, value)
+  };
+  if (src) {
+    result.src = src;
+  }
+  return [result];
 }
 
 /**
@@ -184,9 +190,12 @@ function mkWrappedClause(clause,src,value) {
  * @param {*} value the contract value
  * @returns {object} the contract
  */
-function mkContract(contract,value) {
-    return mkCompoundVariable(contract.elementType,
-        value.concat({'name':'contractId','elementType':'String','value':uuid.v4()}));
+function mkContract(contract, value) {
+  return mkCompoundVariable(contract.elementType, value.concat({
+    'name': 'contractId',
+    'elementType': 'String',
+    'value': uuid.v4()
+  }));
 }
 
 /**
@@ -199,7 +208,7 @@ function mkContract(contract,value) {
  * @returns {object} the parser
  */
 function textParser(text) {
-    return P.string(CommonMarkUtils.escapeText(text));
+  return P.string(CommonMarkUtils.escapeText(text));
 }
 
 /**
@@ -207,7 +216,7 @@ function textParser(text) {
  * @returns {object} the parser
  */
 function stringLiteralParser() {
-    return P.regexp(/"[^"]*"/).desc('A String literal "..."');
+  return P.regexp(/"[^"]*"/).desc('A String literal "..."');
 }
 
 /**
@@ -215,7 +224,7 @@ function stringLiteralParser() {
  * @returns {object} the parser
  */
 function nameParser() {
-    return P.regexp(/[A-Za-z0-9_-]+/).desc('A name');
+  return P.regexp(/[A-Za-z0-9_-]+/).desc('A name');
 }
 
 /**
@@ -224,7 +233,7 @@ function nameParser() {
  * @returns {object} the parser
  */
 function choiceParser(parsers) {
-    return P.alt.apply(null, parsers);
+  return P.alt.apply(null, parsers);
 }
 
 /**
@@ -233,7 +242,9 @@ function choiceParser(parsers) {
  * @returns {object} the parser
  */
 function choiceStringsParser(values) {
-    return choiceParser(values.map(function (x) { return P.string(x); }));
+  return choiceParser(values.map(function (x) {
+    return P.string(x);
+  }));
 }
 
 /**
@@ -242,10 +253,12 @@ function choiceStringsParser(values) {
  * @returns {object} the parser
  */
 function seqParser(parsers) {
-    return P.seqMap.apply(null, parsers.concat([function () {
-        const args = Array.prototype.slice.call(arguments);
-        return args.filter(function(x) { return !(typeof x === 'string'); });
-    }]));
+  return P.seqMap.apply(null, parsers.concat([function () {
+    var args = Array.prototype.slice.call(arguments);
+    return args.filter(function (x) {
+      return !(typeof x === 'string');
+    });
+  }]));
 }
 
 /**
@@ -254,10 +267,12 @@ function seqParser(parsers) {
  * @returns {object} the parser
  */
 function seqFunParser(parsers) {
-    return (r) => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
-        const args = Array.prototype.slice.call(arguments);
-        return args.filter(function(x) { return !(typeof x === 'string'); });
-    }]));
+  return r => P.seqMap.apply(null, parsers.map(x => x(r)).concat([function () {
+    var args = Array.prototype.slice.call(arguments);
+    return args.filter(function (x) {
+      return !(typeof x === 'string');
+    });
+  }]));
 }
 
 /**
@@ -265,7 +280,7 @@ function seqFunParser(parsers) {
  * @returns {object} the parser
  */
 function computedParser() {
-    return P.regexp(/{{%[^%]*%}}/).desc('A computed variable {{ ... }}');
+  return P.regexp(/{{%[^%]*%}}/).desc('A computed variable {{ ... }}');
 }
 
 /**
@@ -274,9 +289,9 @@ function computedParser() {
  * @returns {object} the parser
  */
 function enumParser(enums) {
-    return choiceStringsParser(enums).map(function(x) {
-        return x;
-    });
+  return choiceStringsParser(enums).map(function (x) {
+    return x;
+  });
 }
 
 /**
@@ -287,11 +302,10 @@ function enumParser(enums) {
  * @returns {object} the parser
  */
 function conditionalParser(condNode, whenTrue, whenFalse) {
-    return P.alt(whenTrue.map(x => true),whenFalse.map(x => false)).map(function(x) {
-        return mkCond(condNode,x);
-    });
+  return P.alt(whenTrue.map(x => true), whenFalse.map(x => false)).map(function (x) {
+    return mkCond(condNode, x);
+  });
 }
-
 
 /**
  * Creates a parser for an optional block
@@ -301,11 +315,11 @@ function conditionalParser(condNode, whenTrue, whenFalse) {
  * @returns {object} the parser
  */
 function optionalParser(optNode, whenSome, whenNone) {
-    return P.alt(
-        whenSome.map(function(x) {
-            return mkCompoundVariable(optNode.elementType,flatten(x));
-        }),
-        whenNone.map(x => null)).map(function(x) { return mkOpt(optNode,x); });
+  return P.alt(whenSome.map(function (x) {
+    return mkCompoundVariable(optNode.elementType, flatten(x));
+  }), whenNone.map(x => null)).map(function (x) {
+    return mkOpt(optNode, x);
+  });
 }
 
 /**
@@ -315,13 +329,13 @@ function optionalParser(optNode, whenSome, whenNone) {
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function listBlockParser(listNode,bullet,content) {
-    // XXX optionally insert a new line for non-tight lists
-    return P.seq(P.alt(bullet,P.seq(P.string('\n'),bullet)),content).map(function(x) {
-        return x[1]; // XXX First element is bullet
-    }).many().map(function(x) {
-        return mkList(listNode,x);
-    });
+function listBlockParser(listNode, bullet, content) {
+  // XXX optionally insert a new line for non-tight lists
+  return P.seq(P.alt(bullet, P.seq(P.string('\n'), bullet)), content).map(function (x) {
+    return x[1]; // XXX First element is bullet
+  }).many().map(function (x) {
+    return mkList(listNode, x);
+  });
 }
 
 /**
@@ -331,8 +345,8 @@ function listBlockParser(listNode,bullet,content) {
  * @param {string} prefix - the list item prefix
  * @returns {object} the parser
  */
-function ulistBlockParser(listNode,content,prefix) {
-    return listBlockParser(listNode,P.seq(P.string(prefix),P.string('-  ')),content);
+function ulistBlockParser(listNode, content, prefix) {
+  return listBlockParser(listNode, P.seq(P.string(prefix), P.string('-  ')), content);
 }
 
 /**
@@ -342,8 +356,8 @@ function ulistBlockParser(listNode,content,prefix) {
  * @param {string} prefix - the list item prefix
  * @returns {object} the parser
  */
-function olistBlockParser(listNode,content,prefix) {
-    return listBlockParser(listNode,P.seq(P.string(prefix),P.regexp(/[0-9]+/),P.string('. ')),content);
+function olistBlockParser(listNode, content, prefix) {
+  return listBlockParser(listNode, P.seq(P.string(prefix), P.regexp(/[0-9]+/), P.string('. ')), content);
 }
 
 /**
@@ -352,13 +366,13 @@ function olistBlockParser(listNode,content,prefix) {
  * @param {object} content the parser for the content of the list
  * @returns {object} the parser
  */
-function joinBlockParser(joinNode,content) {
-    const separator = joinNode.separator;
-    return P.seq(content,P.seq(P.string(separator),content).map(x => x[1]).many()).map(function(x) {
-        return [x[0]].concat(x[1]);
-    }).map(function(x) {
-        return mkJoin(joinNode,x);
-    });
+function joinBlockParser(joinNode, content) {
+  var separator = joinNode.separator;
+  return P.seq(content, P.seq(P.string(separator), content).map(x => x[1]).many()).map(function (x) {
+    return [x[0]].concat(x[1]);
+  }).map(function (x) {
+    return mkJoin(joinNode, x);
+  });
 }
 
 /**
@@ -367,10 +381,10 @@ function joinBlockParser(joinNode,content) {
  * @param {object} content the parser for the content of the with
  * @returns {object} the parser
  */
-function withParser(elementType,content) {
-    return content.map(function(x) {
-        return mkCompoundVariable(elementType,flatten(x));
-    });
+function withParser(elementType, content) {
+  return content.map(function (x) {
+    return mkCompoundVariable(elementType, flatten(x));
+  });
 }
 
 /**
@@ -379,10 +393,10 @@ function withParser(elementType,content) {
  * @param {object} content the parser for the content of the clause
  * @returns {object} the parser
  */
-function clauseParser(clause,content) {
-    return content.skip(P.optWhitespace).map(function(x) {
-        return mkClause(clause,flatten(x));
-    });
+function clauseParser(clause, content) {
+  return content.skip(P.optWhitespace).map(function (x) {
+    return mkClause(clause, flatten(x));
+  });
 }
 
 /**
@@ -391,10 +405,10 @@ function clauseParser(clause,content) {
  * @param {object} content the parser for the content of the contract
  * @returns {object} the parser
  */
-function contractParser(contract,content) {
-    return content.skip(P.optWhitespace).map(function(x) {
-        return mkContract(contract,flatten(x));
-    });
+function contractParser(contract, content) {
+  return content.skip(P.optWhitespace).map(function (x) {
+    return mkContract(contract, flatten(x));
+  });
 }
 
 /**
@@ -403,26 +417,23 @@ function contractParser(contract,content) {
  * @param {object} content the parser for the content of the clause
  * @returns {object} the parser
  */
-function wrappedClauseParser(clause,content) {
-    const clauseEnd = P.string('}}\n');
-    const clauseBefore = P.seq(P.string('\n\n{{#clause '),nameParser(),P.alt(P.seq(P.string(' src='),stringLiteralParser(),clauseEnd),clauseEnd));
-    const clauseAfter = P.string('\n{{/clause}}');
-    return P.seq(clauseBefore,content,clauseAfter).map(function(x) {
-        const srcAttr = x[0][2];
-        const src = srcAttr ? srcAttr[1].substring(1,srcAttr[1].length-1) : null;
-        return mkWrappedClause(clause,src,flatten(x[1]));
-    });
+function wrappedClauseParser(clause, content) {
+  var clauseEnd = P.string('}}\n');
+  var clauseBefore = P.seq(P.string('\n\n{{#clause '), nameParser(), P.alt(P.seq(P.string(' src='), stringLiteralParser(), clauseEnd), clauseEnd));
+  var clauseAfter = P.string('\n{{/clause}}');
+  return P.seq(clauseBefore, content, clauseAfter).map(function (x) {
+    var srcAttr = x[0][2];
+    var src = srcAttr ? srcAttr[1].substring(1, srcAttr[1].length - 1) : null;
+    return mkWrappedClause(clause, src, flatten(x[1]));
+  });
 }
-
 module.exports.mkVariable = mkVariable;
 module.exports.mkCompoundVariable = mkCompoundVariable;
 module.exports.stringLiteralParser = stringLiteralParser;
-
 module.exports.textParser = textParser;
 module.exports.seqParser = seqParser;
 module.exports.seqFunParser = seqFunParser;
 module.exports.choiceStringsParser = choiceStringsParser;
-
 module.exports.computedParser = computedParser;
 module.exports.enumParser = enumParser;
 module.exports.conditionalParser = conditionalParser;
@@ -434,4 +445,3 @@ module.exports.withParser = withParser;
 module.exports.clauseParser = clauseParser;
 module.exports.wrappedClauseParser = wrappedClauseParser;
 module.exports.contractParser = contractParser;
-

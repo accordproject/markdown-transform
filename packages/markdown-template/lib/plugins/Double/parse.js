@@ -14,10 +14,10 @@
 
 'use strict';
 
-const parseDoubleIEEE = require('./format').parseDoubleIEEE;
-const parseDoubleFormat = require('./format').parseDoubleFormat;
-const textParser = require('../../combinators').textParser;
-const seqParser = require('../../combinators').seqParser;
+var parseDoubleIEEE = require('./format').parseDoubleIEEE;
+var parseDoubleFormat = require('./format').parseDoubleFormat;
+var textParser = require('../../combinators').textParser;
+var seqParser = require('../../combinators').seqParser;
 
 /**
  * Given a format field (like '0,0.00') this method returns
@@ -26,11 +26,11 @@ const seqParser = require('../../combinators').seqParser;
  * @returns {string} the field designator
  */
 function parserOfField(field) {
-    if (/0.0(?:.0+)?/.test(field)) {
-        return parseDoubleFormat(field);
-    } else {
-        return textParser(field);
-    }
+  if (/0.0(?:.0+)?/.test(field)) {
+    return parseDoubleFormat(field);
+  } else {
+    return textParser(field);
+  }
 }
 
 /**
@@ -39,16 +39,14 @@ function parserOfField(field) {
  * @returns {object} the parser
  */
 function doubleParser(format) {
-    if (format) {
-        let fields = format.split(/(0.0(?:.0+)?)/);
-        // remove null or empty strings
-        fields = fields.filter(x => x !== '' && x !== null);
-        const parsers = fields.map(parserOfField);
-        return seqParser(parsers)
-            .map((value) => value[0]);
-    } else {
-        return parseDoubleIEEE();
-    }
+  if (format) {
+    var fields = format.split(/(0.0(?:.0+)?)/);
+    // remove null or empty strings
+    fields = fields.filter(x => x !== '' && x !== null);
+    var parsers = fields.map(parserOfField);
+    return seqParser(parsers).map(value => value[0]);
+  } else {
+    return parseDoubleIEEE();
+  }
 }
-
-module.exports = (format) => (r) => doubleParser(format);
+module.exports = format => r => doubleParser(format);

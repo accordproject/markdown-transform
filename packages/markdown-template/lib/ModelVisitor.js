@@ -14,10 +14,11 @@
 
 'use strict';
 
-const util = require('util');
-
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
+var util = require('util');
+var {
+  NS_PREFIX_CommonMarkModel
+} = require('@accordproject/markdown-common').CommonMarkModel;
+var NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
 
 /**
  * Converts concerto models to TemplateMark
@@ -26,132 +27,128 @@ const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel'
  * @class
  */
 class ModelVisitor {
-    /**
-     * Visitor design pattern
-     * @param {Object} thing - the object being visited
-     * @param {Object} parameters  - the parameter
-     * @return {Object} the result of visiting or null
-     * @private
-     */
-    visit(thing, parameters) {
-        if (thing.isEnum?.()) {
-            return this.visitEnumDeclaration(thing, parameters);
-        } else if (thing.isClassDeclaration?.()) {
-            return this.visitClassDeclaration(thing, parameters);
-        } else if (thing.isField?.()) {
-            return this.visitField(thing, parameters);
-        } else if (thing.isRelationship?.()) {
-            return this.visitRelationship(thing, parameters);
-        } else if (thing.isEnumValue?.()) {
-            return this.visitEnumValueDeclaration(thing, parameters);
-        } else {
-            throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, {
-                showHidden: true,
-                depth: 2
-            }));
-        }
+  /**
+   * Visitor design pattern
+   * @param {Object} thing - the object being visited
+   * @param {Object} parameters  - the parameter
+   * @return {Object} the result of visiting or null
+   * @private
+   */
+  visit(thing, parameters) {
+    var _thing$isEnum, _thing$isClassDeclara, _thing$isField, _thing$isRelationship, _thing$isEnumValue;
+    if ((_thing$isEnum = thing.isEnum) !== null && _thing$isEnum !== void 0 && _thing$isEnum.call(thing)) {
+      return this.visitEnumDeclaration(thing, parameters);
+    } else if ((_thing$isClassDeclara = thing.isClassDeclaration) !== null && _thing$isClassDeclara !== void 0 && _thing$isClassDeclara.call(thing)) {
+      return this.visitClassDeclaration(thing, parameters);
+    } else if ((_thing$isField = thing.isField) !== null && _thing$isField !== void 0 && _thing$isField.call(thing)) {
+      return this.visitField(thing, parameters);
+    } else if ((_thing$isRelationship = thing.isRelationship) !== null && _thing$isRelationship !== void 0 && _thing$isRelationship.call(thing)) {
+      return this.visitRelationship(thing, parameters);
+    } else if ((_thing$isEnumValue = thing.isEnumValue) !== null && _thing$isEnumValue !== void 0 && _thing$isEnumValue.call(thing)) {
+      return this.visitEnumValueDeclaration(thing, parameters);
+    } else {
+      throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, {
+        showHidden: true,
+        depth: 2
+      }));
     }
+  }
 
-    /**
-     * Visitor design pattern
-     * @param {EnumDeclaration} enumDeclaration - the object being visited
-     * @param {Object} parameters  - the parameter
-     * @return {Object} the result of visiting or null
-     * @private
-     */
-    visitEnumDeclaration(enumDeclaration, parameters) {
-        let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition';
-        result.name = parameters.type;
-        return result;
+  /**
+   * Visitor design pattern
+   * @param {EnumDeclaration} enumDeclaration - the object being visited
+   * @param {Object} parameters  - the parameter
+   * @return {Object} the result of visiting or null
+   * @private
+   */
+  visitEnumDeclaration(enumDeclaration, parameters) {
+    var result = {};
+    result.$class = NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition';
+    result.name = parameters.type;
+    return result;
+  }
+
+  /**
+   * Visitor design pattern
+   * @param {ClassDeclaration} classDeclaration - the object being visited
+   * @param {Object} parameters - the parameter
+   * @return {Object} the result of visiting or null
+   * @private
+   */
+  visitClassDeclaration(classDeclaration, parameters) {
+    var result = {};
+    result.$class = NS_PREFIX_TemplateMarkModel + 'WithDefinition';
+    result.name = parameters.name;
+    result.nodes = [];
+    var first = true;
+    classDeclaration.getProperties().forEach((property, index) => {
+      if (!first) {
+        var textNode = {};
+        textNode.$class = NS_PREFIX_CommonMarkModel + 'Text';
+        textNode.text = ' ';
+        result.nodes.push(textNode);
+      }
+      result.nodes.push(property.accept(this, parameters));
+      first = false;
+    });
+    return result;
+  }
+
+  /**
+   * Visitor design pattern
+   * @param {Field} field - the object being visited
+   * @param {Object} parameters  - the parameter
+   * @return {Object} the result of visiting or null
+   * @private
+   */
+  visitField(field, parameters) {
+    var fieldName = field.getName();
+    var result = {};
+    result.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
+    result.name = fieldName;
+    if (field.isArray()) {
+      if (field.isPrimitive()) {
+        result.name = 'this';
+      }
+      var arrayResult = {};
+      arrayResult.$class = NS_PREFIX_TemplateMarkModel + 'JoinDefinition';
+      arrayResult.separator = ' '; // XXX {{#join }}
+      arrayResult.name = fieldName;
+      arrayResult.nodes = [result];
+      result = arrayResult;
     }
-
-    /**
-     * Visitor design pattern
-     * @param {ClassDeclaration} classDeclaration - the object being visited
-     * @param {Object} parameters - the parameter
-     * @return {Object} the result of visiting or null
-     * @private
-     */
-    visitClassDeclaration(classDeclaration, parameters) {
-        let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'WithDefinition';
-        result.name = parameters.name;
-        result.nodes = [];
-
-        let first = true;
-        classDeclaration.getProperties().forEach((property,index) => {
-            if (!first) {
-                let textNode = {};
-                textNode.$class = NS_PREFIX_CommonMarkModel + 'Text';
-                textNode.text = ' ';
-                result.nodes.push(textNode);
-            }
-            result.nodes.push(property.accept(this, parameters));
-            first = false;
-        });
-
-        return result;
+    if (field.isOptional()) {
+      if (field.isPrimitive()) {
+        result.name = 'this';
+      }
+      var optionalResult = {};
+      optionalResult.$class = NS_PREFIX_TemplateMarkModel + 'OptionalDefinition';
+      optionalResult.name = fieldName;
+      optionalResult.whenSome = [result];
+      optionalResult.whenNone = [];
+      result = optionalResult;
     }
+    return result;
+  }
 
-    /**
-     * Visitor design pattern
-     * @param {Field} field - the object being visited
-     * @param {Object} parameters  - the parameter
-     * @return {Object} the result of visiting or null
-     * @private
-     */
-    visitField(field, parameters) {
-        const fieldName = field.getName();
+  /**
+   * Visitor design pattern
+   * @param {EnumValueDeclaration} enumValueDeclaration - the object being visited
+   * @param {Object} parameters  - the parameter
+   * @private
+   */
+  visitEnumValueDeclaration(enumValueDeclaration, parameters) {
+    throw new Error('visitEnumValueDeclaration not handled');
+  }
 
-        let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
-        result.name = fieldName;
-        if(field.isArray()) {
-            if (field.isPrimitive()) {
-                result.name = 'this';
-            }
-            const arrayResult = {};
-            arrayResult.$class = NS_PREFIX_TemplateMarkModel + 'JoinDefinition';
-            arrayResult.separator = ' '; // XXX {{#join }}
-            arrayResult.name = fieldName;
-            arrayResult.nodes = [result];
-            result = arrayResult;
-        }
-        if(field.isOptional()) {
-            if (field.isPrimitive()) {
-                result.name = 'this';
-            }
-            const optionalResult = {};
-            optionalResult.$class = NS_PREFIX_TemplateMarkModel + 'OptionalDefinition';
-            optionalResult.name = fieldName;
-            optionalResult.whenSome = [result];
-            optionalResult.whenNone = [];
-            result = optionalResult;
-        }
-
-        return result;
-    }
-
-    /**
-     * Visitor design pattern
-     * @param {EnumValueDeclaration} enumValueDeclaration - the object being visited
-     * @param {Object} parameters  - the parameter
-     * @private
-     */
-    visitEnumValueDeclaration(enumValueDeclaration, parameters) {
-        throw new Error('visitEnumValueDeclaration not handled');
-    }
-
-    /**
-     * Visitor design pattern
-     * @param {Relationship} relationship - the object being visited
-     * @param {Object} parameters  - the parameter
-     * @private
-     */
-    visitRelationshipDeclaration(relationship, parameters) {
-        throw new Error('visitRelationshipDeclaration');
-    }
+  /**
+   * Visitor design pattern
+   * @param {Relationship} relationship - the object being visited
+   * @param {Object} parameters  - the parameter
+   * @private
+   */
+  visitRelationshipDeclaration(relationship, parameters) {
+    throw new Error('visitRelationshipDeclaration');
+  }
 }
-
 module.exports = ModelVisitor;

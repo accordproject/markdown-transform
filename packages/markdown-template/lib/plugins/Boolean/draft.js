@@ -20,11 +20,10 @@
  * @returns {string} the text
  */
 function booleanDrafter(value) {
-    if (value) {
-        return 'true';
-    } else {
-        return 'false';
-    }
+  if (value) {
+    return 'true';
+  } else {
+    return 'false';
+  }
 }
-
 module.exports = booleanDrafter;

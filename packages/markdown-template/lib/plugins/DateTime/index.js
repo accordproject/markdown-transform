@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'DateTime': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'DateTime': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

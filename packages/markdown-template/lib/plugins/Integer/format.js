@@ -14,16 +14,16 @@
 
 'use strict';
 
-const P = require('parsimmon');
+var P = require('parsimmon');
 
 /**
  * Creates a parser for Integer
  * @returns {object} the parser
  */
 function parseInteger() {
-    return P.regexp(/-?[0-9]+/).map(function(x) {
-        return Number(x);
-    }).desc('An Integer literal');
+  return P.regexp(/-?[0-9]+/).map(function (x) {
+    return Number(x);
+  }).desc('An Integer literal');
 }
 
 /**
@@ -32,7 +32,7 @@ function parseInteger() {
  * @returns {string} the text
  */
 function draftInteger(value) {
-    return '' + value;
+  return '' + value;
 }
 
 /**
@@ -41,20 +41,17 @@ function draftInteger(value) {
  * @returns {object} the parser
  */
 function parseIntegerFormat(format) {
-    const escapeRegex = x => x.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-
-    let sep1 = null;
-    const match = format.match(/0(.)0/);
-    sep1 = escapeRegex(match[1]);
-    let amount = '';
-    amount += '-?[0-9]?[0-9]?[0-9]('+sep1+'([0-9][0-9][0-9]))*';
-    const AMOUNT_RE = new RegExp(amount);
-    return P.regexp(AMOUNT_RE)
-        .desc('An amount with format "' + format + '"')
-        .map(function(x) {
-            let numberText = x.replace(new RegExp(sep1, 'g'), '');
-            return Number(numberText);
-        });
+  var escapeRegex = x => x.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  var sep1 = null;
+  var match = format.match(/0(.)0/);
+  sep1 = escapeRegex(match[1]);
+  var amount = '';
+  amount += '-?[0-9]?[0-9]?[0-9](' + sep1 + '([0-9][0-9][0-9]))*';
+  var AMOUNT_RE = new RegExp(amount);
+  return P.regexp(AMOUNT_RE).desc('An amount with format "' + format + '"').map(function (x) {
+    var numberText = x.replace(new RegExp(sep1, 'g'), '');
+    return Number(numberText);
+  });
 }
 
 /**
@@ -63,19 +60,18 @@ function parseIntegerFormat(format) {
  * @param {string} format - the format
  * @returns {object} the parser
  */
-function draftIntegerFormat(value,format) {
-    return format.replace(/0(.)0/gi, function(_a,sep1,_b){
-        const vs = value.toFixed(0);
-        let res = '';
-        let i = vs.substring(0,vs.length);
-        while (i.length > 3) {
-            res = sep1 + i.substring(i.length - 3) + res;
-            i = i.substring(0, i.length - 3);
-        }
-        return i + res;
-    });
+function draftIntegerFormat(value, format) {
+  return format.replace(/0(.)0/gi, function (_a, sep1, _b) {
+    var vs = value.toFixed(0);
+    var res = '';
+    var i = vs.substring(0, vs.length);
+    while (i.length > 3) {
+      res = sep1 + i.substring(i.length - 3) + res;
+      i = i.substring(0, i.length - 3);
+    }
+    return i + res;
+  });
 }
-
 module.exports.parseInteger = parseInteger;
 module.exports.draftInteger = draftInteger;
 module.exports.parseIntegerFormat = parseIntegerFormat;

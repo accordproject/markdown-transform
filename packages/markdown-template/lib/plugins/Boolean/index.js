@@ -15,10 +15,10 @@
 'use strict';
 
 module.exports = {
-    'Boolean': {
-        javascript: {
-            parse: require('./parse'),
-            draft: require('./draft')
-        }
+  'Boolean': {
+    javascript: {
+      parse: require('./parse'),
+      draft: require('./draft')
     }
+  }
 };

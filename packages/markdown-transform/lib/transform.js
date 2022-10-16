@@ -24,23 +24,15 @@ const builtinTransformationGraph = require('./builtinTransforms');
  * @return {*} the transformation engine
  */
 function createTransformationEngine(transformationGraph) {
-    return new TransformEngine(transformationGraph);
+  return new TransformEngine(transformationGraph);
 }
-
 module.exports.createTransformationEngine;
 
 /**
  * This is instantiated here for backward compatibility
  */
 const builtinEngine = createTransformationEngine(builtinTransformationGraph);
-
 module.exports.builtinEngine = builtinEngine;
-module.exports.formatDescriptor = (format) => builtinEngine.formatDescriptor(format);
-module.exports.transform = (
-    source,
-    sourceFormat,
-    destinationFormat,
-    parameters,
-    options
-) => builtinEngine.transform(source, sourceFormat, destinationFormat, parameters, options);
+module.exports.formatDescriptor = format => builtinEngine.formatDescriptor(format);
+module.exports.transform = (source, sourceFormat, destinationFormat, parameters, options) => builtinEngine.transform(source, sourceFormat, destinationFormat, parameters, options);
 module.exports.generateTransformationDiagram = () => builtinEngine.generateTransformationDiagram();

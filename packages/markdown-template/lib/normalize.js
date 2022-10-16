@@ -14,7 +14,7 @@
 
 'use strict';
 
-const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+var CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -22,9 +22,9 @@ const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMa
  * @return {string} - the normalized text
  */
 function normalizeNLs(input) {
-    // we replace all \r and \n with \n
-    let text =  input.replace(/\r/gm,'');
-    return text;
+  // we replace all \r and \n with \n
+  var text = input.replace(/\r/gm, '');
+  return text;
 }
 
 /**
@@ -33,9 +33,9 @@ function normalizeNLs(input) {
  * @return {string} - the normalized markdown cicero text
  */
 function normalizeToMarkdownCicero(input) {
-    const ciceroMarkTransformer = new CiceroMarkTransformer();
-    const result = ciceroMarkTransformer.toMarkdownCicero(input);
-    return result;
+  var ciceroMarkTransformer = new CiceroMarkTransformer();
+  var result = ciceroMarkTransformer.toMarkdownCicero(input);
+  return result;
 }
 
 /**
@@ -44,13 +44,12 @@ function normalizeToMarkdownCicero(input) {
  * @return {object} - the normalized CiceroMark DOM
  */
 function normalizeFromMarkdownCicero(input) {
-    // Normalizes new lines
-    const inputNLs = normalizeNLs(input);
-    // Roundtrip through the CommonMark parser
-    const ciceroMarkTransformer = new CiceroMarkTransformer();
-    return ciceroMarkTransformer.fromMarkdownCicero(inputNLs);
+  // Normalizes new lines
+  var inputNLs = normalizeNLs(input);
+  // Roundtrip through the CommonMark parser
+  var ciceroMarkTransformer = new CiceroMarkTransformer();
+  return ciceroMarkTransformer.fromMarkdownCicero(inputNLs);
 }
-
 module.exports.normalizeNLs = normalizeNLs;
 module.exports.normalizeToMarkdownCicero = normalizeToMarkdownCicero;
 module.exports.normalizeFromMarkdownCicero = normalizeFromMarkdownCicero;

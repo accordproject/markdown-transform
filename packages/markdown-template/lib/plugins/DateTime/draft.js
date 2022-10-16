@@ -14,8 +14,8 @@
 
 'use strict';
 
-const dayjs = require('dayjs');
-const utc = require('dayjs/plugin/utc');
+var dayjs = require('dayjs');
+var utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 /**
@@ -24,9 +24,8 @@ dayjs.extend(utc);
  * @param {object} format the the format
  * @returns {string} the text
  */
-function dateTimeDrafter(value,format) {
-    const f = format ? format : 'MM/DD/YYYY';
-    return dayjs.utc(value).format(f);
+function dateTimeDrafter(value, format) {
+  var f = format ? format : 'MM/DD/YYYY';
+  return dayjs.utc(value).format(f);
 }
-
 module.exports = dateTimeDrafter;

@@ -2,6 +2,6 @@ coverage
 node_modules
 out
 umd
+lib
 test/data
 scripts
-test.js

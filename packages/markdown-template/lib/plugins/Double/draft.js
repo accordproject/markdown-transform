@@ -14,8 +14,8 @@
 
 'use strict';
 
-const draftDoubleIEEE = require('./format').draftDoubleIEEE;
-const draftDoubleFormat = require('./format').draftDoubleFormat;
+var draftDoubleIEEE = require('./format').draftDoubleIEEE;
+var draftDoubleFormat = require('./format').draftDoubleFormat;
 
 /**
  * Creates a drafter for a double
@@ -23,12 +23,11 @@ const draftDoubleFormat = require('./format').draftDoubleFormat;
  * @param {string} format - the format
  * @returns {string} the text
  */
-function doubleDrafter(value,format) {
-    if (format) {
-        return draftDoubleFormat(value,format);
-    } else {
-        return draftDoubleIEEE(value);
-    }
+function doubleDrafter(value, format) {
+  if (format) {
+    return draftDoubleFormat(value, format);
+  } else {
+    return draftDoubleIEEE(value);
+  }
 }
-
 module.exports = doubleDrafter;

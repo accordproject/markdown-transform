@@ -14,7 +14,7 @@
 
 'use strict';
 
-const ParseException = require('@accordproject/concerto-cto').ParseException;
+var ParseException = require('@accordproject/concerto-cto').ParseException;
 
 /**
  * Exception throws when ergo compilation fails
@@ -25,17 +25,16 @@ const ParseException = require('@accordproject/concerto-cto').ParseException;
  * @private
  */
 class TemplateException extends ParseException {
-    /**
-     * Create a TemplateException
-     * @param {string} message - the message for the exception
-     * @param {string} fileLocation - the optional file location associated with the exception
-     * @param {string} fileName - the optional file name associated with the exception
-     * @param {string} fullMessageOverride - the optional pre-existing full message
-     * @param {string} component - the optional component which throws this error
-     */
-    constructor(message, fileLocation, fileName, fullMessageOverride, component) {
-        super(message, fileLocation, fileName, fullMessageOverride, component || 'cicero-core');
-    }
+  /**
+   * Create a TemplateException
+   * @param {string} message - the message for the exception
+   * @param {string} fileLocation - the optional file location associated with the exception
+   * @param {string} fileName - the optional file name associated with the exception
+   * @param {string} fullMessageOverride - the optional pre-existing full message
+   * @param {string} component - the optional component which throws this error
+   */
+  constructor(message, fileLocation, fileName, fullMessageOverride, component) {
+    super(message, fileLocation, fileName, fullMessageOverride, component || 'cicero-core');
+  }
 }
-
 module.exports = TemplateException;
