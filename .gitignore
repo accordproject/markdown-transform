@@ -14,8 +14,6 @@
 
 .DS_Store
 
-output
-
 # Downloaded model files
 # **/models/@*.cto
 
@@ -25,6 +23,12 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# output directory
+/out
+/dist
+/umd
+/lib
 
 # Runtime data
 pids
