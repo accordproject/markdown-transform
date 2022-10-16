@@ -15,7 +15,7 @@
     "umd"
   ],
   "main": "index.js",
-  "browser": "index.dist.js",
+  "browser": "umd/markdown-pdf",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
