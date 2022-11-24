@@ -75,7 +75,7 @@
     "jsdoc": "^3.6.10",
     "jsome": "2.5.0",
     "license-check-and-add": "2.3.6",
-    "mocha": "8.3.2",
+    "mocha": "10.1.0",
     "nyc": "15.1.0",
     "raw-loader": "^4.0.2",
     "stream-browserify": "3.0.0",
