@@ -1,5 +1,6 @@
 'use strict';
 
+import "babel-polyfill";
 /*eslint-env browser*/
 /*global $, _*/
 
