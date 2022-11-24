@@ -39,7 +39,7 @@ jobs:
         run: npm run coverage
 
       - name: Coveralls
-        uses: coverallsapp/github-action@main
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: ${{ matrix.os }}
@@ -55,7 +55,7 @@ jobs:
 
     steps:
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@main
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
