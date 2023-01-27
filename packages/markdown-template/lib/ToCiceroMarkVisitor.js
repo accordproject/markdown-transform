@@ -91,6 +91,26 @@ class ToCiceroMarkVisitor {
   }
 
   /**
+   * Evaluates a JS expression
+   * @param {*} data the contract data
+   * @param {string} condition the boolean JS expression
+   * @returns {Boolean} the result of evaluating the expression against the data
+   */
+  static eval(data, condition) {
+    data.now = new Date();
+    var args = Object.keys(data);
+    var values = Object.values(data);
+    console.log('**** ' + JSON.stringify(data, null, 2));
+    console.log('**** ' + condition);
+    console.log('**** ' + args);
+    console.log('**** ' + values);
+    var fun = new Function(...args, condition);
+    var result = fun(...values);
+    console.log('**** ' + result);
+    return result;
+  }
+
+  /**
    * Visit a node
    * @param {*} thing the object being visited
    * @param {*} parameters the parameters
@@ -131,7 +151,8 @@ class ToCiceroMarkVisitor {
         {
           var _ciceroMarkTag2 = ToCiceroMarkVisitor.matchTag(thing.getType());
           thing.$classDeclaration = parameters.templateMarkModelManager.getType(_ciceroMarkTag2);
-          thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code, parameters.fullData, parameters.currentTime);
+          // thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData,parameters.currentTime);
+          thing.value = JSON.stringify(ToCiceroMarkVisitor.eval(parameters.fullData, thing.code));
         }
         break;
       case 'ClauseDefinition':
@@ -173,7 +194,9 @@ class ToCiceroMarkVisitor {
           thing.$classDeclaration = parameters.templateMarkModelManager.getType(_ciceroMarkTag4);
           ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
           ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
-          if (parameters.data[thing.name]) {
+          var conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, thing.condition) : parameters.data[thing.name];
+          delete thing.condition;
+          if (conditionTrue) {
             thing.isTrue = true;
             thing.nodes = thing.whenTrue;
           } else {

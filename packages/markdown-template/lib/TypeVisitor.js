@@ -103,9 +103,13 @@ class TypeVisitor {
    * @param {*} [parameters] optional parameters
    */
   static visitNodes(visitor, things, parameters) {
-    things.forEach(node => {
-      node.accept(visitor, parameters);
-    });
+    try {
+      things.forEach(node => {
+        node.accept(visitor, parameters);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   /**
@@ -149,6 +153,7 @@ class TypeVisitor {
             }
           } else {
             if (!currentModel.getProperty) {
+              console.log('****' + currentModel + ' ' + currentModel.getProperty);
               _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             var _property = currentModel.getProperty(thing.name);
@@ -294,13 +299,14 @@ class TypeVisitor {
       case 'ConditionalDefinition':
         {
           var _property6 = currentModel.getOwnProperty(thing.name);
+          console.log(_property6);
           var _nextModel4;
           if (!_property6) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
-          if (_property6.getType() !== 'Boolean') {
-            _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
-          }
+          // if (property.getType() !== 'Boolean') {
+          //     _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
+          // }
           var _serializer7 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer7, _property6);
           _nextModel4 = _property6;

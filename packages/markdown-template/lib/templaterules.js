@@ -74,6 +74,8 @@ var ifOpenRule = {
   close: false,
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
+    console.log(getAttr(token.attrs, 'condition', null));
+    node.condition = getAttr(token.attrs, 'condition', null);
     node.whenTrue = null;
     node.whenFalse = null;
   },

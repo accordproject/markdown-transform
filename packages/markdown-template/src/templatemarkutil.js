@@ -85,20 +85,20 @@ function instanceOf(classDeclaration, fqt) {
  * @returns {ClassDeclaration} the template model for the template
  */
 function findTemplateModel(introspector, templateKind) {
-    let modelType = 'org.accordproject.contract.Contract';
+    // let modelType = 'org.accordproject.contract.Contract';
 
-    if (templateKind !== 'contract') {
-        modelType = 'org.accordproject.contract.Clause';
-    }
+    // if (templateKind !== 'contract') {
+    //     modelType = 'org.accordproject.contract.Clause';
+    // }
 
     const templateModels = introspector.getClassDeclarations().filter((item) => {
-        return !item.isAbstract() && instanceOf(item,modelType);
+        return !item.isAbstract() && item.getDecorator('template');
     });
 
     if (templateModels.length > 1) {
-        throw new Error(`Found multiple instances of ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
+        throw new Error('Found multiple concepts with @template decorator. The model for the template must contain a single concept with the @template decorator.');
     } else if (templateModels.length === 0) {
-        throw new Error(`Failed to find an asset that extends ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
+        throw new Error('Failed to find a concept with the @template decorator. The model for the template must contain a single concept with the @template decoratpr.');
     } else {
         return templateModels[0];
     }
@@ -204,6 +204,7 @@ function tokensToUntypedTemplateMarkGen(tokenStream) {
     const fromMarkdownIt = new FromMarkdownIt(templaterules);
     const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
     const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+    console.log(JSON.stringify(result, null, 2));
     return result.nodes;
 }
 
