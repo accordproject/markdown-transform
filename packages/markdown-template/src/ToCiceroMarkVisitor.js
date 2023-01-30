@@ -89,18 +89,18 @@ class ToCiceroMarkVisitor {
     /**
      * Evaluates a JS expression
      * @param {*} data the contract data
-     * @param {string} condition the boolean JS expression
+     * @param {string} expression the JS expression
      * @returns {Boolean} the result of evaluating the expression against the data
      */
-    static eval(data, condition) {
+    static eval(data, expression) {
         data.now = new Date();
         const args = Object.keys(data);
         const values = Object.values(data);
         console.log('**** ' + JSON.stringify(data, null, 2));
-        console.log('**** ' + condition);
+        console.log('**** ' + expression);
         console.log('**** ' + args);
         console.log('**** ' + values);
-        const fun = new Function(...args, condition);
+        const fun = new Function(...args, expression);
         const result = fun(...values);
         console.log('**** ' + result);
         return result;
@@ -183,7 +183,7 @@ class ToCiceroMarkVisitor {
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
             ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
-            const conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, thing.condition) : parameters.data[thing.name];
+            const conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, `return !!${thing.condition}`) : parameters.data[thing.name];
             delete thing.condition;
 
             if (conditionTrue) {

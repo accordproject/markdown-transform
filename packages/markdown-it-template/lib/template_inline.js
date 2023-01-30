@@ -52,6 +52,7 @@ function template_inline(state, silent) {
         if (silent) { return false; }
 
         match = state.src.slice(pos).match(OPEN_BLOCK_RE);
+        console.log('%%%%%% '+ match);
         if (!match) { return false; }
 
         attrs = getBlockAttributes(match);

@@ -19,9 +19,9 @@
 const names = require('./names.json');
 
 const string = '"([^"]*)"';
-const identifier = '([a-zA-Z_][a-zA-Z0-9_]*)';
-const name = '(?:\\s+([A-Za-z0-9_\-]+))';
-var attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
+const identifier = '([a-zA-Z_][a-zA-Z0-9_]+)';
+const name = '(?:\\s+([A-Za-z0-9_-]+))?'; // name is optional (not required for #if)
+const attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
 
 const format = '(:?\\s+as\\s*'+ string + '\\s*)?';
 const variable = '{{\\s*' + identifier + format + '\\s*}}';
@@ -42,8 +42,9 @@ const FORMULA_RE = new RegExp('^(?:' + formula + ')');
  */
 function getBlockAttributes(match) {
     const result = [];
-    // name is always present in the block
-    result.push([ 'name', match[2] ])
+    console.log('**** getBlockAttributes:' + match);
+    // if we don't have a name, we use the identifier of the tag
+    result.push([ 'name', match[2] ? match[2] : match[1] ]);
     // those are block attributes
     for(let i = 3; i < match.length; i = i+2) {
         if (match[i]) {
@@ -60,6 +61,8 @@ function getBlockAttributes(match) {
  * @return {*} open tag
  */
 function matchOpenBlock(text,stack) {
+    console.log('**** matchOpenBlock:' + text);
+
     var match = text.match(OPEN_BLOCK_RE);
     if (!match) { return null; }
     var block_open = match[1];
