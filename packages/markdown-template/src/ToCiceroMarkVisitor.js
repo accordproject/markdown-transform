@@ -97,10 +97,12 @@ class ToCiceroMarkVisitor {
         data.now = now ? now : dayjs();
         const args = Object.keys(data);
         const values = Object.values(data);
+        // const types = values.map( v => typeof v);
         // console.log('**** ' + JSON.stringify(data, null, 2));
         // console.log('**** ' + expression);
         // console.log('**** ' + args);
         // console.log('**** ' + values);
+        // console.log('**** ' + types);
         const fun = new Function(...args, expression);
         const result = fun(...values);
         // console.log('**** ' + result);

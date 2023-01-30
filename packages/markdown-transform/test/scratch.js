@@ -14,7 +14,11 @@ const templateMarkTransformer = new TemplateMarkTransformer();
 /**
  * Define the structure of the template. The syntax is called 'Template Mark'
  * and is extended markdown (commonmark) with embedded JS expressions for formulae
- * and conditions.
+ * and conditions. The condition property on the #if is a JS condition
+ * (lastName is a string). The contents of the {{% %}} is evaluated as a JS
+ * function, with the return value converted to a string and inserted into the
+ * result document. The 'now' constant is the current date/time (a dayjs instance),
+ * while 'lastVisit' is a date/time formatted as a string.
  */
 const template = `
 Hello {{firstName}}{{#if condition="lastName.startsWith('S')"}}Mister{{else}}Dude{{/if}}!
