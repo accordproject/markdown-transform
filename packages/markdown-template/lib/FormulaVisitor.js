@@ -54,11 +54,11 @@ class FormulaVisitor {
    */
   visit(thing, parameters) {
     switch (thing.getType()) {
-      case 'FormulaDefinition':
+      case 'ConditionalDefinition':
         {
           if (parameters.calculateDependencies) {
             var deps = [];
-            walk.simple(acorn.parse(thing.code, {
+            walk.simple(acorn.parse(thing.condition, {
               ecmaVersion: 2020,
               allowReturnOutsideFunction: true
             }), {
@@ -67,6 +67,27 @@ class FormulaVisitor {
               }
             });
             thing.dependencies = deps;
+          } else {
+            parameters.result.push({
+              name: thing.name,
+              code: thing.condition
+            });
+          }
+        }
+        break;
+      case 'FormulaDefinition':
+        {
+          if (parameters.calculateDependencies) {
+            var _deps = [];
+            walk.simple(acorn.parse(thing.code, {
+              ecmaVersion: 2020,
+              allowReturnOutsideFunction: true
+            }), {
+              Identifier(node) {
+                _deps.push(node.name);
+              }
+            });
+            thing.dependencies = _deps;
           } else {
             parameters.result.push({
               name: thing.name,

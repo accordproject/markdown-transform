@@ -185,6 +185,7 @@ class ToCiceroMarkVisitor {
             ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
             const conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, `return !!${thing.condition}`) : parameters.data[thing.name];
             delete thing.condition;
+            delete thing.dependencies;
 
             if (conditionTrue) {
                 thing.isTrue = true;

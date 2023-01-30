@@ -55,6 +55,20 @@ class FormulaVisitor {
     visit(thing, parameters) {
         switch(thing.getType()) {
         case 'ConditionalDefinition':
+            {
+                if (parameters.calculateDependencies) {
+                    const deps = [];
+                    walk.simple(acorn.parse(thing.condition, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
+                        Identifier(node) {
+                            deps.push(node.name);
+                        }
+                    });
+                    thing.dependencies = deps;
+                } else {
+                    parameters.result.push({ name : thing.name, code: thing.condition });
+                }
+            }
+            break;
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
                 const deps = [];
