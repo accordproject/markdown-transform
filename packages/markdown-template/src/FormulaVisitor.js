@@ -14,6 +14,9 @@
 
 'use strict';
 
+const acorn = require('acorn');
+const walk = require('acorn-walk');
+
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
@@ -51,17 +54,15 @@ class FormulaVisitor {
      */
     visit(thing, parameters) {
         switch(thing.getType()) {
-        case 'VariableDefinition':
-        case 'FormattedVariableDefinition':
-        case 'EnumVariableDefinition': {
-            if (parameters.calculateDependencies) {
-                parameters.variables.push(thing.name);
-            }
-        }
-            break;
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
-                thing.dependencies = parameters.variables;
+                const deps = [];
+                walk.simple(acorn.parse(thing.code, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
+                    Identifier(node) {
+                        deps.push(node.name);
+                    }
+                });
+                thing.dependencies = deps;
             } else {
                 parameters.result.push({ name : thing.name, code: thing.code });
             }
@@ -84,8 +85,9 @@ class FormulaVisitor {
         const parameters = {
             calculateDependencies: true,
             variables: [],
-            result: [],
+            result: []
         };
+        // console.log('INPUT calculateDependencies: ' + JSON.stringify(ast, null,2));
         const input = serializer.fromJSON(ast,options);
         input.accept(this, parameters);
         return serializer.toJSON(input,options);

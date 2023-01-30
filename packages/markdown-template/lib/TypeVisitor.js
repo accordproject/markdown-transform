@@ -301,7 +301,8 @@ class TypeVisitor {
           var _property6 = currentModel.getOwnProperty(thing.name);
           console.log(_property6);
           var _nextModel4;
-          if (!_property6) {
+          if (thing.name !== 'if' && !_property6) {
+            // hack, allow the node to have the name 'if'
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
           // if (property.getType() !== 'Boolean') {

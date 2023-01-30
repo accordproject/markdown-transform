@@ -89,6 +89,8 @@
     "@accordproject/markdown-cicero": "0.16.2",
     "@accordproject/markdown-common": "0.16.2",
     "@accordproject/markdown-it-template": "0.16.2",
+    "acorn": "^8.8.2",
+    "acorn-walk": "^8.2.0",
     "dayjs": "1.10.8",
     "markdown-it": "^12.3.2",
     "parsimmon": "1.16.0",

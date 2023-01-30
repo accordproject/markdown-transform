@@ -296,7 +296,7 @@ class TypeVisitor {
             const property = currentModel.getOwnProperty(thing.name);
             console.log(property);
             let nextModel;
-            if (!property) {
+            if (thing.name !== 'if' && !property) { // hack, allow the node to have the name 'if'
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             // if (property.getType() !== 'Boolean') {
