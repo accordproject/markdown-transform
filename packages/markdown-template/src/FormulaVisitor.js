@@ -54,6 +54,7 @@ class FormulaVisitor {
      */
     visit(thing, parameters) {
         switch(thing.getType()) {
+        case 'ConditionalDefinition':
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
                 const deps = [];
