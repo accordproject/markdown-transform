@@ -54,7 +54,7 @@ console.log(JSON.stringify(templateJson, null, 2));
 const data = {
     firstName: 'Dan',
     lastName: 'Jones',
-    lastVisit: new Date('2023-01-10')
+    lastVisit: '2023-01-10'
 };
 
 /**
