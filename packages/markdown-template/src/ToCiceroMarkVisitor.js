@@ -13,7 +13,7 @@
  */
 
 'use strict';
-
+const dayjs = require('dayjs');
 const flatten = require('./util').flatten;
 const generateJSON = require('./templatemarkutil').generateJSON;
 const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
@@ -90,19 +90,20 @@ class ToCiceroMarkVisitor {
      * Evaluates a JS expression
      * @param {*} data the contract data
      * @param {string} expression the JS expression
+     * @param {Date} now the current value for now
      * @returns {Boolean} the result of evaluating the expression against the data
      */
-    static eval(data, expression) {
-        data.now = new Date();
+    static eval(data, expression, now) {
+        data.now = now ? now : dayjs();
         const args = Object.keys(data);
         const values = Object.values(data);
-        console.log('**** ' + JSON.stringify(data, null, 2));
-        console.log('**** ' + expression);
-        console.log('**** ' + args);
-        console.log('**** ' + values);
+        // console.log('**** ' + JSON.stringify(data, null, 2));
+        // console.log('**** ' + expression);
+        // console.log('**** ' + args);
+        // console.log('**** ' + values);
         const fun = new Function(...args, expression);
         const result = fun(...values);
-        console.log('**** ' + result);
+        // console.log('**** ' + result);
         return result;
     }
 
@@ -144,7 +145,7 @@ class ToCiceroMarkVisitor {
             const ciceroMarkTag = ToCiceroMarkVisitor.matchTag(thing.getType());
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             // thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData,parameters.currentTime);
-            thing.value = JSON.stringify(ToCiceroMarkVisitor.eval(parameters.fullData, thing.code ));
+            thing.value = JSON.stringify(ToCiceroMarkVisitor.eval(parameters.fullData, thing.code, parameters.currentTime));
         }
             break;
         case 'ClauseDefinition': {
@@ -183,7 +184,7 @@ class ToCiceroMarkVisitor {
             thing.$classDeclaration = parameters.templateMarkModelManager.getType(ciceroMarkTag);
             ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
             ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
-            const conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, `return !!${thing.condition}`) : parameters.data[thing.name];
+            const conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, `return !!${thing.condition}`, parameters.currentTime) : parameters.data[thing.name];
             delete thing.condition;
             delete thing.dependencies;
 

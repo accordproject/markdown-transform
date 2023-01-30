@@ -115,7 +115,6 @@ class FormulaVisitor {
       variables: [],
       result: []
     };
-    // console.log('INPUT calculateDependencies: ' + JSON.stringify(ast, null,2));
     var input = serializer.fromJSON(ast, options);
     input.accept(this, parameters);
     return serializer.toJSON(input, options);

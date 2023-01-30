@@ -14,6 +14,7 @@
 
 'use strict';
 
+var dayjs = require('dayjs');
 var flatten = require('./util').flatten;
 var generateJSON = require('./templatemarkutil').generateJSON;
 var {
@@ -94,19 +95,20 @@ class ToCiceroMarkVisitor {
    * Evaluates a JS expression
    * @param {*} data the contract data
    * @param {string} expression the JS expression
+   * @param {Date} now the current value for now
    * @returns {Boolean} the result of evaluating the expression against the data
    */
-  static eval(data, expression) {
-    data.now = new Date();
+  static eval(data, expression, now) {
+    data.now = now ? now : dayjs();
     var args = Object.keys(data);
     var values = Object.values(data);
-    console.log('**** ' + JSON.stringify(data, null, 2));
-    console.log('**** ' + expression);
-    console.log('**** ' + args);
-    console.log('**** ' + values);
+    // console.log('**** ' + JSON.stringify(data, null, 2));
+    // console.log('**** ' + expression);
+    // console.log('**** ' + args);
+    // console.log('**** ' + values);
     var fun = new Function(...args, expression);
     var result = fun(...values);
-    console.log('**** ' + result);
+    // console.log('**** ' + result);
     return result;
   }
 
@@ -152,7 +154,7 @@ class ToCiceroMarkVisitor {
           var _ciceroMarkTag2 = ToCiceroMarkVisitor.matchTag(thing.getType());
           thing.$classDeclaration = parameters.templateMarkModelManager.getType(_ciceroMarkTag2);
           // thing.value = parameters.parserManager.getFormulaEval(thing.name)(thing.code,parameters.fullData,parameters.currentTime);
-          thing.value = JSON.stringify(ToCiceroMarkVisitor.eval(parameters.fullData, thing.code));
+          thing.value = JSON.stringify(ToCiceroMarkVisitor.eval(parameters.fullData, thing.code, parameters.currentTime));
         }
         break;
       case 'ClauseDefinition':
@@ -194,7 +196,7 @@ class ToCiceroMarkVisitor {
           thing.$classDeclaration = parameters.templateMarkModelManager.getType(_ciceroMarkTag4);
           ToCiceroMarkVisitor.visitNodes(this, thing.whenTrue, parameters);
           ToCiceroMarkVisitor.visitNodes(this, thing.whenFalse, parameters);
-          var conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, "return !!".concat(thing.condition)) : parameters.data[thing.name];
+          var conditionTrue = thing.condition ? ToCiceroMarkVisitor.eval(parameters.data, "return !!".concat(thing.condition), parameters.currentTime) : parameters.data[thing.name];
           delete thing.condition;
           delete thing.dependencies;
           if (conditionTrue) {

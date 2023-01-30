@@ -42,7 +42,6 @@ const FORMULA_RE = new RegExp('^(?:' + formula + ')');
  */
 function getBlockAttributes(match) {
     const result = [];
-    console.log('**** getBlockAttributes:' + match);
     // if we don't have a name, we use the identifier of the tag
     result.push([ 'name', match[2] ? match[2] : match[1] ]);
     // those are block attributes
@@ -61,8 +60,6 @@ function getBlockAttributes(match) {
  * @return {*} open tag
  */
 function matchOpenBlock(text,stack) {
-    console.log('**** matchOpenBlock:' + text);
-
     var match = text.match(OPEN_BLOCK_RE);
     if (!match) { return null; }
     var block_open = match[1];

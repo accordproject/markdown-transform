@@ -210,7 +210,6 @@ function tokensToUntypedTemplateMarkGen(tokenStream) {
   var fromMarkdownIt = new FromMarkdownIt(templaterules);
   var partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
   var result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-  console.log(JSON.stringify(result, null, 2));
   return result.nodes;
 }
 

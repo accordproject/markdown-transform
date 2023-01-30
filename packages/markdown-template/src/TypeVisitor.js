@@ -154,7 +154,6 @@ class TypeVisitor {
                 }
             } else {
                 if (!currentModel.getProperty) {
-                    console.log('****' + currentModel + ' ' + currentModel.getProperty);
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 const property = currentModel.getProperty(thing.name);
@@ -294,16 +293,16 @@ class TypeVisitor {
             break;
         case 'ConditionalDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
-            console.log(property);
             let nextModel;
             if (thing.name !== 'if' && !property) { // hack, allow the node to have the name 'if'
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
+
             // if (property.getType() !== 'Boolean') {
             //     _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
             // }
             const serializer = parameters.templateMarkModelManager.getSerializer();
-            thing.decorators = processDecorators(serializer,property);
+            thing.decorators = property ? processDecorators(serializer,property) : null;
             nextModel = property;
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
