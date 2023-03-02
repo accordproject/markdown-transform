@@ -21,9 +21,12 @@ const templateMarkTransformer = new TemplateMarkTransformer();
  * while 'lastVisit' is a date/time formatted as a string.
  */
 const template = `
-Hello {{firstName}}{{#if condition="lastName.startsWith('S')"}}Mister{{else}}Dude{{/if}}!
+Hello {{firstName}}{{#if condition="lastName.startsWith('S')"}}{{Mister}}{{else}}Dude{{/if}}!
 
-Thank you for visiting us {{% return now.diff(lastVisit,'day') %}} days ago.
+Thank you for visiting us {{% return now.diff(lastVisit,'day'); %}} days ago.
+
+## Address
+{{#with address}}- {{street}}- {{city}}{{#optional state}}- {{state}}{{/optional}}- {{country}}{{/with}}
 `;
 
 /**
@@ -33,11 +36,19 @@ Thank you for visiting us {{% return now.diff(lastVisit,'day') %}} days ago.
  */
 const model = `namespace test@1.0.0
 
+concept Address {
+    o String street
+    o String city
+    o String state optional
+    o String country
+}
+
 @template
 concept TemplateData {
     o String firstName
     o String lastName optional
     o DateTime lastVisit
+    o Address address
 }
 `;
 

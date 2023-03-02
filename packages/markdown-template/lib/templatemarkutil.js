@@ -63,31 +63,6 @@ function mkTemplateMarkManager(options) {
 var templateMarkManager = mkTemplateMarkManager();
 
 /**
- * Check to see if a ClassDeclaration is an instance of the specified fully qualified
- * type name.
- * @internal
- * @param {ClassDeclaration} classDeclaration The class to test
- * @param {String} fqt The fully qualified type name.
- * @returns {boolean} True if classDeclaration an instance of the specified fully
- * qualified type name, false otherwise.
- */
-function instanceOf(classDeclaration, fqt) {
-  // Check to see if this is an exact instance of the specified type.
-  if (classDeclaration.getFullyQualifiedName() === fqt) {
-    return true;
-  }
-  // Now walk the class hierachy looking to see if it's an instance of the specified type.
-  var superTypeDeclaration = classDeclaration.getSuperTypeDeclaration();
-  while (superTypeDeclaration) {
-    if (superTypeDeclaration.getFullyQualifiedName() === fqt) {
-      return true;
-    }
-    superTypeDeclaration = superTypeDeclaration.getSuperTypeDeclaration();
-  }
-  return false;
-}
-
-/**
  * Returns the template model for the template
  * @param {object} introspector - the model introspector for this template
  * @param {string} templateKind - either 'clause' or 'contract'
@@ -262,49 +237,6 @@ function tokensToUntypedTemplateMarkFragment(tokenStream) {
     }]
   };
 }
-
-/**
- * @param {object} modelManager - the model manager
- * @param {object} type - The type from the model source to generate a JSON for
- * @return {object} the generated JSON instance
- */
-function generateJSON(modelManager, type) {
-  var factory = new Factory(modelManager);
-  var serializer = new Serializer(factory, modelManager);
-  switch (type) {
-    case 'DateTime':
-      return dayjs.utc();
-    case 'Integer':
-      return 0;
-    case 'Long':
-      return 0;
-    case 'Double':
-      return 0.0;
-    case 'Boolean':
-      return false;
-    case 'String':
-      return '';
-    default:
-      {
-        var classDeclaration = modelManager.getType(type);
-        if (classDeclaration.isEnum()) {
-          throw new Error('Cannot generate JSON for an enumerated type directly, the type should be contained in Concept, Asset, Transaction or Event declaration');
-        }
-        var ns = classDeclaration.getNamespace();
-        var name = classDeclaration.getName();
-        var factoryOptions = {
-          includeOptionalFields: true,
-          generate: true
-        };
-        if (classDeclaration.isConcept()) {
-          var concept = factory.newConcept(ns, name, null, factoryOptions);
-          return serializer.toJSON(concept);
-        }
-        var resource = factory.newResource(ns, name, 'resource1', null, factoryOptions);
-        return serializer.toJSON(resource);
-      }
-  }
-}
 module.exports.findTemplateModel = findTemplateModel;
 module.exports.templateMarkManager = templateMarkManager;
 module.exports.templateToTokens = templateToTokens;
@@ -312,4 +244,3 @@ module.exports.tokensToUntypedTemplateMarkFragment = tokensToUntypedTemplateMark
 module.exports.tokensToUntypedTemplateMark = tokensToUntypedTemplateMark;
 module.exports.templateMarkTyping = templateMarkTyping;
 module.exports.templateMarkTypingFromType = templateMarkTypingFromType;
-module.exports.generateJSON = generateJSON;

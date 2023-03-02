@@ -102,15 +102,15 @@ class ToCiceroMarkVisitor {
     data.now = now ? now : dayjs();
     var args = Object.keys(data);
     var values = Object.values(data);
-    var types = values.map(v => typeof v);
-    console.log('**** ' + JSON.stringify(data, null, 2));
-    console.log('**** ' + expression);
-    console.log('**** ' + args);
-    console.log('**** ' + values);
-    console.log('**** ' + types);
-    var fun = new Function(...args, expression);
+    // const types = values.map( v => typeof v);
+    // console.log('**** ' + JSON.stringify(data, null, 2));
+    // console.log('**** ' + expression);
+    // console.log('**** ' + args);
+    // console.log('**** ' + values);
+    // console.log('**** ' + types);
+    var fun = new Function(...args, expression); // SECURITY!
     var result = fun(...values);
-    console.log('**** ' + result);
+    // console.log('**** ' + result);
     return result;
   }
 

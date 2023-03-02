@@ -103,7 +103,7 @@ class ToCiceroMarkVisitor {
         // console.log('**** ' + args);
         // console.log('**** ' + values);
         // console.log('**** ' + types);
-        const fun = new Function(...args, expression);
+        const fun = new Function(...args, expression); // SECURITY!
         const result = fun(...values);
         // console.log('**** ' + result);
         return result;
