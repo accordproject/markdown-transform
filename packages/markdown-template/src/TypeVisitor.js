@@ -194,7 +194,7 @@ class TypeVisitor {
                 if (!property) {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
-                if (property.isPrimitive()) {
+                if (property.isPrimitive() || property.isTypeEnum()) {
                     nextModel = property;
                 } else {
                     thing.elementType = property.getFullyQualifiedTypeName();
@@ -225,7 +225,7 @@ class TypeVisitor {
             if (!property) {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
-            if (property.isPrimitive()) {
+            if (property.isPrimitive() || property.isTypeEnum()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -252,7 +252,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
+            if (property.isPrimitive() || property.isTypeEnum()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -277,7 +277,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
+            if (property.isPrimitive() || property.isTypeEnum()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -329,7 +329,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
+            if (property.isPrimitive() || property.isTypeEnum()) {
                 thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = property;
             } else {

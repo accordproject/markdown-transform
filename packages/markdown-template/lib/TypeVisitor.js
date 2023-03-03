@@ -195,7 +195,7 @@ class TypeVisitor {
             if (!_property2) {
               _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
-            if (_property2.isPrimitive()) {
+            if (_property2.isPrimitive() || _property2.isTypeEnum()) {
               nextModel = _property2;
             } else {
               thing.elementType = _property2.getFullyQualifiedTypeName();
@@ -227,7 +227,7 @@ class TypeVisitor {
           if (!_property3) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
-          if (_property3.isPrimitive()) {
+          if (_property3.isPrimitive() || _property3.isTypeEnum()) {
             _nextModel = _property3;
           } else {
             thing.elementType = _property3.getFullyQualifiedTypeName();
@@ -255,7 +255,7 @@ class TypeVisitor {
           }
           var _serializer5 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer5, _property4);
-          if (_property4.isPrimitive()) {
+          if (_property4.isPrimitive() || _property4.isTypeEnum()) {
             _nextModel2 = _property4;
           } else {
             thing.elementType = _property4.getFullyQualifiedTypeName();
@@ -281,7 +281,7 @@ class TypeVisitor {
           }
           var _serializer6 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer6, _property5);
-          if (_property5.isPrimitive()) {
+          if (_property5.isPrimitive() || _property5.isTypeEnum()) {
             _nextModel3 = _property5;
           } else {
             thing.elementType = _property5.getFullyQualifiedTypeName();
@@ -336,7 +336,7 @@ class TypeVisitor {
           }
           var _serializer8 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer8, _property7);
-          if (_property7.isPrimitive()) {
+          if (_property7.isPrimitive() || _property7.isTypeEnum()) {
             thing.elementType = _property7.getFullyQualifiedTypeName();
             _nextModel5 = _property7;
           } else {
