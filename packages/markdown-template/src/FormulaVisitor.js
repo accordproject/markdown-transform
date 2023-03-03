@@ -58,11 +58,13 @@ class FormulaVisitor {
             {
                 if (parameters.calculateDependencies) {
                     const deps = [];
-                    walk.simple(acorn.parse(thing.condition, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
-                        Identifier(node) {
-                            deps.push(node.name);
-                        }
-                    });
+                    if(thing.condition) {
+                        walk.simple(acorn.parse(thing.condition, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
+                            Identifier(node) {
+                                deps.push(node.name);
+                            }
+                        });
+                    }
                     thing.dependencies = deps;
                 } else {
                     parameters.result.push({ name : thing.name, code: thing.condition });
