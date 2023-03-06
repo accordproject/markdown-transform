@@ -101,23 +101,28 @@ function findElementModel(introspector, elementType) {
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingGen(template,introspector,model,templateKind,options) {
-    const input = templateMarkManager.serializer.fromJSON(template,options);
 
-    const parameters = {
-        templateMarkModelManager: templateMarkManager.modelManager,
-        introspector: introspector,
-        model: model,
-        kind: templateKind,
-    };
-    const visitor = new TypeVisitor();
-    input.accept(visitor, parameters);
-    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
+    try {
+        const input = templateMarkManager.serializer.fromJSON(template,options);
 
-    // Calculates formula dependencies
-    const fvisitor = new FormulaVisitor();
-    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
+        const parameters = {
+            templateMarkModelManager: templateMarkManager.modelManager,
+            introspector: introspector,
+            model: model,
+            kind: templateKind,
+        };
+        const visitor = new TypeVisitor();
+        input.accept(visitor, parameters);
+        let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
 
-    return result;
+        // Calculates formula dependencies
+        const fvisitor = new FormulaVisitor();
+        result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
+        return result;
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -164,10 +169,15 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
  * @returns {object} the token stream
  */
 function templateToTokens(input) {
-    const norm = normalizeNLs(input);
+    try {
+        const norm = normalizeNLs(input);
 
-    const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-    return parser.parse(norm,{});
+        const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
+        return parser.parse(norm,{});
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -176,10 +186,15 @@ function templateToTokens(input) {
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-    const fromMarkdownIt = new FromMarkdownIt(templaterules);
-    const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-    const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-    return result.nodes;
+    try {
+        const fromMarkdownIt = new FromMarkdownIt(templaterules);
+        const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+        const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+        return result.nodes;
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**

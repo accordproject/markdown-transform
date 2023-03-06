@@ -79,7 +79,11 @@ function processDecorators(serializer, decorated) {
 }
 
 /**
- * Converts a CommonMark DOM to a CiceroMark DOM
+ * Adds the elementType property to a TemplateMark DOM
+ * along with type specific metadata. This visitor verifies
+ * the structure of a template with respect to an associated
+ * template model and annotates the TemplateMark DOM with model
+ * information for use in downstream tools.
  */
 class TypeVisitor {
   /**
@@ -113,6 +117,22 @@ class TypeVisitor {
   }
 
   /**
+   * Get the type information for a property
+   * @param {*} property the propety
+   * @param {*} parameters the configuration parameters
+   * @returns {*} the information about the next model element (property or declaration)
+   */
+  static nextModel(property, parameters) {
+    var declaration = property.isPrimitive() ? null : parameters.introspector.getClassDeclaration(property.getFullyQualifiedTypeName());
+    return {
+      property: property.isPrimitive() ? property : null,
+      declaration,
+      typeIdentifier: property.isPrimitive() ? property.getFullyQualifiedTypeName() : declaration.getFullyQualifiedName(),
+      decorated: property.isPrimitive() ? property : declaration
+    };
+  }
+
+  /**
    * Visit a node
    * @param {*} thing the object being visited
    * @param {*} parameters the parameters
@@ -127,8 +147,11 @@ class TypeVisitor {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
           if (thing.name === 'this') {
-            var property = currentModel;
-            if (property) {
+            var property = currentModel; // BUG... if we are iterating over an array
+            // of complex types using a {{this}}, then thing will be a ClassDeclaration or an
+            // EnumDeclaration!!
+
+            if (property && property.getType) {
               var _property$isRelations;
               var serializer = parameters.templateMarkModelManager.getSerializer();
               thing.decorators = processDecorators(serializer, property);
@@ -150,6 +173,10 @@ class TypeVisitor {
                 var _elementType = property.getFullyQualifiedTypeName();
                 thing.elementType = _elementType;
               }
+            } else {
+              // it is a class
+              var _elementType2 = property.getFullyQualifiedName();
+              thing.elementType = _elementType2;
             }
           } else {
             if (!currentModel.getProperty) {
@@ -169,14 +196,14 @@ class TypeVisitor {
               } else if (_property.isPrimitive()) {
                 thing.elementType = _property.getFullyQualifiedTypeName();
               } else if ((_property$isRelations2 = _property.isRelationship) !== null && _property$isRelations2 !== void 0 && _property$isRelations2.call(_property)) {
-                var _elementType2 = _property.getFullyQualifiedTypeName();
-                thing.elementType = _elementType2;
-                var _nestedTemplateModel = parameters.introspector.getClassDeclaration(_elementType2);
+                var _elementType3 = _property.getFullyQualifiedTypeName();
+                thing.elementType = _elementType3;
+                var _nestedTemplateModel = parameters.introspector.getClassDeclaration(_elementType3);
                 var _identifier = _nestedTemplateModel.getIdentifierFieldName();
                 thing.identifiedBy = _identifier ? _identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
               } else {
-                var _elementType3 = _property.getFullyQualifiedTypeName();
-                thing.elementType = _elementType3;
+                var _elementType4 = _property.getFullyQualifiedTypeName();
+                thing.elementType = _elementType4;
               }
             } else {
               _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
@@ -191,22 +218,20 @@ class TypeVisitor {
               _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             var _property2 = currentModel.getOwnProperty(thing.name);
-            var nextModel;
             if (!_property2) {
               _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
-            if (_property2.isPrimitive() || _property2.isTypeEnum()) {
-              nextModel = _property2;
-            } else {
-              thing.elementType = _property2.getFullyQualifiedTypeName();
-              nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
-            }
+            var {
+              typeIdentifier,
+              decorated
+            } = TypeVisitor.nextModel(_property2, parameters);
+            thing.elementType = typeIdentifier;
             var _serializer2 = parameters.templateMarkModelManager.getSerializer();
-            thing.decorators = processDecorators(_serializer2, nextModel);
+            thing.decorators = processDecorators(_serializer2, decorated);
             TypeVisitor.visitChildren(this, thing, {
               templateMarkModelManager: parameters.templateMarkModelManager,
               introspector: parameters.introspector,
-              model: nextModel,
+              model: decorated,
               kind: parameters.kind
             });
           } else {
@@ -223,22 +248,22 @@ class TypeVisitor {
       case 'WithDefinition':
         {
           var _property3 = currentModel.getOwnProperty(thing.name);
-          var _nextModel;
+          var nextModel;
           if (!_property3) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
-          if (_property3.isPrimitive() || _property3.isTypeEnum()) {
-            _nextModel = _property3;
+          if (_property3.isPrimitive()) {
+            nextModel = _property3;
           } else {
             thing.elementType = _property3.getFullyQualifiedTypeName();
-            _nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+            nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
           }
           var _serializer4 = parameters.templateMarkModelManager.getSerializer();
-          thing.decorators = processDecorators(_serializer4, _nextModel);
+          thing.decorators = processDecorators(_serializer4, nextModel);
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel,
+            model: nextModel,
             kind: parameters.kind
           });
         }
@@ -246,7 +271,7 @@ class TypeVisitor {
       case 'ListBlockDefinition':
         {
           var _property4 = currentModel.getOwnProperty(thing.name);
-          var _nextModel2;
+          var _nextModel;
           if (!_property4) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
@@ -255,10 +280,36 @@ class TypeVisitor {
           }
           var _serializer5 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer5, _property4);
-          if (_property4.isPrimitive() || _property4.isTypeEnum()) {
-            _nextModel2 = _property4;
+          if (_property4.isPrimitive()) {
+            _nextModel = _property4;
           } else {
             thing.elementType = _property4.getFullyQualifiedTypeName();
+            _nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+          }
+          TypeVisitor.visitChildren(this, thing, {
+            templateMarkModelManager: parameters.templateMarkModelManager,
+            introspector: parameters.introspector,
+            model: _nextModel,
+            kind: parameters.kind
+          });
+        }
+        break;
+      case 'JoinDefinition':
+        {
+          var _property5 = currentModel.getOwnProperty(thing.name);
+          var _nextModel2;
+          if (!_property5) {
+            _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
+          }
+          if (!_property5.isArray()) {
+            _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
+          }
+          var _serializer6 = parameters.templateMarkModelManager.getSerializer();
+          thing.decorators = processDecorators(_serializer6, _property5);
+          if (_property5.isPrimitive()) {
+            _nextModel2 = _property5;
+          } else {
+            thing.elementType = _property5.getFullyQualifiedTypeName();
             _nextModel2 = parameters.introspector.getClassDeclaration(thing.elementType);
           }
           TypeVisitor.visitChildren(this, thing, {
@@ -269,36 +320,10 @@ class TypeVisitor {
           });
         }
         break;
-      case 'JoinDefinition':
-        {
-          var _property5 = currentModel.getOwnProperty(thing.name);
-          var _nextModel3;
-          if (!_property5) {
-            _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
-          }
-          if (!_property5.isArray()) {
-            _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
-          }
-          var _serializer6 = parameters.templateMarkModelManager.getSerializer();
-          thing.decorators = processDecorators(_serializer6, _property5);
-          if (_property5.isPrimitive() || _property5.isTypeEnum()) {
-            _nextModel3 = _property5;
-          } else {
-            thing.elementType = _property5.getFullyQualifiedTypeName();
-            _nextModel3 = parameters.introspector.getClassDeclaration(thing.elementType);
-          }
-          TypeVisitor.visitChildren(this, thing, {
-            templateMarkModelManager: parameters.templateMarkModelManager,
-            introspector: parameters.introspector,
-            model: _nextModel3,
-            kind: parameters.kind
-          });
-        }
-        break;
       case 'ConditionalDefinition':
         {
           var _property6 = currentModel.getOwnProperty(thing.name);
-          var _nextModel4;
+          var _nextModel3;
           if (thing.name !== 'if' && !_property6) {
             // hack, allow the node to have the name 'if'
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
@@ -309,11 +334,11 @@ class TypeVisitor {
           // }
           var _serializer7 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = _property6 ? processDecorators(_serializer7, _property6) : null;
-          _nextModel4 = _property6;
+          _nextModel3 = _property6;
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel4,
+            model: _nextModel3,
             kind: parameters.kind
           }, 'whenTrue');
           TypeVisitor.visitChildren(this, thing, {
@@ -327,7 +352,7 @@ class TypeVisitor {
       case 'OptionalDefinition':
         {
           var _property7 = currentModel.getOwnProperty(thing.name);
-          var _nextModel5;
+          var _nextModel4;
           if (!_property7) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
@@ -336,17 +361,17 @@ class TypeVisitor {
           }
           var _serializer8 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer8, _property7);
-          if (_property7.isPrimitive() || _property7.isTypeEnum()) {
+          if (_property7.isPrimitive()) {
             thing.elementType = _property7.getFullyQualifiedTypeName();
-            _nextModel5 = _property7;
+            _nextModel4 = _property7;
           } else {
             thing.elementType = _property7.getFullyQualifiedTypeName();
-            _nextModel5 = parameters.introspector.getClassDeclaration(thing.elementType);
+            _nextModel4 = parameters.introspector.getClassDeclaration(thing.elementType);
           }
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel5,
+            model: _nextModel4,
             kind: parameters.kind
           }, 'whenSome');
           TypeVisitor.visitChildren(this, thing, {

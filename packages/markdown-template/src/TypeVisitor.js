@@ -82,7 +82,11 @@ function processDecorators(serializer,decorated) {
 }
 
 /**
- * Converts a CommonMark DOM to a CiceroMark DOM
+ * Adds the elementType property to a TemplateMark DOM
+ * along with type specific metadata. This visitor verifies
+ * the structure of a template with respect to an associated
+ * template model and annotates the TemplateMark DOM with model
+ * information for use in downstream tools.
  */
 class TypeVisitor {
     /**
@@ -116,6 +120,22 @@ class TypeVisitor {
     }
 
     /**
+     * Get the type information for a property
+     * @param {*} property the propety
+     * @param {*} parameters the configuration parameters
+     * @returns {*} the information about the next model element (property or declaration)
+     */
+    static nextModel(property, parameters) {
+        const declaration = property.isPrimitive() ? null : parameters.introspector.getClassDeclaration(property.getFullyQualifiedTypeName());
+        return {
+            property: property.isPrimitive() ? property : null,
+            declaration,
+            typeIdentifier: property.isPrimitive() ? property.getFullyQualifiedTypeName() : declaration.getFullyQualifiedName(),
+            decorated: property.isPrimitive() ? property : declaration
+        };
+    }
+
+    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
@@ -129,8 +149,11 @@ class TypeVisitor {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (thing.name === 'this') {
-                const property = currentModel;
-                if (property) {
+                const property = currentModel; // BUG... if we are iterating over an array
+                // of complex types using a {{this}}, then thing will be a ClassDeclaration or an
+                // EnumDeclaration!!
+
+                if (property && property.getType) {
                     const serializer = parameters.templateMarkModelManager.getSerializer();
                     thing.decorators = processDecorators(serializer,property);
                     if (property.isTypeEnum()) {
@@ -151,6 +174,11 @@ class TypeVisitor {
                         const elementType = property.getFullyQualifiedTypeName();
                         thing.elementType = elementType;
                     }
+                }
+                else {
+                    // it is a class
+                    const elementType = property.getFullyQualifiedName();
+                    thing.elementType = elementType;
                 }
             } else {
                 if (!currentModel.getProperty) {
@@ -190,22 +218,17 @@ class TypeVisitor {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 const property = currentModel.getOwnProperty(thing.name);
-                let nextModel;
                 if (!property) {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
-                if (property.isPrimitive() || property.isTypeEnum()) {
-                    nextModel = property;
-                } else {
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                    nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
-                }
+                const {typeIdentifier, decorated} = TypeVisitor.nextModel(property, parameters);
+                thing.elementType = typeIdentifier;
                 const serializer = parameters.templateMarkModelManager.getSerializer();
-                thing.decorators = processDecorators(serializer,nextModel);
+                thing.decorators = processDecorators(serializer,decorated);
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager:parameters.templateMarkModelManager,
                     introspector:parameters.introspector,
-                    model:nextModel,
+                    model:decorated,
                     kind:parameters.kind
                 });
             } else {
@@ -225,7 +248,7 @@ class TypeVisitor {
             if (!property) {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
-            if (property.isPrimitive() || property.isTypeEnum()) {
+            if (property.isPrimitive()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -252,7 +275,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive() || property.isTypeEnum()) {
+            if (property.isPrimitive()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -277,7 +300,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive() || property.isTypeEnum()) {
+            if (property.isPrimitive()) {
                 nextModel = property;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -329,7 +352,7 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive() || property.isTypeEnum()) {
+            if (property.isPrimitive()) {
                 thing.elementType = property.getFullyQualifiedTypeName();
                 nextModel = property;
             } else {

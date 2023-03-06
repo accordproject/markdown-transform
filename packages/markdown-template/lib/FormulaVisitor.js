@@ -48,6 +48,29 @@ class FormulaVisitor {
   }
 
   /**
+   * Calculates the dependencies for JS code
+   * @param {string} jsCode the JS code to analyze
+   * @returns {string[]} array of dependencies
+   */
+  static calculateDependencies(jsCode) {
+    try {
+      var deps = [];
+      walk.simple(acorn.parse(jsCode, {
+        ecmaVersion: 2020,
+        allowReturnOutsideFunction: true
+      }), {
+        Identifier(node) {
+          deps.push(node.name);
+        }
+      });
+      return deps;
+    } catch (err) {
+      console.log("Failed to calculate dependencies in code '".concat(jsCode, "'. Error: ").concat(err));
+      return [];
+    }
+  }
+
+  /**
    * Visit a node
    * @param {*} thing the object being visited
    * @param {*} parameters the parameters
@@ -57,18 +80,7 @@ class FormulaVisitor {
       case 'ConditionalDefinition':
         {
           if (parameters.calculateDependencies) {
-            var deps = [];
-            if (thing.condition) {
-              walk.simple(acorn.parse(thing.condition, {
-                ecmaVersion: 2020,
-                allowReturnOutsideFunction: true
-              }), {
-                Identifier(node) {
-                  deps.push(node.name);
-                }
-              });
-            }
-            thing.dependencies = deps;
+            thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition);
           } else {
             parameters.result.push({
               name: thing.name,
@@ -80,16 +92,7 @@ class FormulaVisitor {
       case 'FormulaDefinition':
         {
           if (parameters.calculateDependencies) {
-            var _deps = [];
-            walk.simple(acorn.parse(thing.code, {
-              ecmaVersion: 2020,
-              allowReturnOutsideFunction: true
-            }), {
-              Identifier(node) {
-                _deps.push(node.name);
-              }
-            });
-            thing.dependencies = _deps;
+            thing.dependencies = FormulaVisitor.calculateDependencies(thing.code);
           } else {
             parameters.result.push({
               name: thing.name,

@@ -110,21 +110,25 @@ function findElementModel(introspector, elementType) {
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingGen(template, introspector, model, templateKind, options) {
-  var input = templateMarkManager.serializer.fromJSON(template, options);
-  var parameters = {
-    templateMarkModelManager: templateMarkManager.modelManager,
-    introspector: introspector,
-    model: model,
-    kind: templateKind
-  };
-  var visitor = new TypeVisitor();
-  input.accept(visitor, parameters);
-  var result = Object.assign({}, templateMarkManager.serializer.toJSON(input, options));
+  try {
+    var input = templateMarkManager.serializer.fromJSON(template, options);
+    var parameters = {
+      templateMarkModelManager: templateMarkManager.modelManager,
+      introspector: introspector,
+      model: model,
+      kind: templateKind
+    };
+    var visitor = new TypeVisitor();
+    input.accept(visitor, parameters);
+    var result = Object.assign({}, templateMarkManager.serializer.toJSON(input, options));
 
-  // Calculates formula dependencies
-  var fvisitor = new FormulaVisitor();
-  result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer, result, options);
-  return result;
+    // Calculates formula dependencies
+    var fvisitor = new FormulaVisitor();
+    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer, result, options);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**
@@ -169,11 +173,15 @@ function templateMarkTypingFromType(template, modelManager, elementType) {
  * @returns {object} the token stream
  */
 function templateToTokens(input) {
-  var norm = normalizeNLs(input);
-  var parser = new MarkdownIt({
-    html: true
-  }).use(MarkdownItTemplate);
-  return parser.parse(norm, {});
+  try {
+    var norm = normalizeNLs(input);
+    var parser = new MarkdownIt({
+      html: true
+    }).use(MarkdownItTemplate);
+    return parser.parse(norm, {});
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**
@@ -182,10 +190,14 @@ function templateToTokens(input) {
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-  var fromMarkdownIt = new FromMarkdownIt(templaterules);
-  var partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-  var result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-  return result.nodes;
+  try {
+    var fromMarkdownIt = new FromMarkdownIt(templaterules);
+    var partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+    var result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+    return result.nodes;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 /**

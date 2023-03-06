@@ -177,6 +177,7 @@ const clauseOpenRule = {
     close: false,
     enter: (node,token,callback) => {
         node.name = getAttr(token.attrs,'name',null);
+        node.condition = getAttr(token.attrs,'condition',null);
     },
 };
 const clauseCloseRule = {

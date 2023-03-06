@@ -48,6 +48,27 @@ class FormulaVisitor {
     }
 
     /**
+     * Calculates the dependencies for JS code
+     * @param {string} jsCode the JS code to analyze
+     * @returns {string[]} array of dependencies
+     */
+    static calculateDependencies(jsCode) {
+        try {
+            const deps = [];
+            walk.simple(acorn.parse(jsCode, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
+                Identifier(node) {
+                    deps.push(node.name);
+                }
+            });
+            return deps;
+        }
+        catch(err) {
+            console.log(`Failed to calculate dependencies in code '${jsCode}'. Error: ${err}`);
+            return [];
+        }
+    }
+
+    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
@@ -57,15 +78,7 @@ class FormulaVisitor {
         case 'ConditionalDefinition':
             {
                 if (parameters.calculateDependencies) {
-                    const deps = [];
-                    if(thing.condition) {
-                        walk.simple(acorn.parse(thing.condition, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
-                            Identifier(node) {
-                                deps.push(node.name);
-                            }
-                        });
-                    }
-                    thing.dependencies = deps;
+                    thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition);
                 } else {
                     parameters.result.push({ name : thing.name, code: thing.condition });
                 }
@@ -73,13 +86,7 @@ class FormulaVisitor {
             break;
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
-                const deps = [];
-                walk.simple(acorn.parse(thing.code, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
-                    Identifier(node) {
-                        deps.push(node.name);
-                    }
-                });
-                thing.dependencies = deps;
+                thing.dependencies = FormulaVisitor.calculateDependencies(thing.code);
             } else {
                 parameters.result.push({ name : thing.name, code: thing.code });
             }

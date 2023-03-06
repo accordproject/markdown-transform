@@ -91,33 +91,6 @@ class TemplateMarkTransformer {
   }
 
   /**
-   * Instantiate a CiceroMark DOM from a TemplateMarkDOM
-   * @param {*} data the contract/clause data input
-   * @param {*} templateMark - the TemplateMark DOM
-   * @param {object} modelManager - the model manager for this template
-   * @param {string} templateKind - either 'clause' or 'contract'
-   * @param {string} currentTime - the definition of 'now'
-   * @param {number} utcOffset - the UTC offset
-   * @param {object} [options] configuration options
-   * @param {boolean} [options.verbose] verbose output
-   * @returns {object} the result
-   */
-  instantiateCiceroMark(data, templateMark, modelManager, templateKind, currentTime, utcOffset, options) {
-    var parameters = {
-      templateMarkModelManager: templateMarkManager.modelManager,
-      templateMarkSerializer: templateMarkManager.serializer,
-      fullData: data,
-      data: data,
-      currentTime
-    };
-    var input = templateMarkManager.serializer.fromJSON(templateMark);
-    var visitor = new ToCiceroMarkVisitor();
-    input.accept(visitor, parameters);
-    var result = Object.assign({}, templateMarkManager.serializer.toJSON(input));
-    return result;
-  }
-
-  /**
    * Get TemplateMark serializer
    * @return {*} templatemark serializer
    */
