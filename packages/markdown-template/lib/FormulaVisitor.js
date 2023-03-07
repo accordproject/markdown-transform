@@ -79,7 +79,9 @@ class FormulaVisitor {
       case 'ConditionalDefinition':
         {
           if (parameters.calculateDependencies) {
-            thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
+            if (thing.condition) {
+              thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
+            }
           } else {
             parameters.result.push({
               name: thing.name,
@@ -91,7 +93,9 @@ class FormulaVisitor {
       case 'FormulaDefinition':
         {
           if (parameters.calculateDependencies) {
-            thing.dependencies = FormulaVisitor.calculateDependencies(thing.code.contents);
+            if (thing.code) {
+              thing.dependencies = FormulaVisitor.calculateDependencies(thing.code.contents);
+            }
           } else {
             parameters.result.push({
               name: thing.name,
