@@ -1,42 +1,42 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "This is a"
-                    }
-                ]
-            },
-            {
-                "object": "block",
-                "type": "horizontal_rule",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": ""
-                    }
-                ],
-                "hr": true
-            },
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "thematic break"
-                    }
-                ]
-            }
+          {
+            "object": "text",
+            "text": "This is a"
+          }
         ]
-    }
+      },
+      {
+        "object": "block",
+        "type": "horizontal_rule",
+        "data": {},
+        "children": [
+          {
+            "object": "text",
+            "text": ""
+          }
+        ],
+        "hr": true
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "children": [
+          {
+            "object": "text",
+            "text": "thematic break"
+          }
+        ]
+      }
+    ]
+  }
 }

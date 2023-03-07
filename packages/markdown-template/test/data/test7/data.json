@@ -1,1 +1,0 @@
-{"$class":"org.test.MyContract","penalty":10,"agreement":{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"currency":"EUR","forceMajeure":true,"badWeather":false,"clauseId":"a2881b02-2e3b-4813-8713-ce099da51c95"},"contractId":"c0b217c1-733c-49cb-bff4-60051fd455d6"}

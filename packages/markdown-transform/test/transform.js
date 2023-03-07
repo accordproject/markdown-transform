@@ -23,6 +23,8 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
+const {CommonMarkModel} = require('@accordproject/markdown-common');
+
 const transform = require('../lib/transform').transform;
 const generateTransformationDiagram = require('../lib/transform').generateTransformationDiagram;
 const formatDescriptor = require('../lib/transform').formatDescriptor;
@@ -154,7 +156,7 @@ describe('#acceptance', () => {
 
         it('ciceromark -> commonmark', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['commonmark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
     });
@@ -243,7 +245,7 @@ describe('#template1', () => {
             data1.$class.should.equal('org.test.MyClause');
             data1.seller.should.equal('Steve');
             const result = await transform(data1, 'data', ['commonmark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
+            result.nodes[0].$class.should.equal(`${CommonMarkModel.NAMESPACE}.Paragraph`);
         });
 
         it('data -> ciceromark', async () => {
@@ -253,7 +255,7 @@ describe('#template1', () => {
             data1.$class.should.equal('org.test.MyClause');
             data1.seller.should.equal('Steve');
             const result = await transform(data1, 'data', ['ciceromark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
+            result.nodes[0].$class.should.equal(`${CommonMarkModel.NAMESPACE}.Paragraph`);
         });
     });
 
@@ -263,12 +265,12 @@ describe('#sample', () => {
     describe('#pdf', () => {
         it('pdf -> ciceromark', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
         it('pdf -> ciceromark (verbose)', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
         it('ciceromark -> pdf', async () => {
@@ -282,14 +284,14 @@ describe('#sample', () => {
     describe('#docx', () => {
         it('docx -> ciceromark', async () => {
             const result = await transform(sampleDocx, 'docx', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
     });
 
     describe('#html', () => {
         it('html -> ciceromark', async () => {
             const result = await transform(sampleHtml, 'html', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
     });
 

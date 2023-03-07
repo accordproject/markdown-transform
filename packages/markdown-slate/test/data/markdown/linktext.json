@@ -1,37 +1,37 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "this is a "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "link",
-                        "data": {
-                            "href": "https://google.com",
-                            "title": ""
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "code link"
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": ""
-                    }
-                ]
-            }
+          {
+            "object": "text",
+            "text": "this is a "
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "href": "https://google.com",
+              "title": ""
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "code link"
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ""
+          }
         ]
-    }
+      }
+    ]
+  }
 }

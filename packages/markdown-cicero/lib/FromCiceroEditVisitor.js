@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
+const { CiceroMarkModel, CommonMarkModel } = require('@accordproject/markdown-common');
 
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
@@ -54,7 +54,7 @@ class FromCiceroEditVisitor {
         case 'CodeBlock': {
             const tag = thing.tag;
             if (tag && tag.tagName === 'clause' && tag.attributes.length === 2) {
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Clause';
+                const ciceroMarkTag = `${CiceroMarkModel.NAMESPACE}.Clause`;
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const clauseText = thing.text;
 
@@ -74,7 +74,7 @@ class FromCiceroEditVisitor {
                     delete thing.info;
                 }
             } else if (tag && tag.tagName === 'list' && tag.attributes.length === 0) {
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'ListBlock';
+                const ciceroMarkTag = `${CiceroMarkModel.NAMESPACE}.ListBlock`;
                 // Remove last new line, needed by CommonMark parser to identify ending code block (\n```)
                 const listText = thing.text;
 
@@ -107,7 +107,7 @@ class FromCiceroEditVisitor {
                 if (FromCiceroEditVisitor.getAttribute(tag.attributes, 'id') &&
                     FromCiceroEditVisitor.getAttribute(tag.attributes, 'value')) {
                     const format = FromCiceroEditVisitor.getAttribute(tag.attributes, 'format');
-                    const ciceroMarkTag = format ? NS_PREFIX_CiceroMarkModel + 'FormattedVariable' : NS_PREFIX_CiceroMarkModel + 'Variable';
+                    const ciceroMarkTag = format ? `${CiceroMarkModel.NAMESPACE}.FormattedVariable` : `${CiceroMarkModel.NAMESPACE}.Variable`;
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = FromCiceroEditVisitor.getAttribute(tag.attributes, 'id').value;
                     thing.value = decodeURIComponent(FromCiceroEditVisitor.getAttribute(tag.attributes, 'value').value);
@@ -126,25 +126,25 @@ class FromCiceroEditVisitor {
                     FromCiceroEditVisitor.getAttribute(tag.attributes, 'value') &&
                     FromCiceroEditVisitor.getAttribute(tag.attributes, 'whenTrue') &&
                     FromCiceroEditVisitor.getAttribute(tag.attributes, 'whenFalse')) {
-                    const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Conditional';
+                    const ciceroMarkTag = `${CiceroMarkModel.NAMESPACE}.Conditional`;
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = FromCiceroEditVisitor.getAttribute(tag.attributes, 'id').value;
                     const valueText = decodeURIComponent(FromCiceroEditVisitor.getAttribute(tag.attributes, 'value').value);
                     const valueNode = parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
+                        $class: `${CommonMarkModel.NAMESPACE}.Text`,
                         text: valueText,
                     });
                     thing.nodes = [valueNode];
                     const whenTrueText = decodeURIComponent(FromCiceroEditVisitor.getAttribute(tag.attributes, 'whenTrue').value);
                     const whenTrueNodes = whenTrueText ? [parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
+                        $class: `${CommonMarkModel.NAMESPACE}.Text`,
                         text: whenTrueText,
                     })] : [];
                     thing.isTrue = valueText === whenTrueText;
                     thing.whenTrue = whenTrueNodes;
                     const whenFalseText = decodeURIComponent(FromCiceroEditVisitor.getAttribute(tag.attributes, 'whenFalse').value);
                     const whenFalseNodes = whenFalseText ? [parameters.serializer.fromJSON({
-                        $class: 'org.accordproject.commonmark.Text',
+                        $class: `${CommonMarkModel.NAMESPACE}.Text`,
                         text: whenFalseText,
                     })] : [];
                     thing.whenFalse = whenFalseNodes;
@@ -154,7 +154,7 @@ class FromCiceroEditVisitor {
             }
             if (thing.tag && thing.tag.tagName === 'computed' && thing.tag.attributes.length === 1) {
                 const tag = thing.tag;
-                const ciceroMarkTag = NS_PREFIX_CiceroMarkModel + 'Formula';
+                const ciceroMarkTag = `${CiceroMarkModel.NAMESPACE}.Formula`;
                 if (FromCiceroEditVisitor.getAttribute(tag.attributes, 'value')) {
                     thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
                     thing.name = ''; // XXX Hack -- since there is no name in CiceroEdit -- will be filled in later

@@ -17,27 +17,27 @@
 'use strict';
 
 const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-core');
-const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
+const CommonMarkModel = require('./externalModels/CommonMarkModel');
 const ToMarkdownVisitor = require('./ToMarkdownVisitor');
 
 const commonmark = {
-    '$class':'org.accordproject.commonmark.Document',
+    '$class':`${CommonMarkModel.NAMESPACE}.Document`,
     'xmlns':'http://commonmark.org/xml/1.0',
     'nodes':[{
-        '$class':'org.accordproject.commonmark.Paragraph',
+        '$class':`${CommonMarkModel.NAMESPACE}.Paragraph`,
         'nodes':[{
-            '$class':'org.accordproject.commonmark.Text',
+            '$class':`${CommonMarkModel.NAMESPACE}.Text`,
             'text':'This is some text.'
         }]
     }]
 };
 const commonmarkErr = {
-    '$class':'org.accordproject.commonmark.Document',
+    '$class':`${CommonMarkModel.NAMESPACE}.Document`,
     'xmlns':'http://commonmark.org/xml/1.0',
     'nodes':[{
-        '$class':'org.accordproject.commonmark.FOO',
+        '$class':`${CommonMarkModel.NAMESPACE}.FOO`,
         'nodes':[{
-            '$class':'org.accordproject.commonmark.Text',
+            '$class':`${CommonMarkModel.NAMESPACE}.Text`,
             'text':'This is some text.'
         }]
     }]
@@ -46,8 +46,8 @@ const expected = 'This is some text.';
 
 let serializer;
 beforeAll(() => {
-    const modelManager = new ModelManager();
-    modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
+    const modelManager = new ModelManager({strict: true});
+    modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
     const factory = new Factory(modelManager);
     serializer = new Serializer(factory, modelManager);
 });
@@ -65,7 +65,7 @@ describe('ToMarkdownVisitor', () => {
 
     it('#toMarkdown (wrong commonmark)', () => {
         const toMarkdownVisitor = new ToMarkdownVisitor();
-        expect(() => toMarkdownVisitor.toMarkdown(serializer.fromJSON(commonmarkErr))).toThrow('Type "FOO" is not defined in namespace "org.accordproject.commonmark".');
+        expect(() => toMarkdownVisitor.toMarkdown(serializer.fromJSON(commonmarkErr))).toThrow('Type "FOO" is not defined in namespace "org.accordproject.commonmark@0.5.0".');
     });
 
     it('#toMarkdown (missing rule)', () => {

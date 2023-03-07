@@ -1,14 +1,12 @@
 {
   "document": {
     "object": "document",
-    "data": {
-    },
+    "data": {},
     "children": [
       {
         "object": "block",
         "type": "paragraph",
-        "data": {
-        },
+        "data": {},
         "children": [
           {
             "object": "text",

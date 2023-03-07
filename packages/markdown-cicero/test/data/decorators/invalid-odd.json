@@ -1,12 +1,15 @@
 {
-    "$class": "org.accordproject.templatemark.VariableDefinition",
-    "decorators": [{
-        "$class": "concerto.metamodel.Decorator",
-        "arguments": [{
-                "$class": "concerto.metamodel.DecoratorString",
-                "value": "type"
-            }
-        ],
-        "name": "Test"
-    }]
+  "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+  "decorators": [
+    {
+      "$class": "concerto.metamodel@1.0.0.Decorator",
+      "arguments": [
+        {
+          "$class": "concerto.metamodel@1.0.0.DecoratorString",
+          "value": "type"
+        }
+      ],
+      "name": "Test"
+    }
+  ]
 }

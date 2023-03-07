@@ -1,1 +1,312 @@
-{"document":{"object":"document","children":[{"object":"block","type":"contract_definition","data":{"name":"top","elementType":"org.accordproject.latedeliveryandpenalty.LateDeliveryAndPenaltyContract"},"children":[{"object":"block","data":{},"type":"heading_two","children":[{"object":"text","text":"Late Delivery and Penalty."}]},{"object":"block","type":"paragraph","children":[{"object":"text","text":"In case of delayed delivery"},{"object":"inline","type":"conditional_definition","data":{"name":"forceMajeure","whenTrue":[{"object":"text","text":" except for Force Majeure cases,"}],"whenFalse":[]},"children":[{"object":"text","text":""}]},{"object":"text","text":""},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":""},{"object":"inline","type":"variable_definition","data":{"name":"seller","elementType":"org.accordproject.cicero.contract.AccordParty"},"children":[{"object":"text","text":"seller"}]},{"object":"text","text":" (the Seller) shall pay to "},{"object":"inline","type":"variable_definition","data":{"name":"buyer","elementType":"org.accordproject.cicero.contract.AccordParty"},"children":[{"object":"text","text":"buyer"}]},{"object":"text","text":" (the Buyer) for every "},{"object":"inline","type":"variable_definition","data":{"name":"penaltyDuration","elementType":"org.accordproject.time.Duration"},"children":[{"object":"text","text":"penaltyDuration"}]},{"object":"text","text":""},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"of delay penalty amounting to "},{"object":"inline","type":"variable_definition","data":{"name":"penaltyPercentage","elementType":"Double"},"children":[{"object":"text","text":"penaltyPercentage"}]},{"object":"text","text":"% of the total value of the Equipment"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"whose delivery has been delayed. Any fractional part of a "},{"object":"inline","type":"variable_definition","data":{"name":"fractionalPart","enumValues":["seconds","minutes","hours","days","weeks"],"elementType":"org.accordproject.time.TemporalUnit"},"children":[{"object":"text","text":"fractionalPart"}]},{"object":"text","text":" is to be"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"considered a full "},{"object":"inline","type":"variable_definition","data":{"name":"fractionalPart","enumValues":["seconds","minutes","hours","days","weeks"],"elementType":"org.accordproject.time.TemporalUnit"},"children":[{"object":"text","text":"fractionalPart"}]},{"object":"text","text":". The total amount of penalty shall not however,"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"exceed "},{"object":"inline","type":"variable_definition","data":{"name":"capPercentage","elementType":"Double"},"children":[{"object":"text","text":"capPercentage"}]},{"object":"text","text":"% of the total value of the Equipment involved in late delivery."},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"If the delay is more than "},{"object":"inline","type":"variable_definition","data":{"name":"termination","elementType":"org.accordproject.time.Duration"},"children":[{"object":"text","text":"termination"}]},{"object":"text","text":", the Buyer is entitled to terminate this Contract."}],"data":{}}]}],"data":{}}}
+{
+  "document": {
+    "object": "document",
+    "children": [
+      {
+        "object": "block",
+        "type": "contract_definition",
+        "data": {
+          "name": "top",
+          "elementType": "org.accordproject.latedeliveryandpenalty.LateDeliveryAndPenaltyContract"
+        },
+        "children": [
+          {
+            "object": "block",
+            "data": {},
+            "type": "heading_two",
+            "children": [
+              {
+                "object": "text",
+                "text": "Late Delivery and Penalty."
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "children": [
+              {
+                "object": "text",
+                "text": "In case of delayed delivery"
+              },
+              {
+                "object": "inline",
+                "type": "conditional_definition",
+                "data": {
+                  "name": "forceMajeure",
+                  "whenTrue": [
+                    {
+                      "object": "text",
+                      "text": " except for Force Majeure cases,"
+                    }
+                  ],
+                  "whenFalse": []
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "seller",
+                  "elementType": "org.accordproject.cicero.contract.AccordParty"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "seller"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " (the Seller) shall pay to "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "buyer",
+                  "elementType": "org.accordproject.cicero.contract.AccordParty"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "buyer"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " (the Buyer) for every "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "penaltyDuration",
+                  "elementType": "org.accordproject.time.Duration"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "penaltyDuration"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "of delay penalty amounting to "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "penaltyPercentage",
+                  "elementType": "Double"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "penaltyPercentage"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "% of the total value of the Equipment"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "whose delivery has been delayed. Any fractional part of a "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "fractionalPart",
+                  "enumValues": [
+                    "seconds",
+                    "minutes",
+                    "hours",
+                    "days",
+                    "weeks"
+                  ],
+                  "elementType": "org.accordproject.time.TemporalUnit"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "fractionalPart"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " is to be"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "considered a full "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "fractionalPart",
+                  "enumValues": [
+                    "seconds",
+                    "minutes",
+                    "hours",
+                    "days",
+                    "weeks"
+                  ],
+                  "elementType": "org.accordproject.time.TemporalUnit"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "fractionalPart"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ". The total amount of penalty shall not however,"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "exceed "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "capPercentage",
+                  "elementType": "Double"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "capPercentage"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "% of the total value of the Equipment involved in late delivery."
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "If the delay is more than "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "termination",
+                  "elementType": "org.accordproject.time.Duration"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "termination"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ", the Buyer is entitled to terminate this Contract."
+              }
+            ],
+            "data": {}
+          }
+        ]
+      }
+    ],
+    "data": {}
+  }
+}

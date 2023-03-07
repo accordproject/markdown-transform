@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { Stack } = require('@accordproject/markdown-common');
+const { Stack, CiceroMarkModel, CommonMarkModel } = require('@accordproject/markdown-common');
 
 /**
 * Maps the keys in an object
@@ -25,17 +25,17 @@ const { Stack } = require('@accordproject/markdown-common');
 function mapObject(obj, stack) {
     switch (obj.$class) {
     // Strip quotes
-    case 'org.accordproject.ciceromark.Formula':
-    case 'org.accordproject.ciceromark.Variable':
-    case 'org.accordproject.ciceromark.FormattedVariable':
+    case `${CiceroMarkModel.NAMESPACE}.Formula`:
+    case `${CiceroMarkModel.NAMESPACE}.Variable`:
+    case `${CiceroMarkModel.NAMESPACE}.FormattedVariable`:
         stack.append({
-            $class: 'org.accordproject.commonmark.Text',
+            $class: `${CommonMarkModel.NAMESPACE}.Text`,
             text: obj.value.replace(/^"/, '').replace(/"$/, '')
         });
         break;
 
     // remove these, visit children
-    case 'org.accordproject.commonmark.Document':
+    case `${CommonMarkModel.NAMESPACE}.Document`:
         obj.nodes.forEach(element => {
             mapObject(element, stack);
         });
@@ -65,7 +65,7 @@ function mapObject(obj, stack) {
 */
 function unquoteVariables(input) {
     const root = {
-        $class : 'org.accordproject.commonmark.Document',
+        $class : `${CommonMarkModel.NAMESPACE}.Document`,
         xmlns : input.xmlns,
         nodes: []
     };

@@ -1,1 +1,379 @@
-[{"type":"paragraph_open","tag":"p","attrs":null,"map":[0,1],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[0,1],"nesting":0,"level":1,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Copyright Notices. Licensee shall ensure that its use of the Work is marked with the appropriate copyright notices specified by Licensor in a reasonably prominent position in the order and manner provided by Licensor. Licensee shall abide by the copyright laws and what are considered to be sound practices for copyright notice provisions in the Territory. Licensee shall not use any copyright notices that conflict with, confuse, or negate the notices Licensor provides and requires hereunder.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Copyright Notices. Licensee shall ensure that its use of the Work is marked with the appropriate copyright notices specified by Licensor in a reasonably prominent position in the order and manner provided by Licensor. Licensee shall abide by the copyright laws and what are considered to be sound practices for copyright notice provisions in the Territory. Licensee shall not use any copyright notices that conflict with, confuse, or negate the notices Licensor provides and requires hereunder.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"blockquote_open","tag":"blockquote","attrs":null,"map":[2,5],"nesting":1,"level":0,"children":null,"content":"","markup":">","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_open","tag":"div","attrs":[["name","payment"]],"map":[2,4],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[3,4],"nesting":1,"level":2,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[3,4],"nesting":0,"level":3,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","amountText"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{amountText}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" (","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","amount"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{amount}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":") upon execution of this Agreement, payable as follows: ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","paymentProcedure"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{paymentProcedure}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":".","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of {{amountText}} ({{amount}}) upon execution of this Agreement, payable as follows: {{paymentProcedure}}.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":2,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_close","tag":"div","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"{{/clause}}","info":"","meta":null,"block":true,"hidden":false},{"type":"blockquote_close","tag":"blockquote","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":">","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[6,7],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[6,7],"nesting":0,"level":1,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"General.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"General.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false}]
+[
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      0,
+      1
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      0,
+      1
+    ],
+    "nesting": 0,
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Copyright Notices. Licensee shall ensure that its use of the Work is marked with the appropriate copyright notices specified by Licensor in a reasonably prominent position in the order and manner provided by Licensor. Licensee shall abide by the copyright laws and what are considered to be sound practices for copyright notice provisions in the Territory. Licensee shall not use any copyright notices that conflict with, confuse, or negate the notices Licensor provides and requires hereunder.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Copyright Notices. Licensee shall ensure that its use of the Work is marked with the appropriate copyright notices specified by Licensor in a reasonably prominent position in the order and manner provided by Licensor. Licensee shall abide by the copyright laws and what are considered to be sound practices for copyright notice provisions in the Territory. Licensee shall not use any copyright notices that conflict with, confuse, or negate the notices Licensor provides and requires hereunder.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "blockquote_open",
+    "tag": "blockquote",
+    "attrs": null,
+    "map": [
+      2,
+      5
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": ">",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_open",
+    "tag": "div",
+    "attrs": [
+      [
+        "name",
+        "payment"
+      ]
+    ],
+    "map": [
+      2,
+      4
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 1,
+    "level": 2,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 0,
+    "level": 3,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "amountText"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{amountText}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " (",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "amount"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{amount}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ") upon execution of this Agreement, payable as follows: ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "paymentProcedure"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{paymentProcedure}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ".",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of {{amountText}} ({{amount}}) upon execution of this Agreement, payable as follows: {{paymentProcedure}}.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 2,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_close",
+    "tag": "div",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "{{/clause}}",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "blockquote_close",
+    "tag": "blockquote",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": ">",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      6,
+      7
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      6,
+      7
+    ],
+    "nesting": 0,
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "General.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "General.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  }
+]

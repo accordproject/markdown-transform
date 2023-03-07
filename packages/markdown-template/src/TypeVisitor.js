@@ -14,7 +14,7 @@
 
 'use strict';
 
-const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
+const {TemplateMarkModel, ConcertoMetaModel} = require('@accordproject/markdown-common');
 
 const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
 
@@ -29,7 +29,7 @@ function processDecorators(serializer,decorated) {
 
     decorators.forEach((decorator) => {
         const metaDecorator = {
-            '$class': 'concerto.metamodel.Decorator',
+            '$class': `${ConcertoMetaModel.NAMESPACE}.Decorator`,
         };
 
         // The decorator's name
@@ -43,24 +43,24 @@ function processDecorators(serializer,decorated) {
             let metaArgument;
             if (typeof arg === 'string') {
                 metaArgument = {
-                    '$class': 'concerto.metamodel.DecoratorString',
+                    '$class': `${ConcertoMetaModel.NAMESPACE}.DecoratorString`,
                     'value': arg
                 };
             } else if (typeof arg === 'number') {
                 metaArgument = {
-                    '$class': 'concerto.metamodel.DecoratorNumber',
+                    '$class': `${ConcertoMetaModel.NAMESPACE}.DecoratorNumber`,
                     'value': arg
                 };
             } else if (typeof arg === 'boolean') {
                 metaArgument = {
-                    '$class': 'concerto.metamodel.DecoratorBoolean',
+                    '$class': `${ConcertoMetaModel.NAMESPACE}.DecoratorBoolean`,
                     'value': arg
                 };
             } else {
                 metaArgument = {
-                    '$class': 'concerto.metamodel.DecoratorTypeReference',
+                    '$class':`${ConcertoMetaModel.NAMESPACE}.DecoratorTypeReference`,
                     'type': {
-                        '$class': 'concerto.metamodel.TypeIdentifier',
+                        '$class': `${ConcertoMetaModel.NAMESPACE}.TypeIdentifier`,
                         'name': arg.name
                     },
                     'isArray': arg.array
@@ -157,7 +157,7 @@ class TypeVisitor {
                     const serializer = parameters.templateMarkModelManager.getSerializer();
                     thing.decorators = processDecorators(serializer,property);
                     if (property.isTypeEnum()) {
-                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
+                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
                         const enumType = property.getParent().getModelFile().getType(property.getType());
                         thing.elementType = property.getFullyQualifiedTypeName();
                         thing.$classDeclaration = enumVariableDeclaration;
@@ -189,7 +189,7 @@ class TypeVisitor {
                     const serializer = parameters.templateMarkModelManager.getSerializer();
                     thing.decorators = processDecorators(serializer,property);
                     if (property.isTypeEnum()) {
-                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition');
+                        const enumVariableDeclaration = parameters.templateMarkModelManager.getType(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
                         const enumType = property.getParent().getModelFile().getType(property.getType());
                         thing.elementType = property.getFullyQualifiedTypeName();
                         thing.$classDeclaration = enumVariableDeclaration;

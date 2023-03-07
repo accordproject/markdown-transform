@@ -21,7 +21,6 @@ var {
   templateMarkTyping
 } = require('./templatemarkutil');
 var ToMarkdownTemplateVisitor = require('./ToMarkdownTemplateVisitor');
-var ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
 /**
  * Support for TemplateMark Templates

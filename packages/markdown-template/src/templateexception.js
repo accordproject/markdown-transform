@@ -21,7 +21,7 @@ const ParseException = require('@accordproject/concerto-cto').ParseException;
  * @extends BaseFileException
  * @see See  {@link BaseFileException}
  * @class
- * @memberof module:ergo-compiler
+ * @memberof module:markdown-template
  * @private
  */
 class TemplateException extends ParseException {

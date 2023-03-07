@@ -1,1 +1,279 @@
-[{"type":"block_clause_open","tag":"div","attrs":[["name","payment"]],"map":[0,6],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[1,2],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[1,2],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of \"forty two\" (42) upon execution of this Agreement, payable as follows: \"wire transfer\".","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of \"forty two\" (42) upon execution of this Agreement, payable as follows: \"wire transfer\".","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_open","tag":"div","attrs":[["name","foo"]],"map":[2,4],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[3,4],"nesting":1,"level":2,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[3,4],"nesting":0,"level":3,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"This clause is nested.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"This clause is nested.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":2,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_close","tag":"div","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"{{/clause}}","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[5,6],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[5,6],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"And contains more text.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"And contains more text.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_close","tag":"div","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"{{/clause}}","info":"","meta":null,"block":true,"hidden":false}]
+[
+  {
+    "type": "block_clause_open",
+    "tag": "div",
+    "attrs": [
+      [
+        "name",
+        "payment"
+      ]
+    ],
+    "map": [
+      0,
+      6
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      1,
+      2
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      1,
+      2
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of \"forty two\" (42) upon execution of this Agreement, payable as follows: \"wire transfer\".",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Payment. As consideration in full for the rights granted herein, Licensee shall pay Licensor a one-time fee in the amount of \"forty two\" (42) upon execution of this Agreement, payable as follows: \"wire transfer\".",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_open",
+    "tag": "div",
+    "attrs": [
+      [
+        "name",
+        "foo"
+      ]
+    ],
+    "map": [
+      2,
+      4
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 1,
+    "level": 2,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 0,
+    "level": 3,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "This clause is nested.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "This clause is nested.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 2,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_close",
+    "tag": "div",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "{{/clause}}",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      5,
+      6
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      5,
+      6
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "And contains more text.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "And contains more text.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_close",
+    "tag": "div",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "{{/clause}}",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  }
+]

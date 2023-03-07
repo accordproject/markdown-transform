@@ -17,7 +17,7 @@
 const Stack = require('./Stack');
 const { mergeAdjacentHtmlNodes } = require('./CommonMarkUtils');
 const tocommonmarkrules = require('./tocommonmarkrules');
-
+const CommonMarkModel = require('../lib/externalModels/CommonMarkModel');
 /**
  * Converts a markdown-it token stream to a CommonMark DOM
  */
@@ -78,7 +78,7 @@ class FromMarkdownIt {
      */
     static inlineToCommonMark(rules,tokens,stack) {
         const rootNode = {
-            '$class': 'org.accordproject.commonmark.Inline',
+            '$class': `${CommonMarkModel.NAMESPACE}.Inline`,
             'nodes': [],
         };
         stack.push(rootNode,false);
@@ -124,7 +124,7 @@ class FromMarkdownIt {
         let stack = new Stack();
         let tight = new Stack();
         const rootNode = {
-            '$class': 'org.accordproject.commonmark.Document',
+            '$class': `${CommonMarkModel.NAMESPACE}.Document`,
             'xmlns' : 'http://commonmark.org/xml/1.0',
             'nodes': [],
         };
@@ -183,8 +183,8 @@ class FromMarkdownIt {
 
         if (!rootNode.nodes || rootNode.nodes.length === 0) {
             rootNode.nodes.push({
-                '$class': 'org.accordproject.commonmark.Paragraph',
-                'nodes': [ { '$class': 'org.accordproject.commonmark.Text', 'text': '' } ]
+                '$class': `${CommonMarkModel.NAMESPACE}.Paragraph`,
+                'nodes': [ { '$class': `${CommonMarkModel.NAMESPACE}.Text`, 'text': '' } ]
             });
         }
         return rootNode;

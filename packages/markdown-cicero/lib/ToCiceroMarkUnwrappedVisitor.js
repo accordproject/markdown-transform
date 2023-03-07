@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { CommonMarkModel } = require('@accordproject/markdown-common');
 
 /**
  * Utility: flattening array of arrays
@@ -63,7 +63,7 @@ class ToCiceroMarkUnwrappedVisitor {
         case 'ListBlock': {
             ToCiceroMarkUnwrappedVisitor.visitChildren(this, thing, parameters);
 
-            const ciceroMarkTag = NS_PREFIX_CommonMarkModel + 'List';
+            const ciceroMarkTag = `${CommonMarkModel.NAMESPACE}.List`;
             thing.$classDeclaration = parameters.modelManager.getType(ciceroMarkTag);
 
             delete thing.name;
@@ -75,7 +75,7 @@ class ToCiceroMarkUnwrappedVisitor {
         case 'EnumVariable':
         case 'FormattedVariable': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
+            thing.$classDeclaration = parameters.modelManager.getType(`${CommonMarkModel.NAMESPACE}.Text`);
             thing.text = decodeURIComponent(thing.value);
 
             delete thing.elementType;
@@ -90,7 +90,7 @@ class ToCiceroMarkUnwrappedVisitor {
         case 'Conditional':
         case 'Optional': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
+            thing.$classDeclaration = parameters.modelManager.getType(`${CommonMarkModel.NAMESPACE}.Text`);
             ToCiceroMarkUnwrappedVisitor.visitChildren(this, thing, parameters);
             return thing.nodes;
         }

@@ -1,1 +1,0 @@
-This contract is for <First Name: "Steve" Last Name: "Doe"\>. This is a contract between "Steve" and "Betty" for the amount of 3131.0 EUR, _except_ in the presence of force majeure.

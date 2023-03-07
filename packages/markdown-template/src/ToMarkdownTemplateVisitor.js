@@ -14,7 +14,7 @@
 
 'use strict';
 
-const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
+const {CommonMarkUtils,CommonMarkModel} = require('@accordproject/markdown-common');
 const FromCommonMarkVisitor = require('@accordproject/markdown-common').FromCommonMarkVisitor;
 const fromcommonmarkrules = require('@accordproject/markdown-common').fromcommonmarkrules;
 const fromtemplatemarkrules = require('./fromtemplatemarkrules');
@@ -26,7 +26,7 @@ const fromtemplatemarkrules = require('./fromtemplatemarkrules');
  */
 function fixupRootNode(input) {
     const rootNode = {
-        '$class': 'org.accordproject.commonmark.Document',
+        '$class': `${CommonMarkModel.NAMESPACE}.Document`,
         'xmlns' : 'http://commonmark.org/xml/1.0',
         'nodes': input.nodes[0].nodes
     };

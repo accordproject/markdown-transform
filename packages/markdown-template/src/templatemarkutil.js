@@ -19,10 +19,7 @@ const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
-const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-const { ConcertoMetaModel } = require('@accordproject/markdown-cicero').ConcertoMetaModel;
-const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
+const { CommonMarkModel, CiceroMarkModel, ConcertoMetaModel, TemplateMarkModel } = require('@accordproject/markdown-common');
 
 const normalizeNLs = require('./normalize').normalizeNLs;
 const TypeVisitor = require('./TypeVisitor');
@@ -40,11 +37,15 @@ const templaterules = require('./templaterules');
  */
 function mkTemplateMarkManager(options) {
     const result = {};
-    result.modelManager = new ModelManager(options);
-    result.modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
-    result.modelManager.addCTOModel(ConcertoMetaModel, 'metamodel.cto');
-    result.modelManager.addCTOModel(CiceroMarkModel, 'ciceromark.cto');
-    result.modelManager.addCTOModel(TemplateMarkModel, 'templatemark.cto');
+    const newOpts = {
+        ...options,
+        strict: true
+    };
+    result.modelManager = new ModelManager(newOpts);
+    result.modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
+    result.modelManager.addCTOModel(ConcertoMetaModel.MODEL, 'metamodel.cto');
+    result.modelManager.addCTOModel(CiceroMarkModel.MODEL, 'ciceromark.cto');
+    result.modelManager.addCTOModel(TemplateMarkModel.MODEL, 'templatemark.cto');
     result.factory = new Factory(result.modelManager);
     result.serializer = new Serializer(result.factory, result.modelManager, { utcOffset: 0 });
     return result;
@@ -151,10 +152,10 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
     const model = findElementModel(introspector, elementType);
 
     const rootNode = {
-        '$class': 'org.accordproject.commonmark.Document',
+        '$class': `${CommonMarkModel.NAMESPACE}.Document`,
         'xmlns' : 'http://commonmark.org/xml/1.0',
         'nodes': [{
-            '$class': 'org.accordproject.templatemark.ContractDefinition',
+            '$class': `${TemplateMarkModel.NAMESPACE}.ContractDefinition`,
             'name': 'top',
             'nodes': template
         }]
@@ -208,20 +209,20 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 
     if (templateKind === 'contract') {
         return {
-            '$class': 'org.accordproject.commonmark.Document',
+            '$class': `${CommonMarkModel.NAMESPACE}.Document`,
             'xmlns' : 'http://commonmark.org/xml/1.0',
             'nodes': [{
-                '$class': 'org.accordproject.templatemark.ContractDefinition',
+                '$class': `${TemplateMarkModel.NAMESPACE}.ContractDefinition`,
                 'name': 'top',
                 'nodes': partialTemplate
             }]
         };
     } else {
         return {
-            '$class': 'org.accordproject.commonmark.Document',
+            '$class': `${CommonMarkModel.NAMESPACE}.Document`,
             'xmlns' : 'http://commonmark.org/xml/1.0',
             'nodes': [{
-                '$class': 'org.accordproject.templatemark.ClauseDefinition',
+                '$class': `${TemplateMarkModel.NAMESPACE}.ClauseDefinition`,
                 'name': 'top',
                 'nodes': partialTemplate
             }]
@@ -238,10 +239,10 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 function tokensToUntypedTemplateMarkFragment(tokenStream) {
     const partialTemplate = tokensToUntypedTemplateMarkGen(tokenStream);
     return {
-        '$class': 'org.accordproject.commonmark.Document',
+        '$class': `${CommonMarkModel.NAMESPACE}.Document`,
         'xmlns' : 'http://commonmark.org/xml/1.0',
         'nodes': [{
-            '$class': 'org.accordproject.templatemark.ClauseDefinition',
+            '$class': `${TemplateMarkModel.NAMESPACE}.ClauseDefinition`,
             'name': 'top',
             'nodes': partialTemplate
         }]

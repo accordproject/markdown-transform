@@ -14,6 +14,9 @@
 
 'use strict';
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 var dayjs = require('dayjs');
 var utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
@@ -24,15 +27,11 @@ var {
   Introspector
 } = require('@accordproject/concerto-core');
 var {
-  CommonMarkModel
-} = require('@accordproject/markdown-common').CommonMarkModel;
-var {
-  CiceroMarkModel
-} = require('@accordproject/markdown-cicero').CiceroMarkModel;
-var {
-  ConcertoMetaModel
-} = require('@accordproject/markdown-cicero').ConcertoMetaModel;
-var TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
+  CommonMarkModel,
+  CiceroMarkModel,
+  ConcertoMetaModel,
+  TemplateMarkModel
+} = require('@accordproject/markdown-common');
 var normalizeNLs = require('./normalize').normalizeNLs;
 var TypeVisitor = require('./TypeVisitor');
 var FormulaVisitor = require('./FormulaVisitor');
@@ -49,11 +48,14 @@ var templaterules = require('./templaterules');
  */
 function mkTemplateMarkManager(options) {
   var result = {};
-  result.modelManager = new ModelManager(options);
-  result.modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
-  result.modelManager.addCTOModel(ConcertoMetaModel, 'metamodel.cto');
-  result.modelManager.addCTOModel(CiceroMarkModel, 'ciceromark.cto');
-  result.modelManager.addCTOModel(TemplateMarkModel, 'templatemark.cto');
+  var newOpts = _objectSpread(_objectSpread({}, options), {}, {
+    strict: true
+  });
+  result.modelManager = new ModelManager(newOpts);
+  result.modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
+  result.modelManager.addCTOModel(ConcertoMetaModel.MODEL, 'metamodel.cto');
+  result.modelManager.addCTOModel(CiceroMarkModel.MODEL, 'ciceromark.cto');
+  result.modelManager.addCTOModel(TemplateMarkModel.MODEL, 'templatemark.cto');
   result.factory = new Factory(result.modelManager);
   result.serializer = new Serializer(result.factory, result.modelManager, {
     utcOffset: 0
@@ -155,10 +157,10 @@ function templateMarkTypingFromType(template, modelManager, elementType) {
   var introspector = new Introspector(modelManager);
   var model = findElementModel(introspector, elementType);
   var rootNode = {
-    '$class': 'org.accordproject.commonmark.Document',
+    '$class': "".concat(CommonMarkModel.NAMESPACE, ".Document"),
     'xmlns': 'http://commonmark.org/xml/1.0',
     'nodes': [{
-      '$class': 'org.accordproject.templatemark.ContractDefinition',
+      '$class': "".concat(TemplateMarkModel.NAMESPACE, ".ContractDefinition"),
       'name': 'top',
       'nodes': template
     }]
@@ -210,20 +212,20 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
   var partialTemplate = tokensToUntypedTemplateMarkGen(tokenStream);
   if (templateKind === 'contract') {
     return {
-      '$class': 'org.accordproject.commonmark.Document',
+      '$class': "".concat(CommonMarkModel.NAMESPACE, ".Document"),
       'xmlns': 'http://commonmark.org/xml/1.0',
       'nodes': [{
-        '$class': 'org.accordproject.templatemark.ContractDefinition',
+        '$class': "".concat(TemplateMarkModel.NAMESPACE, ".ContractDefinition"),
         'name': 'top',
         'nodes': partialTemplate
       }]
     };
   } else {
     return {
-      '$class': 'org.accordproject.commonmark.Document',
+      '$class': "".concat(CommonMarkModel.NAMESPACE, ".Document"),
       'xmlns': 'http://commonmark.org/xml/1.0',
       'nodes': [{
-        '$class': 'org.accordproject.templatemark.ClauseDefinition',
+        '$class': "".concat(TemplateMarkModel.NAMESPACE, ".ClauseDefinition"),
         'name': 'top',
         'nodes': partialTemplate
       }]
@@ -240,10 +242,10 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 function tokensToUntypedTemplateMarkFragment(tokenStream) {
   var partialTemplate = tokensToUntypedTemplateMarkGen(tokenStream);
   return {
-    '$class': 'org.accordproject.commonmark.Document',
+    '$class': "".concat(CommonMarkModel.NAMESPACE, ".Document"),
     'xmlns': 'http://commonmark.org/xml/1.0',
     'nodes': [{
-      '$class': 'org.accordproject.templatemark.ClauseDefinition',
+      '$class': "".concat(TemplateMarkModel.NAMESPACE, ".ClauseDefinition"),
       'name': 'top',
       'nodes': partialTemplate
     }]

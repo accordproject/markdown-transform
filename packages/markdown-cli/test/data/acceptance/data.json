@@ -1,1 +1,13 @@
-{"$class":"org.accordproject.acceptanceofdelivery.Contract","deliveryClause":{"$class":"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause","shipper":"resource:org.accordproject.organization.Organization#Party%20A","receiver":"resource:org.accordproject.organization.Organization#Party%20B","deliverable":"Widgets","businessDays":10,"attachment":"Attachment X","clauseId":"caa1dda7-dafc-46a9-96c3-ab2701d15618"},"contractId":"ba01a884-546a-421d-923e-34705ce5217f"}
+{
+  "$class": "org.accordproject.acceptanceofdelivery.Contract",
+  "deliveryClause": {
+    "$class": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause",
+    "shipper": "resource:org.accordproject.organization.Organization#Party%20A",
+    "receiver": "resource:org.accordproject.organization.Organization#Party%20B",
+    "deliverable": "Widgets",
+    "businessDays": 10,
+    "attachment": "Attachment X",
+    "clauseId": "caa1dda7-dafc-46a9-96c3-ab2701d15618"
+  },
+  "contractId": "ba01a884-546a-421d-923e-34705ce5217f"
+}

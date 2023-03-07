@@ -20,7 +20,7 @@ const names = require('./names.json');
 
 const string = '"([^"]*)"';
 const identifier = '([a-zA-Z_][a-zA-Z0-9_]+)';
-const name = '(?:\\s+([A-Za-z0-9_-]+))?'; // name is optional (not required for #if)
+const name = '(?:\\s+([A-Za-z0-9_-]+))';
 const attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
 
 const format = '(:?\\s+as\\s*'+ string + '\\s*)?';
@@ -42,8 +42,8 @@ const FORMULA_RE = new RegExp('^(?:' + formula + ')');
  */
 function getBlockAttributes(match) {
     const result = [];
-    // if we don't have a name, we use the identifier of the tag
-    result.push([ 'name', match[2] ? match[2] : match[1] ]);
+    // name is always present in the block
+    result.push([ 'name', match[2] ]);
     // those are block attributes
     for(let i = 3; i < match.length; i = i+2) {
         if (match[i]) {

@@ -18,11 +18,9 @@ var dayjs = require('dayjs');
 var flatten = require('./util').flatten;
 var generateJSON = require('./templatemarkutil').generateJSON;
 var {
-  NS_PREFIX_CommonMarkModel
-} = require('@accordproject/markdown-common').CommonMarkModel;
-var {
-  NS_PREFIX_CiceroMarkModel
-} = require('@accordproject/markdown-cicero').CiceroMarkModel;
+  CommonMarkModel,
+  CiceroMarkModel
+} = require('@accordproject/markdown-common');
 
 /**
  * Drafts a CiceroMark DOM from a TemplateMark DOM
@@ -71,21 +69,21 @@ class ToCiceroMarkVisitor {
    */
   static matchTag(tag) {
     if (tag === 'VariableDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'Variable';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".Variable");
     } else if (tag === 'FormattedVariableDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'FormattedVariable';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".FormattedVariable");
     } else if (tag === 'EnumVariableDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'EnumVariable';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".EnumVariable");
     } else if (tag === 'FormulaDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'Formula';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".Formula");
     } else if (tag === 'ClauseDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'Clause';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".Clause");
     } else if (tag === 'ConditionalDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'Conditional';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".Conditional");
     } else if (tag === 'OptionalDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'Optional';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".Optional");
     } else if (tag === 'ListBlockDefinition') {
-      return NS_PREFIX_CiceroMarkModel + 'ListBlock';
+      return "".concat(CiceroMarkModel.NAMESPACE, ".ListBlock");
     } else {
       return tag;
     }
@@ -269,7 +267,7 @@ class ToCiceroMarkVisitor {
         {
           // Clone the thing and create an item blueprint
           var itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer, thing);
-          itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
+          itemNode.$classDeclaration = parameters.templateMarkModelManager.getType("".concat(CommonMarkModel.NAMESPACE, ".Item"));
           delete itemNode.elementType;
           delete itemNode.decorators;
           delete itemNode.name;
@@ -302,7 +300,7 @@ class ToCiceroMarkVisitor {
         {
           // Clone the thing and create an item blueprint
           var _itemNode = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer, thing);
-          _itemNode.$classDeclaration = parameters.templateMarkModelManager.getType(NS_PREFIX_CommonMarkModel + 'Item');
+          _itemNode.$classDeclaration = parameters.templateMarkModelManager.getType("".concat(CommonMarkModel.NAMESPACE, ".Item"));
           delete _itemNode.elementType;
           delete _itemNode.decorators;
           delete _itemNode.name;
@@ -321,7 +319,7 @@ class ToCiceroMarkVisitor {
             var resultNodes = ToCiceroMarkVisitor.cloneNode(parameters.templateMarkSerializer, _itemNode).accept(that, itemParameters)[0].nodes;
             if (index > 0) {
               resultNodes.unshift(parameters.templateMarkSerializer.fromJSON({
-                '$class': 'org.accordproject.commonmark.Text',
+                '$class': "".concat(CommonMarkModel.NAMESPACE, ".Text"),
                 'text': thing.separator
               }));
             }

@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "3.0.0",
+    "@accordproject/concerto-core": "3.6.0",
     "colors": "1.4.0",
     "coveralls": "3.0.4",
     "dayjs": "1.10.8",
@@ -14,7 +14,8 @@
     "nyc": "15.1.0",
     "semver": "7.3.5",
     "sleep-promise": "8.0.1",
-    "source-map-support": "0.5.12"
+    "source-map-support": "0.5.12",
+    "traverse": "^0.6.7"
   },
   "engines": {
     "node": ">=14",

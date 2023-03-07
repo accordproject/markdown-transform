@@ -1,1 +1,0 @@
-{"$class":"org.accordproject.volumediscountlist.VolumeDiscountContract","rates":[{"$class":"org.accordproject.volumediscountlist.RateRange","rate":3.1},{"$class":"org.accordproject.volumediscountlist.RateRange","rate":3.3},{"$class":"org.accordproject.volumediscountlist.RateRange","rate":2.9}],"contractId":"b292d6df-5d8c-4169-9de1-ed9515646c89"}

@@ -21,21 +21,6 @@ const path = require('path');
 
 const PdfTransformer = require('./PdfTransformer');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
-const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
-const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
-
-/**
- * Load models
- * @param {string} dir - a directory
- * @return {*} the model manager
- */
-async function loadModelManager(dir) {
-    const files = fs.readdirSync(dir);
-    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
-    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
-    const modelManager = await ModelLoader.loadModelManager(ctoPaths, { utcOffset: 0, offline: true });
-    return modelManager;
-}
 
 /**
  * Get the name and contents of all pdf test files
@@ -159,36 +144,6 @@ describe('pdf import 2', () => {
         // console.log(JSON.stringify(ciceroMarkDom, null, 4));
         expect(ciceroMarkDom).toMatchSnapshot(); // (1)
         return saveCiceroMarkAsPdf(ciceroMarkDom, 'Land_Sale_Contract-debug'); // roundtrip for debug
-    });
-});
-
-describe('pdf generation with decorators', () => {
-    it('converts signature-block.md', async () => {
-        const templateTransformer = new TemplateMarkTransformer();
-        const templateMarkContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'grammar.tem.md'), 'utf-8' );
-
-        const modelDir = path.join(__dirname, '/../test/data/signature');
-        const modelManager = await loadModelManager(modelDir);
-
-        const templateMarkDom = templateTransformer.fromMarkdownTemplate( { content: templateMarkContent }, modelManager, 'clause');
-        expect(templateMarkDom).toMatchSnapshot(); // (1)
-
-        const markdownContent = fs.readFileSync( path.join(__dirname, '/../test/data/signature', 'signature-block.md'), 'utf-8' );
-        const ciceroMarkTransformer = new CiceroMarkTransformer();
-        const ciceroMarkDom = ciceroMarkTransformer.fromMarkdownCicero(markdownContent, 'json');
-
-        const signatureBlocks = ciceroMarkDom.nodes.filter( n => n.$class === 'org.accordproject.ciceromark.Clause');
-
-        const promises = [];
-        signatureBlocks.forEach( signatureBlock => {
-            // console.log(JSON.stringify(signatureBlock, null, 4));
-            const parseResult = templateTransformer.fromCiceroMark( {content: { $class: 'org.accordproject.commonmark.Document', xmlns: '', nodes: signatureBlock.nodes} }, templateMarkDom, modelManager, 'clause', null );
-            // console.log(JSON.stringify(parseResult, null, 4));
-            const typedDom = templateTransformer.instantiateCiceroMark(parseResult, templateMarkDom, modelManager, 'clause', null);
-            // console.log(JSON.stringify(typedDom, null, 4));
-            promises.push( saveCiceroMarkAsPdf(typedDom, `signature-block-${signatureBlock.name}` ) );
-        });
-        return Promise.all(promises);
     });
 });
 

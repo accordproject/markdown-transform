@@ -1,1 +1,478 @@
-{"document":{"object":"document","children":[{"object":"block","type":"clause_definition","data":{"name":"top","elementType":"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause"},"children":[{"object":"block","data":{},"type":"heading_two","children":[{"object":"text","text":"Acceptance of Delivery."}]},{"object":"block","type":"paragraph","children":[{"object":"text","text":""},{"object":"inline","type":"variable_definition","data":{"name":"shipper","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"shipper"}]},{"object":"text","text":" will be deemed to have completed its delivery obligations"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"if in "},{"object":"inline","type":"variable_definition","data":{"name":"receiver","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"receiver"}]},{"object":"text","text":"'s opinion, the "},{"object":"inline","type":"variable_definition","data":{"name":"deliverable","elementType":"String"},"children":[{"object":"text","text":"deliverable"}]},{"object":"text","text":" satisfies the"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"Acceptance Criteria, and "},{"object":"inline","type":"variable_definition","data":{"name":"receiver","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"receiver"}]},{"object":"text","text":" notifies "},{"object":"inline","type":"variable_definition","data":{"name":"shipper","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"shipper"}]},{"object":"text","text":" in writing"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"that it is accepting the "},{"object":"inline","type":"variable_definition","data":{"name":"deliverable","elementType":"String"},"children":[{"object":"text","text":"deliverable"}]},{"object":"text","text":"."}],"data":{}},{"object":"block","data":{},"type":"heading_two","children":[{"object":"text","text":"Inspection and Notice."}]},{"object":"block","type":"paragraph","children":[{"object":"text","text":""},{"object":"inline","type":"variable_definition","data":{"name":"receiver","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"receiver"}]},{"object":"text","text":" will have "},{"object":"inline","type":"variable_definition","data":{"name":"businessDays","elementType":"Long"},"children":[{"object":"text","text":"businessDays"}]},{"object":"text","text":" Business Days to inspect and"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"evaluate the "},{"object":"inline","type":"variable_definition","data":{"name":"deliverable","elementType":"String"},"children":[{"object":"text","text":"deliverable"}]},{"object":"text","text":" on the delivery date before notifying"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":""},{"object":"inline","type":"variable_definition","data":{"name":"shipper","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"shipper"}]},{"object":"text","text":" that it is either accepting or rejecting the"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":""},{"object":"inline","type":"variable_definition","data":{"name":"deliverable","elementType":"String"},"children":[{"object":"text","text":"deliverable"}]},{"object":"text","text":"."}],"data":{}},{"object":"block","data":{},"type":"heading_two","children":[{"object":"text","text":"Acceptance Criteria."}]},{"object":"block","type":"paragraph","children":[{"object":"text","text":"The \"Acceptance Criteria\" are the specifications the "},{"object":"inline","type":"variable_definition","data":{"name":"deliverable","elementType":"String"},"children":[{"object":"text","text":"deliverable"}]},{"object":"text","text":""},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"must meet for the "},{"object":"inline","type":"variable_definition","data":{"name":"shipper","elementType":"org.accordproject.organization.Organization","identifiedBy":"identifier"},"children":[{"object":"text","text":"shipper"}]},{"object":"text","text":" to comply with its requirements and"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"obligations under this agreement, detailed in "},{"object":"inline","type":"variable_definition","data":{"name":"attachment","elementType":"String"},"children":[{"object":"text","text":"attachment"}]},{"object":"text","text":", attached"},{"object":"inline","type":"softbreak","data":{},"children":[{"object":"text","text":""}]},{"object":"text","text":"to this agreement."}],"data":{}}]}],"data":{}}}
+{
+  "document": {
+    "object": "document",
+    "children": [
+      {
+        "object": "block",
+        "type": "clause_definition",
+        "data": {
+          "name": "top",
+          "elementType": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause"
+        },
+        "children": [
+          {
+            "object": "block",
+            "data": {},
+            "type": "heading_two",
+            "children": [
+              {
+                "object": "text",
+                "text": "Acceptance of Delivery."
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "children": [
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "shipper",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "shipper"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " will be deemed to have completed its delivery obligations"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "if in "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "receiver",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "receiver"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "'s opinion, the "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "deliverable",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "deliverable"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " satisfies the"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "Acceptance Criteria, and "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "receiver",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "receiver"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " notifies "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "shipper",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "shipper"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " in writing"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "that it is accepting the "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "deliverable",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "deliverable"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "."
+              }
+            ],
+            "data": {}
+          },
+          {
+            "object": "block",
+            "data": {},
+            "type": "heading_two",
+            "children": [
+              {
+                "object": "text",
+                "text": "Inspection and Notice."
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "children": [
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "receiver",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "receiver"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " will have "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "businessDays",
+                  "elementType": "Long"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "businessDays"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " Business Days to inspect and"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "evaluate the "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "deliverable",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "deliverable"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " on the delivery date before notifying"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "shipper",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "shipper"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " that it is either accepting or rejecting the"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "deliverable",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "deliverable"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "."
+              }
+            ],
+            "data": {}
+          },
+          {
+            "object": "block",
+            "data": {},
+            "type": "heading_two",
+            "children": [
+              {
+                "object": "text",
+                "text": "Acceptance Criteria."
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "children": [
+              {
+                "object": "text",
+                "text": "The \"Acceptance Criteria\" are the specifications the "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "deliverable",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "deliverable"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "must meet for the "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "shipper",
+                  "elementType": "org.accordproject.organization.Organization",
+                  "identifiedBy": "identifier"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "shipper"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " to comply with its requirements and"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "obligations under this agreement, detailed in "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "attachment",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "attachment"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ", attached"
+              },
+              {
+                "object": "inline",
+                "type": "softbreak",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "to this agreement."
+              }
+            ],
+            "data": {}
+          }
+        ]
+      }
+    ],
+    "data": {}
+  }
+}

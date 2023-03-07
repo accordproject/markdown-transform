@@ -1,1 +1,0 @@
-{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"friend":{"$class":"org.test.Person","firstName":"Steve","lastName":"Doe"},"currency":"EUR","forceMajeure":false,"clauseId":"592c7f1c-5586-444f-ac0c-95d64dad7719"}

@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const { CiceroMarkModel } = require('@accordproject/markdown-common');
 
 const fromslateutil = require('./fromslateutil');
 
@@ -23,7 +23,7 @@ const rules = {};
 // CiceroMark rules
 rules.ol_list_block = (node,processNodes) => {
     let result;
-    result = {$class : `${NS_PREFIX_CiceroMarkModel}ListBlock`, name: node.data.name, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    result = {$class : `${CiceroMarkModel.NAMESPACE}.ListBlock`, name: node.data.name, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }
@@ -34,7 +34,7 @@ rules.ol_list_block = (node,processNodes) => {
 };
 rules.ul_list_block = (node,processNodes) => {
     let result;
-    result = {$class : `${NS_PREFIX_CiceroMarkModel}ListBlock`, name: node.data.name, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    result = {$class : `${CiceroMarkModel.NAMESPACE}.ListBlock`, name: node.data.name, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }
@@ -46,7 +46,7 @@ rules.ul_list_block = (node,processNodes) => {
 
 rules.clause = (node,processNodes) => {
     // console.log(JSON.stringify(node, null, 4));
-    const result = {$class : `${NS_PREFIX_CiceroMarkModel}Clause`, name: node.data.name, nodes: []};
+    const result = {$class : `${CiceroMarkModel.NAMESPACE}.Clause`, name: node.data.name, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }

@@ -22,7 +22,6 @@ const {
 } = require('./templatemarkutil');
 
 const ToMarkdownTemplateVisitor = require('./ToMarkdownTemplateVisitor');
-const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 
 /**
  * Support for TemplateMark Templates
