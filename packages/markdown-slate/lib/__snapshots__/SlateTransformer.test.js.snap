@@ -11450,7 +11450,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ClauseDefinition",
       "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause",
       "name": "top",
       "nodes": Array [
@@ -11468,7 +11468,7 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11485,7 +11485,7 @@ Object {
               "text": "if in ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11495,7 +11495,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11511,7 +11511,7 @@ Object {
               "text": "Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11521,7 +11521,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11538,7 +11538,7 @@ Object {
               "text": "that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11562,7 +11562,7 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11572,7 +11572,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Long",
               "name": "businessDays",
             },
@@ -11588,7 +11588,7 @@ Object {
               "text": "evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11600,7 +11600,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11613,7 +11613,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11641,7 +11641,7 @@ Object {
               "text": "The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11653,7 +11653,7 @@ Object {
               "text": "must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11670,7 +11670,7 @@ Object {
               "text": "obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "attachment",
             },
@@ -11699,7 +11699,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ClauseDefinition",
       "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause",
       "name": "top",
       "nodes": Array [
@@ -11717,7 +11717,7 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11734,7 +11734,7 @@ Object {
               "text": "if in ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11744,7 +11744,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11760,7 +11760,7 @@ Object {
               "text": "Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11770,7 +11770,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11787,7 +11787,7 @@ Object {
               "text": "that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11811,7 +11811,7 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -11821,7 +11821,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Long",
               "name": "businessDays",
             },
@@ -11837,7 +11837,7 @@ Object {
               "text": "evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11849,7 +11849,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11862,7 +11862,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11890,7 +11890,7 @@ Object {
               "text": "The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "deliverable",
             },
@@ -11902,7 +11902,7 @@ Object {
               "text": "must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -11919,7 +11919,7 @@ Object {
               "text": "obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "attachment",
             },
@@ -12429,7 +12429,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ContractDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ContractDefinition",
       "elementType": "org.accordproject.latedeliveryandpenalty.LateDeliveryAndPenaltyContract",
       "name": "top",
       "nodes": Array [
@@ -12451,7 +12451,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.ConditionalDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.ConditionalDefinition",
               "name": "forceMajeure",
               "whenFalse": Array [],
               "whenTrue": Array [
@@ -12465,7 +12465,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.cicero.contract.AccordParty",
               "name": "seller",
             },
@@ -12474,7 +12474,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.cicero.contract.AccordParty",
               "name": "buyer",
             },
@@ -12483,7 +12483,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.time.Duration",
               "name": "penaltyDuration",
             },
@@ -12495,7 +12495,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "penaltyPercentage",
             },
@@ -12511,7 +12511,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
@@ -12534,7 +12534,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
@@ -12557,7 +12557,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "capPercentage",
             },
@@ -12573,7 +12573,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.time.Duration",
               "name": "termination",
             },
@@ -12595,7 +12595,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ContractDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ContractDefinition",
       "elementType": "org.accordproject.latedeliveryandpenalty.LateDeliveryAndPenaltyContract",
       "name": "top",
       "nodes": Array [
@@ -12617,7 +12617,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.ConditionalDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.ConditionalDefinition",
               "name": "forceMajeure",
               "whenFalse": Array [],
               "whenTrue": Array [
@@ -12631,7 +12631,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.cicero.contract.AccordParty",
               "name": "seller",
             },
@@ -12640,7 +12640,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.cicero.contract.AccordParty",
               "name": "buyer",
             },
@@ -12649,7 +12649,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.time.Duration",
               "name": "penaltyDuration",
             },
@@ -12661,7 +12661,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "penaltyPercentage",
             },
@@ -12677,7 +12677,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
@@ -12700,7 +12700,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.time.TemporalUnit",
               "enumValues": Array [
                 "seconds",
@@ -12723,7 +12723,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "capPercentage",
             },
@@ -12739,7 +12739,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "org.accordproject.time.Duration",
               "name": "termination",
             },
@@ -13077,7 +13077,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ClauseDefinition",
       "elementType": "org.test.MyClause",
       "name": "top",
       "nodes": Array [
@@ -13089,7 +13089,7 @@ Object {
               "text": "This is a contract between ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "seller",
             },
@@ -13098,7 +13098,7 @@ Object {
               "text": " and ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "buyer",
             },
@@ -13107,7 +13107,7 @@ Object {
               "text": " for the amount of ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "amount",
             },
@@ -13116,7 +13116,7 @@ Object {
               "text": " ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.money.CurrencyCode",
               "enumValues": Array [
                 "AED",
@@ -13301,7 +13301,7 @@ Object {
               "name": "currency",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.ConditionalDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.ConditionalDefinition",
               "name": "forceMajeure",
               "whenFalse": Array [],
               "whenTrue": Array [
@@ -13329,7 +13329,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.templatemark@0.3.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.4.0.ClauseDefinition",
       "elementType": "org.test.MyClause",
       "name": "top",
       "nodes": Array [
@@ -13341,7 +13341,7 @@ Object {
               "text": "This is a contract between ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "seller",
             },
@@ -13350,7 +13350,7 @@ Object {
               "text": " and ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "String",
               "name": "buyer",
             },
@@ -13359,7 +13359,7 @@ Object {
               "text": " for the amount of ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
               "elementType": "Double",
               "name": "amount",
             },
@@ -13368,7 +13368,7 @@ Object {
               "text": " ",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
               "elementType": "org.accordproject.money.CurrencyCode",
               "enumValues": Array [
                 "AED",
@@ -13553,7 +13553,7 @@ Object {
               "name": "currency",
             },
             Object {
-              "$class": "org.accordproject.templatemark@0.3.0.ConditionalDefinition",
+              "$class": "org.accordproject.templatemark@0.4.0.ConditionalDefinition",
               "name": "forceMajeure",
               "whenFalse": Array [],
               "whenTrue": Array [

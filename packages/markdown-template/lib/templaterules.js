@@ -64,7 +64,11 @@ var formulaRule = {
   enter: (node, token, callback) => {
     var code = token.content;
     node.name = formulaName(code);
-    node.code = code;
+    node.code = {
+      $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+      type: 'ES_2020',
+      contents: code
+    };
     node.dependencies = [];
   },
   skipEmpty: false
@@ -76,7 +80,14 @@ var ifOpenRule = {
   close: false,
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
-    node.condition = getAttr(token.attrs, 'condition', null);
+    var condition = getAttr(token.attrs, 'condition', null);
+    if (condition) {
+      node.condition = {
+        $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+        type: 'ES_2020',
+        contents: condition
+      };
+    }
     node.whenTrue = null;
     node.whenFalse = null;
   },
@@ -188,7 +199,14 @@ var clauseOpenRule = {
   close: false,
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
-    node.condition = getAttr(token.attrs, 'condition', null);
+    var condition = getAttr(token.attrs, 'condition', null);
+    if (condition) {
+      node.condition = {
+        $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+        type: 'ES_2020',
+        contents: condition
+      };
+    }
   }
 };
 var clauseCloseRule = {

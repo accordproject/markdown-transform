@@ -65,8 +65,7 @@ class FormulaVisitor {
       });
       return deps;
     } catch (err) {
-      console.log("Failed to calculate dependencies in code '".concat(jsCode, "'. Error: ").concat(err));
-      return [];
+      throw new Error("Failed to calculate dependencies in code '".concat(jsCode, "'. Error: ").concat(err));
     }
   }
 
@@ -80,7 +79,7 @@ class FormulaVisitor {
       case 'ConditionalDefinition':
         {
           if (parameters.calculateDependencies) {
-            thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition);
+            thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
           } else {
             parameters.result.push({
               name: thing.name,
@@ -92,7 +91,7 @@ class FormulaVisitor {
       case 'FormulaDefinition':
         {
           if (parameters.calculateDependencies) {
-            thing.dependencies = FormulaVisitor.calculateDependencies(thing.code);
+            thing.dependencies = FormulaVisitor.calculateDependencies(thing.code.contents);
           } else {
             parameters.result.push({
               name: thing.name,

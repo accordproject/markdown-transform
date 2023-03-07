@@ -1,5 +1,5 @@
 {
-  "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
+  "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
   "decorators": [
     {
       "$class": "concerto.metamodel@1.0.0.Decorator",

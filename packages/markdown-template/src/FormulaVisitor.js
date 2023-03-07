@@ -63,8 +63,7 @@ class FormulaVisitor {
             return deps;
         }
         catch(err) {
-            console.log(`Failed to calculate dependencies in code '${jsCode}'. Error: ${err}`);
-            return [];
+            throw new Error(`Failed to calculate dependencies in code '${jsCode}'. Error: ${err}`);
         }
     }
 
@@ -78,7 +77,7 @@ class FormulaVisitor {
         case 'ConditionalDefinition':
             {
                 if (parameters.calculateDependencies) {
-                    thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition);
+                    thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
                 } else {
                     parameters.result.push({ name : thing.name, code: thing.condition });
                 }
@@ -86,7 +85,7 @@ class FormulaVisitor {
             break;
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
-                thing.dependencies = FormulaVisitor.calculateDependencies(thing.code);
+                thing.dependencies = FormulaVisitor.calculateDependencies(thing.code.contents);
             } else {
                 parameters.result.push({ name : thing.name, code: thing.code });
             }
