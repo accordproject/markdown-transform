@@ -21,10 +21,10 @@ const CommonMarkModel = require('./externalModels/CommonMarkModel');
 const CiceroMarkModel = require('./externalModels/CiceroMarkModel');
 
 // used to migrate old template mark json to latest namespaces
-const TEMPLATEMARK_OLD_RE = /^(org\.accordproject\.templatemark)\.(\w+)$/;
+const TEMPLATEMARK_OLD_RE = /^(org\.accordproject\.templatemark@0.2.0)\.(\w+)$/;
 const COMMONMARK_OLD_RE = /^(org\.accordproject\.commonmark)\.(\w+)$/;
 const CONCERTOMETAMODEL_OLD_RE = /^(concerto\.metamodel)\.(\w+)$/;
-const CICEROMARK_OLD_RE = /^(org\.accordproject\.ciceromark)\.(\w+)$/;
+const CICEROMARK_OLD_RE = /^(org\.accordproject\.ciceromark@0.4.0)\.(\w+)$/;
 
 const AOD_OLD_RE = /^(org\.accordproject\.acceptanceofdelivery)\.(\w+)$/;
 const NEW_AOD_NS = 'org.accordproject.acceptanceofdelivery@1.0.0';

@@ -37,7 +37,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -120,7 +120,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -210,7 +210,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -297,7 +297,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -385,7 +385,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -473,7 +473,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -548,7 +548,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -716,7 +716,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -754,7 +754,7 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+              "$class": "org.accordproject.ciceromark@0.5.0.Formula",
               "dependencies": Array [],
               "name": "formula",
               "value": "\\"Widgets\\"",
@@ -806,7 +806,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1025,7 +1025,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1127,7 +1127,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1230,7 +1230,7 @@ Object {
           "text": "and monthly payments of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+          "$class": "org.accordproject.ciceromark@0.5.0.Formula",
           "dependencies": Array [],
           "name": "formula",
           "value": "667.0",
@@ -1268,7 +1268,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "bar",
       "nodes": Array [
         Object {
@@ -1309,7 +1309,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1868,7 +1868,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -1977,7 +1977,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -2086,7 +2086,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -2195,7 +2195,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -2337,7 +2337,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {

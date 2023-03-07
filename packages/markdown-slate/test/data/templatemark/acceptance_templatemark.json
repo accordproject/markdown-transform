@@ -3,9 +3,9 @@
   "xmlns": "http://commonmark.org/xml/1.0",
   "nodes": [
     {
-      "$class": "org.accordproject.templatemark@0.2.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.3.0.ClauseDefinition",
       "name": "top",
-      "elementType": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause",
+      "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause",
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
@@ -21,10 +21,10 @@
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": [
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "shipper",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
@@ -38,17 +38,17 @@
               "text": "if in "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "receiver",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "'s opinion, the "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "deliverable",
               "elementType": "String"
             },
@@ -64,20 +64,20 @@
               "text": "Acceptance Criteria, and "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "receiver",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": " notifies "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "shipper",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
@@ -91,7 +91,7 @@
               "text": "that it is accepting the "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "deliverable",
               "elementType": "String"
             },
@@ -115,17 +115,17 @@
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": [
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "receiver",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": " will have "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "businessDays",
               "elementType": "Long"
             },
@@ -141,7 +141,7 @@
               "text": "evaluate the "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "deliverable",
               "elementType": "String"
             },
@@ -153,10 +153,10 @@
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "shipper",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
@@ -166,7 +166,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "deliverable",
               "elementType": "String"
             },
@@ -194,7 +194,7 @@
               "text": "The \"Acceptance Criteria\" are the specifications the "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "deliverable",
               "elementType": "String"
             },
@@ -206,10 +206,10 @@
               "text": "must meet for the "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "identifiedBy": "identifier",
               "name": "shipper",
-              "elementType": "org.accordproject.organization.Organization"
+              "elementType": "org.accordproject.organization@0.2.0.Organization"
             },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
@@ -223,7 +223,7 @@
               "text": "obligations under this agreement, detailed in "
             },
             {
-              "$class": "org.accordproject.templatemark@0.2.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.3.0.VariableDefinition",
               "name": "attachment",
               "elementType": "String"
             },

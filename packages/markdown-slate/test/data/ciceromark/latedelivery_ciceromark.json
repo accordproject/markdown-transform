@@ -20,7 +20,7 @@
           "text": "In case of delayed delivery"
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+          "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
           "isTrue": true,
           "whenTrue": [
             {
@@ -41,7 +41,7 @@
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "\"Dan\"",
           "name": "partyId",
           "elementType": "String"
@@ -51,7 +51,7 @@
           "text": " (the Seller) shall pay to "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "\"Steve\"",
           "name": "partyId",
           "elementType": "String"
@@ -61,7 +61,7 @@
           "text": " (the Buyer) for every "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "2",
           "name": "amount",
           "elementType": "Long"
@@ -71,7 +71,7 @@
           "text": " "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": [
             "seconds",
@@ -91,7 +91,7 @@
           "text": "of delay penalty amounting to "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "10.5",
           "name": "penaltyPercentage",
           "elementType": "Double"
@@ -108,7 +108,7 @@
           "text": "whose delivery has been delayed. Any fractional part of a "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "enumValues": [
             "seconds",
             "minutes",
@@ -132,7 +132,7 @@
           "text": "considered a full "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "enumValues": [
             "seconds",
             "minutes",
@@ -156,7 +156,7 @@
           "text": "exceed "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "55.0",
           "name": "capPercentage",
           "elementType": "Double"
@@ -173,7 +173,7 @@
           "text": "If the delay is more than "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "value": "15",
           "name": "amount",
           "elementType": "Long"
@@ -183,7 +183,7 @@
           "text": " "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "enumValues": [
             "seconds",
             "minutes",

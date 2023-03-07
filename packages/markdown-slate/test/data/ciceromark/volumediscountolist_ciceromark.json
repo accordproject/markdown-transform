@@ -137,7 +137,7 @@
       ]
     },
     {
-      "$class": "org.accordproject.ciceromark@0.4.0.ListBlock",
+      "$class": "org.accordproject.ciceromark@0.5.0.ListBlock",
       "type": "ordered",
       "tight": "true",
       "start": "1",
@@ -151,7 +151,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "0.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -161,7 +161,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -171,7 +171,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "3.1",
                   "name": "rate",
                   "elementType": "Double"
@@ -191,7 +191,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -201,7 +201,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "10.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -211,7 +211,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "3.1",
                   "name": "rate",
                   "elementType": "Double"
@@ -231,7 +231,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "10.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -241,7 +241,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "50.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -251,7 +251,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "2.9",
                   "name": "rate",
                   "elementType": "Double"
@@ -271,7 +271,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "50.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -281,7 +281,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "500.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -291,7 +291,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "2.5",
                   "name": "rate",
                   "elementType": "Double"
@@ -311,7 +311,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "500.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -321,7 +321,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1000.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -331,7 +331,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1.2",
                   "name": "rate",
                   "elementType": "Double"
@@ -351,7 +351,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
               "nodes": [
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1000.0",
                   "name": "volumeAbove",
                   "elementType": "Double"
@@ -361,7 +361,7 @@
                   "text": "$ million <= Volume < "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "1000000.0",
                   "name": "volumeUpTo",
                   "elementType": "Double"
@@ -371,7 +371,7 @@
                   "text": "$ million : "
                 },
                 {
-                  "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+                  "$class": "org.accordproject.ciceromark@0.5.0.Variable",
                   "value": "0.1",
                   "name": "rate",
                   "elementType": "Double"

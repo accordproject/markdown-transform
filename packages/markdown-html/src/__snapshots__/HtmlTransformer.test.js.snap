@@ -7,20 +7,20 @@ exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 1`]
 <div class=\\"document\\">
 <h1>Heading</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause\\">
+<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause\\">
 <h2>Acceptance of Delivery.</h2>
-<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
-if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
-Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
+<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
+if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
+Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
 that it is accepting the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
 <h2>Inspection and Notice.</h2>
-<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
+<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
 evaluate the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> on the delivery date before notifying
-<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
+<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
 <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
 <h2>Acceptance Criteria.</h2>
 <p>The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>
-must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
+must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
 obligations under this agreement, detailed in <span class=\\"variable\\" name=\\"attachment\\" elementType=\\"String\\">\\"Attachment X\\"</span>, attached
 to this agreement.</p>
 </div>
@@ -37,20 +37,20 @@ exports[`ciceromark <-> html converts acceptance.json to and from CiceroMark 2`]
 <div class=\\"document\\">
 <h1>Heading</h1>
 <p>And below is a <strong>clause</strong>.</p>
-<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause\\">
+<div class=\\"clause\\" name=\\"deliveryClause\\" elementType=\\"org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause\\">
 <h2>Acceptance of Delivery.</h2>
-<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
-if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
-Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
+<p><span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> will be deemed to have completed its delivery obligations
+if in <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span>'s opinion, the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> satisfies the
+Acceptance Criteria, and <span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> notifies <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> in writing
 that it is accepting the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
 <h2>Inspection and Notice.</h2>
-<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
+<p><span class=\\"variable\\" name=\\"receiver\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party B\\"</span> will have <span class=\\"variable\\" name=\\"businessDays\\" elementType=\\"Long\\">10</span> Business Days to inspect and
 evaluate the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span> on the delivery date before notifying
-<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
+<span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> that it is either accepting or rejecting the
 <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>.</p>
 <h2>Acceptance Criteria.</h2>
 <p>The \\"Acceptance Criteria\\" are the specifications the <span class=\\"variable\\" name=\\"deliverable\\" elementType=\\"String\\">\\"Widgets\\"</span>
-must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
+must meet for the <span class=\\"variable\\" name=\\"shipper\\" elementType=\\"org.accordproject.organization@0.2.0.Organization\\" identifiedBy=\\"identifier\\">\\"Party A\\"</span> to comply with its requirements and
 obligations under this agreement, detailed in <span class=\\"variable\\" name=\\"attachment\\" elementType=\\"String\\">\\"Attachment X\\"</span>, attached
 to this agreement.</p>
 </div>
@@ -97,8 +97,8 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
-      "elementType": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
+      "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause",
       "name": "deliveryClause",
       "nodes": Array [
         Object {
@@ -115,8 +115,8 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
               "value": "\\"Party A\\"",
@@ -133,8 +133,8 @@ Object {
               "text": "if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
               "value": "\\"Party B\\"",
@@ -144,7 +144,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
@@ -161,8 +161,8 @@ Object {
               "text": "Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
               "value": "\\"Party B\\"",
@@ -172,8 +172,8 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
               "value": "\\"Party A\\"",
@@ -190,7 +190,7 @@ Object {
               "text": "that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
@@ -215,8 +215,8 @@ Object {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": Array [
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "receiver",
               "value": "\\"Party B\\"",
@@ -226,7 +226,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "Long",
               "name": "businessDays",
               "value": "10",
@@ -243,7 +243,7 @@ Object {
               "text": "evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
@@ -256,8 +256,8 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
               "value": "\\"Party A\\"",
@@ -270,7 +270,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
@@ -299,7 +299,7 @@ Object {
               "text": "The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
@@ -312,8 +312,8 @@ Object {
               "text": "must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
-              "elementType": "org.accordproject.organization.Organization",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "elementType": "org.accordproject.organization@0.2.0.Organization",
               "identifiedBy": "identifier",
               "name": "shipper",
               "value": "\\"Party A\\"",
@@ -330,7 +330,7 @@ Object {
               "text": "obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "elementType": "String",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
@@ -429,7 +429,7 @@ Object {
           "text": " loan to the amount of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.FormattedVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.FormattedVariable",
           "elementType": "org.accordproject.money.MonetaryAmount",
           "format": "K0,0.00",
           "name": "loanAmount",
@@ -443,7 +443,7 @@ Object {
           "text": "at the yearly interest rate of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Double",
           "name": "rate",
           "value": "2.5",
@@ -460,7 +460,7 @@ Object {
           "text": "with a loan term of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Integer",
           "name": "loanDuration",
           "value": "15",
@@ -477,7 +477,7 @@ Object {
           "text": "and monthly payments of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+          "$class": "org.accordproject.ciceromark@0.5.0.Formula",
           "code": " monthlyPaymentFormula(loanAmount,rate,loanDuration) as \\"K0,0.00\\" ",
           "dependencies": Array [],
           "name": "formula",
@@ -546,7 +546,7 @@ Object {
           "text": "In case of delayed delivery",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+          "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
           "isTrue": true,
           "name": "forceMajeure",
           "nodes": Array [
@@ -564,7 +564,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "String",
           "name": "partyId",
           "value": "\\"Dan\\"",
@@ -574,7 +574,7 @@ Object {
           "text": " (the Seller) shall pay to ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "String",
           "name": "partyId",
           "value": "\\"Steve\\"",
@@ -584,7 +584,7 @@ Object {
           "text": " (the Buyer) for every ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Long",
           "name": "amount",
           "value": "2",
@@ -594,7 +594,7 @@ Object {
           "text": " ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
@@ -614,7 +614,7 @@ Object {
           "text": "of delay penalty amounting to ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Double",
           "name": "penaltyPercentage",
           "value": "10.5",
@@ -631,7 +631,7 @@ Object {
           "text": "whose delivery has been delayed. Any fractional part of a ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
@@ -655,7 +655,7 @@ Object {
           "text": "considered a full ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",
@@ -679,7 +679,7 @@ Object {
           "text": "exceed ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Double",
           "name": "capPercentage",
           "value": "55.0",
@@ -696,7 +696,7 @@ Object {
           "text": "If the delay is more than ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "elementType": "Long",
           "name": "amount",
           "value": "15",
@@ -706,7 +706,7 @@ Object {
           "text": " ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.EnumVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.EnumVariable",
           "elementType": "org.accordproject.time.TemporalUnit",
           "enumValues": Array [
             "seconds",

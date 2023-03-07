@@ -37,7 +37,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -48,7 +48,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -57,7 +57,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -66,7 +66,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -75,7 +75,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -84,7 +84,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -93,7 +93,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -111,7 +111,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -120,7 +120,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -129,7 +129,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -138,7 +138,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -147,7 +147,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -165,7 +165,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -174,7 +174,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -183,7 +183,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -253,7 +253,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -264,7 +264,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -273,7 +273,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -282,7 +282,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -291,7 +291,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -300,7 +300,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -309,7 +309,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -327,7 +327,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -336,7 +336,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -345,7 +345,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -354,7 +354,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -363,7 +363,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -381,7 +381,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -390,7 +390,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -399,7 +399,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -467,7 +467,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -478,7 +478,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -487,7 +487,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -496,7 +496,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -505,7 +505,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -514,7 +514,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -523,7 +523,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -541,7 +541,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -550,7 +550,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -559,7 +559,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -568,7 +568,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -577,7 +577,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -595,7 +595,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -604,7 +604,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -613,7 +613,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -631,7 +631,7 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+              "$class": "org.accordproject.ciceromark@0.5.0.Formula",
               "name": "",
               "value": "\\"Widgets\\"",
             },
@@ -697,7 +697,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -708,7 +708,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -717,7 +717,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -726,7 +726,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -735,7 +735,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -744,7 +744,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -753,7 +753,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -771,7 +771,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -780,7 +780,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -789,7 +789,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -798,7 +798,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -807,7 +807,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -825,7 +825,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -834,7 +834,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -843,7 +843,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -861,7 +861,7 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+              "$class": "org.accordproject.ciceromark@0.5.0.Formula",
               "name": "",
               "value": "\\"Widgets\\"",
             },
@@ -1012,7 +1012,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1023,7 +1023,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1032,7 +1032,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1041,7 +1041,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1050,7 +1050,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1059,7 +1059,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1068,7 +1068,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1086,7 +1086,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1095,7 +1095,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -1104,7 +1104,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1113,7 +1113,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1122,7 +1122,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1140,7 +1140,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1149,7 +1149,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1158,7 +1158,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -1213,7 +1213,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1381,7 +1381,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1392,7 +1392,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1401,7 +1401,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1410,7 +1410,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1419,7 +1419,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1428,7 +1428,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1437,7 +1437,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1455,7 +1455,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1464,7 +1464,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -1473,7 +1473,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1482,7 +1482,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1491,7 +1491,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1509,7 +1509,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1518,7 +1518,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1527,7 +1527,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -1545,7 +1545,7 @@ Object {
               "text": "This is ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+              "$class": "org.accordproject.ciceromark@0.5.0.Formula",
               "name": "",
               "value": "\\"Widgets\\"",
             },
@@ -1741,7 +1741,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1752,7 +1752,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1761,7 +1761,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1770,7 +1770,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1779,7 +1779,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1788,7 +1788,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1797,7 +1797,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1815,7 +1815,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1824,7 +1824,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -1833,7 +1833,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1842,7 +1842,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1851,7 +1851,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1869,7 +1869,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -1878,7 +1878,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1887,7 +1887,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -1969,7 +1969,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -1980,7 +1980,7 @@ Object {
               "text": "Acceptance of Delivery. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -1989,7 +1989,7 @@ Object {
               "text": " will be deemed to have completed its delivery obligations if in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -1998,7 +1998,7 @@ Object {
               "text": "'s opinion, the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -2007,7 +2007,7 @@ Object {
               "text": " satisfies the Acceptance Criteria, and ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -2016,7 +2016,7 @@ Object {
               "text": " notifies ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -2025,7 +2025,7 @@ Object {
               "text": " in writing that it is accepting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -2043,7 +2043,7 @@ Object {
               "text": "Inspection and Notice. ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "receiver",
               "value": "\\"Party B\\"",
             },
@@ -2052,7 +2052,7 @@ Object {
               "text": " will have ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "businessDays",
               "value": "10",
             },
@@ -2061,7 +2061,7 @@ Object {
               "text": " Business Days' to inspect and evaluate the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -2070,7 +2070,7 @@ Object {
               "text": " on the delivery date before notifying ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -2079,7 +2079,7 @@ Object {
               "text": " that it is either accepting or rejecting the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -2097,7 +2097,7 @@ Object {
               "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "deliverable",
               "value": "\\"Widgets\\"",
             },
@@ -2106,7 +2106,7 @@ Object {
               "text": " must meet for the ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "shipper",
               "value": "\\"Party A\\"",
             },
@@ -2115,7 +2115,7 @@ Object {
               "text": " to comply with its requirements and obligations under this agreement, detailed in ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "attachment",
               "value": "\\"Attachment X\\"",
             },
@@ -2177,7 +2177,7 @@ Object {
           "text": "This is a fixed interest loan to the amount of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "loanAmount",
           "value": "100000.0",
         },
@@ -2189,7 +2189,7 @@ Object {
           "text": "at the yearly interest rate of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "rate",
           "value": "2.5",
         },
@@ -2205,7 +2205,7 @@ Object {
           "text": "with a loan term of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "loanDuration",
           "value": "15",
         },
@@ -2221,7 +2221,7 @@ Object {
           "text": "and monthly payments of ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Formula",
+          "$class": "org.accordproject.ciceromark@0.5.0.Formula",
           "name": "",
           "value": "667.0",
         },
@@ -2258,7 +2258,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "bar",
       "nodes": Array [
         Object {
@@ -2276,7 +2276,7 @@ Object {
               "text": "multiline ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "rate",
               "value": "2.5",
             },
@@ -2304,7 +2304,7 @@ Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
       "nodes": Array [
         Object {
@@ -2327,7 +2327,7 @@ Object {
           ],
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.ListBlock",
+          "$class": "org.accordproject.ciceromark@0.5.0.ListBlock",
           "name": "",
           "nodes": Array [
             Object {
@@ -2488,7 +2488,7 @@ Object {
           "text": "On or before the ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.FormattedVariable",
+          "$class": "org.accordproject.ciceromark@0.5.0.FormattedVariable",
           "format": "YYYY/MM/DD",
           "name": "effectiveDate",
           "value": "2018/04/02",
@@ -2498,7 +2498,7 @@ Object {
           "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "purchaser",
           "value": "\\"PETER\\"",
         },
@@ -2507,7 +2507,7 @@ Object {
           "text": " shall send the Supplier ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "supplier",
           "value": "\\"DAN\\"",
         },
@@ -2516,7 +2516,7 @@ Object {
           "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "minimumPercentage",
           "value": "85.0",
         },
@@ -2901,7 +2901,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -2922,7 +2922,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+              "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
               "isTrue": true,
               "name": "forceMajeure",
               "nodes": Array [
@@ -2943,7 +2943,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "seller",
               "value": "\\"Dan\\"",
             },
@@ -2952,7 +2952,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "buyer",
               "value": "\\"Steve\\"",
             },
@@ -2961,7 +2961,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyDuration",
               "value": "2 days",
             },
@@ -2973,7 +2973,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyPercentage",
               "value": "10.5",
             },
@@ -2989,7 +2989,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3005,7 +3005,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3021,7 +3021,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "capPercentage",
               "value": "55.0",
             },
@@ -3037,7 +3037,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "termination",
               "value": "15 days",
             },
@@ -3092,7 +3092,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -3113,7 +3113,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+              "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
               "isTrue": true,
               "name": "forceMajeure",
               "nodes": Array [
@@ -3139,7 +3139,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "seller",
               "value": "\\"Dan\\"",
             },
@@ -3148,7 +3148,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "buyer",
               "value": "\\"Steve\\"",
             },
@@ -3157,7 +3157,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyDuration",
               "value": "2 days",
             },
@@ -3169,7 +3169,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyPercentage",
               "value": "10.5",
             },
@@ -3185,7 +3185,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3201,7 +3201,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3217,7 +3217,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "capPercentage",
               "value": "55.0",
             },
@@ -3233,7 +3233,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "termination",
               "value": "15 days",
             },
@@ -3288,7 +3288,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -3309,7 +3309,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+              "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
               "isTrue": false,
               "name": "forceMajeure",
               "nodes": Array [
@@ -3330,7 +3330,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "seller",
               "value": "\\"Dan\\"",
             },
@@ -3339,7 +3339,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "buyer",
               "value": "\\"Steve\\"",
             },
@@ -3348,7 +3348,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyDuration",
               "value": "2 days",
             },
@@ -3360,7 +3360,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyPercentage",
               "value": "10.5",
             },
@@ -3376,7 +3376,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3392,7 +3392,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3408,7 +3408,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "capPercentage",
               "value": "55.0",
             },
@@ -3424,7 +3424,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "termination",
               "value": "15 days",
             },
@@ -3479,7 +3479,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -3536,7 +3536,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "seller",
               "value": "\\"Dan\\"",
             },
@@ -3545,7 +3545,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "buyer",
               "value": "\\"Steve\\"",
             },
@@ -3554,7 +3554,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyDuration",
               "value": "2 days",
             },
@@ -3566,7 +3566,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyPercentage",
               "value": "10.5",
             },
@@ -3582,7 +3582,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3598,7 +3598,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3614,7 +3614,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "capPercentage",
               "value": "55.0",
             },
@@ -3630,7 +3630,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "termination",
               "value": "15 days",
             },
@@ -3685,7 +3685,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
       "nodes": Array [
         Object {
@@ -3706,7 +3706,7 @@ Object {
               "text": "In case of delayed delivery",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Conditional",
+              "$class": "org.accordproject.ciceromark@0.5.0.Conditional",
               "isTrue": false,
               "name": "forceMajeure",
               "nodes": Array [
@@ -3727,7 +3727,7 @@ Object {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "seller",
               "value": "\\"Dan\\"",
             },
@@ -3736,7 +3736,7 @@ Object {
               "text": " (the Seller) shall pay to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "buyer",
               "value": "\\"Steve\\"",
             },
@@ -3745,7 +3745,7 @@ Object {
               "text": " (the Buyer) for every ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyDuration",
               "value": "2 days",
             },
@@ -3757,7 +3757,7 @@ Object {
               "text": "of delay penalty amounting to ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "penaltyPercentage",
               "value": "10.5",
             },
@@ -3773,7 +3773,7 @@ Object {
               "text": "whose delivery has been delayed. Any fractional part of a ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3789,7 +3789,7 @@ Object {
               "text": "considered a full ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "fractionalPart",
               "value": "days",
             },
@@ -3805,7 +3805,7 @@ Object {
               "text": "exceed ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "capPercentage",
               "value": "55.0",
             },
@@ -3821,7 +3821,7 @@ Object {
               "text": "If the delay is more than ",
             },
             Object {
-              "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
               "name": "termination",
               "value": "15 days",
             },
@@ -4359,7 +4359,7 @@ Object {
       ],
     },
     Object {
-      "$class": "org.accordproject.ciceromark@0.4.0.ListBlock",
+      "$class": "org.accordproject.ciceromark@0.5.0.ListBlock",
       "name": "",
       "nodes": Array [
         Object {
@@ -4628,7 +4628,7 @@ Object {
           "text": "This is a ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "shipper",
           "value": "\\"Party A\\"",
         },
@@ -4655,7 +4655,7 @@ Object {
           "text": "This is a ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "currency",
           "value": "ABC",
         },
@@ -4727,7 +4727,7 @@ Object {
           "text": "This is a ",
         },
         Object {
-          "$class": "org.accordproject.ciceromark@0.4.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
           "name": "shipper",
           "value": "\\"Party A\\"",
         },

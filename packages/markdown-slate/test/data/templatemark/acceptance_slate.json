@@ -7,7 +7,7 @@
         "type": "clause_definition",
         "data": {
           "name": "top",
-          "elementType": "org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause"
+          "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause"
         },
         "children": [
           {
@@ -34,7 +34,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "shipper",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -68,7 +68,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "receiver",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -120,7 +120,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "receiver",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -139,7 +139,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "shipper",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -213,7 +213,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "receiver",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -298,7 +298,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "shipper",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
@@ -405,7 +405,7 @@
                 "type": "variable_definition",
                 "data": {
                   "name": "shipper",
-                  "elementType": "org.accordproject.organization.Organization",
+                  "elementType": "org.accordproject.organization@0.2.0.Organization",
                   "identifiedBy": "identifier"
                 },
                 "children": [
