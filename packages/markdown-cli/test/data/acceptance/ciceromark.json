@@ -35,7 +35,7 @@
       ]
     },
     {
-      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "deliveryClause",
       "nodes": [
         {

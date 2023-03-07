@@ -10,7 +10,7 @@
           "text": "Signature: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "signature",
           "value": "\"{{sn}}|alice@example.com\"",
           "elementType": "String",
@@ -37,7 +37,7 @@
           "text": " "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "party",
           "value": "\"{{partyId}}|alice@example.com\"",
           "identifiedBy": "partyId",
@@ -60,7 +60,7 @@
           "text": "Title: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "title",
           "value": "\"{{title}}|alice@example.com\"",
           "elementType": "String",
@@ -96,7 +96,7 @@
           "text": "Full name: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "name",
           "value": "\"{{fullName}}|alice@example.com\"",
           "elementType": "String",
@@ -128,7 +128,7 @@
           "text": "Date signed: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "date",
           "value": "\"{{dateSigned}}|alice@example.com\"",
           "elementType": "String",
@@ -160,7 +160,7 @@
           "text": "Favorite Color: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "favoriteColor",
           "value": "\"{{favoriteColor}}|alice@example.com\"",
           "elementType": "String",
@@ -192,7 +192,7 @@
           "text": "Test: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "bool",
           "value": "true",
           "elementType": "Boolean",
@@ -248,7 +248,7 @@
           "text": " Numbers: "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "this",
           "value": "1.1",
           "elementType": "Double",
@@ -270,7 +270,7 @@
           "text": ","
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "this",
           "value": "2.2",
           "elementType": "Double",
@@ -292,7 +292,7 @@
           "text": ","
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "this",
           "value": "3.3",
           "elementType": "Double",
@@ -314,7 +314,7 @@
           "text": ","
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "name": "this",
           "value": "4.4",
           "elementType": "Double",

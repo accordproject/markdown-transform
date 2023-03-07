@@ -33,7 +33,7 @@
           "text": " loan to the amount of "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.FormattedVariable",
+          "$class": "org.accordproject.ciceromark@0.6.0.FormattedVariable",
           "format": "K0,0.00",
           "value": "£100,000.00",
           "name": "loanAmount",
@@ -47,7 +47,7 @@
           "text": "at the yearly interest rate of "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "value": "2.5",
           "name": "rate",
           "elementType": "Double"
@@ -64,7 +64,7 @@
           "text": "with a loan term of "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+          "$class": "org.accordproject.ciceromark@0.6.0.Variable",
           "value": "15",
           "name": "loanDuration",
           "elementType": "Integer"
@@ -81,7 +81,7 @@
           "text": "and monthly payments of "
         },
         {
-          "$class": "org.accordproject.ciceromark@0.5.0.Formula",
+          "$class": "org.accordproject.ciceromark@0.6.0.Formula",
           "value": " eval( monthlyPaymentFormula(loanAmount,rate,loanDuration) as \"K0,0.00\" ) ",
           "dependencies": [],
           "code": " monthlyPaymentFormula(loanAmount,rate,loanDuration) as \"K0,0.00\" ",

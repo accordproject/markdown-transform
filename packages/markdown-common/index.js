@@ -34,5 +34,3 @@ module.exports.fromcommonmarkrules = require('./lib/fromcommonmarkrules');
 module.exports.CommonMarkTransformer = require('./lib/CommonMarkTransformer');
 module.exports.ToMarkdownVisitor = require('./lib/ToMarkdownVisitor');
 module.exports.FromMarkdownIt =  require('./lib/FromMarkdownIt');
-
-module.exports.migrateDocument = require('./lib/MigrateDocument');

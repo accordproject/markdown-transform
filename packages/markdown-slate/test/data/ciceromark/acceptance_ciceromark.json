@@ -35,7 +35,7 @@
       ]
     },
     {
-      "$class": "org.accordproject.ciceromark@0.5.0.Clause",
+      "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "deliveryClause",
       "elementType": "org.accordproject.acceptanceofdelivery@1.0.0.AcceptanceOfDeliveryClause",
       "nodes": [
@@ -53,7 +53,7 @@
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": [
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party A\"",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -71,7 +71,7 @@
               "text": "if in "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party B\"",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -82,7 +82,7 @@
               "text": "'s opinion, the "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Widgets\"",
               "name": "deliverable",
               "elementType": "String"
@@ -99,7 +99,7 @@
               "text": "Acceptance Criteria, and "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party B\"",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -110,7 +110,7 @@
               "text": " notifies "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party A\"",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -128,7 +128,7 @@
               "text": "that it is accepting the "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Widgets\"",
               "name": "deliverable",
               "elementType": "String"
@@ -153,7 +153,7 @@
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": [
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party B\"",
               "identifiedBy": "identifier",
               "name": "receiver",
@@ -164,7 +164,7 @@
               "text": " will have "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "10",
               "name": "businessDays",
               "elementType": "Long"
@@ -181,7 +181,7 @@
               "text": "evaluate the "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Widgets\"",
               "name": "deliverable",
               "elementType": "String"
@@ -194,7 +194,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party A\"",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -208,7 +208,7 @@
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Widgets\"",
               "name": "deliverable",
               "elementType": "String"
@@ -237,7 +237,7 @@
               "text": "The \"Acceptance Criteria\" are the specifications the "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Widgets\"",
               "name": "deliverable",
               "elementType": "String"
@@ -250,7 +250,7 @@
               "text": "must meet for the "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Party A\"",
               "identifiedBy": "identifier",
               "name": "shipper",
@@ -268,7 +268,7 @@
               "text": "obligations under this agreement, detailed in "
             },
             {
-              "$class": "org.accordproject.ciceromark@0.5.0.Variable",
+              "$class": "org.accordproject.ciceromark@0.6.0.Variable",
               "value": "\"Attachment X\"",
               "name": "attachment",
               "elementType": "String"

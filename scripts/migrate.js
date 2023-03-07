@@ -17,7 +17,7 @@
 const fs = require('fs');
 const { argv } = require('process');
 
-const migrateDocument = require('../packages/markdown-common/lib/MigrateDocument');
+const migrateDocument = require('./MigrateDocument');
 
 const IGNORE_FILES = /.*(symbols\.json|names\.json|lerna\.json|package\.json|package-lock\.json|jsdoc\.json)$/
 
