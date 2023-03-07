@@ -55,7 +55,7 @@ Options:
 
 ### Example
 
-For example, you can use the `transform` command on the `README.md` file from the [Hello World](https://github.com/accordproject/cicero-template-library/blob/master/src/helloworld) template:
+For example, you can use the `transform` command on the `README.md` file from the [Hello World](https://github.com/accordproject/cicero-template-library/blob/main/src/helloworld) template:
 
 ```bash
 markus transform --input README.md

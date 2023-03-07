@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-template",
-  "version": "0.16.2",
+  "version": "0.16.5",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=14",
@@ -75,7 +75,7 @@
     "jsdoc": "^3.6.10",
     "jsome": "2.5.0",
     "license-check-and-add": "2.3.6",
-    "mocha": "8.3.2",
+    "mocha": "10.1.0",
     "nyc": "15.1.0",
     "raw-loader": "^4.0.2",
     "stream-browserify": "3.0.0",
@@ -86,13 +86,13 @@
   "dependencies": {
     "@accordproject/concerto-core": "3.6.0",
     "@accordproject/concerto-cto": "3.6.0",
-    "@accordproject/markdown-cicero": "0.16.2",
-    "@accordproject/markdown-common": "0.16.2",
-    "@accordproject/markdown-it-template": "0.16.2",
+    "@accordproject/markdown-cicero": "0.16.5",
+    "@accordproject/markdown-common": "0.16.5",
+    "@accordproject/markdown-it-template": "0.16.5",
     "acorn": "^8.8.2",
     "acorn-walk": "^8.2.0",
     "dayjs": "1.10.8",
-    "markdown-it": "^12.3.2",
+    "markdown-it": "^13.0.1",
     "parsimmon": "1.16.0",
     "uuid": "8.3.2"
   },
