@@ -1,12 +1,11 @@
-namespace org.test
+namespace org.test@1.0.0
 
-import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
-import org.accordproject.money.CurrencyCode from https://models.accordproject.org/money@0.2.0.cto
-
+import org.accordproject.money@0.3.0.{CurrencyCode} from https://models.accordproject.org/money@0.3.0.cto
 /**
  * The template model
  */
-asset MyClause extends Clause {
+@template
+asset MyClause {
   o String seller
   o String buyer
 	o Double amount
