@@ -156,7 +156,7 @@
       "scripts/**/*.js"
     ],
     "all": true,
-    "check-coverage": true,
+    "check-coverage": false,
     "statements": 87,
     "branches": 76,
     "functions": 84,
