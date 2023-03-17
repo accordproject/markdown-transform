@@ -14,9 +14,6 @@
 
 'use strict';
 
-const acorn = require('acorn');
-const walk = require('acorn-walk');
-
 /**
  * Converts a CommonMark DOM to a CiceroMark DOM
  */
@@ -48,22 +45,18 @@ class FormulaVisitor {
     }
 
     /**
-     * Calculates the dependencies for JS code
-     * @param {string} jsCode the JS code to analyze
+     * Calculates the dependencies for TS code
+     * @param {string} tsCode the TS code to analyze
      * @returns {string[]} array of dependencies
      */
-    static calculateDependencies(jsCode) {
+    static calculateDependencies(tsCode) {
         try {
             const deps = [];
-            walk.simple(acorn.parse(jsCode, {ecmaVersion: 2020, allowReturnOutsideFunction: true}), {
-                Identifier(node) {
-                    deps.push(node.name);
-                }
-            });
+            // TODO!!
             return deps;
         }
         catch(err) {
-            throw new Error(`Failed to calculate dependencies in code '${jsCode}'. Error: ${err}`);
+            throw new Error(`Failed to calculate dependencies in code '${tsCode}'. Error: ${err}`);
         }
     }
 

@@ -89,11 +89,8 @@
     "@accordproject/markdown-cicero": "0.16.5",
     "@accordproject/markdown-common": "0.16.5",
     "@accordproject/markdown-it-template": "0.16.5",
-    "acorn": "^8.8.2",
-    "acorn-walk": "^8.2.0",
     "dayjs": "1.10.8",
     "markdown-it": "^13.0.1",
-    "parsimmon": "1.16.0",
     "uuid": "8.3.2"
   },
   "license-check-and-add-config": {
