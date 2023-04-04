@@ -51,7 +51,7 @@ const LIST_RULE = {
             return {
                 '$class': `${CommonMarkModel.NAMESPACE}.List`,
                 type: 'bullet',
-                tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
+                tight: el.getAttribute('tight') ? el.getAttribute('tight') : 'true',
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
@@ -61,7 +61,7 @@ const LIST_RULE = {
                 type: 'ordered',
                 delimiter: el.getAttribute('delimiter'),
                 start: el.getAttribute('start'),
-                tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
+                tight: el.getAttribute('tight') ? el.getAttribute('tight') : 'true',
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
