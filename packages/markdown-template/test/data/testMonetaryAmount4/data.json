@@ -1,1 +1,0 @@
-{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":{"$class":"org.accordproject.money.MonetaryAmount","doubleValue":3131.6574,"currencyCode":"XXX"},"forceMajeure":true,"clauseId":"70b0801a-0024-4d36-bcd4-96445d7be5d3"}

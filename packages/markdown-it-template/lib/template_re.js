@@ -19,9 +19,9 @@
 const names = require('./names.json');
 
 const string = '"([^"]*)"';
-const identifier = '([a-zA-Z_][a-zA-Z0-9_]*)';
-const name = '(?:\\s+([A-Za-z0-9_\-]+))';
-var attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
+const identifier = '([a-zA-Z_][a-zA-Z0-9_]+)';
+const name = '(?:\\s+([A-Za-z0-9_-]+))';
+const attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
 
 const format = '(:?\\s+as\\s*'+ string + '\\s*)?';
 const variable = '{{\\s*' + identifier + format + '\\s*}}';
@@ -43,7 +43,7 @@ const FORMULA_RE = new RegExp('^(?:' + formula + ')');
 function getBlockAttributes(match) {
     const result = [];
     // name is always present in the block
-    result.push([ 'name', match[2] ])
+    result.push([ 'name', match[2] ]);
     // those are block attributes
     for(let i = 3; i < match.length; i = i+2) {
         if (match[i]) {

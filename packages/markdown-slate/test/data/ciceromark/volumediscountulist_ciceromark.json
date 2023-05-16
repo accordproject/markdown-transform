@@ -1,1 +1,536 @@
-{"$class":"org.accordproject.commonmark.Document","xmlns":"http://commonmark.org/xml/1.0","nodes":[{"$class":"org.accordproject.commonmark.Heading","level":"2","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Volume-Based Card Acceptance Agreement [Abbreviated]"}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"This Agreement is by and between Card, Inc., a New York corporation, and you, the Merchant. By accepting the Card, you agree to be bound by the Agreement."},{"$class":"org.accordproject.commonmark.Softbreak"},{"$class":"org.accordproject.commonmark.Text","text":"Discount means an amount that we charge you for accepting the Card, which amount is:"}]},{"$class":"org.accordproject.commonmark.List","type":"ordered","start":"1","tight":"true","delimiter":"period","nodes":[{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"a percentage (Discount Rate) of the face amount of the Charge that you submit, or a flat per-"},{"$class":"org.accordproject.commonmark.Softbreak"},{"$class":"org.accordproject.commonmark.Text","text":"Transaction fee, or a combination of both; and/or"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"a Monthly Flat Fee (if you meet our requirements)."}]}]}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Transaction Processing and Payments. Our Card acceptance, processing, and payment requirements are set forth in the Merchant Regulations. Some requirements are summarized here for ease of reference, but do not supersede the provisions in the Merchant Regulations."},{"$class":"org.accordproject.commonmark.Softbreak"},{"$class":"org.accordproject.commonmark.Text","text":"Payment for Charges. We will pay you, through our agent, according to your payment plan in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"}]},{"$class":"org.accordproject.commonmark.List","type":"ordered","start":"1","tight":"true","delimiter":"period","nodes":[{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"the Discount,"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any amounts you owe us or our Affiliates,"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any amounts for which we have Chargebacks and"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any Credits you submit."}]}]}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Your initial Discount is indicated in the Agreement or otherwise provided to you in writing by us. In addition to your Discount we may charge you additional fees and assessments, as listed in the Merchant Regulations or as otherwise provided to you in writing by us. We may adjust any of these amounts and may change any other amount we charge you for accepting the Card."}]},{"$class":"org.accordproject.commonmark.Heading","level":"3","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"SETTLEMENT"}]},{"$class":"org.accordproject.commonmark.Heading","level":"4","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Settlement Amount."}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Our agent will pay you according to your payment plan, as described below, in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"}]},{"$class":"org.accordproject.commonmark.List","type":"ordered","start":"1","tight":"true","delimiter":"period","nodes":[{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"the Discount,"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any amounts you owe us or our Affiliates,"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any amounts for which we have Chargebacks, and"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"any Credits you submit."}]}]}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Our agent will subtract the full amount of all applicable deductions, rejections, and withholdings, from this payment to you (or debit your Bank Account), but if it cannot, then you must pay it promptly upon demand."}]},{"$class":"org.accordproject.commonmark.Heading","level":"4","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"Discount."}]},{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.commonmark.Text","text":"The Discount is determined according to the following table:"}]},{"$class":"org.accordproject.ciceromark.ListBlock","type":"bullet","tight":"true","name":"rates","nodes":[{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"0.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"1.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"3.1","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"1.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"10.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"3.1","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"10.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"50.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"2.9","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"50.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"500.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"2.5","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"500.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"1000.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"1.2","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]},{"$class":"org.accordproject.commonmark.Item","nodes":[{"$class":"org.accordproject.commonmark.Paragraph","nodes":[{"$class":"org.accordproject.ciceromark.Variable","value":"1000.0","name":"volumeAbove","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million <= Volume < "},{"$class":"org.accordproject.ciceromark.Variable","value":"1000000.0","name":"volumeUpTo","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"$ million : "},{"$class":"org.accordproject.ciceromark.Variable","value":"0.1","name":"rate","elementType":"Double"},{"$class":"org.accordproject.commonmark.Text","text":"%"}]}]}]}]}
+{
+  "$class": "org.accordproject.commonmark@0.5.0.Document",
+  "xmlns": "http://commonmark.org/xml/1.0",
+  "nodes": [
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Heading",
+      "level": "2",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Volume-Based Card Acceptance Agreement [Abbreviated]"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "This Agreement is by and between Card, Inc., a New York corporation, and you, the Merchant. By accepting the Card, you agree to be bound by the Agreement."
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Discount means an amount that we charge you for accepting the Card, which amount is:"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.List",
+      "type": "ordered",
+      "start": "1",
+      "tight": "true",
+      "delimiter": "period",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "a percentage (Discount Rate) of the face amount of the Charge that you submit, or a flat per-"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "Transaction fee, or a combination of both; and/or"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "a Monthly Flat Fee (if you meet our requirements)."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Transaction Processing and Payments. Our Card acceptance, processing, and payment requirements are set forth in the Merchant Regulations. Some requirements are summarized here for ease of reference, but do not supersede the provisions in the Merchant Regulations."
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Payment for Charges. We will pay you, through our agent, according to your payment plan in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.List",
+      "type": "ordered",
+      "start": "1",
+      "tight": "true",
+      "delimiter": "period",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "the Discount,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any amounts you owe us or our Affiliates,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any amounts for which we have Chargebacks and"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any Credits you submit."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Your initial Discount is indicated in the Agreement or otherwise provided to you in writing by us. In addition to your Discount we may charge you additional fees and assessments, as listed in the Merchant Regulations or as otherwise provided to you in writing by us. We may adjust any of these amounts and may change any other amount we charge you for accepting the Card."
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Heading",
+      "level": "3",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "SETTLEMENT"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Heading",
+      "level": "4",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Settlement Amount."
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Our agent will pay you according to your payment plan, as described below, in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.List",
+      "type": "ordered",
+      "start": "1",
+      "tight": "true",
+      "delimiter": "period",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "the Discount,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any amounts you owe us or our Affiliates,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any amounts for which we have Chargebacks, and"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "any Credits you submit."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Our agent will subtract the full amount of all applicable deductions, rejections, and withholdings, from this payment to you (or debit your Bank Account), but if it cannot, then you must pay it promptly upon demand."
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Heading",
+      "level": "4",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "Discount."
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": "The Discount is determined according to the following table:"
+        }
+      ]
+    },
+    {
+      "$class": "org.accordproject.ciceromark@0.6.0.ListBlock",
+      "type": "bullet",
+      "tight": "true",
+      "name": "rates",
+      "nodes": [
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "0.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "3.1",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "10.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "3.1",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "10.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "50.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "2.9",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "50.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "500.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "2.5",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "500.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1000.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1.2",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [
+            {
+              "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
+              "nodes": [
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1000.0",
+                  "name": "volumeAbove",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million <= Volume < "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "1000000.0",
+                  "name": "volumeUpTo",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "$ million : "
+                },
+                {
+                  "$class": "org.accordproject.ciceromark@0.6.0.Variable",
+                  "value": "0.1",
+                  "name": "rate",
+                  "elementType": "Double"
+                },
+                {
+                  "$class": "org.accordproject.commonmark@0.5.0.Text",
+                  "text": "%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

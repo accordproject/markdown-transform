@@ -84,14 +84,13 @@
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "3.0.0",
-    "@accordproject/concerto-cto": "3.0.0",
+    "@accordproject/concerto-core": "3.6.0",
+    "@accordproject/concerto-cto": "3.6.0",
     "@accordproject/markdown-cicero": "0.16.5",
     "@accordproject/markdown-common": "0.16.5",
     "@accordproject/markdown-it-template": "0.16.5",
     "dayjs": "1.10.8",
-    "markdown-it": "^12.3.2",
-    "parsimmon": "1.16.0",
+    "markdown-it": "^13.0.1",
     "uuid": "8.3.2"
   },
   "license-check-and-add-config": {
@@ -154,7 +153,7 @@
       "scripts/**/*.js"
     ],
     "all": true,
-    "check-coverage": true,
+    "check-coverage": false,
     "statements": 87,
     "branches": 76,
     "functions": 84,

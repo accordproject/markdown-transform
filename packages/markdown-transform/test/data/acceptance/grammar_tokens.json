@@ -1,1 +1,1388 @@
-[{"type":"heading_open","tag":"h1","attrs":null,"map":[0,2],"nesting":1,"level":0,"children":null,"content":"","markup":"=","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[0,1],"nesting":0,"level":1,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Heading","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Heading","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_close","tag":"h1","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"=","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[3,4],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[3,4],"nesting":0,"level":1,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"And below is a ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"strong_open","tag":"strong","attrs":null,"map":null,"nesting":1,"level":0,"children":null,"content":"","markup":"**","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":1,"children":null,"content":"clause","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"strong_close","tag":"strong","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"**","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":".","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"And below is a **clause**.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_open","tag":"div","attrs":[["name","deliveryClause"]],"map":[5,29],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_open","tag":"h2","attrs":null,"map":[6,8],"nesting":1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[6,7],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Acceptance of Delivery.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Acceptance of Delivery.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_close","tag":"h2","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[9,13],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[9,13],"nesting":0,"level":2,"children":[{"type":"variable","tag":"variable","attrs":[["name","shipper"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{shipper}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" will be deemed to have completed its delivery obligations","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"if in ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","receiver"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{receiver}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"'s opinion, the ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","deliverable"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{deliverable}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" satisfies the","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Acceptance Criteria, and ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","receiver"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{receiver}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" notifies ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","shipper"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{shipper}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" in writing","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"that it is accepting the ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","deliverable"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{deliverable}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":".","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"{{shipper}} will be deemed to have completed its delivery obligations\nif in {{receiver}}'s opinion, the {{deliverable}} satisfies the\nAcceptance Criteria, and {{receiver}} notifies {{shipper}} in writing\nthat it is accepting the {{deliverable}}.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_open","tag":"h2","attrs":null,"map":[14,16],"nesting":1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[14,15],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Inspection and Notice.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Inspection and Notice.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_close","tag":"h2","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[17,21],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[17,21],"nesting":0,"level":2,"children":[{"type":"variable","tag":"variable","attrs":[["name","receiver"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{receiver}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" will have ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","businessDays"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{businessDays}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" Business Days to inspect and","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"evaluate the ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","deliverable"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{deliverable}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" on the delivery date before notifying","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","shipper"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{shipper}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" that it is either accepting or rejecting the","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","deliverable"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{deliverable}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":".","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"{{receiver}} will have {{businessDays}} Business Days to inspect and\nevaluate the {{deliverable}} on the delivery date before notifying\n{{shipper}} that it is either accepting or rejecting the\n{{deliverable}}.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_open","tag":"h2","attrs":null,"map":[22,24],"nesting":1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[22,23],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"Acceptance Criteria.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"Acceptance Criteria.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"heading_close","tag":"h2","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"-","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[25,29],"nesting":1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[25,29],"nesting":0,"level":2,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"The \"Acceptance Criteria\" are the specifications the ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","deliverable"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{deliverable}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"must meet for the ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","shipper"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{shipper}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":" to comply with its requirements and","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"obligations under this agreement, detailed in ","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"variable","tag":"variable","attrs":[["name","attachment"]],"map":null,"nesting":0,"level":0,"children":null,"content":"{{attachment}}","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":", attached","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"softbreak","tag":"br","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":false,"hidden":false},{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"to this agreement.","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"The \"Acceptance Criteria\" are the specifications the {{deliverable}}\nmust meet for the {{shipper}} to comply with its requirements and\nobligations under this agreement, detailed in {{attachment}}, attached\nto this agreement.","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":1,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"block_clause_close","tag":"div","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"{{/clause}}","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_open","tag":"p","attrs":null,"map":[31,32],"nesting":1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"inline","tag":"","attrs":null,"map":[31,32],"nesting":0,"level":1,"children":[{"type":"text","tag":"","attrs":null,"map":null,"nesting":0,"level":0,"children":null,"content":"More text","markup":"","info":"","meta":null,"block":false,"hidden":false}],"content":"More text","markup":"","info":"","meta":null,"block":true,"hidden":false},{"type":"paragraph_close","tag":"p","attrs":null,"map":null,"nesting":-1,"level":0,"children":null,"content":"","markup":"","info":"","meta":null,"block":true,"hidden":false}]
+[
+  {
+    "type": "heading_open",
+    "tag": "h1",
+    "attrs": null,
+    "map": [
+      0,
+      2
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "=",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      0,
+      1
+    ],
+    "nesting": 0,
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Heading",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Heading",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_close",
+    "tag": "h1",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "=",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      3,
+      4
+    ],
+    "nesting": 0,
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "And below is a ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "strong_open",
+        "tag": "strong",
+        "attrs": null,
+        "map": null,
+        "nesting": 1,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "**",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 1,
+        "children": null,
+        "content": "clause",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "strong_close",
+        "tag": "strong",
+        "attrs": null,
+        "map": null,
+        "nesting": -1,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "**",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ".",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "And below is a **clause**.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_open",
+    "tag": "div",
+    "attrs": [
+      [
+        "name",
+        "deliveryClause"
+      ]
+    ],
+    "map": [
+      5,
+      29
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_open",
+    "tag": "h2",
+    "attrs": null,
+    "map": [
+      6,
+      8
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      6,
+      7
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Acceptance of Delivery.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Acceptance of Delivery.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_close",
+    "tag": "h2",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      9,
+      13
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      9,
+      13
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "shipper"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{shipper}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " will be deemed to have completed its delivery obligations",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "if in ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "receiver"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{receiver}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "'s opinion, the ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "deliverable"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{deliverable}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " satisfies the",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Acceptance Criteria, and ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "receiver"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{receiver}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " notifies ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "shipper"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{shipper}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " in writing",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "that it is accepting the ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "deliverable"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{deliverable}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ".",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "{{shipper}} will be deemed to have completed its delivery obligations\nif in {{receiver}}'s opinion, the {{deliverable}} satisfies the\nAcceptance Criteria, and {{receiver}} notifies {{shipper}} in writing\nthat it is accepting the {{deliverable}}.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_open",
+    "tag": "h2",
+    "attrs": null,
+    "map": [
+      14,
+      16
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      14,
+      15
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Inspection and Notice.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Inspection and Notice.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_close",
+    "tag": "h2",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      17,
+      21
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      17,
+      21
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "receiver"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{receiver}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " will have ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "businessDays"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{businessDays}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " Business Days to inspect and",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "evaluate the ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "deliverable"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{deliverable}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " on the delivery date before notifying",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "shipper"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{shipper}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " that it is either accepting or rejecting the",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "deliverable"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{deliverable}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ".",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "{{receiver}} will have {{businessDays}} Business Days to inspect and\nevaluate the {{deliverable}} on the delivery date before notifying\n{{shipper}} that it is either accepting or rejecting the\n{{deliverable}}.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_open",
+    "tag": "h2",
+    "attrs": null,
+    "map": [
+      22,
+      24
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      22,
+      23
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "Acceptance Criteria.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "Acceptance Criteria.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "heading_close",
+    "tag": "h2",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "-",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      25,
+      29
+    ],
+    "nesting": 1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      25,
+      29
+    ],
+    "nesting": 0,
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "The \"Acceptance Criteria\" are the specifications the ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "deliverable"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{deliverable}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "must meet for the ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "shipper"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{shipper}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": " to comply with its requirements and",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "obligations under this agreement, detailed in ",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "variable",
+        "tag": "variable",
+        "attrs": [
+          [
+            "name",
+            "attachment"
+          ]
+        ],
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "{{attachment}}",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": ", attached",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "softbreak",
+        "tag": "br",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      },
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "to this agreement.",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "The \"Acceptance Criteria\" are the specifications the {{deliverable}}\nmust meet for the {{shipper}} to comply with its requirements and\nobligations under this agreement, detailed in {{attachment}}, attached\nto this agreement.",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 1,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "block_clause_close",
+    "tag": "div",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "{{/clause}}",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_open",
+    "tag": "p",
+    "attrs": null,
+    "map": [
+      31,
+      32
+    ],
+    "nesting": 1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "inline",
+    "tag": "",
+    "attrs": null,
+    "map": [
+      31,
+      32
+    ],
+    "nesting": 0,
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "tag": "",
+        "attrs": null,
+        "map": null,
+        "nesting": 0,
+        "level": 0,
+        "children": null,
+        "content": "More text",
+        "markup": "",
+        "info": "",
+        "meta": null,
+        "block": false,
+        "hidden": false
+      }
+    ],
+    "content": "More text",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  },
+  {
+    "type": "paragraph_close",
+    "tag": "p",
+    "attrs": null,
+    "map": null,
+    "nesting": -1,
+    "level": 0,
+    "children": null,
+    "content": "",
+    "markup": "",
+    "info": "",
+    "meta": null,
+    "block": true,
+    "hidden": false
+  }
+]

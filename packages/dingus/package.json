@@ -34,7 +34,7 @@
     "babelify": "10.0.0",
     "browserify": "^17.0.0",
     "highlight.js": "^10.0.3",
-    "markdown-it": "^12.3.2",
+    "markdown-it": "^13.0.1",
     "ndoc": "^5.0.0",
     "pdfmake": "^0.2.4",
     "pug-cli": "^1.0.0-alpha6",

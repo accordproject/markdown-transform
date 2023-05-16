@@ -18,18 +18,20 @@ var formulaName = require('./util').formulaName;
 var {
   getAttr
 } = require('@accordproject/markdown-common').CommonMarkUtils;
-var NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
+var {
+  TemplateMarkModel
+} = require('@accordproject/markdown-common');
 
 // Inline rules
 var variableRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".VariableDefinition"),
   leaf: true,
   open: false,
   close: false,
   enter: (node, token, callback) => {
     var format = getAttr(token.attrs, 'format', null);
     if (format) {
-      node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
+      node.$class = "".concat(TemplateMarkModel.NAMESPACE, ".FormattedVariableDefinition");
       node.format = format;
     }
     node.name = getAttr(token.attrs, 'name', null);
@@ -39,14 +41,14 @@ var variableRule = {
 };
 var thisRule = {
   // 'this' is a special variable for the current data in scope within the template
-  tag: NS_PREFIX_TemplateMarkModel + 'VariableDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".VariableDefinition"),
   leaf: true,
   open: false,
   close: false,
   enter: (node, token, callback) => {
     var format = getAttr(token.attrs, 'format', null);
     if (format) {
-      node.$class = NS_PREFIX_TemplateMarkModel + 'FormattedVariableDefinition';
+      node.$class = "".concat(TemplateMarkModel.NAMESPACE, ".FormattedVariableDefinition");
       node.format = format;
     }
     node.name = 'this';
@@ -55,32 +57,44 @@ var thisRule = {
   skipEmpty: false
 };
 var formulaRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'FormulaDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".FormulaDefinition"),
   leaf: true,
   open: false,
   close: false,
   enter: (node, token, callback) => {
     var code = token.content;
     node.name = formulaName(code);
-    node.code = code;
+    node.code = {
+      $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+      type: 'ES_2020',
+      contents: code
+    };
     node.dependencies = [];
   },
   skipEmpty: false
 };
 var ifOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ConditionalDefinition"),
   leaf: false,
   open: true,
   close: false,
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
+    var condition = getAttr(token.attrs, 'condition', null);
+    if (condition) {
+      node.condition = {
+        $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+        type: 'ES_2020',
+        contents: condition
+      };
+    }
     node.whenTrue = null;
     node.whenFalse = null;
   },
   skipEmpty: false
 };
 var ifCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ConditionalDefinition"),
   leaf: false,
   open: false,
   close: true,
@@ -97,12 +111,12 @@ var ifCloseRule = {
   skipEmpty: false
 };
 var elseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ConditionalDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ConditionalDefinition"),
   leaf: false,
   open: false,
   close: false,
   enter: (node, token, callback) => {
-    if (node.$class === 'org.accordproject.templatemark.ConditionalDefinition') {
+    if (node.$class === "".concat(TemplateMarkModel.NAMESPACE, ".ConditionalDefinition")) {
       node.whenTrue = node.nodes ? node.nodes : [];
       node.nodes = []; // Reset children (now in whenTrue)
     } else {
@@ -115,7 +129,7 @@ var elseRule = {
   skipEmpty: false
 };
 var optionalOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".OptionalDefinition"),
   leaf: false,
   open: true,
   close: false,
@@ -127,7 +141,7 @@ var optionalOpenRule = {
   skipEmpty: false
 };
 var optionalCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'OptionalDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".OptionalDefinition"),
   leaf: false,
   open: false,
   close: true,
@@ -144,7 +158,7 @@ var optionalCloseRule = {
   skipEmpty: false
 };
 var withOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".WithDefinition"),
   leaf: false,
   open: true,
   close: false,
@@ -154,13 +168,13 @@ var withOpenRule = {
   skipEmpty: false
 };
 var withCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'WithDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".WithDefinition"),
   leaf: false,
   open: false,
   close: true
 };
 var joinOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".JoinDefinition"),
   leaf: false,
   open: true,
   close: false,
@@ -171,7 +185,7 @@ var joinOpenRule = {
   skipEmpty: false
 };
 var joinCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'JoinDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".JoinDefinition"),
   leaf: false,
   open: false,
   close: true
@@ -179,22 +193,30 @@ var joinCloseRule = {
 
 // Block rules
 var clauseOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ClauseDefinition"),
   leaf: false,
   open: true,
   close: false,
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
+    var condition = getAttr(token.attrs, 'condition', null);
+    if (condition) {
+      node.condition = {
+        $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
+        type: 'ES_2020',
+        contents: condition
+      };
+    }
   }
 };
 var clauseCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ClauseDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ClauseDefinition"),
   leaf: false,
   open: false,
   close: true
 };
 var ulistOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
   leaf: false,
   open: true,
   close: false,
@@ -205,13 +227,13 @@ var ulistOpenRule = {
   }
 };
 var ulistCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
   leaf: false,
   open: false,
   close: true
 };
 var olistOpenRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
   leaf: false,
   open: true,
   close: false,
@@ -224,7 +246,7 @@ var olistOpenRule = {
   }
 };
 var olistCloseRule = {
-  tag: NS_PREFIX_TemplateMarkModel + 'ListBlockDefinition',
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
   leaf: false,
   open: false,
   close: true

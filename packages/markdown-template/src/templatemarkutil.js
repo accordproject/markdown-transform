@@ -19,10 +19,7 @@ const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 const { ModelManager, Factory, Serializer, Introspector } = require('@accordproject/concerto-core');
-const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-const { ConcertoMetaModel } = require('@accordproject/markdown-cicero').ConcertoMetaModel;
-const TemplateMarkModel = require('./externalModels/TemplateMarkModel').TemplateMarkModel;
+const { CommonMarkModel, CiceroMarkModel, ConcertoMetaModel, TemplateMarkModel } = require('@accordproject/markdown-common');
 
 const normalizeNLs = require('./normalize').normalizeNLs;
 const TypeVisitor = require('./TypeVisitor');
@@ -40,42 +37,21 @@ const templaterules = require('./templaterules');
  */
 function mkTemplateMarkManager(options) {
     const result = {};
-    result.modelManager = new ModelManager(options);
-    result.modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
-    result.modelManager.addCTOModel(ConcertoMetaModel, 'metamodel.cto');
-    result.modelManager.addCTOModel(CiceroMarkModel, 'ciceromark.cto');
-    result.modelManager.addCTOModel(TemplateMarkModel, 'templatemark.cto');
+    const newOpts = {
+        ...options,
+        strict: true
+    };
+    result.modelManager = new ModelManager(newOpts);
+    result.modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
+    result.modelManager.addCTOModel(ConcertoMetaModel.MODEL, 'metamodel.cto');
+    result.modelManager.addCTOModel(CiceroMarkModel.MODEL, 'ciceromark.cto');
+    result.modelManager.addCTOModel(TemplateMarkModel.MODEL, 'templatemark.cto');
     result.factory = new Factory(result.modelManager);
     result.serializer = new Serializer(result.factory, result.modelManager, { utcOffset: 0 });
     return result;
 }
 
 const templateMarkManager = mkTemplateMarkManager();
-
-/**
- * Check to see if a ClassDeclaration is an instance of the specified fully qualified
- * type name.
- * @internal
- * @param {ClassDeclaration} classDeclaration The class to test
- * @param {String} fqt The fully qualified type name.
- * @returns {boolean} True if classDeclaration an instance of the specified fully
- * qualified type name, false otherwise.
- */
-function instanceOf(classDeclaration, fqt) {
-    // Check to see if this is an exact instance of the specified type.
-    if (classDeclaration.getFullyQualifiedName() === fqt) {
-        return true;
-    }
-    // Now walk the class hierachy looking to see if it's an instance of the specified type.
-    let superTypeDeclaration = classDeclaration.getSuperTypeDeclaration();
-    while (superTypeDeclaration) {
-        if (superTypeDeclaration.getFullyQualifiedName() === fqt) {
-            return true;
-        }
-        superTypeDeclaration = superTypeDeclaration.getSuperTypeDeclaration();
-    }
-    return false;
-}
 
 /**
  * Returns the template model for the template
@@ -85,20 +61,20 @@ function instanceOf(classDeclaration, fqt) {
  * @returns {ClassDeclaration} the template model for the template
  */
 function findTemplateModel(introspector, templateKind) {
-    let modelType = 'org.accordproject.contract.Contract';
+    // let modelType = 'org.accordproject.contract.Contract';
 
-    if (templateKind !== 'contract') {
-        modelType = 'org.accordproject.contract.Clause';
-    }
+    // if (templateKind !== 'contract') {
+    //     modelType = 'org.accordproject.contract.Clause';
+    // }
 
     const templateModels = introspector.getClassDeclarations().filter((item) => {
-        return !item.isAbstract() && instanceOf(item,modelType);
+        return !item.isAbstract() && item.getDecorator('template');
     });
 
     if (templateModels.length > 1) {
-        throw new Error(`Found multiple instances of ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
+        throw new Error('Found multiple concepts with @template decorator. The model for the template must contain a single concept with the @template decorator.');
     } else if (templateModels.length === 0) {
-        throw new Error(`Failed to find an asset that extends ${modelType}. The model for the template must contain a single asset that extends ${modelType}.`);
+        throw new Error('Failed to find a concept with the @template decorator. The model for the template must contain a single concept with the @template decoratpr.');
     } else {
         return templateModels[0];
     }
@@ -126,23 +102,28 @@ function findElementModel(introspector, elementType) {
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingGen(template,introspector,model,templateKind,options) {
-    const input = templateMarkManager.serializer.fromJSON(template,options);
 
-    const parameters = {
-        templateMarkModelManager: templateMarkManager.modelManager,
-        introspector: introspector,
-        model: model,
-        kind: templateKind,
-    };
-    const visitor = new TypeVisitor();
-    input.accept(visitor, parameters);
-    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
+    try {
+        const input = templateMarkManager.serializer.fromJSON(template,options);
 
-    // Calculates formula dependencies
-    const fvisitor = new FormulaVisitor();
-    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
+        const parameters = {
+            templateMarkModelManager: templateMarkManager.modelManager,
+            introspector: introspector,
+            model: model,
+            kind: templateKind,
+        };
+        const visitor = new TypeVisitor();
+        input.accept(visitor, parameters);
+        let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
 
-    return result;
+        // Calculates formula dependencies
+        const fvisitor = new FormulaVisitor();
+        result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
+        return result;
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -171,10 +152,10 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
     const model = findElementModel(introspector, elementType);
 
     const rootNode = {
-        '$class': 'org.accordproject.commonmark.Document',
+        '$class': `${CommonMarkModel.NAMESPACE}.Document`,
         'xmlns' : 'http://commonmark.org/xml/1.0',
         'nodes': [{
-            '$class': 'org.accordproject.templatemark.ContractDefinition',
+            '$class': `${TemplateMarkModel.NAMESPACE}.ContractDefinition`,
             'name': 'top',
             'nodes': template
         }]
@@ -189,10 +170,15 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
  * @returns {object} the token stream
  */
 function templateToTokens(input) {
-    const norm = normalizeNLs(input);
+    try {
+        const norm = normalizeNLs(input);
 
-    const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-    return parser.parse(norm,{});
+        const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
+        return parser.parse(norm,{});
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -201,10 +187,15 @@ function templateToTokens(input) {
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-    const fromMarkdownIt = new FromMarkdownIt(templaterules);
-    const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-    const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-    return result.nodes;
+    try {
+        const fromMarkdownIt = new FromMarkdownIt(templaterules);
+        const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+        const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+        return result.nodes;
+    }
+    catch(err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -218,20 +209,20 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 
     if (templateKind === 'contract') {
         return {
-            '$class': 'org.accordproject.commonmark.Document',
+            '$class': `${CommonMarkModel.NAMESPACE}.Document`,
             'xmlns' : 'http://commonmark.org/xml/1.0',
             'nodes': [{
-                '$class': 'org.accordproject.templatemark.ContractDefinition',
+                '$class': `${TemplateMarkModel.NAMESPACE}.ContractDefinition`,
                 'name': 'top',
                 'nodes': partialTemplate
             }]
         };
     } else {
         return {
-            '$class': 'org.accordproject.commonmark.Document',
+            '$class': `${CommonMarkModel.NAMESPACE}.Document`,
             'xmlns' : 'http://commonmark.org/xml/1.0',
             'nodes': [{
-                '$class': 'org.accordproject.templatemark.ClauseDefinition',
+                '$class': `${TemplateMarkModel.NAMESPACE}.ClauseDefinition`,
                 'name': 'top',
                 'nodes': partialTemplate
             }]
@@ -248,68 +239,14 @@ function tokensToUntypedTemplateMark(tokenStream, templateKind) {
 function tokensToUntypedTemplateMarkFragment(tokenStream) {
     const partialTemplate = tokensToUntypedTemplateMarkGen(tokenStream);
     return {
-        '$class': 'org.accordproject.commonmark.Document',
+        '$class': `${CommonMarkModel.NAMESPACE}.Document`,
         'xmlns' : 'http://commonmark.org/xml/1.0',
         'nodes': [{
-            '$class': 'org.accordproject.templatemark.ClauseDefinition',
+            '$class': `${TemplateMarkModel.NAMESPACE}.ClauseDefinition`,
             'name': 'top',
             'nodes': partialTemplate
         }]
     };
-}
-
-/**
- * @param {object} modelManager - the model manager
- * @param {object} type - The type from the model source to generate a JSON for
- * @return {object} the generated JSON instance
- */
-function generateJSON(modelManager,type) {
-    const factory = new Factory(modelManager);
-    const serializer = new Serializer(factory, modelManager);
-
-    switch(type) {
-    case 'DateTime':
-        return dayjs.utc();
-    case 'Integer':
-        return 0;
-    case 'Long':
-        return 0;
-    case 'Double':
-        return 0.0;
-    case 'Boolean':
-        return false;
-    case 'String':
-        return '';
-    default: {
-        const classDeclaration = modelManager.getType(type);
-
-        if (classDeclaration.isEnum()) {
-            throw new Error(
-                'Cannot generate JSON for an enumerated type directly, the type should be contained in Concept, Asset, Transaction or Event declaration'
-            );
-        }
-
-        const ns = classDeclaration.getNamespace();
-        const name = classDeclaration.getName();
-        const factoryOptions = {
-            includeOptionalFields: true,
-            generate: true,
-        };
-
-        if (classDeclaration.isConcept()) {
-            const concept = factory.newConcept(ns, name, null, factoryOptions);
-            return serializer.toJSON(concept);
-        }
-        const resource = factory.newResource(
-            ns,
-            name,
-            'resource1',
-            null,
-            factoryOptions
-        );
-        return serializer.toJSON(resource);
-    }
-    }
 }
 
 module.exports.findTemplateModel = findTemplateModel;
@@ -320,4 +257,3 @@ module.exports.tokensToUntypedTemplateMarkFragment = tokensToUntypedTemplateMark
 module.exports.tokensToUntypedTemplateMark = tokensToUntypedTemplateMark;
 module.exports.templateMarkTyping = templateMarkTyping;
 module.exports.templateMarkTypingFromType = templateMarkTypingFromType;
-module.exports.generateJSON = generateJSON;

@@ -1,74 +1,71 @@
 {
-    "document": {
-        "object": "document",
-        "data": {},
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "ul_list",
+        "data": {
+          "tight": "true"
+        },
         "children": [
-            {
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
                 "object": "block",
-                "type": "ul_list",
-                "data": {
-                    "tight" : "true"
-                },
+                "type": "paragraph",
+                "data": {},
                 "children": [
-                    {
-                        "object": "block",
-                        "type": "list_item",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "block",
-                                "type": "paragraph",
-                                "data": {
-                                },
-                                "children": [
-                                    {
-                                        "object": "text",
-                                        "text": "one"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "object": "block",
-                        "type": "list_item",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "block",
-                                "type": "paragraph",
-                                "data": {
-                                },
-                                "children": [
-                                    {
-                                        "object": "text",
-                                        "text": "two"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "object": "block",
-                        "type": "list_item",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "block",
-                                "type": "paragraph",
-                                "data": {
-                                },
-                                "children": [
-                                    {
-                                        "object": "text",
-                                        "text": "three"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
+                  {
+                    "object": "text",
+                    "text": "one"
+                  }
                 ]
-            }
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "two"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "three"
+                  }
+                ]
+              }
+            ]
+          }
         ]
-    }
+      }
+    ]
+  }
 }

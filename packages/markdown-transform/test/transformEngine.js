@@ -60,14 +60,14 @@ describe('#transformationEngine', () => {
     describe('#create', () => {
         it('should create a new transformation engine', () => {
             const engine = new TransformEngine(builtinTransformationGraph);
-            engine.getAllFormats().length.should.equal(19);
+            engine.getAllFormats().length.should.equal(18);
         });
     });
 
     describe('#introspect', () => {
         it('should introspect the existing transforms', () => {
             const engine = new TransformEngine(builtinTransformationGraph);
-            engine.getAllFormats().length.should.equal(19);
+            engine.getAllFormats().length.should.equal(18);
             const format = engine.formatDescriptor('commonmark');
             format.fileFormat.should.equal('json');
             const targets = engine.getAllTargetFormats('commonmark');
@@ -76,7 +76,6 @@ describe('#transformationEngine', () => {
 
         it('should throw for a non existing format', () => {
             const engine = new TransformEngine(builtinTransformationGraph);
-            engine.getAllFormats().length.should.equal(19);
             (() => engine.formatDescriptor('foo')).should.throw('Unknown format: foo');
             (() => engine.getAllTargetFormats('foo')).should.throw('Unknown format: foo');
         });
@@ -94,7 +93,7 @@ describe('#transformationEngine', () => {
         it('should create new format and transform', async () => {
             const engine = new TransformEngine(builtinTransformationGraph);
             engine.registerExtension(wordcount);
-            engine.getAllFormats().length.should.equal(20);
+            engine.getAllFormats().length.should.equal(19);
         });
 
         it('should transform between an existing and new format', async () => {

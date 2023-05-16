@@ -1,8 +1,0 @@
-{
-    "$class": "org.accordproject.conga.TemplateModel",
-    "amount": 100,
-    "swag": "penguins",
-    "participant": "resource:concerto@1.0.0.Participant#Dan%20Selman",
-    "maybeThing": "thing",
-    "clauseId": "da86db90-f7af-4abc-8542-13d45c815bf7"
-}

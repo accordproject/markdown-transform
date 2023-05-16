@@ -14,9 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
-const { NS_PREFIX_TemplateMarkModel } = require('@accordproject/markdown-template').TemplateMarkModel;
+const { TemplateMarkModel, CiceroMarkModel, CommonMarkModel } = require('@accordproject/markdown-common');
 
 /**
  * Removes nodes if they are an empty paragraph
@@ -26,9 +24,9 @@ const { NS_PREFIX_TemplateMarkModel } = require('@accordproject/markdown-templat
 function removeEmptyParagraphs(input) {
     let nodesWithoutBlankParagraphs = [];
     input.nodes.forEach(node => {
-        if (node.$class === `${NS_PREFIX_CommonMarkModel}Paragraph` &&
+        if (node.$class === `${CommonMarkModel.NAMESPACE}.Paragraph` &&
             node.nodes.length === 1 &&
-            node.nodes[0].$class === `${NS_PREFIX_CommonMarkModel}Text` &&
+            node.nodes[0].$class === `${CommonMarkModel.NAMESPACE}.Text` &&
             node.nodes[0].text === '') {
             return;
         }
@@ -85,11 +83,11 @@ function handleMarks(slateNode,newNode) {
     const isItalic = slateNode.italic;
 
     if (isBold) {
-        strong = {$class : `${NS_PREFIX_CommonMarkModel}Strong`, nodes: []};
+        strong = {$class : `${CommonMarkModel.NAMESPACE}.Strong`, nodes: []};
     }
 
     if (isItalic) {
-        emph  = {$class : `${NS_PREFIX_CommonMarkModel}Emph`, nodes: []};
+        emph  = {$class : `${CommonMarkModel.NAMESPACE}.Emph`, nodes: []};
     }
 
     if(strong) {
@@ -114,9 +112,9 @@ function handleText(node) {
     const isCode = node.code;
     if (node.object === 'text' && node.text === '') { return null; }
     if (isCode) {
-        result = {$class : `${NS_PREFIX_CommonMarkModel}Code`, text: node.text};
+        result = {$class : `${CommonMarkModel.NAMESPACE}.Code`, text: node.text};
     } else {
-        result = {$class : `${NS_PREFIX_CommonMarkModel}Text`, text : node.text};
+        result = {$class : `${CommonMarkModel.NAMESPACE}.Text`, text : node.text};
     }
 
     return handleMarks(node,result);
@@ -136,7 +134,7 @@ function handleVariable(node) {
     const data = node.data;
 
     const baseName = Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariable' : (Object.prototype.hasOwnProperty.call(data,'enumValues') ? 'EnumVariable' : 'Variable');
-    const className = `${NS_PREFIX_CiceroMarkModel}${baseName}`;
+    const className = `${CiceroMarkModel.NAMESPACE}.${baseName}`;
 
     result = {
         $class : className,
@@ -180,7 +178,7 @@ function handleVariableDefinition(node) {
     const data = node.data;
 
     const baseName = Object.prototype.hasOwnProperty.call(data,'format') ? 'FormattedVariableDefinition' : (Object.prototype.hasOwnProperty.call(data,'enumValues') ? 'EnumVariableDefinition' : 'VariableDefinition');
-    const className = `${NS_PREFIX_TemplateMarkModel}${baseName}`;
+    const className = `${TemplateMarkModel.NAMESPACE}.${baseName}`;
 
     result = {
         $class : className,
@@ -218,7 +216,7 @@ function handleConditional(node, isTrue, whenTrue, whenFalse) {
     const data = node.data;
 
     let result = {
-        $class : `${NS_PREFIX_CiceroMarkModel}Conditional`,
+        $class : `${CiceroMarkModel.NAMESPACE}.Conditional`,
         name : data.name,
         nodes: [],
     };
@@ -248,7 +246,7 @@ function handleConditionalDefinition(node, whenTrue, whenFalse) {
     const data = node.data;
 
     let result = {
-        $class : `${NS_PREFIX_TemplateMarkModel}ConditionalDefinition`,
+        $class : `${TemplateMarkModel.NAMESPACE}.ConditionalDefinition`,
         name : data.name,
     };
 
@@ -277,7 +275,7 @@ function handleOptional(node, hasSome, whenSome, whenNone) {
     const data = node.data;
 
     let result = {
-        $class : `${NS_PREFIX_CiceroMarkModel}Optional`,
+        $class : `${CiceroMarkModel.NAMESPACE}.Optional`,
         name : data.name,
         nodes: [],
     };
@@ -307,7 +305,7 @@ function handleOptionalDefinition(node, whenSome, whenNone) {
     const data = node.data;
 
     let result = {
-        $class : `${NS_PREFIX_TemplateMarkModel}OptionalDefinition`,
+        $class : `${TemplateMarkModel.NAMESPACE}.OptionalDefinition`,
         name : data.name,
     };
 
@@ -335,7 +333,7 @@ function handleFormula(node) {
     const textNode = node.children[0]; // inlines always contain a single text node
     node.children = []; // Reset the children for the inline to avoid recursion
 
-    const className = `${NS_PREFIX_CiceroMarkModel}Formula`;
+    const className = `${CiceroMarkModel.NAMESPACE}.Formula`;
 
     result = {
         $class : className,
@@ -372,7 +370,7 @@ function handleFormulaDefinition(node) {
 
     node.children = []; // Reset the children for the inline to avoid recursion
 
-    const className = `${NS_PREFIX_CiceroMarkModel}Formula`;
+    const className = `${CiceroMarkModel.NAMESPACE}.Formula`;
 
     result = {
         $class : className,

@@ -1,1 +1,0 @@
-This is a contract between {{seller}} and {{buyer}} for the amount of {{amount}} {{currency}}{{#if forceMajeure}}, even in the presence of force majeure{{/if}}. This contract becomes effective on {{effectiveDate as "MMM DD, YYYY H:mm:ss"}}.

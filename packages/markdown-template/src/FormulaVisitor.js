@@ -45,23 +45,44 @@ class FormulaVisitor {
     }
 
     /**
+     * Calculates the dependencies for TS code
+     * @param {string} tsCode the TS code to analyze
+     * @returns {string[]} array of dependencies
+     */
+    static calculateDependencies(tsCode) {
+        try {
+            const deps = [];
+            // TODO!!
+            return deps;
+        }
+        catch(err) {
+            throw new Error(`Failed to calculate dependencies in code '${tsCode}'. Error: ${err}`);
+        }
+    }
+
+    /**
      * Visit a node
      * @param {*} thing the object being visited
      * @param {*} parameters the parameters
      */
     visit(thing, parameters) {
         switch(thing.getType()) {
-        case 'VariableDefinition':
-        case 'FormattedVariableDefinition':
-        case 'EnumVariableDefinition': {
-            if (parameters.calculateDependencies) {
-                parameters.variables.push(thing.name);
+        case 'ConditionalDefinition':
+            {
+                if (parameters.calculateDependencies) {
+                    if(thing.condition) {
+                        thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
+                    }
+                } else {
+                    parameters.result.push({ name : thing.name, code: thing.condition });
+                }
             }
-        }
             break;
         case 'FormulaDefinition': {
             if (parameters.calculateDependencies) {
-                thing.dependencies = parameters.variables;
+                if(thing.code) {
+                    thing.dependencies = FormulaVisitor.calculateDependencies(thing.code.contents);
+                }
             } else {
                 parameters.result.push({ name : thing.name, code: thing.code });
             }
@@ -84,7 +105,7 @@ class FormulaVisitor {
         const parameters = {
             calculateDependencies: true,
             variables: [],
-            result: [],
+            result: []
         };
         const input = serializer.fromJSON(ast,options);
         input.accept(this, parameters);

@@ -15,11 +15,11 @@
 'use strict';
 
 const { unescapeCodeBlock, parseHtmlBlock, headingLevel, getAttr, trimEndline } = require('./CommonMarkUtils');
-const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS_PREFIX_CommonMarkModel;
+const CommonMarkModel = require('./externalModels/CommonMarkModel');
 
 // Inline rules
 const textRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Text',
+    tag: `${CommonMarkModel.NAMESPACE}.Text`,
     leaf: true,
     open: false,
     close: false,
@@ -27,7 +27,7 @@ const textRule = {
     skipEmpty: true,
 };
 const codeInlineRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Code',
+    tag: `${CommonMarkModel.NAMESPACE}.Code`,
     leaf: true,
     open: false,
     close: false,
@@ -35,21 +35,21 @@ const codeInlineRule = {
     skipEmpty: false,
 };
 const softbreakRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Softbreak',
+    tag: `${CommonMarkModel.NAMESPACE}.Softbreak`,
     leaf: true,
     open: false,
     close: false,
     skipEmpty: false,
 };
 const hardbreakRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Linebreak',
+    tag: `${CommonMarkModel.NAMESPACE}.Linebreak`,
     leaf: true,
     open: false,
     close: false,
     skipEmpty: false,
 };
 const htmlInlineRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'HtmlInline',
+    tag: `${CommonMarkModel.NAMESPACE}.HtmlInline`,
     leaf: true,
     open: false,
     close: false,
@@ -60,35 +60,35 @@ const htmlInlineRule = {
     skipEmpty: false,
 };
 const strongOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Strong',
+    tag: `${CommonMarkModel.NAMESPACE}.Strong`,
     leaf: false,
     open: true,
     close: false,
     skipEmpty: false,
 };
 const strongCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Strong',
+    tag: `${CommonMarkModel.NAMESPACE}.Strong`,
     leaf: false,
     open: false,
     close: true,
     skipEmpty: false,
 };
 const emphOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Emph',
+    tag: `${CommonMarkModel.NAMESPACE}.Emph`,
     leaf: false,
     open: true,
     close: false,
     skipEmpty: false,
 };
 const emphCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Emph',
+    tag: `${CommonMarkModel.NAMESPACE}.Emph`,
     leaf: false,
     open: false,
     close: true,
     skipEmpty: false,
 };
 const linkOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Link',
+    tag: `${CommonMarkModel.NAMESPACE}.Link`,
     leaf: false,
     open: true,
     close: false,
@@ -99,14 +99,14 @@ const linkOpenRule = {
     skipEmpty: false,
 };
 const linkCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Link',
+    tag: `${CommonMarkModel.NAMESPACE}.Link`,
     leaf: false,
     open: false,
     close: true,
     skipEmpty: false,
 };
 const imageRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Image',
+    tag: `${CommonMarkModel.NAMESPACE}.Image`,
     leaf: false,
     open: true,
     close: true,
@@ -120,7 +120,7 @@ const imageRule = {
 
 // Block rules
 const codeBlockRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'CodeBlock',
+    tag: `${CommonMarkModel.NAMESPACE}.CodeBlock`,
     leaf: true,
     open: false,
     close: false,
@@ -133,7 +133,7 @@ const codeBlockRule = {
 };
 const fenceRule = codeBlockRule;
 const htmlBlockRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'HtmlBlock',
+    tag: `${CommonMarkModel.NAMESPACE}.HtmlBlock`,
     leaf: true,
     open: false,
     close: false,
@@ -144,7 +144,7 @@ const htmlBlockRule = {
     },
 };
 const hrRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'ThematicBreak',
+    tag: `${CommonMarkModel.NAMESPACE}.ThematicBreak`,
     leaf: true,
     open: false,
     close: false,
@@ -152,7 +152,7 @@ const hrRule = {
     },
 };
 const paragraphOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Paragraph',
+    tag: `${CommonMarkModel.NAMESPACE}.Paragraph`,
     leaf: false,
     open: true,
     close: false,
@@ -160,13 +160,13 @@ const paragraphOpenRule = {
     },
 };
 const paragraphCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Paragraph',
+    tag: `${CommonMarkModel.NAMESPACE}.Paragraph`,
     leaf: false,
     open: false,
     close: true,
 };
 const headingOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Heading',
+    tag: `${CommonMarkModel.NAMESPACE}.Heading`,
     leaf: false,
     open: true,
     close: false,
@@ -175,13 +175,13 @@ const headingOpenRule = {
     },
 };
 const headingCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Heading',
+    tag: `${CommonMarkModel.NAMESPACE}.Heading`,
     leaf: false,
     open: false,
     close: true,
 };
 const blockQuoteOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'BlockQuote',
+    tag: `${CommonMarkModel.NAMESPACE}.BlockQuote`,
     leaf: false,
     open: true,
     close: false,
@@ -189,13 +189,13 @@ const blockQuoteOpenRule = {
     },
 };
 const blockQuoteCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'BlockQuote',
+    tag: `${CommonMarkModel.NAMESPACE}.BlockQuote`,
     leaf: false,
     open: false,
     close: true,
 };
 const bulletListOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'List',
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
     leaf: false,
     open: true,
     close: false,
@@ -205,13 +205,13 @@ const bulletListOpenRule = {
     },
 };
 const bulletListCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'List',
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
     leaf: false,
     open: false,
     close: true,
 };
 const orderedListOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'List',
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
     leaf: false,
     open: true,
     close: false,
@@ -223,13 +223,13 @@ const orderedListOpenRule = {
     },
 };
 const orderedListCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'List',
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
     leaf: false,
     open: false,
     close: true,
 };
 const listItemOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Item',
+    tag: `${CommonMarkModel.NAMESPACE}.Item`,
     leaf: false,
     open: true,
     close: false,
@@ -237,14 +237,14 @@ const listItemOpenRule = {
     },
 };
 const listItemCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'List',
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const tableOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Table',
+    tag: `${CommonMarkModel.NAMESPACE}.Table`,
     leaf: false,
     open: true,
     close: false,
@@ -252,14 +252,14 @@ const tableOpenRule = {
 };
 
 const tableCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'Table',
+    tag: `${CommonMarkModel.NAMESPACE}.Table`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const tableHeadOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableHead',
+    tag: `${CommonMarkModel.NAMESPACE}.TableHead`,
     leaf: false,
     open: true,
     close: false,
@@ -267,14 +267,14 @@ const tableHeadOpenRule = {
 };
 
 const tableHeadCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableHead',
+    tag: `${CommonMarkModel.NAMESPACE}.TableHead`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const tableBodyOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableBody',
+    tag: `${CommonMarkModel.NAMESPACE}.TableBody`,
     leaf: false,
     open: true,
     close: false,
@@ -282,14 +282,14 @@ const tableBodyOpenRule = {
 };
 
 const tableBodyCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableBody',
+    tag: `${CommonMarkModel.NAMESPACE}.TableBody`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const tableRowOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableRow',
+    tag: `${CommonMarkModel.NAMESPACE}.TableRow`,
     leaf: false,
     open: true,
     close: false,
@@ -297,14 +297,14 @@ const tableRowOpenRule = {
 };
 
 const tableRowCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableRow',
+    tag: `${CommonMarkModel.NAMESPACE}.TableRow`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const headerCellOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'HeaderCell',
+    tag: `${CommonMarkModel.NAMESPACE}.HeaderCell`,
     leaf: false,
     open: true,
     close: false,
@@ -312,14 +312,14 @@ const headerCellOpenRule = {
 };
 
 const headerCellCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'HeaderCell',
+    tag: `${CommonMarkModel.NAMESPACE}.HeaderCell`,
     leaf: false,
     open: false,
     close: true,
 };
 
 const tableCellOpenRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableCell',
+    tag: `${CommonMarkModel.NAMESPACE}.TableCell`,
     leaf: false,
     open: true,
     close: false,
@@ -327,7 +327,7 @@ const tableCellOpenRule = {
 };
 
 const tableCellCloseRule = {
-    tag: NS_PREFIX_CommonMarkModel + 'TableCell',
+    tag: `${CommonMarkModel.NAMESPACE}.TableCell`,
     leaf: false,
     open: false,
     close: true,

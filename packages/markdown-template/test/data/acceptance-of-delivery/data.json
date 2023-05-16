@@ -1,1 +1,0 @@
-{"$class":"org.accordproject.acceptanceofdelivery.AcceptanceOfDeliveryClause","shipper":"resource:org.accordproject.organization.Organization#Party%20A","receiver":"resource:org.accordproject.organization.Organization#Party%20B","deliverable":"Widgets","businessDays":10,"attachment":"Attachment X","clauseId":"4915fa2a-35ef-4d74-b817-359a1e8be6d0"}

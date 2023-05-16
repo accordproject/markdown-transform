@@ -24,25 +24,6 @@ const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
 const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
 const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 
-/**
- * The graph of transformation supported
- * @param {*} input input document
- * @param {*} parameters parameters object
- * @param {*} options options object
- * @returns {*} object with modelManager and templateMark
- */
-const templateToTemplateMark = async (input, parameters, options) => {
-    const t = new TemplateMarkTransformer();
-    const modelOptions = { offline: false };
-    if (options && options.offline) {
-        modelOptions.offline = true;
-    }
-    const modelManager = await ModelLoader.loadModelManager(parameters.model, options);
-    return {
-        modelManager: modelManager,
-        templateMark: t.fromMarkdownTemplate({ fileName:parameters.inputFileName, content:input }, modelManager, parameters.templateKind, options)
-    };
-};
 const transformationGraph = {
     markdown_template: {
         docs: 'Template markdown (string)',
@@ -138,15 +119,7 @@ const transformationGraph = {
         },
         ciceromark_parsed: (input, parameters, options) => {
             return input;
-        },
-        data: async (input, parameters, options) => {
-            const t = new TemplateMarkTransformer(parameters.plugin);
-            const templateParameters = Object.assign({},parameters);
-            templateParameters.inputFileName = parameters.templateFileName;
-            const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
-            const result = await t.fromCiceroMark({ fileName:parameters.inputFileName, content:input }, templateMark, modelManager, parameters.templateKind, parameters.currentTime, parameters.utcOffset, options);
-            return result;
-        },
+        }
     },
     ciceromark_parsed: {
         docs: 'Parsed CiceroMark DOM (JSON)',
@@ -169,17 +142,6 @@ const transformationGraph = {
         },
         pdfmake: (input, parameters, options) => {
             return PdfTransformer.ciceroMarkToPdfMake(input, options);
-        },
-    },
-    data: {
-        docs: 'Contract Data (JSON)',
-        fileFormat: 'json',
-        ciceromark_parsed: async (input, parameters, options) => {
-            const t = new TemplateMarkTransformer(parameters.plugin);
-            const templateParameters = Object.assign({},parameters);
-            templateParameters.inputFileName = parameters.templateFileName;
-            const { templateMark, modelManager } = await templateToTemplateMark(parameters.template,templateParameters,options);
-            return t.instantiateCiceroMark(input, templateMark, modelManager, parameters.templateKind, parameters.currentTime, parameters.utcOffset, options);
         },
     },
     plaintext: {

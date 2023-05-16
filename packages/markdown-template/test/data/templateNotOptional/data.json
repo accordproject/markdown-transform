@@ -1,1 +1,0 @@
-{"$class":"org.test.MyClause","seller":"Steve","buyer":"Betty","amount":3131,"currency":"EUR","forceMajeure":{"$class":"org.test.DiscountRate","rate":10.5},"clauseId":"f9e738b1-81ce-4956-b926-790f9370b954"}

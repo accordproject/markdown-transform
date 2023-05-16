@@ -1,45 +1,45 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "This is a"
-                    },
-                    {
-                        "object": "inline",
-                        "type": "softbreak",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": ""
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": "softbreak in para 1."
-                    }
-                ]
-            },
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "And this is para 2."
-                    }
-                ]
-            }
+          {
+            "object": "text",
+            "text": "This is a"
+          },
+          {
+            "object": "inline",
+            "type": "softbreak",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "softbreak in para 1."
+          }
         ]
-    }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "children": [
+          {
+            "object": "text",
+            "text": "And this is para 2."
+          }
+        ]
+      }
+    ]
+  }
 }

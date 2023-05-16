@@ -1,37 +1,37 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "code_block",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "code_block",
-                "data": {},
-                "children": [
-                    {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "this\nis a\ncode block.\n"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "end."
-                    }
-                ]
-            }
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": "this\nis a\ncode block.\n"
+              }
+            ]
+          }
         ]
-    }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "children": [
+          {
+            "object": "text",
+            "text": "end."
+          }
+        ]
+      }
+    ]
+  }
 }

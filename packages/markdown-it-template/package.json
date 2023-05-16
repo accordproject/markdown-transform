@@ -50,11 +50,11 @@
     "eslint": "8.2.0",
     "jsdoc": "^3.6.10",
     "license-check-and-add": "2.3.6",
-    "mocha": "8.3.2",
+    "mocha": "10.1.0",
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "markdown-it": "^12.3.2"
+    "markdown-it": "^13.0.1"
   },
   "license-check-and-add-config": {
     "folder": "./lib",

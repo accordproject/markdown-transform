@@ -51,9 +51,9 @@
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "3.0.0",
+    "@accordproject/concerto-core": "3.6.0",
     "@xmldom/xmldom": "^0.8.1",
-    "markdown-it": "^12.3.2",
+    "markdown-it": "^13.0.1",
     "winston": "3.2.1"
   },
   "license-check-and-add-config": {

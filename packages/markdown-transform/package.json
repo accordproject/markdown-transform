@@ -76,7 +76,7 @@
     "jsdoc": "^3.6.10",
     "jsome": "2.5.0",
     "license-check-and-add": "2.3.6",
-    "mocha": "8.3.2",
+    "mocha": "10.1.0",
     "nyc": "15.1.0",
     "plantuml-encoder": "^1.4.0",
     "raw-loader": "^4.0.2",
@@ -87,7 +87,7 @@
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "3.0.0",
+    "@accordproject/concerto-core": "3.6.0",
     "@accordproject/markdown-cicero": "0.16.5",
     "@accordproject/markdown-common": "0.16.5",
     "@accordproject/markdown-docx": "0.16.5",

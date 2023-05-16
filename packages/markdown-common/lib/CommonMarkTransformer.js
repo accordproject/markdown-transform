@@ -21,7 +21,7 @@ const { ModelManager, Factory, Serializer } = require('@accordproject/concerto-c
 
 const ToMarkdownVisitor = require('./ToMarkdownVisitor');
 const removeFormatting = require('./removeFormatting');
-const CommonMarkModel = require('./externalModels/CommonMarkModel').CommonMarkModel;
+const CommonMarkModel = require('./externalModels/CommonMarkModel');
 
 /**
  * Parses markdown using the commonmark parser into the
@@ -33,8 +33,8 @@ class CommonMarkTransformer {
      * Construct the parser.
      */
     constructor() {
-        const modelManager = new ModelManager();
-        modelManager.addCTOModel(CommonMarkModel, 'commonmark.cto');
+        const modelManager = new ModelManager({strict: true});
+        modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
         const factory = new Factory(modelManager);
         this.serializer = new Serializer(factory, modelManager);
     }

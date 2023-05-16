@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_TemplateMarkModel } = require('@accordproject/markdown-template').TemplateMarkModel;
+const { TemplateMarkModel } = require('@accordproject/markdown-common');
 
 const fromslateutil = require('./fromslateutil');
 
@@ -23,7 +23,7 @@ const rules = {};
 // CiceroMark rules
 rules.contract_definition = (node,processNodes) => {
     // console.log(JSON.stringify(node, null, 4));
-    const result = {$class : `${NS_PREFIX_TemplateMarkModel}ContractDefinition`, name: node.data.name, nodes: []};
+    const result = {$class : `${TemplateMarkModel.NAMESPACE}.ContractDefinition`, name: node.data.name, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }
@@ -37,7 +37,7 @@ rules.contract_definition = (node,processNodes) => {
 };
 rules.clause_definition = (node,processNodes) => {
     // console.log(JSON.stringify(node, null, 4));
-    const result = {$class : `${NS_PREFIX_TemplateMarkModel}ClauseDefinition`, name: node.data.name, nodes: []};
+    const result = {$class : `${TemplateMarkModel.NAMESPACE}.ClauseDefinition`, name: node.data.name, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }
@@ -68,7 +68,7 @@ rules.optional_definition = (node,processNodes) => {
 };
 rules.ol_list_block_definition = (node,processNodes) => {
     let result;
-    result = {$class : `${NS_PREFIX_TemplateMarkModel}ListBlockDefinition`, name: node.data.name, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    result = {$class : `${TemplateMarkModel.NAMESPACE}.ListBlockDefinition`, name: node.data.name, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }
@@ -79,7 +79,7 @@ rules.ol_list_block_definition = (node,processNodes) => {
 };
 rules.ul_list_block_definition = (node,processNodes) => {
     let result;
-    result = {$class : `${NS_PREFIX_TemplateMarkModel}ListBlockDefinition`, name: node.data.name, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    result = {$class : `${TemplateMarkModel.NAMESPACE}.ListBlockDefinition`, name: node.data.name, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
     if (node.data.elementType) {
         result.elementType = node.data.elementType;
     }

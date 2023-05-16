@@ -15,7 +15,7 @@
 'use strict';
 
 const DOMParser = require('@xmldom/xmldom').DOMParser;
-const NS_PREFIX_CommonMarkModel = require('./externalModels/CommonMarkModel').NS_PREFIX_CommonMarkModel;
+const CommonMarkModel = require('./externalModels/CommonMarkModel');
 
 /**
  * CommonMark Utilities
@@ -233,7 +233,7 @@ function parseHtmlBlock(string) {
         }
 
         const tag = {};
-        tag.$class = NS_PREFIX_CommonMarkModel + 'TagInfo';
+        tag.$class = `${CommonMarkModel.NAMESPACE}.TagInfo`;
         tag.tagName = item.tagName.toLowerCase();
         tag.attributeString = attributeString;
         tag.attributes = [];
@@ -241,7 +241,7 @@ function parseHtmlBlock(string) {
             if (Object.prototype.hasOwnProperty.call(attributeObject, attName)) {
                 const attValue = attributeObject[attName];
                 tag.attributes.push({
-                    $class : NS_PREFIX_CommonMarkModel + 'Attribute',
+                    $class : `${CommonMarkModel.NAMESPACE}.Attribute`,
                     name : attName,
                     value : attValue,
                 });
@@ -270,8 +270,8 @@ function mergeAdjacentHtmlNodes(nodes, tagInfo) {
         const next = n+1 < nodes.length ? nodes[n+1] : null;
 
         if(next &&
-           cur.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
-           next.$class === (NS_PREFIX_CommonMarkModel + 'HtmlInline') &&
+           cur.$class === (`${CommonMarkModel.NAMESPACE}.HtmlInline`) &&
+           next.$class === (`${CommonMarkModel.NAMESPACE}.HtmlInline`) &&
            cur.tag &&
            next.text === `</${cur.tag.tagName}>`) {
             next.text = cur.text + next.text;  // Fold text in next node, skip current node

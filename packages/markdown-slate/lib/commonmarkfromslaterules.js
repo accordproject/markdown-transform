@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { CommonMarkModel } = require('@accordproject/markdown-common');
 
 const fromslateutil = require('./fromslateutil');
 
@@ -22,79 +22,79 @@ const rules = {};
 
 // CommonMark rules
 rules.paragraph = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Paragraph`, nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Paragraph`, nodes: []};
 };
 rules.softbreak = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Softbreak`};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Softbreak`};
 };
 rules.linebreak = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Linebreak`};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Linebreak`};
 };
 rules.horizontal_rule = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}ThematicBreak`};
+    return {$class : `${CommonMarkModel.NAMESPACE}.ThematicBreak`};
 };
 rules.heading_one = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '1', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '1', nodes: []};
 };
 rules.heading_two = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '2', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '2', nodes: []};
 };
 rules.heading_three = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '3', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '3', nodes: []};
 };
 rules.heading_four = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '4', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '4', nodes: []};
 };
 rules.heading_five = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '5', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '5', nodes: []};
 };
 rules.heading_six = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Heading`, level : '6', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Heading`, level : '6', nodes: []};
 };
 rules.block_quote = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}BlockQuote`, nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.BlockQuote`, nodes: []};
 };
 rules.code_block = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}CodeBlock`, text: fromslateutil.getText(node)};
+    return {$class : `${CommonMarkModel.NAMESPACE}.CodeBlock`, text: fromslateutil.getText(node)};
 };
 rules.html_block = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}HtmlBlock`, text: fromslateutil.getText(node)};
+    return {$class : `${CommonMarkModel.NAMESPACE}.HtmlBlock`, text: fromslateutil.getText(node)};
 };
 rules.html_inline = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}HtmlInline`, text: node.data.content};
+    return {$class : `${CommonMarkModel.NAMESPACE}.HtmlInline`, text: node.data.content};
 };
 rules.link = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Link`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Link`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
 };
 rules.image = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Image`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Image`, destination: node.data.href, title: node.data.title ? node.data.title : '', nodes: []};
 };
 rules.list_item = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}Item`, nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.Item`, nodes: []};
 };
 rules.ol_list = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}List`, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.List`, type: 'ordered', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
 };
 rules.ul_list = (node,processNodes) => {
-    return {$class : `${NS_PREFIX_CommonMarkModel}List`, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
+    return {$class : `${CommonMarkModel.NAMESPACE}.List`, type: 'bullet', delimiter: node.data.delimiter, start: node.data.start, tight: node.data.tight, nodes: []};
 };
 rules.table = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}Table`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.Table`, nodes: [] };
 };
 rules.table_head = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}TableHead`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.TableHead`, nodes: [] };
 };
 rules.table_body = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}TableBody`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.TableBody`, nodes: [] };
 };
 rules.table_row = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}TableRow`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.TableRow`, nodes: [] };
 };
 rules.table_cell = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}TableCell`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.TableCell`, nodes: [] };
 };
 rules.header_cell = (node, processNodes) => {
-    return { $class: `${NS_PREFIX_CommonMarkModel}HeaderCell`, nodes: [] };
+    return { $class: `${CommonMarkModel.NAMESPACE}.HeaderCell`, nodes: [] };
 };
 
 module.exports = rules;

@@ -16,8 +16,7 @@
 
 const util = require('util');
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const NS_PREFIX_TemplateMarkModel = require('./externalModels/TemplateMarkModel').NS_PREFIX_TemplateMarkModel;
+const { CommonMarkModel, TemplateMarkModel } = require('@accordproject/markdown-common');
 
 /**
  * Converts concerto models to TemplateMark
@@ -61,7 +60,7 @@ class ModelVisitor {
      */
     visitEnumDeclaration(enumDeclaration, parameters) {
         let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'EnumVariableDefinition';
+        result.$class = `${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`;
         result.name = parameters.type;
         return result;
     }
@@ -75,7 +74,7 @@ class ModelVisitor {
      */
     visitClassDeclaration(classDeclaration, parameters) {
         let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'WithDefinition';
+        result.$class = `${TemplateMarkModel.NAMESPACE}.WithDefinition`;
         result.name = parameters.name;
         result.nodes = [];
 
@@ -83,7 +82,7 @@ class ModelVisitor {
         classDeclaration.getProperties().forEach((property,index) => {
             if (!first) {
                 let textNode = {};
-                textNode.$class = NS_PREFIX_CommonMarkModel + 'Text';
+                textNode.$class = `${CommonMarkModel.NAMESPACE}.Text`;
                 textNode.text = ' ';
                 result.nodes.push(textNode);
             }
@@ -105,14 +104,14 @@ class ModelVisitor {
         const fieldName = field.getName();
 
         let result = {};
-        result.$class = NS_PREFIX_TemplateMarkModel + 'VariableDefinition';
+        result.$class = `${TemplateMarkModel.NAMESPACE}.VariableDefinition`;
         result.name = fieldName;
         if(field.isArray()) {
             if (field.isPrimitive()) {
                 result.name = 'this';
             }
             const arrayResult = {};
-            arrayResult.$class = NS_PREFIX_TemplateMarkModel + 'JoinDefinition';
+            arrayResult.$class = `${TemplateMarkModel.NAMESPACE}.JoinDefinition`;
             arrayResult.separator = ' '; // XXX {{#join }}
             arrayResult.name = fieldName;
             arrayResult.nodes = [result];
@@ -123,7 +122,7 @@ class ModelVisitor {
                 result.name = 'this';
             }
             const optionalResult = {};
-            optionalResult.$class = NS_PREFIX_TemplateMarkModel + 'OptionalDefinition';
+            optionalResult.$class = `${TemplateMarkModel.NAMESPACE}.OptionalDefinition`;
             optionalResult.name = fieldName;
             optionalResult.whenSome = [result];
             optionalResult.whenNone = [];
