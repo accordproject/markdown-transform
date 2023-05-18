@@ -72,12 +72,6 @@ var templateMarkManager = mkTemplateMarkManager();
  * @returns {ClassDeclaration} the template model for the template
  */
 function findTemplateModel(introspector, templateKind) {
-  // let modelType = 'org.accordproject.contract.Contract';
-
-  // if (templateKind !== 'contract') {
-  //     modelType = 'org.accordproject.contract.Clause';
-  // }
-
   var templateModels = introspector.getClassDeclarations().filter(item => {
     return !item.isAbstract() && item.getDecorator('template');
   });
@@ -112,25 +106,21 @@ function findElementModel(introspector, elementType) {
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingGen(template, introspector, model, templateKind, options) {
-  try {
-    var input = templateMarkManager.serializer.fromJSON(template, options);
-    var parameters = {
-      templateMarkModelManager: templateMarkManager.modelManager,
-      introspector: introspector,
-      model: model,
-      kind: templateKind
-    };
-    var visitor = new TypeVisitor();
-    input.accept(visitor, parameters);
-    var result = Object.assign({}, templateMarkManager.serializer.toJSON(input, options));
+  var input = templateMarkManager.serializer.fromJSON(template, options);
+  var parameters = {
+    templateMarkModelManager: templateMarkManager.modelManager,
+    introspector: introspector,
+    model: model,
+    kind: templateKind
+  };
+  var visitor = new TypeVisitor();
+  input.accept(visitor, parameters);
+  var result = Object.assign({}, templateMarkManager.serializer.toJSON(input, options));
 
-    // Calculates formula dependencies
-    var fvisitor = new FormulaVisitor();
-    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer, result, options);
-    return result;
-  } catch (err) {
-    console.log(err);
-  }
+  // Calculates formula dependencies
+  var fvisitor = new FormulaVisitor();
+  result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer, result, options);
+  return result;
 }
 
 /**
@@ -175,15 +165,11 @@ function templateMarkTypingFromType(template, modelManager, elementType) {
  * @returns {object} the token stream
  */
 function templateToTokens(input) {
-  try {
-    var norm = normalizeNLs(input);
-    var parser = new MarkdownIt({
-      html: true
-    }).use(MarkdownItTemplate);
-    return parser.parse(norm, {});
-  } catch (err) {
-    console.log(err);
-  }
+  var norm = normalizeNLs(input);
+  var parser = new MarkdownIt({
+    html: true
+  }).use(MarkdownItTemplate);
+  return parser.parse(norm, {});
 }
 
 /**
@@ -192,14 +178,10 @@ function templateToTokens(input) {
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-  try {
-    var fromMarkdownIt = new FromMarkdownIt(templaterules);
-    var partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-    var result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-    return result.nodes;
-  } catch (err) {
-    console.log(err);
-  }
+  var fromMarkdownIt = new FromMarkdownIt(templaterules);
+  var partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+  var result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+  return result.nodes;
 }
 
 /**
