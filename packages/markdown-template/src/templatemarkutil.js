@@ -61,12 +61,6 @@ const templateMarkManager = mkTemplateMarkManager();
  * @returns {ClassDeclaration} the template model for the template
  */
 function findTemplateModel(introspector, templateKind) {
-    // let modelType = 'org.accordproject.contract.Contract';
-
-    // if (templateKind !== 'contract') {
-    //     modelType = 'org.accordproject.contract.Clause';
-    // }
-
     const templateModels = introspector.getClassDeclarations().filter((item) => {
         return !item.isAbstract() && item.getDecorator('template');
     });
@@ -102,28 +96,22 @@ function findElementModel(introspector, elementType) {
  * @returns {object} the typed TemplateMark DOM
  */
 function templateMarkTypingGen(template,introspector,model,templateKind,options) {
+    const input = templateMarkManager.serializer.fromJSON(template,options);
 
-    try {
-        const input = templateMarkManager.serializer.fromJSON(template,options);
+    const parameters = {
+        templateMarkModelManager: templateMarkManager.modelManager,
+        introspector: introspector,
+        model: model,
+        kind: templateKind,
+    };
+    const visitor = new TypeVisitor();
+    input.accept(visitor, parameters);
+    let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
 
-        const parameters = {
-            templateMarkModelManager: templateMarkManager.modelManager,
-            introspector: introspector,
-            model: model,
-            kind: templateKind,
-        };
-        const visitor = new TypeVisitor();
-        input.accept(visitor, parameters);
-        let result = Object.assign({}, templateMarkManager.serializer.toJSON(input,options));
-
-        // Calculates formula dependencies
-        const fvisitor = new FormulaVisitor();
-        result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
-        return result;
-    }
-    catch(err) {
-        console.log(err);
-    }
+    // Calculates formula dependencies
+    const fvisitor = new FormulaVisitor();
+    result = fvisitor.calculateDependencies(templateMarkManager.modelManager.serializer,result,options);
+    return result;
 }
 
 /**
@@ -136,7 +124,6 @@ function templateMarkTypingGen(template,introspector,model,templateKind,options)
 function templateMarkTyping(template,modelManager,templateKind) {
     const introspector = new Introspector(modelManager);
     const model = findTemplateModel(introspector, templateKind);
-
     return templateMarkTypingGen(template,introspector,model,templateKind);
 }
 
@@ -170,15 +157,9 @@ function templateMarkTypingFromType(template,modelManager,elementType) {
  * @returns {object} the token stream
  */
 function templateToTokens(input) {
-    try {
-        const norm = normalizeNLs(input);
-
-        const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
-        return parser.parse(norm,{});
-    }
-    catch(err) {
-        console.log(err);
-    }
+    const norm = normalizeNLs(input);
+    const parser = new MarkdownIt({html:true}).use(MarkdownItTemplate);
+    return parser.parse(norm,{});
 }
 
 /**
@@ -187,15 +168,10 @@ function templateToTokens(input) {
  * @returns {object} the TemplateMark DOM
  */
 function tokensToUntypedTemplateMarkGen(tokenStream) {
-    try {
-        const fromMarkdownIt = new FromMarkdownIt(templaterules);
-        const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
-        const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
-        return result.nodes;
-    }
-    catch(err) {
-        console.log(err);
-    }
+    const fromMarkdownIt = new FromMarkdownIt(templaterules);
+    const partialTemplate = fromMarkdownIt.toCommonMark(tokenStream);
+    const result = templateMarkManager.serializer.toJSON(templateMarkManager.serializer.fromJSON(partialTemplate));
+    return result.nodes;
 }
 
 /**
