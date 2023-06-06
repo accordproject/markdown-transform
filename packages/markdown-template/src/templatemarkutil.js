@@ -56,11 +56,12 @@ const templateMarkManager = mkTemplateMarkManager();
 /**
  * Returns the concept for the template
  * @param {object} introspector - the model introspector for this template
+ * @param {string} templateKind - either 'clause' or 'contract'
  * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
  * @throws {Error} if no template model is found, or multiple template models are found
  * @returns {ClassDeclaration} the concept for the template
  */
-function findTemplateConcept(introspector, conceptFullyQualifiedName) {
+function findTemplateConcept(introspector, templateKind, conceptFullyQualifiedName) {
     if(conceptFullyQualifiedName) {
         return introspector.getClassDeclaration();
     }
@@ -123,11 +124,12 @@ function templateMarkTypingGen(template,introspector,model,templateKind,options)
  * @param {object} template the TemplateMark DOM
  * @param {object} modelManager - the modelManager for this template
  * @param {string} templateKind - either 'clause' or 'contract'
+ * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
  * @returns {object} the typed TemplateMark DOM
  */
-function templateMarkTyping(template,modelManager,templateKind) {
+function templateMarkTyping(template,modelManager,templateKind,conceptFullyQualifiedName) {
     const introspector = new Introspector(modelManager);
-    const model = findTemplateConcept(introspector, templateKind);
+    const model = findTemplateConcept(introspector, templateKind,conceptFullyQualifiedName);
     return templateMarkTypingGen(template,introspector,model,templateKind);
 }
 

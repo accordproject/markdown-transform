@@ -43,15 +43,16 @@ class TemplateMarkTransformer {
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
-     * @returns {object} the result of parsing
+     * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
+    * @returns {object} the result of parsing
      */
-    tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options) {
+    tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options, conceptFullyQualifiedName) {
         const template = tokensToUntypedTemplateMark(tokenStream, templateKind);
         if (options && options.verbose) {
             console.log('===== Untyped TemplateMark ');
             console.log(JSON.stringify(template,null,2));
         }
-        const typedTemplate = templateMarkTyping(template, modelManager, templateKind);
+        const typedTemplate = templateMarkTyping(template, modelManager, templateKind, conceptFullyQualifiedName);
         if (options && options.verbose) {
             console.log('===== TemplateMark ');
             console.log(JSON.stringify(typedTemplate,null,2));
@@ -66,9 +67,10 @@ class TemplateMarkTransformer {
      * @param {string} templateKind - either 'clause' or 'contract'
      * @param {object} [options] configuration options
      * @param {boolean} [options.verbose] verbose output
+     * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
      * @returns {object} the result of parsing
      */
-    fromMarkdownTemplate(templateInput, modelManager, templateKind, options) {
+    fromMarkdownTemplate(templateInput, modelManager, templateKind, options, conceptFullyQualifiedName) {
         if (!modelManager) {
             throw new Error('Cannot parse without template model');
         }
@@ -78,7 +80,7 @@ class TemplateMarkTransformer {
             console.log('===== MarkdownIt Tokens ');
             console.log(JSON.stringify(tokenStream,null,2));
         }
-        return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options);
+        return this.tokensToMarkdownTemplate(tokenStream, modelManager, templateKind, options, conceptFullyQualifiedName);
     }
 
     /**
