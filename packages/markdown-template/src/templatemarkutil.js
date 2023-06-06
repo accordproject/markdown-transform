@@ -54,23 +54,27 @@ function mkTemplateMarkManager(options) {
 const templateMarkManager = mkTemplateMarkManager();
 
 /**
- * Returns the template model for the template
+ * Returns the concept for the template
  * @param {object} introspector - the model introspector for this template
- * @param {string} templateKind - either 'clause' or 'contract'
+ * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
  * @throws {Error} if no template model is found, or multiple template models are found
- * @returns {ClassDeclaration} the template model for the template
+ * @returns {ClassDeclaration} the concept for the template
  */
-function findTemplateModel(introspector, templateKind) {
-    const templateModels = introspector.getClassDeclarations().filter((item) => {
-        return !item.isAbstract() && item.getDecorator('template');
-    });
-
-    if (templateModels.length > 1) {
-        throw new Error('Found multiple concepts with @template decorator. The model for the template must contain a single concept with the @template decorator.');
-    } else if (templateModels.length === 0) {
-        throw new Error('Failed to find a concept with the @template decorator. The model for the template must contain a single concept with the @template decoratpr.');
-    } else {
-        return templateModels[0];
+function findTemplateConcept(introspector, conceptFullyQualifiedName) {
+    if(conceptFullyQualifiedName) {
+        return introspector.getClassDeclaration();
+    }
+    else {
+        const templateModels = introspector.getClassDeclarations().filter((item) => {
+            return !item.isAbstract() && item.getDecorator('template');
+        });
+        if (templateModels.length > 1) {
+            throw new Error('Found multiple concepts with @template decorator. The model for the template must contain a single concept with the @template decorator.');
+        } else if (templateModels.length === 0) {
+            throw new Error('Failed to find a concept with the @template decorator. The model for the template must contain a single concept with the @template decoratpr.');
+        } else {
+            return templateModels[0];
+        }
     }
 }
 
@@ -123,7 +127,7 @@ function templateMarkTypingGen(template,introspector,model,templateKind,options)
  */
 function templateMarkTyping(template,modelManager,templateKind) {
     const introspector = new Introspector(modelManager);
-    const model = findTemplateModel(introspector, templateKind);
+    const model = findTemplateConcept(introspector, templateKind);
     return templateMarkTypingGen(template,introspector,model,templateKind);
 }
 
@@ -225,7 +229,7 @@ function tokensToUntypedTemplateMarkFragment(tokenStream) {
     };
 }
 
-module.exports.findTemplateModel = findTemplateModel;
+module.exports.findTemplateConcept = findTemplateConcept;
 module.exports.templateMarkManager = templateMarkManager;
 
 module.exports.templateToTokens = templateToTokens;
