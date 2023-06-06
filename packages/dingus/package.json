@@ -1,6 +1,6 @@
 {
   "name": "dingus",
-  "version": "0.16.5",
+  "version": "0.16.7",
   "description": "Markdown Transform Dingus",
   "keywords": [
     "accord-project",
@@ -19,12 +19,12 @@
   },
   "files": [],
   "devDependencies": {
-    "@accordproject/markdown-cicero": "0.16.5",
-    "@accordproject/markdown-common": "0.16.5",
-    "@accordproject/markdown-it-cicero": "0.16.5",
-    "@accordproject/markdown-it-template": "0.16.5",
-    "@accordproject/markdown-pdf": "0.16.5",
-    "@accordproject/markdown-template": "0.16.5",
+    "@accordproject/markdown-cicero": "0.16.7",
+    "@accordproject/markdown-common": "0.16.7",
+    "@accordproject/markdown-it-cicero": "0.16.7",
+    "@accordproject/markdown-it-template": "0.16.7",
+    "@accordproject/markdown-pdf": "0.16.7",
+    "@accordproject/markdown-template": "0.16.7",
     "@babel/core": "7.17.5",
     "@babel/plugin-transform-runtime": "7.17.0",
     "@babel/preset-env": "7.16.11",

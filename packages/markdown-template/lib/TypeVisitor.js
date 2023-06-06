@@ -110,13 +110,9 @@ class TypeVisitor {
    * @param {*} [parameters] optional parameters
    */
   static visitNodes(visitor, things, parameters) {
-    try {
-      things.forEach(node => {
-        node.accept(visitor, parameters);
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    things.forEach(node => {
+      node.accept(visitor, parameters);
+    });
   }
 
   /**
