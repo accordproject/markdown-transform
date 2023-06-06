@@ -40,7 +40,7 @@ const transformationGraph = {
     templatemark: async (input, parameters, options) => {
       const t = new TemplateMarkTransformer();
       const modelManager = await ModelLoader.loadModelManager(parameters.model, options);
-      return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options);
+      return t.tokensToMarkdownTemplate(input, modelManager, parameters.templateKind, options, parameters.conceptFullyQualifiedName);
     }
   },
   templatemark: {

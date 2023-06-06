@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-template",
-  "version": "0.16.5",
+  "version": "0.16.7",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=14",
@@ -86,9 +86,9 @@
   "dependencies": {
     "@accordproject/concerto-core": "3.7.0",
     "@accordproject/concerto-cto": "3.7.0",
-    "@accordproject/markdown-cicero": "0.16.5",
-    "@accordproject/markdown-common": "0.16.5",
-    "@accordproject/markdown-it-template": "0.16.5",
+    "@accordproject/markdown-cicero": "0.16.7",
+    "@accordproject/markdown-common": "0.16.7",
+    "@accordproject/markdown-it-template": "0.16.7",
     "dayjs": "1.10.8",
     "markdown-it": "^13.0.1",
     "uuid": "8.3.2"
