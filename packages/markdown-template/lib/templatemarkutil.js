@@ -74,7 +74,7 @@ var templateMarkManager = mkTemplateMarkManager();
  */
 function findTemplateConcept(introspector, templateKind, conceptFullyQualifiedName) {
   if (conceptFullyQualifiedName) {
-    return introspector.getClassDeclaration();
+    return introspector.getClassDeclaration(conceptFullyQualifiedName);
   } else {
     var templateModels = introspector.getClassDeclarations().filter(item => {
       return !item.isAbstract() && item.getDecorator('template');
