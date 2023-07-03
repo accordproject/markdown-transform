@@ -70,8 +70,11 @@ rules.WithDefinition = (visitor,thing,children,parameters,resultString,resultSeq
 };
 rules.JoinDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
     const sepAttr = thing.separator ? ' separator="' + thing.separator + '"' : '';
-    const lastSepAttr = thing.lastSeparator ? ' lastSeparator="' + thing.lastSeparator + '"' : '';
-    const next1 = `{{#join ${thing.name}${sepAttr}${lastSepAttr}}}`;
+    const localeAttr = thing.locale ? ' locale="' + thing.locale + '"' : '';
+    const typeAttr = thing.type ? ' type="' + thing.type + '"' : '';
+    const styleAttr = thing.style ? ' style="' + thing.style + '"' : '';
+
+    const next1 = `{{#join ${thing.name}${sepAttr}${localeAttr}${typeAttr}${styleAttr}}}`;
     const next2 = '{{/join}}';
     const result = [resultString(next1),children,resultString(next2)];
     resultSeq(parameters,result);
