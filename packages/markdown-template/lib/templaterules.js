@@ -181,6 +181,7 @@ var joinOpenRule = {
   enter: (node, token, callback) => {
     node.name = getAttr(token.attrs, 'name', null);
     node.separator = getAttr(token.attrs, 'separator', ',');
+    node.lastSeparator = getAttr(token.attrs, 'lastSeparator', null);
   },
   skipEmpty: false
 };

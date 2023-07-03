@@ -169,7 +169,10 @@ const joinOpenRule = {
     close: false,
     enter: (node,token,callback) => {
         node.name = getAttr(token.attrs,'name',null);
-        node.separator = getAttr(token.attrs,'separator',',');
+        node.separator = getAttr(token.attrs,'separator',null);
+        node.locale = getAttr(token.attrs,'locale',null);
+        node.type = getAttr(token.attrs,'type',null);
+        node.style = getAttr(token.attrs,'style',null);
     },
     skipEmpty: false,
 };
