@@ -69,7 +69,8 @@ rules.WithDefinition = (visitor, thing, children, parameters, resultString, resu
 };
 rules.JoinDefinition = (visitor, thing, children, parameters, resultString, resultSeq) => {
   var sepAttr = thing.separator ? ' separator="' + thing.separator + '"' : '';
-  var next1 = "{{#join ".concat(thing.name).concat(sepAttr, "}}");
+  var lastSepAttr = thing.lastSeparator ? ' lastSeparator="' + thing.lastSeparator + '"' : '';
+  var next1 = "{{#join ".concat(thing.name).concat(sepAttr).concat(lastSepAttr, "}}");
   var next2 = '{{/join}}';
   var result = [resultString(next1), children, resultString(next2)];
   resultSeq(parameters, result);
