@@ -12,7 +12,7 @@
     "license-check-and-add": "2.3.6",
     "mkdirp": "1.0.4",
     "nyc": "15.1.0",
-    "semver": "7.3.5",
+    "semver": "7.5.2",
     "sleep-promise": "8.0.1",
     "source-map-support": "0.5.12",
     "traverse": "^0.6.7"
