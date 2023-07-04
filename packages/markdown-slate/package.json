@@ -51,9 +51,9 @@
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.16.8",
-    "@accordproject/markdown-common": "0.16.8",
-    "@accordproject/markdown-template": "0.16.8"
+    "@accordproject/markdown-cicero": "0.16.11",
+    "@accordproject/markdown-common": "0.16.11",
+    "@accordproject/markdown-template": "0.16.11"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
