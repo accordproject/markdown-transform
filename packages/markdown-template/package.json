@@ -86,8 +86,8 @@
   "dependencies": {
     "@accordproject/concerto-core": "3.7.0",
     "@accordproject/concerto-cto": "3.7.0",
-    "@accordproject/markdown-cicero": "0.16.8",
-    "@accordproject/markdown-common": "0.16.8",
+    "@accordproject/markdown-cicero": "0.16.11",
+    "@accordproject/markdown-common": "0.16.11",
     "@accordproject/markdown-it-template": "0.16.11",
     "dayjs": "1.10.8",
     "markdown-it": "^13.0.1",

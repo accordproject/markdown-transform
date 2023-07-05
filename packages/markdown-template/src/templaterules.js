@@ -61,7 +61,7 @@ const formulaRule = {
         node.name = formulaName(code);
         node.code = {
             $class:  `${TemplateMarkModel.NAMESPACE}.Code`,
-            type: 'ES_2020',
+            type: 'TYPESCRIPT',
             contents: code
         };
         node.dependencies = [];
@@ -79,7 +79,7 @@ const ifOpenRule = {
         if(condition) {
             node.condition = {
                 $class:  `${TemplateMarkModel.NAMESPACE}.Code`,
-                type: 'ES_2020',
+                type: 'TYPESCRIPT',
                 contents: condition
             };
         }
@@ -195,7 +195,7 @@ const clauseOpenRule = {
         if(condition) {
             node.condition = {
                 $class:  `${TemplateMarkModel.NAMESPACE}.Code`,
-                type: 'ES_2020',
+                type: 'TYPESCRIPT',
                 contents: condition
             };
         }
