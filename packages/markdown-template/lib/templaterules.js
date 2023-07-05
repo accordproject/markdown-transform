@@ -66,7 +66,7 @@ var formulaRule = {
     node.name = formulaName(code);
     node.code = {
       $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
-      type: 'ES_2020',
+      type: 'TYPESCRIPT',
       contents: code
     };
     node.dependencies = [];
@@ -84,7 +84,7 @@ var ifOpenRule = {
     if (condition) {
       node.condition = {
         $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
-        type: 'ES_2020',
+        type: 'TYPESCRIPT',
         contents: condition
       };
     }
@@ -206,7 +206,7 @@ var clauseOpenRule = {
     if (condition) {
       node.condition = {
         $class: "".concat(TemplateMarkModel.NAMESPACE, ".Code"),
-        type: 'ES_2020',
+        type: 'TYPESCRIPT',
         contents: condition
       };
     }

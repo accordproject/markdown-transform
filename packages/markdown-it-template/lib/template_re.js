@@ -21,12 +21,12 @@ const names = require('./names.json');
 const string = '"([^"]*)"';
 const identifier = '([a-zA-Z_][a-zA-Z0-9_]+)';
 const name = '(?:\\s+([A-Za-z0-9_-]+))';
-const attribute = '(?:\\s+' + identifier + '(?:\\s*=\\s*' + string + ')?)';
+const attributes = '(.*?)';
 
 const format = '(:?\\s+as\\s*'+ string + '\\s*)?';
 const variable = '{{\\s*' + identifier + format + '\\s*}}';
 
-const open_block = '{{#\\s*' + identifier + name + attribute + '*\\s*}}';
+const open_block = '{{#\\s*' + identifier + name + attributes + '\\s*}}';
 const close_block = '{{/\\s*' + identifier + '\\s*}}';
 const formula = '{{%([^%]*)%}}';
 
@@ -36,18 +36,38 @@ const CLOSE_BLOCK_RE = new RegExp('^(?:' + close_block + ')');
 const FORMULA_RE = new RegExp('^(?:' + formula + ')');
 
 /**
+ * Parses an argument string into an object
+ * @param {string} input the argument string to parse
+ * @returns {[string]} an array of strings, key/value
+ */
+function parseArguments(input) {
+    const regex = /(\w+)\s*=\s*"([^"]+)"/g;
+    let match;
+    const result = [];
+    while ((match = regex.exec(input))) {
+        const argName = match[1];
+        const argValue = match[2];
+        result.push([argName, argValue]);
+    }
+    return result;
+}
+
+/**
  * Extract attributes from opening blocks
- * @param {string[]} match
+ * @param {string[]} match the block data
  * @return {*[]} attributes
  */
 function getBlockAttributes(match) {
-    const result = [];
+    let result = [];
     // name is always present in the block
     result.push([ 'name', match[2] ]);
-    // those are block attributes
-    for(let i = 3; i < match.length; i = i+2) {
-        if (match[i]) {
-            result.push([ match[i], match[i+1] ]);
+
+    // the fourth match is all the arguments
+    // e.g. style="long" locale="en"
+    if(match[3]) {
+        const args = parseArguments(match[3]);
+        if(args && args.length > 0) {
+            result = result.concat(args);
         }
     }
     return result;
@@ -60,9 +80,9 @@ function getBlockAttributes(match) {
  * @return {*} open tag
  */
 function matchOpenBlock(text,stack) {
-    var match = text.match(OPEN_BLOCK_RE);
+    const match = text.match(OPEN_BLOCK_RE);
     if (!match) { return null; }
-    var block_open = match[1];
+    const block_open = match[1];
     if (!names.blocks.includes(block_open)) { return null; }
     stack.unshift(block_open);
     return { tag: block_open, attrs: getBlockAttributes(match), matched: match };
@@ -75,14 +95,14 @@ function matchOpenBlock(text,stack) {
  * @return {*} close tag
  */
 function matchCloseBlock(text,block_open,stack) {
-    var match = text.match(CLOSE_BLOCK_RE);
+    const match = text.match(CLOSE_BLOCK_RE);
     if (!match) {
         return null;
     }
-    var block_close = match[1];
+    const block_close = match[1];
     // Handle proper nesting
     if (stack[0] === block_close) {
-        stack.shift()
+        stack.shift();
     }
     // Handle stack depleted
     if (stack.length > 0) {
