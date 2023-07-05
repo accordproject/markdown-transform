@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "3.7.0",
+    "@accordproject/concerto-core": "3.8.2",
     "colors": "1.4.0",
     "coveralls": "3.0.4",
     "dayjs": "1.10.8",
