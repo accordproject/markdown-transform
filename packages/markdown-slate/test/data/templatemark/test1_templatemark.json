@@ -3,7 +3,7 @@
   "xmlns": "http://commonmark.org/xml/1.0",
   "nodes": [
     {
-      "$class": "org.accordproject.templatemark@0.4.0.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.5.0.ClauseDefinition",
       "name": "top",
       "nodes": [
         {
@@ -14,7 +14,7 @@
               "text": "This is a contract between "
             },
             {
-              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
               "name": "seller",
               "elementType": "String"
             },
@@ -23,7 +23,7 @@
               "text": " and "
             },
             {
-              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
               "name": "buyer",
               "elementType": "String"
             },
@@ -32,7 +32,7 @@
               "text": " for the amount of "
             },
             {
-              "$class": "org.accordproject.templatemark@0.4.0.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
               "name": "amount",
               "elementType": "Double"
             },
@@ -41,7 +41,7 @@
               "text": " "
             },
             {
-              "$class": "org.accordproject.templatemark@0.4.0.EnumVariableDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.EnumVariableDefinition",
               "name": "currency",
               "enumValues": [
                 "AED",
@@ -226,7 +226,7 @@
               "elementType": "org.accordproject.money.CurrencyCode"
             },
             {
-              "$class": "org.accordproject.templatemark@0.4.0.ConditionalDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.ConditionalDefinition",
               "name": "forceMajeure",
               "whenTrue": [
                 {

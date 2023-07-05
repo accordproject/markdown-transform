@@ -21,7 +21,7 @@ const names = require('./names.json');
 const string = '"([^"]*)"';
 const identifier = '([a-zA-Z_][a-zA-Z0-9_]+)';
 const name = '(?:\\s+([A-Za-z0-9_-]+))';
-const attributes = '(.*)';
+const attributes = '(.*?)';
 
 const format = '(:?\\s+as\\s*'+ string + '\\s*)?';
 const variable = '{{\\s*' + identifier + format + '\\s*}}';
