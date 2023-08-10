@@ -87,7 +87,7 @@
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "3.9.0",
+    "@accordproject/concerto-core": "3.9.1",
     "@accordproject/markdown-cicero": "0.16.18",
     "@accordproject/markdown-common": "0.16.18",
     "@accordproject/markdown-docx": "0.16.18",
