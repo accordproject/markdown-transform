@@ -152,7 +152,6 @@ describe('markdown-cli (docx)', () => {
     });
 });
 
-<<<<<<< HEAD
 describe('markdown-cli (ooxml)', () => {
     // Omitted Acceptance test
     const inputOOXMLFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.xml');
@@ -170,8 +169,6 @@ describe('markdown-cli (ooxml)', () => {
     });
 });
 
-=======
-
 describe('extension (wordcount)', () => {
     // Acceptance test
     const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
@@ -183,4 +180,3 @@ describe('extension (wordcount)', () => {
         });
     });
 });
->>>>>>> main
