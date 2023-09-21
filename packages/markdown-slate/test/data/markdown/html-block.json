@@ -1,27 +1,27 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "html_block",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "html_block",
-                "data": {},
-                "children": [
-                    {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "<foo>\nthis\nis an\nhtml block.\n</foo>\nend.",
-                                "html": true
-                            }
-                        ]
-                    }
-                ]
-            }
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": "<foo>\nthis\nis an\nhtml block.\n</foo>\nend.",
+                "html": true
+              }
+            ]
+          }
         ]
-    }
+      }
+    ]
+  }
 }

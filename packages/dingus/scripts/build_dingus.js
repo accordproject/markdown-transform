@@ -23,5 +23,5 @@ shell.cp('lib/templatemark.css', 'demo/templatemark.css');
 
 shell.rm('-rf', 'lib/sample.json');
 
-shell.exec('node_modules/.bin/browserify lib/index.js \
+shell.exec('node_modules/.bin/browserify lib/index.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ @babel/plugin-transform-runtime ] ] \
 > demo/index.js');

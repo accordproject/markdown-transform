@@ -1,0 +1,819 @@
+{
+  "document": {
+    "object": "document",
+    "children": [
+      {
+        "object": "block",
+        "data": {},
+        "type": "heading_two",
+        "children": [
+          {
+            "object": "text",
+            "text": "Volume-Based Card Acceptance Agreement [Abbreviated]"
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "This Agreement is by and between Card, Inc., a New York corporation, and you, the Merchant. By accepting the Card, you agree to be bound by the Agreement."
+          },
+          {
+            "object": "inline",
+            "type": "softbreak",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Discount means an amount that we charge you for accepting the Card, which amount is:"
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {
+          "tight": "true",
+          "start": "1",
+          "delimiter": "period"
+        },
+        "type": "ol_list",
+        "children": [
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "a percentage (Discount Rate) of the face amount of the Charge that you submit, or a flat per-"
+                  },
+                  {
+                    "object": "inline",
+                    "type": "softbreak",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "Transaction fee, or a combination of both; and/or"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "a Monthly Flat Fee (if you meet our requirements)."
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "Transaction Processing and Payments. Our Card acceptance, processing, and payment requirements are set forth in the Merchant Regulations. Some requirements are summarized here for ease of reference, but do not supersede the provisions in the Merchant Regulations."
+          },
+          {
+            "object": "inline",
+            "type": "softbreak",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Payment for Charges. We will pay you, through our agent, according to your payment plan in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {
+          "tight": "true",
+          "start": "1",
+          "delimiter": "period"
+        },
+        "type": "ol_list",
+        "children": [
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "the Discount,"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any amounts you owe us or our Affiliates,"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any amounts for which we have Chargebacks and"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any Credits you submit."
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "Your initial Discount is indicated in the Agreement or otherwise provided to you in writing by us. In addition to your Discount we may charge you additional fees and assessments, as listed in the Merchant Regulations or as otherwise provided to you in writing by us. We may adjust any of these amounts and may change any other amount we charge you for accepting the Card."
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {},
+        "type": "heading_three",
+        "children": [
+          {
+            "object": "text",
+            "text": "SETTLEMENT"
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "data": {},
+        "type": "heading_four",
+        "children": [
+          {
+            "object": "text",
+            "text": "Settlement Amount."
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "Our agent will pay you according to your payment plan, as described below, in US dollars for the face amount of Charges submitted from your Establishments less all applicable deductions, rejections, and withholdings, which include:"
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {
+          "tight": "true",
+          "start": "1",
+          "delimiter": "period"
+        },
+        "type": "ol_list",
+        "children": [
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "the Discount,"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any amounts you owe us or our Affiliates,"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any amounts for which we have Chargebacks, and"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "any Credits you submit."
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "Our agent will subtract the full amount of all applicable deductions, rejections, and withholdings, from this payment to you (or debit your Bank Account), but if it cannot, then you must pay it promptly upon demand."
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {},
+        "type": "heading_four",
+        "children": [
+          {
+            "object": "text",
+            "text": "Discount."
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "children": [
+          {
+            "object": "text",
+            "text": "The Discount is determined according to the following table:"
+          }
+        ],
+        "data": {}
+      },
+      {
+        "object": "block",
+        "data": {
+          "name": "rates",
+          "tight": "true",
+          "type": "variable"
+        },
+        "type": "ul_list_block",
+        "children": [
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "0.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "3.1"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "10.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "3.1"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "10.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "50.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "2.9"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "50.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "500.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "2.5"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "500.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1000.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1.2"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "paragraph",
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeAbove",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1000.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million <= Volume < "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "volumeUpTo",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "1000000.0"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "$ million : "
+                  },
+                  {
+                    "object": "inline",
+                    "type": "variable",
+                    "data": {
+                      "name": "rate",
+                      "elementType": "Double"
+                    },
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "0.1"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "%"
+                  }
+                ],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "data": {}
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "document": {
+    "object": "document",
+    "children": [
+      {
+        "object": "block",
+        "type": "clause_definition",
+        "data": {
+          "name": "top",
+          "elementType": "org.test.MyClause"
+        },
+        "children": [
+          {
+            "object": "block",
+            "type": "paragraph",
+            "children": [
+              {
+                "object": "text",
+                "text": "This is a contract between "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "seller",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "seller"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " and "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "buyer",
+                  "elementType": "String"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "buyer"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " for the amount of "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "amount",
+                  "elementType": "Double"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "amount"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " "
+              },
+              {
+                "object": "inline",
+                "type": "variable_definition",
+                "data": {
+                  "name": "currency",
+                  "enumValues": [
+                    "AED",
+                    "AFN",
+                    "ALL",
+                    "AMD",
+                    "ANG",
+                    "AOA",
+                    "ARS",
+                    "AUD",
+                    "AWG",
+                    "AZN",
+                    "BAM",
+                    "BBD",
+                    "BDT",
+                    "BGN",
+                    "BHD",
+                    "BIF",
+                    "BMD",
+                    "BND",
+                    "BOB",
+                    "BOV",
+                    "BRL",
+                    "BSD",
+                    "BTN",
+                    "BWP",
+                    "BYN",
+                    "BZD",
+                    "CAD",
+                    "CDF",
+                    "CHE",
+                    "CHF",
+                    "CHW",
+                    "CLF",
+                    "CLP",
+                    "CNY",
+                    "COP",
+                    "COU",
+                    "CRC",
+                    "CUC",
+                    "CUP",
+                    "CVE",
+                    "CZK",
+                    "DJF",
+                    "DKK",
+                    "DOP",
+                    "DZD",
+                    "EGP",
+                    "ERN",
+                    "ETB",
+                    "EUR",
+                    "FJD",
+                    "FKP",
+                    "GBP",
+                    "GEL",
+                    "GHS",
+                    "GIP",
+                    "GMD",
+                    "GNF",
+                    "GTQ",
+                    "GYD",
+                    "HKD",
+                    "HNL",
+                    "HRK",
+                    "HTG",
+                    "HUF",
+                    "IDR",
+                    "ILS",
+                    "INR",
+                    "IQD",
+                    "IRR",
+                    "ISK",
+                    "JMD",
+                    "JOD",
+                    "JPY",
+                    "KES",
+                    "KGS",
+                    "KHR",
+                    "KMF",
+                    "KPW",
+                    "KRW",
+                    "KWD",
+                    "KYD",
+                    "KZT",
+                    "LAK",
+                    "LBP",
+                    "LKR",
+                    "LRD",
+                    "LSL",
+                    "LYD",
+                    "MAD",
+                    "MDL",
+                    "MGA",
+                    "MKD",
+                    "MMK",
+                    "MNT",
+                    "MOP",
+                    "MRU",
+                    "MUR",
+                    "MVR",
+                    "MWK",
+                    "MXN",
+                    "MXV",
+                    "MYR",
+                    "MZN",
+                    "NAD",
+                    "NGN",
+                    "NIO",
+                    "NOK",
+                    "NPR",
+                    "NZD",
+                    "OMR",
+                    "PAB",
+                    "PEN",
+                    "PGK",
+                    "PHP",
+                    "PKR",
+                    "PLN",
+                    "PYG",
+                    "QAR",
+                    "RON",
+                    "RSD",
+                    "RUB",
+                    "RWF",
+                    "SAR",
+                    "SBD",
+                    "SCR",
+                    "SDG",
+                    "SEK",
+                    "SGD",
+                    "SHP",
+                    "SLL",
+                    "SOS",
+                    "SRD",
+                    "SSP",
+                    "STN",
+                    "SVC",
+                    "SYP",
+                    "SZL",
+                    "THB",
+                    "TJS",
+                    "TMT",
+                    "TND",
+                    "TOP",
+                    "TRY",
+                    "TTD",
+                    "TWD",
+                    "TZS",
+                    "UAH",
+                    "UGX",
+                    "USD",
+                    "USN",
+                    "UYI",
+                    "UYU",
+                    "UZS",
+                    "VEF",
+                    "VND",
+                    "VUV",
+                    "WST",
+                    "XAF",
+                    "XAG",
+                    "XAU",
+                    "XBA",
+                    "XBB",
+                    "XBC",
+                    "XBD",
+                    "XCD",
+                    "XDR",
+                    "XOF",
+                    "XPD",
+                    "XPF",
+                    "XPT",
+                    "XSU",
+                    "XTS",
+                    "XUA",
+                    "XXX",
+                    "YER",
+                    "ZAR",
+                    "ZMW",
+                    "ZWL"
+                  ],
+                  "elementType": "org.accordproject.money.CurrencyCode"
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "currency"
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ""
+              },
+              {
+                "object": "inline",
+                "type": "conditional_definition",
+                "data": {
+                  "name": "forceMajeure",
+                  "whenTrue": [
+                    {
+                      "object": "text",
+                      "text": ", even in the presence of force majeure"
+                    }
+                  ],
+                  "whenFalse": []
+                },
+                "children": [
+                  {
+                    "object": "text",
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "."
+              }
+            ],
+            "data": {}
+          }
+        ]
+      }
+    ],
+    "data": {}
+  }
+}

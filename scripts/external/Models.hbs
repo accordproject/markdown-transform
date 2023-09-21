@@ -14,10 +14,10 @@
 
 'use strict';
 
-const NS_PREFIX_{{ name }} = '{{ namespace }}' + '.';
+const NAMESPACE = '{{ namespace }}';
 
-const {{ name }} = `
+const MODEL = `
 {{{ model }}}
 `;
 
-module.exports = { NS_PREFIX_{{ name }}, {{ name }} };
+module.exports = { NAMESPACE, MODEL };

@@ -1,41 +1,11 @@
-namespace org.accordproject.acceptanceofdelivery
+namespace org.accordproject.acceptanceofdelivery@1.0.0
 
-import org.accordproject.contract.* from https://models.accordproject.org/accordproject/contract.cto
-import org.accordproject.runtime.* from https://models.accordproject.org/accordproject/runtime.cto
-import org.accordproject.organization.Organization from https://models.accordproject.org/organization.cto
-
-
-/**
- * Sent by the receiver of the goods, indicates when the goods were
- * received, as well as if they passed inspection
- */
-transaction InspectDeliverable extends Request {
-  o DateTime deliverableReceivedAt
-  o Boolean inspectionPassed
-}
-
-/**
- * The inspection status
- */
-enum InspectionStatus {
-  o PASSED_TESTING
-  o FAILED_TESTING
-  o OUTSIDE_INSPECTION_PERIOD
-}
-
-/**
- * The clause response
- */
-transaction InspectionResponse extends Response {
-  o InspectionStatus status
-  --> Organization shipper
-  --> Organization receiver
-}
+import org.accordproject.organization@0.2.0.{Organization} from https://models.accordproject.org/organization@0.2.0.cto
 
 /**
  * The template model
  */
-asset AcceptanceOfDeliveryClause extends Clause {
+asset AcceptanceOfDeliveryClause {
   /**
    * the shipper of the goods
    */
@@ -65,6 +35,7 @@ asset AcceptanceOfDeliveryClause extends Clause {
 /**
  * The template model
  */
-asset Contract extends Contract {
+@template
+asset Contract {
   o AcceptanceOfDeliveryClause deliveryClause
 }

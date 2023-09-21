@@ -18,6 +18,7 @@
 
 const getAttr = require('./CommonMarkUtils').getAttr;
 const FromMarkdownIt = require('./FromMarkdownIt');
+const CommonMarkModel = require('../lib/externalModels/CommonMarkModel');
 
 const inlines = [{
     'type': 'text',
@@ -78,12 +79,12 @@ const tokens = (inlines) => [{
     'hidden': false
 }];
 const expected = {
-    '$class':'org.accordproject.commonmark.Document',
+    '$class':`${CommonMarkModel.NAMESPACE}.Document`,
     'xmlns':'http://commonmark.org/xml/1.0',
     'nodes':[{
-        '$class':'org.accordproject.commonmark.Paragraph',
+        '$class':`${CommonMarkModel.NAMESPACE}.Paragraph`,
         'nodes':[{
-            '$class':'org.accordproject.commonmark.Text',
+            '$class':`${CommonMarkModel.NAMESPACE}.Text`,
             'text':'This is some text.'
         }]
     }]

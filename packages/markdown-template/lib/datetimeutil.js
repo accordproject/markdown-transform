@@ -14,8 +14,8 @@
 
 'use strict';
 
-const dayjs = require('dayjs');
-const utc = require('dayjs/plugin/utc');
+var dayjs = require('dayjs');
+var utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
 /**
@@ -25,15 +25,16 @@ dayjs.extend(utc);
  * @returns {object} if valid, the dayjs object for the current time
  */
 function setCurrentTime(currentTime) {
-    if (!currentTime) {
-        // Defaults to current local time
-        return dayjs.utc();
-    }
-    try {
-        return dayjs.utc(currentTime);
-    } catch (err) {
-        throw new Error(`${currentTime} is not a valid date and time: ${err.message}`);
-    }
+  if (!currentTime) {
+    // Defaults to current local time
+    return dayjs.utc();
+  }
+  try {
+    return dayjs.utc(currentTime);
+  } catch (err) {
+    throw new Error("".concat(currentTime, " is not a valid date and time: ").concat(err.message));
+  }
 }
-
-module.exports = { setCurrentTime };
+module.exports = {
+  setCurrentTime
+};

@@ -1,10 +1,10 @@
 {
   "name": "@accordproject/markdown-pdf",
-  "version": "0.14.0",
+  "version": "0.16.19",
   "description": "Transform PDF to/from CiceroMark DOM",
   "engines": {
-    "node": ">=8",
-    "npm": ">=3"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,7 @@
     "umd"
   ],
   "main": "index.js",
-  "browser": "index.dist.js",
+  "browser": "umd/markdown-pdf",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
     "build": "babel src -d lib --copy-files",
@@ -26,9 +26,9 @@
     "pretest": "npm run lint && npm run build",
     "lint": "eslint .",
     "postlint": "npm run licchk",
-    "licchk": "license-check",
-    "test": "jest --timeOut=20000",
-    "test:cov": "npm run lint && jest --timeOut=20000 --coverage",
+    "licchk": "license-check-and-add",
+    "test": "jest --timeOut=20000 --silent",
+    "test:cov": "npm run lint && jest --timeOut=20000 --coverage --silent",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
     "pkgcheck": "node ./scripts/pkgcheck.js",
@@ -55,58 +55,82 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform#readme",
   "devDependencies": {
-    "@babel/cli": "7.4.4",
-    "@babel/core": "7.4.5",
-    "@babel/preset-env": "7.4.5",
-    "@babel/register": "7.4.4",
-    "@istanbuljs/nyc-config-babel": "2.1.1",
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
+    "@babel/preset-env": "7.16.11",
+    "@babel/register": "7.17.0",
+    "@istanbuljs/nyc-config-babel": "3.0.0",
     "archiver": "3.0.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-istanbul": "5.1.4",
-    "babel-preset-env": "1.7.0",
-    "chai": "4.2.0",
+    "babel-loader": "8.2.3",
+    "babel-plugin-istanbul": "6.1.1",
+    "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
-    "eslint": "6.0.1",
-    "jest": "^24.8.0",
-    "jest-diff": "^24.8.0",
-    "jsdoc": "3.6.3",
+    "crypto-browserify": "3.12.0",
+    "eslint": "8.2.0",
+    "jest": "^27.0.6",
+    "jest-diff": "^27.0.6",
+    "jsdoc": "^3.6.10",
     "jsome": "2.5.0",
-    "license-check": "1.1.5",
-    "mocha": "6.1.4",
-    "nyc": "14.1.1",
-    "raw-loader": "^3.0.0",
+    "license-check-and-add": "2.3.6",
+    "nyc": "15.1.0",
+    "raw-loader": "^4.0.2",
+    "stream-browserify": "3.0.0",
     "tsd-jsdoc": "^2.3.0",
-    "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.5"
+    "webpack": "5.64.2",
+    "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.14.0",
-    "@accordproject/markdown-common": "0.14.0",
-    "@accordproject/markdown-template": "0.14.0",
-    "axios": "^0.21.1",
-    "pdfjs-dist": "^2.7.570",
-    "pdfmake": "^0.1.71",
+    "@accordproject/markdown-cicero": "0.16.19",
+    "@accordproject/markdown-common": "0.16.19",
+    "@accordproject/markdown-template": "0.16.19",
+    "axios": "0.23.0",
+    "pdfjs-dist": "2.13.216",
+    "pdfmake": "^0.2.4",
     "type-of": "^2.0.1"
   },
-  "license-check-config": {
-    "src": [
-      "**/*.js",
-      "!./scripts/**/*",
-      "!./test/**/*",
-      "!./coverage/**/*",
-      "!./node_modules/**/*",
-      "!./out/**/*",
-      "!./lib/**/*",
-      "!./umd/**/*",
-      "!./bin/index.js",
-      "!./src/domstubs.js"
+  "license-check-and-add-config": {
+    "folder": "./src",
+    "license": "header.txt",
+    "exact_paths_method": "EXCLUDE",
+    "exact_paths": [
+      "domstubs.js",
+      "coverage",
+      "index.d.ts",
+      "./system",
+      "LICENSE",
+      "node_modules",
+      ".nyc-output",
+      "out",
+      ".tern-project"
     ],
-    "path": "header.txt",
-    "blocking": true,
-    "logInfo": false,
-    "logError": true
+    "file_type_method": "EXCLUDE",
+    "file_types": [
+      ".yml",
+      ".yaml",
+      ".zip",
+      ".tgz",
+      ".snap",
+      ".ttf"
+    ],
+    "insert_license": false,
+    "license_formats": {
+      "js|njk|pegjs|cto|acl|qry": {
+        "prepend": "/*",
+        "append": " */",
+        "eachLine": {
+          "prepend": " * "
+        }
+      },
+      "npmrc|editorconfig|txt": {
+        "eachLine": {
+          "prepend": "# "
+        }
+      },
+      "md": {
+        "file": "header.md"
+      }
+    }
   },
   "nyc": {
     "produce-source-map": "true",

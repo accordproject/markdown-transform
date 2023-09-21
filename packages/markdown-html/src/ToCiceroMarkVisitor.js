@@ -13,7 +13,7 @@
  */
 
 'use strict';
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { CommonMarkModel } = require('@accordproject/markdown-common');
 const jsdom = typeof DOMParser === 'undefined' ? require('jsdom') : null;
 const typeOf = require('type-of');
 const defaultRules = require('./rules');
@@ -171,7 +171,7 @@ class ToCiceroMarkVisitor {
         const nodes = this.deserializeElements(children, true);
         // console.log('nodes', nodes);
         return {
-            '$class': `${NS_PREFIX_CommonMarkModel}${'Document'}`,
+            '$class': `${CommonMarkModel.NAMESPACE}.${'Document'}`,
             nodes,
             xmlns: 'http://commonmark.org/xml/1.0',
         };

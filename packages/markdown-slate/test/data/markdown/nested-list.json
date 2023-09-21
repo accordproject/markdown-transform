@@ -1,148 +1,148 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
+          {
+            "object": "text",
+            "text": "Prolog"
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ol_list",
+        "data": {
+          "tight": "true",
+          "start": "1",
+          "delimiter": "period"
+        },
+        "children": [
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
                 "object": "block",
                 "type": "paragraph",
                 "data": {},
                 "children": [
-                    {
-                        "object": "text",
-                        "text": "Prolog"
-                    }
+                  {
+                    "object": "text",
+                    "text": "item one"
+                  }
                 ]
-            },
-            {
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list_item",
+            "data": {},
+            "children": [
+              {
                 "object": "block",
-                "type": "ol_list",
+                "type": "paragraph",
+                "data": {},
+                "children": [
+                  {
+                    "object": "text",
+                    "text": "item two"
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "ul_list",
                 "data": {
-                    "tight": "true",
-                    "start": "1",
-                    "delimiter": "period"
+                  "tight": "true"
                 },
                 "children": [
-                    {
+                  {
+                    "object": "block",
+                    "type": "list_item",
+                    "data": {},
+                    "children": [
+                      {
                         "object": "block",
-                        "type": "list_item",
+                        "type": "paragraph",
                         "data": {},
                         "children": [
-                            {
-                                "object": "block",
-                                "type": "paragraph",
-                                "data": {},
-                                "children": [
-                                    {
-                                        "object": "text",
-                                        "text": "item one"
-                                    }
-                                ]
-                            }
+                          {
+                            "object": "text",
+                            "text": "sublist"
+                          }
                         ]
-                    },
-                    {
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list_item",
+                    "data": {},
+                    "children": [
+                      {
                         "object": "block",
-                        "type": "list_item",
+                        "type": "paragraph",
                         "data": {},
                         "children": [
-                            {
-                                "object": "block",
-                                "type": "paragraph",
-                                "data": {},
-                                "children": [
-                                    {
-                                        "object": "text",
-                                        "text": "item two"
-                                    }
-                                ]
-                            },
-                            {
-                                "object": "block",
-                                "type": "ul_list",
-                                "data": {
-                                    "tight": "true"
-                                },
-                                "children": [
-                                    {
-                                        "object": "block",
-                                        "type": "list_item",
-                                        "data": {},
-                                        "children": [
-                                            {
-                                                "object": "block",
-                                                "type": "paragraph",
-                                                "data": {},
-                                                "children": [
-                                                    {
-                                                        "object": "text",
-                                                        "text": "sublist"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "object": "block",
-                                        "type": "list_item",
-                                        "data": {},
-                                        "children": [
-                                            {
-                                                "object": "block",
-                                                "type": "paragraph",
-                                                "data": {},
-                                                "children": [
-                                                    {
-                                                        "object": "text",
-                                                        "text": "sublist"
-                                                    },
-                                                    {
-                                                        "object": "inline",
-                                                        "type": "softbreak",
-                                                        "data": {},
-                                                        "children": [
-                                                            {
-                                                                "object": "text",
-                                                                "text": ""
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "object": "text",
-                                                        "text": "with some text in the same paragraph"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "object": "block",
-                                        "type": "list_item",
-                                        "data": {},
-                                        "children": [
-                                            {
-                                                "object": "text",
-                                                "text": ""
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
+                          {
+                            "object": "text",
+                            "text": "sublist"
+                          },
+                          {
+                            "object": "inline",
+                            "type": "softbreak",
+                            "data": {},
+                            "children": [
+                              {
+                                "object": "text",
+                                "text": ""
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "with some text in the same paragraph"
+                          }
                         ]
-                    }
-                ]
-            },
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list_item",
+                    "data": {},
+                    "children": [
+                      {
                         "object": "text",
-                        "text": "Epilog"
-                    }
+                        "text": ""
+                      }
+                    ]
+                  }
                 ]
-            }
+              }
+            ]
+          }
         ]
-    }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "children": [
+          {
+            "object": "text",
+            "text": "Epilog"
+          }
+        ]
+      }
+    ]
+  }
 }

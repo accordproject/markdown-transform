@@ -1,29 +1,29 @@
 {
   "devDependencies": {
-    "@accordproject/concerto-core": "1.0.2",
-    "colors": "1.3.3",
-    "concurrently": "4.1.1",
+    "@accordproject/concerto-core": "3.9.1",
+    "colors": "1.4.0",
     "coveralls": "3.0.4",
-    "dayjs": "1.10.2",
-    "istanbul-combine": "0.3.0",
-    "istanbul-merge": "1.1.1",
-    "jsdoc": "3.6.3",
-    "jsdoc-sphinx": "0.0.6",
-    "lerna": "3.20.2",
-    "license-check": "1.1.5",
-    "semver": "6.2.0",
+    "dayjs": "1.10.8",
+    "eslint": "8.2.0",
+    "glob": "^7.1.7",
+    "jest": "^27.0.6",
+    "jsdoc": "^3.6.10",
+    "lerna": "^4.0.0",
+    "license-check-and-add": "2.3.6",
+    "mkdirp": "1.0.4",
+    "nyc": "15.1.0",
+    "semver": "7.3.5",
     "sleep-promise": "8.0.1",
     "source-map-support": "0.5.12",
-    "licensecheck": "1.3.0",
-    "license-check-and-add": "2.3.6"
+    "traverse": "^0.6.7"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=3"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.14.0",
+  "version": "0.16.19",
   "private": true,
   "scripts": {
     "dingus": "lerna exec --scope dingus -- npm run dingus",
@@ -31,7 +31,7 @@
     "postinstall": "npm run models:get && lerna bootstrap",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
-    "coverage": "istanbul-combine -d coverage -r lcov packages/markdown-it-cicero/coverage/*.json packages/markdown-it-template/coverage/*.json packages/markdown-common/coverage/*.json packages/markdown-cicero/coverage/*.json packages/markdown-template/coverage/*.json packages/markdown-slate/coverage/*.json packages/markdown-html/coverage/*.json packages/markdown-pdf/coverage/*.json packages/markdown-docx/coverage/*.json packages/markdown-transform/coverage/*.json packages/markdown-cli/coverage/*.json && cat ./coverage/lcov.info",
+    "coverage": "node ./scripts/coverage.js \"packages/markdown-*\" && nyc report -t coverage --cwd . --report-dir coverage --reporter=lcov && cat ./coverage/lcov.info",
     "pretest": "npm run licchk",
     "test": "lerna exec --ignore dingus -- npm run test:cov",
     "repoclean": "lerna clean",
@@ -125,6 +125,5 @@
         "file": "HEADER"
       }
     }
-  },
-  "dependencies": {}
+  }
 }

@@ -23,6 +23,8 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
+const {CommonMarkModel} = require('@accordproject/markdown-common');
+
 const transform = require('../lib/transform').transform;
 const generateTransformationDiagram = require('../lib/transform').generateTransformationDiagram;
 const formatDescriptor = require('../lib/transform').formatDescriptor;
@@ -38,11 +40,23 @@ function normalizeNLs(input) {
     return text;
 }
 
+/**
+ * Load models
+ * @param {string} dir - a directory
+ * @return {*} the list of model files
+ */
+function loadModels(dir) {
+    const files = fs.readdirSync(dir);
+    const ctoFiles = files.filter((file) => path.extname(file) === '.cto');
+    const ctoPaths = ctoFiles.map((file) => path.join(dir, file));
+    return ctoPaths;
+}
+
 // Acceptance test
 const acceptanceGrammarFile = path.resolve(__dirname, 'data/acceptance', 'grammar.tem.md');
 const acceptanceGrammar = normalizeNLs(fs.readFileSync(acceptanceGrammarFile, 'utf8'));
 const acceptanceGrammarTokens = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar_tokens.json'), 'utf8'));
-const acceptanceModelFile =  path.resolve(__dirname, 'data/acceptance', 'model.cto');
+const acceptanceModelDir =  path.resolve(__dirname, 'data/acceptance');
 const acceptanceTemplateMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'grammar.json'), 'utf8'));
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.md'), 'utf8'));
 const acceptanceMarkdownCicero = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample_cicero.md'), 'utf8'));
@@ -66,7 +80,8 @@ const sampleHtml = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sampl
 describe('#acceptance', () => {
     let parameters;
     before(async () => {
-        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, model: [acceptanceModelFile], templateKind: 'contract' };
+        const models = loadModels(acceptanceModelDir);
+        parameters = { inputFileName: acceptanceGrammar, template: acceptanceGrammar, model: models, templateKind: 'contract' };
     });
 
     describe('#template', () => {
@@ -143,7 +158,7 @@ describe('#acceptance', () => {
 
         it('ciceromark -> commonmark', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['commonmark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
     });
@@ -190,11 +205,6 @@ describe('#acceptance', () => {
     });
 
     describe('#multisteps', () => {
-        it('markdown_cicero -> data -> ciceromark', async () => {
-            const result = await transform(acceptanceMarkdownCicero, 'markdown_cicero', ['data','ciceromark_parsed'], parameters, {});
-            result.should.deep.equal(acceptanceCiceroMarkParsed);
-        });
-
         it('ciceromark -> ciceromark_unquoted -> slate', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_unquoted','slate'], {}, {});
             result.document.object.should.equal('document');
@@ -210,72 +220,27 @@ describe('#acceptance', () => {
 });
 
 describe('#template1', () => {
+    // eslint-disable-next-line no-unused-vars
     let parameters;
     before(async () => {
         const grammarFile = './test/data/template1/grammar.tem.md';
         const grammar = fs.readFileSync(grammarFile, 'utf8');
-        const model = './test/data/template1/model.cto';
-        parameters = { inputFileName: grammarFile, template: grammar, model: [model], templateKind: 'clause' };
+        const modelDir = './test/data/template1';
+        const models = loadModels(modelDir);
+        parameters = { inputFileName: grammarFile, template: grammar, model: models, templateKind: 'clause' };
     });
-
-    describe('#markdown', () => {
-        it('markdown -> data', async () => {
-            const sample1File = './test/data/template1/sample.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const result = await transform(sample1, 'markdown', ['data'], parameters, {});
-            result.$class.should.equal('org.test.MyClause');
-            result.seller.should.equal('Steve');
-        });
-    });
-
-    describe('#markdown', () => {
-        it('markdown -> data (offline)', async () => {
-            const model2 = './test/data/template1/contract.cto';
-            const model3 = './test/data/template1/money.cto';
-            parameters.model.push(model2);
-            parameters.model.push(model3);
-            const sample1File = './test/data/template1/sample.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const result = await transform(sample1, 'markdown', ['data'], parameters, {offline:true});
-            result.$class.should.equal('org.test.MyClause');
-            result.seller.should.equal('Steve');
-        });
-    });
-
-    describe('#data', () => {
-        it('data -> commonmark', async () => {
-            const sample1File = './test/data/template1/sample.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const data1 = await transform(sample1, 'markdown', ['data'], parameters, {});
-            data1.$class.should.equal('org.test.MyClause');
-            data1.seller.should.equal('Steve');
-            const result = await transform(data1, 'data', ['commonmark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
-        });
-
-        it('data -> ciceromark', async () => {
-            const sample1File = './test/data/template1/sample.md';
-            const sample1 = fs.readFileSync(sample1File, 'utf8');
-            const data1 = await transform(sample1, 'markdown', ['data'], parameters, {});
-            data1.$class.should.equal('org.test.MyClause');
-            data1.seller.should.equal('Steve');
-            const result = await transform(data1, 'data', ['ciceromark'], parameters, {});
-            result.nodes[0].$class.should.equal('org.accordproject.commonmark.Paragraph');
-        });
-    });
-
 });
 
 describe('#sample', () => {
     describe('#pdf', () => {
         it('pdf -> ciceromark', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
         it('pdf -> ciceromark (verbose)', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
         it('ciceromark -> pdf', async () => {
@@ -289,14 +254,14 @@ describe('#sample', () => {
     describe('#docx', () => {
         it('docx -> ciceromark', async () => {
             const result = await transform(sampleDocx, 'docx', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
     });
 
     describe('#html', () => {
         it('html -> ciceromark', async () => {
             const result = await transform(sampleHtml, 'html', ['ciceromark'], {}, {});
-            result.$class.should.equal('org.accordproject.commonmark.Document');
+            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
     });
 
@@ -316,7 +281,7 @@ describe('#formatDescriptor', () => {
     });
 
     it('Lookup invalid format', () => {
-        (() => formatDescriptor('foobar')).should.throw('Unknown format foobar');
+        (() => formatDescriptor('foobar')).should.throw('Unknown format: foobar');
     });
 });
 

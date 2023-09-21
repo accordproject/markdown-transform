@@ -1,24 +1,27 @@
 {
-    "$class": "org.accordproject.templatemark.VariableDefinition",
-    "decorators": [{
-        "$class": "concerto.metamodel.Decorator",
-        "arguments": [{
-                "$class": "concerto.metamodel.DecoratorString",
-                "value": "type"
-            },
-            {
-                "$class": "concerto.metamodel.DecoratorString",
-                "value": "value"
-            },
-            {
-                "$class": "concerto.metamodel.DecoratorString",
-                "value": "second"
-            },
-            {
-                "$class": "concerto.metamodel.DecoratorString",
-                "value": "value2"
-            }
-        ],
-        "name": "Test"
-    }]
+  "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
+  "decorators": [
+    {
+      "$class": "concerto.metamodel@1.0.0.Decorator",
+      "arguments": [
+        {
+          "$class": "concerto.metamodel@1.0.0.DecoratorString",
+          "value": "type"
+        },
+        {
+          "$class": "concerto.metamodel@1.0.0.DecoratorString",
+          "value": "value"
+        },
+        {
+          "$class": "concerto.metamodel@1.0.0.DecoratorString",
+          "value": "second"
+        },
+        {
+          "$class": "concerto.metamodel@1.0.0.DecoratorString",
+          "value": "value2"
+        }
+      ],
+      "name": "Test"
+    }
+  ]
 }

@@ -13,9 +13,7 @@
  */
 
 'use strict';
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const CommonMarkUtils = require('@accordproject/markdown-common').CommonMarkUtils;
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const { CommonMarkUtils, CiceroMarkModel, CommonMarkModel } = require('@accordproject/markdown-common');
 const { isIgnorable } = require('./helpers');
 
 /**
@@ -30,13 +28,13 @@ const TEXT_RULE = {
             const textNodes =  textArray.map(text => {
                 if (text) {
                     return {
-                        '$class': `${NS_PREFIX_CommonMarkModel}${'Text'}`,
+                        '$class': `${CommonMarkModel.NAMESPACE}.${'Text'}`,
                         text,
                     };
                 }
             });
 
-            const result = [...textNodes].map((node, i) => i < textNodes.length - 1 ? [node, { '$class': `${NS_PREFIX_CommonMarkModel}${'Softbreak'}` }] : [node]).reduce((a, b) => a.concat(b)).filter(n => !!n);
+            const result = [...textNodes].map((node, i) => i < textNodes.length - 1 ? [node, { '$class': `${CommonMarkModel.NAMESPACE}.${'Softbreak'}` }] : [node]).reduce((a, b) => a.concat(b)).filter(n => !!n);
             return result;
         }
     }
@@ -51,26 +49,26 @@ const LIST_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'ul') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}List`,
+                '$class': `${CommonMarkModel.NAMESPACE}.List`,
                 type: 'bullet',
-                tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
+                tight: el.getAttribute('tight') ? el.getAttribute('tight') : 'true',
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'ol') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}List`,
+                '$class': `${CommonMarkModel.NAMESPACE}.List`,
                 type: 'ordered',
                 delimiter: el.getAttribute('delimiter'),
                 start: el.getAttribute('start'),
-                tight: el.getAttribute('tight') ? el.getAttribute('tight') : true,
+                tight: el.getAttribute('tight') ? el.getAttribute('tight') : 'true',
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
 
         if (el.tagName && el.tagName.toLowerCase() === 'li') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Item`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Item`,
                 nodes: next(el.childNodes)
             };
         }
@@ -85,7 +83,7 @@ const LINEBREAK_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'br') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Linebreak`
+                '$class': `${CommonMarkModel.NAMESPACE}.Linebreak`
             };
         }
     }
@@ -99,7 +97,7 @@ const PARAGRAPH_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'p') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Paragraph`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Paragraph`,
                 nodes: next(el.childNodes, false)
             };
         }
@@ -114,7 +112,7 @@ const STRONG_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'strong') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Strong`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Strong`,
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
@@ -129,7 +127,7 @@ const EMPH_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'em') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Emph`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Emph`,
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
@@ -144,7 +142,7 @@ const LINK_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'a') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Link`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Link`,
                 nodes: next(el.childNodes, ignoreSpace),
                 destination: el.getAttribute('href') ? el.getAttribute('href') : 'none',
                 title: el.getAttribute('title') ? el.getAttribute('title') : '',
@@ -161,7 +159,7 @@ const IMAGE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'img') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}Image`,
+                '$class': `${CommonMarkModel.NAMESPACE}.Image`,
                 nodes: next(el.childNodes, ignoreSpace),
                 destination: el.getAttribute('src') ? el.getAttribute('src') : 'none',
                 title: el.getAttribute('title') ? el.getAttribute('title') : '',
@@ -202,7 +200,7 @@ const HEADING_RULE = {
             }
             if (level) {
                 return {
-                    '$class': `${NS_PREFIX_CommonMarkModel}Heading`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Heading`,
                     nodes: next(el.childNodes, false),
                     level,
                 };
@@ -219,7 +217,7 @@ const THEMATIC_BREAK_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'hr') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
+                '$class': `${CommonMarkModel.NAMESPACE}.ThematicBreak`,
             };
         }
     }
@@ -235,7 +233,7 @@ const THEMATIC_BREAK_RULE = {
 //     deserialize(el, next, ignoreSpace) {
 //         if (el.tagName ) {
 //             return {
-//                 '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
+//                 '$class': `${CommonMarkModel.NAMESPACE}.HtmlBlock`,
 //             };
 //         }
 //     }
@@ -256,14 +254,14 @@ const CODE_BLOCK_RULE = {
                     const decodedInfo = decodeURIComponent(info);
                     const tag = CommonMarkUtils.parseHtmlBlock(decodedInfo);
                     return {
-                        '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
+                        '$class': `${CommonMarkModel.NAMESPACE}.CodeBlock`,
                         text: children[0].textContent,
                         info: decodedInfo,
                         tag,
                     };
                 } else  {
                     return {
-                        '$class': `${NS_PREFIX_CommonMarkModel}CodeBlock`,
+                        '$class': `${CommonMarkModel.NAMESPACE}.CodeBlock`,
                         text: children[0].textContent,
                     };
                 }
@@ -281,7 +279,7 @@ const INLINE_CODE_RULE = {
         if (el.tagName && el.tagName.toLowerCase() === 'code') {
             {
                 return {
-                    '$class': `${NS_PREFIX_CommonMarkModel}Code`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Code`,
                     text: el.textContent,
                 };
             }
@@ -297,7 +295,7 @@ const BLOCK_QUOTE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'blockquote') {
             return {
-                '$class': `${NS_PREFIX_CommonMarkModel}BlockQuote`,
+                '$class': `${CommonMarkModel.NAMESPACE}.BlockQuote`,
                 nodes: next(el.childNodes, ignoreSpace)
             };
         }
@@ -313,7 +311,7 @@ const CLAUSE_RULE = {
         const tag = el.tagName;
         if (tag && tag.toLowerCase() === 'div' && el.getAttribute('class') === 'clause') {
             const clause = {
-                '$class': `${NS_PREFIX_CiceroMarkModel}Clause`,
+                '$class': `${CiceroMarkModel.NAMESPACE}.Clause`,
                 name: el.getAttribute('name'),
                 nodes: next(el.childNodes, false)
             };
@@ -339,21 +337,21 @@ const VARIABLE_RULE = {
             let variable;
             if (el.getAttribute('format')) {
                 variable = {
-                    '$class': `${NS_PREFIX_CiceroMarkModel}FormattedVariable`,
+                    '$class': `${CiceroMarkModel.NAMESPACE}.FormattedVariable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                     format: el.getAttribute('format')
                 };
             } else if (el.getAttribute('enumValues')) {
                 variable = {
-                    '$class': `${NS_PREFIX_CiceroMarkModel}EnumVariable`,
+                    '$class': `${CiceroMarkModel.NAMESPACE}.EnumVariable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                     enumValues: JSON.parse(decodeURIComponent(el.getAttribute('enumValues'))),
                 };
             } else {
                 variable = {
-                    '$class': `${NS_PREFIX_CiceroMarkModel}Variable`,
+                    '$class': `${CiceroMarkModel.NAMESPACE}.Variable`,
                     name: el.getAttribute('name'),
                     value: el.textContent,
                 };
@@ -381,19 +379,19 @@ const CONDITIONAL_RULE = {
             const whenTrueText = el.getAttribute('whenTrue') ? el.getAttribute('whenTrue') : '';
             const whenFalseText = el.getAttribute('whenFalse') ? el.getAttribute('whenFalse') : '';
             return {
-                '$class': `${NS_PREFIX_CiceroMarkModel}Conditional`,
+                '$class': `${CiceroMarkModel.NAMESPACE}.Conditional`,
                 name: el.getAttribute('name'),
                 isTrue: text === whenTrueText,
                 whenTrue: whenTrueText ? [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: whenTrueText,
                 }] : [],
                 whenFalse: whenFalseText ? [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: whenFalseText,
                 }] : [],
                 nodes: [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: text,
                 }],
             };
@@ -413,19 +411,19 @@ const OPTIONAL_RULE = {
             const whenSomeText = el.getAttribute('whenSome') ? el.getAttribute('whenSome') : '';
             const whenNoneText = el.getAttribute('whenNone') ? el.getAttribute('whenNone') : '';
             return {
-                '$class': `${NS_PREFIX_CiceroMarkModel}Optional`,
+                '$class': `${CiceroMarkModel.NAMESPACE}.Optional`,
                 name: el.getAttribute('name'),
                 hasSome: text === whenSomeText,
                 whenSome: whenSomeText ? [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: whenSomeText,
                 }] : [],
                 whenNone: whenNoneText ? [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: whenNoneText,
                 }] : [],
                 nodes: [{
-                    '$class': `${NS_PREFIX_CommonMarkModel}Text`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.Text`,
                     text: text,
                 }],
             };
@@ -442,7 +440,7 @@ const FORMULA_RULE = {
         const { tagName } = el;
         if (tagName && tagName.toLowerCase() === 'span' && el.getAttribute('class') === 'formula') {
             const formula = {
-                '$class': `${NS_PREFIX_CiceroMarkModel}Formula`,
+                '$class': `${CiceroMarkModel.NAMESPACE}.Formula`,
                 name: el.getAttribute('name'),
                 value: el.textContent,
             };
@@ -469,7 +467,7 @@ const HTML_INLINE_RULE = {
                 const text = el.innerHTML;
                 const tag = CommonMarkUtils.parseHtmlBlock(text);
                 return {
-                    '$class': `${NS_PREFIX_CommonMarkModel}HtmlInline`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.HtmlInline`,
                     text: text,
                     tag,
                 };
@@ -491,13 +489,54 @@ const HTML_BLOCK_RULE = {
                 const text = children[0].innerHTML;
                 const tag = CommonMarkUtils.parseHtmlBlock(text);
                 return {
-                    '$class': `${NS_PREFIX_CommonMarkModel}HtmlBlock`,
+                    '$class': `${CommonMarkModel.NAMESPACE}.HtmlBlock`,
                     text: text,
                     tag,
                 };
             }
         }
     }
+};
+
+const TABLE_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'table') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.Table`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'thead') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.TableHead`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tbody') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.TableBody`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'tr') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.TableRow`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'th') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.HeaderCell`,
+                nodes: next(el.childNodes),
+            };
+        }
+        if (el.tagName && el.tagName.toLowerCase() === 'td') {
+            return {
+                $class: `${CommonMarkModel.NAMESPACE}.TableCell`,
+                nodes: next(el.childNodes),
+            };
+        }
+    },
 };
 
 const rules = [
@@ -520,7 +559,8 @@ const rules = [
     TEXT_RULE,
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,
-    IMAGE_RULE
+    IMAGE_RULE,
+    TABLE_RULE
 ];
 
 

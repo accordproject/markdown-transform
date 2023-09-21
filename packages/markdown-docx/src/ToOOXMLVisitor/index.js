@@ -147,7 +147,7 @@ class ToOOXMLVisitor {
      * @returns {string} OOXML for the inline nodes of the current parent
      */
     traverseNodes(node, properties = [], parent, parentProperties = {}) {
-        if (this.getClass(node) === 'org.accordproject.commonmark.Document') {
+        if (this.getClass(node) === 'org.accordproject.commonmark@0.5.0.Document') {
             this.traverseNodes(node.nodes, properties, parent, parentProperties);
         } else {
             let inlineOOXML = '';

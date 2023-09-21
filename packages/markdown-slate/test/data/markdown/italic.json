@@ -1,20 +1,20 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "italic",
-                        "italic": true
-                    }
-                ]
-            }
+          {
+            "object": "text",
+            "text": "italic",
+            "italic": true
+          }
         ]
-    }
+      }
+    ]
+  }
 }

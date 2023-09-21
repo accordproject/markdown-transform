@@ -1,37 +1,37 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "data": {},
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "data": {},
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "a "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "link",
-                        "data": {
-                            "href": "http://clause.io",
-                            "title": "title"
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "link"
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": ""
-                    }
-                ]
-            }
+          {
+            "object": "text",
+            "text": "a "
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "href": "http://clause.io",
+              "title": "title"
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "link"
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ""
+          }
         ]
-    }
+      }
+    ]
+  }
 }

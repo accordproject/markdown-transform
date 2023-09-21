@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 12.x
-          - 14.x
+          - 16.x
+          - 18.x
         os:
           - ubuntu-latest
           - windows-latest
@@ -76,10 +76,10 @@ jobs:
       - name: git checkout
         uses: actions/checkout@v2
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
     
       - name: Build
         run: npm ci

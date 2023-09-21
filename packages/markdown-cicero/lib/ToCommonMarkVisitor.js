@@ -14,7 +14,7 @@
 
 'use strict';
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
+const { CommonMarkModel } = require('@accordproject/markdown-common');
 
 /**
  * Utility: flattening array of arrays
@@ -66,7 +66,7 @@ class ToCommonMarkVisitor {
         }
         case 'Formula': {
             // Revert to HtmlInline
-            thing.$classDeclaration = parameters.modelManager.getType(NS_PREFIX_CommonMarkModel + 'Text');
+            thing.$classDeclaration = parameters.modelManager.getType(`${CommonMarkModel.NAMESPACE}.Text`);
             thing.text = decodeURIComponent(thing.value);
 
             delete thing.elementType;

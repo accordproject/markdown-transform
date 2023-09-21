@@ -1,0 +1,176 @@
+{
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "object": "block",
+        "type": "table",
+        "data": {},
+        "children": [
+          {
+            "object": "block",
+            "type": "table_head",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "children": [
+                  {
+                    "object": "block",
+                    "type": "header_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "Column 1"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "header_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "Column 2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_body",
+            "data": {},
+            "children": [
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "children": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "code block",
+                        "code": true
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": ""
+                      },
+                      {
+                        "object": "inline",
+                        "type": "image",
+                        "data": {
+                          "href": "https://docs.accordproject.org/docs/assets/020/template.png",
+                          "title": "AP triangle"
+                        },
+                        "children": [
+                          {
+                            "object": "text",
+                            "text": ""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "children": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "Paragraph"
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "Bold content",
+                        "bold": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "children": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": ""
+                      },
+                      {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                          "href": "http://clause.io",
+                          "title": ""
+                        },
+                        "children": [
+                          {
+                            "object": "text",
+                            "text": "link"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "children": [
+                      {
+                        "object": "text",
+                        "text": "Italics",
+                        "italic": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

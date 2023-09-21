@@ -14,12 +14,12 @@
 
 'use strict';
 
+const { CiceroMarkModel } = require('@accordproject/markdown-common');
 const { getAttr } = require('@accordproject/markdown-common').CommonMarkUtils;
-const NS_PREFIX_CiceroMarkModel = require('./externalModels/CiceroMarkModel').NS_PREFIX_CiceroMarkModel;
 
 // Inline rules
 const formulaRule = {
-    tag: NS_PREFIX_CiceroMarkModel + 'Formula',
+    tag: `${CiceroMarkModel.NAMESPACE}.Formula`,
     leaf: true,
     open: false,
     close: false,
@@ -33,7 +33,7 @@ const formulaRule = {
 
 // Block rules
 const clauseOpenRule = {
-    tag: NS_PREFIX_CiceroMarkModel + 'Clause',
+    tag: `${CiceroMarkModel.NAMESPACE}.Clause`,
     leaf: false,
     open: true,
     close: false,
@@ -43,7 +43,7 @@ const clauseOpenRule = {
     },
 };
 const clauseCloseRule = {
-    tag: NS_PREFIX_CiceroMarkModel + 'Clause',
+    tag: `${CiceroMarkModel.NAMESPACE}.Clause`,
     leaf: false,
     open: false,
     close: true,

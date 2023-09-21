@@ -16,11 +16,16 @@
 
 /**
  * Export the framework and plugins
- * @module markdown-transform
+ * @module markdown-common
  */
 
 module.exports.Stack = require('./lib/Stack');
+
+// models
 module.exports.CommonMarkModel = require('./lib/externalModels/CommonMarkModel');
+module.exports.CiceroMarkModel = require('./lib/externalModels/CiceroMarkModel');
+module.exports.ConcertoMetaModel = require('./lib/externalModels/ConcertoMetaModel');
+module.exports.TemplateMarkModel = require('./lib/externalModels/TemplateMarkModel');
 
 module.exports.CommonMarkUtils = require('./lib/CommonMarkUtils');
 module.exports.FromCommonMarkVisitor = require('./lib/FromCommonMarkVisitor');

@@ -14,28 +14,27 @@
 
 'use strict';
 
-const { NS_PREFIX_CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
-const { NS_PREFIX_CiceroMarkModel } = require('@accordproject/markdown-cicero').CiceroMarkModel;
+const {CommonMarkModel,CiceroMarkModel} = require('@accordproject/markdown-common');
 
 const TRANSFORMED_NODES = {
-    code: `${NS_PREFIX_CommonMarkModel}Code`,
-    codeBlock: `${NS_PREFIX_CommonMarkModel}CodeBlock`,
-    computedVariable: `${NS_PREFIX_CiceroMarkModel}ComputedVariable`,
-    conditional: `${NS_PREFIX_CiceroMarkModel}Conditional`,
-    optional: `${NS_PREFIX_CiceroMarkModel}Optional`,
-    document: `${NS_PREFIX_CommonMarkModel}Document`,
-    emphasize: `${NS_PREFIX_CommonMarkModel}Emph`,
-    formula: `${NS_PREFIX_CiceroMarkModel}Formula`,
-    heading: `${NS_PREFIX_CommonMarkModel}Heading`,
-    item: `${NS_PREFIX_CommonMarkModel}Item`,
-    link: `${NS_PREFIX_CommonMarkModel}Link`,
-    paragraph: `${NS_PREFIX_CommonMarkModel}Paragraph`,
-    softbreak: `${NS_PREFIX_CommonMarkModel}Softbreak`,
-    strong: `${NS_PREFIX_CommonMarkModel}Strong`,
-    text: `${NS_PREFIX_CommonMarkModel}Text`,
-    thematicBreak: `${NS_PREFIX_CommonMarkModel}ThematicBreak`,
-    variable: `${NS_PREFIX_CiceroMarkModel}Variable`,
-    clause: `${NS_PREFIX_CiceroMarkModel}Clause`,
+    code: `${CommonMarkModel.NAMESPACE}.Code`,
+    codeBlock: `${CommonMarkModel.NAMESPACE}.CodeBlock`,
+    computedVariable: `${CiceroMarkModel.NAMESPACE}.ComputedVariable`,
+    conditional: `${CiceroMarkModel.NAMESPACE}.Conditional`,
+    optional: `${CiceroMarkModel.NAMESPACE}.Optional`,
+    document: `${CommonMarkModel.NAMESPACE}.Document`,
+    emphasize: `${CommonMarkModel.NAMESPACE}.Emph`,
+    formula: `${CiceroMarkModel.NAMESPACE}.Formula`,
+    heading: `${CommonMarkModel.NAMESPACE}.Heading`,
+    item: `${CommonMarkModel.NAMESPACE}.Item`,
+    link: `${CommonMarkModel.NAMESPACE}.Link`,
+    paragraph: `${CommonMarkModel.NAMESPACE}.Paragraph`,
+    softbreak: `${CommonMarkModel.NAMESPACE}.Softbreak`,
+    strong: `${CommonMarkModel.NAMESPACE}.Strong`,
+    text: `${CommonMarkModel.NAMESPACE}.Text`,
+    thematicBreak: `${CommonMarkModel.NAMESPACE}.ThematicBreak`,
+    variable: `${CiceroMarkModel.NAMESPACE}.Variable`,
+    clause: `${CiceroMarkModel.NAMESPACE}.Clause`,
 };
 
 // Two relationships for numbering and style are already present
@@ -45,7 +44,7 @@ const TRANSFORMED_NODES = {
 const RELATIONSHIP_OFFSET = 2;
 
 // Used to separate entities in w:tag and w:alias
-// example <w:tag w:val="org.accordproject.ciceromark.Variable | shipper"/>
+// example <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | shipper"/>
 // Then use the separator to extract those entities while transforming
 // from ooxml to ciceromark.
 const SEPARATOR = ' | ';

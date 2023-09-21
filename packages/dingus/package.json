@@ -1,6 +1,6 @@
 {
   "name": "dingus",
-  "version": "0.14.0",
+  "version": "0.16.19",
   "description": "Markdown Transform Dingus",
   "keywords": [
     "accord-project",
@@ -19,24 +19,27 @@
   },
   "files": [],
   "devDependencies": {
-    "@accordproject/markdown-cicero": "0.14.0",
-    "@accordproject/markdown-common": "0.14.0",
-    "@accordproject/markdown-it-cicero": "0.14.0",
-    "@accordproject/markdown-it-template": "0.14.0",
-    "@accordproject/markdown-pdf": "0.14.0",
-    "@accordproject/markdown-template": "0.14.0",
+    "@accordproject/markdown-cicero": "0.16.19",
+    "@accordproject/markdown-common": "0.16.19",
+    "@accordproject/markdown-it-cicero": "0.16.19",
+    "@accordproject/markdown-it-template": "0.16.19",
+    "@accordproject/markdown-pdf": "0.16.19",
+    "@accordproject/markdown-template": "0.16.19",
+    "@babel/core": "7.17.5",
+    "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-env": "7.16.11",
+    "@babel/register": "7.17.0",
     "autoprefixer-stylus": "^0.14.0",
-    "browserify": "^16.3.0",
+    "babel-polyfill": "^6.26.0",
+    "babelify": "10.0.0",
+    "browserify": "^17.0.0",
     "highlight.js": "^10.0.3",
-    "markdown-it": "^11.0.0",
+    "markdown-it": "^13.0.1",
     "ndoc": "^5.0.0",
-    "pdfmake": "^0.1.71",
+    "pdfmake": "^0.2.4",
     "pug-cli": "^1.0.0-alpha6",
     "shelljs": "^0.8.4",
     "stylus": "^0.54.5",
     "terser": "^4.1.2"
-  },
-  "mocha": {
-    "inline-diffs": true
   }
 }

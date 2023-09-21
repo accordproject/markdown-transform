@@ -24,12 +24,12 @@ const ToMarkdownCiceroVisitor = require('./ToMarkdownCiceroVisitor');
 const ToCiceroMarkUnwrappedVisitor = require('./ToCiceroMarkUnwrappedVisitor');
 
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
-const { CommonMarkModel } = require('@accordproject/markdown-common').CommonMarkModel;
 
 const FromCiceroEditVisitor = require('./FromCiceroEditVisitor');
 const ToCommonMarkVisitor = require('./ToCommonMarkVisitor');
-const { CiceroMarkModel } = require('./externalModels/CiceroMarkModel');
-const { ConcertoMetaModel } = require('./externalModels/ConcertoMetaModel');
+
+const {CommonMarkModel,CiceroMarkModel,ConcertoMetaModel} = require('@accordproject/markdown-common');
+
 const unquoteVariables = require('./UnquoteVariables');
 
 /**
@@ -47,10 +47,10 @@ class CiceroMarkTransformer {
         this.commonMark = new CommonMarkTransformer();
 
         // Setup for validation
-        this.modelManager = new ModelManager();
-        this.modelManager.addModelFile(ConcertoMetaModel, 'metamodel.cto');
-        this.modelManager.addModelFile(CommonMarkModel, 'commonmark.cto');
-        this.modelManager.addModelFile(CiceroMarkModel, 'ciceromark.cto');
+        this.modelManager = new ModelManager({strict: true});
+        this.modelManager.addCTOModel(ConcertoMetaModel.MODEL, 'metamodel.cto');
+        this.modelManager.addCTOModel(CommonMarkModel.MODEL, 'commonmark.cto');
+        this.modelManager.addCTOModel(CiceroMarkModel.MODEL, 'ciceromark.cto');
         const factory = new Factory(this.modelManager);
         this.serializer = new Serializer(factory, this.modelManager);
     }
@@ -61,9 +61,9 @@ class CiceroMarkTransformer {
      * @returns {*} markdown_cicero string
      */
     getClauseText(input) {
-        if (input.$class === 'org.accordproject.ciceromark.Clause') {
+        if (input.$class === `${CiceroMarkModel.NAMESPACE}.Clause`) {
             const docInput = {
-                $class: 'org.accordproject.commonmark.Document',
+                $class: `${CommonMarkModel.NAMESPACE}.Document`,
                 xmlns : 'http://commonmark.org/xml/1.0',
                 nodes: input.nodes,
             };

@@ -21,4 +21,5 @@
 
 module.exports.formatDescriptor = require('./lib/transform').formatDescriptor;
 module.exports.transform = require('./lib/transform').transform;
-
+module.exports.TransformEngine = require('./lib/transformEngine');
+module.exports.builtinTransformationGraph = require('./lib/builtinTransforms');

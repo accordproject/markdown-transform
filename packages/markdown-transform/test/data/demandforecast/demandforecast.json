@@ -1,88 +1,88 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "children": [
+      {
+        "object": "block",
+        "type": "paragraph",
         "children": [
-            {
-                "object": "block",
-                "type": "paragraph",
-                "children": [
-                    {
-                        "object": "text",
-                        "text": "On or before the "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "variable",
-                        "data": {
-                            "name": "effectiveDate",
-                            "format": "YYYY/MM/DD"
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "2018/04/02"
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "variable",
-                        "data": {
-                            "name": "purchaser"
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "\"PETER\""
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": " shall send the Supplier "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "variable",
-                        "data": {
-                            "name": "supplier"
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "\"DAN\""
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least "
-                    },
-                    {
-                        "object": "inline",
-                        "type": "variable",
-                        "data": {
-                            "name": "minimumPercentage"
-                        },
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "85.0"
-                            }
-                        ]
-                    },
-                    {
-                        "object": "text",
-                        "text": "% of the quantity of the listed Product."
-                    }
-                ],
-                "data": {}
-            }
+          {
+            "object": "text",
+            "text": "On or before the "
+          },
+          {
+            "object": "inline",
+            "type": "variable",
+            "data": {
+              "name": "effectiveDate",
+              "format": "YYYY/MM/DD"
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "2018/04/02"
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", and thereafter on or before the last day of each calendar quarter, the Purchaser "
+          },
+          {
+            "object": "inline",
+            "type": "variable",
+            "data": {
+              "name": "purchaser"
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "\"PETER\""
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " shall send the Supplier "
+          },
+          {
+            "object": "inline",
+            "type": "variable",
+            "data": {
+              "name": "supplier"
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "\"DAN\""
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least "
+          },
+          {
+            "object": "inline",
+            "type": "variable",
+            "data": {
+              "name": "minimumPercentage"
+            },
+            "children": [
+              {
+                "object": "text",
+                "text": "85.0"
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "% of the quantity of the listed Product."
+          }
         ],
         "data": {}
-    }
+      }
+    ],
+    "data": {}
+  }
 }

@@ -113,28 +113,69 @@ function getCiceroMarkSlateFiles() {
     return result;
 }
 
+/**
+ * Get the name and contents of all slate test files for TemplateMark
+ * @returns {*} an array of name/contents tuples
+ */
+function getTemplateMarkSlateFiles() {
+    const result = [];
+    const files = fs.readdirSync(__dirname + '/../test/data/templatemark/');
+
+    files.forEach(function(file) {
+        if(file.endsWith('_slate.json')) {
+            let contents = fs.readFileSync(__dirname + '/../test/data/templatemark/' + file, 'utf8');
+            result.push([file, contents]);
+        }
+    });
+
+    return result;
+}
+
 describe('ciceromark <-> slate', () => {
     getCiceroMarkSlateFiles().forEach( ([file, jsonText], index) => {
         it(`converts ${file} to and from CiceroMark`, () => {
             const value = JSON.parse(jsonText);
             const ciceroMark = slateTransformer.toCiceroMark(value, 'json');
 
-            // check no changes to cicero mark
+            // check no changes to ciceromark
             expect(ciceroMark).toMatchSnapshot(); // (1)
 
             // load expected ciceromark
             const expectedCiceroMark = JSON.parse(fs.readFileSync(__dirname + '/../test/data/ciceromark/' + file.replace(/_slate.json$/,'_ciceromark.json'), 'utf8'));
             expect(expectedCiceroMark).toMatchSnapshot(); // (2)
 
-            // convert the expected markdown to cicero mark and compare
+            // convert the expected markdown to ciceromark and compare
             const expectedSlateValue = slateTransformer.fromCiceroMark(expectedCiceroMark);
             expect(expectedSlateValue).toMatchSnapshot(); // (3)
-            // if(mdFile === 'image') {
-            //     console.log(JSON.stringify(expectedSlateValue, null, 4));
-            // }
 
             // check that ast created from slate and from the expected md is the same
             expect(ciceroMark).toEqual(expectedCiceroMark);
+
+            // check roundtrip
+            expect(expectedSlateValue).toEqual(value);
+        });
+    });
+});
+
+describe('templatemark <-> slate', () => {
+    getTemplateMarkSlateFiles().forEach( ([file, jsonText], index) => {
+        it(`converts ${file} to and from TemplateMark`, () => {
+            const value = JSON.parse(jsonText);
+            const templateMark = slateTransformer.toTemplateMark(value, 'json');
+
+            // check no changes to templatemark
+            expect(templateMark).toMatchSnapshot(); // (1)
+
+            // load expected templatemark
+            const expectedTemplateMark = JSON.parse(fs.readFileSync(__dirname + '/../test/data/templatemark/' + file.replace(/_slate.json$/,'_templatemark.json'), 'utf8'));
+            expect(expectedTemplateMark).toMatchSnapshot(); // (2)
+
+            // convert the expected markdown to templatemark and compare
+            const expectedSlateValue = slateTransformer.fromTemplateMark(expectedTemplateMark);
+            expect(expectedSlateValue).toMatchSnapshot(); // (3)
+
+            // check that ast created from slate and from the expected md is the same
+            expect(templateMark).toEqual(expectedTemplateMark);
 
             // check roundtrip
             expect(expectedSlateValue).toEqual(value);
@@ -157,3 +198,4 @@ describe('slate -> markdown_cicero', () => {
         expect(actualMarkdownCicero).toEqual(expectedMarkdownCicero);
     });
 });
+

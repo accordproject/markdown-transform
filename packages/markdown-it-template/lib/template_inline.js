@@ -119,6 +119,9 @@ function template_inline(state, silent) {
                 token         = state.push('this', 'this', 0);
                 token.content = content;
                 token.attrs = [ ];
+                if (format) {
+                    token.attrs.push([ 'format', format ]);
+                }
             } else {
                 token         = state.push('variable', 'variable', 0);
                 token.content = content;

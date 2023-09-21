@@ -1,27 +1,27 @@
 {
-    "document": {
-        "object": "document",
+  "document": {
+    "object": "document",
+    "data": {},
+    "children": [
+      {
+        "block_quote": true,
+        "object": "block",
         "data": {},
+        "type": "block_quote",
         "children": [
-            {
-                "block_quote": true,
-                "object": "block",
-                "data": {},
-                "type": "block_quote",
-                "children": [
-                    {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "children": [
-                            {
-                                "object": "text",
-                                "text": "this is a quote"
-                            }
-                        ]
-                    }
-                ]
-            }
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "children": [
+              {
+                "object": "text",
+                "text": "this is a quote"
+              }
+            ]
+          }
         ]
-    }
+      }
+    ]
+  }
 }

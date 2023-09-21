@@ -15,6 +15,7 @@
 'use strict';
 
 const Stack = require('./Stack');
+const CommonMarkModel = require('./externalModels/CommonMarkModel');
 
 /**
  * Maps the keys in an object
@@ -24,19 +25,19 @@ const Stack = require('./Stack');
 function mapObject(obj, stack) {
     switch (obj.$class) {
     // remove these, visit children
-    case 'org.accordproject.commonmark.Emph':
-    case 'org.accordproject.commonmark.Strong':
-    case 'org.accordproject.commonmark.Document':
-    case 'org.accordproject.commonmark.BlockQuote':
+    case `${CommonMarkModel.NAMESPACE}.Emph`:
+    case `${CommonMarkModel.NAMESPACE}.Strong`:
+    case `${CommonMarkModel.NAMESPACE}.Document`:
+    case `${CommonMarkModel.NAMESPACE}.BlockQuote`:
         obj.nodes.forEach(element => {
             mapObject(element, stack);
         });
         break;
     // wrap in a para and process child nodes
-    case 'org.accordproject.commonmark.Paragraph':
-    case 'org.accordproject.commonmark.Heading': {
+    case `${CommonMarkModel.NAMESPACE}.Paragraph`:
+    case `${CommonMarkModel.NAMESPACE}.Heading`: {
         stack.push({
-            $class: 'org.accordproject.commonmark.Paragraph',
+            $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
             nodes: []
         });
         if (obj.nodes) {
@@ -48,44 +49,44 @@ function mapObject(obj, stack) {
         break;
     }
     // wrap in a para and grab text
-    case 'org.accordproject.commonmark.CodeBlock':
-    case 'org.accordproject.commonmark.HtmlBlock':
+    case `${CommonMarkModel.NAMESPACE}.CodeBlock`:
+    case `${CommonMarkModel.NAMESPACE}.HtmlBlock`:
         stack.append( {
-            $class: 'org.accordproject.commonmark.Paragraph',
+            $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
             nodes: [
                 {
-                    $class: 'org.accordproject.commonmark.Text',
+                    $class: `${CommonMarkModel.NAMESPACE}.Text`,
                     text: obj.text
                 }
             ]
         });
         break;
     // inline text
-    case 'org.accordproject.commonmark.Code':
-    case 'org.accordproject.commonmark.HtmlInline':
+    case `${CommonMarkModel.NAMESPACE}.Code`:
+    case `${CommonMarkModel.NAMESPACE}.HtmlInline`:
         stack.append( {
-            $class: 'org.accordproject.commonmark.Text',
+            $class: `${CommonMarkModel.NAMESPACE}.Text`,
             text: obj.text
         });
         break;
     // get destination
-    case 'org.accordproject.commonmark.Link':
+    case `${CommonMarkModel.NAMESPACE}.Link`:
         stack.append( {
-            $class: 'org.accordproject.commonmark.Text',
+            $class: `${CommonMarkModel.NAMESPACE}.Text`,
             text: obj.destination
         });
         break;
     // get title
-    case 'org.accordproject.commonmark.Image':
+    case `${CommonMarkModel.NAMESPACE}.Image`:
         stack.append( {
-            $class: 'org.accordproject.commonmark.Text',
+            $class: `${CommonMarkModel.NAMESPACE}.Text`,
             text: obj.title
         });
         break;
     // do not insert a \ for linebreaks
-    case 'org.accordproject.commonmark.Linebreak':
+    case `${CommonMarkModel.NAMESPACE}.Linebreak`:
         stack.append( {
-            $class: 'org.accordproject.commonmark.Text',
+            $class: `${CommonMarkModel.NAMESPACE}.Text`,
             text: '\n'
         });
         break;
@@ -103,7 +104,7 @@ function mapObject(obj, stack) {
  */
 function removeFormatting(obj) {
     const root = {
-        $class : 'org.accordproject.commonmark.Document',
+        $class : `${CommonMarkModel.NAMESPACE}.Document`,
         xmlns : obj.xmlns,
         nodes: []
     };

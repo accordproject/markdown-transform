@@ -15,10 +15,10 @@ jobs:
       - name: git checkout
         uses: actions/checkout@v2
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - run: npm ci
       - run: npm run build --if-present
@@ -30,6 +30,7 @@ jobs:
 
       - name: build and publish
         run: |
+          export NODE_OPTIONS="--max_old_space_size=6144"
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm version --no-git-tag-version --yes --exact ${{ github.event.release.tag_name }}
           npx lerna version --no-git-tag-version --yes --exact ${{ github.event.release.tag_name }}
@@ -38,7 +39,7 @@ jobs:
       - name: Create PR to increment version
         uses: peter-evans/create-pull-request@v3
         with:
-          base: master
+          base: main
           commit-message: 'chore(actions): publish ${{ github.event.release.tag_name }} to npm'
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>

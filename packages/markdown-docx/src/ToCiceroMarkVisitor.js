@@ -337,6 +337,7 @@ class ToCiceroMarkVisitor {
                 const nestedExpression = this.generateNesting(commonPropertiesLength);
                 if (commonPropertiesLength === 0) {
                     rootNode.nodes = [...rootNode.nodes, constructedNode];
+                    // eslint-disable-next-line no-unused-vars
                     rootNodesLength++;
                 } else {
                     if (propertiesCurrent[commonPropertiesLength - 1] === TRANSFORMED_NODES.optional) {
@@ -498,6 +499,9 @@ class ToCiceroMarkVisitor {
          * If parent argument is not present, then everything would have been treated
          * as pargraphs and transformation would be faulty.
          */
+        if(!Array.isArray(node)) {
+            throw new Error(`Node is not an array ${node}`);
+        }
 
         // Contains node present in a codeblock or blockquote, etc.
         let blockNodes = [];

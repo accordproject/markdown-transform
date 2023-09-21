@@ -17,7 +17,8 @@
 // HACK few hacks to let PDF.js be loaded not as a module in global space.
 require('./domstubs.js').setStubs(global);
 
-let pdfjsLib = require('pdfjs-dist/es5/build/pdf.js');
+const { CommonMarkModel } = require('@accordproject/markdown-common');
+let pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
 
 /**
  * Converts an pdf buffer to a CiceroMark DOM
@@ -53,7 +54,7 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
         if(options.loadMarkdown && metadata.info.Custom.markdown) {
             const result = JSON.parse(metadata.info.Custom.markdown);
             if(templates.length > 0) {
-                result.templates = templates; // add optional attribute `templates` to org.accordproject.commonmark.Document?
+                result.templates = templates; // add optional attribute `templates` to Document?
             }
             return result;
         }
@@ -64,7 +65,7 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
         const page = await doc.getPage(n);
         const content = await page.getTextContent({
             normalizeWhitespace: true,
-            disableCombineTextItems: true,
+            disableCombineTextItems: false
         });
 
         let currentPara = null;
@@ -81,14 +82,14 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
 
             if(!currentPara || newPara) {
                 currentPara = {
-                    $class : 'org.accordproject.commonmark.Paragraph',
+                    $class : `${CommonMarkModel.NAMESPACE}.Paragraph`,
                     nodes : []
                 };
                 result.nodes.push(currentPara);
             }
 
             const textNode = {
-                $class : 'org.accordproject.commonmark.Text',
+                $class : `${CommonMarkModel.NAMESPACE}.Text`,
                 text : text.str.replace(/(?:\r\n|\r|\n)/g, ' ')
             };
 
@@ -101,7 +102,7 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
 
         if(options.preservePages) {
             result.nodes.push( {
-                $class : 'org.accordproject.commonmark.ThematicBreak'
+                $class : `${CommonMarkModel.NAMESPACE}.ThematicBreak`
             });
         }
 
@@ -115,13 +116,13 @@ async function ToCiceroMark(input, format = 'concerto', options = { paragraphVer
     });
 
     const document = {
-        $class : 'org.accordproject.commonmark.Document',
+        $class : `${CommonMarkModel.NAMESPACE}.Document`,
         xmlns : metadata.Title ? metadata.Title : 'Unknown',
         nodes : merged
     };
 
     if(templates.length > 0) {
-        document.templates = templates; // add optional attribute `templates` to org.accordproject.commonmark.Document?
+        document.templates = templates; // add optional attribute `templates` to Document?
     }
 
     return document;

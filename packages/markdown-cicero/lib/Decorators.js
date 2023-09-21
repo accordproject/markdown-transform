@@ -14,6 +14,8 @@
 
 'use strict';
 
+const { ConcertoMetaModel } = require('@accordproject/markdown-common');
+
 /**
  * A class to retrieve decorators on CiceroMark nodes
  */
@@ -35,11 +37,11 @@ class Decorators {
                 const args = {};
                 for( let n=0; n < d.arguments.length-1; n=n+2) {
                     const arg = d.arguments[n];
-                    if(arg.$class && arg.$class !== 'concerto.metamodel.DecoratorString') {
+                    if(arg.$class && arg.$class !== `${ConcertoMetaModel.NAMESPACE}.DecoratorString`) {
                         throw new Error(`Argument names must be strings. Found ${arg.$class}`);
                     }
                     const argValue = d.arguments[n+1];
-                    args[arg.value] = argValue.$class === 'concerto.metamodel.DecoratorIdentifier' ? argValue.identifier : argValue.value;
+                    args[arg.value] = argValue.$class === `${ConcertoMetaModel.NAMESPACE}.DecoratorIdentifier` ? argValue.identifier : argValue.value;
                 }
                 this.data[d.name] = args;
             });

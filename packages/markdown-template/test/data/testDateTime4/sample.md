@@ -1,1 +1,0 @@
-This is a contract between "Steve" and "Betty" for the amount of 3131.0 EUR, even in the presence of force majeure. This contract becomes effective on 2020-5-1 03:04:05.678.

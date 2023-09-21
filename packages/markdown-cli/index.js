@@ -16,8 +16,7 @@
 'use strict';
 
 const path = require('path');
-const logger = require('@accordproject/concerto-core').Logger;
-const formatDescriptor= require('@accordproject/markdown-transform').formatDescriptor;
+const logger = require('@accordproject/concerto-util').Logger;
 const commands = require('./lib/commands');
 
 require('yargs')
@@ -79,6 +78,11 @@ require('yargs')
             describe: 'path to a parser plugin',
             type: 'string'
         });
+        yargs.option('extension', {
+            describe: 'path to a transform extension',
+            type: 'string',
+            array: true,
+        });
         yargs.option('sourcePos', {
             describe: 'enable source position',
             type: 'boolean',
@@ -104,10 +108,21 @@ require('yargs')
             const parameters = {};
             parameters.inputFileName = argv.input;
             parameters.model = argv.model;
-            // Load the plugin if given
+            // Load a parser plugin if given
             let plugin = {};
             if (argv.plugin) {
                 plugin = require(path.resolve(process.cwd(),argv.plugin));
+            }
+            // Load a transform extension if given
+            const extensions = [];
+            if (argv.extension) {
+                argv.extension.forEach((thisExtension) => {
+                    let modExtension = require(path.resolve(process.cwd(),thisExtension));
+                    if (modExtension.default) {
+                        modExtension = modExtension.default;
+                    }
+                    extensions.push(modExtension);
+                });
             }
             parameters.plugin = plugin;
             parameters.template = argv.template;
@@ -118,14 +133,13 @@ require('yargs')
             options.sourcePos = argv.sourcePos;
             options.roundtrip = argv.roundtrip;
             options.offline = argv.offline;
+            options.extensions = extensions;
             return commands.transform(argv.input, argv.from, argv.via, argv.to, argv.output, parameters, options)
-                .then((result) => {
-                    const destinationFormat = formatDescriptor(argv.to);
+                .then(({ result, targetFormat }) => {
                     if(result) {
-                        if(destinationFormat.fileFormat !== 'binary') {
+                        if(targetFormat.fileFormat !== 'binary') {
                             logger.info('\n'+result);
-                        }
-                        else {
+                        } else {
                             logger.info(`\n<binary ${argv.to} data>`);
                         }
                     }

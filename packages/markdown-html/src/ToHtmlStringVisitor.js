@@ -205,8 +205,34 @@ class ToHtmlStringVisitor {
         case 'Item':
             parameters.result += `<li>${ToHtmlStringVisitor.visitChildren(this, thing)}</li>\n`;
             break;
+
+        case 'Table':
+            parameters.result += '\n';
+            parameters.result += `<table>${ToHtmlStringVisitor.visitChildren(this, thing)}\n</table>\n`;
+            break;
+
+        case 'TableHead':
+            parameters.result += `\n<thead>${ToHtmlStringVisitor.visitChildren(this,thing)}\n</thead>`;
+            break;
+
+        case 'TableBody':
+            parameters.result += `\n<tbody>${ToHtmlStringVisitor.visitChildren(this,thing)}\n</tbody>`;
+            break;
+
+        case 'TableRow':
+            parameters.result += `\n<tr>\n${ToHtmlStringVisitor.visitChildren(this,thing)}</tr>`;
+            break;
+
+        case 'TableCell':
+            parameters.result += `<td>${ToHtmlStringVisitor.visitChildren(this,thing)}</td>\n`;
+            break;
+
+        case 'HeaderCell':
+            parameters.result += `<th>${ToHtmlStringVisitor.visitChildren(this,thing)}</th>\n`;
+            break;
+
         case 'Document':
-            parameters.result += `<html>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
+            parameters.result += `<html>\n<head><meta charset="UTF-8"></head>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
             break;
         default:
             throw new Error(`Unhandled type ${thing.getType()}`);
