@@ -199,14 +199,6 @@ const transformationGraph = {
             return zip.file('word/document.xml').async('string');
         }
     },
-    wordml: {
-        docs: 'WordML (string)',
-        fileFormat: 'utf8',
-        ciceromark_parsed: async (input, parameters, options) => {
-            const t = new DocxTransformer();
-            return t.toCiceroMark(input, options);
-        },
-    },
     html: {
         docs: 'HTML (string)',
         fileFormat: 'utf8',
