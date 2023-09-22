@@ -20,4 +20,3 @@
  */
 
 module.exports.DocxTransformer = require('./lib/DocxTransformer');
-module.exports.OOXMLTransformer = require('./lib/OOXMLTransformer');
