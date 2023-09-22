@@ -14,6 +14,8 @@
 
 'use strict';
 
+const HTMLtoDOCX = require('html-to-docx');
+const JsZip = require('jszip');
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
@@ -143,6 +145,10 @@ const transformationGraph = {
     },
     pdfmake: (input, parameters, options) => {
       return PdfTransformer.ciceroMarkToPdfMake(input, options);
+    },
+    wordml: (input, parameters, options) => {
+      const t = new DocxTransformer();
+      return t.toWordML(input);
     }
   },
   plaintext: {
@@ -187,6 +193,18 @@ const transformationGraph = {
     ciceromark_parsed: async (input, parameters, options) => {
       const t = new DocxTransformer();
       return t.toCiceroMark(input, options);
+    },
+    wordml: async (input, parameters, options) => {
+      const zip = await JsZip.loadAsync(input);
+      return zip.file('word/document.xml').async('string');
+    }
+  },
+  wordml: {
+    docs: 'WordML (string)',
+    fileFormat: 'utf8',
+    ciceromark_parsed: async (input, parameters, options) => {
+      const t = new DocxTransformer();
+      return t.toCiceroMark(input, options);
     }
   },
   html: {
@@ -195,6 +213,17 @@ const transformationGraph = {
     ciceromark_parsed: (input, parameters, options) => {
       const t = new HtmlTransformer();
       return t.toCiceroMark(input, options);
+    },
+    docx: async (inputs, parameters, options) => {
+      return HTMLtoDOCX(inputs, null, options ? options : {
+        table: {
+          row: {
+            cantSplit: true
+          }
+        },
+        footer: true,
+        pageNumber: true
+      });
     }
   },
   slate: {
