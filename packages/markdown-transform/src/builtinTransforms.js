@@ -145,10 +145,6 @@ const transformationGraph = {
         },
         pdfmake: (input, parameters, options) => {
             return PdfTransformer.ciceroMarkToPdfMake(input, options);
-        },
-        wordml: (input, parameters, options) => {
-            const t = new DocxTransformer();
-            return t.toWordML(input);
         }
     },
     plaintext: {

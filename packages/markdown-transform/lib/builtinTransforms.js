@@ -145,10 +145,6 @@ const transformationGraph = {
     },
     pdfmake: (input, parameters, options) => {
       return PdfTransformer.ciceroMarkToPdfMake(input, options);
-    },
-    wordml: (input, parameters, options) => {
-      const t = new DocxTransformer();
-      return t.toWordML(input);
     }
   },
   plaintext: {
@@ -197,14 +193,6 @@ const transformationGraph = {
     wordml: async (input, parameters, options) => {
       const zip = await JsZip.loadAsync(input);
       return zip.file('word/document.xml').async('string');
-    }
-  },
-  wordml: {
-    docs: 'WordML (string)',
-    fileFormat: 'utf8',
-    ciceromark_parsed: async (input, parameters, options) => {
-      const t = new DocxTransformer();
-      return t.toCiceroMark(input, options);
     }
   },
   html: {
