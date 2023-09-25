@@ -237,6 +237,11 @@ describe('#sample', () => {
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
+        it('pdf -> docx', async () => {
+            const result = await transform(samplePdf, 'pdf', ['docx'], {}, {});
+            result.should.not.be.null;
+        });
+
         it('pdf -> ciceromark (verbose)', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
@@ -255,12 +260,21 @@ describe('#sample', () => {
             const result = await transform(sampleDocx, 'docx', ['ciceromark'], {}, {});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
+
+        it('docx -> wordml', async () => {
+            const result = await transform(sampleDocx, 'docx', ['wordml'], {}, {});
+            result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
+        });
     });
 
     describe('#html', () => {
         it('html -> ciceromark', async () => {
             const result = await transform(sampleHtml, 'html', ['ciceromark'], {}, {});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
+        });
+        it('html -> docx', async () => {
+            const result = await transform(sampleHtml, 'html', ['docx'], {}, {});
+            result.should.not.be.null;
         });
     });
 
