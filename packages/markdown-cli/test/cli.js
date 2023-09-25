@@ -159,7 +159,7 @@ describe('markdown-cli (wordml)', () => {
     describe('#parse', () => {
         it('should convert from ciceromark_parsed to wordml', async () => {
             const data = await Commands.transform(inputCiceroMarkFile, 'ciceromark_parsed', [], 'wordml', null, {}, {});
-            data.result.should.not.be.null;
+            data.result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
         });
     });
 });
