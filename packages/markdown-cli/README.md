@@ -65,32 +65,32 @@ returns:
 
 ```json
 {
-  "$class": "org.accordproject.commonmark.Document",
+  "$class": "org.accordproject.commonmark@0.5.0.Document",
   "xmlns": "http://commonmark.org/xml/1.0",
   "nodes": [
     {
-      "$class": "org.accordproject.commonmark.Heading",
+      "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
       "nodes": [
         {
-          "$class": "org.accordproject.commonmark.Text",
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Hello World"
         }
       ]
     }, 
     {
-      "$class": "org.accordproject.commonmark.Paragraph",
+      "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
       "nodes": [
         {
-          "$class": "org.accordproject.commonmark.Text",
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is the Hello World of Accord Project Templates. Executing the clause will simply echo back the text that occurs after the string "
         }, 
         {
-          "$class": "org.accordproject.commonmark.Code",
+          "$class": "org.accordproject.commonmark@0.5.0.Code",
           "text": "Hello"
         }, 
         {
-          "$class": "org.accordproject.commonmark.Text",
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " prepended to text that is passed in the request."
         }
       ]
@@ -178,35 +178,35 @@ returns:
 
 ```json
 {
-  "$class": "org.accordproject.commonmark.Document",
+  "$class": "org.accordproject.commonmark@0.5.0.Document",
   "xmlns": "http://commonmark.org/xml/1.0",
   "nodes": [
     {
-      "$class": "org.accordproject.templatemark.ClauseDefinition",
+      "$class": "org.accordproject.templatemark@0.5.0.ClauseDefinition",
       "name": "top",
       "elementType": "org.accordproject.helloworld.HelloWorldClause",
       "nodes": [
         {
-          "$class": "org.accordproject.commonmark.Paragraph",
+          "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
           "nodes": [
             {
-              "$class": "org.accordproject.commonmark.Text",
+              "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Name of the person to greet: "
             }, 
             {
-              "$class": "org.accordproject.templatemark.VariableDefinition",
+              "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
               "name": "name",
               "elementType": "String"
             }, 
             {
-              "$class": "org.accordproject.commonmark.Text",
+              "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "."
             }, 
             {
-              "$class": "org.accordproject.commonmark.Softbreak"
+              "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
             }, 
             {
-              "$class": "org.accordproject.commonmark.Text",
+              "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Thank you!"
             }
           ]

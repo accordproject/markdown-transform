@@ -23,41 +23,41 @@ The output should be:
 
 ``` json
 {
-          "$class": "org.accordproject.commonmark.Document",
+          "$class": "org.accordproject.commonmark@0.5.0.Document",
           "xmlns": "http://commonmark.org/xml/1.0",
           "nodes": [
               {
-                  "$class": "org.accordproject.commonmark.Heading",
+                  "$class": "org.accordproject.commonmark@0.5.0.Heading",
                   "level": "1",
                   "nodes": [
                       {
-                          "$class": "org.accordproject.commonmark.Text",
+                          "$class": "org.accordproject.commonmark@0.5.0.Text",
                           "text": "Heading"
                       }
                   ]
               },
               {
-                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
                   "nodes": [
                       {
-                          "$class": "org.accordproject.commonmark.Text",
+                          "$class": "org.accordproject.commonmark@0.5.0.Text",
                           "text": "This is some "
                       },
                       {
-                          "$class": "org.accordproject.commonmark.Code",
+                          "$class": "org.accordproject.commonmark@0.5.0.Code",
                           "text": "code"
                       },
                       {
-                          "$class": "org.accordproject.commonmark.Text",
+                          "$class": "org.accordproject.commonmark@0.5.0.Text",
                           "text": "."
                       }
                   ]
               },
               {
-                  "$class": "org.accordproject.commonmark.Paragraph",
+                  "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
                   "nodes": [
                       {
-                          "$class": "org.accordproject.commonmark.Text",
+                          "$class": "org.accordproject.commonmark@0.5.0.Text",
                           "text": "Fin."
                       }
                   ]

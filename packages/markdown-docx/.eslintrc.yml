@@ -2,9 +2,11 @@ env:
     es6: true
     node: true
     mocha: true
+globals:
+    expect: 'readonly'
 extends: 'eslint:recommended'
 parserOptions:
-    ecmaVersion: 12
+    ecmaVersion: 2018
     sourceType: 'script'
 rules:
     indent:

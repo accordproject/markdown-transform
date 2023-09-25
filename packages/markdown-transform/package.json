@@ -95,7 +95,9 @@
     "@accordproject/markdown-pdf": "0.16.19",
     "@accordproject/markdown-slate": "0.16.19",
     "@accordproject/markdown-template": "0.16.19",
-    "dijkstrajs": "^1.0.2"
+    "dijkstrajs": "^1.0.2",
+    "html-to-docx": "^1.8.0",
+    "jszip": "^3.10.1"
   },
   "license-check-and-add-config": {
     "folder": "./lib",

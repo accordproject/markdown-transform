@@ -17,12 +17,11 @@
 'use strict';
 
 const fs = require('fs');
-const DocxTransformer = require('./DocxTransformer');
-
+const DocxTransformer = require('../src/DocxTransformer');
 let docxTransformer = null;
 
 // @ts-ignore
-beforeAll(() => {
+beforeEach(() => {
     docxTransformer = new DocxTransformer();
 });
 
@@ -34,8 +33,8 @@ function getDocxFiles() {
     const result = [];
     const files = fs.readdirSync(__dirname + '/../test/data');
 
-    files.forEach(function(file) {
-        if(file.endsWith('.docx')) {
+    files.forEach(function (file) {
+        if (file.endsWith('.docx')) {
             let contents = fs.readFileSync(__dirname + '/../test/data/' + file);
             result.push([file, contents]);
         }
@@ -44,11 +43,10 @@ function getDocxFiles() {
     return result;
 }
 
-describe('import docx', () => {
+describe('docx to ciceromark', () => {
     getDocxFiles().forEach(([file, docx], i) => {
         it(`converts ${file} to ciceromark`, async () => {
             const json = await docxTransformer.toCiceroMark(docx, 'json');
-            //console.log(JSON.stringify(json, null, 4));
             expect(json).toMatchSnapshot(); // (1)
         });
     });

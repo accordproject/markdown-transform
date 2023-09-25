@@ -69,6 +69,7 @@ const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__d
 const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
 const acceptanceHtml = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8'));
+const omittedAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json'), 'utf8'));
 
 // Sample test
 const samplePdf = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.pdf'));
@@ -181,6 +182,11 @@ describe('#acceptance', () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['html'], {}, {verbose: true});
             result.should.equal(acceptanceHtml);
         });
+
+        it('ciceromark_parsed -> wordml', async () => {
+            const result = await transform(omittedAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['wordml'], {}, {});
+            result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
+        });
     });
 
     describe('#ciceroedit', () => {
@@ -231,6 +237,11 @@ describe('#sample', () => {
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
 
+        it('pdf -> docx', async () => {
+            const result = await transform(samplePdf, 'pdf', ['docx'], {}, {});
+            result.should.not.be.null;
+        });
+
         it('pdf -> ciceromark (verbose)', async () => {
             const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
@@ -249,12 +260,21 @@ describe('#sample', () => {
             const result = await transform(sampleDocx, 'docx', ['ciceromark'], {}, {});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
+
+        it('docx -> wordml', async () => {
+            const result = await transform(sampleDocx, 'docx', ['wordml'], {}, {});
+            result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
+        });
     });
 
     describe('#html', () => {
         it('html -> ciceromark', async () => {
             const result = await transform(sampleHtml, 'html', ['ciceromark'], {}, {});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
+        });
+        it('html -> docx', async () => {
+            const result = await transform(sampleHtml, 'html', ['docx'], {}, {});
+            result.should.not.be.null;
         });
     });
 

@@ -152,6 +152,17 @@ describe('markdown-cli (docx)', () => {
     });
 });
 
+describe('markdown-cli (wordml)', () => {
+    // Omitted Acceptance test
+    const inputCiceroMarkFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json');
+
+    describe('#parse', () => {
+        it('should convert from ciceromark_parsed to wordml', async () => {
+            const data = await Commands.transform(inputCiceroMarkFile, 'ciceromark_parsed', [], 'wordml', null, {}, {});
+            data.result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
+        });
+    });
+});
 
 describe('extension (wordcount)', () => {
     // Acceptance test

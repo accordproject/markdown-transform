@@ -1,0 +1,750 @@
+<pkg:package
+  xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
+  <pkg:part pkg:name="/_rels/.rels"
+    pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
+    <pkg:xmlData>
+      <Relationships
+        xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1"
+          Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument"
+          Target="word/document.xml" />
+      </Relationships>
+    </pkg:xmlData>
+  </pkg:part>
+  <pkg:part pkg:name="/word/document.xml"
+    pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document
+        xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+        xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+        xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex"
+        xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex"
+        xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex"
+        xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex"
+        xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex"
+        xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex"
+        xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex"
+        xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink"
+        xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+        xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+        xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+        xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+        xmlns:w10="urn:schemas-microsoft-com:office:word"
+        xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+        xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+        xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid"
+        xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+        xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+        xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+        xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+        xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+        mc:Ignorable="w14 w15 w16se w16cid wp14">
+        <w:body>
+
+          <w:sdt>
+            <w:sdtPr>
+              <w:lock w:val="contentLocked" />
+              <w:alias w:val="Template" />
+            </w:sdtPr>
+            <w:sdtContent>
+
+              <w:p>
+
+                <w:pPr>
+                  <w:pStyle w:val="Heading2" />
+                </w:pPr>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">Acceptance of Delivery.</w:t>
+
+                </w:r>
+              </w:p>
+
+              <w:p>
+
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Shipper1 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | shipper" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> will be deemed to have completed its delivery obligations</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">if in </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Receiver1 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | receiver" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">&apos;s opinion, the </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Deliverable1 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | deliverable" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> satisfies the</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">Acceptance Criteria, and </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Receiver2 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | receiver" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> notifies </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Shipper2 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | shipper" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> in writing</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">that it is accepting the </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Deliverable2 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | deliverable" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">.</w:t>
+
+                </w:r>
+              </w:p>
+
+              <w:p>
+
+                <w:pPr>
+                  <w:pStyle w:val="Heading2" />
+                </w:pPr>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">Inspection and Notice.</w:t>
+
+                </w:r>
+              </w:p>
+
+              <w:p>
+
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Receiver3 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | receiver" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party B&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> will have </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="BusinessDays1 | Long" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | businessDays" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">10</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> Business Days to inspect and</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">evaluate the </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Deliverable3 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | deliverable" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> on the delivery date before notifying</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Shipper3 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | shipper" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> that it is either accepting or rejecting the</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Deliverable4 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | deliverable" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">.</w:t>
+
+                </w:r>
+              </w:p>
+
+              <w:p>
+
+                <w:pPr>
+                  <w:pStyle w:val="Heading2" />
+                </w:pPr>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">Acceptance Criteria.</w:t>
+
+                </w:r>
+              </w:p>
+
+              <w:p>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">The &quot;Acceptance Criteria&quot; are the specifications the </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Deliverable5 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | deliverable" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Widgets&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">must meet for the </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Shipper4 | org.accordproject.organization.Organization" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | shipper" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Party A&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve"> to comply with its requirements and</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">obligations under this agreement, detailed in </w:t>
+
+                </w:r>
+                <w:sdt>
+                  <w:sdtPr>
+                    <w:rPr>
+                      <w:sz w:val="24" />
+                    </w:rPr>
+                    <w:alias w:val="Attachment1 | String" />
+                    <w:tag w:val="org.accordproject.ciceromark@0.6.0.Variable | attachment" />
+                  </w:sdtPr>
+                  <w:sdtContent>
+                    <w:r>
+                      <w:rPr>
+                        <w:sz w:val="24" />
+
+                      </w:rPr>
+                      <w:t xml:space="preserve">&quot;Attachment X&quot;</w:t>
+                    </w:r>
+                  </w:sdtContent>
+                </w:sdt>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">, attached</w:t>
+
+                </w:r>
+                <w:r>
+                  <w:sym w:font="Calibri" w:char="2009" />
+                </w:r>
+
+                <w:r>
+
+
+                  <w:t xml:space="preserve">to this agreement.</w:t>
+
+                </w:r>
+              </w:p>
+
+            </w:sdtContent>
+          </w:sdt>
+
+          <w:p />
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>
+
+  <pkg:part pkg:name="/word/_rels/document.xml.rels"
+    pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="256">
+    <pkg:xmlData>
+      <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1"
+          Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering"
+          Target="numbering.xml" />
+        <Relationship Id="rId2"
+          Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles"
+          Target="styles.xml" />
+
+      </Relationships>
+    </pkg:xmlData>
+  </pkg:part>
+
+
+  <pkg:part pkg:name="/word/styles.xml"
+    pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml">
+    <pkg:xmlData>
+      <w:styles xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+        xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+        xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+        xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid"
+        xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+        mc:Ignorable="w14 w15 w16se w16cid">
+        <w:docDefaults>
+          <w:rPrDefault>
+            <w:rPr>
+              <w:rFonts w:asciiTheme="minorHAnsi" w:eastAsiaTheme="minorHAnsi"
+                w:hAnsiTheme="minorHAnsi" w:cstheme="minorBidi" />
+              <w:sz w:val="22" />
+              <w:szCs w:val="22" />
+              <w:lang w:val="en-US" w:eastAsia="en-US" w:bidi="ar-SA" />
+            </w:rPr>
+          </w:rPrDefault>
+          <w:pPrDefault>
+            <w:pPr>
+              <w:spacing w:after="160" w:line="259" w:lineRule="auto" />
+            </w:pPr>
+          </w:pPrDefault>
+        </w:docDefaults>
+        <w:latentStyles w:defLockedState="0" w:defUIPriority="99" w:defSemiHidden="0"
+          w:defUnhideWhenUsed="0" w:defQFormat="0" w:count="377">
+          <w:lsdException w:name="Normal" w:uiPriority="0" w:qFormat="1" />
+          <w:lsdException w:name="heading 1" w:uiPriority="9" w:qFormat="1" />
+          <w:lsdException w:name="heading 2" w:semiHidden="1" w:uiPriority="9" w:unhideWhenUsed="1"
+            w:qFormat="1" />
+          <w:lsdException w:name="heading 3" w:semiHidden="1" w:uiPriority="9" w:unhideWhenUsed="1"
+            w:qFormat="1" />
+          <w:lsdException w:name="heading 4" w:semiHidden="1" w:uiPriority="9" w:unhideWhenUsed="1"
+            w:qFormat="1" />
+          <w:lsdException w:name="heading 5" w:semiHidden="1" w:uiPriority="9" w:unhideWhenUsed="1"
+            w:qFormat="1" />
+          <w:lsdException w:name="heading 6" w:semiHidden="1" w:uiPriority="9" w:unhideWhenUsed="1"
+            w:qFormat="1" />
+        </w:latentStyles>
+        <w:style w:type="paragraph" w:styleId="Heading1">
+          <w:name w:val="heading 1" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading1Char" />
+          <w:uiPriority w:val="9" />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="240" w:after="0" />
+            <w:outlineLvl w:val="0" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:color w:val="2E74B5" w:themeColor="accent1" w:themeShade="BF" />
+            <w:sz w:val="32" />
+            <w:szCs w:val="32" />
+          </w:rPr>
+        </w:style>
+        <w:style w:type="paragraph" w:styleId="Heading2">
+          <w:name w:val="heading 2" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading2Char" />
+          <w:uiPriority w:val="9" />
+          <w:unhideWhenUsed />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="40" w:after="0" />
+            <w:outlineLvl w:val="1" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:color w:val="2E74B5" w:themeColor="accent1" w:themeShade="BF" />
+            <w:sz w:val="26" />
+            <w:szCs w:val="26" />
+          </w:rPr>
+        </w:style>
+        <w:style w:type="paragraph" w:styleId="Heading3">
+          <w:name w:val="heading 3" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading3Char" />
+          <w:uiPriority w:val="9" />
+          <w:unhideWhenUsed />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="40" w:after="0" />
+            <w:outlineLvl w:val="2" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:color w:val="1F4D78" w:themeColor="accent1" w:themeShade="7F" />
+            <w:sz w:val="24" />
+            <w:szCs w:val="24" />
+          </w:rPr>
+        </w:style>
+        <w:style w:type="paragraph" w:styleId="Heading4">
+          <w:name w:val="heading 4" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading4Char" />
+          <w:uiPriority w:val="9" />
+          <w:unhideWhenUsed />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="40" w:after="0" />
+            <w:outlineLvl w:val="3" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:i />
+            <w:iCs />
+            <w:color w:val="2E74B5" w:themeColor="accent1" w:themeShade="BF" />
+          </w:rPr>
+        </w:style>
+        <w:style w:type="paragraph" w:styleId="Heading5">
+          <w:name w:val="heading 5" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading5Char" />
+          <w:uiPriority w:val="9" />
+          <w:unhideWhenUsed />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="40" w:after="0" />
+            <w:outlineLvl w:val="4" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:color w:val="2E74B5" w:themeColor="accent1" w:themeShade="BF" />
+          </w:rPr>
+        </w:style>
+        <w:style w:type="paragraph" w:styleId="Heading6">
+          <w:name w:val="heading 6" />
+          <w:basedOn w:val="Normal" />
+          <w:next w:val="Normal" />
+          <w:link w:val="Heading6Char" />
+          <w:uiPriority w:val="9" />
+          <w:unhideWhenUsed />
+          <w:qFormat />
+          <w:pPr>
+            <w:keepNext />
+            <w:keepLines />
+            <w:spacing w:before="40" w:after="0" />
+            <w:outlineLvl w:val="5" />
+          </w:pPr>
+          <w:rPr>
+            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia"
+              w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi" />
+            <w:color w:val="1F4D78" w:themeColor="accent1" w:themeShade="7F" />
+          </w:rPr>
+        </w:style>
+
+        <w:style w:type="character" w:styleId="Hyperlink">
+          <w:name w:val="Hyperlink" />
+          <w:basedOn w:val="DefaultParagraphFont" />
+          <w:uiPriority w:val="99" />
+          <w:unhideWhenUsed />
+          <w:rsid w:val="003C09C6" />
+          <w:rPr>
+            <w:color w:val="0563C1" w:themeColor="hyperlink" />
+            <w:u w:val="single" />
+          </w:rPr>
+        </w:style>
+
+      </w:styles>
+    </pkg:xmlData>
+  </pkg:part>
+
+</pkg:package>

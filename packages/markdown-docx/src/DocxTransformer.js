@@ -15,32 +15,30 @@
 'use strict';
 
 const mammoth = require('mammoth');
-
-const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const {CiceroMarkTransformer} = require('@accordproject/markdown-cicero');
 
 /**
  * Converts a DOCX file to a CiceroMark DOM
  */
 class DocxTransformer {
-
     /**
-     * Construct the parser.
-     * @param {object} [options] configuration options
-     */
+   * Construct the parser.
+   * @param {object} [options] configuration options
+   */
     constructor(options = {}) {
         this.options = options;
         this.ciceroMarkTransformer = new CiceroMarkTransformer();
     }
 
     /**
-     * Converts an html string to a CiceroMark DOM
-     * @param {Buffer} input - docx buffer
-     * @param {string} [format] result format, defaults to 'concerto'. Pass
-     * 'json' to return the JSON data.
-     * @returns {promise} promise to the CiceroMark DOM
-     */
+   * Converts a docx buffer to a CiceroMark DOM
+   * @param {Buffer} input - docx buffer
+   * @param {string} [format] result format, defaults to 'concerto'. Pass
+   * 'json' to return the JSON data.
+   * @returns {promise} promise to the CiceroMark DOM
+   */
     async toCiceroMark(input, format = 'concerto') {
-        const result = await mammoth.convertToMarkdown({buffer: input});
+        const result = await mammoth.convertToMarkdown({ buffer: input });
         const ciceroMarkTransformer = new CiceroMarkTransformer();
         return ciceroMarkTransformer.fromMarkdown(result.value, format);
     }

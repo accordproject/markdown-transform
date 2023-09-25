@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:cdr="http://schemas.openxmlformats.org/drawingml/2006/chartDrawing" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml">
+  <w:body>
+    <w:sectPr>
+      <w:pgSz w:w="12240" w:h="15840" w:orient="portrait"/>
+      <w:pgMar w:top="1440" w:right="1800" w:bottom="1440" w:left="1800" w:header="720" w:footer="720" w:gutter="0"/>
+    </w:sectPr>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">Acceptance of Delivery.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party A"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> will be deemed to have completed its delivery obligations if in </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party B"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">'s opinion, the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Widgets"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> satisfies the Acceptance Criteria, and </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party B"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> notifies </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party A"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> in writing that it is accepting the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Widgets"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">Inspection and Notice.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party B"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> will have </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">10</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> Business Days to inspect and evaluate the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Widgets"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> on the delivery date before notifying </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party A"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> that it is either accepting or rejecting the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Widgets"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">Acceptance Criteria.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">The "Acceptance Criteria" are the specifications the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Widgets"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> must meet for the </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Party A"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve"> to comply with its requirements and obligations under this agreement, detailed in </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">"Attachment X"</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr/>
+        <w:t xml:space="preserve">, attached to this agreement.</w:t>
+      </w:r>
+    </w:p>
+  </w:body>
+</w:document>

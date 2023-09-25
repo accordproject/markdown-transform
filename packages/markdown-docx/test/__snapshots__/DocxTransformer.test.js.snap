@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`import docx converts sample-service-level-agreement.docx to ciceromark 1`] = `
+exports[`docx to ciceromark converts sample-service-level-agreement.docx to ciceromark 1`] = `
 Object {
   "$class": "org.accordproject.commonmark@0.5.0.Document",
   "nodes": Array [
