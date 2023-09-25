@@ -72,7 +72,6 @@
     "jest-diff": "^27.0.6",
     "jsdoc": "^3.6.10",
     "jsome": "2.5.0",
-    "license-check": "1.1.5",
     "license-check-and-add": "2.3.6",
     "mocha": "10.1.0",
     "nyc": "15.1.0",
@@ -84,10 +83,7 @@
   },
   "dependencies": {
     "@accordproject/markdown-cicero": "0.16.19",
-    "@accordproject/markdown-common": "0.16.19",
-    "@accordproject/markdown-html": "^0.16.19",
-    "mammoth": "^1.4.19",
-    "xml-js": "^1.6.11"
+    "mammoth": "^1.4.19"
   },
   "license-check-and-add-config": {
     "folder": "./src",
