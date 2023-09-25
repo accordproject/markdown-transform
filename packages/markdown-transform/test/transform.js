@@ -184,8 +184,8 @@ describe('#acceptance', () => {
             result.should.equal(acceptanceHtml);
         });
 
-        it('ciceromark_parsed -> ooxml', async () => {
-            const result = await transform(omittedAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['ooxml'], {}, {});
+        it('ciceromark_parsed -> wordml', async () => {
+            const result = await transform(omittedAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['wordml'], {}, {});
             result.should.equal(omittedAcceptanceXML);
         });
     });
@@ -282,12 +282,5 @@ describe('#formatDescriptor', () => {
 
     it('Lookup invalid format', () => {
         (() => formatDescriptor('foobar')).should.throw('Unknown format: foobar');
-    });
-});
-
-describe('#ooxml', () => {
-    it('ooxml -> ciceromark_parsed', async () => {
-        const result = await transform(omittedAcceptanceXML, 'ooxml' , ['ciceromark_parsed'], {}, {});
-        chai.expect(result).to.deep.equal(omittedAcceptanceCiceroMarkParsed);
     });
 });

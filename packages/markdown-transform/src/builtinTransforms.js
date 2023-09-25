@@ -195,6 +195,7 @@ const transformationGraph = {
             return zip.file('word/document.xml').async('string');
         }
     },
+    wordml: {},
     html: {
         docs: 'HTML (string)',
         fileFormat: 'utf8',
