@@ -76,8 +76,12 @@ module.exports = {
             'os': false,
             'util': false,
             'url': false,
+            'assert': false,
             'crypto': require.resolve('crypto-browserify'),
             'stream': require.resolve('stream-browserify'),
+            'http': require.resolve('stream-http'),
+            'https': require.resolve('https-browserify'),
+            'zlib': require.resolve('browserify-zlib'),
         }
     }
 };

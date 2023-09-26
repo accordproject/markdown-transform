@@ -25,7 +25,7 @@ A transformation and parsing framework for converting markdown content to HTML, 
 
 ## Structure of the Code Repository
 
-Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `lerna`:
+Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `npm workspaces`:
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-cli) : command line utilities
 * [markdown-transform](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-transform) : High-level API to transform markdown into different formats
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-common) : converts between markdown strings and the CommonMark DOM
@@ -82,9 +82,7 @@ markus --help
 
 ### For developers
 
-To install for development, in the project directory, you will need to first install [lerna](https://lerna.js.org):
 ```
-npm install -g lerna@^3.20.2
 npm install
 ```
 
@@ -94,7 +92,7 @@ Then run:
 npm run test
 ```
 
-Invokes _lerna_ to run the test suite.
+Uses npm workspaces to run the test suite.
 
 ---
 
