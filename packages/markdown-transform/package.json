@@ -3,8 +3,8 @@
   "version": "0.16.20-20230926152530",
   "description": "API for transforming markdown data",
   "engines": {
-    "node": ">=14",
-    "npm": ">=6"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "publishConfig": {
     "access": "public"

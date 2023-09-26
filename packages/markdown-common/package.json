@@ -4,7 +4,7 @@
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=15",
-    "npm": ">=6"
+    "npm": ">=9"
   },
   "publishConfig": {
     "access": "public"

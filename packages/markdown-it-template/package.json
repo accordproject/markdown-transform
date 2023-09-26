@@ -3,8 +3,8 @@
   "version": "0.16.20-20230926152530",
   "description": "Plugin to introduce template blocks and inlines for the markdown-it markdown parser",
   "engines": {
-    "node": ">=14",
-    "npm": ">=6"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "publishConfig": {
     "access": "public"

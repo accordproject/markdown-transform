@@ -3,8 +3,8 @@
   "version": "0.16.20-20230926152530",
   "description": "Transform PDF to/from CiceroMark DOM",
   "engines": {
-    "node": ">=14",
-    "npm": ">=6"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "publishConfig": {
     "access": "public"

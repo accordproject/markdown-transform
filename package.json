@@ -19,7 +19,7 @@
   },
   "engines": {
     "node": ">=18",
-    "npm": ">=6"
+    "npm": ">=9"
   },
   "workspaces": [
     "./packages/*"
