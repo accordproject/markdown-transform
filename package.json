@@ -39,7 +39,7 @@
   "private": true,
   "scripts": {
     "dingus": "npm run --workspace dingus",
-    "build": "npm run build --workspaces",
+    "build": "npm run build --workspaces --if-present",
     "postinstall": "npm run models:get",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
