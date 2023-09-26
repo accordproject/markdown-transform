@@ -45,7 +45,7 @@
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
     "coverage": "node ./scripts/coverage.js \"packages/markdown-*\" && nyc report -t coverage --cwd . --report-dir coverage --reporter=lcov && cat ./coverage/lcov.info",
     "pretest": "npm run licchk",
-    "test": "npm run test:cov --workspace",
+    "test": "npm run test:cov --workspaces",
     "licchk": "license-check-and-add"
   },
   "repository": {

@@ -94,4 +94,4 @@ jobs:
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm version --no-git-tag-version --yes --exact ${{ steps.timestamp.outputs.stamp }}
           npm version --workspaces --include-workspace-root --no-git-tag-version --yes --exact ${{ steps.timestamp.outputs.stamp }}
-          npm publish --workspace packages --access public --tag=unstable 2>&1
+          npm publish --workspaces --access public --tag=unstable 2>&1
