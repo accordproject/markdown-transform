@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-slate",
-  "version": "0.16.19",
+  "version": "0.16.20-20230926152530",
   "description": "Transform markdown to/from CommonMark AST",
   "engines": {
     "node": ">=14",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git",
+    "url": "git+https://github.com/accordproject/markdown-transform.git",
     "directory": "packages/markdown-slate"
   },
   "keywords": [
@@ -51,9 +51,9 @@
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.16.19",
-    "@accordproject/markdown-common": "0.16.19",
-    "@accordproject/markdown-template": "0.16.19"
+    "@accordproject/markdown-cicero": "*",
+    "@accordproject/markdown-common": "*",
+    "@accordproject/markdown-template": "*"
   },
   "license-check-and-add-config": {
     "folder": "./lib",

@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-common",
-  "version": "0.16.19",
+  "version": "0.16.20-20230926152530",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=15",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git",
+    "url": "git+https://github.com/accordproject/markdown-transform.git",
     "directory": "packages/markdown-common"
   },
   "keywords": [

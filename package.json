@@ -22,20 +22,11 @@
     "npm": ">=6"
   },
   "workspaces": [
-    "packages/markdown-cli",
-    "packages/markdown-common",
-    "packages/markdown-docx",
-    "packages/markdown-html",
-    "packages/markdown-it-cicero",
-    "packages/markdown-it-template",
-    "packages/markdown-pdf",
-    "packages/markdown-slate",
-    "packages/markdown-template",
-    "packages/markdown-transform"
+    "./packages/*"
   ],
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.16.19",
+  "version": "0.16.20-20230926152530",
   "private": true,
   "scripts": {
     "dingus": "npm run --workspace dingus",

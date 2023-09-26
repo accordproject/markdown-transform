@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-it-cicero",
-  "version": "0.16.19",
+  "version": "0.16.20-20230926152530",
   "description": "Plugin to introduce cicero blocks and inlines for the markdown-it markdown parser",
   "engines": {
     "node": ">=14",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git",
+    "url": "git+https://github.com/accordproject/markdown-transform.git",
     "directory": "packages/markdown-it-cicero"
   },
   "keywords": [

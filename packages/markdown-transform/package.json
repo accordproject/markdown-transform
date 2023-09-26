@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.16.19",
+  "version": "0.16.20-20230926152530",
   "description": "API for transforming markdown data",
   "engines": {
     "node": ">=14",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git",
+    "url": "git+https://github.com/accordproject/markdown-transform.git",
     "directory": "packages/markdown-transform"
   },
   "keywords": [
@@ -83,13 +83,13 @@
   },
   "dependencies": {
     "@accordproject/concerto-core": "3.9.1",
-    "@accordproject/markdown-cicero": "0.16.19",
-    "@accordproject/markdown-common": "0.16.19",
-    "@accordproject/markdown-docx": "0.16.19",
-    "@accordproject/markdown-html": "0.16.19",
-    "@accordproject/markdown-pdf": "0.16.19",
-    "@accordproject/markdown-slate": "0.16.19",
-    "@accordproject/markdown-template": "0.16.19",
+    "@accordproject/markdown-cicero": "*",
+    "@accordproject/markdown-common": "*",
+    "@accordproject/markdown-docx": "*",
+    "@accordproject/markdown-html": "*",
+    "@accordproject/markdown-pdf": "*",
+    "@accordproject/markdown-slate": "*",
+    "@accordproject/markdown-template": "*",
     "dijkstrajs": "^1.0.2",
     "html-to-docx": "^1.8.0",
     "jszip": "^3.10.1"
