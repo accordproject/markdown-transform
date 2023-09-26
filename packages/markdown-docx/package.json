@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-docx",
-  "version": "0.16.20-20230926152530",
+  "version": "0.16.19",
   "description": "Transform DOCX to CiceroMark DOM",
   "engines": {
     "node": ">=18",

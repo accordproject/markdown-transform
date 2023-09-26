@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.16.20-20230926152530",
+  "version": "0.16.19",
   "description": "API for transforming markdown data",
   "engines": {
     "node": ">=18",
