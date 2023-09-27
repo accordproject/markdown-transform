@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-slate",
-  "version": "0.16.19",
+  "version": "0.16.21",
   "description": "Transform markdown to/from CommonMark AST",
   "engines": {
     "node": ">=18",
