@@ -89,7 +89,7 @@ Then run:
 npm run test
 ```
 
-Uses npm workspaces to run the test suite.
+This command uses npm workspaces to run the tests for each package in the monorepo.
 
 ---
 
