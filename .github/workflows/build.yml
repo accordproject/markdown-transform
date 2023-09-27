@@ -91,7 +91,7 @@ jobs:
 
       - name: build and publish
         run: |
+          export NODE_OPTIONS="--max_old_space_size=6144"
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          npm version --no-git-tag-version --yes --exact ${{ steps.timestamp.outputs.stamp }}
-          npx lerna version --no-git-tag-version --yes --exact ${{ steps.timestamp.outputs.stamp }}
-          npx lerna exec --ignore dingus -- npm publish --access public --ignore-scripts --tag=unstable 2>&1
+          npm version --workspaces --include-workspace-root --no-git-tag-version --yes --exact ${{ steps.timestamp.outputs.stamp }}
+          npm publish --workspaces --access public --tag=unstable 2>&1

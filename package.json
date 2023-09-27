@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@accordproject/concerto-core": "3.9.1",
+    "browserify-zlib": "^0.2.0",
     "colors": "1.4.0",
     "coveralls": "3.0.4",
     "dayjs": "1.10.8",
@@ -8,7 +9,6 @@
     "glob": "^7.1.7",
     "jest": "^27.0.6",
     "jsdoc": "^3.6.10",
-    "lerna": "^7.2.0",
     "license-check-and-add": "2.3.6",
     "mkdirp": "1.0.4",
     "nyc": "15.1.0",
@@ -19,34 +19,24 @@
   },
   "engines": {
     "node": ">=18",
-    "npm": ">=6"
+    "npm": ">=9"
   },
   "workspaces": [
-    "packages/markdown-cli",
-    "packages/markdown-common",
-    "packages/markdown-docx",
-    "packages/markdown-html",
-    "packages/markdown-it-cicero",
-    "packages/markdown-it-template",
-    "packages/markdown-pdf",
-    "packages/markdown-slate",
-    "packages/markdown-template",
-    "packages/markdown-transform"
+    "./packages/*"
   ],
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
   "version": "0.16.19",
   "private": true,
   "scripts": {
-    "dingus": "lerna exec --scope dingus -- npm run dingus",
-    "build": "lerna run build",
+    "dingus": "npm run --workspace dingus",
+    "build": "npm run build --workspaces --if-present",
     "postinstall": "npm run models:get",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
     "coverage": "node ./scripts/coverage.js \"packages/markdown-*\" && nyc report -t coverage --cwd . --report-dir coverage --reporter=lcov && cat ./coverage/lcov.info",
     "pretest": "npm run licchk",
-    "test": "lerna exec --ignore dingus -- npm run test:cov",
-    "repoclean": "lerna clean",
+    "test": "npm run test:cov --workspaces",
     "licchk": "license-check-and-add"
   },
   "repository": {

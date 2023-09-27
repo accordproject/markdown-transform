@@ -3,8 +3,8 @@
   "version": "0.16.19",
   "description": "Transform DOCX to CiceroMark DOM",
   "engines": {
-    "node": ">=14",
-    "npm": ">=6"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "publishConfig": {
     "access": "public"
@@ -30,16 +30,11 @@
     "test": "jest --timeOut=10000",
     "test:cov": "npm run lint && jest --timeOut=10000 --coverage",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
-    "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/",
-    "pkgcheck": "node ./scripts/pkgcheck.js",
-    "pkgstamp": "node ./scripts/pkgstamp.js",
-    "pkgbump": "node ./scripts/pkgbump.js && node ./scripts/pkgcheck.js --fix",
-    "pkgset": "node ./scripts/pkgset.js",
-    "depcheck": "node ./scripts/depcheck.js"
+    "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/accordproject/markdown-transform.git",
+    "url": "git+https://github.com/accordproject/markdown-transform.git",
     "directory": "packages/markdown-docx"
   },
   "keywords": [
@@ -63,11 +58,13 @@
     "archiver": "3.0.0",
     "babel-loader": "8.2.3",
     "babel-plugin-istanbul": "6.1.1",
+    "browserify-zlib": "^0.2.0",
     "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
     "crypto-browserify": "3.12.0",
     "eslint": "8.2.0",
+    "https-browserify": "^1.0.0",
     "jest": "^27.0.6",
     "jest-diff": "^27.0.6",
     "jsdoc": "^3.6.10",
@@ -77,12 +74,13 @@
     "nyc": "15.1.0",
     "raw-loader": "^4.0.2",
     "stream-browserify": "3.0.0",
+    "stream-http": "^3.2.0",
     "tsd-jsdoc": "^2.3.0",
     "webpack": "5.76.0",
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "0.16.19",
+    "@accordproject/markdown-cicero": "*",
     "mammoth": "^1.4.19"
   },
   "license-check-and-add-config": {

@@ -69,6 +69,7 @@ module.exports = {
     },
     resolve: {
         fallback: {
+            'assert' : false,
             'fs': false,
             'tls': false,
             'net': false,

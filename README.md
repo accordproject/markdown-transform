@@ -15,19 +15,17 @@
   </a>
 </p>
 
-### Visit the [TemplateMark Dingus](https://templatemark-dingus.netlify.app)
-
 ## Introduction
 
-A transformation and parsing framework for converting markdown content to HTML, Slate (for rich-text editing) and other structured document object models (DOMs).
+A transformation and parsing framework for converting markdown content to HTML, PDF, DOCX, Slate (for rich-text editing) and other structured document object models (DOMs).
 
 ![Transformations](./packages/markdown-transform/transformations.png)
 
 ## Structure of the Code Repository
 
-Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `lerna`:
+Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `npm workspaces`:
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-cli) : command line utilities
-* [markdown-transform](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-transform) : High-level API to transform markdown into different formats
+* [markdown-transform](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-transform) : High-level API to transform files into different formats
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-common) : converts between markdown strings and the CommonMark DOM
 * [markdown-cicero](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-cicero) : converts between the CommonMark DOM and the CiceroMark DOM
 * [markdown-template](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-template) : converts between JSON data + markdown strings and TemplateMark
@@ -37,7 +35,6 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 * [markdown-docx](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-docx) : converts a DOCX file to the CiceroMark DOM
 * [markdown-it-cicero](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-it-cicero) : markdown-it plugin for contracts and CiceroMark
 * [markdown-it-template](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-it-template) : markdown-it plugin for templates and TemplateMark
-* [dingus](https://github.com/accordproject/markdown-transform/tree/main/packages/dingus) : published tool to edit markdown as HTML or a DOM
 
 ###  CommonMark DOM
 
@@ -82,9 +79,7 @@ markus --help
 
 ### For developers
 
-To install for development, in the project directory, you will need to first install [lerna](https://lerna.js.org):
 ```
-npm install -g lerna@^3.20.2
 npm install
 ```
 
@@ -94,7 +89,7 @@ Then run:
 npm run test
 ```
 
-Invokes _lerna_ to run the test suite.
+This command uses npm workspaces to run the tests for each package in the monorepo.
 
 ---
 
