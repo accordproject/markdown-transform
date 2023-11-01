@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-html",
-  "version": "0.16.19",
+  "version": "0.16.21",
   "description": "Transform CiceroDOM to HTML",
   "engines": {
     "node": ">=18",
