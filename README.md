@@ -122,7 +122,7 @@ The Accord Project technology is being developed as open source. All the softwar
 
 Find out what’s coming on our [blog][apblog].
 
-Join the Accord Project Technology Working Group [Slack channel][apslack] to get involved!
+Join the Accord Project Technology Working Group [Discord channel](https://discord.gg/Zm99SKhhtA) to get involved!
 
 For code contributions, read our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
 
