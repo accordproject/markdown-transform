@@ -10,8 +10,8 @@
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/accordproject/markdown-transform?color=bright-green" alt="GitHub license"></a>
   <a href="https://www.npmjs.com/package/@accordproject/markdown-cli"><img src="https://img.shields.io/npm/dm/@accordproject/markdown-cli" alt="downloads"></a>
   <a href="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli"><img src="https://badge.fury.io/js/%40accordproject%2Fmarkdown-cli.svg" alt="npm version"></a>
-  <a href="https://accord-project-slack-signup.herokuapp.com/">
-    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue" alt="Join the Accord Project Slack"/>
+  <a href="https://discord.gg/Zm99SKhhtA">
+    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Discord-blue" alt="Join the Accord Project Discord"/>
   </a>
 </p>
 
@@ -103,8 +103,8 @@ This command uses npm workspaces to run the tests for each package in the monore
   <a href="./LICENSE">
     <img src="https://img.shields.io/github/license/accordproject/cicero?color=bright-green" alt="GitHub license">
   </a>
-  <a href="https://accord-project-slack-signup.herokuapp.com/">
-    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Slack-blue" alt="Join the Accord Project Slack"/>
+  <a href="https://discord.gg/Zm99SKhhtA">
+    <img src="https://img.shields.io/badge/Accord%20Project-Join%20Discord-blue" alt="Join the Accord Project Discord"/>
   </a>
 </p>
 
@@ -122,7 +122,7 @@ The Accord Project technology is being developed as open source. All the softwar
 
 Find out what’s coming on our [blog][apblog].
 
-Join the Accord Project Technology Working Group [Slack channel][apslack] to get involved!
+Join the Accord Project Technology Working Group [Discord channel][apdiscord] to get involved!
 
 For code contributions, read our [CONTRIBUTING guide][contributing] and information for [DEVELOPERS][developers].
 
@@ -146,7 +146,7 @@ Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respec
 [apmain]: https://accordproject.org/ 
 [apblog]: https://medium.com/@accordhq
 [apdoc]: https://docs.accordproject.org/
-[apslack]: https://accord-project-slack-signup.herokuapp.com
+[apdiscord]: https://discord.gg/Zm99SKhhtA
 
 [contributing]: https://github.com/accordproject/markdown-transform/blob/main/CONTRIBUTING.md
 [developers]: https://github.com/accordproject/markdown-transform/blob/main/DEVELOPERS.md
