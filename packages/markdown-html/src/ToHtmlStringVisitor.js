@@ -185,6 +185,8 @@ class ToHtmlStringVisitor {
             const { delimiter, start, tight} = thing;
             if(thing.type === 'ordered') {
                 parameters.result += `<ol delimiter=${delimiter} start=${start} tight=${tight}>`;
+            }else if(this.type === 'roman'){
+                parameters.result += `<ol type="i" delimiter=${delimiter} start=${start} tight=${tight}>`;
             }
             else {
                 parameters.result += `<ul tight=${tight}>`;
