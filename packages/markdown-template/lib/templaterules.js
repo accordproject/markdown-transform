@@ -254,6 +254,26 @@ var olistCloseRule = {
   open: false,
   close: true
 };
+
+var rlistOpenRule = {
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
+  leaf: false,
+  open: true,
+  close: false,
+  enter: (node, token, callback) => {
+    node.name = getAttr(token.attrs, 'name', null);
+    node.type = 'roman';
+    node.tight = 'true';
+    node.start = 'i';
+    node.delimiter = 'period';
+  }
+};
+var rlistCloseRule = {
+  tag: "".concat(TemplateMarkModel.NAMESPACE, ".ListBlockDefinition"),
+  leaf: false,
+  open: false,
+  close: true
+};
 var rules = {
   inlines: {},
   blocks: {}
@@ -276,4 +296,6 @@ rules.blocks.block_ulist_open = ulistOpenRule;
 rules.blocks.block_ulist_close = ulistCloseRule;
 rules.blocks.block_olist_open = olistOpenRule;
 rules.blocks.block_olist_close = olistCloseRule;
+rules.blocks.block_rlist_open = rlistOpenRule;
+rules.blocks.block_rlist_close = rlistCloseRule;
 module.exports = rules;

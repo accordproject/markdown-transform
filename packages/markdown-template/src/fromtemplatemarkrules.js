@@ -81,7 +81,14 @@ rules.JoinDefinition = (visitor,thing,children,parameters,resultString,resultSeq
 };
 // Container blocks
 rules.ListBlockDefinition = (visitor,thing,children,parameters,resultString,resultSeq) => {
-    const listKind = thing.type === 'bullet' ? 'ulist' : 'olist';
+    let listKind;
+    if(this.type === 'bullete'){
+        listKind = 'ulist';
+    }else if(this.type == 'roman'){
+        listKind = 'rlist';
+    }else{
+        listKind = 'olist';
+    }
     const prefix = CommonMarkUtils.mkPrefix(parameters,1);
     const next1 = prefix;
     const next2 = `{{#${listKind} ${thing.name}}}\n`;
