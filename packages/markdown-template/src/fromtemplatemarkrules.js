@@ -84,7 +84,7 @@ rules.ListBlockDefinition = (visitor,thing,children,parameters,resultString,resu
     let listKind;
     if(this.type === 'bullete'){
         listKind = 'ulist';
-    }else if(this.type == 'roman'){
+    }else if(this.type === 'roman'){
         listKind = 'rlist';
     }else{
         listKind = 'olist';
