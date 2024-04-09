@@ -74,7 +74,7 @@ module.exports = {
             'net': false,
             'path': false,
             'os': false,
-            'util': false,
+            'util': require.resolve('browserify-util'),
             'url': false,
             'assert': false,
             'crypto': require.resolve('crypto-browserify'),

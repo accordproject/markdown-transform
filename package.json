@@ -15,7 +15,8 @@
     "semver": "7.3.5",
     "sleep-promise": "8.0.1",
     "source-map-support": "0.5.12",
-    "traverse": "^0.6.7"
+    "traverse": "^0.6.7",
+    "util": "npm:browserify-util@^0.12.6"
   },
   "engines": {
     "node": ">=18",
