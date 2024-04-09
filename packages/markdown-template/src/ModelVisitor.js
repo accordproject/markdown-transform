@@ -14,8 +14,6 @@
 
 'use strict';
 
-const util = require('util');
-
 const { CommonMarkModel, TemplateMarkModel } = require('@accordproject/markdown-common');
 
 /**
@@ -44,10 +42,7 @@ class ModelVisitor {
         } else if (thing.isEnumValue?.()) {
             return this.visitEnumValueDeclaration(thing, parameters);
         } else {
-            throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, {
-                showHidden: true,
-                depth: 2
-            }));
+            throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + thing);
         }
     }
 
