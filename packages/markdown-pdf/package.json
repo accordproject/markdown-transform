@@ -79,7 +79,7 @@
     "@accordproject/markdown-cicero": "*",
     "@accordproject/markdown-common": "*",
     "@accordproject/markdown-template": "*",
-    "axios": "0.23.0",
+    "axios": "0.28.0",
     "pdfjs-dist": "2.13.216",
     "pdfmake": "^0.2.4",
     "type-of": "^2.0.1"
