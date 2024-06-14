@@ -76,9 +76,9 @@ module.exports = {
     // globals: {},
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    // moduleDirectories: [
-    //   "node_modules"
-    // ],
+    moduleNameMapper: {
+        '^axios$': 'axios/dist/node/axios.cjs'
+    },
 
     // An array of file extensions your modules use
     // moduleFileExtensions: [
