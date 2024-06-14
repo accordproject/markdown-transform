@@ -107,7 +107,6 @@ var ifCloseRule = {
     }
     delete node.nodes; // Delete children (now in whenTrue or whenFalse)
   },
-
   skipEmpty: false
 };
 var elseRule = {
@@ -125,7 +124,6 @@ var elseRule = {
       node.nodes = []; // Reset children (now in whenSome)
     }
   },
-
   skipEmpty: false
 };
 var optionalOpenRule = {
@@ -154,7 +152,6 @@ var optionalCloseRule = {
     }
     delete node.nodes; // Delete children (now in whenSome or whenNone)
   },
-
   skipEmpty: false
 };
 var withOpenRule = {

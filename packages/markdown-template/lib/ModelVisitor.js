@@ -14,7 +14,6 @@
 
 'use strict';
 
-var util = require('util');
 var {
   CommonMarkModel,
   TemplateMarkModel
@@ -47,10 +46,7 @@ class ModelVisitor {
     } else if ((_thing$isEnumValue = thing.isEnumValue) !== null && _thing$isEnumValue !== void 0 && _thing$isEnumValue.call(thing)) {
       return this.visitEnumValueDeclaration(thing, parameters);
     } else {
-      throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + util.inspect(thing, {
-        showHidden: true,
-        depth: 2
-      }));
+      throw new Error('Unrecognised type: ' + typeof thing + ', value: ' + thing);
     }
   }
 

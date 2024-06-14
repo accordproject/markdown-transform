@@ -40,7 +40,6 @@ function _throwTemplateExceptionForElement(message, element) {
       endColumn //XXX
     }
   };
-
   throw new TemplateException(message, fileLocation, fileName, null, 'markdown-template');
 }
 module.exports._throwTemplateExceptionForElement = _throwTemplateExceptionForElement;

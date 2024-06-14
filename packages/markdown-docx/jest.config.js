@@ -43,6 +43,7 @@ module.exports = {
 
     // An array of regexp pattern strings used to skip coverage collection
     coveragePathIgnorePatterns: [
+        '/src/',
         '/node_modules/'
     ],
 
@@ -76,9 +77,9 @@ module.exports = {
     // globals: {},
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    moduleNameMapper: {
-        '^axios$': 'axios/dist/axios.js'
-    },
+    // moduleDirectories: [
+    //   "node_modules"
+    // ],
 
     // An array of file extensions your modules use
     // moduleFileExtensions: [
@@ -91,7 +92,9 @@ module.exports = {
     // ],
 
     // A map from regular expressions to module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
+    moduleNameMapper: {
+        '^axios$': 'axios/dist/axios.js'
+    },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     // modulePathIgnorePatterns: [],
@@ -153,9 +156,10 @@ module.exports = {
     // testLocationInResults: false,
 
     // The glob patterns Jest uses to detect test files
-    testMatch: [
-        'test/**/*.js',
-    ],
+    // testMatch: [
+    //   "**/__tests__/**/*.[jt]s?(x)",
+    //   "**/?(*.)+(spec|test).[tj]s?(x)"
+    // ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
     // testPathIgnorePatterns: [
@@ -178,11 +182,11 @@ module.exports = {
     // timers: "real",
 
     // A map from regular expressions to paths to transformers
-    // transform: null,
+    // transform: {},
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [
-    //   "/node_modules/"
+    //     '/node_modules/'
     // ],
 
     // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
