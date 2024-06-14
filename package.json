@@ -1,8 +1,6 @@
 {
   "devDependencies": {
     "@accordproject/concerto-core": "3.16.9",
-    "@babel/core": "^7.24.6",
-    "babel-jest": "^29.7.0",
     "browserify-zlib": "^0.2.0",
     "colors": "1.4.0",
     "coveralls": "3.0.4",
