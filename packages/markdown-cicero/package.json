@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cicero",
-  "version": "0.16.22",
+  "version": "0.16.23",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=18",
