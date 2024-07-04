@@ -26,7 +26,7 @@
   ],
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "0.16.23",
+  "version": "0.16.24",
   "private": true,
   "scripts": {
     "dingus": "npm run --workspace dingus",
