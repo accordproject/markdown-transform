@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-it-cicero",
-  "version": "0.16.24",
+  "version": "0.16.25",
   "description": "Plugin to introduce cicero blocks and inlines for the markdown-it markdown parser",
   "engines": {
     "node": ">=18",
