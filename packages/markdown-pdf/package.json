@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-pdf",
-  "version": "0.16.23",
+  "version": "0.16.24",
   "description": "Transform PDF to/from CiceroMark DOM",
   "engines": {
     "node": ">=18",

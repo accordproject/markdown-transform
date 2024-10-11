@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-transform",
-  "version": "0.16.23",
+  "version": "0.16.24",
   "description": "API for transforming markdown data",
   "engines": {
     "node": ">=18",
@@ -82,7 +82,7 @@
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "3.16.10",
+    "@accordproject/concerto-core": "3.19.2",
     "@accordproject/markdown-cicero": "*",
     "@accordproject/markdown-common": "*",
     "@accordproject/markdown-docx": "*",
