@@ -259,6 +259,8 @@ class TypeVisitor {
             });
         }
             break;
+        case 'ForeachDefinition':
+        case 'JoinDefinition':
         case 'ListBlockDefinition': {
             const property = currentModel.getOwnProperty(thing.name);
             let nextModel;
@@ -266,32 +268,7 @@ class TypeVisitor {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (!property.isArray()) {
-                _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name, thing);
-            }
-            const serializer = parameters.templateMarkModelManager.getSerializer();
-            thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
-                nextModel = property;
-            } else {
-                thing.elementType = property.getFullyQualifiedTypeName();
-                nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
-            }
-            TypeVisitor.visitChildren(this, thing, {
-                templateMarkModelManager:parameters.templateMarkModelManager,
-                introspector:parameters.introspector,
-                model:nextModel,
-                kind:parameters.kind
-            });
-        }
-            break;
-        case 'JoinDefinition': {
-            const property = currentModel.getOwnProperty(thing.name);
-            let nextModel;
-            if (!property) {
-                _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
-            }
-            if (!property.isArray()) {
-                _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
+                _throwTemplateExceptionForElement(`${thing.getType()} template not on an array property: ${thing.name}`, thing);
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);

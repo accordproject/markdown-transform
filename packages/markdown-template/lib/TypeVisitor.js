@@ -267,6 +267,8 @@ class TypeVisitor {
           });
         }
         break;
+      case 'ForeachDefinition':
+      case 'JoinDefinition':
       case 'ListBlockDefinition':
         {
           var _property4 = currentModel.getOwnProperty(thing.name);
@@ -275,7 +277,7 @@ class TypeVisitor {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
           if (!_property4.isArray()) {
-            _throwTemplateExceptionForElement('List template not on an array property: ' + thing.name, thing);
+            _throwTemplateExceptionForElement("".concat(thing.getType(), " template not on an array property: ").concat(thing.name), thing);
           }
           var _serializer5 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = processDecorators(_serializer5, _property4);
@@ -293,37 +295,11 @@ class TypeVisitor {
           });
         }
         break;
-      case 'JoinDefinition':
+      case 'ConditionalDefinition':
         {
           var _property5 = currentModel.getOwnProperty(thing.name);
           var _nextModel2;
-          if (!_property5) {
-            _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
-          }
-          if (!_property5.isArray()) {
-            _throwTemplateExceptionForElement('Join template not on an array property: ' + thing.name, thing);
-          }
-          var _serializer6 = parameters.templateMarkModelManager.getSerializer();
-          thing.decorators = processDecorators(_serializer6, _property5);
-          if (_property5.isPrimitive()) {
-            _nextModel2 = _property5;
-          } else {
-            thing.elementType = _property5.getFullyQualifiedTypeName();
-            _nextModel2 = parameters.introspector.getClassDeclaration(thing.elementType);
-          }
-          TypeVisitor.visitChildren(this, thing, {
-            templateMarkModelManager: parameters.templateMarkModelManager,
-            introspector: parameters.introspector,
-            model: _nextModel2,
-            kind: parameters.kind
-          });
-        }
-        break;
-      case 'ConditionalDefinition':
-        {
-          var _property6 = currentModel.getOwnProperty(thing.name);
-          var _nextModel3;
-          if (thing.name !== 'if' && !_property6) {
+          if (thing.name !== 'if' && !_property5) {
             // hack, allow the node to have the name 'if'
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
@@ -331,13 +307,13 @@ class TypeVisitor {
           // if (property.getType() !== 'Boolean') {
           //     _throwTemplateExceptionForElement('Conditional template not on a boolean property: ' + thing.name, thing);
           // }
-          var _serializer7 = parameters.templateMarkModelManager.getSerializer();
-          thing.decorators = _property6 ? processDecorators(_serializer7, _property6) : null;
-          _nextModel3 = _property6;
+          var _serializer6 = parameters.templateMarkModelManager.getSerializer();
+          thing.decorators = _property5 ? processDecorators(_serializer6, _property5) : null;
+          _nextModel2 = _property5;
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel3,
+            model: _nextModel2,
             kind: parameters.kind
           }, 'whenTrue');
           TypeVisitor.visitChildren(this, thing, {
@@ -350,27 +326,27 @@ class TypeVisitor {
         break;
       case 'OptionalDefinition':
         {
-          var _property7 = currentModel.getOwnProperty(thing.name);
-          var _nextModel4;
-          if (!_property7) {
+          var _property6 = currentModel.getOwnProperty(thing.name);
+          var _nextModel3;
+          if (!_property6) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
-          if (!_property7.isOptional()) {
+          if (!_property6.isOptional()) {
             _throwTemplateExceptionForElement('Optional template not on an optional property: ' + thing.name, thing);
           }
-          var _serializer8 = parameters.templateMarkModelManager.getSerializer();
-          thing.decorators = processDecorators(_serializer8, _property7);
-          if (_property7.isPrimitive()) {
-            thing.elementType = _property7.getFullyQualifiedTypeName();
-            _nextModel4 = _property7;
+          var _serializer7 = parameters.templateMarkModelManager.getSerializer();
+          thing.decorators = processDecorators(_serializer7, _property6);
+          if (_property6.isPrimitive()) {
+            thing.elementType = _property6.getFullyQualifiedTypeName();
+            _nextModel3 = _property6;
           } else {
-            thing.elementType = _property7.getFullyQualifiedTypeName();
-            _nextModel4 = parameters.introspector.getClassDeclaration(thing.elementType);
+            thing.elementType = _property6.getFullyQualifiedTypeName();
+            _nextModel3 = parameters.introspector.getClassDeclaration(thing.elementType);
           }
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel4,
+            model: _nextModel3,
             kind: parameters.kind
           }, 'whenSome');
           TypeVisitor.visitChildren(this, thing, {
