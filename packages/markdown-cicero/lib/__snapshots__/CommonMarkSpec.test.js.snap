@@ -6996,7 +6996,8 @@ exports[`markdown-spec converts HTML blocks-118 to concerto 1`] = `
         "attributeString": "",
         "attributes": [],
         "closed": false,
-        "content": "",
+        "content": "
+",
         "tagName": "table",
       },
       "text": "<table><tr><td>
@@ -7755,7 +7756,8 @@ exports[`markdown-spec converts HTML blocks-142 to concerto 1`] = `
           },
         ],
         "closed": false,
-        "content": "",
+        "content": "<style
+  type="text/css"><",
         "tagName": "style",
       },
       "text": "<style
@@ -17278,7 +17280,11 @@ exports[`markdown-spec converts Raw HTML-622 to concerto 1`] = `
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
-          "text": "foo <!-- not a comment -- two hyphens -->",
+          "text": "foo ",
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
+          "text": "<!-- not a comment -- two hyphens -->",
         },
       ],
     },
@@ -17296,7 +17302,15 @@ exports[`markdown-spec converts Raw HTML-623 to concerto 1`] = `
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
-          "text": "foo <!--> foo -->",
+          "text": "foo ",
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
+          "text": "<!-->",
+        },
+        {
+          "$class": "org.accordproject.commonmark@0.5.0.Text",
+          "text": " foo -->",
         },
       ],
     },
