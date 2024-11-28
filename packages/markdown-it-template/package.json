@@ -47,15 +47,14 @@
     "chai-as-promised": "7.1.1",
     "chai-string": "^1.5.0",
     "chai-things": "0.2.0",
-    "eslint": "8.2.0",
+    "eslint": "8.57.1",
     "jsdoc": "^4.0.4",
     "license-check-and-add": "2.3.6",
-    "mocha": "10.1.0",
-    "nyc": "15.1.0"
+    "mocha": "10.8.2",
+    "nyc": "17.1.0"
   },
   "dependencies": {
-    "markdown-it": "^13.0.1",
-    "semver": "7.6.3"
+    "markdown-it": "^14.1.0"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
