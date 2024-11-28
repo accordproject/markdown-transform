@@ -28,7 +28,7 @@
     "postlint": "npm run licchk",
     "licchk": "license-check-and-add",
     "test": "jest --timeOut=10000",
-    "test:updateSnapshot": "jest --updateSnapshot --testTimeout=10000 --silent",
+    "test:updateSnapshot": "jest --updateSnapshot --silent",
     "test:cov": "npm run lint && jest --timeOut=10000 --coverage",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/"
