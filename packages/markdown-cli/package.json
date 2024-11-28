@@ -47,7 +47,7 @@
     "chai-as-promised": "7.1.1",
     "chai-things": "0.2.0",
     "eslint": "8.2.0",
-    "jsdoc": "^3.6.10",
+    "jsdoc": "^4.0.4",
     "license-check-and-add": "2.3.6",
     "mocha": "10.1.0",
     "nyc": "15.1.0",
@@ -57,6 +57,7 @@
     "@accordproject/concerto-util": "3.19.2",
     "@accordproject/markdown-transform": "*",
     "jsome": "2.5.0",
+    "semver": "7.6.3",
     "winston": "3.2.1",
     "yargs": "17.3.1"
   },

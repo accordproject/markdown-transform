@@ -48,13 +48,14 @@
     "chai-string": "^1.5.0",
     "chai-things": "0.2.0",
     "eslint": "8.2.0",
-    "jsdoc": "^3.6.10",
+    "jsdoc": "^4.0.4",
     "license-check-and-add": "2.3.6",
     "mocha": "10.1.0",
     "nyc": "15.1.0"
   },
   "dependencies": {
-    "markdown-it": "^13.0.1"
+    "markdown-it": "^13.0.1",
+    "semver": "7.6.3"
   },
   "license-check-and-add-config": {
     "folder": "./lib",

@@ -68,7 +68,7 @@
     "https-browserify": "^1.0.0",
     "jest": "^27.0.6",
     "jest-diff": "^27.0.6",
-    "jsdoc": "^3.6.10",
+    "jsdoc": "^4.0.4",
     "jsome": "2.5.0",
     "license-check-and-add": "2.3.6",
     "mocha": "10.1.0",
@@ -92,7 +92,8 @@
     "@accordproject/markdown-template": "*",
     "dijkstrajs": "^1.0.2",
     "html-to-docx": "^1.8.0",
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.1",
+    "semver": "7.6.3"
   },
   "license-check-and-add-config": {
     "folder": "./lib",
