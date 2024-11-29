@@ -154,7 +154,7 @@ class TypeVisitor {
               var _property$isRelations;
               var serializer = parameters.templateMarkModelManager.getSerializer();
               thing.decorators = processDecorators(serializer, property);
-              if (property.isTypeEnum()) {
+              if (property.isTypeEnum && property.isTypeEnum()) {
                 var enumVariableDeclaration = parameters.templateMarkModelManager.getType("".concat(TemplateMarkModel.NAMESPACE, ".EnumVariableDefinition"));
                 var enumType = property.getParent().getModelFile().getType(property.getType());
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -186,7 +186,7 @@ class TypeVisitor {
               var _property$isRelations2;
               var _serializer = parameters.templateMarkModelManager.getSerializer();
               thing.decorators = processDecorators(_serializer, _property);
-              if (_property.isTypeEnum()) {
+              if (_property.isTypeEnum && _property.isTypeEnum()) {
                 var _enumVariableDeclaration = parameters.templateMarkModelManager.getType("".concat(TemplateMarkModel.NAMESPACE, ".EnumVariableDefinition"));
                 var _enumType = _property.getParent().getModelFile().getType(_property.getType());
                 thing.elementType = _property.getFullyQualifiedTypeName();
