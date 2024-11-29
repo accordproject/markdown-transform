@@ -1,69 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`acceptance converts acceptance clause content to markdown string (getClauseText) 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -76,77 +76,77 @@ Object {
 `;
 
 exports[`acceptance converts acceptance clause content to markdown string (getClauseText) 2`] = `
-"Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+"Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement."
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement."
 `;
 
 exports[`acceptance converts acceptance to cicero markdown string 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -164,79 +164,79 @@ exports[`acceptance converts acceptance to cicero markdown string 2`] = `
 
 And below is a **clause**.
 
-{{#clause 479adbb4-dc55-4d1a-ab12-b6c5e16900c0 src=\\"ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f\\"}}
-Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+{{#clause 479adbb4-dc55-4d1a-ab12-b6c5e16900c0 src="ap://acceptance-of-delivery@0.12.1#721d1aa0999a5d278653e211ae2a64b75fdd8ca6fa1f34255533c942404c5c1f"}}
+Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.
 {{/clause}}"
 `;
 
 exports[`acceptance converts acceptance to markdown string (plaintext) 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -253,77 +253,77 @@ exports[`acceptance converts acceptance to markdown string (plaintext) 2`] = `
 
 And below is a clause.
 
-Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement."
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement."
 `;
 
 exports[`acceptance converts acceptance to markdown string (unquoted) 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -341,77 +341,77 @@ exports[`acceptance converts acceptance to markdown string (unquoted) 2`] = `
 
 And below is a **clause**.
 
-Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement."
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement."
 `;
 
 exports[`acceptance converts acceptance to markdown string 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -429,77 +429,77 @@ exports[`acceptance converts acceptance to markdown string 2`] = `
 
 And below is a **clause**.
 
-Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".
+Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".
 
-Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".
+Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement."
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement."
 `;
 
 exports[`markdown converts acceptance.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -512,160 +512,160 @@ Object {
 `;
 
 exports[`markdown converts acceptance-formatted.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Acceptance of Delivery.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Party A\\" will be deemed to have completed its delivery obligations",
+              "text": ""Party A" will be deemed to have completed its delivery obligations",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the",
+              "text": "if in "Party B"'s opinion, the "Widgets" satisfies the",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing",
+              "text": "Acceptance Criteria, and "Party B" notifies "Party A" in writing",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "that it is accepting the \\"Widgets\\".",
+              "text": "that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Inspection and Notice.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Party B\\" will have 10 Business Days to inspect and",
+              "text": ""Party B" will have 10 Business Days to inspect and",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "evaluate the \\"Widgets\\" on the delivery date before notifying",
+              "text": "evaluate the "Widgets" on the delivery date before notifying",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Party A\\" that it is either accepting or rejecting the",
+              "text": ""Party A" that it is either accepting or rejecting the",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Widgets\\".",
+              "text": ""Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Acceptance Criteria.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\"",
+              "text": "The "Acceptance Criteria" are the specifications the "Widgets"",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "must meet for the \\"Party A\\" to comply with its requirements and",
+              "text": "must meet for the "Party A" to comply with its requirements and",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "obligations under this agreement, detailed in \\"Attachment X\\", attached",
+              "text": "obligations under this agreement, detailed in "Attachment X", attached",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "to this agreement.",
             },
@@ -680,84 +680,84 @@ Object {
 `;
 
 exports[`markdown converts acceptance-formula.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "This is ",
             },
-            Object {
+            {
               "$class": "org.accordproject.ciceromark@0.6.0.Formula",
-              "dependencies": Array [],
+              "dependencies": [],
               "name": "formula",
-              "value": "\\"Widgets\\"",
+              "value": ""Widgets"",
             },
           ],
         },
@@ -770,69 +770,69 @@ Object {
 `;
 
 exports[`markdown converts acceptance-nosrc.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -844,59 +844,59 @@ Object {
 `;
 
 exports[`markdown converts acceptance-notclause.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.CodeBlock",
-      "info": "<clause clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\" BAR=\\"something\\">",
-      "tag": Object {
+      "info": "<clause clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0" FOO="something" BAR="something">",
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-        "attributeString": "clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" BAR = \\"something\\" ",
-        "attributes": Array [
-          Object {
+        "attributeString": "clauseid = "479adbb4-dc55-4d1a-ab12-b6c5e16900c0" FOO = "something" BAR = "something" ",
+        "attributes": [
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "clauseid",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
-          Object {
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "FOO",
             "value": "something",
           },
-          Object {
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "BAR",
             "value": "something",
@@ -906,11 +906,11 @@ Object {
         "content": "",
         "tagName": "clause",
       },
-      "text": "Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+      "text": "Acceptance of Delivery. <variable id="shipper" value="%22Party%20A%22"/> will be deemed to have completed its delivery obligations if in <variable id="receiver" value="%22Party%20B%22"/>'s opinion, the <variable id="deliverable" value="%22Widgets%22"/> satisfies the Acceptance Criteria, and <variable id="receiver" value="%22Party%20B%22"/> notifies <variable id="shipper" value="%22Party%20A%22"/> in writing that it is accepting the <variable id="deliverable" value="%22Widgets%22"/>.
 
-Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Inspection and Notice. <variable id="receiver" value="%22Party%20B%22"/> will have <variable id="businessDays" value="10"/> Business Days' to inspect and evaluate the <variable id="deliverable" value="%22Widgets%22"/> on the delivery date before notifying <variable id="shipper" value="%22Party%20A%22"/> that it is either accepting or rejecting the <variable id="deliverable" value="%22Widgets%22"/>.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the <variable id="deliverable" value="%22Widgets%22"/> must meet for the <variable id="shipper" value="%22Party%20A%22"/> to comply with its requirements and obligations under this agreement, detailed in <variable id="attachment" value="%22Attachment%20X%22"/>, attached to this agreement.
 ",
     },
   ],
@@ -919,54 +919,54 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <v
 `;
 
 exports[`markdown converts acceptance-notclause2.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.CodeBlock",
-      "info": "<clause clauseid=\\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO=\\"something\\">",
-      "tag": Object {
+      "info": "<clause clauseid="479adbb4-dc55-4d1a-ab12-b6c5e16900c0" FOO="something">",
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-        "attributeString": "clauseid = \\"479adbb4-dc55-4d1a-ab12-b6c5e16900c0\\" FOO = \\"something\\" ",
-        "attributes": Array [
-          Object {
+        "attributeString": "clauseid = "479adbb4-dc55-4d1a-ab12-b6c5e16900c0" FOO = "something" ",
+        "attributes": [
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "clauseid",
             "value": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
           },
-          Object {
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "FOO",
             "value": "something",
@@ -976,11 +976,11 @@ Object {
         "content": "",
         "tagName": "clause",
       },
-      "text": "Acceptance of Delivery. <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> will be deemed to have completed its delivery obligations if in <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/>'s opinion, the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> satisfies the Acceptance Criteria, and <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> notifies <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> in writing that it is accepting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+      "text": "Acceptance of Delivery. <variable id="shipper" value="%22Party%20A%22"/> will be deemed to have completed its delivery obligations if in <variable id="receiver" value="%22Party%20B%22"/>'s opinion, the <variable id="deliverable" value="%22Widgets%22"/> satisfies the Acceptance Criteria, and <variable id="receiver" value="%22Party%20B%22"/> notifies <variable id="shipper" value="%22Party%20A%22"/> in writing that it is accepting the <variable id="deliverable" value="%22Widgets%22"/>.
 
-Inspection and Notice. <variable id=\\"receiver\\" value=\\"%22Party%20B%22\\"/> will have <variable id=\\"businessDays\\" value=\\"10\\"/> Business Days' to inspect and evaluate the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> on the delivery date before notifying <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> that it is either accepting or rejecting the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/>.
+Inspection and Notice. <variable id="receiver" value="%22Party%20B%22"/> will have <variable id="businessDays" value="10"/> Business Days' to inspect and evaluate the <variable id="deliverable" value="%22Widgets%22"/> on the delivery date before notifying <variable id="shipper" value="%22Party%20A%22"/> that it is either accepting or rejecting the <variable id="deliverable" value="%22Widgets%22"/>.
 
-Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <variable id=\\"deliverable\\" value=\\"%22Widgets%22\\"/> must meet for the <variable id=\\"shipper\\" value=\\"%22Party%20A%22\\"/> to comply with its requirements and obligations under this agreement, detailed in <variable id=\\"attachment\\" value=\\"%22Attachment%20X%22\\"/>, attached to this agreement.
+Acceptance Criteria. The "Acceptance Criteria" are the specifications the <variable id="deliverable" value="%22Widgets%22"/> must meet for the <variable id="shipper" value="%22Party%20A%22"/> to comply with its requirements and obligations under this agreement, detailed in <variable id="attachment" value="%22Attachment%20X%22"/>, attached to this agreement.
 ",
     },
   ],
@@ -989,86 +989,86 @@ Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the <v
 `;
 
 exports[`markdown converts acceptance-notformula.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "This is ",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
-              "tag": Object {
+              "tag": {
                 "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-                "attributeString": "FOO = \\"%22Widgets%22\\" ",
-                "attributes": Array [
-                  Object {
+                "attributeString": "FOO = "%22Widgets%22" ",
+                "attributes": [
+                  {
                     "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                     "name": "FOO",
                     "value": "%22Widgets%22",
@@ -1078,7 +1078,7 @@ Object {
                 "content": "",
                 "tagName": "computed",
               },
-              "text": "<computed FOO=\\"%22Widgets%22\\"/>",
+              "text": "<computed FOO="%22Widgets%22"/>",
             },
           ],
         },
@@ -1091,69 +1091,69 @@ Object {
 `;
 
 exports[`markdown converts acceptance-reversed.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance of Delivery. \\"Party A\\" will be deemed to have completed its delivery obligations if in \\"Party B\\"'s opinion, the \\"Widgets\\" satisfies the Acceptance Criteria, and \\"Party B\\" notifies \\"Party A\\" in writing that it is accepting the \\"Widgets\\".",
+              "text": "Acceptance of Delivery. "Party A" will be deemed to have completed its delivery obligations if in "Party B"'s opinion, the "Widgets" satisfies the Acceptance Criteria, and "Party B" notifies "Party A" in writing that it is accepting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Inspection and Notice. \\"Party B\\" will have 10 Business Days' to inspect and evaluate the \\"Widgets\\" on the delivery date before notifying \\"Party A\\" that it is either accepting or rejecting the \\"Widgets\\".",
+              "text": "Inspection and Notice. "Party B" will have 10 Business Days' to inspect and evaluate the "Widgets" on the delivery date before notifying "Party A" that it is either accepting or rejecting the "Widgets".",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "Acceptance Criteria. The \\"Acceptance Criteria\\" are the specifications the \\"Widgets\\" must meet for the \\"Party A\\" to comply with its requirements and obligations under this agreement, detailed in \\"Attachment X\\", attached to this agreement.",
+              "text": "Acceptance Criteria. The "Acceptance Criteria" are the specifications the "Widgets" must meet for the "Party A" to comply with its requirements and obligations under this agreement, detailed in "Attachment X", attached to this agreement.",
             },
           ],
         },
@@ -1166,25 +1166,25 @@ Object {
 `;
 
 exports[`markdown converts blockquote.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.BlockQuote",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "A quote.",
             },
@@ -1198,99 +1198,99 @@ Object {
 `;
 
 exports[`markdown converts clause.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a fixed interest loan to the amount of 100000.0",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "at the yearly interest rate of 2.5%",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "with a loan term of 15,",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "and monthly payments of ",
         },
-        Object {
+        {
           "$class": "org.accordproject.ciceromark@0.6.0.Formula",
-          "dependencies": Array [],
+          "dependencies": [],
           "name": "formula",
           "value": "667.0",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a fixed interest loan to the amount of 100000.0",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "at the yearly interest rate of 2.5%",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "with a loan term of 15,",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "and monthly payments of 667.0",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "bar",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "this is",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "multiline 2.5",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "content",
             },
@@ -1305,42 +1305,42 @@ Object {
 `;
 
 exports[`markdown converts clauseulist.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "479adbb4-dc55-4d1a-ab12-b6c5e16900c0",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "4",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Discount.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "The Discount is determined according to the following table:",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.List",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                     },
@@ -1348,13 +1348,13 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                     },
@@ -1362,13 +1362,13 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                     },
@@ -1376,13 +1376,13 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                     },
@@ -1390,13 +1390,13 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                     },
@@ -1404,13 +1404,13 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Item",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-                  "nodes": Array [
-                    Object {
+                  "nodes": [
+                    {
                       "$class": "org.accordproject.commonmark@0.5.0.Text",
                       "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                     },
@@ -1431,10 +1431,10 @@ Object {
 `;
 
 exports[`markdown converts codeblock.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.CodeBlock",
       "text": "this is a multiline
 code
@@ -1447,17 +1447,17 @@ block.
 `;
 
 exports[`markdown converts codeblock-info.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.CodeBlock",
-      "info": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
-      "tag": Object {
+      "info": "<video src="https://www.youtube.com/embed/dQw4w9WgXcQ"/>",
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
-        "attributes": Array [
-          Object {
+        "attributeString": "src = "https://www.youtube.com/embed/dQw4w9WgXcQ" ",
+        "attributes": [
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "src",
             "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -1481,15 +1481,15 @@ Object {
 `;
 
 exports[`markdown converts demandforecast.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
-          "text": "On or before the 2018/04/02, and thereafter on or before the last day of each calendar quarter, the Purchaser \\"PETER\\" shall send the Supplier \\"DAN\\" a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least 85.0% of the quantity of the listed Product.",
+          "text": "On or before the 2018/04/02, and thereafter on or before the last day of each calendar quarter, the Purchaser "PETER" shall send the Supplier "DAN" a Supply Forecast. The Supply Forecast will be a binding commitment on the Purchaser’s behalf to purchase during the first quarter included in each Supply Forecast at least 85.0% of the quantity of the listed Product.",
         },
       ],
     },
@@ -1499,26 +1499,26 @@ Object {
 `;
 
 exports[`markdown converts emph.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Emph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "some",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " text.",
         },
@@ -1530,23 +1530,23 @@ Object {
 `;
 
 exports[`markdown converts emph-strong.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Emph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Strong",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "some",
                 },
@@ -1554,7 +1554,7 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " text.",
         },
@@ -1566,14 +1566,14 @@ Object {
 `;
 
 exports[`markdown converts h1.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading One",
         },
@@ -1585,14 +1585,14 @@ Object {
 `;
 
 exports[`markdown converts h2.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "2",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading Two",
         },
@@ -1604,14 +1604,14 @@ Object {
 `;
 
 exports[`markdown converts h3.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "3",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading Three",
         },
@@ -1623,14 +1623,14 @@ Object {
 `;
 
 exports[`markdown converts h4.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "4",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading Four",
         },
@@ -1642,14 +1642,14 @@ Object {
 `;
 
 exports[`markdown converts h5.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "5",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading Five",
         },
@@ -1661,14 +1661,14 @@ Object {
 `;
 
 exports[`markdown converts h6.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "6",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading Six",
         },
@@ -1680,23 +1680,23 @@ Object {
 `;
 
 exports[`markdown converts html-inline.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
-          "tag": Object {
+          "tag": {
             "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-            "attributeString": "src = \\"property\\" ",
-            "attributes": Array [
-              Object {
+            "attributeString": "src = "property" ",
+            "attributes": [
+              {
                 "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                 "name": "src",
                 "value": "property",
@@ -1706,9 +1706,9 @@ Object {
             "content": "",
             "tagName": "custom",
           },
-          "text": "<custom src=\\"property\\"/>",
+          "text": "<custom src="property"/>",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " property.",
         },
@@ -1720,23 +1720,23 @@ Object {
 `;
 
 exports[`markdown converts html-inline-uri.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
-          "tag": Object {
+          "tag": {
             "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-            "attributeString": "src = \\"property%20or%20something\\" ",
-            "attributes": Array [
-              Object {
+            "attributeString": "src = "property%20or%20something" ",
+            "attributes": [
+              {
                 "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                 "name": "src",
                 "value": "property%20or%20something",
@@ -1746,9 +1746,9 @@ Object {
             "content": "",
             "tagName": "custom",
           },
-          "text": "<custom src=\\"property%20or%20something\\"/>",
+          "text": "<custom src="property%20or%20something"/>",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " property.",
         },
@@ -1760,26 +1760,26 @@ Object {
 `;
 
 exports[`markdown converts html-mixed.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Heading One",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.HtmlBlock",
-      "tag": Object {
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-        "attributeString": "src = \\"https://www.youtube.com/embed/dQw4w9WgXcQ\\" ",
-        "attributes": Array [
-          Object {
+        "attributeString": "src = "https://www.youtube.com/embed/dQw4w9WgXcQ" ",
+        "attributes": [
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "src",
             "value": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -1789,12 +1789,12 @@ Object {
         "content": "",
         "tagName": "video",
       },
-      "text": "<video src=\\"https://www.youtube.com/embed/dQw4w9WgXcQ\\"/>",
+      "text": "<video src="https://www.youtube.com/embed/dQw4w9WgXcQ"/>",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "done.",
         },
@@ -1806,21 +1806,21 @@ Object {
 `;
 
 exports[`markdown converts inline-code.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Code",
           "text": "inline code",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
@@ -1832,101 +1832,101 @@ Object {
 `;
 
 exports[`markdown converts latedelivery.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Late Delivery and Penalty.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "In case of delayed delivery except for Force Majeure cases,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Dan\\" (the Seller) shall pay to \\"Steve\\" (the Buyer) for every 2 days",
+              "text": ""Dan" (the Seller) shall pay to "Steve" (the Buyer) for every 2 days",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "of delay penalty amounting to 10.5% of the total value of the Equipment",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "whose delivery has been delayed. Any fractional part of a days is to be",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "considered a full days. The total amount of penalty shall not however,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "exceed 55.0% of the total value of the Equipment involved in late delivery.",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "If the delay is more than 15 days, the Buyer is entitled to terminate this Contract.",
             },
@@ -1941,101 +1941,101 @@ Object {
 `;
 
 exports[`markdown converts latedelivery-else.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Late Delivery and Penalty.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "In case of delayed delivery except for Force Majeure cases,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Dan\\" (the Seller) shall pay to \\"Steve\\" (the Buyer) for every 2 days",
+              "text": ""Dan" (the Seller) shall pay to "Steve" (the Buyer) for every 2 days",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "of delay penalty amounting to 10.5% of the total value of the Equipment",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "whose delivery has been delayed. Any fractional part of a days is to be",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "considered a full days. The total amount of penalty shall not however,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "exceed 55.0% of the total value of the Equipment involved in late delivery.",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "If the delay is more than 15 days, the Buyer is entitled to terminate this Contract.",
             },
@@ -2050,101 +2050,101 @@ Object {
 `;
 
 exports[`markdown converts latedelivery-noforce.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Late Delivery and Penalty.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "In case of delayed delivery",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Dan\\" (the Seller) shall pay to \\"Steve\\" (the Buyer) for every 2 days",
+              "text": ""Dan" (the Seller) shall pay to "Steve" (the Buyer) for every 2 days",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "of delay penalty amounting to 10.5% of the total value of the Equipment",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "whose delivery has been delayed. Any fractional part of a days is to be",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "considered a full days. The total amount of penalty shall not however,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "exceed 55.0% of the total value of the Equipment involved in late delivery.",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "If the delay is more than 15 days, the Buyer is entitled to terminate this Contract.",
             },
@@ -2159,84 +2159,84 @@ Object {
 `;
 
 exports[`markdown converts latedelivery-notif.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Late Delivery and Penalty.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "In case of delayed delivery",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
-              "tag": Object {
+              "tag": {
                 "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-                "attributeString": "id = \\"forceMajeure\\" value = \\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenTrue = \\"%20except%20for%20Force%20Majeure%20cases%2C\\" FOO = \\"\\" ",
-                "attributes": Array [
-                  Object {
+                "attributeString": "id = "forceMajeure" value = "%20except%20for%20Force%20Majeure%20cases%2C" whenTrue = "%20except%20for%20Force%20Majeure%20cases%2C" FOO = "" ",
+                "attributes": [
+                  {
                     "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                     "name": "id",
                     "value": "forceMajeure",
                   },
-                  Object {
+                  {
                     "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                     "name": "value",
                     "value": "%20except%20for%20Force%20Majeure%20cases%2C",
                   },
-                  Object {
+                  {
                     "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                     "name": "whenTrue",
                     "value": "%20except%20for%20Force%20Majeure%20cases%2C",
                   },
-                  Object {
+                  {
                     "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                     "name": "FOO",
                     "value": "",
@@ -2246,47 +2246,47 @@ Object {
                 "content": "",
                 "tagName": "if",
               },
-              "text": "<if id=\\"forceMajeure\\" value=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" whenTrue=\\"%20except%20for%20Force%20Majeure%20cases%2C\\" FOO=\\"\\"/>",
+              "text": "<if id="forceMajeure" value="%20except%20for%20Force%20Majeure%20cases%2C" whenTrue="%20except%20for%20Force%20Majeure%20cases%2C" FOO=""/>",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Dan\\" (the Seller) shall pay to \\"Steve\\" (the Buyer) for every 2 days",
+              "text": ""Dan" (the Seller) shall pay to "Steve" (the Buyer) for every 2 days",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "of delay penalty amounting to 10.5% of the total value of the Equipment",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "whose delivery has been delayed. Any fractional part of a days is to be",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "considered a full days. The total amount of penalty shall not however,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "exceed 55.0% of the total value of the Equipment involved in late delivery.",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "If the delay is more than 15 days, the Buyer is entitled to terminate this Contract.",
             },
@@ -2301,101 +2301,101 @@ Object {
 `;
 
 exports[`markdown converts latedelivery-onlyelse.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "HELLO! This is the contract editor.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "And below is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "clause",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.ciceromark@0.6.0.Clause",
       "name": "87721b95-7e43-4441-82c7-b4d4db207e6f",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Heading",
           "level": "2",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Late Delivery and Penalty.",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "In case of delayed delivery even in Force Majeure cases,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
-              "text": "\\"Dan\\" (the Seller) shall pay to \\"Steve\\" (the Buyer) for every 2 days",
+              "text": ""Dan" (the Seller) shall pay to "Steve" (the Buyer) for every 2 days",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "of delay penalty amounting to 10.5% of the total value of the Equipment",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "whose delivery has been delayed. Any fractional part of a days is to be",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "considered a full days. The total amount of penalty shall not however,",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "exceed 55.0% of the total value of the Equipment involved in late delivery.",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak",
             },
-            Object {
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "If the delay is more than 15 days, the Buyer is entitled to terminate this Contract.",
             },
@@ -2410,28 +2410,28 @@ Object {
 `;
 
 exports[`markdown converts link.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Link",
           "destination": "http://clause.io",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "a link",
             },
           ],
           "title": "",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": ".",
         },
@@ -2443,25 +2443,25 @@ Object {
 `;
 
 exports[`markdown converts multiline-html-block.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a custom",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.HtmlBlock",
-      "tag": Object {
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-        "attributeString": "src = \\"property\\" ",
-        "attributes": Array [
-          Object {
+        "attributeString": "src = "property" ",
+        "attributes": [
+          {
             "$class": "org.accordproject.commonmark@0.5.0.Attribute",
             "name": "src",
             "value": "property",
@@ -2473,14 +2473,14 @@ contents
 ",
         "tagName": "custom",
       },
-      "text": "<custom src=\\"property\\">
+      "text": "<custom src="property">
 contents
 </custom>",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "block.",
         },
@@ -2492,29 +2492,29 @@ contents
 `;
 
 exports[`markdown converts ol.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is an ordered list:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
       "delimiter": "period",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "one",
                 },
@@ -2522,13 +2522,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "two",
                 },
@@ -2536,13 +2536,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "three",
                 },
@@ -2555,10 +2555,10 @@ Object {
       "tight": "false",
       "type": "ordered",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Done.",
         },
@@ -2570,29 +2570,29 @@ Object {
 `;
 
 exports[`markdown converts ol-tight.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is an ordered list:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
       "delimiter": "period",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "one",
                 },
@@ -2600,13 +2600,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "two",
                 },
@@ -2614,13 +2614,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "three",
                 },
@@ -2633,10 +2633,10 @@ Object {
       "tight": "true",
       "type": "ordered",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Done.",
         },
@@ -2648,22 +2648,22 @@ Object {
 `;
 
 exports[`markdown converts paragraphs.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is first paragraph.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is second paragraph.",
         },
@@ -2675,26 +2675,26 @@ Object {
 `;
 
 exports[`markdown converts strong.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Strong",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "some",
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " text.",
         },
@@ -2706,13 +2706,13 @@ Object {
 `;
 
 exports[`markdown converts text.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is some text.",
         },
@@ -2724,25 +2724,25 @@ Object {
 `;
 
 exports[`markdown converts thematicbreak.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.ThematicBreak",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "A footer.",
         },
@@ -2754,28 +2754,28 @@ Object {
 `;
 
 exports[`markdown converts ul.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is an unordered list:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "one",
                 },
@@ -2783,13 +2783,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "two",
                 },
@@ -2797,13 +2797,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "three",
                 },
@@ -2815,10 +2815,10 @@ Object {
       "tight": "false",
       "type": "bullet",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Done.",
         },
@@ -2830,28 +2830,28 @@ Object {
 `;
 
 exports[`markdown converts ul-tight.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is an unordered list:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "one",
                 },
@@ -2859,13 +2859,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "two",
                 },
@@ -2873,13 +2873,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "three",
                 },
@@ -2891,10 +2891,10 @@ Object {
       "tight": "true",
       "type": "bullet",
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Done.",
         },
@@ -2906,38 +2906,38 @@ Object {
 `;
 
 exports[`markdown converts ulist.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "4",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Discount.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "The Discount is determined according to the following table:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                 },
@@ -2945,13 +2945,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                 },
@@ -2959,13 +2959,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                 },
@@ -2973,13 +2973,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                 },
@@ -2987,13 +2987,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                 },
@@ -3001,13 +3001,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                 },
@@ -3025,35 +3025,35 @@ Object {
 `;
 
 exports[`markdown converts ulist-nolist.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "4",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Discount.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "The Discount is determined according to the following table:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.CodeBlock",
       "info": "<list/>",
-      "tag": Object {
+      "tag": {
         "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
         "attributeString": "",
-        "attributes": Array [],
+        "attributes": [],
         "closed": true,
         "content": "",
         "tagName": "list",
@@ -3067,38 +3067,38 @@ Object {
 `;
 
 exports[`markdown converts ulist2.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "4",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "Discount.",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "The Discount is determined according to the following table:",
         },
       ],
     },
-    Object {
+    {
       "$class": "org.accordproject.commonmark@0.5.0.List",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "0.0$ million <= Volume < 1.0$ million : 3.1%",
                 },
@@ -3106,13 +3106,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "1.0$ million <= Volume < 10.0$ million : 3.1%",
                 },
@@ -3120,13 +3120,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "10.0$ million <= Volume < 50.0$ million : 2.9%",
                 },
@@ -3134,13 +3134,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "50.0$ million <= Volume < 500.0$ million : 2.5%",
                 },
@@ -3148,13 +3148,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "500.0$ million <= Volume < 1000.0$ million : 1.2%",
                 },
@@ -3162,13 +3162,13 @@ Object {
             },
           ],
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
-          "nodes": Array [
-            Object {
+          "nodes": [
+            {
               "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-              "nodes": Array [
-                Object {
+              "nodes": [
+                {
                   "$class": "org.accordproject.commonmark@0.5.0.Text",
                   "text": "1000.0$ million <= Volume < 1000000.0$ million : 0.1%",
                 },
@@ -3186,15 +3186,15 @@ Object {
 `;
 
 exports[`markdown converts variable.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
-          "text": "This is a \\"Party A\\" property.",
+          "text": "This is a "Party A" property.",
         },
       ],
     },
@@ -3204,13 +3204,13 @@ Object {
 `;
 
 exports[`markdown converts variable-enum.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a ABC property.",
         },
@@ -3222,28 +3222,28 @@ Object {
 `;
 
 exports[`markdown converts variable-notvariable.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is a ",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.HtmlInline",
-          "tag": Object {
+          "tag": {
             "$class": "org.accordproject.commonmark@0.5.0.TagInfo",
-            "attributeString": "id = \\"shipper\\" FOO = \\"%22Party%20A%22\\" ",
-            "attributes": Array [
-              Object {
+            "attributeString": "id = "shipper" FOO = "%22Party%20A%22" ",
+            "attributes": [
+              {
                 "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                 "name": "id",
                 "value": "shipper",
               },
-              Object {
+              {
                 "$class": "org.accordproject.commonmark@0.5.0.Attribute",
                 "name": "FOO",
                 "value": "%22Party%20A%22",
@@ -3253,9 +3253,9 @@ Object {
             "content": "",
             "tagName": "variable",
           },
-          "text": "<variable id=\\"shipper\\" FOO=\\"%22Party%20A%22\\"/>",
+          "text": "<variable id="shipper" FOO="%22Party%20A%22"/>",
         },
-        Object {
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " property.",
         },
@@ -3267,15 +3267,15 @@ Object {
 `;
 
 exports[`markdown converts variable-reversed.md to concerto 1`] = `
-Object {
+{
   "$class": "org.accordproject.commonmark@0.5.0.Document",
-  "nodes": Array [
-    Object {
+  "nodes": [
+    {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
-      "nodes": Array [
-        Object {
+      "nodes": [
+        {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
-          "text": "This is a \\"Party A\\" property.",
+          "text": "This is a "Party A" property.",
         },
       ],
     },
