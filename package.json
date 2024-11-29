@@ -1,20 +1,13 @@
 {
   "devDependencies": {
     "@accordproject/concerto-core": "3.19.5",
-    "browserify-zlib": "^0.2.0",
-    "colors": "1.4.0",
-    "coveralls": "3.0.4",
     "dayjs": "1.10.8",
-    "eslint": "8.2.0",
     "glob": "^7.1.7",
-    "jest": "^27.0.6",
-    "jsdoc": "^4.0.4",
+    "handlebars": "^4.7.7",
     "license-check-and-add": "2.3.6",
     "mkdirp": "1.0.4",
     "nyc": "15.1.0",
     "semver": "^7.6.3",
-    "sleep-promise": "8.0.1",
-    "source-map-support": "0.5.12",
     "traverse": "^0.6.7"
   },
   "engines": {
