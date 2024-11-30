@@ -243,6 +243,23 @@ const listItemCloseRule = {
     close: true,
 };
 
+const romanListOpenRule = {
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
+    leaf: false,
+    open: true,
+    close: false,
+    enter: (node,token,callback) => {
+        node.type = 'roman';
+        node.tight = 'true'; // XXX Default but can be overridden when closing the list tag
+    },
+};
+const romanListCloseRule = {
+    tag: `${CommonMarkModel.NAMESPACE}.List`,
+    leaf: false,
+    open: false,
+    close: true,
+};
+
 const tableOpenRule = {
     tag: `${CommonMarkModel.NAMESPACE}.Table`,
     leaf: false,
@@ -361,6 +378,9 @@ rules.blocks.bullet_list_open = bulletListOpenRule;
 rules.blocks.bullet_list_close = bulletListCloseRule;
 rules.blocks.ordered_list_open = orderedListOpenRule;
 rules.blocks.ordered_list_close = orderedListCloseRule;
+rules.blocks.roman_list_open = romanListOpenRule;
+rules.blocks.roman_list_close = romanListCloseRule;
+rules.blocks.roma_list = romanListOpenRule;
 rules.blocks.list_item_open = listItemOpenRule;
 rules.blocks.list_item_close = listItemCloseRule;
 rules.blocks.table_open = tableOpenRule;
