@@ -74,7 +74,6 @@
   "dependencies": {
     "@accordproject/concerto-core": "^3.19.8",
     "@accordproject/concerto-cto": "3.19.8",
-    "@accordproject/concerto-util": "3.19.8",
     "@accordproject/markdown-cicero": "*",
     "@accordproject/markdown-common": "*",
     "@accordproject/markdown-it-template": "*",
