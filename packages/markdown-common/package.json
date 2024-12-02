@@ -47,7 +47,7 @@
     "license-check-and-add": "2.3.6"
   },
   "dependencies": {
-    "@accordproject/concerto-core": "^3.19.8",
+    "@accordproject/concerto-core": "3.19.8",
     "@xmldom/xmldom": "^0.9.5",
     "markdown-it": "^14.1.0"
   },
