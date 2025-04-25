@@ -122,10 +122,10 @@ returns:
 
 ### `--via` option
 
-When there are several paths between two formats, you can indicate an intermediate format using the `--via` option. The following transforms from `markdown` to `html` *via* `slate`:
+When there are several paths between two formats, you can indicate an intermediate format using the `--via` option. The following transforms from `markdown` to `html` *via* `ciceromark`:
 
 ```bash
-markus transform --from markdown --via slate --to html
+markus transform --from markdown --via ciceromark --to html
 ```
 
 returns:
@@ -143,10 +143,10 @@ returns:
 
 ### `--roundtrip` option
 
-When the transforms allow, you can roundtrip between two formats, i.e., transform from a source to a target format and back to the source target. For instance, the following transform from `markdown` to `slate` and back to markdown:
+When the transforms allow, you can roundtrip between two formats, i.e., transform from a source to a target format and back to the source target. For instance, the following transform from `markdown` to `ciceromark` and back to markdown:
 
 ```md
-markus transform --from markdown --to slate --input README.md --roundtrip
+markus transform --from markdown --to ciceromark --input README.md --roundtrip
 ```
 
 returns:

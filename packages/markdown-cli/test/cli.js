@@ -23,7 +23,6 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
 const Commands = require('../lib/commands');
-const wordcountExt = require('./extension/wordcount');
 
 /**
  * Prepare the text for parsing (normalizes new lines, etc)
@@ -59,7 +58,6 @@ const acceptanceCommonMarkFile = path.resolve(__dirname, 'data/acceptance', 'com
 const acceptanceCiceroMarkFile = path.resolve(__dirname, 'data/acceptance', 'ciceromark.json');
 const acceptanceCiceroMark = JSON.parse(fs.readFileSync(acceptanceCiceroMarkFile, 'utf8'));
 const acceptanceCiceroMarkParsedFile = path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json');
-const acceptanceSlateFile = path.resolve(__dirname, 'data/acceptance', 'slate.json');
 
 describe('#validateTransformArgs', () => {
     it('no args specified', () => {
@@ -124,54 +122,12 @@ describe('markdown-cli (acceptance)', () => {
             const { result } = await Commands.transform(acceptanceCiceroMarkParsedFile, 'ciceromark', [], 'markdown_cicero', null, {}, {});
             result.should.eql(acceptanceMarkdownCicero);
         });
-
-        it('should generate a markdown cicero file from Slate', async () => {
-            const { result } = await Commands.transform(acceptanceSlateFile, 'slate', [], 'markdown_cicero', null, {}, {});
-            result.should.eql(acceptanceMarkdownCicero);
-        });
     });
 
     describe('#normalize', () => {
         it('should roundtrip commonmark <-> markdown', async () => {
             const { result } = await Commands.transform(acceptanceMarkdownFile, 'markdown', [], 'commonmark', null, {}, {roundtrip:true});
             result.should.eql(acceptanceMarkdown);
-        });
-    });
-});
-
-describe('markdown-cli (docx)', () => {
-    // Acceptance test
-    const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
-    const inputExpectedDocxText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data', 'sample-service-level-agreement.md'),'utf8'));
-
-    describe('#parse', () => {
-        it('should generate a markdown file from docx', async () => {
-            const { result } = await Commands.transform(inputDocx, 'docx', [], 'markdown', null, {}, {});
-            result.should.eql(inputExpectedDocxText);
-        });
-    });
-});
-
-describe('markdown-cli (wordml)', () => {
-    // Omitted Acceptance test
-    const inputCiceroMarkFile = path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json');
-
-    describe('#parse', () => {
-        it('should convert from ciceromark_parsed to wordml', async () => {
-            const data = await Commands.transform(inputCiceroMarkFile, 'ciceromark_parsed', [], 'wordml', null, {}, {});
-            data.result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
-        });
-    });
-});
-
-describe('extension (wordcount)', () => {
-    // Acceptance test
-    const inputDocx = path.resolve(__dirname, 'data', 'sample-service-level-agreement.docx');
-
-    describe('#parse', () => {
-        it('should generate a markdown file from docx', async () => {
-            const { result } = await Commands.transform(inputDocx, 'docx', ['wordcount'], 'markdown', null, {}, { extensions: [wordcountExt] });
-            result.should.eql('1783');
         });
     });
 });

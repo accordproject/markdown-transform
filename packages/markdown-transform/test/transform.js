@@ -66,14 +66,10 @@ const acceptanceCiceroMark = JSON.parse(fs.readFileSync(path.resolve(__dirname, 
 const acceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_parsed.json'), 'utf8'));
 const acceptanceCiceroMarkUnwrapped = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unwrapped.json'), 'utf8'));
 const acceptanceCiceroMarkUnquoted = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'ciceromark_unquoted.json'), 'utf8'));
-const acceptanceSlate = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'slate.json'), 'utf8'));
 const acceptancePlainText = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.txt'), 'utf8'));
 const acceptanceHtml = normalizeNLs(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'sample.html'), 'utf8'));
-const omittedAcceptanceCiceroMarkParsed = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data/acceptance', 'omitted-acceptance-of-delivery.json'), 'utf8'));
 
 // Sample test
-const samplePdf = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.pdf'));
-const sampleDocx = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.docx'));
 const sampleHtml = fs.readFileSync(path.resolve(__dirname, 'data/sample', 'sample.html'), 'utf8');
 
 describe('#acceptance', () => {
@@ -168,11 +164,6 @@ describe('#acceptance', () => {
             result.should.deep.equal(acceptanceCiceroMarkUnquoted);
         });
 
-        it('ciceromark_parsed -> slate', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['slate'], {}, {});
-            result.should.deep.equal(acceptanceSlate);
-        });
-
         it('ciceromark_parsed -> html', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['html'], {}, {});
             result.should.equal(acceptanceHtml);
@@ -181,11 +172,6 @@ describe('#acceptance', () => {
         it('ciceromark_parsed -> html (verbose)', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark_parsed', ['html'], {}, {verbose: true});
             result.should.equal(acceptanceHtml);
-        });
-
-        it('ciceromark_parsed -> wordml', async () => {
-            const result = await transform(omittedAcceptanceCiceroMarkParsed, 'ciceromark_parsed', ['wordml'], {}, {});
-            result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
         });
     });
 
@@ -196,19 +182,7 @@ describe('#acceptance', () => {
         });
     });
 
-    describe('#slate', () => {
-        it('slate -> ciceromark', async () => {
-            const result = await transform(acceptanceSlate, 'slate', ['ciceromark_parsed'], {}, {});
-            result.should.deep.equal(acceptanceCiceroMarkParsed);
-        });
-    });
-
     describe('#multisteps', () => {
-        it('ciceromark -> ciceromark_unquoted -> slate', async () => {
-            const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_unquoted','slate'], {}, {});
-            result.document.object.should.equal('document');
-        });
-
         it('ciceromark -> ciceromark_unquoted -> html', async () => {
             const result = await transform(acceptanceCiceroMarkParsed, 'ciceromark', ['ciceromark_unquoted','html'], {}, {});
             result.should.startWith('<html>');
@@ -231,53 +205,12 @@ describe('#template1', () => {
 });
 
 describe('#sample', () => {
-    describe('#pdf', () => {
-        it('pdf -> ciceromark', async () => {
-            const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {});
-            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
-        });
-
-        it('pdf -> docx', async () => {
-            const result = await transform(samplePdf, 'pdf', ['docx'], {}, {});
-            result.should.not.be.null;
-        });
-
-        it('pdf -> ciceromark (verbose)', async () => {
-            const result = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {verbose: true});
-            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
-        });
-
-        it('ciceromark -> pdf', async () => {
-            const ciceroMark = await transform(samplePdf, 'pdf', ['ciceromark'], {}, {});
-            const result = await transform(ciceroMark, 'ciceromark', ['pdf'], {}, {});
-            //console.log('RESULT ' + result);
-            result.should.exist;
-        });
-    });
-
-    describe('#docx', () => {
-        it('docx -> ciceromark', async () => {
-            const result = await transform(sampleDocx, 'docx', ['ciceromark'], {}, {});
-            result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
-        });
-
-        it('docx -> wordml', async () => {
-            const result = await transform(sampleDocx, 'docx', ['wordml'], {}, {});
-            result.startsWith('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>').should.be.true;
-        });
-    });
-
     describe('#html', () => {
         it('html -> ciceromark', async () => {
             const result = await transform(sampleHtml, 'html', ['ciceromark'], {}, {});
             result.$class.should.equal(`${CommonMarkModel.NAMESPACE}.Document`);
         });
-        it('html -> docx', async () => {
-            const result = await transform(sampleHtml, 'html', ['docx'], {}, {});
-            result.should.not.be.null;
-        });
     });
-
 });
 
 describe('#generateTransformationDiagram', () => {

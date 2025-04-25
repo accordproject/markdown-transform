@@ -26,24 +26,8 @@ note left of [CiceroMark DOM]
   https://models.accordproject.org/ciceromark/ciceromark.html
 end note
 
-package "markdown-slate" {
-  [CiceroMark DOM] <-up-> [Slate DOM]
-}
-
-note left of [Slate DOM]
-  Slate is an HTML rich-text editor
-  https://www.slatejs.org
-end note
-
 package "markdown-html" {
   [CiceroMark DOM] <-up-> [HTML String]
 }
 
-package "markdown-docx" {
-  [CiceroMark DOM] <-- [DOCX File]
-}
-
-package "markdown-pdf" {
-  [CiceroMark DOM] <-- [PDF File]
-}
 @enduml
