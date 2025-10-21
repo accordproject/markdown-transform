@@ -99,9 +99,10 @@ class PdfTransformerBase {
     /**
      * Converts a pdfmake DOM to a PDF Buffer
      * @param {*} progressCallback - a callback function used during pdf emit
+     * @param {object} [fonts] - optional custom fonts object for pdfmake (defaults to defaultFonts)
      * @return {*} a function from input and stream, adding the pdf to the stream
      */
-    static pdfMakeToPdfStreamWithCallback(progressCallback) {
+    static pdfMakeToPdfStreamWithCallback(progressCallback, fonts) {
         return (input, outputStream) => {
 
             if (!input.defaultStyle) {
@@ -113,8 +114,9 @@ class PdfTransformerBase {
                 };
             }
 
-            // The Pdf printer
-            const printer = new PdfPrinter(defaultFonts);
+            // The Pdf printer - use custom fonts if provided, otherwise use defaultFonts
+            const fontsToUse = fonts || defaultFonts;
+            const printer = new PdfPrinter(fontsToUse);
 
             // Printing to stream
             const pdfDoc = printer.createPdfKitDocument(input, { progressCallback });
@@ -127,9 +129,10 @@ class PdfTransformerBase {
      * Converts a pdfmake DOM to a PDF Buffer
      * @param {*} input - pdfmake DOM (JSON)
      * @param {*} outputStream - the output stream
+     * @param {object} [fonts] - optional custom fonts object for pdfmake (defaults to defaultFonts)
      */
-    static async pdfMakeToPdfStream(input, outputStream) {
-        return PdfTransformerBase.pdfMakeToPdfStreamWithCallback()(input, outputStream);
+    static async pdfMakeToPdfStream(input, outputStream, fonts) {
+        return PdfTransformerBase.pdfMakeToPdfStreamWithCallback(null, fonts)(input, outputStream);
     }
 }
 

@@ -42,10 +42,11 @@ class PdfTransformer extends PdfTransformerBase {
      * Converts a pdfmake DOM to a PDF Buffer
      * @param {*} input - pdfmake DOM (JSON)
      * @param {*} progressCallback - a callback function used during pdf emit
+     * @param {object} [fonts] - optional custom fonts object for pdfmake (defaults to defaultFonts)
      * @return {*} a pdf buffer
      */
-    static async pdfMakeToPdfBuffer(input, progressCallback) {
-        return PdfTransformerBase.toBuffer(input, PdfTransformerBase.pdfMakeToPdfStreamWithCallback(progressCallback));
+    static async pdfMakeToPdfBuffer(input, progressCallback, fonts) {
+        return PdfTransformerBase.toBuffer(input, PdfTransformerBase.pdfMakeToPdfStreamWithCallback(progressCallback, fonts));
     }
 }
 
