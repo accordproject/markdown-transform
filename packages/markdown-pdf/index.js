@@ -21,4 +21,4 @@
 
 module.exports.PdfTransformer = require('./lib/PdfTransformer');
 module.exports.ToPdfMake = require('./lib/ToPdfMake');
-module.exports.defaultFonts = require('./lib/pdfmakeutil').defaultFonts;
+module.exports.DefaultFonts = require('./lib/pdfmakeutil').defaultFonts;

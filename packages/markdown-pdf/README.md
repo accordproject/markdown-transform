@@ -35,11 +35,11 @@ pdfTransformer.toPdf(ciceroMarkJson, options, outputStream );
 
  Example:
 ``` javascript
-const { PdfTransformer, defaultFonts } = require('@accordproject/markdown-pdf');
+const { PdfTransformer, DefaultFonts } = require('@accordproject/markdown-pdf');
 
 // Extend default fonts with a Unicode-capable font
 const customFonts = {
-    ...defaultFonts,
+    ...DefaultFonts,
     NotoSans: {
         normal: '/path/to/NotoSans-Regular.ttf',
         bold: '/path/to/NotoSans-Bold.ttf',
