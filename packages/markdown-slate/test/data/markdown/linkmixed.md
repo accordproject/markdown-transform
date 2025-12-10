@@ -1,1 +1,0 @@
-[This is a *link* with `code` and **bold**](http://google.com)

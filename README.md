@@ -17,7 +17,7 @@
 
 ## Introduction
 
-A transformation and parsing framework for converting markdown content to HTML, PDF, DOCX, Slate (for rich-text editing) and other structured document object models (DOMs).
+A transformation and parsing framework for converting markdown content to HTML and other structured document object models (DOMs).
 
 ![Transformations](./packages/markdown-transform/transformations.png)
 
@@ -29,10 +29,7 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-common) : converts between markdown strings and the CommonMark DOM
 * [markdown-cicero](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-cicero) : converts between the CommonMark DOM and the CiceroMark DOM
 * [markdown-template](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-template) : converts between JSON data + markdown strings and TemplateMark
-* [markdown-slate](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-slate) : converts between the CiceroMark DOM and the Slate DOM
 * [markdown-html](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-html) : converts between the CiceroMark DOM and HTML
-* [markdown-pdf](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-pdf) : converts between a PDF file and the CiceroMark DOM
-* [markdown-docx](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-docx) : converts a DOCX file to the CiceroMark DOM
 * [markdown-it-cicero](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-it-cicero) : markdown-it plugin for contracts and CiceroMark
 * [markdown-it-template](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-it-template) : markdown-it plugin for templates and TemplateMark
 
@@ -57,10 +54,6 @@ TemplateMark defines markdown documents with syntax for embedded variables, opti
 The TemplateMark DOM extends the CommonMark DOM, defining nodes for `ClauseDefinition`, `VariableDefinition` and `ForumulaDefinition` etc.
 
 The schema is defined here: https://models.accordproject.org/markdown/templatemark.html
-
-###  Slate DOM
-
-The Slate DOM is defined by the [Slate](https://www.slatejs.org) HTML content-editable WYSIWYG editing framework.
 
 ## Installation
 

@@ -14,16 +14,11 @@
 
 'use strict';
 
-const HTMLtoDOCX = require('html-to-docx');
-const JsZip = require('jszip');
 const ModelLoader = require('@accordproject/concerto-core').ModelLoader;
 const CommonMarkTransformer = require('@accordproject/markdown-common').CommonMarkTransformer;
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 const TemplateMarkTransformer = require('@accordproject/markdown-template').TemplateMarkTransformer;
-const SlateTransformer = require('@accordproject/markdown-slate').SlateTransformer;
 const HtmlTransformer = require('@accordproject/markdown-html').HtmlTransformer;
-const PdfTransformer = require('@accordproject/markdown-pdf').PdfTransformer;
-const DocxTransformer = require('@accordproject/markdown-docx').DocxTransformer;
 const transformationGraph = {
   markdown_template: {
     docs: 'Template markdown (string)',
@@ -138,13 +133,6 @@ const transformationGraph = {
     ciceromark_unquoted: (input, parameters, options) => {
       const t = new CiceroMarkTransformer();
       return t.unquote(input, options);
-    },
-    slate: (input, parameters, options) => {
-      const t = new SlateTransformer();
-      return t.fromCiceroMark(input);
-    },
-    pdfmake: (input, parameters, options) => {
-      return PdfTransformer.ciceroMarkToPdfMake(input, options);
     }
   },
   plaintext: {
@@ -169,62 +157,12 @@ const transformationGraph = {
       return input;
     }
   },
-  pdfmake: {
-    docs: 'pdfmake DOM (JSON)',
-    fileFormat: 'json',
-    pdf: (input, parameters, options) => {
-      return PdfTransformer.pdfMakeToPdfBuffer(input);
-    }
-  },
-  pdf: {
-    docs: 'PDF (buffer)',
-    fileFormat: 'binary',
-    ciceromark_parsed: (input, parameters, options) => {
-      return PdfTransformer.toCiceroMark(input, options);
-    }
-  },
-  docx: {
-    docs: 'DOCX (buffer)',
-    fileFormat: 'binary',
-    ciceromark_parsed: async (input, parameters, options) => {
-      const t = new DocxTransformer();
-      return t.toCiceroMark(input, options);
-    },
-    wordml: async (input, parameters, options) => {
-      const zip = await JsZip.loadAsync(input);
-      return zip.file('word/document.xml').async('string');
-    }
-  },
-  wordml: {},
   html: {
     docs: 'HTML (string)',
     fileFormat: 'utf8',
     ciceromark_parsed: (input, parameters, options) => {
       const t = new HtmlTransformer();
       return t.toCiceroMark(input, options);
-    },
-    docx: async (inputs, parameters, options) => {
-      return HTMLtoDOCX(inputs, null, options ? options : {
-        table: {
-          row: {
-            cantSplit: true
-          }
-        },
-        footer: true,
-        pageNumber: true
-      });
-    }
-  },
-  slate: {
-    docs: 'Slate DOM (JSON)',
-    fileFormat: 'json',
-    ciceromark_parsed: (input, parameters, options) => {
-      const t = new SlateTransformer();
-      return t.toCiceroMark(input, options);
-    },
-    templatemark: (input, parameters, options) => {
-      const t = new SlateTransformer();
-      return t.toTemplateMark(input, options);
     }
   }
 };
