@@ -498,42 +498,155 @@ const HTML_BLOCK_RULE = {
     }
 };
 
+const CAPTION_RULE = {
+    deserialize(el, next, ignoreSpace) {
+        if (el.tagName && el.tagName.toLowerCase() === 'caption') {
+            return {
+                type: 'caption',
+                nodes: next(el.childNodes, ignoreSpace)
+            };
+        }
+    }
+};
+
+/**
+ * Clean table cell nodes by removing Softbreaks and normalizing whitespace.
+ * @param {Array} nodes - the list of nodes
+ * @returns {Array} - the cleaned list of nodes
+ */
+function cleanTableNodes(nodes) {
+  const NS = CommonMarkModel.NAMESPACE;
+  const TEXT = `${NS}.Text`;
+  const SOFT = `${NS}.Softbreak`;
+
+  if (!nodes) return [];
+  nodes = Array.isArray(nodes) ? nodes : [nodes];
+
+  const merged = nodes.reduce((acc, node) => {
+    if (!node) return acc;
+
+    let newNode = { ...node };
+    if (newNode.nodes) newNode = { ...newNode, nodes: cleanTableNodes(newNode.nodes) };
+
+    if (newNode.$class === SOFT) {
+      newNode = { $class: TEXT, text: ' ' };
+    }
+
+    const last = acc[acc.length - 1];
+    if (last && last.$class === TEXT && newNode.$class === TEXT) 
+    {
+      last.text += newNode.text;
+    } 
+    else
+    {
+      acc.push(newNode);
+    }
+
+    return acc;
+  }, []);
+
+  // Normalize whitespace inside Text nodes
+  merged.forEach(n => {
+    if (n.$class === TEXT) n.text = n.text.replace(/\s+/g, ' ');
+  });
+
+
+  if (merged.length > 0 && merged[0].$class === TEXT) {
+    merged[0].text = merged[0].text.replace(/^\s+/, '');
+  }
+  if (merged.length > 0 && merged[merged.length - 1].$class === TEXT) {
+    merged[merged.length - 1].text = merged[merged.length - 1].text.replace(/\s+$/, '');
+  }
+
+  return merged.filter(n => n.$class !== TEXT || n.text.length > 0);
+}
+
+
 const TABLE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'table') {
-            return {
+            const children = next(el.childNodes, ignoreSpace);
+            const captionNode = children.find(c => c.type === 'caption');
+            let tableNodes = children.filter(node =>
+                node.$class === `${CommonMarkModel.NAMESPACE}.TableHead` ||
+                node.$class === `${CommonMarkModel.NAMESPACE}.TableBody`
+            );
+
+            let head = tableNodes.find(n => n.$class === `${CommonMarkModel.NAMESPACE}.TableHead`);
+            const body = tableNodes.find(n => n.$class === `${CommonMarkModel.NAMESPACE}.TableBody`);
+
+            if (!head && body && body.nodes && body.nodes.length > 0) {
+                const firstRow = body.nodes[0];
+                const hasHeaderCells = firstRow.nodes && firstRow.nodes.some(n => n.$class === `${CommonMarkModel.NAMESPACE}.HeaderCell`);
+
+                if (hasHeaderCells) {
+                    head = {
+                        $class: `${CommonMarkModel.NAMESPACE}.TableHead`,
+                        nodes: [firstRow]
+                    };
+                    const newBody = {
+                        $class: `${CommonMarkModel.NAMESPACE}.TableBody`,
+                        nodes: body.nodes.slice(1)
+                    };
+                    tableNodes = [head, newBody];
+                }
+            }
+
+            const table = {
                 $class: `${CommonMarkModel.NAMESPACE}.Table`,
-                nodes: next(el.childNodes),
+                nodes: tableNodes,
             };
+
+            if (captionNode) {
+                const captionParagraph = {
+                    $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
+                    nodes: [
+                        {
+                            $class: `${CommonMarkModel.NAMESPACE}.Strong`,
+                            nodes: cleanTableNodes(captionNode.nodes)
+                        },
+                        {
+                            $class: `${CommonMarkModel.NAMESPACE}.Text`,
+                            text: '\n\n'
+                        }
+                    ]
+                };
+                return [captionParagraph, table];
+            }
+
+            return table;
         }
         if (el.tagName && el.tagName.toLowerCase() === 'thead') {
+            const nodes = next(el.childNodes);
             return {
                 $class: `${CommonMarkModel.NAMESPACE}.TableHead`,
-                nodes: next(el.childNodes),
+                nodes: nodes.filter(n => n.$class === `${CommonMarkModel.NAMESPACE}.TableRow`),
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'tbody') {
+            const nodes = next(el.childNodes);
             return {
                 $class: `${CommonMarkModel.NAMESPACE}.TableBody`,
-                nodes: next(el.childNodes),
+                nodes: nodes.filter(n => n.$class === `${CommonMarkModel.NAMESPACE}.TableRow`),
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'tr') {
+            const nodes = next(el.childNodes);
             return {
                 $class: `${CommonMarkModel.NAMESPACE}.TableRow`,
-                nodes: next(el.childNodes),
+                nodes: nodes.filter(n => n.$class === `${CommonMarkModel.NAMESPACE}.HeaderCell` || n.$class === `${CommonMarkModel.NAMESPACE}.TableCell`),
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'th') {
             return {
                 $class: `${CommonMarkModel.NAMESPACE}.HeaderCell`,
-                nodes: next(el.childNodes),
+                nodes: cleanTableNodes(next(el.childNodes)),
             };
         }
         if (el.tagName && el.tagName.toLowerCase() === 'td') {
             return {
                 $class: `${CommonMarkModel.NAMESPACE}.TableCell`,
-                nodes: next(el.childNodes),
+                nodes: cleanTableNodes(next(el.childNodes)),
             };
         }
     },
@@ -560,7 +673,8 @@ const rules = [
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,
     IMAGE_RULE,
-    TABLE_RULE
+    TABLE_RULE,
+    CAPTION_RULE
 ];
 
 
