@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/accordproject/markdown-transform/actions?query=workflow%3Apublish"><img src="https://github.com/accordproject/markdown-transform/workflows/build/badge.svg?branch=main" alt="Build Status"></a>
+  <a href="https://github.com/accordproject/markdown-transform/actions/workflows/build.yml"><img src="https://github.com/accordproject/markdown-transform/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
   <a href="https://coveralls.io/github/accordproject/markdown-transform?branch=main"><img src="https://coveralls.io/repos/github/accordproject/markdown-transform/badge.svg?branch=main" alt="Coverage Status"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/accordproject/markdown-transform?color=bright-green" alt="GitHub license"></a>
   <a href="https://www.npmjs.com/package/@accordproject/markdown-cli"><img src="https://img.shields.io/npm/dm/@accordproject/markdown-cli" alt="downloads"></a>
