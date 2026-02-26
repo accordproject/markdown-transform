@@ -150,7 +150,7 @@ class TypeVisitor {
             // of complex types using a {{this}}, then thing will be a ClassDeclaration or an
             // EnumDeclaration!!
 
-            if (property && property.getType) {
+            if (property && property.getType && typeof property.isPrimitive === 'function') {
               var _property$isRelations;
               var serializer = parameters.templateMarkModelManager.getSerializer();
               thing.decorators = processDecorators(serializer, property);
@@ -298,7 +298,6 @@ class TypeVisitor {
       case 'ConditionalDefinition':
         {
           var _property5 = currentModel.getOwnProperty(thing.name);
-          var _nextModel2;
           if (thing.name !== 'if' && !_property5) {
             // hack, allow the node to have the name 'if'
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
@@ -309,11 +308,12 @@ class TypeVisitor {
           // }
           var _serializer6 = parameters.templateMarkModelManager.getSerializer();
           thing.decorators = _property5 ? processDecorators(_serializer6, _property5) : null;
-          _nextModel2 = _property5;
+          // Conditional blocks do not change scope — variables inside #if
+          // must resolve against the parent model, not the condition property
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel2,
+            model: currentModel,
             kind: parameters.kind
           }, 'whenTrue');
           TypeVisitor.visitChildren(this, thing, {
@@ -327,7 +327,7 @@ class TypeVisitor {
       case 'OptionalDefinition':
         {
           var _property6 = currentModel.getOwnProperty(thing.name);
-          var _nextModel3;
+          var _nextModel2;
           if (!_property6) {
             _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
           }
@@ -338,15 +338,18 @@ class TypeVisitor {
           thing.decorators = processDecorators(_serializer7, _property6);
           if (_property6.isPrimitive()) {
             thing.elementType = _property6.getFullyQualifiedTypeName();
-            _nextModel3 = _property6;
+            // For primitive optional properties, keep the parent model scope
+            // so that named variables (e.g. {{age}}) can resolve correctly.
+            // The property itself is passed as parentModel for {{this}} fallback.
+            _nextModel2 = currentModel;
           } else {
             thing.elementType = _property6.getFullyQualifiedTypeName();
-            _nextModel3 = parameters.introspector.getClassDeclaration(thing.elementType);
+            _nextModel2 = parameters.introspector.getClassDeclaration(thing.elementType);
           }
           TypeVisitor.visitChildren(this, thing, {
             templateMarkModelManager: parameters.templateMarkModelManager,
             introspector: parameters.introspector,
-            model: _nextModel3,
+            model: _nextModel2,
             kind: parameters.kind
           }, 'whenSome');
           TypeVisitor.visitChildren(this, thing, {
