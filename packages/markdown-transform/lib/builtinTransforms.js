@@ -46,13 +46,6 @@ const transformationGraph = {
     markdown_template: (input, parameters, options) => {
       const t = new TemplateMarkTransformer();
       return t.toMarkdownTemplate(input);
-    },
-    pdfmake: (input, parameters, options) => {
-      return PdfTransformer.templateMarkToPdfMake(input, options);
-    },
-    slate: (input, parameters, options) => {
-      const t = new SlateTransformer();
-      return t.fromTemplateMark(input);
     }
   },
   markdown: {
