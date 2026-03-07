@@ -49,6 +49,9 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
+        new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer']
+        }),
         new webpack.IgnorePlugin({
             resourceRegExp: /^\.$/,
             contextRegExp: /jsdom$/,
@@ -83,6 +86,8 @@ module.exports = {
             'http': require.resolve('stream-http'),
             'https': require.resolve('https-browserify'),
             'zlib': require.resolve('browserify-zlib'),
+            'buffer': require.resolve('buffer/'),
+            'vm': require.resolve('vm-browserify'),
         }
     }
 };
