@@ -23,7 +23,6 @@
   "version": "0.16.25",
   "private": true,
   "scripts": {
-    "dingus": "npm run --workspace dingus",
     "build": "npm run build --workspaces --if-present",
     "postinstall": "npm run models:get",
     "models:get": "node ./scripts/external/getExternalModels.js",
