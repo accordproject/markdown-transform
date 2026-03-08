@@ -22,7 +22,7 @@ const CommonMarkUtils = require('./CommonMarkUtils');
 class FromCommonMarkVisitor {
     /**
      * Construct the visitor.
-     * @param {object} [options] configuration options
+     * @param {object} options configuration options
      * @param {*} resultString how to create a result from a string
      * @param {*} resultSeq how to sequentially combine results
      * @param {object} rules how to process each node type

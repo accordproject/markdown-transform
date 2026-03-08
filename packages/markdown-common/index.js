@@ -29,6 +29,7 @@ module.exports.TemplateMarkModel = require('./lib/externalModels/TemplateMarkMod
 
 module.exports.CommonMarkUtils = require('./lib/CommonMarkUtils');
 module.exports.FromCommonMarkVisitor = require('./lib/FromCommonMarkVisitor');
+/** @type {Record<string, Function>} */
 module.exports.fromcommonmarkrules = require('./lib/fromcommonmarkrules');
 
 module.exports.CommonMarkTransformer = require('./lib/CommonMarkTransformer');
