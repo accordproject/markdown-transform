@@ -15,6 +15,7 @@
   "files": [
     "bin",
     "lib",
+    "types",
     "umd"
   ],
   "main": "index.js",
@@ -24,8 +25,11 @@
     "postlint": "npm run licchk",
     "licchk": "license-check-and-add",
     "test": "mocha --exclude test/extension --timeout 30000",
-    "test:cov": "npm run lint && nyc mocha --timeout 30000"
+    "test:cov": "npm run lint && nyc mocha --timeout 30000",
+    "build": "npm run build:types",
+    "build:types": "tsc"
   },
+  "typings": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/accordproject/markdown-transform.git",
@@ -49,7 +53,8 @@
     "eslint": "8.57.1",
     "license-check-and-add": "2.3.6",
     "mocha": "10.8.2",
-    "nyc": "17.1.0"
+    "nyc": "17.1.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@accordproject/concerto-util": "3.25.7",
