@@ -25,7 +25,7 @@
     "test:cov": "npm run lint && jest --timeOut=10000 --coverage --silent",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "build": "npm run build:types",
-    "build:types": "tsc "
+    "build:types": "tsc"
   },
   "typings": "types/index.d.ts",
   "repository": {

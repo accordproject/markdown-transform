@@ -42,7 +42,7 @@ function getText(thing,field,escapeFun) {
     }
 }
 
-/** @type {Object<string, Function>} */
+/** @type {Object<string, RuleFunction>} */
 const rules = {};
 // Inlines
 rules.Code = (visitor,thing,children,parameters,resultString,resultSeq) => {
