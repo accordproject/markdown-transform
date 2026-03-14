@@ -144,7 +144,7 @@ class TypeVisitor {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
             if (thing.name === 'this') {
-                const property = currentModel; // BUG... if we are iterating over an array
+                const property = parameters.primitiveProperty || currentModel; // BUG... if we are iterating over an array
                 // of complex types using a {{this}}, then thing will be a ClassDeclaration or an
                 // EnumDeclaration!!
 
@@ -308,7 +308,7 @@ class TypeVisitor {
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:null,
+                model:currentModel,
                 kind:parameters.kind
             }, 'whenFalse');
         }
@@ -326,9 +326,10 @@ class TypeVisitor {
             thing.decorators = processDecorators(serializer,property);
             if (property.isPrimitive()) {
                 thing.elementType = property.getFullyQualifiedTypeName();
-                // For primitive optional properties, keep the parent model scope
-                // so that named variables (e.g. {{age}}) can resolve correctly.
-                // The property itself is passed as parentModel for {{this}} fallback.
+                // For primitive optional properties, keep the parent model as the
+                // current scope so that named variables (e.g. {{age}}) resolve
+                // against the parent class. The property is stashed separately
+                // so that {{this}} can still resolve to the primitive type.
                 nextModel = currentModel;
             } else {
                 thing.elementType = property.getFullyQualifiedTypeName();
@@ -338,12 +339,13 @@ class TypeVisitor {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
                 model:nextModel,
+                primitiveProperty: property.isPrimitive() ? property : null,
                 kind:parameters.kind
             }, 'whenSome');
             TypeVisitor.visitChildren(this, thing, {
                 templateMarkModelManager:parameters.templateMarkModelManager,
                 introspector:parameters.introspector,
-                model:null,
+                model:currentModel,
                 kind:parameters.kind
             }, 'whenNone');
         }
