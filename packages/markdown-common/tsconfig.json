@@ -6,5 +6,6 @@
         "outDir": "types",
         "strict": false
     },
-    "include": ["index.js", "lib/**/*.js"]
+    "include": ["index.js", "lib/**/*.js"],
+    "exclude": ["lib/**/*.test.js"]
 }
