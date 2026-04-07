@@ -484,14 +484,17 @@ exports[`markdown-spec converts ATX headings-49 to concerto 1`] = `
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "2",
+      "nodes": [],
     },
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
+      "nodes": [],
     },
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "3",
+      "nodes": [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1656,6 +1659,7 @@ exports[`markdown-spec converts Block quotes-209 to concerto 1`] = `
   "nodes": [
     {
       "$class": "org.accordproject.commonmark@0.5.0.BlockQuote",
+      "nodes": [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -1668,6 +1672,7 @@ exports[`markdown-spec converts Block quotes-210 to concerto 1`] = `
   "nodes": [
     {
       "$class": "org.accordproject.commonmark@0.5.0.BlockQuote",
+      "nodes": [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -10394,6 +10399,7 @@ exports[`markdown-spec converts Link reference definitions-187 to concerto 1`] =
     },
     {
       "$class": "org.accordproject.commonmark@0.5.0.BlockQuote",
+      "nodes": [],
     },
   ],
   "xmlns": "http://commonmark.org/xml/1.0",
@@ -13982,6 +13988,7 @@ exports[`markdown-spec converts List items-250 to concerto 1`] = `
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
       ],
       "tight": "true",
@@ -14024,6 +14031,7 @@ exports[`markdown-spec converts List items-251 to concerto 1`] = `
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
@@ -14071,6 +14079,7 @@ exports[`markdown-spec converts List items-252 to concerto 1`] = `
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
@@ -14119,6 +14128,7 @@ exports[`markdown-spec converts List items-253 to concerto 1`] = `
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
@@ -14153,6 +14163,7 @@ exports[`markdown-spec converts List items-254 to concerto 1`] = `
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
       ],
       "tight": "true",
@@ -15940,6 +15951,7 @@ exports[`markdown-spec converts Lists-285 to concerto 1`] = `
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",
+          "nodes": [],
         },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Item",

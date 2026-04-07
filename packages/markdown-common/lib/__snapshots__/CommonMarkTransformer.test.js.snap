@@ -1283,10 +1283,12 @@ exports[`markdown converts heading-empty.md to concerto JSON 1`] = `
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "1",
+      "nodes": [],
     },
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
       "level": "2",
+      "nodes": [],
     },
     {
       "$class": "org.accordproject.commonmark@0.5.0.Heading",
@@ -1956,6 +1958,7 @@ exports[`markdown converts miniblockquote2.md to concerto JSON 1`] = `
               "nodes": [
                 {
                   "$class": "org.accordproject.commonmark@0.5.0.Item",
+                  "nodes": [],
                 },
               ],
               "tight": "true",
@@ -1971,6 +1974,7 @@ exports[`markdown converts miniblockquote2.md to concerto JSON 1`] = `
               "nodes": [
                 {
                   "$class": "org.accordproject.commonmark@0.5.0.Item",
+                  "nodes": [],
                 },
               ],
               "tight": "true",
