@@ -59,7 +59,7 @@ const templateMarkManager = mkTemplateMarkManager();
  * @param {string} templateKind - either 'clause' or 'contract'
  * @param {string} [conceptFullyQualifiedName] - the fully qualified name of the template concept
  * @throws {Error} if no template model is found, or multiple template models are found
- * @returns {ClassDeclaration} the concept for the template
+ * @returns {object} the concept for the template
  */
 function findTemplateConcept(introspector, templateKind, conceptFullyQualifiedName) {
     if(conceptFullyQualifiedName) {
@@ -84,7 +84,7 @@ function findTemplateConcept(introspector, templateKind, conceptFullyQualifiedNa
  * @param {object} introspector - the model introspector for this template
  * @param {string} elementType - the element type
  * @throws {Error} if no template model is found, or multiple template models are found
- * @returns {ClassDeclaration} the template model for the template
+ * @returns {object} the template model for the template
  */
 function findElementModel(introspector, elementType) {
     return introspector.getClassDeclaration(elementType);
