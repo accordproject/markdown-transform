@@ -173,11 +173,6 @@ class FromMarkdownIt {
             } else if (rule.close) {
                 const node = stack.pop();
                 if (rule.exit) { rule.exit(node,token,FromMarkdownIt.inlineCallback(rules)); }
-                if (token.type !== 'paragraph_close') {
-                    if (node.nodes.length === 0) {
-                        delete node.nodes;
-                    }
-                }
             }
         }
 
