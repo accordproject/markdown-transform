@@ -4,7 +4,7 @@
     "ajv": "^8.17.1",
     "dayjs": "1.11.13",
     "glob": "^7.1.7",
-    "handlebars": "^4.7.8",
+    "handlebars": "^4.7.9",
     "license-check-and-add": "2.3.6",
     "mkdirp": "3.0.1",
     "nyc": "17.1.0",
