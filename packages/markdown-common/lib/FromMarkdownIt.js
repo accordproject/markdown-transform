@@ -77,6 +77,11 @@ class FromMarkdownIt {
      * @param {*[]} stack - the stack of constructed nodes
      */
     static inlineToCommonMark(rules,tokens,stack) {
+        if(!Array.isArray(tokens)  || tokens.length===0)
+            return{
+              '$class': `${CommonMarkModel.NAMESPACE}.Inline`,
+              'nodes': [],        
+            }
         const rootNode = {
             '$class': `${CommonMarkModel.NAMESPACE}.Inline`,
             'nodes': [],
