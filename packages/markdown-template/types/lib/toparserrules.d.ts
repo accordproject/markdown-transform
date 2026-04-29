@@ -1,0 +1,12 @@
+export declare function EnumVariableDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function VariableDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+import FormattedVariableDefinition = VariableDefinition;
+export { FormattedVariableDefinition };
+export declare function ConditionalDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function OptionalDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function JoinDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function WithDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function FormulaDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function ListBlockDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function ClauseDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export declare function ContractDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;

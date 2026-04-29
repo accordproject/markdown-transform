@@ -12,13 +12,15 @@
   "files": [
     "bin",
     "lib",
+    "types",
     "umd"
   ],
   "main": "index.js",
   "browser": "umd/markdown-template.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
-    "build": "babel src -d lib --copy-files",
+    "build": "babel src -d lib --copy-files && npm run build:types",
+    "build:types": "tsc",
     "build:dist": "NODE_ENV=production babel src -d lib --copy-files",
     "build:watch": "babel src -d lib --copy-files --watch",
     "prepublishOnly": "npm run build:dist && npm run webpack",
@@ -32,6 +34,7 @@
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "typescript": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src/"
   },
+  "typings": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/accordproject/markdown-transform.git",
@@ -69,7 +72,8 @@
     "stream-browserify": "3.0.0",
     "tsd-jsdoc": "^2.5.0",
     "webpack": "5.104.1",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "5.1.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@accordproject/concerto-core": "3.25.7",
