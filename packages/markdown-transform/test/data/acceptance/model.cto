@@ -1,6 +1,6 @@
 namespace org.accordproject.acceptanceofdelivery@1.0.0
 
-import org.accordproject.organization@0.3.0.{Organization} from https://models.accordproject.org/organization@0.3.0.cto
+import org.accordproject.organization@0.2.0.{Organization} from https://models.accordproject.org/organization@0.2.0.cto
 
 /**
  * The template model
