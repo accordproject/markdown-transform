@@ -33,6 +33,24 @@ concept Thing {
     o String[] items
 }`;
 
+const CONDITIONAL_MODEL = `
+namespace test@1.0.0
+@template
+concept TemplateData {
+    o Integer age optional
+    o String name
+    o Boolean isActive optional
+}`;
+
+const OPTIONAL_MODEL = `
+namespace test@1.0.0
+@template
+concept TemplateData {
+    o Integer age optional
+    o String middleName optional
+    o Boolean active optional
+}`;
+
 describe('#TemplateMarkTransformer', () => {
     describe('#tokensToMarkdownTemplate', () => {
         it('should handle join with type, style and locale', async () => {
@@ -90,6 +108,127 @@ describe('#TemplateMarkTransformer', () => {
             const joinNode = result.nodes[0].nodes[0].nodes[0];
             joinNode.$class.should.equal(`${TemplateMarkModel.NAMESPACE}.JoinDefinition`);
             (joinNode.foo === undefined).should.be.true;
+        });
+    });
+
+    describe('#conditional blocks with variables', () => {
+        it('should allow named variables inside #if blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(CONDITIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#if age}}You are {{age}} years old.{{/if}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should allow multiple variables inside #if blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(CONDITIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#if isActive}}Hello {{name}}, you are {{age}} years old.{{/if}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should reject unknown variables inside #if blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(CONDITIONAL_MODEL);
+            (() => transformer.fromMarkdownTemplate(
+                {content: '{{#if age}}You are {{unknown}} years old.{{/if}}'},
+                modelManager, 'clause', {verbose: false}
+            )).should.throw();
+        });
+
+        it('should allow variables inside {{else}} branch of #if blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(CONDITIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#if isActive}}Hello {{name}}.{{else}}Goodbye {{name}}.{{/if}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should reject unknown variables inside {{else}} branch of #if blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(CONDITIONAL_MODEL);
+            (() => transformer.fromMarkdownTemplate(
+                {content: '{{#if isActive}}Hello {{name}}.{{else}}Goodbye {{unknown}}.{{/if}}'},
+                modelManager, 'clause', {verbose: false}
+            )).should.throw();
+        });
+    });
+
+    describe('#optional blocks with variables', () => {
+        it('should allow named variables inside #optional blocks with primitive types', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#optional age}}You are {{age}} years old.{{else}}Age unknown.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should allow different variables inside #optional blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#optional middleName}}Middle name: {{middleName}}{{else}}No middle name.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should reject unknown variables inside #optional blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            (() => transformer.fromMarkdownTemplate(
+                {content: '{{#optional age}}You are {{unknown}} years old.{{else}}Nope.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            )).should.throw();
+        });
+
+        it('should allow variables inside {{else}} branch of #optional blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#optional age}}You are {{age}} years old.{{else}}Active: {{active}}.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
+        });
+
+        it('should reject unknown variables inside {{else}} branch of #optional blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            (() => transformer.fromMarkdownTemplate(
+                {content: '{{#optional age}}You are {{age}}.{{else}}Unknown: {{bogus}}.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            )).should.throw();
+        });
+
+        it('should allow {{this}} inside primitive #optional blocks', async () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(OPTIONAL_MODEL);
+            const result = transformer.fromMarkdownTemplate(
+                {content: '{{#optional age}}Age is {{this}}.{{else}}No age.{{/optional}}'},
+                modelManager, 'clause', {verbose: false}
+            );
+            result.should.not.be.null;
         });
     });
 });
