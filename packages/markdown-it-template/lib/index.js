@@ -84,6 +84,8 @@ function template_plugin(md) {
     md.renderer.rules['block_ulist_close'] = template_block_render('ulist');
     md.renderer.rules['block_olist_open'] = template_block_render('olist');
     md.renderer.rules['block_olist_close'] = template_block_render('olist');
+    md.renderer.rules['block_rlist_open'] = template_block_render('rlist');
+    md.renderer.rules['block_rlist_close'] = template_block_render('rlist');
 }
 
 module.exports = template_plugin;
