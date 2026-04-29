@@ -13,6 +13,30 @@
  */
 
 'use strict';
+/**
+ * Converts a markdown node to an HTML string.
+ *
+ * @param {Object} thing - Markdown AST node
+ * @returns {string} HTML representation
+ */
+function renderVariableValue(thing) {
+    // Handle relationship types (e.g. Party)
+    if (
+        thing.elementType &&
+        thing.elementType.startsWith('org.accordproject.party@') &&
+        typeof thing.value === 'string'
+    ) {
+        // Remove quotes if present
+        const unquoted = thing.value.replace(/^"(.*)"$/, '$1');
+
+        // Extract identifier after #
+        const parts = unquoted.split('#');
+        return parts.length > 1 ? parts[1] : unquoted;
+    }
+
+    // Default behavior
+    return thing.value;
+}
 
 // const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
@@ -81,7 +105,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'FormattedVariable': {
@@ -92,7 +117,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'EnumVariable': {
@@ -104,7 +130,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'Conditional':
