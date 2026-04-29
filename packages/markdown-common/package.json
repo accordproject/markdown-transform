@@ -51,7 +51,7 @@
     "@accordproject/concerto-core": "^4.0.2"
   },
   "dependencies": {
-    "@xmldom/xmldom": "^0.9.5",
+    "@xmldom/xmldom": "^0.9.10",
     "markdown-it": "^14.1.0"
   },
   "license-check-and-add-config": {
