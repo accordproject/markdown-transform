@@ -23,7 +23,7 @@ A transformation and parsing framework for converting markdown content to HTML a
 
 ## Structure of the Code Repository
 
-Top level repository (markdown-transform), with sub packages. Each sub-package is published as an independent npm module using `npm workspaces`:
+Top-level repository (`markdown-transform`) with sub-packages. Each sub-package is published as an independent npm module using `npm workspaces`:
 * [markdown-cli](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-cli) : command line utilities
 * [markdown-transform](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-transform) : High-level API to transform files into different formats
 * [markdown-common](https://github.com/accordproject/markdown-transform/tree/main/packages/markdown-common) : converts between markdown strings and the CommonMark DOM
@@ -65,7 +65,7 @@ To install the command-line interface:
 npm install -g @accordproject/markdown-cli
 ```
 
-This will install the `markus` command-line for markdown transform. To get command-line help:
+This will install the `markus` command-line tool for Markdown Transform. To get command-line help:
 ```
 markus --help
 ```
