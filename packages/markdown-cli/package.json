@@ -52,7 +52,7 @@
     "nyc": "17.1.0"
   },
   "dependencies": {
-    "@accordproject/concerto-util": "^4.0.2",
+    "@accordproject/concerto-util": "^4.0.3",
     "@accordproject/markdown-transform": "*",
     "yargs": "17.7.2"
   },
