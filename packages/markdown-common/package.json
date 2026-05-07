@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform",
   "devDependencies": {
+    "@accordproject/concerto-core": "^4.0.3",
     "eslint": "8.57.1",
     "jest": "^29.7.0",
     "jest-diff": "^29.7.0",
@@ -52,9 +53,11 @@
     "license-check-and-add": "2.3.6",
     "typescript": "^5.9.3"
   },
+  "peerDependencies": {
+    "@accordproject/concerto-core": "^4.0.3"
+  },
   "dependencies": {
-    "@accordproject/concerto-core": "3.25.7",
-    "@xmldom/xmldom": "^0.9.5",
+    "@xmldom/xmldom": "^0.9.10",
     "markdown-it": "^14.1.0"
   },
   "license-check-and-add-config": {

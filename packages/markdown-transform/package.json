@@ -52,11 +52,12 @@
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
   "devDependencies": {
+    "@accordproject/concerto-core": "^4.0.3",
     "@babel/cli": "7.25.9",
     "@babel/core": "7.26.0",
     "@babel/preset-env": "7.16.11",
     "@babel/register": "7.25.9",
-    "axios": "^1.8.2",
+    "axios": "^1.15.0",
     "babel-loader": "9.2.1",
     "babel-plugin-istanbul": "7.0.0",
     "browserify-zlib": "^0.2.0",
@@ -80,8 +81,10 @@
     "webpack-cli": "5.1.4",
     "typescript": "^5.9.3"
   },
+  "peerDependencies": {
+    "@accordproject/concerto-core": "^4.0.3"
+  },
   "dependencies": {
-    "@accordproject/concerto-core": "3.25.7",
     "@accordproject/markdown-cicero": "*",
     "@accordproject/markdown-common": "*",
     "@accordproject/markdown-html": "*",

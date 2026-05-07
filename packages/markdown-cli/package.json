@@ -57,7 +57,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@accordproject/concerto-util": "3.25.7",
+    "@accordproject/concerto-util": "^4.0.3",
     "@accordproject/markdown-transform": "*",
     "yargs": "17.7.2"
   },
