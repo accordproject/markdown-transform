@@ -10,9 +10,11 @@
     "access": "public"
   },
   "files": [
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "pretest": "npm run lint",
     "lint": "eslint .",

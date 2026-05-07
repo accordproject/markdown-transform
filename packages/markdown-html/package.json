@@ -12,9 +12,11 @@
   "files": [
     "bin",
     "lib",
-    "umd"
+    "umd",
+    "index.d.ts"
   ],
   "main": "index.js",
+  "typings": "index.d.ts",
   "browser": "umd/markdown-html.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
