@@ -13,28 +13,16 @@
  */
 
 'use strict';
-/**
- * Converts a markdown node to an HTML string.
- *
- * @param {Object} thing - Markdown AST node
- * @returns {string} HTML representation
- */
+
+// identifiedBy is the Concerto marker for relationship/reference types regardless of namespace.
+// When the value is a full resource URI (resource:namespace#identifier), extract just the identifier.
 function renderVariableValue(thing) {
-    // Handle relationship types (e.g. Party)
-    if (
-        thing.elementType &&
-        thing.elementType.startsWith('org.accordproject.party@') &&
-        typeof thing.value === 'string'
-    ) {
-        // Remove quotes if present
-        const unquoted = thing.value.replace(/^"(.*)"$/, '$1');
-
-        // Extract identifier after #
-        const parts = unquoted.split('#');
-        return parts.length > 1 ? parts[1] : unquoted;
+    if (thing.identifiedBy && typeof thing.value === 'string') {
+        const unquoted = thing.value.replace(/^"(.*)"$/s, '$1');
+        if (unquoted.startsWith('resource:') && unquoted.includes('#')) {
+            return unquoted.split('#').pop();
+        }
     }
-
-    // Default behavior
     return thing.value;
 }
 
