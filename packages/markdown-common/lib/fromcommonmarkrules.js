@@ -17,6 +17,16 @@
 const CommonMarkUtils = require('./CommonMarkUtils');
 
 /**
+ * @typedef {Function} RuleFunction
+ * @param {*} visitor
+ * @param {*} thing
+ * @param {*} children
+ * @param {*} parameters
+ * @param {*} resultString
+ * @param {*} resultSeq
+ */
+
+/**
  * get text from a thing
  * @param {object} thing - the thing
  * @param {string} field - the field where to look for the text
@@ -32,6 +42,7 @@ function getText(thing,field,escapeFun) {
     }
 }
 
+/** @type {Object<string, RuleFunction>} */
 const rules = {};
 // Inlines
 rules.Code = (visitor,thing,children,parameters,resultString,resultSeq) => {
