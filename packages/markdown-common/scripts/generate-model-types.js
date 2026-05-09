@@ -34,7 +34,7 @@ const NAME_MAP = {
 // Namespaces auto-generated but not useful in the public API
 const SKIP = new Set(['concerto.decorator@1.0.0']);
 
-const mm = new ModelManager({ strict: true });
+const mm = new ModelManager();
 mm.addCTOModel(ConcertoMetaModel.MODEL, 'metamodel.cto');
 mm.addCTOModel(CommonMarkModel.MODEL,   'commonmark.cto');
 mm.addCTOModel(CiceroMarkModel.MODEL,   'ciceromark.cto');
