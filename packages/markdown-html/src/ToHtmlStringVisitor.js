@@ -14,8 +14,13 @@
 
 'use strict';
 
-// identifiedBy is the Concerto marker for relationship/reference types regardless of namespace.
-// When the value is a full resource URI (resource:namespace#identifier), extract just the identifier.
+/**
+ * Returns the display value for a variable node.
+ * For relationship types (identifiedBy is set), strips the resource URI scheme
+ * (resource:namespace#identifier) and returns just the identifier.
+ * @param {object} thing - the variable node
+ * @returns {string} the display value
+ */
 function renderVariableValue(thing) {
     if (thing.identifiedBy && typeof thing.value === 'string') {
         const unquoted = thing.value.replace(/^"(.*)"$/s, '$1');
