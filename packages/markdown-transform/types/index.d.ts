@@ -1,5 +1,5 @@
-export const formatDescriptor: (format: any) => any;
-export const transform: (source: any, sourceFormat: any, destinationFormat: any, parameters: any, options: any) => any;
+export const formatDescriptor: (format: string) => object;
+export const transform: (source: object | string, sourceFormat: string, destinationFormat: string[], parameters: object, options?: object) => Promise<object | string>;
 export const TransformEngine: typeof import("./lib/transformEngine");
 export const builtinTransformationGraph: {
     markdown_template: {
@@ -20,42 +20,42 @@ export const builtinTransformationGraph: {
     markdown: {
         docs: string;
         fileFormat: string;
-        commonmark_tokens: (input: any, parameters: any, options: any) => any;
+        commonmark_tokens: (input: any, parameters: any, options: any) => object[];
     };
     commonmark_tokens: {
         docs: string;
         fileFormat: string;
-        commonmark: (input: any, parameters: any, options: any) => Promise<any>;
+        commonmark: (input: any, parameters: any, options: any) => Promise<object>;
     };
     markdown_cicero: {
         docs: string;
         fileFormat: string;
-        ciceromark_tokens: (input: any, parameters: any, options: any) => any;
+        ciceromark_tokens: (input: any, parameters: any, options: any) => object[];
     };
     ciceromark_tokens: {
         docs: string;
         fileFormat: string;
-        ciceromark: (input: any, parameters: any, options: any) => Promise<any>;
+        ciceromark: (input: any, parameters: any, options: any) => Promise<object>;
     };
     commonmark: {
         docs: string;
         fileFormat: string;
         markdown: (input: any, parameters: any, options: any) => string;
-        ciceromark: (input: any, parameters: any, options: any) => any;
+        ciceromark: (input: any, parameters: any, options: any) => object;
         plaintext: (input: any, parameters: any, options: any) => string;
     };
     ciceromark: {
         docs: string;
         fileFormat: string;
         markdown_cicero: (input: any, parameters: any, options: any) => string;
-        commonmark: (input: any, parameters: any, options: any) => any;
+        commonmark: (input: any, parameters: any, options: any) => object;
         ciceromark_parsed: (input: any, parameters: any, options: any) => any;
     };
     ciceromark_parsed: {
         docs: string;
         fileFormat: string;
         html: (input: any, parameters: any, options: any) => string;
-        ciceromark: (input: any, parameters: any, options: any) => any;
+        ciceromark: (input: any, parameters: any, options: any) => object;
         ciceromark_unquoted: (input: any, parameters: any, options: any) => object;
     };
     plaintext: {
@@ -66,7 +66,7 @@ export const builtinTransformationGraph: {
     ciceroedit: {
         docs: string;
         fileFormat: string;
-        ciceromark_parsed: (input: any, parameters: any, options: any) => any;
+        ciceromark_parsed: (input: any, parameters: any, options: any) => object;
     };
     ciceromark_unquoted: {
         docs: string;
@@ -76,6 +76,6 @@ export const builtinTransformationGraph: {
     html: {
         docs: string;
         fileFormat: string;
-        ciceromark_parsed: (input: any, parameters: any, options: any) => any;
+        ciceromark_parsed: (input: any, parameters: any, options: any) => object;
     };
 };

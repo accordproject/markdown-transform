@@ -50,7 +50,7 @@ class ToMarkdownVisitor extends FromCommonMarkVisitor {
 
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {*} input - CommonMark DOM (as a Concerto object)
+     * @param {object} input - CommonMark DOM (as a Concerto object)
      * @returns {string} the markdown string
      */
     toMarkdown(input) {

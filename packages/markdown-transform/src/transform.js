@@ -21,7 +21,7 @@ const builtinTransformationGraph = require('./builtinTransforms');
  * Create a new transformation engine
  *
  * @param {object} transformationGraph - initial transformation graph
- * @return {*} the transformation engine
+ * @return {TransformEngine} the transformation engine
  */
 function createTransformationEngine(transformationGraph) {
     return new TransformEngine(transformationGraph);
@@ -31,11 +31,28 @@ module.exports.createTransformationEngine;
 
 /**
  * This is instantiated here for backward compatibility
+ * @type {TransformEngine}
  */
 const builtinEngine = createTransformationEngine(builtinTransformationGraph);
 
 module.exports.builtinEngine = builtinEngine;
+
+/**
+ * Return the format descriptor for a given format
+ * @param {string} format the format
+ * @returns {object} the descriptor for that format
+ */
 module.exports.formatDescriptor = (format) => builtinEngine.formatDescriptor(format);
+
+/**
+ * Transforms from a source format to a list of destination formats.
+ * @param {object|string} source the input for the transformation
+ * @param {string} sourceFormat the input format
+ * @param {string[]} destinationFormat the destination format as an array
+ * @param {object} parameters the transform parameters
+ * @param {object} [options] the transform options
+ * @returns {Promise<object|string>} result of the transformation
+ */
 module.exports.transform = (
     source,
     sourceFormat,
@@ -43,4 +60,9 @@ module.exports.transform = (
     parameters,
     options
 ) => builtinEngine.transform(source, sourceFormat, destinationFormat, parameters, options);
+
+/**
+ * Converts the transformation graph into a PlantUML diagram string
+ * @returns {string} the PlantUML string
+ */
 module.exports.generateTransformationDiagram = () => builtinEngine.generateTransformationDiagram();
