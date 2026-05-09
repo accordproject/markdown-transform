@@ -1,0 +1,108 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f1e3;
+  --panel: rgba(255, 255, 255, 0.72);
+  --text: #1f2a2e;
+  --muted: #5b676d;
+  --accent: #0f766e;
+  --border: rgba(31, 42, 46, 0.12);
+  --shadow: 0 24px 60px rgba(23, 39, 48, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 28%),
+    linear-gradient(160deg, #f9f5eb 0%, #efe5cf 100%);
+}
+
+.page {
+  width: min(720px, calc(100% - 2rem));
+  margin: 8vh auto;
+  padding: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.lede {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+}
+
+.actions a:hover,
+.actions a:focus-visible {
+  border-color: rgba(15, 118, 110, 0.5);
+  background: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .page {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+  }
+
+  .actions a {
+    width: 100%;
+  }
+}
