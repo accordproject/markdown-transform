@@ -95,7 +95,7 @@ class TemplateMarkTransformer {
 
     /**
      * Get TemplateMark serializer
-     * @return {*} templatemark serializer
+     * @return {object} templatemark serializer
      */
     getSerializer() {
         return templateMarkManager.serializer;

@@ -46,7 +46,7 @@ declare class TemplateMarkTransformer {
     toMarkdownTemplate(input: object): string;
     /**
      * Get TemplateMark serializer
-     * @return {*} templatemark serializer
+     * @return {object} templatemark serializer
      */
-    getSerializer(): any;
+    getSerializer(): object;
 }

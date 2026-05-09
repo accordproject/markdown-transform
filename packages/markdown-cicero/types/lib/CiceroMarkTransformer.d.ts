@@ -11,39 +11,39 @@ declare class CiceroMarkTransformer {
     serializer: Serializer;
     /**
      * Obtain the Clause text for a Clause node
-     * @param {*} input CiceroMark DOM
-     * @returns {*} markdown_cicero string
+     * @param {object} input CiceroMark DOM
+     * @returns {string} markdown_cicero string
      */
-    getClauseText(input: any): any;
+    getClauseText(input: object): string;
     /**
      * Retrieve the serializer used by the parser
      *
-     * @returns {*} a serializer capable of dealing with the Concerto
+     * @returns {Serializer} a serializer capable of dealing with the Concerto
      * object returns by parse
      */
-    getSerializer(): any;
+    getSerializer(): Serializer;
     /**
      * Converts a CiceroEdit string to a CiceroMark DOM
-     * @param {*} input - ciceroedit string
-     * @returns {*} CiceroMark DOM
+     * @param {string} input - ciceroedit string
+     * @returns {object} CiceroMark DOM
      */
-    fromCiceroEdit(input: any): any;
+    fromCiceroEdit(input: string): object;
     /**
      * Converts a CiceroMark DOM to a CiceroMark Unwrapped DOM
      * @param {object} input - CiceroMark DOM (JSON)
      * @param {object} [options] configuration options
      * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
-     * @returns {*} CiceroMark DOM
+     * @returns {object} CiceroMark DOM
      */
     toCiceroMarkUnwrapped(input: object, options?: {
         unquoteVariables?: boolean;
-    }): any;
+    }): object;
     /**
      * Converts a CommonMark DOM to a CiceroMark DOM
-     * @param {*} input - CommonMark DOM (in JSON)
-     * @returns {*} CiceroMark DOM
+     * @param {object} input - CommonMark DOM (in JSON)
+     * @returns {object} CiceroMark DOM
      */
-    fromCommonMark(input: any): any;
+    fromCommonMark(input: object): object;
     /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
@@ -52,11 +52,11 @@ declare class CiceroMarkTransformer {
     fromMarkdown(markdown: string): object;
     /**
      * Converts a CiceroMark DOM to a markdown string
-     * @param {*} input CiceroMark DOM
+     * @param {object} input CiceroMark DOM
      * @param {object} [options] configuration options
-     * @returns {*} markdown string
+     * @returns {string} markdown string
      */
-    toMarkdown(input: any, options?: object): any;
+    toMarkdown(input: object, options?: object): string;
     /**
      * Converts a cicero markdown string to a CiceroMark DOM
      * @param {string} markdown a cicero markdown string
@@ -72,16 +72,16 @@ declare class CiceroMarkTransformer {
     toMarkdownCicero(input: object): string;
     /**
      * Converts a CiceroMark DOM to a CommonMark DOM
-     * @param {*} input CiceroMark DOM
+     * @param {object} input CiceroMark DOM
      * @param {object} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
      * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
-     * @returns {*} json commonmark object
+     * @returns {object} json commonmark object
      */
-    toCommonMark(input: any, options?: {
+    toCommonMark(input: object, options?: {
         removeFormatting?: boolean;
         unquoteVariables?: boolean;
-    }): any;
+    }): object;
     /**
      * Unquotes a CiceroMark DOM
      * @param {object} input CiceroMark DOM
@@ -92,16 +92,16 @@ declare class CiceroMarkTransformer {
      * Converts a ciceromark string into a token stream
      *
      * @param {string} input the string to parse
-     * @returns {*} a markdown-it token stream
+     * @returns {object[]} a markdown-it token stream
      */
-    toTokens(input: string): any;
+    toTokens(input: string): object[];
     /**
      * Converts a token stream into a CiceroMark DOM object.
      *
-     * @param {object} tokenStream the token stream
-     * @returns {*} the CiceroMark DOM (JSON)
+     * @param {object[]} tokenStream the token stream
+     * @returns {object} the CiceroMark DOM (JSON)
      */
-    fromTokens(tokenStream: object): any;
+    fromTokens(tokenStream: object[]): object;
 }
 import { ModelManager } from "@accordproject/concerto-core";
 import { Serializer } from "@accordproject/concerto-core";

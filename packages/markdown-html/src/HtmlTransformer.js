@@ -34,7 +34,7 @@ class HtmlTransformer {
 
     /**
      * Converts a CiceroMark DOM to an html string
-     * @param {*} input - CiceroMark DOM object
+     * @param {object} input - CiceroMark DOM object
      * @returns {string} the html string
      */
     toHtml(input) {
@@ -55,7 +55,7 @@ class HtmlTransformer {
     /**
      * Converts an html string to a CiceroMark DOM
      * @param {string} input - html string
-     * @returns {*} CiceroMark DOM
+     * @returns {object} CiceroMark DOM
      */
     toCiceroMark(input) {
         const visitor = new ToCiceroMarkVisitor(this.options);
