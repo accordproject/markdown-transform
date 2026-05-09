@@ -8,16 +8,16 @@ declare class CommonMarkTransformer {
     serializer: Serializer;
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {object} input - CommonMark DOM (in JSON)
+     * @param {INode} input - CommonMark DOM (in JSON)
      * @returns {string} the markdown string
      */
-    toMarkdown(input: object): string;
+    toMarkdown(input: INode): string;
     /**
      * Converts a CommonMark DOM to a CommonMark DOM with formatting removed
-     * @param {object} input - CommonMark DOM (in JSON)
-     * @returns {object} the CommonMark DOM with formatting nodes removed
+     * @param {IDocument} input - CommonMark DOM (in JSON)
+     * @returns {IDocument} the CommonMark DOM with formatting nodes removed
      */
-    removeFormatting(input: object): object;
+    removeFormatting(input: IDocument): IDocument;
     /**
      * Converts a markdown string into a token stream
      *
@@ -29,16 +29,16 @@ declare class CommonMarkTransformer {
      * Converts a token stream into a CommonMark DOM object.
      *
      * @param {object[]} tokenStream the token stream
-     * @returns {object} a Concerto object (DOM) for the markdown content
+     * @returns {IDocument} a Concerto object (DOM) for the markdown content
      */
-    fromTokens(tokenStream: object[]): object;
+    fromTokens(tokenStream: object[]): IDocument;
     /**
      * Converts a markdown string into a CommonMark DOM object.
      *
      * @param {string} markdown the string to parse
-     * @returns {object} a CommonMark DOM (JSON) for the markdown content
+     * @returns {IDocument} a CommonMark DOM (JSON) for the markdown content
      */
-    fromMarkdown(markdown: string): object;
+    fromMarkdown(markdown: string): IDocument;
     /**
      * Retrieve the serializer used by the parser
      *
@@ -46,4 +46,9 @@ declare class CommonMarkTransformer {
      */
     getSerializer(): Serializer;
 }
+declare namespace CommonMarkTransformer {
+    export { IDocument, INode };
+}
 import { Serializer } from "@accordproject/concerto-core";
+type IDocument = import("@accordproject/markdown-common/types/model/commonmark").IDocument;
+type INode = import("@accordproject/markdown-common/types/model/commonmark").INode;

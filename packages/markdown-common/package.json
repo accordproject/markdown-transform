@@ -25,7 +25,8 @@
     "test:cov": "npm run lint && jest --timeOut=10000 --coverage --silent",
     "jsdoc": "jsdoc -c jsdoc.json package.json",
     "build": "npm run build:types",
-    "build:types": "tsc"
+    "build:model-types": "node scripts/generate-model-types.js",
+    "build:types": "npm run build:model-types && tsc"
   },
   "typings": "types/index.d.ts",
   "repository": {
@@ -45,6 +46,7 @@
   },
   "homepage": "https://github.com/accordproject/markdown-transform",
   "devDependencies": {
+    "@accordproject/concerto-codegen": "^4.0.1",
     "@accordproject/concerto-core": "^4.0.3",
     "eslint": "8.57.1",
     "jest": "^29.7.0",
