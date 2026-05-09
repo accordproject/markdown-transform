@@ -47,7 +47,7 @@ module.exports.formatDescriptor = format => builtinEngine.formatDescriptor(forma
  * @param {object|string} source the input for the transformation
  * @param {string} sourceFormat the input format
  * @param {string[]} destinationFormat the destination format as an array
- * @param {object} parameters the transform parameters
+ * @param {object} [parameters] the transform parameters
  * @param {object} [options] the transform options
  * @returns {Promise<object|string>} result of the transformation
  */

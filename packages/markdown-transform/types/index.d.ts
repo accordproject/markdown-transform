@@ -1,5 +1,5 @@
 export const formatDescriptor: (format: string) => object;
-export const transform: (source: object | string, sourceFormat: string, destinationFormat: string[], parameters: object, options?: object) => Promise<object | string>;
+export const transform: (source: object | string, sourceFormat: string, destinationFormat: string[], parameters?: object, options?: object) => Promise<object | string>;
 export const TransformEngine: typeof import("./lib/transformEngine");
 export const builtinTransformationGraph: {
     markdown_template: {

@@ -3,7 +3,7 @@
   "version": "0.16.25",
   "description": "A framework for transforming markdown",
   "engines": {
-    "node": ">=15",
+    "node": ">=22",
     "npm": ">=9"
   },
   "publishConfig": {

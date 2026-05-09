@@ -95,7 +95,7 @@ hide empty description
      * @param {object|string} source the input for the transformation
      * @param {string} sourceFormat the input format
      * @param {string} destinationFormat the destination format
-     * @param {object} parameters the transform parameters
+     * @param {object} [parameters] the transform parameters
      * @param {object} [options] the transform options
      * @param {boolean} [options.verbose] output verbose console logs
      * @returns {Promise<object|string>} result of the transformation
@@ -137,7 +137,7 @@ hide empty description
      * @param {string} sourceFormat the input format
      * @param {string[]} destinationFormat the destination format as an array,
      * the transformation are applied in order to reach all formats in the array
-     * @param {object} parameters the transform parameters
+     * @param {object} [parameters] the transform parameters
      * @param {object} [options] the transform options
      * @param {boolean} [options.verbose] output verbose console logs
      * @returns {Promise<object|string>} result of the transformation

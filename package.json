@@ -13,7 +13,7 @@
     "typescript": "^5.9.3"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=22",
     "npm": ">=9"
   },
   "workspaces": [
