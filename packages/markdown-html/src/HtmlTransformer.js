@@ -14,6 +14,10 @@
 
 'use strict';
 
+/** @typedef {import('@accordproject/markdown-common/types/model/commonmark').IDocument} IDocument */
+/** @typedef {import('@accordproject/concerto-core').Typed} Typed */
+/** @typedef {IDocument|Typed} HtmlInput */
+
 const ToHtmlStringVisitor = require('./ToHtmlStringVisitor');
 const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
@@ -34,7 +38,7 @@ class HtmlTransformer {
 
     /**
      * Converts a CiceroMark DOM to an html string
-     * @param {object} input - CiceroMark DOM object
+     * @param {HtmlInput} input - CiceroMark DOM object
      * @returns {string} the html string
      */
     toHtml(input) {
@@ -55,7 +59,7 @@ class HtmlTransformer {
     /**
      * Converts an html string to a CiceroMark DOM
      * @param {string} input - html string
-     * @returns {object} CiceroMark DOM
+     * @returns {IDocument} CiceroMark DOM
      */
     toCiceroMark(input) {
         const visitor = new ToCiceroMarkVisitor(this.options);
