@@ -33,6 +33,40 @@ const {CommonMarkModel,CiceroMarkModel,ConcertoMetaModel} = require('@accordproj
 const unquoteVariables = require('./UnquoteVariables');
 
 /**
+ * @typedef {{
+ *   type: string,
+ *   tag: string,
+ *   nesting: number,
+ *   attrs?: Array<[string, string]> | null,
+ *   map?: [number, number] | null,
+ *   level?: number,
+ *   children?: MarkdownToken[] | null,
+ *   content?: string,
+ *   markup?: string,
+ *   info?: string,
+ *   meta?: unknown,
+ *   block?: boolean,
+ *   hidden?: boolean
+ * }} MarkdownToken
+ */
+
+/**
+ * @typedef {MarkdownToken[]} MarkdownTokenStream
+ */
+
+/**
+ * @typedef {{ $class: string, [key: string]: unknown }} CommonMarkJson
+ */
+
+/**
+ * @typedef {{ $class: string, [key: string]: unknown }} CiceroMarkJson
+ */
+
+/**
+ * @typedef {{ removeFormatting?: boolean, unquoteVariables?: boolean }} CiceroMarkTransformOptions
+ */
+
+/**
  * Converts a CiceroMark DOM to/from a
  * CommonMark DOM.
  *
@@ -57,8 +91,8 @@ class CiceroMarkTransformer {
 
     /**
      * Obtain the Clause text for a Clause node
-     * @param {*} input CiceroMark DOM
-     * @returns {*} markdown_cicero string
+     * @param {CiceroMarkJson} input CiceroMark DOM
+     * @returns {string} markdown_cicero string
      */
     getClauseText(input) {
         if (input.$class === `${CiceroMarkModel.NAMESPACE}.Clause`) {
@@ -73,10 +107,11 @@ class CiceroMarkTransformer {
         }
     }
 
+    // eslint-disable-next-line valid-jsdoc
     /**
      * Retrieve the serializer used by the parser
      *
-     * @returns {*} a serializer capable of dealing with the Concerto
+     * @returns {import('@accordproject/concerto-core').Serializer} a serializer capable of dealing with the Concerto
      * object returns by parse
      */
     getSerializer() {
@@ -85,8 +120,8 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CiceroEdit string to a CiceroMark DOM
-     * @param {*} input - ciceroedit string
-     * @returns {*} CiceroMark DOM
+     * @param {string} input - ciceroedit string
+     * @returns {CiceroMarkJson} CiceroMark DOM
      */
     fromCiceroEdit(input) {
         const commonMark = this.commonMark.fromMarkdown(input);
@@ -106,10 +141,10 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CiceroMark DOM to a CiceroMark Unwrapped DOM
-     * @param {object} input - CiceroMark DOM (JSON)
-     * @param {object} [options] configuration options
+     * @param {CiceroMarkJson} input - CiceroMark DOM (JSON)
+     * @param {CiceroMarkTransformOptions} [options] configuration options
      * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
-     * @returns {*} CiceroMark DOM
+     * @returns {CiceroMarkJson} CiceroMark DOM
      */
     toCiceroMarkUnwrapped(input,options) {
         // remove variables, e.g. {{ variable }}, {{% formula %}}
@@ -130,8 +165,8 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a CiceroMark DOM
-     * @param {*} input - CommonMark DOM (in JSON)
-     * @returns {*} CiceroMark DOM
+     * @param {CommonMarkJson} input - CommonMark DOM (in JSON)
+     * @returns {CiceroMarkJson} CiceroMark DOM
      */
     fromCommonMark(input) {
         return input; // Now the identity
@@ -140,7 +175,7 @@ class CiceroMarkTransformer {
     /**
      * Converts a markdown string to a CiceroMark DOM
      * @param {string} markdown a markdown string
-     * @returns {object} ciceromark object (JSON)
+     * @returns {CiceroMarkJson} ciceromark object (JSON)
      */
     fromMarkdown(markdown) {
         const commonMarkDom = this.commonMark.fromMarkdown(markdown);
@@ -149,9 +184,9 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CiceroMark DOM to a markdown string
-     * @param {*} input CiceroMark DOM
-     * @param {object} [options] configuration options
-     * @returns {*} markdown string
+     * @param {CiceroMarkJson} input CiceroMark DOM
+     * @param {CiceroMarkTransformOptions} [options] configuration options
+     * @returns {string} markdown string
      */
     toMarkdown(input, options) {
         const commonMarkDom = this.toCommonMark(input, options);
@@ -161,8 +196,8 @@ class CiceroMarkTransformer {
     /**
      * Converts a cicero markdown string to a CiceroMark DOM
      * @param {string} markdown a cicero markdown string
-     * @param {object} [options] configuration options
-     * @returns {object} ciceromark object (JSON)
+     * @param {CiceroMarkTransformOptions} [options] configuration options
+     * @returns {CiceroMarkJson} ciceromark object (JSON)
      */
     fromMarkdownCicero(markdown, options) {
         const tokens = this.toTokens(markdown);
@@ -171,7 +206,7 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CiceroMark DOM to a cicero markdown string
-     * @param {object} input CiceroMark DOM
+     * @param {CiceroMarkJson} input CiceroMark DOM
      * @returns {string} json commonmark object
      */
     toMarkdownCicero(input) {
@@ -181,11 +216,11 @@ class CiceroMarkTransformer {
 
     /**
      * Converts a CiceroMark DOM to a CommonMark DOM
-     * @param {*} input CiceroMark DOM
-     * @param {object} [options] configuration options
+     * @param {CiceroMarkJson} input CiceroMark DOM
+     * @param {CiceroMarkTransformOptions} [options] configuration options
      * @param {boolean} [options.removeFormatting] if true the formatting nodes are removed
      * @param {boolean} [options.unquoteVariables] if true variable quotations are removed
-     * @returns {*} json commonmark object
+     * @returns {CommonMarkJson} json commonmark object
      */
     toCommonMark(input, options) {
         let json = this.toCiceroMarkUnwrapped(input,options);
@@ -211,8 +246,8 @@ class CiceroMarkTransformer {
 
     /**
      * Unquotes a CiceroMark DOM
-     * @param {object} input CiceroMark DOM
-     * @returns {object} unquoted CiceroMark DOM
+     * @param {CiceroMarkJson} input CiceroMark DOM
+     * @returns {CiceroMarkJson} unquoted CiceroMark DOM
      */
     unquote(input) {
         return unquoteVariables(input);
@@ -222,7 +257,7 @@ class CiceroMarkTransformer {
      * Converts a ciceromark string into a token stream
      *
      * @param {string} input the string to parse
-     * @returns {*} a markdown-it token stream
+     * @returns {MarkdownTokenStream} a markdown-it token stream
      */
     toTokens(input) {
         const parser = new MarkdownIt({html:true}).use(MarkdownItCicero); // XXX HTML inlines and code blocks true
@@ -233,8 +268,8 @@ class CiceroMarkTransformer {
     /**
      * Converts a token stream into a CiceroMark DOM object.
      *
-     * @param {object} tokenStream the token stream
-     * @returns {*} the CiceroMark DOM (JSON)
+     * @param {MarkdownTokenStream} tokenStream the token stream
+     * @returns {CiceroMarkJson} the CiceroMark DOM (JSON)
      */
     fromTokens(tokenStream) {
         const fromMarkdownIt = new FromMarkdownIt(cicerorules);

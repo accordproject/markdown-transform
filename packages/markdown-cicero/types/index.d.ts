@@ -1,4 +1,4 @@
-export const CiceroMarkTransformer: typeof import("./lib/CiceroMarkTransformer");
-export const FromCiceroEditVisitor: typeof import("./lib/FromCiceroEditVisitor");
-export const ToCommonMarkVisitor: typeof import("./lib/ToCommonMarkVisitor");
-export const Decorators: typeof import("./lib/Decorators");
+export var CiceroMarkTransformer: typeof import("./lib/CiceroMarkTransformer");
+export var FromCiceroEditVisitor: typeof import("./lib/FromCiceroEditVisitor");
+export var ToCommonMarkVisitor: typeof import("./lib/ToCommonMarkVisitor");
+export var Decorators: typeof import("./lib/Decorators");

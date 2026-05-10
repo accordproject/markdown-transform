@@ -39,7 +39,7 @@ declare class FormulaVisitor {
      * @returns {*} the formulas
      */
     calculateDependencies(serializer: any, ast: object, options: {
-        utcOffset?: number;
+        utcOffset: number;
     }): any;
     /**
      * Process formulas and returns the list of those formulas from a TemplateMark DOM
@@ -50,6 +50,6 @@ declare class FormulaVisitor {
      * @returns {*} the formulas
      */
     processFormulas(serializer: any, ast: object, options: {
-        utcOffset?: number;
+        utcOffset: number;
     }): any;
 }

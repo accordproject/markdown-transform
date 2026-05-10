@@ -1,4 +1,5 @@
 export = ToMarkdownVisitor;
+declare const ToMarkdownVisitor_base: typeof import("./FromCommonMarkVisitor");
 /**
  * Converts a CommonMark DOM to a markdown string.
  *
@@ -9,11 +10,7 @@ export = ToMarkdownVisitor;
  *
  * The resulting AST *should* be equivalent however.
  */
-declare class ToMarkdownVisitor extends FromCommonMarkVisitor {
-    /**
-     * Construct the visitor.
-     */
-    constructor();
+declare class ToMarkdownVisitor extends ToMarkdownVisitor_base {
     /**
      * Converts a CommonMark DOM to a markdown string
      * @param {*} input - CommonMark DOM (as a Concerto object)
@@ -21,4 +18,3 @@ declare class ToMarkdownVisitor extends FromCommonMarkVisitor {
      */
     toMarkdown(input: any): string;
 }
-import FromCommonMarkVisitor = require("./FromCommonMarkVisitor");

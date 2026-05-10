@@ -25,7 +25,7 @@ declare class ToCiceroMarkVisitor {
      * @param {boolean} ignoreSpace override
      * @return {Any} node
      */
-    deserializeElement(element: any, ignoreSpace: boolean): Any;
+    deserializeElement(element: any, ignoreSpace: boolean): any;
     /**
      * Deserialize an array of DOM elements.
      *

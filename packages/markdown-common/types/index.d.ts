@@ -1,13 +1,25 @@
-export const Stack: typeof import("./lib/Stack");
-export const CommonMarkModel: typeof import("./lib/externalModels/CommonMarkModel");
-export const CiceroMarkModel: typeof import("./lib/externalModels/CiceroMarkModel");
-export const ConcertoMetaModel: typeof import("./lib/externalModels/ConcertoMetaModel");
-export const TemplateMarkModel: typeof import("./lib/externalModels/TemplateMarkModel");
-export const CommonMarkUtils: typeof import("./lib/CommonMarkUtils");
-export const FromCommonMarkVisitor: typeof import("./lib/FromCommonMarkVisitor");
-export const fromcommonmarkrules: {
+export var Stack: typeof import("./lib/Stack");
+export var CommonMarkModel: {
+    NAMESPACE: string;
+    MODEL: string;
+};
+export var CiceroMarkModel: {
+    NAMESPACE: string;
+    MODEL: string;
+};
+export var ConcertoMetaModel: {
+    NAMESPACE: string;
+    MODEL: string;
+};
+export var TemplateMarkModel: {
+    NAMESPACE: string;
+    MODEL: string;
+};
+export var CommonMarkUtils: typeof import("./lib/CommonMarkUtils");
+export var FromCommonMarkVisitor: typeof import("./lib/FromCommonMarkVisitor");
+export var fromcommonmarkrules: {
     [x: string]: Function;
 };
-export const CommonMarkTransformer: typeof import("./lib/CommonMarkTransformer");
-export const ToMarkdownVisitor: typeof import("./lib/ToMarkdownVisitor");
-export const FromMarkdownIt: typeof import("./lib/FromMarkdownIt");
+export var CommonMarkTransformer: typeof import("./lib/CommonMarkTransformer");
+export var ToMarkdownVisitor: typeof import("./lib/ToMarkdownVisitor");
+export var FromMarkdownIt: typeof import("./lib/FromMarkdownIt");

@@ -19,6 +19,22 @@ const ToCiceroMarkVisitor = require('./ToCiceroMarkVisitor');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
+ * @typedef {{ $class: string, [key: string]: unknown }} CommonMarkJson
+ */
+
+/**
+ * @typedef {{ $class: string, [key: string]: unknown }} CiceroMarkJson
+ */
+
+/**
+ * @typedef {{ accept: Function, getType?: Function }} ConcertoTypedNode
+ */
+
+/**
+ * @typedef {CommonMarkJson | CiceroMarkJson | ConcertoTypedNode} MarkdownDomInput
+ */
+
+/**
  * Converts a CiceroMark or CommonMark DOM to HTML
  */
 class HtmlTransformer {
@@ -34,7 +50,7 @@ class HtmlTransformer {
 
     /**
      * Converts a CiceroMark DOM to an html string
-     * @param {*} input - CiceroMark DOM object
+     * @param {MarkdownDomInput} input - CiceroMark DOM object
      * @returns {string} the html string
      */
     toHtml(input) {
@@ -55,7 +71,7 @@ class HtmlTransformer {
     /**
      * Converts an html string to a CiceroMark DOM
      * @param {string} input - html string
-     * @returns {*} CiceroMark DOM
+     * @returns {CiceroMarkJson} CiceroMark DOM
      */
     toCiceroMark(input) {
         const visitor = new ToCiceroMarkVisitor(this.options);

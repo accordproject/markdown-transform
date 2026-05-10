@@ -1,49 +1,136 @@
 export = CommonMarkTransformer;
 /**
+ * @typedef {{
+ *   type: string,
+ *   tag: string,
+ *   nesting: number,
+ *   attrs?: Array<[string, string]> | null,
+ *   map?: [number, number] | null,
+ *   level?: number,
+ *   children?: MarkdownToken[] | null,
+ *   content?: string,
+ *   markup?: string,
+ *   info?: string,
+ *   meta?: unknown,
+ *   block?: boolean,
+ *   hidden?: boolean
+ * }} MarkdownToken
+ */
+/**
+ * @typedef {MarkdownToken[]} MarkdownTokenStream
+ */
+/**
+ * @typedef {{ $class: string, [key: string]: unknown }} CommonMarkJson
+ */
+/**
  * Parses markdown using the commonmark parser into the
  * intermediate representation: a JSON object that adheres to
  * the 'org.accordproject.commonmark' Concerto model.
  */
 declare class CommonMarkTransformer {
-    serializer: Serializer;
+    serializer: import("@accordproject/concerto-core/dist/serializer");
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {*} input - CommonMark DOM (in JSON)
+     * @param {CommonMarkJson} input - CommonMark DOM (in JSON)
      * @returns {string} the markdown string
      */
-    toMarkdown(input: any): string;
+    toMarkdown(input: CommonMarkJson): string;
     /**
      * Converts a CommonMark DOM to a CommonMark DOM with formatting removed
-     * @param {*} input - CommonMark DOM (in JSON)
-     * @returns {string} the CommonMark DOM with formatting nodes removed
+     * @param {CommonMarkJson} input - CommonMark DOM (in JSON)
+     * @returns {CommonMarkJson} the CommonMark DOM with formatting nodes removed
      */
-    removeFormatting(input: any): string;
+    removeFormatting(input: CommonMarkJson): CommonMarkJson;
     /**
      * Converts a markdown string into a token stream
      *
      * @param {string} markdown the string to parse
-     * @returns {*} a markdown-it token stream
+     * @returns {MarkdownTokenStream} a markdown-it token stream
      */
-    toTokens(markdown: string): any;
+    toTokens(markdown: string): {
+        type: string;
+        tag: string;
+        nesting: number;
+        attrs?: Array<[string, string]> | null;
+        map?: [number, number] | null;
+        level?: number;
+        children?: MarkdownToken[] | null;
+        content?: string;
+        markup?: string;
+        info?: string;
+        meta?: unknown;
+        block?: boolean;
+        hidden?: boolean;
+    }[];
     /**
      * Converts a token stream into a CommonMark DOM object.
      *
-     * @param {object} tokenStream the token stream
-     * @returns {*} a Concerto object (DOM) for the markdown content
+     * @param {MarkdownTokenStream} tokenStream the token stream
+     * @returns {CommonMarkJson} a Concerto object (DOM) for the markdown content
      */
-    fromTokens(tokenStream: object): any;
+    fromTokens(tokenStream: {
+        type: string;
+        tag: string;
+        nesting: number;
+        attrs?: Array<[string, string]> | null;
+        map?: [number, number] | null;
+        level?: number;
+        children?: MarkdownToken[] | null;
+        content?: string;
+        markup?: string;
+        info?: string;
+        meta?: unknown;
+        block?: boolean;
+        hidden?: boolean;
+    }[]): CommonMarkJson;
     /**
      * Converts a markdown string into a CommonMark DOM object.
      *
      * @param {string} markdown the string to parse
-     * @returns {object} a CommonMark DOM (JSON) for the markdown content
+     * @returns {CommonMarkJson} a CommonMark DOM (JSON) for the markdown content
      */
-    fromMarkdown(markdown: string): object;
+    fromMarkdown(markdown: string): CommonMarkJson;
     /**
      * Retrieve the serializer used by the parser
      *
-     * @returns {*} a serializer capable of dealing with the Concerto
+     * @returns {import('@accordproject/concerto-core').Serializer} a serializer capable of dealing with the Concerto
      */
-    getSerializer(): any;
+    getSerializer(): import('@accordproject/concerto-core').Serializer;
 }
-import { Serializer } from "@accordproject/concerto-core";
+declare namespace CommonMarkTransformer {
+    export { MarkdownToken, MarkdownTokenStream, CommonMarkJson };
+}
+type CommonMarkJson = {
+    [key: string]: unknown;
+    $class: string;
+};
+type MarkdownToken = {
+    type: string;
+    tag: string;
+    nesting: number;
+    attrs?: Array<[string, string]> | null;
+    map?: [number, number] | null;
+    level?: number;
+    children?: MarkdownToken[] | null;
+    content?: string;
+    markup?: string;
+    info?: string;
+    meta?: unknown;
+    block?: boolean;
+    hidden?: boolean;
+};
+type MarkdownTokenStream = {
+    type: string;
+    tag: string;
+    nesting: number;
+    attrs?: Array<[string, string]> | null;
+    map?: [number, number] | null;
+    level?: number;
+    children?: MarkdownToken[] | null;
+    content?: string;
+    markup?: string;
+    info?: string;
+    meta?: unknown;
+    block?: boolean;
+    hidden?: boolean;
+}[];

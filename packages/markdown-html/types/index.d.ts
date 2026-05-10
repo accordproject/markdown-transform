@@ -1,2 +1,2 @@
-export const HtmlTransformer: typeof import("./lib/HtmlTransformer");
-export const ToHtmlStringVisitor: typeof import("./lib/ToHtmlStringVisitor");
+export var HtmlTransformer: typeof import("./lib/HtmlTransformer");
+export var ToHtmlStringVisitor: typeof import("./lib/ToHtmlStringVisitor");

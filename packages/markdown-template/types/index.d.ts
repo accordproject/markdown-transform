@@ -1,6 +1,8 @@
-export const util: typeof import("./lib/util");
-export const templatemarkutil: typeof import("./lib/templatemarkutil");
-export const datetimeutil: typeof import("./lib/datetimeutil");
-export const normalizeNLs: typeof import("./lib/normalize").normalizeNLs;
-export const TemplateException: typeof import("./lib/templateexception");
-export const TemplateMarkTransformer: typeof import("./lib/TemplateMarkTransformer");
+export var util: typeof import("./lib/util");
+export var templatemarkutil: typeof import("./lib/templatemarkutil");
+export var datetimeutil: {
+    setCurrentTime: (currentTime: string) => any;
+};
+export var normalizeNLs: (input: string) => string;
+export var TemplateException: typeof import("./lib/templateexception");
+export var TemplateMarkTransformer: typeof import("./lib/TemplateMarkTransformer");
