@@ -12,14 +12,20 @@ declare class HtmlTransformer {
     ciceroMarkTransformer: import("@accordproject/markdown-cicero/types/lib/CiceroMarkTransformer");
     /**
      * Converts a CiceroMark DOM to an html string
-     * @param {object} input - CiceroMark DOM object
+     * @param {HtmlInput} input - CiceroMark DOM object
      * @returns {string} the html string
      */
-    toHtml(input: object): string;
+    toHtml(input: HtmlInput): string;
     /**
      * Converts an html string to a CiceroMark DOM
      * @param {string} input - html string
-     * @returns {object} CiceroMark DOM
+     * @returns {IDocument} CiceroMark DOM
      */
-    toCiceroMark(input: string): object;
+    toCiceroMark(input: string): IDocument;
 }
+declare namespace HtmlTransformer {
+    export { IDocument, Typed, HtmlInput };
+}
+type IDocument = import("@accordproject/markdown-common/types/model/commonmark").IDocument;
+type Typed = import("@accordproject/concerto-core").Typed;
+type HtmlInput = IDocument | Typed;

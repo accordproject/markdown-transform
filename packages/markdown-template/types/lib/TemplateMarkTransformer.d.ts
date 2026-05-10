@@ -46,7 +46,11 @@ declare class TemplateMarkTransformer {
     toMarkdownTemplate(input: object): string;
     /**
      * Get TemplateMark serializer
-     * @return {object} templatemark serializer
+     * @return {Serializer} templatemark serializer
      */
-    getSerializer(): object;
+    getSerializer(): Serializer;
 }
+declare namespace TemplateMarkTransformer {
+    export { Serializer };
+}
+type Serializer = import("@accordproject/concerto-core").Serializer;

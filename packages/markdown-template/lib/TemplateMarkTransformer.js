@@ -14,6 +14,7 @@
 
 'use strict';
 
+/** @typedef {import('@accordproject/concerto-core').Serializer} Serializer */
 var {
   templateMarkManager,
   templateToTokens,
@@ -93,7 +94,7 @@ class TemplateMarkTransformer {
 
   /**
    * Get TemplateMark serializer
-   * @return {object} templatemark serializer
+   * @return {Serializer} templatemark serializer
    */
   getSerializer() {
     return templateMarkManager.serializer;
