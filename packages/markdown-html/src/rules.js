@@ -498,13 +498,126 @@ const HTML_BLOCK_RULE = {
     }
 };
 
+/**
+ * Normalize whitespace and merge adjacent text nodes within table cells.
+ * @param {Array} nodes - array of deserialized nodes
+ * @return {Array} cleaned nodes
+ */
+function cleanTableNodes(nodes) {
+    const NS = CommonMarkModel.NAMESPACE;
+    const TEXT = `${NS}.Text`;
+    const SOFT = `${NS}.Softbreak`;
+
+    if (!nodes) {return [];}
+    nodes = Array.isArray(nodes) ? nodes : [nodes];
+
+    const merged = nodes.reduce((acc, node) => {
+        if (!node) {return acc;}
+
+        let newNode = { ...node };
+        if (newNode.nodes) {
+            newNode = { ...newNode, nodes: cleanTableNodes(newNode.nodes) };
+        }
+
+        if (newNode.$class === SOFT) {
+            newNode = { $class: TEXT, text: ' ' };
+        }
+
+        const last = acc[acc.length - 1];
+        if (last && last.$class === TEXT && newNode.$class === TEXT) {
+            last.text += newNode.text;
+        } else {
+            acc.push(newNode);
+        }
+
+        return acc;
+    }, []);
+
+    merged.forEach(n => {
+        if (n.$class === TEXT) {
+            n.text = n.text.replace(/\s+/g, ' ');
+        }
+    });
+
+    if (merged.length > 0 && merged[0].$class === TEXT) {
+        merged[0].text = merged[0].text.replace(/^\s+/, '');
+    }
+    if (merged.length > 0 && merged[merged.length - 1].$class === TEXT) {
+        merged[merged.length - 1].text = merged[merged.length - 1].text.replace(/\s+$/, '');
+    }
+
+    return merged.filter(n => n.$class !== TEXT || n.text.length > 0);
+}
+
 const TABLE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'table') {
-            return {
+
+            // Extract caption text directly from DOM — safe, no leaking nodes
+            let captionText = null;
+            const captionEl = Array.from(el.childNodes).find(
+                n => n.tagName && n.tagName.toLowerCase() === 'caption'
+            );
+            if (captionEl) {
+                captionText = captionEl.textContent.trim().replace(/\s+/g, ' ');
+            }
+
+            // Process only non-caption children
+            const nonCaptionChildren = Array.from(el.childNodes).filter(
+                n => !n.tagName || n.tagName.toLowerCase() !== 'caption'
+            );
+            const children = next(nonCaptionChildren, ignoreSpace);
+
+            // Keep only valid table structure nodes
+            let tableNodes = children.filter(node =>
+                node.$class === `${CommonMarkModel.NAMESPACE}.TableHead` ||
+                node.$class === `${CommonMarkModel.NAMESPACE}.TableBody`
+            );
+
+            // If no thead exists but first body row has th cells, promote it
+            let head = tableNodes.find(
+                n => n.$class === `${CommonMarkModel.NAMESPACE}.TableHead`
+            );
+            let body = tableNodes.find(
+                n => n.$class === `${CommonMarkModel.NAMESPACE}.TableBody`
+            );
+
+            if (!head && body && body.nodes && body.nodes.length > 0) {
+                const firstRow = body.nodes[0];
+                const hasHeaderCells = firstRow.nodes && firstRow.nodes.some(
+                    n => n.$class === `${CommonMarkModel.NAMESPACE}.HeaderCell`
+                );
+                if (hasHeaderCells) {
+                    head = {
+                        $class: `${CommonMarkModel.NAMESPACE}.TableHead`,
+                        nodes: [firstRow]
+                    };
+                    body = {
+                        $class: `${CommonMarkModel.NAMESPACE}.TableBody`,
+                        nodes: body.nodes.slice(1)
+                    };
+                    tableNodes = [head, body];
+                }
+            }
+
+            const table = {
                 $class: `${CommonMarkModel.NAMESPACE}.Table`,
-                nodes: next(el.childNodes),
+                nodes: cleanTableNodes(tableNodes)
             };
+
+            // Emit caption as plain paragraph before table
+            if (captionText) {
+                const captionParagraph = {
+                    $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
+                    nodes: [{
+                        $class: `${CommonMarkModel.NAMESPACE}.Text`,
+                        text: captionText
+                    }]
+                };
+                return [captionParagraph, table];
+            }
+
+            return table;
         }
         if (el.tagName && el.tagName.toLowerCase() === 'thead') {
             return {

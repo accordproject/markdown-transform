@@ -121,3 +121,50 @@ describe('ciceromark <-> html', () => {
         });
     });
 });
+
+describe('HTML table with caption', () => {
+    it('should render caption as paragraph before table', () => {
+        const html = `<table>
+  <caption>Employee Details</caption>
+  <thead>
+    <tr><th>Name</th><th>Role</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>Engineer</td></tr>
+  </tbody>
+</table>`;
+        const result = htmlTransformer.toCiceroMark(html);
+        // first node: paragraph containing caption text
+        expect(result.nodes[0].$class).toContain('Paragraph');
+        expect(result.nodes[0].nodes[0].text).toBe('Employee Details');
+        // second node: the actual table
+        expect(result.nodes[1].$class).toContain('Table');
+    });
+
+    it('should render table without caption normally', () => {
+        const html = `<table>
+  <thead>
+    <tr><th>Name</th><th>Role</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>Engineer</td></tr>
+  </tbody>
+</table>`;
+        const result = htmlTransformer.toCiceroMark(html);
+        // no paragraph before table
+        expect(result.nodes[0].$class).toContain('Table');
+    });
+
+    it('should normalize whitespace in caption', () => {
+        const html = `<table>
+  <caption>  Spaced   Caption  </caption>
+  <tbody>
+    <tr><td>A</td><td>B</td></tr>
+  </tbody>
+</table>`;
+        const result = htmlTransformer.toCiceroMark(html);
+        expect(result.nodes[0].$class).toContain('Paragraph');
+        expect(result.nodes[0].nodes[0].text).toBe('Spaced Caption');
+    });
+});
+
