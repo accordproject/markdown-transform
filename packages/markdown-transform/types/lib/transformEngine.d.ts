@@ -30,33 +30,33 @@ declare class TransformEngine {
      * Transforms from a source format to a single destination format or
      * throws an exception if the transformation is not possible.
      *
-     * @param {*} source the input for the transformation
+     * @param {object|string} source the input for the transformation
      * @param {string} sourceFormat the input format
      * @param {string} destinationFormat the destination format
-     * @param {object} parameters the transform parameters
+     * @param {object} [parameters] the transform parameters
      * @param {object} [options] the transform options
      * @param {boolean} [options.verbose] output verbose console logs
-     * @returns {*} result of the transformation
+     * @returns {Promise<object|string>} result of the transformation
      */
-    transformToDestination(source: any, sourceFormat: string, destinationFormat: string, parameters: object, options?: {
+    transformToDestination(source: object | string, sourceFormat: string, destinationFormat: string, parameters?: object, options?: {
         verbose?: boolean;
-    }): any;
+    }): Promise<object | string>;
     /**
      * Transforms from a source format to a list of destination formats, or
      * throws an exception if the transformation is not possible.
      *
-     * @param {*} source the input for the transformation
+     * @param {object|string} source the input for the transformation
      * @param {string} sourceFormat the input format
      * @param {string[]} destinationFormat the destination format as an array,
      * the transformation are applied in order to reach all formats in the array
-     * @param {object} parameters the transform parameters
+     * @param {object} [parameters] the transform parameters
      * @param {object} [options] the transform options
      * @param {boolean} [options.verbose] output verbose console logs
-     * @returns {Promise} result of the transformation
+     * @returns {Promise<object|string>} result of the transformation
      */
-    transform(source: any, sourceFormat: string, destinationFormat: string[], parameters: object, options?: {
+    transform(source: object | string, sourceFormat: string, destinationFormat: string[], parameters?: object, options?: {
         verbose?: boolean;
-    }): Promise<any>;
+    }): Promise<object | string>;
     /**
      * Return the format descriptor for a given format
      *
@@ -96,14 +96,14 @@ declare class TransformEngine {
      *
      * @param {string} sourceFormat - the name of the source format
      * @param {string} targetFormat - the name of the targetFormat format
-     * @param {*} transform - the transform (an async function to transform from sourceFormat to targetFormat)
+     * @param {Function} transform - the transform (an async function to transform from sourceFormat to targetFormat)
      */
-    registerTransformation(sourceFormat: string, targetFormat: string, transform: any): void;
+    registerTransformation(sourceFormat: string, targetFormat: string, transform: Function): void;
     /**
      * Register a transform extension
-     * @param {*} extension - the transform extension, including format and transforms
+     * @param {object} extension - the transform extension, including format and transforms
      */
-    registerExtension(extension: any): void;
+    registerExtension(extension: object): void;
     /**
      * Refresh raw graph
      * @private

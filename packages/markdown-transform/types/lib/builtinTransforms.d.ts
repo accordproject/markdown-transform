@@ -23,28 +23,28 @@ export declare namespace markdown {
     export { docs_3 as docs };
     let fileFormat_3: string;
     export { fileFormat_3 as fileFormat };
-    export function commonmark_tokens(input: any, parameters: any, options: any): any;
+    export function commonmark_tokens(input: any, parameters: any, options: any): object[];
 }
 export declare namespace commonmark_tokens_1 {
     let docs_4: string;
     export { docs_4 as docs };
     let fileFormat_4: string;
     export { fileFormat_4 as fileFormat };
-    export function commonmark(input: any, parameters: any, options: any): Promise<any>;
+    export function commonmark(input: any, parameters: any, options: any): Promise<import("@accordproject/markdown-common/types/model/commonmark").IDocument>;
 }
 export declare namespace markdown_cicero {
     let docs_5: string;
     export { docs_5 as docs };
     let fileFormat_5: string;
     export { fileFormat_5 as fileFormat };
-    export function ciceromark_tokens(input: any, parameters: any, options: any): any;
+    export function ciceromark_tokens(input: any, parameters: any, options: any): object[];
 }
 export declare namespace ciceromark_tokens_1 {
     let docs_6: string;
     export { docs_6 as docs };
     let fileFormat_6: string;
     export { fileFormat_6 as fileFormat };
-    export function ciceromark(input: any, parameters: any, options: any): Promise<any>;
+    export function ciceromark(input: any, parameters: any, options: any): Promise<import("@accordproject/markdown-common/types/model/commonmark").IDocument>;
 }
 export declare namespace commonmark_1 {
     let docs_7: string;
@@ -53,7 +53,7 @@ export declare namespace commonmark_1 {
     export { fileFormat_7 as fileFormat };
     export function markdown_1(input: any, parameters: any, options: any): string;
     export { markdown_1 as markdown };
-    export function ciceromark_1(input: any, parameters: any, options: any): any;
+    export function ciceromark_1(input: any, parameters: any, options: any): import("@accordproject/markdown-common/types/model/commonmark").IDocument;
     export { ciceromark_1 as ciceromark };
     export function plaintext(input: any, parameters: any, options: any): string;
 }
@@ -64,7 +64,7 @@ export declare namespace ciceromark_2 {
     export { fileFormat_8 as fileFormat };
     export function markdown_cicero_1(input: any, parameters: any, options: any): string;
     export { markdown_cicero_1 as markdown_cicero };
-    export function commonmark_2(input: any, parameters: any, options: any): any;
+    export function commonmark_2(input: any, parameters: any, options: any): import("@accordproject/markdown-common/types/model/commonmark").IDocument;
     export { commonmark_2 as commonmark };
     export function ciceromark_parsed(input: any, parameters: any, options: any): any;
 }
@@ -74,9 +74,9 @@ export declare namespace ciceromark_parsed_1 {
     let fileFormat_9: string;
     export { fileFormat_9 as fileFormat };
     export function html(input: any, parameters: any, options: any): string;
-    export function ciceromark_3(input: any, parameters: any, options: any): any;
+    export function ciceromark_3(input: any, parameters: any, options: any): import("@accordproject/markdown-common/types/model/commonmark").IDocument;
     export { ciceromark_3 as ciceromark };
-    export function ciceromark_unquoted(input: any, parameters: any, options: any): object;
+    export function ciceromark_unquoted(input: any, parameters: any, options: any): import("@accordproject/markdown-common/types/model/commonmark").IDocument;
 }
 export declare namespace plaintext_1 {
     let docs_10: string;
@@ -91,7 +91,7 @@ export declare namespace ciceroedit {
     export { docs_11 as docs };
     let fileFormat_11: string;
     export { fileFormat_11 as fileFormat };
-    export function ciceromark_parsed_2(input: any, parameters: any, options: any): any;
+    export function ciceromark_parsed_2(input: any, parameters: any, options: any): import("@accordproject/markdown-common/types/model/commonmark").IDocument;
     export { ciceromark_parsed_2 as ciceromark_parsed };
 }
 export declare namespace ciceromark_unquoted_1 {
@@ -107,7 +107,7 @@ export declare namespace html_1 {
     export { docs_13 as docs };
     let fileFormat_13: string;
     export { fileFormat_13 as fileFormat };
-    export function ciceromark_parsed_4(input: any, parameters: any, options: any): any;
+    export function ciceromark_parsed_4(input: any, parameters: any, options: any): object;
     export { ciceromark_parsed_4 as ciceromark_parsed };
 }
 export { templatemark_tokens_1 as templatemark_tokens, templatemark_1 as templatemark, commonmark_tokens_1 as commonmark_tokens, ciceromark_tokens_1 as ciceromark_tokens, commonmark_1 as commonmark, ciceromark_2 as ciceromark, ciceromark_parsed_1 as ciceromark_parsed, plaintext_1 as plaintext, ciceromark_unquoted_1 as ciceromark_unquoted, html_1 as html };

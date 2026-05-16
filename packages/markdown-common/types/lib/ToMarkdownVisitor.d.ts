@@ -16,9 +16,9 @@ declare class ToMarkdownVisitor extends FromCommonMarkVisitor {
     constructor();
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {*} input - CommonMark DOM (as a Concerto object)
+     * @param {object} input - CommonMark DOM (as a Concerto object)
      * @returns {string} the markdown string
      */
-    toMarkdown(input: any): string;
+    toMarkdown(input: object): string;
 }
 import FromCommonMarkVisitor = require("./FromCommonMarkVisitor");
