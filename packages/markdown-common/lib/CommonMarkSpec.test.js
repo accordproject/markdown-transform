@@ -33,24 +33,24 @@ expect.extend({
         const message = pass
             ? () =>
                 this.utils.matcherHint(`toMarkdownRoundtrip - ${markdownText} -> ${newMarkdown}`, undefined, undefined, undefined) +
-          '\n\n' +
-          `Expected: ${this.utils.printExpected(json1)}\n` +
-          `Received: ${this.utils.printReceived(json2)}`
+                '\n\n' +
+                `Expected: ${this.utils.printExpected(json1)}\n` +
+                `Received: ${this.utils.printReceived(json2)}`
             : () => {
                 const diffString = diff(json1, json2, {
                     expand: true,
                 });
                 return (
                     this.utils.matcherHint(`toMarkdownRoundtrip - ${JSON.stringify(markdownText)} -> ${JSON.stringify(newMarkdown)}`, undefined, undefined, undefined) +
-            '\n\n' +
-            (diffString && diffString.includes('- Expect')
-                ? `Difference:\n\n${diffString}`
-                : `Expected: ${this.utils.printExpected(json1)}\n` +
-                `Received: ${this.utils.printReceived(json2)}`)
+                    '\n\n' +
+                    (diffString && diffString.includes('- Expect')
+                        ? `Difference:\n\n${diffString}`
+                        : `Expected: ${this.utils.printExpected(json1)}\n` +
+                        `Received: ${this.utils.printReceived(json2)}`)
                 );
             };
 
-        return {actual: markdownText, message, pass};
+        return { actual: markdownText, message, pass };
     },
 });
 
@@ -74,15 +74,17 @@ function extractSpecTests(testfile) {
         .replace(/^<!-- END TESTS -->(.|[\n])*/m, '');
 
     tests.replace(/^`{32} example\n([\s\S]*?)^\.\n([\s\S]*?)^`{32}$|^#{1,6} *(.*)$/gm,
-        function(_, markdownSubmatch, htmlSubmatch, sectionSubmatch){
+        function (_, markdownSubmatch, htmlSubmatch, sectionSubmatch) {
             if (sectionSubmatch) {
                 current_section = sectionSubmatch;
             } else {
                 example_number++;
-                examples.push({markdown: markdownSubmatch,
+                examples.push({
+                    markdown: markdownSubmatch,
                     html: htmlSubmatch,
                     section: current_section,
-                    number: example_number});
+                    number: example_number
+                });
             }
         });
     return examples;
@@ -96,7 +98,7 @@ function extractSpecTests(testfile) {
 function getMarkdownSpecFiles() {
     const result = [];
     const specExamples = extractSpecTests(__dirname + '/../test/data/spec.txt');
-    specExamples.forEach(function(example) {
+    specExamples.forEach(function (example) {
         result.push([`${example.section}-${example.number}`, example.markdown]);
     });
 
@@ -104,15 +106,19 @@ function getMarkdownSpecFiles() {
 }
 
 describe('markdown-spec', () => {
-    getMarkdownSpecFiles().forEach( ([file, markdownText]) => {
+    getMarkdownSpecFiles().forEach(([file, markdownText]) => {
         it(`converts ${file} to concerto JSON`, () => {
             const json = commonMark.fromMarkdown(markdownText, 'json');
             expect(json).toMatchSnapshot();
         });
 
-        // currently skipped because not all examples roundtrip
-        // needs more investigation!!
-        it.skip(`roundtrips ${file}`, () => {
+        // NOTE:
+        // This test is skipped because some CommonMark spec examples
+        // do not roundtrip cleanly (Markdown -> AST -> Markdown).
+        // Initial investigation shows differences in whitespace
+        // and normalization, not semantic content.
+        // See issue #2 for tracking.
+        it.skip(`roundtrips ${file} (known normalization differences)`, () => {
             expect(markdownText).toMarkdownRoundtrip();
         });
     });
