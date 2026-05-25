@@ -14,6 +14,23 @@
 
 'use strict';
 
+/**
+ * Returns the display value for a variable node.
+ * For relationship types (identifiedBy is set), strips the resource URI scheme
+ * (resource:namespace#identifier) and returns just the identifier.
+ * @param {object} thing - the variable node
+ * @returns {string} the display value
+ */
+function renderVariableValue(thing) {
+    if (thing.identifiedBy && typeof thing.value === 'string') {
+        const unquoted = thing.value.replace(/^"(.*)"$/s, '$1');
+        if (unquoted.startsWith('resource:') && unquoted.includes('#')) {
+            return unquoted.split('#').pop();
+        }
+    }
+    return thing.value;
+}
+
 // const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
 
 /**
@@ -81,7 +98,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'FormattedVariable': {
@@ -92,7 +110,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'EnumVariable': {
@@ -104,7 +123,8 @@ class ToHtmlStringVisitor {
             if (thing.identifiedBy) {
                 attributes += ` identifiedBy="${thing.identifiedBy}"`;
             }
-            parameters.result += `<span ${attributes}>${thing.value}</span>`;
+            parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
+
         }
             break;
         case 'Conditional':

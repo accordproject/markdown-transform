@@ -121,3 +121,63 @@ describe('ciceromark <-> html', () => {
         });
     });
 });
+
+describe('renderVariableValue - relationship variables', () => {
+    it('extracts identifier from a quoted resource URI value', () => {
+        const ciceroMarkJson = {
+            '$class': 'org.accordproject.commonmark@0.5.0.Document',
+            'xmlns': 'http://commonmark.org/xml/1.0',
+            'nodes': [{
+                '$class': 'org.accordproject.commonmark@0.5.0.Paragraph',
+                'nodes': [{
+                    '$class': 'org.accordproject.ciceromark@0.6.0.Variable',
+                    'value': '"resource:org.accordproject.organization@0.2.0.Organization#Party A"',
+                    'identifiedBy': 'identifier',
+                    'name': 'buyer',
+                    'elementType': 'org.accordproject.organization@0.2.0.Organization'
+                }]
+            }]
+        };
+        const html = htmlTransformer.toHtml(ciceroMarkJson);
+        expect(html).toContain('>Party A<');
+        expect(html).not.toContain('resource:');
+    });
+
+    it('leaves primitive variable values unchanged', () => {
+        const ciceroMarkJson = {
+            '$class': 'org.accordproject.commonmark@0.5.0.Document',
+            'xmlns': 'http://commonmark.org/xml/1.0',
+            'nodes': [{
+                '$class': 'org.accordproject.commonmark@0.5.0.Paragraph',
+                'nodes': [{
+                    '$class': 'org.accordproject.ciceromark@0.6.0.Variable',
+                    'value': '"Widgets"',
+                    'name': 'deliverable',
+                    'elementType': 'String'
+                }]
+            }]
+        };
+        const html = htmlTransformer.toHtml(ciceroMarkJson);
+        expect(html).toContain('>"Widgets"<');
+    });
+
+    it('handles bare (unquoted) resource URI values', () => {
+        const ciceroMarkJson = {
+            '$class': 'org.accordproject.commonmark@0.5.0.Document',
+            'xmlns': 'http://commonmark.org/xml/1.0',
+            'nodes': [{
+                '$class': 'org.accordproject.commonmark@0.5.0.Paragraph',
+                'nodes': [{
+                    '$class': 'org.accordproject.ciceromark@0.6.0.Variable',
+                    'value': 'resource:org.accordproject.organization@0.2.0.Organization#Party B',
+                    'identifiedBy': 'identifier',
+                    'name': 'seller',
+                    'elementType': 'org.accordproject.organization@0.2.0.Organization'
+                }]
+            }]
+        };
+        const html = htmlTransformer.toHtml(ciceroMarkJson);
+        expect(html).toContain('>Party B<');
+        expect(html).not.toContain('resource:');
+    });
+});
