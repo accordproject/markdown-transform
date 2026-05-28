@@ -52,7 +52,7 @@
     "url": "https://github.com/accordproject/markdown-transform/issues"
   },
   "devDependencies": {
-    "@accordproject/concerto-core": "^4.1.2",
+    "@accordproject/concerto-core": "^4.1.3",
     "@babel/cli": "7.25.9",
     "@babel/core": "7.26.0",
     "@babel/preset-env": "7.16.11",
@@ -82,7 +82,7 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@accordproject/concerto-core": "^4.1.2"
+    "@accordproject/concerto-core": "^4.1.3"
   },
   "dependencies": {
     "@accordproject/markdown-cicero": "*",
