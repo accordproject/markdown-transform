@@ -12,6 +12,7 @@
   "files": [
     "bin",
     "lib",
+    "types",
     "umd"
   ],
   "main": "index.js",
@@ -22,8 +23,11 @@
     "licchk": "license-check-and-add",
     "test": "mocha",
     "test:cov": "npm run lint && nyc mocha",
-    "jsdoc": "jsdoc -c jsdoc.json package.json"
+    "jsdoc": "jsdoc -c jsdoc.json package.json",
+    "build": "npm run build:types",
+    "build:types": "tsc"
   },
+  "typings": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/accordproject/markdown-transform.git",
@@ -51,7 +55,8 @@
     "jsdoc": "^4.0.4",
     "license-check-and-add": "2.3.6",
     "mocha": "10.8.2",
-    "nyc": "17.1.0"
+    "nyc": "17.1.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "markdown-it": "^14.1.0"

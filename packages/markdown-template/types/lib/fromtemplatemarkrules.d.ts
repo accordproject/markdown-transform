@@ -1,0 +1,10 @@
+export function VariableDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function FormattedVariableDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function EnumVariableDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function FormulaDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function ConditionalDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function OptionalDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function WithDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function JoinDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function ListBlockDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
+export function ClauseDefinition(visitor: any, thing: any, children: any, parameters: any, resultString: any, resultSeq: any): void;
