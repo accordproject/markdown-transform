@@ -14,6 +14,7 @@
 
 'use strict';
 
+const { ModelUtil } = require('@accordproject/concerto-core');
 const {TemplateMarkModel, ConcertoMetaModel} = require('@accordproject/markdown-common');
 
 const _throwTemplateExceptionForElement = require('./errorutil')._throwTemplateExceptionForElement;
@@ -82,6 +83,43 @@ function processDecorators(serializer,decorated) {
 }
 
 /**
+ * Determine whether a Concerto property is primitive across Concerto API versions.
+ * @param {*} property the property to inspect
+ * @returns {boolean} true if the property represents a primitive type
+ */
+function isPrimitiveProperty(property) {
+    if (typeof property.isPrimitive === 'function') {
+        return property.isPrimitive();
+    }
+    return ModelUtil.isPrimitiveType(property.getType());
+}
+
+/**
+ * Determine whether a Concerto property is an enum across Concerto API versions.
+ * @param {*} property the property to inspect
+ * @returns {boolean} true if the property represents an enum type
+ */
+function isEnumProperty(property) {
+    if (typeof property.isTypeEnum === 'function' && typeof property.isPrimitive === 'function') {
+        return property.isTypeEnum();
+    }
+    return !isPrimitiveProperty(property) && ModelUtil.isEnum(property);
+}
+
+/**
+ * Resolve a property's fully qualified type name without relying on isPrimitive().
+ * @param {*} property the property to inspect
+ * @returns {string} the fully qualified type name or primitive type name
+ */
+function getPropertyTypeName(property) {
+    const typeName = property.getType();
+    if (ModelUtil.isPrimitiveType(typeName)) {
+        return typeName;
+    }
+    return property.getParent().getModelFile().getFullyQualifiedTypeName(typeName);
+}
+
+/**
  * Adds the elementType property to a TemplateMark DOM
  * along with type specific metadata. This visitor verifies
  * the structure of a template with respect to an associated
@@ -121,12 +159,14 @@ class TypeVisitor {
      * @returns {*} the information about the next model element (property or declaration)
      */
     static nextModel(property, parameters) {
-        const declaration = property.isPrimitive() ? null : parameters.introspector.getClassDeclaration(property.getFullyQualifiedTypeName());
+        const isPrimitive = isPrimitiveProperty(property);
+        const propertyTypeName = getPropertyTypeName(property);
+        const declaration = isPrimitive ? null : parameters.introspector.getClassDeclaration(propertyTypeName);
         return {
-            property: property.isPrimitive() ? property : null,
+            property: isPrimitive ? property : null,
             declaration,
-            typeIdentifier: property.isPrimitive() ? property.getFullyQualifiedTypeName() : declaration.getFullyQualifiedName(),
-            decorated: property.isPrimitive() ? property : declaration
+            typeIdentifier: isPrimitive ? propertyTypeName : declaration.getFullyQualifiedName(),
+            decorated: isPrimitive ? property : declaration
         };
     }
 
@@ -151,22 +191,22 @@ class TypeVisitor {
                 if (property && property.getType) {
                     const serializer = parameters.templateMarkModelManager.getSerializer();
                     thing.decorators = processDecorators(serializer,property);
-                    if (property.isTypeEnum && property.isTypeEnum()) {
+                    if (isEnumProperty(property)) {
                         const enumVariableDeclaration = parameters.templateMarkModelManager.getType(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
                         const enumType = property.getParent().getModelFile().getType(property.getType());
-                        thing.elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = getPropertyTypeName(property);
                         thing.$classDeclaration = enumVariableDeclaration;
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
-                    } else if (property.isPrimitive()) {
-                        thing.elementType = property.getFullyQualifiedTypeName();
+                    } else if (isPrimitiveProperty(property)) {
+                        thing.elementType = getPropertyTypeName(property);
                     } else if (property.isRelationship?.()) {
-                        const elementType = property.getFullyQualifiedTypeName();
+                        const elementType = getPropertyTypeName(property);
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
                         const identifier = nestedTemplateModel.getIdentifierFieldName();
                         thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
                     } else {
-                        const elementType = property.getFullyQualifiedTypeName();
+                        const elementType = getPropertyTypeName(property);
                         thing.elementType = elementType;
                     }
                 }
@@ -183,22 +223,22 @@ class TypeVisitor {
                 if (property) {
                     const serializer = parameters.templateMarkModelManager.getSerializer();
                     thing.decorators = processDecorators(serializer,property);
-                    if (property.isTypeEnum && property.isTypeEnum()) {
+                    if (isEnumProperty(property)) {
                         const enumVariableDeclaration = parameters.templateMarkModelManager.getType(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
                         const enumType = property.getParent().getModelFile().getType(property.getType());
-                        thing.elementType = property.getFullyQualifiedTypeName();
+                        thing.elementType = getPropertyTypeName(property);
                         thing.$classDeclaration = enumVariableDeclaration;
                         thing.enumValues = enumType.getOwnProperties().map(x => x.getName());
-                    } else if (property.isPrimitive()) {
-                        thing.elementType = property.getFullyQualifiedTypeName();
+                    } else if (isPrimitiveProperty(property)) {
+                        thing.elementType = getPropertyTypeName(property);
                     } else if (property.isRelationship?.()) {
-                        const elementType = property.getFullyQualifiedTypeName();
+                        const elementType = getPropertyTypeName(property);
                         thing.elementType = elementType;
                         const nestedTemplateModel = parameters.introspector.getClassDeclaration(elementType);
                         const identifier = nestedTemplateModel.getIdentifierFieldName();
                         thing.identifiedBy = identifier ? identifier : '$identifier'; // Consistent with Concerto 1.0 semantics
                     } else {
-                        const elementType = property.getFullyQualifiedTypeName();
+                        const elementType = getPropertyTypeName(property);
                         thing.elementType = elementType;
                     }
                 } else {
@@ -243,10 +283,10 @@ class TypeVisitor {
             if (!property) {
                 _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
             }
-            if (property.isPrimitive()) {
+            if (isPrimitiveProperty(property)) {
                 nextModel = property;
             } else {
-                thing.elementType = property.getFullyQualifiedTypeName();
+                thing.elementType = getPropertyTypeName(property);
                 nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
@@ -272,10 +312,10 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
+            if (isPrimitiveProperty(property)) {
                 nextModel = property;
             } else {
-                thing.elementType = property.getFullyQualifiedTypeName();
+                thing.elementType = getPropertyTypeName(property);
                 nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
             TypeVisitor.visitChildren(this, thing, {
@@ -324,11 +364,11 @@ class TypeVisitor {
             }
             const serializer = parameters.templateMarkModelManager.getSerializer();
             thing.decorators = processDecorators(serializer,property);
-            if (property.isPrimitive()) {
-                thing.elementType = property.getFullyQualifiedTypeName();
+            if (isPrimitiveProperty(property)) {
+                thing.elementType = getPropertyTypeName(property);
                 nextModel = property;
             } else {
-                thing.elementType = property.getFullyQualifiedTypeName();
+                thing.elementType = getPropertyTypeName(property);
                 nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
             }
             TypeVisitor.visitChildren(this, thing, {
