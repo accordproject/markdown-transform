@@ -21,7 +21,7 @@ chai.should();
 chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
-const { Introspector, ModelManager } = require('@accordproject/concerto-core');
+const { ModelManager } = require('@accordproject/concerto-core');
 const { TemplateMarkModel } = require('@accordproject/markdown-common');
 
 const TemplateMarkTransformer = require('../lib/TemplateMarkTransformer');
@@ -32,34 +32,6 @@ namespace test@1.0.0
 concept Thing {
     o String[] items
 }`;
-
-const COMPAT_MODEL = `
-namespace test.compat@1.0.0
-
-concept Detail {
-    o String value
-}
-
-@template
-concept Thing {
-    o String name
-    o String alias optional
-    o String[] items
-    o Detail detail
-}`;
-
-/**
- * Simulate concerto-core property objects that no longer expose isPrimitive().
- * @param {ModelManager} modelManager the model manager containing the declarations
- * @param {string} fullyQualifiedName the declaration to modify
- */
-function removePrimitiveMethod(modelManager, fullyQualifiedName) {
-    const introspector = new Introspector(modelManager);
-    const declaration = introspector.getClassDeclaration(fullyQualifiedName);
-    declaration.getOwnProperties().forEach((property) => {
-        property.isPrimitive = undefined;
-    });
-}
 
 describe('#TemplateMarkTransformer', () => {
     describe('#tokensToMarkdownTemplate', () => {
@@ -118,34 +90,6 @@ describe('#TemplateMarkTransformer', () => {
             const joinNode = result.nodes[0].nodes[0].nodes[0];
             joinNode.$class.should.equal(`${TemplateMarkModel.NAMESPACE}.JoinDefinition`);
             (joinNode.foo === undefined).should.be.true;
-        });
-
-        it('should type templates when concerto properties do not expose isPrimitive()', async () => {
-            const transformer = new TemplateMarkTransformer();
-            const modelManager = new ModelManager();
-            modelManager.addCTOModel(COMPAT_MODEL);
-
-            removePrimitiveMethod(modelManager, 'test.compat@1.0.0.Thing');
-            removePrimitiveMethod(modelManager, 'test.compat@1.0.0.Detail');
-
-            const tokens = transformer.toTokens({
-                content: '{{name}} {{#optional alias}}{{this}}{{/optional}} {{#join items}}{{this}}{{/join}} {{#with detail}}{{value}}{{/with}}'
-            });
-            const result = transformer.tokensToMarkdownTemplate(tokens, modelManager, 'clause');
-
-            const clauseNodes = result.nodes[0].nodes[0].nodes;
-            const nameNode = clauseNodes[0];
-            const optionalNode = clauseNodes[2];
-            const joinNode = clauseNodes[4];
-            const withNode = clauseNodes[6];
-
-            nameNode.elementType.should.equal('String');
-            optionalNode.elementType.should.equal('String');
-            optionalNode.whenSome[0].elementType.should.equal('String');
-            joinNode.$class.should.equal(`${TemplateMarkModel.NAMESPACE}.JoinDefinition`);
-            joinNode.nodes[0].elementType.should.equal('String');
-            withNode.elementType.should.equal('test.compat@1.0.0.Detail');
-            withNode.nodes[0].elementType.should.equal('String');
         });
     });
 });
