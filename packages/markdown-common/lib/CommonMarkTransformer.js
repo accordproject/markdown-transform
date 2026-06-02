@@ -14,6 +14,9 @@
 
 'use strict';
 
+/** @typedef {import('@accordproject/markdown-common/types/model/commonmark').IDocument} IDocument */
+/** @typedef {import('@accordproject/markdown-common/types/model/commonmark').INode} INode */
+
 const MarkdownIt = require('markdown-it');
 const FromMarkdownIt = require('./FromMarkdownIt');
 
@@ -41,7 +44,7 @@ class CommonMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a markdown string
-     * @param {*} input - CommonMark DOM (in JSON)
+     * @param {INode} input - CommonMark DOM (in JSON)
      * @returns {string} the markdown string
      */
     toMarkdown(input) {
@@ -51,8 +54,8 @@ class CommonMarkTransformer {
 
     /**
      * Converts a CommonMark DOM to a CommonMark DOM with formatting removed
-     * @param {*} input - CommonMark DOM (in JSON)
-     * @returns {string} the CommonMark DOM with formatting nodes removed
+     * @param {IDocument} input - CommonMark DOM (in JSON)
+     * @returns {IDocument} the CommonMark DOM with formatting nodes removed
      */
     removeFormatting(input) {
         return removeFormatting(input);
@@ -62,7 +65,7 @@ class CommonMarkTransformer {
      * Converts a markdown string into a token stream
      *
      * @param {string} markdown the string to parse
-     * @returns {*} a markdown-it token stream
+     * @returns {object[]} a markdown-it token stream
      */
     toTokens(markdown) {
         const parser = new MarkdownIt({html:true}); // XXX HTML inlines and code blocks true
@@ -73,8 +76,8 @@ class CommonMarkTransformer {
     /**
      * Converts a token stream into a CommonMark DOM object.
      *
-     * @param {object} tokenStream the token stream
-     * @returns {*} a Concerto object (DOM) for the markdown content
+     * @param {object[]} tokenStream the token stream
+     * @returns {IDocument} a Concerto object (DOM) for the markdown content
      */
     fromTokens(tokenStream) {
         const fromMarkdownIt = new FromMarkdownIt();
@@ -89,7 +92,7 @@ class CommonMarkTransformer {
      * Converts a markdown string into a CommonMark DOM object.
      *
      * @param {string} markdown the string to parse
-     * @returns {object} a CommonMark DOM (JSON) for the markdown content
+     * @returns {IDocument} a CommonMark DOM (JSON) for the markdown content
      */
     fromMarkdown(markdown) {
         const tokenStream = this.toTokens(markdown);
@@ -99,7 +102,7 @@ class CommonMarkTransformer {
     /**
      * Retrieve the serializer used by the parser
      *
-     * @returns {*} a serializer capable of dealing with the Concerto
+     * @returns {Serializer} a serializer capable of dealing with the Concerto
      */
     getSerializer() {
         return this.serializer;

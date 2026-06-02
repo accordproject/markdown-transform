@@ -3,7 +3,7 @@
   "version": "0.16.25",
   "description": "Transform CiceroDOM to HTML",
   "engines": {
-    "node": ">=18",
+    "node": ">=22",
     "npm": ">=9"
   },
   "publishConfig": {
