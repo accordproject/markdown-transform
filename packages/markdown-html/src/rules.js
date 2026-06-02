@@ -515,50 +515,54 @@ const CAPTION_RULE = {
  * @returns {Array} - the cleaned list of nodes
  */
 function cleanTableNodes(nodes) {
-  const NS = CommonMarkModel.NAMESPACE;
-  const TEXT = `${NS}.Text`;
-  const SOFT = `${NS}.Softbreak`;
+    const NS = CommonMarkModel.NAMESPACE;
+    const TEXT = `${NS}.Text`;
+    const SOFT = `${NS}.Softbreak`;
 
-  if (!nodes) return [];
-  nodes = Array.isArray(nodes) ? nodes : [nodes];
+    if (!nodes) {
+        return [];
+    }
+    nodes = Array.isArray(nodes) ? nodes : [nodes];
 
-  const merged = nodes.reduce((acc, node) => {
-    if (!node) return acc;
+    const merged = nodes.reduce((acc, node) => {
+        if (!node) {
+            return acc;
+        }
 
-    let newNode = { ...node };
-    if (newNode.nodes) newNode = { ...newNode, nodes: cleanTableNodes(newNode.nodes) };
+        let newNode = { ...node };
+        if (newNode.nodes) {
+            newNode = { ...newNode, nodes: cleanTableNodes(newNode.nodes) };
+        }
 
-    if (newNode.$class === SOFT) {
-      newNode = { $class: TEXT, text: ' ' };
+        if (newNode.$class === SOFT) {
+            newNode = { $class: TEXT, text: ' ' };
+        }
+
+        const last = acc[acc.length - 1];
+        if (last && last.$class === TEXT && newNode.$class === TEXT) {
+            last.text += newNode.text;
+        } else {
+            acc.push(newNode);
+        }
+
+        return acc;
+    }, []);
+
+    // Normalize whitespace inside Text nodes
+    merged.forEach(n => {
+        if (n.$class === TEXT) {
+            n.text = n.text.replace(/\s+/g, ' ');
+        }
+    });
+
+    if (merged.length > 0 && merged[0].$class === TEXT) {
+        merged[0].text = merged[0].text.replace(/^\s+/, '');
+    }
+    if (merged.length > 0 && merged[merged.length - 1].$class === TEXT) {
+        merged[merged.length - 1].text = merged[merged.length - 1].text.replace(/\s+$/, '');
     }
 
-    const last = acc[acc.length - 1];
-    if (last && last.$class === TEXT && newNode.$class === TEXT) 
-    {
-      last.text += newNode.text;
-    } 
-    else
-    {
-      acc.push(newNode);
-    }
-
-    return acc;
-  }, []);
-
-  // Normalize whitespace inside Text nodes
-  merged.forEach(n => {
-    if (n.$class === TEXT) n.text = n.text.replace(/\s+/g, ' ');
-  });
-
-
-  if (merged.length > 0 && merged[0].$class === TEXT) {
-    merged[0].text = merged[0].text.replace(/^\s+/, '');
-  }
-  if (merged.length > 0 && merged[merged.length - 1].$class === TEXT) {
-    merged[merged.length - 1].text = merged[merged.length - 1].text.replace(/\s+$/, '');
-  }
-
-  return merged.filter(n => n.$class !== TEXT || n.text.length > 0);
+    return merged.filter(n => n.$class !== TEXT || n.text.length > 0);
 }
 
 
