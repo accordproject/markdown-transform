@@ -107,14 +107,48 @@ describe('html table deserialization', () => {
                             text: 'Employee Details'
                         }
                     ]
-                },
-                {
-                    $class: `${commonmarkNamespace}.Text`,
-                    text: '\n\n'
                 }
             ]
         });
         expect(ciceroMarkDom.nodes[1].$class).toBe(`${commonmarkNamespace}.Table`);
+    });
+
+    it('flattens block content in a caption to inline-only Strong children', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <caption><p>See <em>also</em></p></caption>
+                <thead>
+                    <tr><th>Name</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ada</td></tr>
+                </tbody>
+            </table>
+        `);
+
+        expect(ciceroMarkDom.nodes).toHaveLength(2);
+        const strong = ciceroMarkDom.nodes[0].nodes[0];
+        expect(strong.$class).toBe(`${commonmarkNamespace}.Strong`);
+        // every child of Strong must be inline (no Paragraph leaked in)
+        strong.nodes.forEach(child => {
+            expect(child.$class).not.toBe(`${commonmarkNamespace}.Paragraph`);
+        });
+        expect(strong.nodes).toEqual([
+            { $class: `${commonmarkNamespace}.Text`, text: 'See ' },
+            {
+                $class: `${commonmarkNamespace}.Emph`,
+                nodes: [{ $class: `${commonmarkNamespace}.Text`, text: 'also' }]
+            }
+        ]);
+        expect(ciceroMarkDom.nodes[1].$class).toBe(`${commonmarkNamespace}.Table`);
+    });
+
+    it('does not leak a caption node when it appears outside a table', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark('<caption>Orphan caption</caption>');
+
+        // the old caption rule produced a node with no $class; ensure none leak
+        ciceroMarkDom.nodes.forEach(n => expect(typeof n.$class).toBe('string'));
+        expect(ciceroMarkDom.nodes.some(n => n.type === 'caption')).toBe(false);
     });
 
     it('normalizes whitespace in table cells', () => {

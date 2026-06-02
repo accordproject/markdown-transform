@@ -498,16 +498,39 @@ const HTML_BLOCK_RULE = {
     }
 };
 
-const CAPTION_RULE = {
-    deserialize(el, next, ignoreSpace) {
-        if (el.tagName && el.tagName.toLowerCase() === 'caption') {
-            return {
-                type: 'caption',
-                nodes: next(el.childNodes, ignoreSpace)
-            };
-        }
+// CommonMark inline node classes. A <caption> may contain flow content
+// (paragraphs, lists, etc.), but a Strong node may only contain inline
+// children, so caption content is flattened to these classes before it is
+// wrapped in Strong.
+const INLINE_CLASSES = [
+    'Text', 'Emph', 'Strong', 'Code', 'Link', 'Image',
+    'Softbreak', 'Linebreak', 'HtmlInline'
+].map(name => `${CommonMarkModel.NAMESPACE}.${name}`);
+
+/**
+ * Flatten caption content to inline-only nodes so it can be safely wrapped in
+ * a Strong node. Block-level wrappers (e.g. Paragraph) are unwrapped to their
+ * inline children; nodes with no inline content are dropped.
+ * @param {Array} nodes - the list of nodes
+ * @returns {Array} - the inline-only list of nodes
+ */
+function toInlineNodes(nodes) {
+    if (!nodes) {
+        return [];
     }
-};
+    const list = Array.isArray(nodes) ? nodes : [nodes];
+    return list.reduce((acc, node) => {
+        if (!node) {
+            return acc;
+        }
+        if (INLINE_CLASSES.includes(node.$class)) {
+            acc.push(node);
+        } else if (node.nodes) {
+            acc.push(...toInlineNodes(node.nodes));
+        }
+        return acc;
+    }, []);
+}
 
 /**
  * Clean table cell nodes by removing Softbreaks and normalizing whitespace.
@@ -570,7 +593,6 @@ const TABLE_RULE = {
     deserialize(el, next, ignoreSpace) {
         if (el.tagName && el.tagName.toLowerCase() === 'table') {
             const children = next(el.childNodes, ignoreSpace);
-            const captionNode = children.find(c => c.type === 'caption');
             let tableNodes = children.filter(node =>
                 node.$class === `${CommonMarkModel.NAMESPACE}.TableHead` ||
                 node.$class === `${CommonMarkModel.NAMESPACE}.TableBody`
@@ -601,21 +623,29 @@ const TABLE_RULE = {
                 nodes: tableNodes,
             };
 
-            if (captionNode) {
-                const captionParagraph = {
-                    $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
-                    nodes: [
-                        {
-                            $class: `${CommonMarkModel.NAMESPACE}.Strong`,
-                            nodes: cleanTableNodes(captionNode.nodes)
-                        },
-                        {
-                            $class: `${CommonMarkModel.NAMESPACE}.Text`,
-                            text: '\n\n'
-                        }
-                    ]
-                };
-                return [captionParagraph, table];
+            // A <caption> is handled here (rather than via its own rule) so the
+            // caption node never leaks into the output when it appears outside
+            // of a table. Its content is flattened to inline-only nodes so the
+            // Strong wrapper stays valid CommonMark, and the bolded caption is
+            // emitted as its own Paragraph block before the table - block-level
+            // spacing is left to the Markdown serializer.
+            const captionElement = Array.from(el.childNodes).find(
+                child => child.tagName && child.tagName.toLowerCase() === 'caption'
+            );
+            if (captionElement) {
+                const captionNodes = cleanTableNodes(toInlineNodes(next(captionElement.childNodes, ignoreSpace)));
+                if (captionNodes.length > 0) {
+                    const captionParagraph = {
+                        $class: `${CommonMarkModel.NAMESPACE}.Paragraph`,
+                        nodes: [
+                            {
+                                $class: `${CommonMarkModel.NAMESPACE}.Strong`,
+                                nodes: captionNodes
+                            }
+                        ]
+                    };
+                    return [captionParagraph, table];
+                }
             }
 
             return table;
@@ -677,8 +707,7 @@ const rules = [
     HTML_INLINE_RULE,
     HTML_BLOCK_RULE,
     IMAGE_RULE,
-    TABLE_RULE,
-    CAPTION_RULE
+    TABLE_RULE
 ];
 
 
