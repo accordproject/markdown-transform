@@ -75,12 +75,14 @@ function buildExternalModels() {
     //console.log('contextArray --- ' + JSON.stringify(contextArray));
 
     contextArray.forEach(function(context) {
-        // Only create a corresponding JS file if the js field exists
+        // Only create a corresponding TS file if the js field exists
         if (context.js) {
+            const outDir = path.join(scriptDir, context.js);
+            mkdirp.sync(outDir);
             const result = template(context);
-            const buildModelsJs = path.join(scriptDir,context.js,context.name + '.js');
-            console.log('Creating: ' + buildModelsJs);
-            fs.writeFileSync(buildModelsJs,result);
+            const buildModelsTs = path.join(outDir, context.name + '.ts');
+            console.log('Creating: ' + buildModelsTs);
+            fs.writeFileSync(buildModelsTs, result);
         }
     });
 }

@@ -12,12 +12,10 @@
  * limitations under the License.
  */
 
-'use strict';
+export const NAMESPACE = '{{ namespace }}';
 
-const NAMESPACE = '{{ namespace }}';
-
-const MODEL = `
+export const MODEL = `
 {{{ model }}}
 `;
 
-module.exports = { NAMESPACE, MODEL };
+export default { NAMESPACE, MODEL };

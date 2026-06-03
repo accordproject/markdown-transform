@@ -1,9 +1,8 @@
-
 # Command Line
 
-Install the `@accordproject/markdown-cli` npm package to access the Markdown Transform command line interface (CLI). After installation you can use the `markus` command and its sub-commands as described below.
+Install the `@accordproject/markdown-cli` npm package to get the `markus` command line interface (CLI). After installation you can use the `markus` command and its sub-commands as described below.
 
-To install the Markdown CLI:
+To install:
 
 ```bash
 npm install -g @accordproject/markdown-cli
@@ -27,7 +26,7 @@ Options:
 
 ## `markus transform`
 
-The `markus transform` command lets you transform between any two of the supported formats
+The `markus transform` command lets you transform between any two of the supported formats.
 
 ```md
 markus transform
@@ -49,13 +48,18 @@ Options:
   --contract     contract template                    [boolean] [default: false]
   --currentTime  set current time                       [string] [default: null]
   --plugin       path to a parser plugin                                [string]
+  --extension    path to a transform extension                           [array]
   --sourcePos    enable source position               [boolean] [default: false]
   --offline      do not resolve external models       [boolean] [default: false]
 ```
 
+Supported formats for `--from` / `--to` / `--via`:
+
+`markdown`, `markdown_cicero`, `markdown_template`, `commonmark_tokens`, `ciceromark_tokens`, `templatemark_tokens`, `commonmark`, `ciceromark`, `ciceromark_parsed`, `ciceromark_unquoted`, `templatemark`, `ciceroedit`, `html`, `plaintext`.
+
 ### Example
 
-For example, you can use the `transform` command on the `README.md` file from the [Hello World](https://github.com/accordproject/cicero-template-library/blob/main/src/helloworld) template:
+Run `transform` on a markdown file:
 
 ```bash
 markus transform --input README.md
@@ -77,18 +81,18 @@ returns:
           "text": "Hello World"
         }
       ]
-    }, 
+    },
     {
       "$class": "org.accordproject.commonmark@0.5.0.Paragraph",
       "nodes": [
         {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": "This is the Hello World of Accord Project Templates. Executing the clause will simply echo back the text that occurs after the string "
-        }, 
+        },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Code",
           "text": "Hello"
-        }, 
+        },
         {
           "$class": "org.accordproject.commonmark@0.5.0.Text",
           "text": " prepended to text that is passed in the request."
@@ -101,15 +105,15 @@ returns:
 
 ### `--from` and `--to` options
 
-You can indicate the source and target formats using the `--from` and `--to` options. For instance, the following transforms from `markdown` to `html`:
+Set the source and target formats. The following converts markdown to HTML:
 
 ```bash
-markus transform --from markdown --to html
+markus transform --from markdown --to html --input README.md
 ```
 
 returns:
 
-```md
+```html
 <html>
 <body>
 <div class="document">
@@ -122,30 +126,17 @@ returns:
 
 ### `--via` option
 
-When there are several paths between two formats, you can indicate an intermediate format using the `--via` option. The following transforms from `markdown` to `html` *via* `ciceromark`:
+When there are several paths between two formats, you can route through an intermediate format. The following transforms from `markdown` to `html` *via* `ciceromark`:
 
 ```bash
-markus transform --from markdown --via ciceromark --to html
-```
-
-returns:
-
-```md
-<html>
-<body>
-<div class="document">
-<h1>Hello World</h1>
-<p>This is the Hello World of Accord Project Templates. Executing the clause will simply echo back the text that occurs after the string <code>Hello</code> prepended to text that is passed in the request.</p>
-</div>
-</body>
-</html>
+markus transform --from markdown --via ciceromark --to html --input README.md
 ```
 
 ### `--roundtrip` option
 
-When the transforms allow, you can roundtrip between two formats, i.e., transform from a source to a target format and back to the source target. For instance, the following transform from `markdown` to `ciceromark` and back to markdown:
+You can roundtrip between two formats — transform from source to target then back to source. For example, `markdown → ciceromark → markdown`:
 
-```md
+```bash
 markus transform --from markdown --to ciceromark --input README.md --roundtrip
 ```
 
@@ -158,20 +149,19 @@ Hello World
 This is the Hello World of Accord Project Templates. Executing the clause will simply echo back the text that occurs after the string `Hello` prepended to text that is passed in the request.
 ```
 
+Roundtripping might result in small textual differences in the source markdown but should always be semantically equivalent. In the example above the ATX heading `# Hello World` has been transformed into the equivalent Setext heading.
 
+### `--model` and `--contract` options
 
-Roundtripping might result in small changes in the source markdown, but should always be semantically equivalent. In the above example the source ATX heading `# Hello World` has been transformed into a Setext heading equivalent.
+When handling [TemplateMark](https://docs.accordproject.org/docs/markdown-templatemark), provide a Concerto model with `--model` and add `--contract` if the template is a contract (otherwise it is treated as a clause).
 
-
-
-### `--model` `--contract` options
-
-When handling [TemplateMark](https://docs.accordproject.org/docs/markdown-templatemark), one has to provide a model using the `--model` option and whether the template is a clause (default) or a contract (using the `--contract` option).
-
-For instance the following converts markdown with the template extension to a TemplateMark document object model:
+For instance, the following converts a TemplateMark file to its DOM:
 
 ```bash
-markus transform --from markdown_template --to templatemark --model model/model.cto --input text/grammar.tem.md
+markus transform \
+  --from markdown_template --to templatemark \
+  --model model/model.cto \
+  --input text/grammar.tem.md
 ```
 
 returns:
@@ -192,19 +182,19 @@ returns:
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Name of the person to greet: "
-            }, 
+            },
             {
               "$class": "org.accordproject.templatemark@0.5.0.VariableDefinition",
               "name": "name",
               "elementType": "String"
-            }, 
+            },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "."
-            }, 
+            },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Softbreak"
-            }, 
+            },
             {
               "$class": "org.accordproject.commonmark@0.5.0.Text",
               "text": "Thank you!"
@@ -217,22 +207,9 @@ returns:
 }
 ```
 
-### `--template` option
+### `--extension` option
 
-Parsing or drafting contract text using a template can be done using the `--template` option, usually with the corresponding `--model` option to indicate the template model.
+Pass `--extension path/to/ext.js` (repeatable) to register a custom transform extension at runtime. An extension is a module that exports `{ format?, transforms? }` where `format` declares a new format and `transforms` declares edges to/from it in the transformation graph. See the integration tests in this package for examples.
 
-For instance, the following parses a markdown with CiceroMark extension to get the correspond contract data:
-
-```bash
-markus transform --from markdown_cicero --to data --template text/grammar.tem.md --model model/model.cto --input text/sample.md 
-```
-
-returns:
-
-```json
-{
-  "$class": "org.accordproject.helloworld.HelloWorldClause",
-  "name": "Fred Blogs",
-  "clauseId": "fc345528-2604-420c-9e02-8d85e03cb65b"
-}
-```
+## License <a name="license"></a>
+Accord Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Accord Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.

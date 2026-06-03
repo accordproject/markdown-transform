@@ -1,0 +1,15 @@
+{
+  "name": "markdown-transform-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "End-to-end tests that load the UMD browser bundles into a real headless Chromium and exercise the public API.",
+  "scripts": {
+    "prebuild:bundles": "npm run -w @accordproject/markdown-html build && npm run -w @accordproject/markdown-template build && npm run -w @accordproject/markdown-transform build",
+    "build:bundles": "npm run -w @accordproject/markdown-html webpack && npm run -w @accordproject/markdown-template webpack && npm run -w @accordproject/markdown-transform webpack",
+    "pretest": "npm run build:bundles && npx --yes playwright install chromium",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
