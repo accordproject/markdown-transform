@@ -6,7 +6,9 @@ on:
       - published
 
 permissions:
-  id-token: write  # Required for OIDC / npmjs publish
+  id-token: write       # Required for OIDC / npmjs publish
+  contents: write       # Required for peter-evans/create-pull-request to push a branch
+  pull-requests: write  # Required for peter-evans/create-pull-request to open the PR
 
 jobs:
   publish:
