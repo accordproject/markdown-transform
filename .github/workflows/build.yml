@@ -80,7 +80,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build packages and UMD bundles
+      - name: Build packages (dep order)
+        run: npm run build
+
+      - name: Build UMD bundles
         run: npm run -w markdown-transform-e2e build:bundles
 
       - name: Get Playwright version
