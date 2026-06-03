@@ -27,7 +27,6 @@ function loadModels(dir: string): string[] {
 }
 
 const dataDir = path.resolve(__dirname, '..', 'test', 'data');
-const acceptanceGrammarFile = path.resolve(dataDir, 'acceptance', 'grammar.tem.md');
 const acceptanceModelDir = path.resolve(dataDir, 'acceptance');
 const acceptanceMarkdownFile = path.resolve(dataDir, 'acceptance', 'sample.md');
 const acceptanceMarkdown = normalizeNLs(fs.readFileSync(acceptanceMarkdownFile, 'utf8'));
@@ -72,10 +71,9 @@ describe('#validateTransformArgs', () => {
 });
 
 describe('markdown-cli (acceptance)', () => {
-    let parameters: any;
     beforeEach(() => {
-        const models = loadModels(acceptanceModelDir);
-        parameters = { template: acceptanceGrammarFile, model: models, templateKind: 'contract' };
+        // Touch the models directory so any missing-file failures are loud.
+        loadModels(acceptanceModelDir);
     });
 
     describe('#markdown_parse', () => {

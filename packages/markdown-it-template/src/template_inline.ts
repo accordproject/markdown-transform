@@ -30,12 +30,11 @@ export function template_inline(state: any, silent: boolean): boolean {
 
     let ch: number;
     let match;
-    let max: number;
     let token: any;
     let attrs: any;
     const pos = state.pos;
+    const max = state.posMax;
 
-    max = state.posMax;
     if (state.src.charCodeAt(pos) !== 0x7B ||
         pos + 2 >= max) {
         return false;

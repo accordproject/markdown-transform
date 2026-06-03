@@ -19,11 +19,10 @@ import { FORMULA_RE } from './cicero_re';
 export function cicero_inline(state: any, silent: boolean): boolean {
     let ch: number;
     let match;
-    let max: number;
     let token: any;
     const pos = state.pos;
+    const max = state.posMax;
 
-    max = state.posMax;
     if (state.src.charCodeAt(pos) !== 0x7B ||
         pos + 2 >= max) {
         return false;

@@ -15,17 +15,10 @@
 import { matchOpenBlock, matchCloseBlock } from './cicero_re';
 
 export function cicero_block(state: any, startLine: number, endLine: number, silent: boolean): boolean {
-    let block_name: string;
-    let block_open: string;
     let match;
-    let attrs: any;
-
     let pos: number;
     let nextLine: number;
-    let markup: string;
     let token: any;
-    let old_parent: any;
-    let old_line_max: number;
     let auto_closed = false;
     let start = state.bMarks[startLine] + state.tShift[startLine];
     let max = state.eMarks[startLine];
@@ -43,11 +36,10 @@ export function cicero_block(state: any, startLine: number, endLine: number, sil
 
     if (pos < max) { return false; }
 
-    block_open = match.tag;
-    attrs = match.attrs;
-
-    block_name = block_open;
-    markup = '';
+    const block_open = match.tag;
+    const attrs = match.attrs;
+    const block_name = block_open;
+    const markup = '';
 
     if (silent) { return true; }
 
@@ -91,8 +83,8 @@ export function cicero_block(state: any, startLine: number, endLine: number, sil
         break;
     }
 
-    old_parent = state.parentType;
-    old_line_max = state.lineMax;
+    const old_parent = state.parentType;
+    const old_line_max = state.lineMax;
     state.parentType = 'block';
 
     state.lineMax = nextLine;
