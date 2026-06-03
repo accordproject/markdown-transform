@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const CiceroMarkTransformer = require('@accordproject/markdown-cicero').CiceroMarkTransformer;
+const { CommonMarkModel } = require('@accordproject/markdown-common');
 const HtmlTransformer = require('./HtmlTransformer');
 
 let htmlTransformer = null;
@@ -75,6 +76,139 @@ describe('markdown <-> html', () => {
         expect(ciceroMarkDom).toMatchSnapshot(); // (1)
         const md = ciceroTransformer.toMarkdown(ciceroMarkDom);
         expect(md).toMatchSnapshot(); // (2)
+    });
+});
+
+describe('html table deserialization', () => {
+    const commonmarkNamespace = CommonMarkModel.NAMESPACE;
+
+    it('deserializes a table caption before the table', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <caption>Employee Details</caption>
+                <thead>
+                    <tr><th>Name</th><th>Role</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ada</td><td>Engineer</td></tr>
+                </tbody>
+            </table>
+        `);
+
+        expect(ciceroMarkDom.nodes).toHaveLength(2);
+        expect(ciceroMarkDom.nodes[0]).toEqual({
+            $class: `${commonmarkNamespace}.Paragraph`,
+            nodes: [
+                {
+                    $class: `${commonmarkNamespace}.Strong`,
+                    nodes: [
+                        {
+                            $class: `${commonmarkNamespace}.Text`,
+                            text: 'Employee Details'
+                        }
+                    ]
+                }
+            ]
+        });
+        expect(ciceroMarkDom.nodes[1].$class).toBe(`${commonmarkNamespace}.Table`);
+    });
+
+    it('flattens block content in a caption to inline-only Strong children', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <caption><p>See <em>also</em></p></caption>
+                <thead>
+                    <tr><th>Name</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ada</td></tr>
+                </tbody>
+            </table>
+        `);
+
+        expect(ciceroMarkDom.nodes).toHaveLength(2);
+        const strong = ciceroMarkDom.nodes[0].nodes[0];
+        expect(strong.$class).toBe(`${commonmarkNamespace}.Strong`);
+        // every child of Strong must be inline (no Paragraph leaked in)
+        strong.nodes.forEach(child => {
+            expect(child.$class).not.toBe(`${commonmarkNamespace}.Paragraph`);
+        });
+        expect(strong.nodes).toEqual([
+            { $class: `${commonmarkNamespace}.Text`, text: 'See ' },
+            {
+                $class: `${commonmarkNamespace}.Emph`,
+                nodes: [{ $class: `${commonmarkNamespace}.Text`, text: 'also' }]
+            }
+        ]);
+        expect(ciceroMarkDom.nodes[1].$class).toBe(`${commonmarkNamespace}.Table`);
+    });
+
+    it('does not leak a caption node when it appears outside a table', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark('<caption>Orphan caption</caption>');
+
+        // the old caption rule produced a node with no $class; ensure none leak
+        ciceroMarkDom.nodes.forEach(n => expect(typeof n.$class).toBe('string'));
+        expect(ciceroMarkDom.nodes.some(n => n.type === 'caption')).toBe(false);
+    });
+
+    it('normalizes whitespace in table cells', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            First
+                            Second
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        `);
+
+        const cellNodes = ciceroMarkDom.nodes[0].nodes[0].nodes[0].nodes[0].nodes;
+        expect(cellNodes).toEqual([
+            {
+                $class: `${commonmarkNamespace}.Text`,
+                text: 'First Second'
+            }
+        ]);
+    });
+
+    it('promotes tbody rows with header cells to table head when thead is missing', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <tbody>
+                    <tr><th>Name</th><th>Role</th></tr>
+                    <tr><td>Ada</td><td>Engineer</td></tr>
+                </tbody>
+            </table>
+        `);
+
+        const table = ciceroMarkDom.nodes[0];
+        expect(table.nodes).toHaveLength(2);
+        expect(table.nodes[0].$class).toBe(`${commonmarkNamespace}.TableHead`);
+        expect(table.nodes[0].nodes[0].nodes.map(cell => cell.$class)).toEqual([
+            `${commonmarkNamespace}.HeaderCell`,
+            `${commonmarkNamespace}.HeaderCell`
+        ]);
+        expect(table.nodes[1].$class).toBe(`${commonmarkNamespace}.TableBody`);
+        expect(table.nodes[1].nodes).toHaveLength(1);
+    });
+
+    it('keeps tables without captions as a single table node', () => {
+        const ciceroMarkDom = htmlTransformer.toCiceroMark(`
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Role</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ada</td><td>Engineer</td></tr>
+                </tbody>
+            </table>
+        `);
+
+        expect(ciceroMarkDom.nodes).toHaveLength(1);
+        expect(ciceroMarkDom.nodes[0].$class).toBe(`${commonmarkNamespace}.Table`);
     });
 });
 
