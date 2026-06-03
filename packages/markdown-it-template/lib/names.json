@@ -1,2 +1,0 @@
-{ "blocks": [ "clause", "ulist", "olist" ],
-  "inlines": [ "if", "optional", "with", "join" ] }

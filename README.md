@@ -19,6 +19,8 @@
 
 A transformation and parsing framework for converting markdown content to HTML and other structured document object models (DOMs).
 
+The codebase is written in TypeScript; each package ships compiled JavaScript alongside `.d.ts` type declarations.
+
 ![Transformations](./packages/markdown-transform/transformations.png)
 
 ## Structure of the Code Repository
@@ -37,23 +39,23 @@ Top level repository (markdown-transform), with sub packages. Each sub-package i
 
 The CommonMark DOM is a model for the elements of CommonMark (the specification for markdown text), expressed as a [Concerto schema](https://github.com/accordproject/concerto), and serialized as a JSON graph.
 
-The schema is defined here: https://models.accordproject.org/markdown/commonmark@0.2.0.html
+The schema is defined here: https://models.accordproject.org/markdown/commonmark@0.5.0.html
 
 ###  CiceroMark DOM
 
 CiceroMark defines markdown documents with embedded clauses, where each clause is an instance of a template, specified using TemplateMark.
 
-The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable` and `Formula` etc.
+The CiceroMark DOM extends the CommonMark DOM, defining nodes for `Clause`, `Variable`, `FormattedVariable`, `EnumVariable`, `Conditional`, `Optional`, `Formula` and `ListBlock`.
 
-The schema is defined here: https://models.accordproject.org/markdown/ciceromark@0.3.0.html
+The schema is defined here: https://models.accordproject.org/markdown/ciceromark@0.6.0.html
 
 ###  TemplateMark DOM
 
 TemplateMark defines markdown documents with syntax for embedded variables, optional blocks, formulas etc. It is used to define Accord Project templates.
 
-The TemplateMark DOM extends the CommonMark DOM, defining nodes for `ClauseDefinition`, `VariableDefinition` and `ForumulaDefinition` etc.
+The TemplateMark DOM extends the CommonMark DOM, defining nodes for `ClauseDefinition`, `ContractDefinition`, `VariableDefinition`, `FormattedVariableDefinition`, `EnumVariableDefinition`, `ConditionalDefinition`, `OptionalDefinition`, `WithDefinition`, `JoinDefinition`, `ListBlockDefinition` and `FormulaDefinition`.
 
-The schema is defined here: https://models.accordproject.org/markdown/templatemark.html
+The schema is defined here: https://models.accordproject.org/markdown/templatemark@0.5.0.html
 
 ## Installation
 
@@ -76,13 +78,14 @@ markus --help
 npm install
 ```
 
-Then run:
+Then build all packages and run their tests:
 
 ```
+npm run build
 npm run test
 ```
 
-This command uses npm workspaces to run the tests for each package in the monorepo.
+These commands use npm workspaces. `build` runs `tsc` for each package, producing JavaScript and `.d.ts` declarations into `packages/*/lib/`. `test` runs Jest. Requires Node 22 or later.
 
 ---
 
