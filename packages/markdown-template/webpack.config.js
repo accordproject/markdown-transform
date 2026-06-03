@@ -36,6 +36,10 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.ts', '.js'],
+        // Transitive deps (asn1.js, parse-asn1, etc. pulled in by crypto-browserify)
+        // statically reference Node built-ins on code paths that are unreachable in
+        // the browser. Explicitly set them to `false` so webpack doesn't emit
+        // "Module not found" warnings.
         fallback: {
             'fs': false,
             'tls': false,
@@ -44,6 +48,7 @@ module.exports = {
             'os': false,
             'util': false,
             'url': false,
+            'vm': false,
             'crypto': require.resolve('crypto-browserify'),
             'stream': require.resolve('stream-browserify'),
         },
