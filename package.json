@@ -25,7 +25,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build -w @accordproject/markdown-common && npm run build -w @accordproject/markdown-it-template -w @accordproject/markdown-it-cicero && npm run build -w @accordproject/markdown-cicero && npm run build -w @accordproject/markdown-html -w @accordproject/markdown-template && npm run build -w @accordproject/markdown-transform && npm run build -w @accordproject/markdown-cli",
     "postinstall": "npm run models:get",
     "models:get": "node ./scripts/external/getExternalModels.js",
     "models:clean": "node ./scripts/external/cleanExternalModels.js",
@@ -58,6 +58,7 @@
       ".github",
       "node_modules",
       "packages",
+      "e2e",
       "softhsm",
       "build.cfg",
       "README.md",
@@ -98,7 +99,7 @@
     ],
     "insert_license": false,
     "license_formats": {
-      "js|ergo|cto": {
+      "ts|tsx|js|cto": {
         "prepend": "/*",
         "append": " */",
         "eachLine": {
