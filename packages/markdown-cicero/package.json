@@ -65,7 +65,7 @@
   "dependencies": {
     "@accordproject/markdown-common": "*",
     "@accordproject/markdown-it-cicero": "*",
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.2.0",
     "semver": "7.6.3",
     "winston": "3.17.0"
   },
