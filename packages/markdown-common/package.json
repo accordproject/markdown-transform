@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@xmldom/xmldom": "^0.9.10",
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.2.0"
   },
   "license-check-and-add-config": {
     "folder": "./src",

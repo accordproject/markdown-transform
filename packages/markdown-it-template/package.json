@@ -58,7 +58,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.2.0"
   },
   "license-check-and-add-config": {
     "folder": "./src",
