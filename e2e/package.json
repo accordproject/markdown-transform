@@ -1,6 +1,6 @@
 {
   "name": "markdown-transform-e2e",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "End-to-end tests that load the UMD browser bundles into a real headless Chromium and exercise the public API.",
   "scripts": {

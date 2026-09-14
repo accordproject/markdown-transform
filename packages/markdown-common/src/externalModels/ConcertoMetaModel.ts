@@ -48,6 +48,7 @@ concept Range {
 concept TypeIdentifier {
   o String name
   o String namespace optional
+  o String resolvedName optional
 }
 
 abstract concept DecoratorLiteral {
@@ -160,8 +161,14 @@ abstract concept Property {
   o String name regex=/^(\\p{Lu}|\\p{Ll}|\\p{Lt}|\\p{Lm}|\\p{Lo}|\\p{Nl}|\\$|_|\\\\u[0-9A-Fa-f]{4})(?:\\p{Lu}|\\p{Ll}|\\p{Lt}|\\p{Lm}|\\p{Lo}|\\p{Nl}|\\$|_|\\\\u[0-9A-Fa-f]{4}|\\p{Mn}|\\p{Mc}|\\p{Nd}|\\p{Pc}|\\u200C|\\u200D)*$/u
   o Boolean isArray default=false
   o Boolean isOptional default=false
+  o CollectionSizeValidator sizeValidator optional
   o Decorator[] decorators optional
   o Range location optional
+}
+
+concept CollectionSizeValidator {
+  o Integer minSize optional
+  o Integer maxSize optional
 }
 
 concept RelationshipProperty extends Property {
@@ -261,6 +268,7 @@ concept Models {
 }
 
 abstract concept ScalarDeclaration extends Declaration {
+  o String namespace optional
 }
 
 concept BooleanScalar extends ScalarDeclaration {

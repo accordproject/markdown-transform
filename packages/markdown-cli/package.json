@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A framework for transforming markdown",
   "engines": {
     "node": ">=22",
@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@accordproject/concerto-util": "^5.0.0",
-    "@accordproject/markdown-transform": "*",
+    "@accordproject/markdown-transform": "1.1.0",
     "yargs": "17.7.2"
   },
   "license-check-and-add-config": {
