@@ -22,7 +22,7 @@
   ],
   "name": "markdown-transform",
   "description": "A framework for transforming markdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "build": "npm run build -w @accordproject/markdown-common && npm run build -w @accordproject/markdown-it-template -w @accordproject/markdown-it-cicero && npm run build -w @accordproject/markdown-cicero && npm run build -w @accordproject/markdown-html -w @accordproject/markdown-template && npm run build -w @accordproject/markdown-transform && npm run build -w @accordproject/markdown-cli",
