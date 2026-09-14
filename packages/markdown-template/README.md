@@ -18,7 +18,7 @@ Schema: [`templatemark@0.5.0`](https://models.accordproject.org/markdown/templat
 npm install @accordproject/markdown-template
 ```
 
-Peer dependencies: `@accordproject/concerto-core@^4.1.3` and `@accordproject/concerto-cto@^4.1.3`.
+Peer dependencies: `@accordproject/concerto-core@^5.0.0` and `@accordproject/concerto-cto@^5.0.0`.
 
 ## Usage
 

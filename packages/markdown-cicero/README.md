@@ -18,7 +18,7 @@ Schema: [`ciceromark@0.6.0`](https://models.accordproject.org/markdown/ciceromar
 npm install @accordproject/markdown-cicero
 ```
 
-Peer dependency: `@accordproject/concerto-core@^4.1.2`.
+Peer dependency: `@accordproject/concerto-core@^5.0.0`.
 
 ## Usage
 
