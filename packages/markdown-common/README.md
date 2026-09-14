@@ -10,7 +10,7 @@ The CommonMark DOM is a Concerto model — see [`commonmark@0.5.0`](https://mode
 npm install @accordproject/markdown-common
 ```
 
-Peer dependency: `@accordproject/concerto-core@^4.1.3`.
+Peer dependency: `@accordproject/concerto-core@^5.0.0`.
 
 ## Usage
 
