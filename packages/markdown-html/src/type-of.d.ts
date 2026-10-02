@@ -12,20 +12,5 @@
  * limitations under the License.
  */
 
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc.js';
-dayjs.extend(utc);
-
-/**
- * Ensures there is a proper current time
- */
-export function setCurrentTime(currentTime?: string): dayjs.Dayjs {
-    if (!currentTime) {
-        return dayjs.utc();
-    }
-    try {
-        return dayjs.utc(currentTime);
-    } catch (err: any) {
-        throw new Error(`${currentTime} is not a valid date and time: ${err.message}`);
-    }
-}
+// type-of publishes no type declarations.
+declare module 'type-of';
