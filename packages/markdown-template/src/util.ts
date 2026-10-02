@@ -12,7 +12,10 @@
  * limitations under the License.
  */
 
-import * as crypto from 'crypto';
+// A pure JavaScript SHA-256, so formula names need no Node `crypto` (or a
+// browser polyfill for it) and are identical in every runtime.
+import { sha256 } from '@noble/hashes/sha2';
+import { bytesToHex, utf8ToBytes } from '@noble/hashes/utils';
 
 /**
  * Flatten an array of arrays
@@ -25,7 +28,5 @@ export function flatten<T>(arr: T[][]): T[] {
  * Returns a unique chosen name for a formula
  */
 export function formulaName(code: string): string {
-    const hasher = crypto.createHash('sha256');
-    hasher.update(code);
-    return 'formula_' + hasher.digest('hex');
+    return 'formula_' + bytesToHex(sha256(utf8ToBytes(code)));
 }
