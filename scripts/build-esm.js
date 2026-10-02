@@ -84,8 +84,7 @@ const builtinSpecifiers = new Set([
 
 // The browser build replaces Node builtins and Node-only dependencies with
 // empty modules, so a downstream bundler without Node polyfills is never asked
-// to resolve `fs` or jsdom. This matches the webpack UMD configs, which map the
-// same modules to `false`.
+// to resolve `fs` or jsdom.
 const stubNodeOnlyModulesPlugin = {
     name: 'stub-node-only-modules',
     setup(build) {

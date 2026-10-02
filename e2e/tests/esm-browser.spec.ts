@@ -25,7 +25,7 @@ const ENTRY = `
 export { ModelManager } from '@accordproject/concerto-core';
 export { HtmlTransformer } from '@accordproject/markdown-html';
 export { TemplateMarkTransformer, normalizeNLs } from '@accordproject/markdown-template';
-export { transform } from '@accordproject/markdown-transform';
+export { transform, formatDescriptor, generateTransformationDiagram, TransformEngine } from '@accordproject/markdown-transform';
 `;
 
 const PACKAGES = [
@@ -82,6 +82,27 @@ test.describe('browser ES module build', () => {
         expect(nodeOnly).toEqual([]);
     });
 
+    test('exposes the transform API', async ({ page }) => {
+        await loadBundle(page);
+        const exports = await page.evaluate(() => {
+            const mod = (window as any).markdownTransform;
+            return ['transform', 'formatDescriptor', 'generateTransformationDiagram', 'TransformEngine', 'HtmlTransformer', 'TemplateMarkTransformer']
+                .filter(name => typeof mod[name] !== 'function');
+        });
+        expect(exports).toEqual([]);
+    });
+
+    test('markdown -> commonmark', async ({ page }) => {
+        await loadBundle(page);
+        const result = await page.evaluate(() => {
+            const { transform } = (window as any).markdownTransform;
+            return transform('# Hello\n\nWorld.', 'markdown', ['commonmark']);
+        });
+        expect(result.$class).toBe(`${COMMONMARK}.Document`);
+        expect(result.nodes[0].$class).toBe(`${COMMONMARK}.Heading`);
+        expect(result.nodes[0].nodes[0].text).toBe('Hello');
+    });
+
     test('markdown -> html via ciceromark', async ({ page }) => {
         await loadBundle(page);
         const html = await page.evaluate(() => {
@@ -90,6 +111,22 @@ test.describe('browser ES module build', () => {
         });
         expect(html).toContain('<h1>Hello</h1>');
         expect(html).toContain('<p>World.</p>');
+    });
+
+    test('toHtml renders a CommonMark Document', async ({ page }) => {
+        await loadBundle(page);
+        const html = await page.evaluate((commonMark) => {
+            const { HtmlTransformer } = (window as any).markdownTransform;
+            return new HtmlTransformer().toHtml({
+                $class: `${commonMark}.Document`,
+                xmlns: 'http://commonmark.org/xml/1.0',
+                nodes: [{
+                    $class: `${commonMark}.Paragraph`,
+                    nodes: [{ $class: `${commonMark}.Text`, text: 'Hello, browser!' }],
+                }],
+            });
+        }, COMMONMARK);
+        expect(html).toContain('<p>Hello, browser!</p>');
     });
 
     test('toCiceroMark parses HTML using the native DOMParser', async ({ page }) => {
@@ -126,6 +163,15 @@ concept Agreement {
         });
         // The browser has no Node crypto; the name must still match it.
         expect(formula.name).toBe('formula_' + createHash('sha256').update(formula.code).digest('hex'));
+    });
+
+    test('toTokens produces a markdown-it token stream', async ({ page }) => {
+        await loadBundle(page);
+        const tokenCount = await page.evaluate(() => {
+            const { TemplateMarkTransformer } = (window as any).markdownTransform;
+            return new TemplateMarkTransformer().toTokens({ content: 'Hello {{name}}.' }).length;
+        });
+        expect(tokenCount).toBeGreaterThan(0);
     });
 
     test('normalizeNLs converts CRLF to LF', async ({ page }) => {
