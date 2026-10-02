@@ -13,8 +13,19 @@
     "lib"
   ],
   "main": "lib/index.js",
+  "module": "lib/esm/index.mjs",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "browser": "./lib/esm-browser/index.mjs",
+      "import": "./lib/esm/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "scripts": {
     "pretest": "npm run lint && npm run build",
     "lint": "eslint . --ext .ts",
@@ -23,7 +34,8 @@
     "test": "jest --silent",
     "test:noisy": "jest",
     "test:cov": "npm run lint && npm run build && jest --coverage --silent",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && npm run build:esm",
+    "build:esm": "node ../../scripts/build-esm.js",
     "clean": "rimraf lib"
   },
   "repository": {

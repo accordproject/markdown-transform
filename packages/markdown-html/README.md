@@ -32,24 +32,9 @@ const { CiceroMarkTransformer } = require('@accordproject/markdown-cicero');
 const { HtmlTransformer } = require('@accordproject/markdown-html');
 ```
 
-## Using in web apps with webpack
+## Using in web apps
 
-This package depends on [`jsdom`](https://github.com/jsdom/jsdom) for HTML parsing in Node, but uses the browser's built-in `DOMParser` at runtime when available. To prevent webpack from bundling `jsdom`, add an `IgnorePlugin` for it:
-
-```js
-// webpack.config.js (webpack 5)
-const webpack = require('webpack');
-
-module.exports = {
-    // ...
-    plugins: [
-        new webpack.IgnorePlugin({
-            resourceRegExp: /^\.$/,
-            contextRegExp: /jsdom$/,
-        }),
-    ],
-};
-```
+This package depends on [`jsdom`](https://github.com/jsdom/jsdom) for HTML parsing in Node, but uses the browser's built-in `DOMParser` when it is available. Bundlers targeting the web (webpack 5, Vite, Rollup, esbuild) select the package's browser build through the `browser` condition of its `exports` map, and that build leaves `jsdom` out, so no bundler configuration is needed.
 
 ## License <a name="license"></a>
 Accord Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Accord Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.

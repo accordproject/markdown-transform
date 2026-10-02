@@ -12,8 +12,7 @@
  * limitations under the License.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const dijkstra = require('dijkstrajs');
+import dijkstra from 'dijkstrajs';
 const find_path = dijkstra.find_path;
 
 export interface FormatNode {
