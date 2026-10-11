@@ -103,7 +103,9 @@ export class TypeVisitor {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
                 if (thing.name === 'this') {
-                    const property = currentModel;
+                    // Conditional and primitive optional blocks keep the parent scope,
+                    // so {{this}} resolves to the guarded property instead
+                    const property = parameters.thisProperty || currentModel;
 
                     if (property && property.getType) {
                         const serializer = parameters.templateMarkModelManager.getSerializer();
@@ -246,24 +248,24 @@ export class TypeVisitor {
 
                 const serializer = parameters.templateMarkModelManager.getSerializer();
                 thing.decorators = property ? processDecorators(serializer, property) : null;
-                const nextModel = property;
+                // Conditional blocks are guards and do not change scope
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     introspector: parameters.introspector,
-                    model: nextModel,
+                    model: currentModel,
+                    thisProperty: property,
                     kind: parameters.kind,
                 }, 'whenTrue');
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     introspector: parameters.introspector,
-                    model: null,
+                    model: currentModel,
                     kind: parameters.kind,
                 }, 'whenFalse');
                 break;
             }
             case 'OptionalDefinition': {
                 const property = currentModel.getOwnProperty(thing.name);
-                let nextModel;
                 if (!property) {
                     _throwTemplateExceptionForElement('Unknown property: ' + thing.name, thing);
                 }
@@ -272,23 +274,20 @@ export class TypeVisitor {
                 }
                 const serializer = parameters.templateMarkModelManager.getSerializer();
                 thing.decorators = processDecorators(serializer, property);
-                if (property.isPrimitive()) {
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                    nextModel = property;
-                } else {
-                    thing.elementType = property.getFullyQualifiedTypeName();
-                    nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
-                }
+                thing.elementType = property.getFullyQualifiedTypeName();
+                // A primitive optional keeps the parent scope; a complex one scopes to its class
+                const nextModel = property.isPrimitive() ? currentModel : parameters.introspector.getClassDeclaration(thing.elementType);
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     introspector: parameters.introspector,
                     model: nextModel,
+                    thisProperty: property.isPrimitive() ? property : null,
                     kind: parameters.kind,
                 }, 'whenSome');
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     introspector: parameters.introspector,
-                    model: null,
+                    model: currentModel,
                     kind: parameters.kind,
                 }, 'whenNone');
                 break;
