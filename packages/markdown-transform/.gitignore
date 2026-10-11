@@ -1,5 +1,4 @@
 node_modules/
 /lib
-/umd
 coverage
 .nyc_output

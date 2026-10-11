@@ -27,7 +27,6 @@ yarn-error.log*
 # output directory
 /out
 /dist
-/umd
 /lib
 
 # Runtime data
@@ -81,9 +80,6 @@ typings/
 
 # User Data
 userdata.json
-
-# build output
-umd
 
 # windows junk
 thumbs.db
