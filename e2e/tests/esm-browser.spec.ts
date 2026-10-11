@@ -23,7 +23,7 @@ import { createHash } from 'crypto';
 // the result in Chromium, so it tests what browser consumers actually ship.
 const ENTRY = `
 export { ModelManager } from '@accordproject/concerto-core';
-export { HtmlTransformer } from '@accordproject/markdown-html';
+export { HtmlTransformer, ToHtmlStringVisitor } from '@accordproject/markdown-html';
 export { TemplateMarkTransformer, normalizeNLs } from '@accordproject/markdown-template';
 export { transform, formatDescriptor, generateTransformationDiagram, TransformEngine } from '@accordproject/markdown-transform';
 `;
@@ -86,7 +86,7 @@ test.describe('browser ES module build', () => {
         await loadBundle(page);
         const exports = await page.evaluate(() => {
             const mod = (window as any).markdownTransform;
-            return ['transform', 'formatDescriptor', 'generateTransformationDiagram', 'TransformEngine', 'HtmlTransformer', 'TemplateMarkTransformer']
+            return ['transform', 'formatDescriptor', 'generateTransformationDiagram', 'TransformEngine', 'HtmlTransformer', 'ToHtmlStringVisitor', 'TemplateMarkTransformer']
                 .filter(name => typeof mod[name] !== 'function');
         });
         expect(exports).toEqual([]);
@@ -136,6 +136,7 @@ test.describe('browser ES module build', () => {
             return new HtmlTransformer().toCiceroMark('<p>Roundtripped</p>');
         });
         expect(dom.$class).toBe(`${COMMONMARK}.Document`);
+        expect(dom.nodes[0].$class).toBe(`${COMMONMARK}.Paragraph`);
         expect(dom.nodes[0].nodes[0].text).toBe('Roundtripped');
     });
 
