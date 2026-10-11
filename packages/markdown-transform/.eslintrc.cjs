@@ -19,7 +19,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
     plugins: ['@typescript-eslint'],
-    ignorePatterns: ['node_modules/', 'lib/', 'umd/', 'coverage/'],
+    ignorePatterns: ['node_modules/', 'lib/', 'coverage/'],
     rules: {
         'indent': ['error', 4, { 'SwitchCase': 1 }],
         'quotes': ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],

@@ -1,6 +1,8 @@
 # Browser End-to-End Tests
 
-[Playwright](https://playwright.dev) tests that load the UMD bundles for `markdown-html`, `markdown-template` and `markdown-transform` into a real headless Chromium and call the public API. These tests exist to catch packaging/bundling regressions that unit tests miss — for example, accidentally pulling Node-only modules like `jsdom` into the browser bundle.
+[Playwright](https://playwright.dev) tests that run the browser builds in a real headless Chromium and call the public API. These tests exist to catch packaging/bundling regressions that unit tests miss — for example, accidentally pulling Node-only modules like `jsdom` into a browser bundle.
+
+Each package publishes an ES module build in `lib/esm-browser`, which bundlers select through the `browser` export condition. `esm-browser.spec.ts` bundles those builds with esbuild, as an application's bundler would, and loads the result into the page.
 
 ## Run
 
@@ -8,32 +10,27 @@ From the repository root:
 
 ```bash
 npm install --workspaces
+npm run build
 npm run -w markdown-transform-e2e test
 ```
 
-`npm test` from the e2e directory runs `pretest` first, which:
-1. Builds each TS package (`tsc`)
-2. Builds each UMD bundle (`webpack`)
-3. Installs the Chromium browser used by Playwright (cached after first run)
+`npm run build` compiles each package and emits its ES module builds. `npm test` from the e2e directory then runs `pretest`, which installs the Chromium browser used by Playwright (cached after first run).
 
 ## What's covered
 
 | Spec | Asserts |
 |------|---------|
-| `markdown-html.spec.ts`      | `HtmlTransformer` exported on the global; `toHtml`/`toCiceroMark` work using the native `DOMParser` (jsdom is **not** in the browser bundle) |
-| `markdown-template.spec.ts`  | `TemplateMarkTransformer` exported; `toTokens` and `normalizeNLs` work |
-| `markdown-transform.spec.ts` | `transform`, `formatDescriptor`, `generateTransformationDiagram`, `TransformEngine` exported; markdown → commonmark and markdown → html transformations succeed |
+| `esm-browser.spec.ts` | every package resolves to `lib/esm-browser`; jsdom and the crypto polyfills stay out of the bundle; the `markdown-transform` API is exported; markdown → commonmark and markdown → html succeed; `toHtml`, and `toCiceroMark` with the native `DOMParser`, work; a template with a formula parses (with a name matching Node's SHA-256); `toTokens` and `normalizeNLs` work |
 
 ## Adding a test
 
-Each UMD bundle exports its API onto `window['<package-name>']` (e.g. `window['markdown-html']`). Spec pattern:
+The bundle built in `beforeAll` exposes the exports of its entry module on `window.markdownTransform`. To test another API, export it from `ENTRY` in `esm-browser.spec.ts`, then:
 
 ```ts
-await page.setContent('<!doctype html><html><body></body></html>');
-await page.addScriptTag({ path: path.resolve(__dirname, '../../packages/<pkg>/umd/<pkg>.js') });
+await loadBundle(page);
 
 const result = await page.evaluate(() => {
-    const { Something } = (window as any)['<pkg>'];
+    const { Something } = (window as any).markdownTransform;
     return new Something().doStuff();
 });
 

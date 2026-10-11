@@ -12,8 +12,7 @@
  * limitations under the License.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { ModelLoader } = require('@accordproject/concerto-core');
+import { ModelLoader } from '@accordproject/concerto-core';
 import { CommonMarkTransformer } from '@accordproject/markdown-common';
 import { CiceroMarkTransformer } from '@accordproject/markdown-cicero';
 import { TemplateMarkTransformer } from '@accordproject/markdown-template';

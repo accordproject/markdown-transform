@@ -1,6 +1,5 @@
 coverage
 node_modules
 out
-umd
 test/data
 scripts

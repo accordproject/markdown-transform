@@ -13,7 +13,7 @@
  */
 
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
+import utc from 'dayjs/plugin/utc.js';
 dayjs.extend(utc);
 
 import { ModelManager, Factory, Serializer, Introspector } from '@accordproject/concerto-core';
@@ -29,7 +29,7 @@ import { normalizeNLs } from './normalize';
 import { TypeVisitor } from './TypeVisitor';
 import { FormulaVisitor } from './FormulaVisitor';
 import MarkdownIt from 'markdown-it';
-import MarkdownItTemplate = require('@accordproject/markdown-it-template');
+import MarkdownItTemplate from '@accordproject/markdown-it-template';
 import templaterules from './templaterules';
 
 export interface TemplateMarkManager {

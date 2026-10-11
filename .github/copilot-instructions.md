@@ -7,11 +7,11 @@ This repository is **Accord Project markdown-transform** — a TypeScript npm-wo
 - Runtime: Node.js `>=22`
 - Package manager: `npm` (workspace root + package-level scripts)
 - Language: **TypeScript** (target `ES2020`, `module: commonjs`). Source lives in `packages/*/src/`; compiled `.js` + `.d.ts` are emitted to `packages/*/lib/`.
-- Build: `tsc` per package (config extends `tsconfig.base.json`).
+- Build: `tsc` per package (config extends `tsconfig.base.json`), then `scripts/build-esm.js` (esbuild) emits ES module builds to `lib/esm/` (Node, `import` condition) and `lib/esm-browser/` (bundlers targeting the web, `browser` condition).
 - Linting: ESLint with `@typescript-eslint` (4-space indent, single quotes, semicolons).
 - Unit testing: **Jest 29 + ts-jest** across every package. The legacy mocha+chai suites were removed during the TS migration.
-- Browser E2E: **Playwright** under `e2e/` exercises the UMD bundles in headless Chromium.
-- Bundling: `webpack 5` produces UMD bundles for `markdown-html`, `markdown-template`, `markdown-transform` (the three user-facing entry points). The other packages are CommonJS library deps consumed via bundlers.
+- Browser E2E: **Playwright** under `e2e/` bundles the `lib/esm-browser` builds with esbuild and runs them in headless Chromium.
+- No prebuilt browser bundles are published; browser consumers bundle the packages themselves. `scripts/smoke-esm.mjs` checks the ES module builds after every root `npm run build`.
 - CI: GitHub Actions matrix on Ubuntu, macOS, and Windows for unit tests; Ubuntu-only for Playwright e2e.
 
 ## Repository layout
@@ -19,12 +19,12 @@ This repository is **Accord Project markdown-transform** — a TypeScript npm-wo
 - `packages/` — eight publishable packages:
   - `markdown-common`
   - `markdown-cicero`
-  - `markdown-template`     *(also UMD)*
-  - `markdown-html`         *(also UMD)*
+  - `markdown-template`
+  - `markdown-html`
   - `markdown-it-cicero`
   - `markdown-it-template`
-  - `markdown-cli`
-  - `markdown-transform`    *(umbrella, also UMD)*
+  - `markdown-cli`          *(Node-only CLI, CommonJS only)*
+  - `markdown-transform`    *(umbrella)*
 - `e2e/` — browser end-to-end tests (Playwright). Not published.
 - `scripts/` — repo-level utilities (model generation, version bumping, coverage aggregation).
 - `tsconfig.base.json` — shared compiler options inherited by every package.
@@ -59,12 +59,12 @@ Concerto models for CommonMark/CiceroMark/TemplateMark are downloaded by `script
 
 When changing code, run checks in this order:
 
-1. `npm run build` — runs `tsc` per workspace (also rebuilds before tests via each package's `pretest`).
+1. `npm run build` — runs `tsc` and the ES module builds per workspace, then the ESM smoke test (each package's `pretest` also rebuilds it).
 2. `npm test` — runs the full Jest suite across every package.
-3. `npm run -w markdown-transform-e2e test` — Playwright browser tests; only needed if you changed source that ends up in a UMD bundle.
+3. `npm run -w markdown-transform-e2e test` — Playwright browser tests; needed if you changed source that runs in the browser, or the build.
 4. `npm run coverage` — coverage aggregation (only if investigating coverage).
 
-For package-level iteration, `cd packages/<name>` and run `npm run build`, `npm test`, etc. directly. For the umbrella package, also run `npm run webpack` after `npm run build` to refresh the UMD bundle.
+For package-level iteration, `cd packages/<name>` and run `npm run build`, `npm test`, etc. directly.
 
 When migrating Concerto: `@accordproject/concerto-core` is on **v4**. `new ModelManager({ strict: true })` is no longer valid — drop the option, don't cast to `any`. The model manager defaults are equivalent in v4.
 
@@ -91,12 +91,13 @@ These are based on merged PR review feedback in this repository:
    - If bumping a shared dependency, align all affected package manifests and lockfiles in one change.
 
 6. **Browser polyfills only when strictly needed**
-   - The webpack configs use `webpack.ProvidePlugin({ process: 'process/browser' })` and `resolve.alias = { jsdom: false }` to keep UMD bundles slim. Don't add Node polyfills unless a real test fails without them.
+   - The browser ES module build replaces Node builtins and `jsdom` with empty modules (`scripts/build-esm.js`) and must not reference `process`; the smoke test enforces both. Don't add Node polyfills unless a real test fails without them.
 
 ## Publishing & npm packages
 
-- `package.json` `files` field for every publishable package is `["lib"]` (or `["lib", "umd"]` for the three UMD packages). `src/`, tests, snapshots, jest config, eslint config, and tsconfig stay out of the tarball.
-- `main: "lib/index.js"`, `types: "lib/index.d.ts"`. The three UMD packages also set `browser: "umd/markdown-X.js"` so bundlers serving browser targets pick the UMD bundle automatically.
+- `package.json` `files` field for every publishable package is `["lib"]`. `src/`, tests, snapshots, jest config, eslint config, and tsconfig stay out of the tarball.
+- `main: "lib/index.js"`, `types: "lib/index.d.ts"`. The library packages also declare an `exports` map (`types` / `browser` / `import` / `require`) listing only `.` and `./package.json`; add a subpath explicitly if consumers need one — no `./lib/*` wildcard.
+- Load dependencies with `import` statements, not `require()`: the ES module builds cannot follow a `require()` call, and the smoke test fails on one.
 - Source maps (`*.js.map`) **are** shipped — keep `sourceMap: true` in `tsconfig.base.json` so consumer stack traces stay useful.
 
 ## AI review behavior (adapted from best-practice guidance)
@@ -129,7 +130,7 @@ Before proposing a PR-ready change:
 - [ ] Change scope is minimal and focused
 - [ ] New/updated behavior has tests (unit and, where relevant, Playwright e2e)
 - [ ] Lint/build/tests pass
-- [ ] `npm pack --dry-run` for any package whose contents changed shows only `lib/` (+ optional `umd/`) — no tests, snapshots, or configs leaking
+- [ ] `npm pack --dry-run` for any package whose contents changed shows only `lib/` — no tests, snapshots, or configs leaking
 - [ ] Dependency changes are justified and minimal
 - [ ] No accidental downgrades or unnecessary added packages
 - [ ] Commit(s) use DCO sign-off
@@ -138,7 +139,7 @@ Before proposing a PR-ready change:
 ## Common pitfalls in this repo
 
 - Mixing `.js` and `.ts` in `src/` — the source tree is TypeScript only.
-- Forgetting to rebuild UMD bundles (`npm run webpack -w …`) after source changes; the Playwright e2e tests will then test stale code.
+- Forgetting to run `npm run build` after source changes; the Playwright e2e tests bundle `lib/esm-browser` and will then test stale code.
 - Adding broad type tightening (`noImplicitAny`, `strict`) in unrelated files while fixing a small bug — out of scope, expand `any` only where the change is needed.
 - Adding many dependency changes in one sweep without explaining each one.
 - Switching from exact to ranged versions for core dependencies without team agreement.

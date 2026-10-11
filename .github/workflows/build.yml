@@ -83,9 +83,6 @@ jobs:
       - name: Build packages (dep order)
         run: npm run build
 
-      - name: Build UMD bundles
-        run: npm run -w markdown-transform-e2e build:bundles
-
       - name: Get Playwright version
         id: playwright-version
         run: |

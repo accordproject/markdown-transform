@@ -14,9 +14,8 @@
 
 import { CommonMarkModel } from '@accordproject/markdown-common';
 import defaultRules, { Rule } from './rules';
+import typeOf from 'type-of';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const typeOf = require('type-of');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const jsdom: any = typeof DOMParser === 'undefined' ? require('jsdom') : null;
 const JSDOM: any = jsdom ? jsdom.JSDOM : null;

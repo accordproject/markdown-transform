@@ -14,7 +14,7 @@
 
 import { ModelManager, Factory, Serializer } from '@accordproject/concerto-core';
 import MarkdownIt from 'markdown-it';
-import MarkdownItCicero = require('@accordproject/markdown-it-cicero');
+import MarkdownItCicero from '@accordproject/markdown-it-cicero';
 import {
     FromMarkdownIt,
     CommonMarkTransformer,
