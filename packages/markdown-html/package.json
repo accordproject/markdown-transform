@@ -1,6 +1,6 @@
 {
   "name": "@accordproject/markdown-html",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Transform CiceroDOM to HTML",
   "engines": {
     "node": ">=22",
@@ -70,8 +70,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@accordproject/markdown-cicero": "1.1.0",
-    "@accordproject/markdown-common": "1.1.0",
+    "@accordproject/markdown-cicero": "2.0.0",
+    "@accordproject/markdown-common": "2.0.0",
     "jsdom": "^25.0.1",
     "type-of": "^2.0.1"
   },
