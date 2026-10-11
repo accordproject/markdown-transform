@@ -28,6 +28,11 @@ namespace test@1.0.0
 concept Address {
     o String city
 }
+enum Frequency {
+    o MONTHLY
+    o QUARTERLY
+    o ANNUALLY
+}
 @template
 concept TemplateData {
     o String name
@@ -35,6 +40,7 @@ concept TemplateData {
     o String middleName optional
     o Boolean isActive optional
     o Address address optional
+    o Frequency billingFrequency optional
 }`;
 
 describe('#TemplateMarkTransformer', () => {
@@ -105,7 +111,8 @@ describe('#TemplateMarkTransformer', () => {
             return transformer.fromMarkdownTemplate({ content }, modelManager, 'clause');
         };
         const variables = (node: any): any[] => {
-            const own = node.$class === `${TemplateMarkModel.NAMESPACE}.VariableDefinition` ? [node] : [];
+            const own = [`${TemplateMarkModel.NAMESPACE}.VariableDefinition`, `${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`]
+                .includes(node.$class) ? [node] : [];
             const children = ['nodes', 'whenTrue', 'whenFalse', 'whenSome', 'whenNone']
                 .flatMap((key) => node[key] || [])
                 .flatMap(variables);
@@ -149,6 +156,25 @@ describe('#TemplateMarkTransformer', () => {
         it('should scope complex #optional blocks to the nested class', () => {
             expect(elementTypes('{{#optional address}}Lives in {{city}}.{{/optional}}')).toEqual({ city: 'String' });
             expect(() => parse('{{#optional address}}{{name}}{{/optional}}')).toThrow('Unknown property: name');
+        });
+
+        it('should keep the parent scope in enum #optional blocks', () => {
+            expect(elementTypes('{{#optional billingFrequency}}{{name}} is billed {{billingFrequency}}.{{/optional}}')).toEqual({
+                name: 'String',
+                billingFrequency: 'test@1.0.0.Frequency',
+            });
+            expect(() => parse('{{#optional billingFrequency}}{{unknown}}{{/optional}}')).toThrow('Unknown property: unknown');
+        });
+
+        it('should resolve {{this}} and named variables together in an enum #optional block', () => {
+            const [self] = variables(parse('{{#optional billingFrequency}}{{this}} for {{name}}.{{/optional}}'));
+            expect(self.name).toBe('this');
+            expect(self.$class).toBe(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
+            expect(self.enumValues).toEqual(['MONTHLY', 'QUARTERLY', 'ANNUALLY']);
+            expect(elementTypes('{{#optional middleName}}{{this}} for {{name}}.{{/optional}}')).toEqual({
+                this: 'String',
+                name: 'String',
+            });
         });
     });
 });

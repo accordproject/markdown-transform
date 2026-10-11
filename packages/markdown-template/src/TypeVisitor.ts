@@ -275,13 +275,14 @@ export class TypeVisitor {
                 const serializer = parameters.templateMarkModelManager.getSerializer();
                 thing.decorators = processDecorators(serializer, property);
                 thing.elementType = property.getFullyQualifiedTypeName();
-                // A primitive optional keeps the parent scope; a complex one scopes to its class
-                const nextModel = property.isPrimitive() ? currentModel : parameters.introspector.getClassDeclaration(thing.elementType);
+                // A primitive or enum optional keeps the parent scope; a complex one scopes to its class
+                const isScalar = property.isPrimitive() || property.isTypeEnum();
+                const nextModel = isScalar ? currentModel : parameters.introspector.getClassDeclaration(thing.elementType);
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
                     introspector: parameters.introspector,
                     model: nextModel,
-                    thisProperty: property.isPrimitive() ? property : null,
+                    thisProperty: isScalar ? property : null,
                     kind: parameters.kind,
                 }, 'whenSome');
                 TypeVisitor.visitChildren(this, thing, {
