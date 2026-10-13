@@ -103,6 +103,20 @@ test.describe('browser ES module build', () => {
         expect(result.nodes[0].nodes[0].text).toBe('Hello');
     });
 
+    test('ordered lists retain paragraph boundaries after a browser roundtrip', async ({ page }) => {
+        await loadBundle(page);
+        const result = await page.evaluate(async () => {
+            const { transform } = (window as any).markdownTransform;
+            const source = 'A paragraph.\n\n5. First item\n6. Second item';
+            const before = await transform(source, 'markdown', ['commonmark']);
+            const markdown = await transform(before, 'commonmark', ['markdown']);
+            const after = await transform(markdown, 'markdown', ['commonmark']);
+            return { source, markdown, before, after };
+        });
+        expect(result.markdown).toBe(result.source);
+        expect(result.after).toEqual(result.before);
+    });
+
     test('markdown -> html via ciceromark', async ({ page }) => {
         await loadBundle(page);
         const html = await page.evaluate(() => {
