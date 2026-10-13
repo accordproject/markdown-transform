@@ -125,7 +125,9 @@ rules.BlockQuote = (visitor, thing, children, parameters, resultString, resultSe
     resultSeq(parameters, result);
 };
 rules.Item = (visitor, thing, children, parameters, resultString, resultSeq) => {
-    const level = parameters.tight && parameters.tight === 'false' && parameters.index !== parameters.indexInit ? 2 : 1;
+    // Only ordered lists starting at 1 can interrupt a paragraph without a blank line.
+    const separatesNonDefaultList = parameters.type === 'ordered' && parameters.index === parameters.indexInit && parameters.indexInit !== 1;
+    const level = separatesNonDefaultList || (parameters.tight === 'false' && parameters.index !== parameters.indexInit) ? 2 : 1;
     if (parameters.type === 'ordered') {
         const next1 = `${CommonMarkUtils.mkPrefix(parameters, level)}${parameters.index}. `;
         const result = [resultString(next1), children];

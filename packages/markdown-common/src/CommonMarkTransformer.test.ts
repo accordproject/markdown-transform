@@ -117,3 +117,42 @@ describe('acceptance', () => {
         expect(newMarkdown).toMatchSnapshot();
     });
 });
+
+
+describe('ordered list boundaries', () => {
+    test.each([2, 5, 99])('preserves a list starting at %i after a paragraph', (start) => {
+        const markdown = `A paragraph.\n\n${start}. First item\n${start + 1}. Second item`;
+        expect(markdown).toMarkdownRoundtrip();
+        expect(commonMark.toMarkdown(commonMark.fromMarkdown(markdown))).toBe(markdown);
+    });
+
+    test.each([1, 5])('preserves a list starting at %i in a blockquote', (start) => {
+        const markdown = `> A paragraph.\n>\n> ${start}. First item\n> ${start + 1}. Second item`;
+        expect(markdown).toMarkdownRoundtrip();
+    });
+
+    test.each([1, 5])('preserves a list starting at %i inside a list item', (start) => {
+        const markdown = `- A paragraph.\n${start === 1 ? '' : '\n'}  ${start}. First item\n  ${start + 1}. Second item`;
+        expect(markdown).toMarkdownRoundtrip();
+    });
+
+    test.each([1, 5])('preserves a list starting at %i at the start of the document', (start) => {
+        expect(`${start}. First item\n${start + 1}. Second item`).toMarkdownRoundtrip();
+    });
+
+    test('preserves a zero-start list after a paragraph', () => {
+        const markdown = 'A paragraph.\n\n0. First item';
+        expect(commonMark.toMarkdown(commonMark.fromMarkdown(markdown))).toBe(markdown);
+        expect(markdown).toMarkdownRoundtrip();
+    });
+
+    test('keeps the default list start on the next line', () => {
+        const markdown = 'A paragraph.\n1. First item\n2. Second item';
+        expect(commonMark.toMarkdown(commonMark.fromMarkdown(markdown))).toBe(markdown);
+        expect(markdown).toMarkdownRoundtrip();
+    });
+
+    test('keeps a non-list numeral in the preceding paragraph', () => {
+        expect('A paragraph.\n5. Not a list').toMarkdownRoundtrip();
+    });
+});
