@@ -177,4 +177,47 @@ describe('#TemplateMarkTransformer', () => {
             });
         });
     });
+
+    describe('#array blocks', () => {
+        const ARRAY_MODEL = `
+namespace test@1.0.0
+concept Party {
+    o String name
+}
+@template
+concept TemplateData {
+    o Integer[] counts
+    o DateTime[] dates
+    o String[] names
+    o Party[] parties
+}`;
+        const block = (content: string, type: string) => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(ARRAY_MODEL);
+            const find = (node: any): any =>
+                node.$class === `${TemplateMarkModel.NAMESPACE}.${type}`
+                    ? node
+                    : (node.nodes || []).map(find).find(Boolean);
+            return find(transformer.fromMarkdownTemplate({ content }, modelManager, 'clause'));
+        };
+
+        it.each([
+            ['counts', 'Integer'],
+            ['dates', 'DateTime'],
+            ['names', 'String'],
+        ])('should type a join over the primitive array %s by its element type', (name, elementType) => {
+            expect(block(`{{#join ${name}}}{{/join}}`, 'JoinDefinition').elementType).toBe(elementType);
+        });
+
+        it('should type list blocks over a primitive array', () => {
+            expect(block('{{#ulist counts}}\n- {{this}}\n{{/ulist}}', 'ListBlockDefinition').elementType).toBe('Integer');
+            expect(block('{{#olist dates}}\n- {{this}}\n{{/olist}}', 'ListBlockDefinition').elementType).toBe('DateTime');
+        });
+
+        it('should keep the class type and scope for an array of concepts', () => {
+            expect(block('{{#join parties}}{{/join}}', 'JoinDefinition').elementType).toBe('test@1.0.0.Party');
+            expect(block('{{#ulist parties}}\n- {{name}}\n{{/ulist}}', 'ListBlockDefinition').elementType).toBe('test@1.0.0.Party');
+        });
+    });
 });
