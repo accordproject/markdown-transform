@@ -226,10 +226,11 @@ export class TypeVisitor {
                 }
                 const serializer = parameters.templateMarkModelManager.getSerializer();
                 thing.decorators = processDecorators(serializer, property);
+                // Set for primitive arrays too: a join formats each item by its element type
+                thing.elementType = property.getFullyQualifiedTypeName();
                 if (property.isPrimitive()) {
                     nextModel = property;
                 } else {
-                    thing.elementType = property.getFullyQualifiedTypeName();
                     nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
                 }
                 TypeVisitor.visitChildren(this, thing, {
