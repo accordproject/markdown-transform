@@ -83,6 +83,30 @@ describe('markdown', () => {
     });
 });
 
+describe('inline escaping', () => {
+    it.each([
+        ['a code span containing a backtick', 'Use ``a`b`` here.'],
+        ['a code span containing a double backtick', 'Use ```a``b``` here.'],
+        ['a code span that starts and ends with a backtick', 'Use `` `a` `` here.'],
+        ['a code span that starts and ends with a space', 'Use `  a  ` here.'],
+        ['a link title containing a quote', '[a](http://x.com "say \\"hi\\"")'],
+        ['a link title ending with a backslash', '[a](http://x.com "C:\\\\")'],
+        ['an image title containing a quote', '![a](a.png "say \\"hi\\"")'],
+    ])('roundtrips %s', (_, markdownText) => {
+        expect(markdownText).toMarkdownRoundtrip();
+    });
+
+    it('keeps code span text intact', () => {
+        const json = commonMark.fromMarkdown('``a`b`` and `` `a` ``');
+        expect(commonMark.toMarkdown(json)).toBe('``a`b`` and `` `a` ``');
+    });
+
+    it('escapes quotes and backslashes in link titles', () => {
+        const json = commonMark.fromMarkdown('[a](http://x.com "say \\"hi\\" C:\\\\")');
+        expect(commonMark.toMarkdown(json)).toBe('[a](http://x.com "say \\"hi\\" C:\\\\")');
+    });
+});
+
 describe('to plain text', () => {
     getMarkdownFiles().forEach(([file, markdownText]) => {
         it(file, () => {
