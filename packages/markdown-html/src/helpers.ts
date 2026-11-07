@@ -13,6 +13,20 @@
  */
 
 /**
+ * Escape text for use as HTML element content.
+ */
+export function escapeHtmlText(input: string): string {
+    return String(input).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * Escape text for use as a double-quoted HTML attribute value.
+ */
+export function escapeHtmlAttribute(input: string): string {
+    return escapeHtmlText(input).replace(/"/g, '&quot;');
+}
+
+/**
  * Determine whether a node's text content is entirely whitespace.
  */
 export function isAllWhitespace(node: any): boolean {

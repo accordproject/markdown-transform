@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 
+import { escapeHtmlAttribute, escapeHtmlText } from './helpers';
+
 /**
  * Returns the display value for a variable node.
  * For relationship types (identifiedBy is set), strips the resource URI scheme
@@ -96,14 +98,14 @@ export class ToHtmlStringVisitor {
             case 'CodeBlock': {
                 const info = thing.info;
                 if (info) {
-                    parameters.result += `<pre class="code_block"><code data-ciceromark="${encodeURIComponent(thing.info)}">${thing.text}</pre></code>\n`;
+                    parameters.result += `<pre class="code_block"><code data-ciceromark="${encodeURIComponent(thing.info)}">${escapeHtmlText(thing.text)}</code></pre>\n`;
                 } else {
-                    parameters.result += `<pre class="code_block"><code>${thing.text}</pre></code>\n`;
+                    parameters.result += `<pre class="code_block"><code>${escapeHtmlText(thing.text)}</code></pre>\n`;
                 }
                 break;
             }
             case 'Code':
-                parameters.result += `<code>${thing.text}</code>`;
+                parameters.result += `<code>${escapeHtmlText(thing.text)}</code>`;
                 break;
             case 'HtmlInline':
                 parameters.result += `<span class="html_inline">${thing.text}</span>`;
@@ -132,10 +134,10 @@ export class ToHtmlStringVisitor {
                 parameters.result += '\n';
                 break;
             case 'Link':
-                parameters.result += `<a href="${thing.destination}" title=${thing.title}>${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
+                parameters.result += `<a href="${escapeHtmlAttribute(thing.destination)}" title="${escapeHtmlAttribute(thing.title)}">${ToHtmlStringVisitor.visitChildren(this, thing)}</a>`;
                 break;
             case 'Image':
-                parameters.result += `<img src="${thing.destination}" title="${thing.title}"/>`;
+                parameters.result += `<img src="${escapeHtmlAttribute(thing.destination)}" title="${escapeHtmlAttribute(thing.title)}"/>`;
                 break;
             case 'Paragraph':
                 parameters.result += `<p>${ToHtmlStringVisitor.visitChildren(this, thing)}</p>\n`;
@@ -144,7 +146,7 @@ export class ToHtmlStringVisitor {
                 parameters.result += `<pre class="html_block"><code>${thing.text}</pre></code>\n`;
                 break;
             case 'Text':
-                parameters.result += `${thing.text}`;
+                parameters.result += escapeHtmlText(thing.text);
                 break;
             case 'List': {
                 parameters.result += '\n';
