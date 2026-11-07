@@ -31,7 +31,7 @@ const rules: Rules = {};
 
 // Inlines
 rules.Code = (visitor, thing, children, parameters, resultString, resultSeq) => {
-    const next = `\`${getText(thing, 'text')}\``;
+    const next = CommonMarkUtils.mkCodeSpan(getText(thing, 'text'));
     const result = [resultString(next)];
     resultSeq(parameters, result);
 };
@@ -45,13 +45,13 @@ rules.Strong = (visitor, thing, children, parameters, resultString, resultSeq) =
 };
 rules.Link = (visitor, thing, children, parameters, resultString, resultSeq) => {
     const next1 = '[';
-    const next2 = `](${thing.destination} "${getText(thing, 'title')}")`;
+    const next2 = `](${thing.destination} "${getText(thing, 'title', CommonMarkUtils.escapeTitle)}")`;
     const result = [resultString(next1), children, resultString(next2)];
     resultSeq(parameters, result);
 };
 rules.Image = (visitor, thing, children, parameters, resultString, resultSeq) => {
     const next1 = '![';
-    const next2 = `](${thing.destination} "${getText(thing, 'title')}")`;
+    const next2 = `](${thing.destination} "${getText(thing, 'title', CommonMarkUtils.escapeTitle)}")`;
     const result = [resultString(next1), children, resultString(next2)];
     resultSeq(parameters, result);
 };

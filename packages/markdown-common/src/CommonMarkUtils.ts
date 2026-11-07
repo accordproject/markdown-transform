@@ -166,6 +166,26 @@ export function escapeText(input: string): string {
 }
 
 /**
+ * Wraps text in a code span. Backslash escapes don't work inside a code span,
+ * so the delimiter is one backtick longer than the longest run of backticks in
+ * the text. A space pads text that starts or ends with a backtick, and text
+ * that starts and ends with a space, since a parser strips one such space.
+ */
+export function mkCodeSpan(input: string): string {
+    const longestRun = Math.max(0, ...(input.match(/`+/g) || []).map((run) => run.length));
+    const fence = '`'.repeat(longestRun + 1);
+    const pad = /^`|`$/.test(input) || /^ [^]*[^ ][^]* $/.test(input) ? ' ' : '';
+    return `${fence}${pad}${input}${pad}${fence}`;
+}
+
+/**
+ * Adding escapes for link and image titles
+ */
+export function escapeTitle(input: string): string {
+    return input.replace(/[\\"]/g, '\\$&');
+}
+
+/**
  * Adding escapes for code blocks
  */
 export function escapeCodeBlock(input: string): string {
