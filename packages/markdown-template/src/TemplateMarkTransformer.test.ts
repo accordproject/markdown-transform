@@ -177,4 +177,67 @@ describe('#TemplateMarkTransformer', () => {
             });
         });
     });
+
+    describe('#{{this}} over enum and scalar types', () => {
+        const VALUE_MODEL = `
+namespace test@1.0.0
+scalar Name extends String
+scalar Signed extends DateTime
+enum Color {
+    o RED
+    o BLUE
+}
+concept Party {
+    o String name
+}
+@template
+concept TemplateData {
+    o String title
+    o Name[] names
+    o Signed[] dates
+    o Color[] colors
+    o Party[] parties
+    o Name nickname optional
+}`;
+        const parse = (content: string) => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(VALUE_MODEL);
+            return transformer.fromMarkdownTemplate({ content }, modelManager, 'clause');
+        };
+        const variables = (node: any): any[] => {
+            const own = [`${TemplateMarkModel.NAMESPACE}.VariableDefinition`, `${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`]
+                .includes(node.$class) ? [node] : [];
+            const children = ['nodes', 'whenTrue', 'whenFalse', 'whenSome', 'whenNone']
+                .flatMap((key) => node[key] || [])
+                .flatMap(variables);
+            return [...own, ...children];
+        };
+        const self = (content: string) => variables(parse(content)).find((v) => v.name === 'this');
+
+        it('should type {{this}} in a list over a scalar array by the scalar', () => {
+            expect(self('{{#ulist names}}\n- {{this}}\n{{/ulist}}').elementType).toBe('test@1.0.0.Name');
+            expect(self('{{#olist dates}}\n- {{this}}\n{{/olist}}').elementType).toBe('test@1.0.0.Signed');
+        });
+
+        it('should make {{this}} in a list over an enum array an enum variable', () => {
+            const color = self('{{#ulist colors}}\n- {{this}}\n{{/ulist}}');
+            expect(color.$class).toBe(`${TemplateMarkModel.NAMESPACE}.EnumVariableDefinition`);
+            expect(color.elementType).toBe('test@1.0.0.Color');
+            expect(color.enumValues).toEqual(['RED', 'BLUE']);
+        });
+
+        it('should keep the parent scope in a scalar #optional block', () => {
+            const vars = variables(parse('{{#optional nickname}}{{this}} for {{title}}.{{/optional}}'));
+            expect(Object.fromEntries(vars.map((v) => [v.name, v.elementType]))).toEqual({
+                this: 'test@1.0.0.Name',
+                title: 'String',
+            });
+        });
+
+        it('should still scope a list over a concept array to the concept', () => {
+            expect(variables(parse('{{#ulist parties}}\n- {{name}}\n{{/ulist}}')).map((v) => v.elementType)).toEqual(['String']);
+            expect(() => parse('{{#ulist names}}\n- {{title}}\n{{/ulist}}')).toThrow('Unknown property: title');
+        });
+    });
 });

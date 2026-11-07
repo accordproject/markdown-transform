@@ -84,6 +84,16 @@ export class TypeVisitor {
         });
     }
 
+    /**
+     * Whether a property holds a single value rather than a concept: a primitive,
+     * an enum or a scalar. Blocks over such a property keep the property itself as
+     * the model, so {{this}} resolves to it; an enum or scalar declaration has no
+     * properties of its own to scope to.
+     */
+    static isValueProperty(property: any): boolean {
+        return property.isPrimitive() || property.isTypeEnum() || Boolean(property.isTypeScalar?.());
+    }
+
     static nextModel(property: any, parameters: any): any {
         const declaration = property.isPrimitive() ? null : parameters.introspector.getClassDeclaration(property.getFullyQualifiedTypeName());
         return {
@@ -230,7 +240,9 @@ export class TypeVisitor {
                     nextModel = property;
                 } else {
                     thing.elementType = property.getFullyQualifiedTypeName();
-                    nextModel = parameters.introspector.getClassDeclaration(thing.elementType);
+                    nextModel = TypeVisitor.isValueProperty(property)
+                        ? property
+                        : parameters.introspector.getClassDeclaration(thing.elementType);
                 }
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
@@ -275,8 +287,8 @@ export class TypeVisitor {
                 const serializer = parameters.templateMarkModelManager.getSerializer();
                 thing.decorators = processDecorators(serializer, property);
                 thing.elementType = property.getFullyQualifiedTypeName();
-                // A primitive or enum optional keeps the parent scope; a complex one scopes to its class
-                const isScalar = property.isPrimitive() || property.isTypeEnum();
+                // A primitive, enum or scalar optional keeps the parent scope; a complex one scopes to its class
+                const isScalar = TypeVisitor.isValueProperty(property);
                 const nextModel = isScalar ? currentModel : parameters.introspector.getClassDeclaration(thing.elementType);
                 TypeVisitor.visitChildren(this, thing, {
                     templateMarkModelManager: parameters.templateMarkModelManager,
