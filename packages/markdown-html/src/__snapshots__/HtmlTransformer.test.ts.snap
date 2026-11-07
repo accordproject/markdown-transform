@@ -798,7 +798,7 @@ exports[`markdown <-> html converts codeblock.md to html 2`] = `
 <pre class="code_block"><code>this is a multiline
 code
 block.
-</pre></code>
+</code></pre>
 </div>
 </body>
 </html>"
@@ -849,7 +849,7 @@ exports[`markdown <-> html converts codeblock-info.md to html 2`] = `
   containing a newline
 
   which should be handled by the video plugin.
-</pre></code>
+</code></pre>
 </div>
 </body>
 </html>"
@@ -1367,7 +1367,7 @@ exports[`markdown <-> html converts link.md to html 2`] = `
 <head><meta charset="UTF-8"></head>
 <body>
 <div class="document">
-<p>This is <a href="http://clause.io" title=>a link</a>.</p>
+<p>This is <a href="http://clause.io" title="">a link</a>.</p>
 </div>
 </body>
 </html>"
@@ -1992,7 +1992,7 @@ exports[`markdown <-> html converts table_complex.md to html 2`] = `
 <td><strong>Bold content</strong></td>
 </tr>
 <tr>
-<td><a href="http://clause.io" title=>link</a></td>
+<td><a href="http://clause.io" title="">link</a></td>
 <td><em>Italics</em></td>
 </tr>
 </tbody>

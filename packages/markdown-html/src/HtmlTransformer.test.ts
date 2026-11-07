@@ -276,3 +276,34 @@ describe('renderVariableValue - relationship variables', () => {
         expect(html).not.toContain('resource:');
     });
 });
+
+describe('html escaping', () => {
+    const body = (markdown: string): string => {
+        const html = htmlTransformer.toHtml(ciceroTransformer.fromMarkdown(markdown));
+        return html.split('<div class="document">\n')[1].split('</div>\n</body>')[0];
+    };
+
+    it.each([
+        ['escaped markup in text', 'a &lt;b&gt; &amp; c', '<p>a &lt;b&gt; &amp; c</p>\n'],
+        ['markup in inline code', 'Use `<b>` and `a && b`.', '<p>Use <code>&lt;b&gt;</code> and <code>a &amp;&amp; b</code>.</p>\n'],
+        ['markup in a code block', '```\n<script>alert(1)</script>\n```', '<pre class="code_block"><code>&lt;script&gt;alert(1)&lt;/script&gt;\n</code></pre>\n'],
+        ['quotes in a link title', '[a](http://x.com/?q=1&r=2 "say \\"hi\\" <now>")', '<p><a href="http://x.com/?q=1&amp;r=2" title="say &quot;hi&quot; &lt;now&gt;">a</a></p>\n'],
+        ['quotes in an image title', '![a](a.png "say \\"hi\\"")', '<p><img src="a.png" title="say &quot;hi&quot;"/></p>\n'],
+    ])('escapes %s', (_, markdown, expected) => {
+        expect(body(markdown)).toBe(expected);
+    });
+
+    it.each([
+        ['escaped markup in text', 'a &lt;b&gt; &amp; c'],
+        ['markup in inline code', 'Use `<b>` and `a && b`.'],
+        ['markup in a code block', '```\n<script>alert(1)</script>\n```'],
+        ['quotes in a link title', '[a](http://x.com/?q=1&r=2 "say \\"hi\\" <now>")'],
+    ])('roundtrips %s back to CiceroMark', (_, markdown) => {
+        const json = ciceroTransformer.fromMarkdown(markdown);
+        expect(htmlTransformer.toCiceroMark(htmlTransformer.toHtml(json))).toEqual(json);
+    });
+
+    it('keeps raw inline html as html', () => {
+        expect(body('a <b>bold</b> c')).toBe('<p>a <span class="html_inline"><b></span>bold<span class="html_inline"></b></span> c</p>\n');
+    });
+});
