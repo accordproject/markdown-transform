@@ -181,7 +181,8 @@ export class CiceroMarkTransformer {
      * Converts a ciceromark string into a token stream
      */
     toTokens(input: string): any[] {
-        const parser = new MarkdownIt({ html: true }).use(MarkdownItCicero);
+        // The CommonMark model has no strikethrough node, so `~~` stays literal text (#692).
+        const parser = new MarkdownIt({ html: true }).disable('strikethrough').use(MarkdownItCicero);
         return parser.parse(input, {});
     }
 

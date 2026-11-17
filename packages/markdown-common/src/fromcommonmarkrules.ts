@@ -31,7 +31,8 @@ const rules: Rules = {};
 
 // Inlines
 rules.Code = (visitor, thing, children, parameters, resultString, resultSeq) => {
-    const next = `\`${getText(thing, 'text')}\``;
+    const text = getText(thing, 'text');
+    const next = `\`${CommonMarkUtils.inTableCell(parameters) ? CommonMarkUtils.escapeTableCell(text) : text}\``;
     const result = [resultString(next)];
     resultSeq(parameters, result);
 };
@@ -71,7 +72,8 @@ rules.Softbreak = (visitor, thing, children, parameters, resultString, resultSeq
     resultSeq(parameters, result);
 };
 rules.Text = (visitor, thing, children, parameters, resultString, resultSeq) => {
-    const next = getText(thing, 'text', CommonMarkUtils.escapeText);
+    const text = getText(thing, 'text', CommonMarkUtils.escapeText);
+    const next = CommonMarkUtils.inTableCell(parameters) ? CommonMarkUtils.escapeTableCell(text) : text;
     const result = [resultString(next)];
     resultSeq(parameters, result);
 };

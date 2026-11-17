@@ -166,6 +166,22 @@ export function escapeText(input: string): string {
 }
 
 /**
+ * Whether the node being rendered sits inside a table cell, where an unescaped `|`
+ * would end the cell.
+ */
+export function inTableCell(parameters: any): boolean {
+    const blocks: string[] = parameters?.stack?.blocks ?? [];
+    return blocks.includes('TableCell') || blocks.includes('HeaderCell');
+}
+
+/**
+ * Escapes `|` inside a table cell
+ */
+export function escapeTableCell(input: string): string {
+    return input.replace(/\|/g, '\\|');
+}
+
+/**
  * Adding escapes for code blocks
  */
 export function escapeCodeBlock(input: string): string {

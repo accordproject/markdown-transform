@@ -15,6 +15,7 @@
 import * as fs from 'fs';
 import { diff } from 'jest-diff';
 import { CommonMarkTransformer } from './CommonMarkTransformer';
+import * as CommonMarkModel from './externalModels/CommonMarkModel';
 
 let commonMark: CommonMarkTransformer;
 
@@ -115,5 +116,41 @@ describe('acceptance', () => {
         expect(json).toMatchSnapshot();
         const newMarkdown = commonMark.toMarkdown(json);
         expect(newMarkdown).toMatchSnapshot();
+    });
+});
+
+describe('strikethrough and table cell pipes (#692)', () => {
+    const textOf = (node: any): string => node.text ?? (node.nodes ?? []).map(textOf).join('');
+    const rows = (dom: any) => dom.nodes[0].nodes.flatMap((section: any) => section.nodes);
+    const cells = (dom: any) => rows(dom).map((row: any) => row.nodes.map(textOf));
+
+    it('keeps ~~ as literal text, since the model has no strikethrough node', () => {
+        const markdown = 'Price is ~~$100~~ $80.';
+        const dom = commonMark.fromMarkdown(markdown);
+        expect(dom.nodes[0].nodes).toEqual([
+            { $class: `${CommonMarkModel.NAMESPACE}.Text`, text: 'Price is ~~$100~~ $80.' },
+        ]);
+        expect(commonMark.toMarkdown(dom)).toBe(markdown);
+    });
+
+    it.each([
+        ['a body cell', '| Item | Notes |\n| --- | --- |\n| a \\| b | ok |\n', [['Item', 'Notes'], ['a | b', 'ok']]],
+        ['a header cell', '| a \\| b | c |\n| --- | --- |\n| 1 | 2 |\n', [['a | b', 'c'], ['1', '2']]],
+        ['inline code in a cell', '| Item | Notes |\n| --- | --- |\n| `a \\| b` | ok |\n', [['Item', 'Notes'], ['a | b', 'ok']]],
+        ['emphasis in a cell', '| Item | Notes |\n| --- | --- |\n| *a \\| b* | ok |\n', [['Item', 'Notes'], ['a | b', 'ok']]],
+    ])('escapes | in %s so the round trip keeps every cell', (_label, markdown, expected) => {
+        const dom1 = commonMark.fromMarkdown(markdown);
+        expect(cells(dom1)).toEqual(expected);
+        const dom2 = commonMark.fromMarkdown(commonMark.toMarkdown(dom1));
+        expect(dom2).toEqual(dom1);
+    });
+
+    it('writes the escaped pipe into the cell', () => {
+        const dom = commonMark.fromMarkdown('| Item | Notes |\n| --- | --- |\n| a \\| b | `c \\| d` |\n');
+        expect(commonMark.toMarkdown(dom)).toContain('| a \\| b | `c \\| d` |');
+    });
+
+    it('does not escape | outside a table', () => {
+        expect(commonMark.toMarkdown(commonMark.fromMarkdown('a | b and `c | d`'))).toBe('a | b and `c | d`');
     });
 });
