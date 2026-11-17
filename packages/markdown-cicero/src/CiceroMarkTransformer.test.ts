@@ -127,3 +127,19 @@ describe('acceptance', () => {
         expect((() => ciceroMarkTransformer.getClauseText(json.nodes[1]))).toThrow('Cannot apply getClauseText to non-clause node');
     });
 });
+
+describe('strikethrough and table cell pipes (#692)', () => {
+    it('keeps ~~ as literal text instead of throwing', () => {
+        const markdown = 'Price is ~~$100~~ $80.';
+        const dom = ciceroMarkTransformer.fromMarkdownCicero(markdown);
+        expect(dom.nodes[0].nodes.map((node: any) => node.text)).toEqual(['Price is ~~$100~~ $80.']);
+        expect(ciceroMarkTransformer.toMarkdownCicero(dom)).toBe(markdown);
+    });
+
+    it('round trips a table cell containing an escaped pipe', () => {
+        const dom1 = ciceroMarkTransformer.fromMarkdownCicero('| Item | Notes |\n| --- | --- |\n| a \\| b | ok |\n');
+        const markdown = ciceroMarkTransformer.toMarkdownCicero(dom1);
+        expect(markdown).toContain('| a \\| b | ok |');
+        expect(ciceroMarkTransformer.fromMarkdownCicero(markdown)).toEqual(dom1);
+    });
+});

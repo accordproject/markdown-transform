@@ -13,7 +13,7 @@
  */
 
 import { ModelManager } from '@accordproject/concerto-core';
-import { TemplateMarkModel } from '@accordproject/markdown-common';
+import { CommonMarkModel, TemplateMarkModel } from '@accordproject/markdown-common';
 import { TemplateMarkTransformer } from './TemplateMarkTransformer';
 
 const MODEL = `
@@ -175,6 +175,19 @@ describe('#TemplateMarkTransformer', () => {
                 this: 'String',
                 name: 'String',
             });
+        });
+    });
+    describe('#strikethrough (#692)', () => {
+        it('keeps ~~ as literal text around a variable', () => {
+            const transformer = new TemplateMarkTransformer();
+            const modelManager = new ModelManager();
+            modelManager.addCTOModel(SCOPE_MODEL);
+            const tokens = transformer.toTokens({ content: 'Dear ~~Sir~~ {{name}}.' });
+            expect(tokens[1].children.map((token: any) => token.type)).not.toContain('s_open');
+            const result = transformer.tokensToMarkdownTemplate(tokens, modelManager, 'clause');
+            const paragraph = result.nodes[0].nodes[0];
+            expect(paragraph.nodes[0]).toMatchObject({ $class: `${CommonMarkModel.NAMESPACE}.Text`, text: 'Dear ~~Sir~~ ' });
+            expect(paragraph.nodes[1].$class).toBe(`${TemplateMarkModel.NAMESPACE}.VariableDefinition`);
         });
     });
 });

@@ -137,7 +137,8 @@ export function templateMarkTypingFromType(template: any, modelManager: ModelMan
  */
 export function templateToTokens(input: string): any[] {
     const norm = normalizeNLs(input);
-    const parser = new MarkdownIt({ html: true }).use(MarkdownItTemplate);
+    // The CommonMark model has no strikethrough node, so `~~` stays literal text (#692).
+    const parser = new MarkdownIt({ html: true }).disable('strikethrough').use(MarkdownItTemplate);
     return parser.parse(norm, {});
 }
 
