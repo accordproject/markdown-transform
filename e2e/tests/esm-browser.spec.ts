@@ -150,9 +150,10 @@ test.describe('browser ES module build', () => {
 concept Agreement {
   o String party
   o DateTime effective
+  o Double principal
 }`);
             const templateMark = new TemplateMarkTransformer().fromMarkdownTemplate(
-                { content: 'Between {{party}}, from {{effective as "D MMMM YYYY"}}, for {{% return 1 + 2 %}} days.' },
+                { content: 'Between {{party}}, from {{effective as "D MMMM YYYY"}}, for {{% return principal * 2 %}} days.' },
                 modelManager,
                 'contract',
             );
@@ -160,10 +161,12 @@ concept Agreement {
                 ? node
                 : (node.nodes || []).map(find).find(Boolean);
             const found = find(templateMark);
-            return { name: found.name, code: found.code.contents };
+            return { name: found.name, code: found.code.contents, dependencies: found.dependencies };
         });
         // The browser has no Node crypto; the name must still match it.
         expect(formula.name).toBe('formula_' + createHash('sha256').update(formula.code).digest('hex'));
+        // The Babel-based dependency visitor runs in the browser build too.
+        expect(formula.dependencies).toEqual(['principal']);
     });
 
     test('toTokens produces a markdown-it token stream', async ({ page }) => {

@@ -12,14 +12,26 @@
  * limitations under the License.
  */
 
+import { calculateDependencies as collectDependencies } from './dependencyVisitor';
+
+/**
+ * The TemplateMark DOM stores block children under a small number of field
+ * names. `templaterules.ts` fills `nodes` while a block is open and moves the
+ * content into `whenTrue`/`whenFalse` (conditionals) or `whenSome`/`whenNone`
+ * (optionals) when it closes, so a complete walk must visit all of them.
+ */
+const CHILD_FIELDS = ['nodes', 'whenTrue', 'whenFalse', 'whenSome', 'whenNone'];
+
 /**
  * Walks a TemplateMark DOM to compute or extract formula dependencies
  */
 export class FormulaVisitor {
-    static visitChildren(visitor: FormulaVisitor, thing: any, parameters: any, field = 'nodes'): void {
-        if (thing[field]) {
-            FormulaVisitor.visitNodes(visitor, thing[field], parameters);
-        }
+    static visitChildren(visitor: FormulaVisitor, thing: any, parameters: any): void {
+        CHILD_FIELDS.forEach((field) => {
+            if (Array.isArray(thing[field])) {
+                FormulaVisitor.visitNodes(visitor, thing[field], parameters);
+            }
+        });
     }
 
     static visitNodes(visitor: FormulaVisitor, things: any[], parameters: any): void {
@@ -29,26 +41,35 @@ export class FormulaVisitor {
     }
 
     static calculateDependencies(tsCode: string): string[] {
-        try {
-            const deps: string[] = [];
-            // TODO!!
-            return deps;
-        } catch (err) {
-            throw new Error(`Failed to calculate dependencies in code '${tsCode}'. Error: ${err}`);
-        }
+        // The visitor reports an empty list for input it cannot parse; a bad
+        // formula must not break TemplateMark typing.
+        return collectDependencies(tsCode);
     }
 
     visit(thing: any, parameters: any): void {
         switch (thing.getType()) {
-            case 'ConditionalDefinition':
+            case 'ConditionalDefinition': {
+                // A plain `{{#if isActive}}` guard is stored in `name` and is
+                // already validated as a model property by TypeVisitor, so it
+                // is used verbatim; parsing it would treat names such as
+                // `Math` as built-in globals and drop the dependency.
+                // `condition` is only populated for the attribute form.
+                const conditionCode = thing.condition?.contents;
                 if (parameters.calculateDependencies) {
-                    if (thing.condition) {
-                        thing.dependencies = FormulaVisitor.calculateDependencies(thing.condition.contents);
+                    if (conditionCode) {
+                        thing.dependencies = FormulaVisitor.calculateDependencies(conditionCode);
+                    } else if (thing.name) {
+                        thing.dependencies = /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(thing.name)
+                            ? [thing.name]
+                            : FormulaVisitor.calculateDependencies(thing.name);
                     }
                 } else {
                     parameters.result.push({ name: thing.name, code: thing.condition });
                 }
+                // Formulas and nested conditions can appear in either branch.
+                FormulaVisitor.visitChildren(this, thing, parameters);
                 break;
+            }
             case 'FormulaDefinition':
                 if (parameters.calculateDependencies) {
                     if (thing.code) {
