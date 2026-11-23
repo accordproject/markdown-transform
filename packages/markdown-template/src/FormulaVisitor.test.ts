@@ -102,6 +102,16 @@ const CASES: DependencyCase[] = [
         expected: ['items', 'rate'],
     },
     {
+        name: 'a switch-case declaration stays in the switch scope',
+        code: 'switch (kind) { case 1: const amount = fallback; break; } return amount',
+        expected: ['amount', 'fallback', 'kind'],
+    },
+    {
+        name: 'a switch-case declaration is visible to the other cases',
+        code: 'switch (kind) { case 1: const amount = fallback; return amount; }',
+        expected: ['fallback', 'kind'],
+    },
+    {
         name: 'a default parameter value (a reference) inside a callback',
         code: 'items.map((x = rate) => x) + rate',
         expected: ['items', 'rate'],

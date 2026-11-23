@@ -21,11 +21,11 @@ import { parse } from '@babel/parser';
  * The expression is parsed once with Babel's TypeScript parser and then
  * walked by a small recursive visitor that carries a stack of lexical
  * scopes. A scope exists for the program, each block, each function, arrow
- * or method (its parameters and name), each catch clause and each loop head.
- * A scope records the names it binds, and an identifier is reported only
- * when no scope on the stack binds it. This is resolved at the reference
- * site, so a callback parameter shadows an outer variable of the same name
- * only inside the callback body:
+ * or method (its parameters and name), each catch clause, each loop head and
+ * the shared case clauses of a switch statement. A scope records the names it
+ * binds, and an identifier is reported only when no scope on the stack binds
+ * it. This is resolved at the reference site, so a callback parameter shadows
+ * an outer variable of the same name only inside the callback body:
  *
  *     return rate + items.map(rate => rate).length
  *
@@ -384,6 +384,24 @@ function visit(node: any, scopes: Set<string>[], references: Set<string>): void 
             scopes.push(new Set<string>());
             visit(node.left, scopes, references);
             visit(node.body, scopes, references);
+            scopes.pop();
+            return;
+        }
+        case 'SwitchStatement': {
+            // The discriminant is evaluated outside the case scope. All case
+            // clauses share one lexical scope, and their direct declarations
+            // are visible throughout that scope, so collect them before
+            // visiting any case; leave the scope before later statements.
+            visit(node.discriminant, scopes, references);
+            const switchScope = new Set<string>();
+            node.cases.forEach((switchCase: any) => {
+                switchCase.consequent.forEach((statement: any) => collectStatementBindings(statement, switchScope));
+            });
+            scopes.push(switchScope);
+            node.cases.forEach((switchCase: any) => {
+                visit(switchCase.test, scopes, references);
+                switchCase.consequent.forEach((statement: any) => visit(statement, scopes, references));
+            });
             scopes.pop();
             return;
         }
