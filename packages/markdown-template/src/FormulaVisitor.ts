@@ -49,12 +49,19 @@ export class FormulaVisitor {
     visit(thing: any, parameters: any): void {
         switch (thing.getType()) {
             case 'ConditionalDefinition': {
-                // A plain `{{#if isActive}}` guard is stored in `name`;
+                // A plain `{{#if isActive}}` guard is stored in `name` and is
+                // already validated as a model property by TypeVisitor, so it
+                // is used verbatim; parsing it would treat names such as
+                // `Math` as built-in globals and drop the dependency.
                 // `condition` is only populated for the attribute form.
-                const condition = thing.condition?.contents || thing.name;
+                const conditionCode = thing.condition?.contents;
                 if (parameters.calculateDependencies) {
-                    if (condition) {
-                        thing.dependencies = FormulaVisitor.calculateDependencies(condition);
+                    if (conditionCode) {
+                        thing.dependencies = FormulaVisitor.calculateDependencies(conditionCode);
+                    } else if (thing.name) {
+                        thing.dependencies = /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(thing.name)
+                            ? [thing.name]
+                            : FormulaVisitor.calculateDependencies(thing.name);
                     }
                 } else {
                     parameters.result.push({ name: thing.name, code: thing.condition });

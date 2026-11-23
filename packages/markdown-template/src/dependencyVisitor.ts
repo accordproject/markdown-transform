@@ -19,11 +19,25 @@ import { parse } from '@babel/parser';
  * depends on.
  *
  * The expression is parsed once with Babel's TypeScript parser and then
- * walked by a small recursive visitor. The walk collects every identifier
- * that is used as a value, skips the positions where an identifier is a name
- * rather than a reference (property names after `.`, object-literal keys,
- * labels, type positions), and subtracts every name the code binds itself
- * (declarations, parameters, catch clauses, destructuring patterns).
+ * walked by a small recursive visitor that carries a stack of lexical
+ * scopes. A scope exists for the program, each block, each function, arrow
+ * or method (its parameters and name), each catch clause and each loop head.
+ * A scope records the names it binds, and an identifier is reported only
+ * when no scope on the stack binds it. This is resolved at the reference
+ * site, so a callback parameter shadows an outer variable of the same name
+ * only inside the callback body:
+ *
+ *     return rate + items.map(rate => rate).length
+ *
+ * reports both `items` and the outer `rate`, because the inner `rate` is
+ * bound by the arrow parameter and the outer one is not bound anywhere.
+ *
+ * Bindings are collected for a scope before its statements are walked, so a
+ * `const`, `let`, `function` or `class` declaration is visible throughout
+ * its block even when it appears after the reference. The positions where an
+ * identifier is a name rather than a reference (property names after `.`,
+ * non-computed object keys, labels, type positions) are skipped, and import
+ * declarations bind their local names but never count as references.
  *
  * The result is sorted and de-duplicated so it can be stored in the
  * `dependencies` field of a TemplateMark node and compared by value.
@@ -35,10 +49,15 @@ import { parse } from '@babel/parser';
  * Known limitations:
  *
  * - class bodies are not analysed; only a superclass expression is visited;
- * - `var` hoisting is not modelled and bindings are collected for the whole
- *   snippet, so a name bound anywhere is not reported anywhere;
- * - JSX, decorators and type-only declarations are unsupported;
+ * - `var` hoisting is not modelled: a `var` declaration binds in its block,
+ *   so a `var` declared in a nested block does not bind a reference outside
+ *   that block;
+ * - `import type` statements and per-specifier `type` imports are skipped
+ *   entirely; value imports bind their local names;
+ * - JSX and decorators are unsupported;
  * - assignment targets and `++`/`--` operands are reported as dependencies;
+ * - `this.x` reports nothing: `this` is not a template variable and only a
+ *   computed key (`this[k]`) contributes a dependency;
  * - identifiers may be non-ASCII (Babel accepts them) but the built-in list
  *   below only names ASCII globals.
  */
@@ -105,7 +124,7 @@ const NON_SYNTAX_FIELDS = new Set([
 
 /**
  * Node types that introduce a type-only subtree, i.e. every `TS*` type node
- * except the five expression wrappers handled in `collectReferences`.
+ * except the five expression wrappers handled in `visit`.
  */
 function isTypeOnlySubtree(node: any): boolean {
     return typeof node.type === 'string' && node.type.startsWith('TS')
@@ -174,100 +193,249 @@ function collectPatternNames(node: any, names: Set<string>): void {
 }
 
 /**
- * First pass: every name the snippet binds itself.
+ * Returns the declaration wrapped by an export statement, if any.
  */
-function collectBindings(node: any, names: Set<string>): void {
+function unwrapExport(statement: any): any {
+    if (statement && (statement.type === 'ExportNamedDeclaration' || statement.type === 'ExportDefaultDeclaration')) {
+        return statement.declaration;
+    }
+    return statement;
+}
+
+/**
+ * Records the names a single statement binds at the top level of a scope.
+ * Only direct declarations count: nested blocks and functions introduce
+ * their own scopes.
+ */
+function collectStatementBindings(statement: any, names: Set<string>): void {
+    const declaration = unwrapExport(statement);
+    if (!declaration) {
+        return;
+    }
+    switch (declaration.type) {
+        case 'VariableDeclaration':
+            declaration.declarations.forEach((declarator: any) => collectPatternNames(declarator.id, names));
+            return;
+        case 'FunctionDeclaration':
+        case 'ClassDeclaration':
+        case 'TSDeclareFunction':
+        case 'TSEnumDeclaration':
+            if (declaration.id) {
+                names.add(declaration.id.name);
+            }
+            return;
+        case 'ImportDeclaration':
+            // `import type` and `import { type Foo }` only name types; the
+            // names they introduce are not values and must not shadow.
+            if (declaration.importKind !== 'type') {
+                declaration.specifiers.forEach((specifier: any) => {
+                    if (specifier.importKind !== 'type' && specifier.local) {
+                        names.add(specifier.local.name);
+                    }
+                });
+            }
+            return;
+        default:
+            return;
+    }
+}
+
+/**
+ * Creates the scope for a statement list and records its direct bindings
+ * before any statement is walked.
+ */
+function pushScope(statements: any[], scopes: Set<string>[]): void {
+    const scope = new Set<string>();
+    statements.forEach((statement) => collectStatementBindings(statement, scope));
+    scopes.push(scope);
+}
+
+/**
+ * True when a name is bound by the current scope or any enclosing scope.
+ */
+function isBound(name: string, scopes: Set<string>[]): boolean {
+    for (let index = scopes.length - 1; index >= 0; index -= 1) {
+        if (scopes[index].has(name)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Visits a binding pattern's references without reporting its names. Default
+ * values are expressions (references), computed object keys are expressions,
+ * and the pattern names themselves are bindings.
+ */
+function visitPattern(node: any, scopes: Set<string>[], references: Set<string>): void {
     if (!node || typeof node !== 'object') {
         return;
     }
     switch (node.type) {
-        case 'VariableDeclarator':
-            collectPatternNames(node.id, names);
-            break;
+        case 'Identifier':
+            return;
+        case 'ObjectPattern':
+            node.properties.forEach((property: any) => {
+                if (property.type === 'RestElement') {
+                    visitPattern(property.argument, scopes, references);
+                    return;
+                }
+                if (property.computed) {
+                    visit(property.key, scopes, references);
+                }
+                visitPattern(property.value, scopes, references);
+            });
+            return;
+        case 'ArrayPattern':
+            node.elements.forEach((element: any) => visitPattern(element, scopes, references));
+            return;
+        case 'AssignmentPattern':
+            // `x = fallback`: `fallback` is a reference, `x` is a binding.
+            visit(node.right, scopes, references);
+            visitPattern(node.left, scopes, references);
+            return;
+        case 'RestElement':
+            visitPattern(node.argument, scopes, references);
+            return;
+        case 'TSParameterProperty':
+            visitPattern(node.parameter, scopes, references);
+            return;
+        default:
+            // Not a binding pattern (e.g. an assignment target such as
+            // `[obj.x] = items`); fall back to normal reference handling.
+            visit(node, scopes, references);
+    }
+}
+
+/**
+ * Walks one node, resolving identifiers against the scope stack. Nodes whose
+ * meaning does not change which identifiers are references fall through to
+ * the generic child walk at the bottom: calls, `new`, arrays, template
+ * literals, conditional/logical/binary/unary/update/assignment and sequence
+ * expressions, `if`, `try`, `while`/`do-while`, `switch`, `return`/`throw`,
+ * `await` and `yield`.
+ */
+function visit(node: any, scopes: Set<string>[], references: Set<string>): void {
+    if (!node || typeof node !== 'object') {
+        return;
+    }
+    switch (node.type) {
+        case 'Identifier':
+            if (!isBound(node.name, scopes) && !BUILT_INS.has(node.name)) {
+                references.add(node.name);
+            }
+            return;
+        case 'Program':
+        case 'BlockStatement':
+            pushScope(node.body, scopes);
+            node.body.forEach((statement: any) => visit(statement, scopes, references));
+            scopes.pop();
+            return;
         case 'FunctionDeclaration':
         case 'FunctionExpression':
         case 'ArrowFunctionExpression':
         case 'ObjectMethod':
         case 'ClassMethod':
         case 'ClassPrivateMethod':
-        case 'TSDeclareFunction':
-            collectPatternNames(node.id, names);
-            node.params.forEach((param: any) => collectPatternNames(param, names));
-            break;
-        case 'CatchClause':
-            collectPatternNames(node.param, names);
-            break;
-        default:
-            break;
-    }
-    forEachChild(node, (child) => collectBindings(child, names));
-}
-
-/**
- * Second pass: every identifier used as a value. Binding names are still
- * collected here; they are subtracted from the result at the end.
- *
- * Nodes whose meaning does not change which identifiers are references are
- * handled by the generic child walk at the bottom: calls, `new`, arrays,
- * template literals, conditional/logical/binary/unary/update/assignment and
- * sequence expressions, arrow/function declarations and expressions, variable
- * declarations, blocks, `for`/`for-of`/`for-in`, `if`, `try`/`catch`,
- * `while`/`do-while`, `switch`, `return`/`throw`, `await` and `yield`.
- */
-function collectReferences(node: any, names: Set<string>): void {
-    if (!node || typeof node !== 'object') {
-        return;
-    }
-    switch (node.type) {
-        case 'Identifier':
-            names.add(node.name);
+        case 'TSDeclareFunction': {
+            // A declaration's name is visible in the enclosing scope; a named
+            // function expression's name is visible only inside itself.
+            if (node.type === 'FunctionDeclaration' && node.id && scopes.length > 0) {
+                scopes[scopes.length - 1].add(node.id.name);
+            }
+            if (node.computed) {
+                visit(node.key, scopes, references);
+            }
+            const scope = new Set<string>();
+            if (node.id) {
+                scope.add(node.id.name);
+            }
+            node.params.forEach((param: any) => collectPatternNames(param, scope));
+            scopes.push(scope);
+            node.params.forEach((param: any) => visitPattern(param, scopes, references));
+            visit(node.body, scopes, references);
+            scopes.pop();
+            return;
+        }
+        case 'CatchClause': {
+            const scope = new Set<string>();
+            collectPatternNames(node.param, scope);
+            scopes.push(scope);
+            visitPattern(node.param, scopes, references);
+            visit(node.body, scopes, references);
+            scopes.pop();
+            return;
+        }
+        case 'ForStatement': {
+            // The loop head and body share the loop's lexical scope, which
+            // holds a `let`/`const` declared by the initialiser.
+            scopes.push(new Set<string>());
+            visit(node.init, scopes, references);
+            visit(node.test, scopes, references);
+            visit(node.update, scopes, references);
+            visit(node.body, scopes, references);
+            scopes.pop();
+            return;
+        }
+        case 'ForOfStatement':
+        case 'ForInStatement': {
+            // The right-hand side is evaluated outside the loop binding.
+            visit(node.right, scopes, references);
+            scopes.push(new Set<string>());
+            visit(node.left, scopes, references);
+            visit(node.body, scopes, references);
+            scopes.pop();
+            return;
+        }
+        case 'VariableDeclaration':
+            node.declarations.forEach((declarator: any) => {
+                collectPatternNames(declarator.id, scopes[scopes.length - 1]);
+                visitPattern(declarator.id, scopes, references);
+                visit(declarator.init, scopes, references);
+            });
+            return;
+        case 'ImportDeclaration':
+        case 'ExportAllDeclaration':
+            // Imports bind names, they are not references; an export-all has
+            // no local value reference.
+            return;
+        case 'ExportNamedDeclaration':
+            // `export { a }` is a name, not a value reference.
+            visit(node.declaration, scopes, references);
+            return;
+        case 'ExportDefaultDeclaration':
+            visit(node.declaration, scopes, references);
             return;
         case 'MemberExpression':
         case 'OptionalMemberExpression':
             // `a.b` depends on `a`, not on `b`; `a[b]` depends on both.
-            collectReferences(node.object, names);
+            visit(node.object, scopes, references);
             if (node.computed) {
-                collectReferences(node.property, names);
+                visit(node.property, scopes, references);
             }
             return;
         case 'ObjectExpression':
-            node.properties.forEach((property: any) => collectReferences(property, names));
+            node.properties.forEach((property: any) => visit(property, scopes, references));
             return;
         case 'ObjectProperty':
         case 'Property':
             // `{ key: value }` depends on `value`; shorthand `{ key }` is a
             // reference too, because its value is the same identifier.
             if (node.computed) {
-                collectReferences(node.key, names);
+                visit(node.key, scopes, references);
             }
-            collectReferences(node.value, names);
-            return;
-        case 'ObjectMethod':
-        case 'ClassMethod':
-        case 'ClassPrivateMethod':
-            if (node.computed) {
-                collectReferences(node.key, names);
-            }
-            node.params.forEach((param: any) => collectReferences(param, names));
-            collectReferences(node.body, names);
-            return;
-        case 'ClassProperty':
-        case 'ClassPrivateProperty':
-            if (node.computed) {
-                collectReferences(node.key, names);
-            }
-            collectReferences(node.value, names);
+            visit(node.value, scopes, references);
             return;
         case 'ClassDeclaration':
         case 'ClassExpression':
             // Class bodies are out of scope; only the superclass expression
             // can reference a value.
-            collectReferences(node.superClass, names);
+            visit(node.superClass, scopes, references);
             return;
         case 'LabeledStatement':
             // The label is a name, not a reference (`{ total: a + b }` at
             // statement position parses as a labelled statement).
-            collectReferences(node.body, names);
+            visit(node.body, scopes, references);
             return;
         case 'BreakStatement':
         case 'ContinueStatement':
@@ -292,7 +460,7 @@ function collectReferences(node: any, names: Set<string>): void {
         case 'TSInstantiationExpression':
             // `x as Foo`, `<Foo>x`, `x satisfies Foo`, `x!` and `foo<T>` are
             // value expressions wrapped in type syntax: visit the value only.
-            collectReferences(node.expression, names);
+            visit(node.expression, scopes, references);
             return;
         default:
             break;
@@ -300,7 +468,7 @@ function collectReferences(node: any, names: Set<string>): void {
     if (isTypeOnlySubtree(node)) {
         return;
     }
-    forEachChild(node, (child) => collectReferences(child, names));
+    forEachChild(node, (child) => visit(child, scopes, references));
 }
 
 /**
@@ -318,13 +486,9 @@ export function calculateDependencies(tsCode: string): string[] {
             allowReturnOutsideFunction: true,
             plugins: ['typescript'],
         });
-        const bindings = new Set<string>();
         const references = new Set<string>();
-        collectBindings(ast.program, bindings);
-        collectReferences(ast.program, references);
-        return Array.from(references)
-            .filter((name) => !bindings.has(name) && !BUILT_INS.has(name))
-            .sort();
+        visit(ast.program, [], references);
+        return Array.from(references).sort();
     } catch (err) {
         return [];
     }

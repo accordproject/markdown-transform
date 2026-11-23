@@ -26,6 +26,7 @@ concept TemplateData {
     o Boolean isActive optional
     o Boolean outer optional
     o Boolean inner optional
+    o Boolean Math optional
     o Double loanAmount optional
     o Double amount optional
     o Double rate optional
@@ -79,6 +80,106 @@ const CASES: DependencyCase[] = [
         name: 'a local arrow function parameter',
         code: 'items.map(x => x.amount)',
         expected: ['items'],
+    },
+    {
+        name: 'a callback parameter that shadows an outer variable of the same name',
+        code: 'return rate + items.map(rate => rate).length',
+        expected: ['items', 'rate'],
+    },
+    {
+        name: 'a callback parameter that does not hide the outer reference of another name',
+        code: 'items.map(x => x.price) + x',
+        expected: ['items', 'x'],
+    },
+    {
+        name: 'a block-local declaration and an outer reference of the same name',
+        code: '{ const rate = 1; return rate; } return rate',
+        expected: ['rate'],
+    },
+    {
+        name: 'a callback parameter and a block-local declaration inside the callback',
+        code: 'items.map(rate => { const x = rate; return x; }) + rate',
+        expected: ['items', 'rate'],
+    },
+    {
+        name: 'a default parameter value (a reference) inside a callback',
+        code: 'items.map((x = rate) => x) + rate',
+        expected: ['items', 'rate'],
+    },
+    {
+        name: 'a named function expression that refers to itself',
+        code: '(function fact(n) { return n <= 1 ? 1 : n * fact(n - 1) })',
+        expected: [],
+    },
+    {
+        name: 'a function declaration that is visible in its enclosing scope',
+        code: 'count(1); function count(n) { return n; }',
+        expected: [],
+    },
+    {
+        name: 'a method parameter scope',
+        code: '({ run(amount) { return amount + rate; } })',
+        expected: ['rate'],
+    },
+    {
+        name: 'an object method parameter and its own block local',
+        code: '({ run(rate) { const x = rate; return x; } }) + rate',
+        expected: ['rate'],
+    },
+    {
+        name: 'a for-of loop binding',
+        code: 'for (const item of items) { total += item; }',
+        expected: ['items', 'total'],
+    },
+    {
+        name: 'a for loop binding',
+        code: 'for (let i = 0; i < limit; i += step) { total += i; }',
+        expected: ['limit', 'step', 'total'],
+    },
+    {
+        name: 'a destructuring catch parameter with a default value',
+        code: 'try { risky(); } catch ({ message = fallback }) { report(message, fallback); }',
+        expected: ['fallback', 'report', 'risky'],
+    },
+    {
+        name: 'a type-only import is not a binding and not a reference',
+        code: 'import type { Foo as Alias } from "x"; return amount as Alias',
+        expected: ['amount'],
+    },
+    {
+        name: 'a per-specifier type import is not a binding',
+        code: 'import { type Foo, helper } from "x"; return helper(amount) as Foo',
+        expected: ['amount'],
+    },
+    {
+        name: 'a value import binds its local alias',
+        code: 'import { helper as h } from "x"; return h(amount)',
+        expected: ['amount'],
+    },
+    {
+        name: 'an export declaration',
+        code: 'export const total = amount * rate;',
+        expected: ['amount', 'rate'],
+    },
+    {
+        name: 'a class body is not analysed, only the superclass',
+        code: 'class A extends Base { method() { return amount; } }',
+        expected: ['Base'],
+    },
+    {
+        name: 'a this property access',
+        code: 'this.amount + other',
+        expected: ['other'],
+    },
+    {
+        name: 'a computed this property access',
+        code: 'this[key]',
+        expected: ['key'],
+    },
+    {
+        name: 'a var declaration is treated as block-scoped (hoisting is not modelled)',
+        code: '{ var hidden = 1; } return hidden',
+        expected: ['hidden'],
     },
     {
         name: 'an identifier captured from the outer scope',
@@ -251,6 +352,13 @@ describe('FormulaVisitor template typing', () => {
         expect(conditional).toBeDefined();
         expect(conditional.name).toEqual('isActive');
         expect(conditional.dependencies).toEqual(['isActive']);
+    });
+
+    it('uses a plain guard name even when it is a built-in JavaScript global', () => {
+        const [conditional] = findNodes('{{#if Math}}Math is a model property here.{{/if}}', CONDITIONAL);
+        expect(conditional).toBeDefined();
+        expect(conditional.name).toEqual('Math');
+        expect(conditional.dependencies).toEqual(['Math']);
     });
 
     it('records the identifiers referenced by a formula expression', () => {
