@@ -78,6 +78,7 @@
     "@accordproject/markdown-cicero": "2.0.0",
     "@accordproject/markdown-common": "2.0.0",
     "@accordproject/markdown-it-template": "2.0.0",
+    "@babel/parser": "^7.29.0",
     "@noble/hashes": "^1.8.0",
     "dayjs": "1.11.13",
     "markdown-it": "^14.1.0"
