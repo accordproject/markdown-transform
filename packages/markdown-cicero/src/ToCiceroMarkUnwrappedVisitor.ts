@@ -65,6 +65,7 @@ export class ToCiceroMarkUnwrappedVisitor {
                 delete thing.format;
                 delete thing.enumValues;
                 delete thing.identifiedBy;
+                delete thing.path;
                 break;
             }
             case 'Conditional':

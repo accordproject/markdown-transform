@@ -47,6 +47,7 @@ abstract concept Element extends Child {
 concept Variable extends Element {
   o String value
   o String identifiedBy optional
+  o String path optional
 }
 
 concept FormattedVariable extends Variable {
