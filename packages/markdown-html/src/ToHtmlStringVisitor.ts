@@ -28,6 +28,13 @@ function renderVariableValue(thing: any): string {
 }
 
 /**
+ * Escapes a string for use inside a double-quoted HTML attribute.
+ */
+function escapeAttribute(value: string): string {
+    return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+/**
  * Converts a commonmark model instance to an html string.
  */
 export class ToHtmlStringVisitor {
@@ -62,6 +69,7 @@ export class ToHtmlStringVisitor {
                 let attributes = `class="variable" name="${thing.name}"`;
                 if (thing.elementType) { attributes += ` elementType="${thing.elementType}"`; }
                 if (thing.identifiedBy) { attributes += ` identifiedBy="${thing.identifiedBy}"`; }
+                if (thing.path) { attributes += ` path="${escapeAttribute(thing.path)}"`; }
                 parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
                 break;
             }
@@ -69,6 +77,7 @@ export class ToHtmlStringVisitor {
                 let attributes = `class="variable" name="${thing.name}" format="${thing.format}"`;
                 if (thing.elementType) { attributes += ` elementType="${thing.elementType}"`; }
                 if (thing.identifiedBy) { attributes += ` identifiedBy="${thing.identifiedBy}"`; }
+                if (thing.path) { attributes += ` path="${escapeAttribute(thing.path)}"`; }
                 parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
                 break;
             }
@@ -77,6 +86,7 @@ export class ToHtmlStringVisitor {
                 let attributes = `class="variable" name="${thing.name}" enumValues="${enumValues}"`;
                 if (thing.elementType) { attributes += ` elementType="${thing.elementType}"`; }
                 if (thing.identifiedBy) { attributes += ` identifiedBy="${thing.identifiedBy}"`; }
+                if (thing.path) { attributes += ` path="${escapeAttribute(thing.path)}"`; }
                 parameters.result += `<span ${attributes}>${renderVariableValue(thing)}</span>`;
                 break;
             }

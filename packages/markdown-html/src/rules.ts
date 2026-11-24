@@ -270,6 +270,9 @@ const VARIABLE_RULE: Rule = {
             if (el.getAttribute('identifiedBy')) {
                 variable.identifiedBy = el.getAttribute('identifiedBy');
             }
+            if (el.getAttribute('path')) {
+                variable.path = el.getAttribute('path');
+            }
             return variable;
         }
     },

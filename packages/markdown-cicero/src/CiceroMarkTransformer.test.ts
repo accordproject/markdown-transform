@@ -127,3 +127,33 @@ describe('acceptance', () => {
         expect((() => ciceroMarkTransformer.getClauseText(json.nodes[1]))).toThrow('Cannot apply getClauseText to non-clause node');
     });
 });
+
+describe('variable path', () => {
+    const doc = (variables: any[]) => ({
+        '$class': 'org.accordproject.commonmark@0.5.0.Document',
+        'xmlns': 'http://commonmark.org/xml/1.0',
+        'nodes': [{ '$class': 'org.accordproject.commonmark@0.5.0.Paragraph', 'nodes': variables }],
+    });
+    const licensee = { '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'partyId', 'value': '"Me"', 'elementType': 'String', 'path': '$[\'licensee\'][\'partyId\']' };
+    const licensor = { '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'partyId', 'value': '"You"', 'elementType': 'String', 'path': '$[\'licensor\'][\'partyId\']' };
+
+    it('keeps the path of each variable that shares a name', () => {
+        const dom = ciceroMarkTransformer.getSerializer().fromJSON(doc([licensee, licensor]));
+        const json = ciceroMarkTransformer.getSerializer().toJSON(dom);
+        expect(json.nodes[0].nodes.map((v: any) => v.path)).toEqual(['$[\'licensee\'][\'partyId\']', '$[\'licensor\'][\'partyId\']']);
+    });
+
+    it('accepts a path on formatted and enum variables', () => {
+        const formatted = { '$class': 'org.accordproject.ciceromark@0.6.0.FormattedVariable', 'name': 'signedAt', 'value': '01/15/2024', 'format': 'MM/DD/YYYY', 'path': '$[\'parties\'][0][\'signedAt\']' };
+        const enumVariable = { '$class': 'org.accordproject.ciceromark@0.6.0.EnumVariable', 'name': 'role', 'value': 'BUYER', 'enumValues': ['BUYER', 'SELLER'], 'path': '$[\'parties\'][0][\'role\']' };
+        expect(() => ciceroMarkTransformer.getSerializer().fromJSON(doc([formatted, enumVariable]))).not.toThrow();
+    });
+
+    it('drops the path when variables are unwrapped to text', () => {
+        const unwrapped = ciceroMarkTransformer.toCiceroMarkUnwrapped(doc([licensee, licensor]));
+        expect(unwrapped.nodes[0].nodes).toEqual([
+            { '$class': 'org.accordproject.commonmark@0.5.0.Text', 'text': '"Me"' },
+            { '$class': 'org.accordproject.commonmark@0.5.0.Text', 'text': '"You"' },
+        ]);
+    });
+});

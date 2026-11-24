@@ -276,3 +276,44 @@ describe('renderVariableValue - relationship variables', () => {
         expect(html).not.toContain('resource:');
     });
 });
+
+describe('variable path', () => {
+    const doc = (variables: any[]) => ({
+        '$class': 'org.accordproject.commonmark@0.5.0.Document',
+        'xmlns': 'http://commonmark.org/xml/1.0',
+        'nodes': [{ '$class': 'org.accordproject.commonmark@0.5.0.Paragraph', 'nodes': variables }],
+    });
+
+    it('round-trips the path of variables that share a name', () => {
+        const ciceroMarkJson = doc([
+            { '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'partyId', 'value': '"Me"', 'elementType': 'String', 'path': '$[\'licensee\'][\'partyId\']' },
+            { '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'partyId', 'value': '"You"', 'elementType': 'String', 'path': '$[\'licensor\'][\'partyId\']' },
+        ]);
+        const html = htmlTransformer.toHtml(ciceroMarkJson);
+        expect(html).toContain('path="$[\'licensee\'][\'partyId\']"');
+        expect(html).toContain('path="$[\'licensor\'][\'partyId\']"');
+        expect(htmlTransformer.toCiceroMark(html)).toEqual(ciceroMarkJson);
+    });
+
+    it('round-trips the path of formatted and enum variables', () => {
+        const ciceroMarkJson = doc([
+            { '$class': 'org.accordproject.ciceromark@0.6.0.FormattedVariable', 'name': 'signedAt', 'value': '01/15/2024', 'format': 'MM/DD/YYYY', 'path': '$[\'parties\'][0][\'signedAt\']' },
+            { '$class': 'org.accordproject.ciceromark@0.6.0.EnumVariable', 'name': 'role', 'value': 'BUYER', 'enumValues': ['BUYER', 'SELLER'], 'path': '$[\'parties\'][1][\'role\']' },
+        ]);
+        expect(htmlTransformer.toCiceroMark(htmlTransformer.toHtml(ciceroMarkJson))).toEqual(ciceroMarkJson);
+    });
+
+    it('escapes quotes and ampersands in the path attribute', () => {
+        const ciceroMarkJson = doc([
+            { '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'x', 'value': '1', 'path': '$[\'a"&b\']' },
+        ]);
+        const html = htmlTransformer.toHtml(ciceroMarkJson);
+        expect(html).toContain('path="$[\'a&quot;&amp;b\']"');
+        expect(htmlTransformer.toCiceroMark(html)).toEqual(ciceroMarkJson);
+    });
+
+    it('omits the path attribute when a variable has no path', () => {
+        const html = htmlTransformer.toHtml(doc([{ '$class': 'org.accordproject.ciceromark@0.6.0.Variable', 'name': 'x', 'value': '1' }]));
+        expect(html).not.toContain('path=');
+    });
+});
