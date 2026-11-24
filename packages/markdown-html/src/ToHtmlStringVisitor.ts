@@ -188,9 +188,15 @@ export class ToHtmlStringVisitor {
             case 'HeaderCell':
                 parameters.result += `<th>${ToHtmlStringVisitor.visitChildren(this, thing)}</th>\n`;
                 break;
-            case 'Document':
-                parameters.result += `<html>\n<head><meta charset="UTF-8"></head>\n<body>\n<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>\n</body>\n</html>`;
+            case 'Document': {
+                const inner = `<div class="document">\n${ToHtmlStringVisitor.visitChildren(this, thing)}</div>`;
+                if (this.options && this.options.fragment) {
+                    parameters.result += inner;
+                } else {
+                    parameters.result += `<html>\n<head><meta charset="UTF-8"></head>\n<body>\n${inner}\n</body>\n</html>`;
+                }
                 break;
+            }
             default:
                 throw new Error(`Unhandled type ${thing.getType()}`);
         }

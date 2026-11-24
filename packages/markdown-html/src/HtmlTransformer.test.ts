@@ -276,3 +276,29 @@ describe('renderVariableValue - relationship variables', () => {
         expect(html).not.toContain('resource:');
     });
 });
+
+describe('fragment option', () => {
+    const docJson = {
+        '$class': 'org.accordproject.commonmark@0.5.0.Document',
+        'xmlns': 'http://commonmark.org/xml/1.0',
+        'nodes': [{
+            '$class': 'org.accordproject.commonmark@0.5.0.Paragraph',
+            'nodes': [{ '$class': 'org.accordproject.commonmark@0.5.0.Text', 'text': 'Hello' }],
+        }],
+    };
+
+    it('wraps output in <html>...</html> by default', () => {
+        const html = new HtmlTransformer().toHtml(docJson);
+        expect(html.startsWith('<html>')).toBe(true);
+        expect(html.endsWith('</html>')).toBe(true);
+        expect(html).toContain('<div class="document">');
+    });
+
+    it('emits only the <div class="document"> fragment when fragment: true', () => {
+        const html = new HtmlTransformer({ fragment: true }).toHtml(docJson);
+        expect(html.startsWith('<div class="document">')).toBe(true);
+        expect(html.endsWith('</div>')).toBe(true);
+        expect(html).not.toMatch(/<html>|<head\b|<body>/);
+        expect(html).toContain('<p>Hello</p>');
+    });
+});
