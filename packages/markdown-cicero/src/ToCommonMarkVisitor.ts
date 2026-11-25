@@ -48,8 +48,11 @@ export class ToCommonMarkVisitor {
         const thingType = thing.getType();
         switch (thingType) {
             case 'Clause': {
+                // A clause is replaced by its content. One drafted without
+                // content (its condition was false) has no nodes and leaves
+                // nothing behind.
                 ToCommonMarkVisitor.visitChildren(this, thing, parameters);
-                return thing.nodes;
+                return thing.nodes ?? [];
             }
             case 'Formula': {
                 thing.$classDeclaration = parameters.modelManager.getType(`${CommonMarkModel.NAMESPACE}.Text`);
